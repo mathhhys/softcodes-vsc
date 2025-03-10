@@ -46,12 +46,12 @@ export function registerHumanRelayCallback(requestId: string, callback: (respons
 // Your extension is activated the very first time the command is executed.
 export function activate(context: vscode.ExtensionContext) {
 	extensionContext = context
-	outputChannel = vscode.window.createOutputChannel("Roo-Code")
+	outputChannel = vscode.window.createOutputChannel("Kilo-Code")
 	context.subscriptions.push(outputChannel)
-	outputChannel.appendLine("Roo-Code extension activated")
+	outputChannel.appendLine("Kilo-Code extension activated")
 
 	// Get default commands from configuration.
-	const defaultCommands = vscode.workspace.getConfiguration("roo-cline").get<string[]>("allowedCommands") || []
+	const defaultCommands = vscode.workspace.getConfiguration("kiloCode").get<string[]>("allowedCommands") || []
 
 	// Initialize global state if not already set.
 	if (!context.globalState.get("allowedCommands")) {
@@ -70,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Register human relay callback registration command
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
-			"roo-cline.registerHumanRelayCallback",
+			"kilo-code.registerHumanRelayCallback",
 			(requestId: string, callback: (response: string | undefined) => void) => {
 				registerHumanRelayCallback(requestId, callback)
 			},
@@ -80,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Register human relay response processing command
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
-			"roo-cline.handleHumanRelayResponse",
+			"kilo-code.handleHumanRelayResponse",
 			(response: { requestId: string; text?: string; cancelled?: boolean }) => {
 				const callback = humanRelayCallbacks.get(response.requestId)
 				if (callback) {
@@ -96,7 +96,7 @@ export function activate(context: vscode.ExtensionContext) {
 	)
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand("roo-cline.unregisterHumanRelayCallback", (requestId: string) => {
+		vscode.commands.registerCommand("kilo-code.unregisterHumanRelayCallback", (requestId: string) => {
 			humanRelayCallbacks.delete(requestId)
 		}),
 	)
@@ -143,7 +143,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated.
 export async function deactivate() {
-	outputChannel.appendLine("Roo-Code extension deactivated")
+	outputChannel.appendLine("Kilo-Code extension deactivated")
 	// Clean up MCP server manager
 	await McpServerManager.cleanup(extensionContext)
 }
