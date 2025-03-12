@@ -279,6 +279,14 @@ const ApiOptions = ({
 
 			{errorMessage && <ApiErrorMessage errorMessage={errorMessage} />}
 
+			{selectedProvider === "kilocode" && (
+				<>
+					<VSCodeButtonLink variant="secondary" href={getKiloCodeBackendAuthUrl()}>
+						Log in at Kilo Code
+					</VSCodeButtonLink>
+				</>
+			)}
+
 			{selectedProvider === "openrouter" && (
 				<>
 					<VSCodeTextField
@@ -1309,6 +1317,10 @@ export function getGlamaAuthUrl(uriScheme?: string) {
 
 export function getOpenRouterAuthUrl(uriScheme?: string) {
 	return `https://openrouter.ai/auth?callback_url=${uriScheme || "vscode"}://kilocode.Kilo-Code/openrouter`
+}
+
+export function getKiloCodeBackendAuthUrl(uriScheme?: string) {
+	return `https://kilocode-backend-uc7g.vercel.app/auth/signin?source=vscode`
 }
 
 export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration) {

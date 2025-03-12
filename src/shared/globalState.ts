@@ -13,6 +13,7 @@ export const SECRET_KEYS = [
 	"mistralApiKey",
 	"unboundApiKey",
 	"requestyApiKey",
+	"kilocodeToken",
 ] as const
 
 // Derive the type from the array - creates a union of string literals
@@ -99,6 +100,7 @@ export const GLOBAL_STATE_KEYS = [
 	"lmStudioSpeculativeDecodingEnabled",
 	"lmStudioDraftModelId",
 	"showRooIgnoredFiles",
+	"kilocodeToken",
 ] as const
 
 // Derive the type from the array - creates a union of string literals
