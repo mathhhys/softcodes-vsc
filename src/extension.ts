@@ -35,11 +35,11 @@ let extensionContext: vscode.ExtensionContext
 
 // This method is called when your extension is activated.
 // Your extension is activated the very first time the command is executed.
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
 	extensionContext = context
 	outputChannel = vscode.window.createOutputChannel("Kilo-Code")
 	context.subscriptions.push(outputChannel)
-	outputChannel.appendLine("Kilo-Code extension activated")
+	outputChannel.appendLine("Kilo Code extension activated")
 
 	// Initialize terminal shell execution handlers.
 	TerminalRegistry.initialize()
@@ -59,6 +59,16 @@ export function activate(context: vscode.ExtensionContext) {
 			webviewOptions: { retainContextWhenHidden: true },
 		}),
 	)
+
+	if (!context.globalState.get("firstInstallCompleted")) {
+		outputChannel.appendLine("First installation detected, opening Kilo Code sidebar!")
+		try {
+			await vscode.commands.executeCommand("kilo-code.SidebarProvider.focus")
+			context.globalState.update("firstInstallCompleted", true)
+		} catch (error) {
+			outputChannel.appendLine(`Error opening sidebar: ${error.message}`)
+		}
+	}
 
 	registerCommands({ context, outputChannel, provider })
 
@@ -106,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated
 export async function deactivate() {
-	outputChannel.appendLine("Kilo-Code extension deactivated")
+	outputChannel.appendLine("Kilo Code extension deactivated")
 	// Clean up MCP server manager
 	await McpServerManager.cleanup(extensionContext)
 
