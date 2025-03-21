@@ -15,6 +15,8 @@ import { getModelParams, SingleCompletionHandler } from ".."
 import { BaseProvider } from "./base-provider"
 import { defaultHeaders } from "./openai"
 
+const OPENROUTER_DEFAULT_PROVIDER_NAME = "[default]"
+
 // Add custom interface for OpenRouter params.
 type OpenRouterChatCompletionParams = OpenAI.Chat.ChatCompletionCreateParams & {
 	transforms?: string[]
@@ -109,6 +111,11 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 			messages: openAiMessages,
 			stream: true,
 			include_reasoning: true,
+			// Only include provider if openRouterSpecificProvider is not "[default]".
+			...(this.options.openRouterSpecificProvider &&
+				this.options.openRouterSpecificProvider !== OPENROUTER_DEFAULT_PROVIDER_NAME && {
+					provider: { order: [this.options.openRouterSpecificProvider] },
+				}),
 			// This way, the transforms field will only be included in the parameters when openRouterUseMiddleOutTransform is true.
 			...((this.options.openRouterUseMiddleOutTransform ?? true) && { transforms: ["middle-out"] }),
 		}
@@ -177,7 +184,7 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 
 		if (lastError) {
 			console.error(
-				`Failed to fetch OpenRouter generation details after ${Date.now() - startTime}ms (${genId})`,
+				`Failed to fetch OpenRouter generation details after attempt #${attempt} (${Date.now() - startTime}ms) [${genId}]`,
 				lastError,
 			)
 		}
@@ -254,7 +261,7 @@ export async function getOpenRouterModels(options?: ApiHandlerOptions) {
 					modelInfo.supportsPromptCache = true
 					modelInfo.cacheWritesPrice = 3.75
 					modelInfo.cacheReadsPrice = 0.3
-					modelInfo.maxTokens = rawModel.id === "anthropic/claude-3.7-sonnet:thinking" ? 128_000 : 16_384
+					modelInfo.maxTokens = rawModel.id === "anthropic/claude-3.7-sonnet:thinking" ? 128_000 : 8192
 					break
 				case rawModel.id.startsWith("anthropic/claude-3.5-sonnet-20240620"):
 					modelInfo.supportsPromptCache = true

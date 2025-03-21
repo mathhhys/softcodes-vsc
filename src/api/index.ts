@@ -22,6 +22,7 @@ import { RequestyHandler } from "./providers/requesty"
 import { HumanRelayHandler } from "./providers/human-relay"
 import { KiloCodeHandler } from "./providers/kilocode"
 import { FireworksHandler } from "./providers/fireworks"
+import { FakeAIHandler } from "./providers/fake-ai"
 
 export interface SingleCompletionHandler {
 	completePrompt(prompt: string): Promise<string>
@@ -81,6 +82,8 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 			return new HumanRelayHandler(options)
 		case "fireworks":
 			return new FireworksHandler(options)
+		case "fake-ai":
+			return new FakeAIHandler(options)
 		default:
 			return new AnthropicHandler(options)
 	}
