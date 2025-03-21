@@ -129,7 +129,7 @@ class MockResizeObserver {
 
 global.ResizeObserver = MockResizeObserver
 
-const renderSettingsView = () => {
+const renderSettingsView = (initialState = {}) => {
 	const onDone = jest.fn()
 	const queryClient = new QueryClient()
 
@@ -142,7 +142,7 @@ const renderSettingsView = () => {
 	)
 
 	// Hydrate initial state.
-	mockPostMessage({})
+	mockPostMessage(initialState)
 
 	return { onDone }
 }
@@ -422,14 +422,10 @@ describe("SettingsView - Auto Approve Settings", () => {
 			alwaysAllowWrite: true,
 		})
 
-		const readCheckbox = screen.getByRole("checkbox", {
-			name: /Always approve read-only operations/i,
-		})
+		const readCheckbox = screen.getByTestId("always-allow-readonly-checkbox")
 		expect(readCheckbox).toBeChecked()
 
-		const writeCheckbox = screen.getByRole("checkbox", {
-			name: /Always approve write operations/i,
-		})
+		const writeCheckbox = screen.getByTestId("always-allow-write-checkbox")
 		expect(writeCheckbox).toBeChecked()
 	})
 
@@ -439,19 +435,15 @@ describe("SettingsView - Auto Approve Settings", () => {
 			alwaysAllowWrite: true,
 		})
 
-		const readCheckbox = screen.getByRole("checkbox", {
-			name: /Always approve read-only operations/i,
-		})
-		const writeCheckbox = screen.getByRole("checkbox", {
-			name: /Always approve write operations/i,
-		})
+		const readCheckbox = screen.getByTestId("always-allow-readonly-checkbox")
+		const writeCheckbox = screen.getByTestId("always-allow-write-checkbox")
 
 		// Uncheck the checkboxes
 		fireEvent.click(readCheckbox)
 		fireEvent.click(writeCheckbox)
 
 		// Click Save to save settings
-		const saveButton = screen.getByText("Save")
+		const saveButton = screen.getByTestId("save-button")
 		fireEvent.click(saveButton)
 
 		// Verify message sent to VSCode
