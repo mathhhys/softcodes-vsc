@@ -28,7 +28,7 @@ export async function run() {
 	 * Activate the extension.
 	 */
 
-	const extension = vscode.extensions.getExtension<RooCodeAPI>("RooVeterinaryInc.roo-cline")
+	const extension = vscode.extensions.getExtension<RooCodeAPI>("kilocode.Kilo-Code")
 
 	if (!extension) {
 		throw new Error("Extension not found.")
@@ -67,7 +67,7 @@ export async function run() {
 	})
 
 	await vscode.workspace
-		.getConfiguration("roo-cline")
+		.getConfiguration("kiloCode")
 		.update("allowedCommands", ["*"], vscode.ConfigurationTarget.Global)
 
 	await sleep(2_000)

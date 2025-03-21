@@ -1,5 +1,5 @@
 {
-	"greeting": "What can Roo do for you?",
+	"greeting": "What can Kilo Code do for you?",
 	"task": {
 		"title": "Task",
 		"seeMore": "See more",
@@ -104,44 +104,44 @@
 		"current": "Current"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo wants to read this file:",
-		"didRead": "Roo read this file:",
-		"wantsToEdit": "Roo wants to edit this file:",
-		"wantsToCreate": "Roo wants to create a new file:"
+		"wantsToRead": "Kilo Code wants to read this file:",
+		"didRead": "Kilo Code read this file:",
+		"wantsToEdit": "Kilo Code wants to edit this file:",
+		"wantsToCreate": "Kilo Code wants to create a new file:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo wants to view the top level files in this directory:",
-		"didViewTopLevel": "Roo viewed the top level files in this directory:",
-		"wantsToViewRecursive": "Roo wants to recursively view all files in this directory:",
-		"didViewRecursive": "Roo recursively viewed all files in this directory:",
-		"wantsToViewDefinitions": "Roo wants to view source code definition names used in this directory:",
-		"didViewDefinitions": "Roo viewed source code definition names used in this directory:",
-		"wantsToSearch": "Roo wants to search this directory for <code>{{regex}}</code>:",
-		"didSearch": "Roo searched this directory for <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Kilo Code wants to view the top level files in this directory:",
+		"didViewTopLevel": "Kilo Code viewed the top level files in this directory:",
+		"wantsToViewRecursive": "Kilo Code wants to recursively view all files in this directory:",
+		"didViewRecursive": "Kilo Code recursively viewed all files in this directory:",
+		"wantsToViewDefinitions": "Kilo Code wants to view source code definition names used in this directory:",
+		"didViewDefinitions": "Kilo Code viewed source code definition names used in this directory:",
+		"wantsToSearch": "Kilo Code wants to search this directory for <code>{{regex}}</code>:",
+		"didSearch": "Kilo Code searched this directory for <code>{{regex}}</code>:"
 	},
 	"commandOutput": "Command Output",
 	"response": "Response",
 	"arguments": "Arguments",
 	"mcp": {
-		"wantsToUseTool": "Roo wants to use a tool on the {{serverName}} MCP server:",
-		"wantsToAccessResource": "Roo wants to access a resource on the {{serverName}} MCP server:"
+		"wantsToUseTool": "Kilo Code wants to use a tool on the {{serverName}} MCP server:",
+		"wantsToAccessResource": "Kilo Code wants to access a resource on the {{serverName}} MCP server:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo wants to switch to {{mode}} mode",
-		"wantsToSwitchWithReason": "Roo wants to switch to {{mode}} mode because: {{reason}}",
-		"didSwitch": "Roo switched to {{mode}} mode",
-		"didSwitchWithReason": "Roo switched to {{mode}} mode because: {{reason}}"
+		"wantsToSwitch": "Kilo Code wants to switch to {{mode}} mode",
+		"wantsToSwitchWithReason": "Kilo Code wants to switch to {{mode}} mode because: {{reason}}",
+		"didSwitch": "Kilo Code switched to {{mode}} mode",
+		"didSwitchWithReason": "Kilo Code switched to {{mode}} mode because: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo wants to create a new subtask in {{mode}} mode:",
-		"wantsToFinish": "Roo wants to finish this subtask"
+		"wantsToCreate": "Kilo Code wants to create a new subtask in {{mode}} mode:",
+		"wantsToFinish": "Kilo Code wants to finish this subtask"
 	},
 	"questions": {
-		"hasQuestion": "Roo has a question:"
+		"hasQuestion": "Kilo Code has a question:"
 	},
 	"taskCompleted": "Task Completed",
 	"error": "Error",
-	"troubleMessage": "Roo is having trouble...",
+	"troubleMessage": "Kilo Code is having trouble...",
 	"shellIntegration": {
 		"unavailable": "Shell Integration Unavailable",
 		"troubleshooting": "Still having trouble?"
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "Auto-approve:",
 		"none": "None",
-		"description": "Auto-approve allows Roo Code to perform actions without asking for permission. Only enable for actions you fully trust.",
+		"description": "Auto-approve allows Kilo Code to perform actions without asking for permission. Only enable for actions you fully trust.",
 		"actions": {
 			"readFiles": {
 				"label": "Read files and directories",
@@ -213,7 +213,7 @@
 		"seconds": "{{count}}s"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo wants to use the browser:",
+		"rooWantsToUse": "Kilo Code wants to use the browser:",
 		"consoleLogs": "Console Logs",
 		"noNewLogs": "(No new logs)",
 		"screenshot": "Browser screenshot",

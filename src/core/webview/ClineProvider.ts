@@ -2177,21 +2177,21 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		// Get platform-specific application data directory
 		let mcpServersDir: string
 		if (process.platform === "win32") {
-			// Windows: %APPDATA%\Roo-Code\MCP
-			mcpServersDir = path.join(os.homedir(), "AppData", "Roaming", "Roo-Code", "MCP")
+			// Windows: %APPDATA%\Kilo-Code\MCP
+			mcpServersDir = path.join(os.homedir(), "AppData", "Roaming", "Kilo-Code", "MCP")
 		} else if (process.platform === "darwin") {
-			// macOS: ~/Documents/Cline/MCP
-			mcpServersDir = path.join(os.homedir(), "Documents", "Cline", "MCP")
+			// macOS: ~/Documents/Kilo-Code/MCP
+			mcpServersDir = path.join(os.homedir(), "Documents", "Kilo-Code", "MCP")
 		} else {
 			// Linux: ~/.local/share/Cline/MCP
-			mcpServersDir = path.join(os.homedir(), ".local", "share", "Roo-Code", "MCP")
+			mcpServersDir = path.join(os.homedir(), ".local", "share", "Kilo-Code", "MCP")
 		}
 
 		try {
 			await fs.mkdir(mcpServersDir, { recursive: true })
 		} catch (error) {
 			// Fallback to a relative path if directory creation fails
-			return path.join(os.homedir(), ".roo-code", "mcp")
+			return path.join(os.homedir(), ".kilo-code", "mcp")
 		}
 		return mcpServersDir
 	}
@@ -2469,7 +2469,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		} = await this.getState()
 
 		const machineId = vscode.env.machineId
-		const allowedCommands = vscode.workspace.getConfiguration("roo-cline").get<string[]>("allowedCommands") || []
+		const allowedCommands = vscode.workspace.getConfiguration("kilo-code").get<string[]>("allowedCommands") || []
 		const cwd = this.cwd
 
 		return {
