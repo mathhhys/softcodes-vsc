@@ -3151,7 +3151,6 @@ export class Cline extends EventEmitter<ClineEvents> {
 									await this.say("completion_result", result, undefined, false)
 								}
 
-								telemetryService.captureTaskCompleted(this.taskId)
 								this.emit("taskCompleted", this.taskId, this.getTokenUsage())
 
 								if (this.parentTask) {
