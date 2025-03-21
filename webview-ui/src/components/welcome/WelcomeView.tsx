@@ -6,9 +6,11 @@ import { validateApiConfiguration } from "../../utils/validate"
 import { vscode } from "../../utils/vscode"
 import ApiOptions from "../settings/ApiOptions"
 import { Tab, TabContent } from "../common/Tab"
+import { useAppTranslation } from "../../i18n/TranslationContext"
 
 const WelcomeView = () => {
 	const { apiConfiguration, currentApiConfigName, setApiConfiguration, uriScheme } = useExtensionState()
+	const { t } = useAppTranslation()
 
 	const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
@@ -28,7 +30,7 @@ const WelcomeView = () => {
 	return (
 		<Tab>
 			<TabContent className="flex flex-col gap-5">
-				<h2 className="m-0 p-0">Hi, welcome to Kilo Code!</h2>
+				<h2 className="m-0 p-0">{t("welcome:greeting")}</h2>
 				<ApiOptions
 					fromWelcomeView
 					apiConfiguration={apiConfiguration || {}}
@@ -41,7 +43,7 @@ const WelcomeView = () => {
 			<div className="sticky bottom-0 bg-vscode-sideBar-background p-5">
 				<div className="flex flex-col gap-1">
 					{apiConfiguration?.apiProvider === "kilocode" ? null : (
-						<VSCodeButton onClick={handleSubmit}>Let's go!</VSCodeButton>
+						<VSCodeButton onClick={handleSubmit}>{t("welcome:start")}</VSCodeButton>
 					)}
 					{errorMessage && <div className="text-vscode-errorForeground">{errorMessage}</div>}
 				</div>

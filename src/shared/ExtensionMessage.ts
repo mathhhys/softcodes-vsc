@@ -53,6 +53,10 @@ export interface ExtensionMessage {
 		| "browserToolEnabled"
 		| "browserConnectionResult"
 		| "remoteBrowserEnabled"
+		| "ttsStart"
+		| "ttsStop"
+		| "maxReadFileLine"
+		| "fileSearchResults"
 	text?: string
 	action?:
 		| "chatButtonClicked"
@@ -89,6 +93,12 @@ export interface ExtensionMessage {
 	values?: Record<string, any>
 	requestId?: string
 	promptText?: string
+	results?: Array<{
+		path: string
+		type: "file" | "folder"
+		label?: string
+	}>
+	error?: string
 }
 
 export interface ApiConfigMeta {
@@ -123,6 +133,8 @@ export interface ExtensionState {
 	currentTaskItem?: HistoryItem
 	allowedCommands?: string[]
 	soundEnabled?: boolean
+	ttsEnabled?: boolean
+	ttsSpeed?: number
 	soundVolume?: number
 	diffEnabled?: boolean
 	enableCheckpoints: boolean
@@ -135,6 +147,7 @@ export interface ExtensionState {
 	language?: string
 	writeDelayMs: number
 	terminalOutputLineLimit?: number
+	terminalShellIntegrationTimeout?: number
 	mcpEnabled: boolean
 	enableMcpServerCreation: boolean
 	enableCustomModeCreation?: boolean
@@ -146,9 +159,12 @@ export interface ExtensionState {
 	customModes: ModeConfig[]
 	toolRequirements?: Record<string, boolean> // Map of tool names to their requirements (e.g. {"apply_diff": true} if diffEnabled)
 	maxOpenTabsContext: number // Maximum number of VSCode open tabs to include in context (0-500)
+	maxWorkspaceFiles: number // Maximum number of files to include in current working directory details (0-500)
 	cwd?: string // Current working directory
 	machineId?: string
 	showRooIgnoredFiles: boolean // Whether to show .kilocodeignore'd files in listings
+	renderContext: "sidebar" | "editor"
+	maxReadFileLine: number // Maximum number of lines to read from a file before truncating
 }
 
 export type { ClineMessage, ClineAsk, ClineSay }

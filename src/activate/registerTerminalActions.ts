@@ -1,6 +1,7 @@
 import * as vscode from "vscode"
 import { ClineProvider } from "../core/webview/ClineProvider"
 import { Terminal } from "../integrations/terminal/Terminal"
+import { t } from "../i18n"
 
 const TERMINAL_COMMAND_IDS = {
 	ADD_TO_CONTEXT: "kilo-code.terminalAddToContext",
@@ -42,7 +43,7 @@ const registerTerminalAction = (
 			}
 
 			if (!content) {
-				vscode.window.showWarningMessage("No terminal content selected")
+				vscode.window.showWarningMessage(t("common:warnings.no_terminal_content"))
 				return
 			}
 

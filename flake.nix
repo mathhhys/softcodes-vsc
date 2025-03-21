@@ -14,16 +14,11 @@
       pkgs = import nixpkgs { inherit system; };
     in pkgs.mkShell {
       name = "roo-code";
-      
-      packages = with pkgs; [
-        zsh
-        nodejs_18
-        corepack_18
-      ];
 
-      shellHook = ''
-        exec zsh
-      '';
+      packages = with pkgs; [
+        nodejs_20
+        corepack_20
+      ];
     };
   in {
     devShells = forAllSystems (system: {
