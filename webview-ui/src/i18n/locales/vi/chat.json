@@ -1,5 +1,5 @@
 {
-	"greeting": "Roo có thể giúp gì cho bạn?",
+	"greeting": "Kilo Code có thể giúp gì cho bạn?",
 	"task": {
 		"title": "Nhiệm vụ",
 		"seeMore": "Xem thêm",
@@ -81,7 +81,7 @@
 	"edit": "Chỉnh sửa...",
 	"forNextMode": "cho chế độ tiếp theo",
 	"error": "Lỗi",
-	"troubleMessage": "Roo đang gặp sự cố...",
+	"troubleMessage": "Kilo Code đang gặp sự cố...",
 	"apiRequest": {
 		"title": "Yêu cầu API",
 		"failed": "Yêu cầu API thất bại",
@@ -106,40 +106,40 @@
 		"current": "Hiện tại"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo muốn đọc tệp này:",
-		"didRead": "Roo đã đọc tệp này:",
-		"wantsToEdit": "Roo muốn chỉnh sửa tệp này:",
-		"wantsToCreate": "Roo muốn tạo một tệp mới:"
+		"wantsToRead": "Kilo Code muốn đọc tệp này:",
+		"didRead": "Kilo Code đã đọc tệp này:",
+		"wantsToEdit": "Kilo Code muốn chỉnh sửa tệp này:",
+		"wantsToCreate": "Kilo Code muốn tạo một tệp mới:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo muốn xem các tệp cấp cao nhất trong thư mục này:",
-		"didViewTopLevel": "Roo đã xem các tệp cấp cao nhất trong thư mục này:",
-		"wantsToViewRecursive": "Roo muốn xem đệ quy tất cả các tệp trong thư mục này:",
-		"didViewRecursive": "Roo đã xem đệ quy tất cả các tệp trong thư mục này:",
-		"wantsToViewDefinitions": "Roo muốn xem tên định nghĩa mã nguồn được sử dụng trong thư mục này:",
-		"didViewDefinitions": "Roo đã xem tên định nghĩa mã nguồn được sử dụng trong thư mục này:",
-		"wantsToSearch": "Roo muốn tìm kiếm trong thư mục này cho <code>{{regex}}</code>:",
-		"didSearch": "Roo đã tìm kiếm trong thư mục này cho <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Kilo Code muốn xem các tệp cấp cao nhất trong thư mục này:",
+		"didViewTopLevel": "Kilo Code đã xem các tệp cấp cao nhất trong thư mục này:",
+		"wantsToViewRecursive": "Kilo Code muốn xem đệ quy tất cả các tệp trong thư mục này:",
+		"didViewRecursive": "Kilo Code đã xem đệ quy tất cả các tệp trong thư mục này:",
+		"wantsToViewDefinitions": "Kilo Code muốn xem tên định nghĩa mã nguồn được sử dụng trong thư mục này:",
+		"didViewDefinitions": "Kilo Code đã xem tên định nghĩa mã nguồn được sử dụng trong thư mục này:",
+		"wantsToSearch": "Kilo Code muốn tìm kiếm trong thư mục này cho <code>{{regex}}</code>:",
+		"didSearch": "Kilo Code đã tìm kiếm trong thư mục này cho <code>{{regex}}</code>:"
 	},
 	"commandOutput": "Kết quả lệnh",
 	"response": "Phản hồi",
 	"arguments": "Tham số",
 	"mcp": {
-		"wantsToUseTool": "Roo muốn sử dụng một công cụ trên máy chủ MCP {{serverName}}:",
-		"wantsToAccessResource": "Roo muốn truy cập một tài nguyên trên máy chủ MCP {{serverName}}:"
+		"wantsToUseTool": "Kilo Code muốn sử dụng một công cụ trên máy chủ MCP {{serverName}}:",
+		"wantsToAccessResource": "Kilo Code muốn truy cập một tài nguyên trên máy chủ MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo muốn chuyển sang chế độ <code>{{mode}}</code>",
-		"wantsToSwitchWithReason": "Roo muốn chuyển sang chế độ <code>{{mode}}</code> vì: {{reason}}",
-		"didSwitch": "Roo đã chuyển sang chế độ <code>{{mode}}</code>",
-		"didSwitchWithReason": "Roo đã chuyển sang chế độ <code>{{mode}}</code> vì: {{reason}}"
+		"wantsToSwitch": "Kilo Code muốn chuyển sang chế độ <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Kilo Code muốn chuyển sang chế độ <code>{{mode}}</code> vì: {{reason}}",
+		"didSwitch": "Kilo Code đã chuyển sang chế độ <code>{{mode}}</code>",
+		"didSwitchWithReason": "Kilo Code đã chuyển sang chế độ <code>{{mode}}</code> vì: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo muốn tạo một nhiệm vụ phụ mới trong chế độ <code>{{mode}}</code>:",
-		"wantsToFinish": "Roo muốn hoàn thành nhiệm vụ phụ này"
+		"wantsToCreate": "Kilo Code muốn tạo một nhiệm vụ phụ mới trong chế độ <code>{{mode}}</code>:",
+		"wantsToFinish": "Kilo Code muốn hoàn thành nhiệm vụ phụ này"
 	},
 	"questions": {
-		"hasQuestion": "Roo có một câu hỏi:"
+		"hasQuestion": "Kilo Code có một câu hỏi:"
 	},
 	"taskCompleted": "Nhiệm vụ hoàn thành",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "Tự động phê duyệt:",
 		"none": "Không",
-		"description": "Tự động phê duyệt cho phép Roo Code thực hiện hành động mà không cần xin phép. Chỉ bật cho các hành động bạn hoàn toàn tin tưởng.",
+		"description": "Tự động phê duyệt cho phép Kilo Code thực hiện hành động mà không cần xin phép. Chỉ bật cho các hành động bạn hoàn toàn tin tưởng.",
 		"actions": {
 			"readFiles": {
 				"label": "Đọc tệp và thư mục",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}} giây"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 Đã phát hành",
-		"description": "Roo Code 3.10 mang đến những cải tiến năng suất mạnh mẽ!",
+		"title": "🎉 Kilo Code 3.10 Đã phát hành",
+		"description": "Kilo Code 3.10 mang đến những cải tiến năng suất mạnh mẽ!",
 		"whatsNew": "Có gì mới",
 		"feature1": "Gợi ý phản hồi cho câu hỏi",
 		"feature2": "Cải thiện xử lý tệp tin lớn",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "Nhận thêm chi tiết và thảo luận tại <discordLink>Discord</discordLink> và <redditLink>Reddit</redditLink> 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo muốn sử dụng trình duyệt:",
+		"rooWantsToUse": "Kilo Code muốn sử dụng trình duyệt:",
 		"consoleLogs": "Nhật ký bảng điều khiển",
 		"noNewLogs": "(Không có nhật ký mới)",
 		"screenshot": "Ảnh chụp màn hình trình duyệt",

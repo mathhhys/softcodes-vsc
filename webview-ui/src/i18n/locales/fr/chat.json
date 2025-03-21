@@ -1,5 +1,5 @@
 {
-	"greeting": "Que peut faire Roo pour vous ?",
+	"greeting": "Que peut faire Kilo Code pour vous ?",
 	"task": {
 		"title": "Tâche",
 		"seeMore": "Voir plus",
@@ -81,7 +81,7 @@
 	"edit": "Éditer...",
 	"forNextMode": "pour le prochain mode",
 	"error": "Erreur",
-	"troubleMessage": "Roo rencontre des difficultés...",
+	"troubleMessage": "Kilo Code rencontre des difficultés...",
 	"apiRequest": {
 		"title": "Requête API",
 		"failed": "Échec de la requête API",
@@ -106,40 +106,40 @@
 		"current": "Actuel"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo veut lire ce fichier :",
-		"didRead": "Roo a lu ce fichier :",
-		"wantsToEdit": "Roo veut éditer ce fichier :",
-		"wantsToCreate": "Roo veut créer un nouveau fichier :"
+		"wantsToRead": "Kilo Code veut lire ce fichier :",
+		"didRead": "Kilo Code a lu ce fichier :",
+		"wantsToEdit": "Kilo Code veut éditer ce fichier :",
+		"wantsToCreate": "Kilo Code veut créer un nouveau fichier :"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo veut voir les fichiers de premier niveau dans ce répertoire :",
-		"didViewTopLevel": "Roo a vu les fichiers de premier niveau dans ce répertoire :",
-		"wantsToViewRecursive": "Roo veut voir récursivement tous les fichiers dans ce répertoire :",
-		"didViewRecursive": "Roo a vu récursivement tous les fichiers dans ce répertoire :",
-		"wantsToViewDefinitions": "Roo veut voir les noms de définitions de code source utilisés dans ce répertoire :",
-		"didViewDefinitions": "Roo a vu les noms de définitions de code source utilisés dans ce répertoire :",
-		"wantsToSearch": "Roo veut rechercher dans ce répertoire <code>{{regex}}</code> :",
-		"didSearch": "Roo a recherché dans ce répertoire <code>{{regex}}</code> :"
+		"wantsToViewTopLevel": "Kilo Code veut voir les fichiers de premier niveau dans ce répertoire :",
+		"didViewTopLevel": "Kilo Code a vu les fichiers de premier niveau dans ce répertoire :",
+		"wantsToViewRecursive": "Kilo Code veut voir récursivement tous les fichiers dans ce répertoire :",
+		"didViewRecursive": "Kilo Code a vu récursivement tous les fichiers dans ce répertoire :",
+		"wantsToViewDefinitions": "Kilo Code veut voir les noms de définitions de code source utilisés dans ce répertoire :",
+		"didViewDefinitions": "Kilo Code a vu les noms de définitions de code source utilisés dans ce répertoire :",
+		"wantsToSearch": "Kilo Code veut rechercher dans ce répertoire <code>{{regex}}</code> :",
+		"didSearch": "Kilo Code a recherché dans ce répertoire <code>{{regex}}</code> :"
 	},
 	"commandOutput": "Sortie de commande",
 	"response": "Réponse",
 	"arguments": "Arguments",
 	"mcp": {
-		"wantsToUseTool": "Roo veut utiliser un outil sur le serveur MCP {{serverName}} :",
-		"wantsToAccessResource": "Roo veut accéder à une ressource sur le serveur MCP {{serverName}} :"
+		"wantsToUseTool": "Kilo Code veut utiliser un outil sur le serveur MCP {{serverName}} :",
+		"wantsToAccessResource": "Kilo Code veut accéder à une ressource sur le serveur MCP {{serverName}} :"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo veut passer au mode <code>{{mode}}</code>",
-		"wantsToSwitchWithReason": "Roo veut passer au mode <code>{{mode}}</code> car : {{reason}}",
-		"didSwitch": "Roo est passé au mode <code>{{mode}}</code>",
-		"didSwitchWithReason": "Roo est passé au mode <code>{{mode}}</code> car : {{reason}}"
+		"wantsToSwitch": "Kilo Code veut passer au mode <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Kilo Code veut passer au mode <code>{{mode}}</code> car : {{reason}}",
+		"didSwitch": "Kilo Code est passé au mode <code>{{mode}}</code>",
+		"didSwitchWithReason": "Kilo Code est passé au mode <code>{{mode}}</code> car : {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo veut créer une nouvelle sous-tâche en mode <code>{{mode}}</code> :",
-		"wantsToFinish": "Roo veut terminer cette sous-tâche"
+		"wantsToCreate": "Kilo Code veut créer une nouvelle sous-tâche en mode <code>{{mode}}</code> :",
+		"wantsToFinish": "Kilo Code veut terminer cette sous-tâche"
 	},
 	"questions": {
-		"hasQuestion": "Roo a une question :"
+		"hasQuestion": "Kilo Code a une question :"
 	},
 	"taskCompleted": "Tâche terminée",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "Auto-approbation :",
 		"none": "Aucune",
-		"description": "L'auto-approbation permet à Roo Code d'effectuer des actions sans demander d'autorisation. Activez-la uniquement pour les actions auxquelles vous faites entièrement confiance.",
+		"description": "L'auto-approbation permet à Kilo Code d'effectuer des actions sans demander d'autorisation. Activez-la uniquement pour les actions auxquelles vous faites entièrement confiance.",
 		"actions": {
 			"readFiles": {
 				"label": "Lire fichiers et répertoires",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}}s"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 est sortie",
-		"description": "Roo Code 3.10 apporte de puissantes améliorations de productivité !",
+		"title": "🎉 Kilo Code 3.10 est sortie",
+		"description": "Kilo Code 3.10 apporte de puissantes améliorations de productivité !",
 		"whatsNew": "Quoi de neuf",
 		"feature1": "Réponses suggérées aux questions",
 		"feature2": "Gestion améliorée des fichiers volumineux",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "Obtenez plus de détails et participez aux discussions sur <discordLink>Discord</discordLink> et <redditLink>Reddit</redditLink> 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo veut utiliser le navigateur :",
+		"rooWantsToUse": "Kilo Code veut utiliser le navigateur :",
 		"consoleLogs": "Journaux de console",
 		"noNewLogs": "(Pas de nouveaux journaux)",
 		"screenshot": "Capture d'écran du navigateur",

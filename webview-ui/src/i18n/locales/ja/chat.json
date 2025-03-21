@@ -1,5 +1,5 @@
 {
-	"greeting": "Rooにお手伝いできることはありますか？",
+	"greeting": "Kilo Codeにお手伝いできることはありますか？",
 	"task": {
 		"title": "タスク",
 		"seeMore": "もっと見る",
@@ -81,7 +81,7 @@
 	"edit": "編集...",
 	"forNextMode": "次のモード用",
 	"error": "エラー",
-	"troubleMessage": "Rooに問題が発生しています...",
+	"troubleMessage": "Kilo Codeに問題が発生しています...",
 	"apiRequest": {
 		"title": "APIリクエスト",
 		"failed": "APIリクエスト失敗",
@@ -106,40 +106,40 @@
 		"current": "現在"
 	},
 	"fileOperations": {
-		"wantsToRead": "Rooはこのファイルを読みたい:",
-		"didRead": "Rooはこのファイルを読みました:",
-		"wantsToEdit": "Rooはこのファイルを編集したい:",
-		"wantsToCreate": "Rooは新しいファイルを作成したい:"
+		"wantsToRead": "Kilo Codeはこのファイルを読みたい:",
+		"didRead": "Kilo Codeはこのファイルを読みました:",
+		"wantsToEdit": "Kilo Codeはこのファイルを編集したい:",
+		"wantsToCreate": "Kilo Codeは新しいファイルを作成したい:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Rooはこのディレクトリのトップレベルファイルを表示したい:",
-		"didViewTopLevel": "Rooはこのディレクトリのトップレベルファイルを表示しました:",
-		"wantsToViewRecursive": "Rooはこのディレクトリのすべてのファイルを再帰的に表示したい:",
-		"didViewRecursive": "Rooはこのディレクトリのすべてのファイルを再帰的に表示しました:",
-		"wantsToViewDefinitions": "Rooはこのディレクトリで使用されているソースコード定義名を表示したい:",
-		"didViewDefinitions": "Rooはこのディレクトリで使用されているソースコード定義名を表示しました:",
-		"wantsToSearch": "Rooはこのディレクトリで <code>{{regex}}</code> を検索したい:",
-		"didSearch": "Rooはこのディレクトリで <code>{{regex}}</code> を検索しました:"
+		"wantsToViewTopLevel": "Kilo Codeはこのディレクトリのトップレベルファイルを表示したい:",
+		"didViewTopLevel": "Kilo Codeはこのディレクトリのトップレベルファイルを表示しました:",
+		"wantsToViewRecursive": "Kilo Codeはこのディレクトリのすべてのファイルを再帰的に表示したい:",
+		"didViewRecursive": "Kilo Codeはこのディレクトリのすべてのファイルを再帰的に表示しました:",
+		"wantsToViewDefinitions": "Kilo Codeはこのディレクトリで使用されているソースコード定義名を表示したい:",
+		"didViewDefinitions": "Kilo Codeはこのディレクトリで使用されているソースコード定義名を表示しました:",
+		"wantsToSearch": "Kilo Codeはこのディレクトリで <code>{{regex}}</code> を検索したい:",
+		"didSearch": "Kilo Codeはこのディレクトリで <code>{{regex}}</code> を検索しました:"
 	},
 	"commandOutput": "コマンド出力",
 	"response": "応答",
 	"arguments": "引数",
 	"mcp": {
-		"wantsToUseTool": "RooはMCPサーバー{{serverName}}でツールを使用したい:",
-		"wantsToAccessResource": "RooはMCPサーバー{{serverName}}のリソースにアクセスしたい:"
+		"wantsToUseTool": "Kilo CodeはMCPサーバー{{serverName}}でツールを使用したい:",
+		"wantsToAccessResource": "Kilo CodeはMCPサーバー{{serverName}}のリソースにアクセスしたい:"
 	},
 	"modes": {
-		"wantsToSwitch": "Rooは<code>{{mode}}</code>モードに切り替えたい",
-		"wantsToSwitchWithReason": "Rooは次の理由で<code>{{mode}}</code>モードに切り替えたい: {{reason}}",
-		"didSwitch": "Rooは<code>{{mode}}</code>モードに切り替えました",
-		"didSwitchWithReason": "Rooは次の理由で<code>{{mode}}</code>モードに切り替えました: {{reason}}"
+		"wantsToSwitch": "Kilo Codeは<code>{{mode}}</code>モードに切り替えたい",
+		"wantsToSwitchWithReason": "Kilo Codeは次の理由で<code>{{mode}}</code>モードに切り替えたい: {{reason}}",
+		"didSwitch": "Kilo Codeは<code>{{mode}}</code>モードに切り替えました",
+		"didSwitchWithReason": "Kilo Codeは次の理由で<code>{{mode}}</code>モードに切り替えました: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Rooは<code>{{mode}}</code>モードで新しいサブタスクを作成したい:",
-		"wantsToFinish": "Rooはこのサブタスクを終了したい"
+		"wantsToCreate": "Kilo Codeは<code>{{mode}}</code>モードで新しいサブタスクを作成したい:",
+		"wantsToFinish": "Kilo Codeはこのサブタスクを終了したい"
 	},
 	"questions": {
-		"hasQuestion": "Rooは質問があります:"
+		"hasQuestion": "Kilo Codeは質問があります:"
 	},
 	"taskCompleted": "タスク完了",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "自動承認:",
 		"none": "なし",
-		"description": "自動承認はRoo Codeに許可を求めずに操作を実行する権限を与えます。完全に信頼できる操作のみ有効にしてください。",
+		"description": "自動承認はKilo Codeに許可を求めずに操作を実行する権限を与えます。完全に信頼できる操作のみ有効にしてください。",
 		"actions": {
 			"readFiles": {
 				"label": "ファイルとディレクトリの読み取り",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}}秒"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 リリース",
-		"description": "Roo Code 3.10は強力な生産性向上機能をもたらします！",
+		"title": "🎉 Kilo Code 3.10 リリース",
+		"description": "Kilo Code 3.10は強力な生産性向上機能をもたらします！",
 		"whatsNew": "新機能",
 		"feature1": "質問への提案回答機能",
 		"feature2": "大きなファイルの取り扱い改善",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "詳細は<discordLink>Discord</discordLink>と<redditLink>Reddit</redditLink>でご確認・ディスカッションください 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Rooはブラウザを使用したい:",
+		"rooWantsToUse": "Kilo Codeはブラウザを使用したい:",
 		"consoleLogs": "コンソールログ",
 		"noNewLogs": "(新しいログはありません)",
 		"screenshot": "ブラウザのスクリーンショット",

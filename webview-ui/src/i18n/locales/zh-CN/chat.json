@@ -1,5 +1,5 @@
 {
-	"greeting": "Roo能为您做什么？",
+	"greeting": "Kilo Code能为您做什么？",
 	"task": {
 		"title": "任务",
 		"seeMore": "查看更多",
@@ -81,7 +81,7 @@
 	"edit": "编辑...",
 	"forNextMode": "用于下一个模式",
 	"error": "错误",
-	"troubleMessage": "Roo遇到问题...",
+	"troubleMessage": "Kilo Code遇到问题...",
 	"apiRequest": {
 		"title": "API请求",
 		"failed": "API请求失败",
@@ -106,40 +106,40 @@
 		"current": "当前"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo想读取此文件:",
-		"didRead": "Roo已读取此文件:",
-		"wantsToEdit": "Roo想编辑此文件:",
-		"wantsToCreate": "Roo想创建新文件:"
+		"wantsToRead": "Kilo Code想读取此文件:",
+		"didRead": "Kilo Code已读取此文件:",
+		"wantsToEdit": "Kilo Code想编辑此文件:",
+		"wantsToCreate": "Kilo Code想创建新文件:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo想查看此目录中的顶层文件:",
-		"didViewTopLevel": "Roo已查看此目录中的顶层文件:",
-		"wantsToViewRecursive": "Roo想递归查看此目录中的所有文件:",
-		"didViewRecursive": "Roo已递归查看此目录中的所有文件:",
-		"wantsToViewDefinitions": "Roo想查看此目录中使用的源代码定义名称:",
-		"didViewDefinitions": "Roo已查看此目录中使用的源代码定义名称:",
-		"wantsToSearch": "Roo想在此目录中搜索 <code>{{regex}}</code>:",
-		"didSearch": "Roo已在此目录中搜索 <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Kilo Code想查看此目录中的顶层文件:",
+		"didViewTopLevel": "Kilo Code已查看此目录中的顶层文件:",
+		"wantsToViewRecursive": "Kilo Code想递归查看此目录中的所有文件:",
+		"didViewRecursive": "Kilo Code已递归查看此目录中的所有文件:",
+		"wantsToViewDefinitions": "Kilo Code想查看此目录中使用的源代码定义名称:",
+		"didViewDefinitions": "Kilo Code已查看此目录中使用的源代码定义名称:",
+		"wantsToSearch": "Kilo Code想在此目录中搜索 <code>{{regex}}</code>:",
+		"didSearch": "Kilo Code已在此目录中搜索 <code>{{regex}}</code>:"
 	},
 	"commandOutput": "命令输出",
 	"response": "响应",
 	"arguments": "参数",
 	"mcp": {
-		"wantsToUseTool": "Roo想在{{serverName}} MCP服务器上使用工具:",
-		"wantsToAccessResource": "Roo想访问{{serverName}} MCP服务器上的资源:"
+		"wantsToUseTool": "Kilo Code想在{{serverName}} MCP服务器上使用工具:",
+		"wantsToAccessResource": "Kilo Code想访问{{serverName}} MCP服务器上的资源:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo想切换到<code>{{mode}}</code>模式",
-		"wantsToSwitchWithReason": "Roo想切换到<code>{{mode}}</code>模式，原因: {{reason}}",
-		"didSwitch": "Roo已切换到<code>{{mode}}</code>模式",
-		"didSwitchWithReason": "Roo已切换到<code>{{mode}}</code>模式，原因: {{reason}}"
+		"wantsToSwitch": "Kilo Code想切换到<code>{{mode}}</code>模式",
+		"wantsToSwitchWithReason": "Kilo Code想切换到<code>{{mode}}</code>模式，原因: {{reason}}",
+		"didSwitch": "Kilo Code已切换到<code>{{mode}}</code>模式",
+		"didSwitchWithReason": "Kilo Code已切换到<code>{{mode}}</code>模式，原因: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo想在<code>{{mode}}</code>模式下创建新子任务:",
-		"wantsToFinish": "Roo想完成此子任务"
+		"wantsToCreate": "Kilo Code想在<code>{{mode}}</code>模式下创建新子任务:",
+		"wantsToFinish": "Kilo Code想完成此子任务"
 	},
 	"questions": {
-		"hasQuestion": "Roo有一个问题:"
+		"hasQuestion": "Kilo Code有一个问题:"
 	},
 	"taskCompleted": "任务完成",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "自动批准:",
 		"none": "无",
-		"description": "自动批准允许Roo Code无需请求许可即可执行操作。仅为您完全信任的操作启用。",
+		"description": "自动批准允许Kilo Code无需请求许可即可执行操作。仅为您完全信任的操作启用。",
 		"actions": {
 			"readFiles": {
 				"label": "读取文件和目录",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}}秒"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 已发布",
-		"description": "Roo Code 3.10带来强大的生产力提升！",
+		"title": "🎉 Kilo Code 3.10 已发布",
+		"description": "Kilo Code 3.10带来强大的生产力提升！",
 		"whatsNew": "新特性",
 		"feature1": "问题的建议回答",
 		"feature2": "改进的大文件处理",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "在<discordLink>Discord</discordLink>和<redditLink>Reddit</redditLink>获取更多详情并参与讨论 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo想使用浏览器:",
+		"rooWantsToUse": "Kilo Code想使用浏览器:",
 		"consoleLogs": "控制台日志",
 		"noNewLogs": "(没有新日志)",
 		"screenshot": "浏览器截图",

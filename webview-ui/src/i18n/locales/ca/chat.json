@@ -1,5 +1,5 @@
 {
-	"greeting": "Què pot fer Roo per tu?",
+	"greeting": "Què pot fer Kilo Code per tu?",
 	"task": {
 		"title": "Tasca",
 		"seeMore": "Veure més",
@@ -81,7 +81,7 @@
 	"edit": "Edita...",
 	"forNextMode": "per al següent mode",
 	"error": "Error",
-	"troubleMessage": "Roo està tenint problemes...",
+	"troubleMessage": "Kilo Code està tenint problemes...",
 	"apiRequest": {
 		"title": "Sol·licitud API",
 		"failed": "Sol·licitud API ha fallat",
@@ -106,40 +106,40 @@
 		"current": "Actual"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo vol llegir aquest fitxer:",
-		"didRead": "Roo ha llegit aquest fitxer:",
-		"wantsToEdit": "Roo vol editar aquest fitxer:",
-		"wantsToCreate": "Roo vol crear un nou fitxer:"
+		"wantsToRead": "Kilo Code vol llegir aquest fitxer:",
+		"didRead": "Kilo Code ha llegit aquest fitxer:",
+		"wantsToEdit": "Kilo Code vol editar aquest fitxer:",
+		"wantsToCreate": "Kilo Code vol crear un nou fitxer:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo vol veure els fitxers de nivell superior en aquest directori:",
-		"didViewTopLevel": "Roo ha vist els fitxers de nivell superior en aquest directori:",
-		"wantsToViewRecursive": "Roo vol veure recursivament tots els fitxers en aquest directori:",
-		"didViewRecursive": "Roo ha vist recursivament tots els fitxers en aquest directori:",
-		"wantsToViewDefinitions": "Roo vol veure noms de definicions de codi font utilitzats en aquest directori:",
-		"didViewDefinitions": "Roo ha vist noms de definicions de codi font utilitzats en aquest directori:",
-		"wantsToSearch": "Roo vol cercar en aquest directori <code>{{regex}}</code>:",
-		"didSearch": "Roo ha cercat en aquest directori <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Kilo Code vol veure els fitxers de nivell superior en aquest directori:",
+		"didViewTopLevel": "Kilo Code ha vist els fitxers de nivell superior en aquest directori:",
+		"wantsToViewRecursive": "Kilo Code vol veure recursivament tots els fitxers en aquest directori:",
+		"didViewRecursive": "Kilo Code ha vist recursivament tots els fitxers en aquest directori:",
+		"wantsToViewDefinitions": "Kilo Code vol veure noms de definicions de codi font utilitzats en aquest directori:",
+		"didViewDefinitions": "Kilo Code ha vist noms de definicions de codi font utilitzats en aquest directori:",
+		"wantsToSearch": "Kilo Code vol cercar en aquest directori <code>{{regex}}</code>:",
+		"didSearch": "Kilo Code ha cercat en aquest directori <code>{{regex}}</code>:"
 	},
 	"commandOutput": "Sortida de l'ordre",
 	"response": "Resposta",
 	"arguments": "Arguments",
 	"mcp": {
-		"wantsToUseTool": "Roo vol utilitzar una eina al servidor MCP {{serverName}}:",
-		"wantsToAccessResource": "Roo vol accedir a un recurs al servidor MCP {{serverName}}:"
+		"wantsToUseTool": "Kilo Code vol utilitzar una eina al servidor MCP {{serverName}}:",
+		"wantsToAccessResource": "Kilo Code vol accedir a un recurs al servidor MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo vol canviar a mode <code>{{mode}}</code>",
-		"wantsToSwitchWithReason": "Roo vol canviar a mode <code>{{mode}}</code> perquè: {{reason}}",
-		"didSwitch": "Roo ha canviat a mode <code>{{mode}}</code>",
-		"didSwitchWithReason": "Roo ha canviat a mode <code>{{mode}}</code> perquè: {{reason}}"
+		"wantsToSwitch": "Kilo Code vol canviar a mode <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Kilo Code vol canviar a mode <code>{{mode}}</code> perquè: {{reason}}",
+		"didSwitch": "Kilo Code ha canviat a mode <code>{{mode}}</code>",
+		"didSwitchWithReason": "Kilo Code ha canviat a mode <code>{{mode}}</code> perquè: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo vol crear una nova subtasca en mode <code>{{mode}}</code>:",
-		"wantsToFinish": "Roo vol finalitzar aquesta subtasca"
+		"wantsToCreate": "Kilo Code vol crear una nova subtasca en mode <code>{{mode}}</code>:",
+		"wantsToFinish": "Kilo Code vol finalitzar aquesta subtasca"
 	},
 	"questions": {
-		"hasQuestion": "Roo té una pregunta:"
+		"hasQuestion": "Kilo Code té una pregunta:"
 	},
 	"taskCompleted": "Tasca completada",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "Aprovació automàtica:",
 		"none": "Cap",
-		"description": "L'aprovació automàtica permet a Roo Code realitzar accions sense demanar permís. Activa-la només per a accions en les que confies plenament.",
+		"description": "L'aprovació automàtica permet a Kilo Code realitzar accions sense demanar permís. Activa-la només per a accions en les que confies plenament.",
 		"actions": {
 			"readFiles": {
 				"label": "Llegir fitxers i directoris",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}}s"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 publicat",
-		"description": "Roo Code 3.10 aporta potents millores de productivitat!",
+		"title": "🎉 Kilo Code 3.10 publicat",
+		"description": "Kilo Code 3.10 aporta potents millores de productivitat!",
 		"whatsNew": "Novetats",
 		"feature1": "Respostes suggerides a les preguntes",
 		"feature2": "Millora en la gestió de fitxers grans",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "Obté més detalls i participa a <discordLink>Discord</discordLink> i <redditLink>Reddit</redditLink> 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo vol utilitzar el navegador:",
+		"rooWantsToUse": "Kilo Code vol utilitzar el navegador:",
 		"consoleLogs": "Registres de consola",
 		"noNewLogs": "(Cap registre nou)",
 		"screenshot": "Captura de pantalla del navegador",

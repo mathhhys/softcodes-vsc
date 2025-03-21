@@ -29,13 +29,13 @@
 		"advanced": "Avançado",
 		"experimental": "Recursos experimentais",
 		"language": "Idioma",
-		"about": "Sobre o Roo Code"
+		"about": "Sobre o Kilo Code"
 	},
 	"autoApprove": {
-		"description": "Permitir que o Roo realize operações automaticamente sem exigir aprovação. Ative essas configurações apenas se confiar totalmente na IA e compreender os riscos de segurança associados.",
+		"description": "Permitir que o Kilo Code realize operações automaticamente sem exigir aprovação. Ative essas configurações apenas se confiar totalmente na IA e compreender os riscos de segurança associados.",
 		"readOnly": {
 			"label": "Aprovar sempre operações somente de leitura",
-			"description": "Quando ativado, o Roo visualizará automaticamente o conteúdo do diretório e lerá arquivos sem que você precise clicar no botão Aprovar."
+			"description": "Quando ativado, o Kilo Code visualizará automaticamente o conteúdo do diretório e lerá arquivos sem que você precise clicar no botão Aprovar."
 		},
 		"write": {
 			"label": "Aprovar sempre operações de escrita",
@@ -142,13 +142,13 @@
 			"draftModelDesc": "O modelo de rascunho deve ser da mesma família de modelos para que a decodificação especulativa funcione corretamente.",
 			"selectDraftModel": "Selecionar Modelo de Rascunho",
 			"noModelsFound": "Nenhum modelo de rascunho encontrado. Certifique-se de que o LM Studio esteja em execução com o Modo Servidor ativado.",
-			"description": "O LM Studio permite que você execute modelos localmente em seu computador. Para instruções sobre como começar, veja o <a>guia de início rápido</a> deles. Você também precisará iniciar o recurso de <b>servidor local</b> do LM Studio para usá-lo com esta extensão. <span>Nota:</span> O Roo Code usa prompts complexos e funciona melhor com modelos Claude. Modelos menos capazes podem não funcionar como esperado."
+			"description": "O LM Studio permite que você execute modelos localmente em seu computador. Para instruções sobre como começar, veja o <a>guia de início rápido</a> deles. Você também precisará iniciar o recurso de <b>servidor local</b> do LM Studio para usá-lo com esta extensão. <span>Nota:</span> O Kilo Code usa prompts complexos e funciona melhor com modelos Claude. Modelos menos capazes podem não funcionar como esperado."
 		},
 		"ollama": {
 			"baseUrl": "URL Base (opcional)",
 			"modelId": "ID do Modelo",
 			"description": "O Ollama permite que você execute modelos localmente em seu computador. Para instruções sobre como começar, veja o guia de início rápido deles.",
-			"warning": "Nota: O Roo Code usa prompts complexos e funciona melhor com modelos Claude. Modelos menos capazes podem não funcionar como esperado."
+			"warning": "Nota: O Kilo Code usa prompts complexos e funciona melhor com modelos Claude. Modelos menos capazes podem não funcionar como esperado."
 		},
 		"unboundApiKey": "Chave de API Unbound",
 		"getUnboundApiKey": "Obter chave de API Unbound",
@@ -164,7 +164,7 @@
 			}
 		},
 		"customModel": {
-			"capabilities": "Configure as capacidades e preços para seu modelo personalizado compatível com OpenAI. Tenha cuidado ao especificar as capacidades do modelo, pois elas podem afetar como o Roo Code funciona.",
+			"capabilities": "Configure as capacidades e preços para seu modelo personalizado compatível com OpenAI. Tenha cuidado ao especificar as capacidades do modelo, pois elas podem afetar como o Kilo Code funciona.",
 			"maxTokens": {
 				"label": "Máximo de Tokens de Saída",
 				"description": "Número máximo de tokens que o modelo pode gerar em uma resposta. (Especifique -1 para permitir que o servidor defina o máximo de tokens.)"
@@ -209,7 +209,7 @@
 	"browser": {
 		"enable": {
 			"label": "Ativar ferramenta de navegador",
-			"description": "Quando ativado, o Roo pode usar um navegador para interagir com sites ao usar modelos que suportam o uso do computador."
+			"description": "Quando ativado, o Kilo Code pode usar um navegador para interagir com sites ao usar modelos que suportam o uso do computador."
 		},
 		"viewport": {
 			"label": "Tamanho da viewport",
@@ -237,18 +237,18 @@
 	"checkpoints": {
 		"enable": {
 			"label": "Ativar pontos de verificação automáticos",
-			"description": "Quando ativado, o Roo criará automaticamente pontos de verificação durante a execução de tarefas, facilitando a revisão de alterações ou o retorno a estados anteriores."
+			"description": "Quando ativado, o Kilo Code criará automaticamente pontos de verificação durante a execução de tarefas, facilitando a revisão de alterações ou o retorno a estados anteriores."
 		}
 	},
 	"notifications": {
 		"sound": {
 			"label": "Ativar efeitos sonoros",
-			"description": "Quando ativado, o Roo reproduzirá efeitos sonoros para notificações e eventos.",
+			"description": "Quando ativado, o Kilo Code reproduzirá efeitos sonoros para notificações e eventos.",
 			"volumeLabel": "Volume"
 		},
 		"tts": {
 			"label": "Ativar texto para fala",
-			"description": "Quando ativado, o Roo lerá em voz alta suas respostas usando texto para fala.",
+			"description": "Quando ativado, o Kilo Code lerá em voz alta suas respostas usando texto para fala.",
 			"speedLabel": "Velocidade"
 		}
 	},
@@ -263,8 +263,8 @@
 			"description": "Número máximo de arquivos a incluir nos detalhes do diretório de trabalho atual. Valores mais altos fornecem mais contexto, mas aumentam o uso de token."
 		},
 		"rooignore": {
-			"label": "Mostrar arquivos .rooignore em listas e pesquisas",
-			"description": "Quando ativado, os arquivos que correspondem aos padrões em .rooignore serão mostrados em listas com um símbolo de cadeado. Quando desativado, esses arquivos serão completamente ocultos das listas de arquivos e pesquisas."
+			"label": "Mostrar arquivos .kilocodeignore em listas e pesquisas",
+			"description": "Quando ativado, os arquivos que correspondem aos padrões em .kilocodeignore serão mostrados em listas com um símbolo de cadeado. Quando desativado, esses arquivos serão completamente ocultos das listas de arquivos e pesquisas."
 		},
 		"maxReadFile": {
 			"label": "Número máximo de linhas para ler de um arquivo",
@@ -288,7 +288,7 @@
 		},
 		"diff": {
 			"label": "Ativar edição através de diffs",
-			"description": "Quando ativado, o Roo poderá editar arquivos mais rapidamente e rejeitará automaticamente escritas completas de arquivos truncados. Funciona melhor com o modelo mais recente Claude 3.7 Sonnet.",
+			"description": "Quando ativado, o Kilo Code poderá editar arquivos mais rapidamente e rejeitará automaticamente escritas completas de arquivos truncados. Funciona melhor com o modelo mais recente Claude 3.7 Sonnet.",
 			"strategy": {
 				"label": "Estratégia de diff",
 				"options": {
@@ -316,19 +316,19 @@
 		},
 		"SEARCH_AND_REPLACE": {
 			"name": "Usar ferramenta de busca e substituição experimental",
-			"description": "Ativar a ferramenta de busca e substituição experimental, permitindo que o Roo substitua várias instâncias de um termo de busca em uma única solicitação."
+			"description": "Ativar a ferramenta de busca e substituição experimental, permitindo que o Kilo Code substitua várias instâncias de um termo de busca em uma única solicitação."
 		},
 		"INSERT_BLOCK": {
 			"name": "Usar ferramenta de inserção de conteúdo experimental",
-			"description": "Ativar a ferramenta de inserção de conteúdo experimental, permitindo que o Roo insira conteúdo em números de linha específicos sem precisar criar um diff."
+			"description": "Ativar a ferramenta de inserção de conteúdo experimental, permitindo que o Kilo Code insira conteúdo em números de linha específicos sem precisar criar um diff."
 		},
 		"POWER_STEERING": {
 			"name": "Usar modo \"direção assistida\" experimental",
-			"description": "Quando ativado, o Roo lembrará o modelo sobre os detalhes da sua definição de modo atual com mais frequência. Isso levará a uma adesão mais forte às definições de função e instruções personalizadas, mas usará mais tokens por mensagem."
+			"description": "Quando ativado, o Kilo Code lembrará o modelo sobre os detalhes da sua definição de modo atual com mais frequência. Isso levará a uma adesão mais forte às definições de função e instruções personalizadas, mas usará mais tokens por mensagem."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "Usar ferramenta diff de múltiplos blocos experimental",
-			"description": "Quando ativado, o Roo usará a ferramenta diff de múltiplos blocos. Isso tentará atualizar vários blocos de código no arquivo em uma única solicitação."
+			"description": "Quando ativado, o Kilo Code usará a ferramenta diff de múltiplos blocos. Isso tentará atualizar vários blocos de código no arquivo em uma única solicitação."
 		}
 	},
 	"temperature": {
@@ -357,18 +357,18 @@
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "A extensão busca automaticamente a lista mais recente de modelos disponíveis em <serviceLink>{{serviceName}}</serviceLink>. Se você não tem certeza sobre qual modelo escolher, o Roo Code funciona melhor com <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Você também pode pesquisar por \"free\" para encontrar opções gratuitas atualmente disponíveis.",
+		"automaticFetch": "A extensão busca automaticamente a lista mais recente de modelos disponíveis em <serviceLink>{{serviceName}}</serviceLink>. Se você não tem certeza sobre qual modelo escolher, o Kilo Code funciona melhor com <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Você também pode pesquisar por \"free\" para encontrar opções gratuitas atualmente disponíveis.",
 		"label": "Modelo",
 		"searchPlaceholder": "Pesquisar",
 		"noMatchFound": "Nenhuma correspondência encontrada",
 		"useCustomModel": "Usar personalizado: {{modelId}}"
 	},
 	"footer": {
-		"feedback": "Se tiver alguma dúvida ou feedback, sinta-se à vontade para abrir um problema em <githubLink>github.com/RooVetGit/Roo-Code</githubLink> ou juntar-se a <redditLink>reddit.com/r/RooCode</redditLink> ou <discordLink>discord.gg/roocode</discordLink>",
-		"version": "Roo Code v{{version}}",
+		"feedback": "Se tiver alguma dúvida ou feedback, sinta-se à vontade para abrir um problema em <githubLink>github.com/Kilo-Org/kilocode</githubLink> ou juntar-se a <redditLink>reddit.com/r/kilocode</redditLink> ou <discordLink>discord.gg/fxrhCFGhkP</discordLink>",
+		"version": "Kilo Code v{{version}}",
 		"telemetry": {
 			"label": "Permitir relatórios anônimos de erros e uso",
-			"description": "Ajude a melhorar o Roo Code enviando dados de uso anônimos e relatórios de erros. Nunca são enviados código, prompts ou informações pessoais. Consulte nossa política de privacidade para mais detalhes."
+			"description": "Ajude a melhorar o Kilo Code enviando dados de uso anônimos e relatórios de erros. Nunca são enviados código, prompts ou informações pessoais. Consulte nossa política de privacidade para mais detalhes."
 		},
 		"reset": {
 			"description": "Redefinir todo o estado global e armazenamento secreto na extensão.",

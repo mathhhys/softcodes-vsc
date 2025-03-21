@@ -1,5 +1,5 @@
 {
-	"greeting": "Roo가 어떻게 도와드릴까요?",
+	"greeting": "Kilo Code가 어떻게 도와드릴까요?",
 	"task": {
 		"title": "작업",
 		"seeMore": "더 보기",
@@ -81,7 +81,7 @@
 	"edit": "편집...",
 	"forNextMode": "다음 모드용",
 	"error": "오류",
-	"troubleMessage": "Roo에 문제가 발생했습니다...",
+	"troubleMessage": "Kilo Code에 문제가 발생했습니다...",
 	"apiRequest": {
 		"title": "API 요청",
 		"failed": "API 요청 실패",
@@ -106,40 +106,40 @@
 		"current": "현재"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo가 이 파일을 읽고 싶어합니다:",
-		"didRead": "Roo가 이 파일을 읽었습니다:",
-		"wantsToEdit": "Roo가 이 파일을 편집하고 싶어합니다:",
-		"wantsToCreate": "Roo가 새 파일을 만들고 싶어합니다:"
+		"wantsToRead": "Kilo Code가 이 파일을 읽고 싶어합니다:",
+		"didRead": "Kilo Code가 이 파일을 읽었습니다:",
+		"wantsToEdit": "Kilo Code가 이 파일을 편집하고 싶어합니다:",
+		"wantsToCreate": "Kilo Code가 새 파일을 만들고 싶어합니다:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo가 이 디렉토리의 최상위 파일을 보고 싶어합니다:",
-		"didViewTopLevel": "Roo가 이 디렉토리의 최상위 파일을 보았습니다:",
-		"wantsToViewRecursive": "Roo가 이 디렉토리의 모든 파일을 재귀적으로 보고 싶어합니다:",
-		"didViewRecursive": "Roo가 이 디렉토리의 모든 파일을 재귀적으로 보았습니다:",
-		"wantsToViewDefinitions": "Roo가 이 디렉토리에서 사용된 소스 코드 정의 이름을 보고 싶어합니다:",
-		"didViewDefinitions": "Roo가 이 디렉토리에서 사용된 소스 코드 정의 이름을 보았습니다:",
-		"wantsToSearch": "Roo가 이 디렉토리에서 <code>{{regex}}</code>을(를) 검색하고 싶어합니다:",
-		"didSearch": "Roo가 이 디렉토리에서 <code>{{regex}}</code>을(를) 검색했습니다:"
+		"wantsToViewTopLevel": "Kilo Code가 이 디렉토리의 최상위 파일을 보고 싶어합니다:",
+		"didViewTopLevel": "Kilo Code가 이 디렉토리의 최상위 파일을 보았습니다:",
+		"wantsToViewRecursive": "Kilo Code가 이 디렉토리의 모든 파일을 재귀적으로 보고 싶어합니다:",
+		"didViewRecursive": "Kilo Code가 이 디렉토리의 모든 파일을 재귀적으로 보았습니다:",
+		"wantsToViewDefinitions": "Kilo Code가 이 디렉토리에서 사용된 소스 코드 정의 이름을 보고 싶어합니다:",
+		"didViewDefinitions": "Kilo Code가 이 디렉토리에서 사용된 소스 코드 정의 이름을 보았습니다:",
+		"wantsToSearch": "Kilo Code가 이 디렉토리에서 <code>{{regex}}</code>을(를) 검색하고 싶어합니다:",
+		"didSearch": "Kilo Code가 이 디렉토리에서 <code>{{regex}}</code>을(를) 검색했습니다:"
 	},
 	"commandOutput": "명령 출력",
 	"response": "응답",
 	"arguments": "인수",
 	"mcp": {
-		"wantsToUseTool": "Roo가 {{serverName}} MCP 서버에서 도구를 사용하고 싶어합니다:",
-		"wantsToAccessResource": "Roo가 {{serverName}} MCP 서버에서 리소스에 접근하고 싶어합니다:"
+		"wantsToUseTool": "Kilo Code가 {{serverName}} MCP 서버에서 도구를 사용하고 싶어합니다:",
+		"wantsToAccessResource": "Kilo Code가 {{serverName}} MCP 서버에서 리소스에 접근하고 싶어합니다:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo가 <code>{{mode}}</code> 모드로 전환하고 싶어합니다",
-		"wantsToSwitchWithReason": "Roo가 다음 이유로 <code>{{mode}}</code> 모드로 전환하고 싶어합니다: {{reason}}",
-		"didSwitch": "Roo가 <code>{{mode}}</code> 모드로 전환했습니다",
-		"didSwitchWithReason": "Roo가 다음 이유로 <code>{{mode}}</code> 모드로 전환했습니다: {{reason}}"
+		"wantsToSwitch": "Kilo Code가 <code>{{mode}}</code> 모드로 전환하고 싶어합니다",
+		"wantsToSwitchWithReason": "Kilo Code가 다음 이유로 <code>{{mode}}</code> 모드로 전환하고 싶어합니다: {{reason}}",
+		"didSwitch": "Kilo Code가 <code>{{mode}}</code> 모드로 전환했습니다",
+		"didSwitchWithReason": "Kilo Code가 다음 이유로 <code>{{mode}}</code> 모드로 전환했습니다: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo가 <code>{{mode}}</code> 모드에서 새 하위 작업을 만들고 싶어합니다:",
-		"wantsToFinish": "Roo가 이 하위 작업을 완료하고 싶어합니다"
+		"wantsToCreate": "Kilo Code가 <code>{{mode}}</code> 모드에서 새 하위 작업을 만들고 싶어합니다:",
+		"wantsToFinish": "Kilo Code가 이 하위 작업을 완료하고 싶어합니다"
 	},
 	"questions": {
-		"hasQuestion": "Roo에게 질문이 있습니다:"
+		"hasQuestion": "Kilo Code에게 질문이 있습니다:"
 	},
 	"taskCompleted": "작업 완료",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "자동 승인:",
 		"none": "없음",
-		"description": "자동 승인을 사용하면 Roo Code가 권한을 요청하지 않고 작업을 수행할 수 있습니다. 완전히 신뢰할 수 있는 작업에만 활성화하세요.",
+		"description": "자동 승인을 사용하면 Kilo Code가 권한을 요청하지 않고 작업을 수행할 수 있습니다. 완전히 신뢰할 수 있는 작업에만 활성화하세요.",
 		"actions": {
 			"readFiles": {
 				"label": "파일 및 디렉토리 읽기",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}}초"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 출시",
-		"description": "Roo Code 3.10이 강력한 생산성 향상 기능을 제공합니다!",
+		"title": "🎉 Kilo Code 3.10 출시",
+		"description": "Kilo Code 3.10이 강력한 생산성 향상 기능을 제공합니다!",
 		"whatsNew": "새로운 기능",
 		"feature1": "질문에 대한 제안 응답",
 		"feature2": "대용량 파일 처리 개선",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "<discordLink>Discord</discordLink>와 <redditLink>Reddit</redditLink>에서 더 자세한 정보를 확인하고 논의하세요 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo가 브라우저를 사용하고 싶어합니다:",
+		"rooWantsToUse": "Kilo Code가 브라우저를 사용하고 싶어합니다:",
 		"consoleLogs": "콘솔 로그",
 		"noNewLogs": "(새 로그 없음)",
 		"screenshot": "브라우저 스크린샷",

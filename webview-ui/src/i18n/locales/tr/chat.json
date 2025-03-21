@@ -1,5 +1,5 @@
 {
-	"greeting": "Roo sizin için ne yapabilir?",
+	"greeting": "Kilo Code sizin için ne yapabilir?",
 	"task": {
 		"title": "Görev",
 		"seeMore": "Daha fazla gör",
@@ -81,7 +81,7 @@
 	"edit": "Düzenle...",
 	"forNextMode": "sonraki mod için",
 	"error": "Hata",
-	"troubleMessage": "Roo sorun yaşıyor...",
+	"troubleMessage": "Kilo Code sorun yaşıyor...",
 	"apiRequest": {
 		"title": "API İsteği",
 		"failed": "API İsteği Başarısız",
@@ -106,40 +106,40 @@
 		"current": "Mevcut"
 	},
 	"fileOperations": {
-		"wantsToRead": "Roo bu dosyayı okumak istiyor:",
-		"didRead": "Roo bu dosyayı okudu:",
-		"wantsToEdit": "Roo bu dosyayı düzenlemek istiyor:",
-		"wantsToCreate": "Roo yeni bir dosya oluşturmak istiyor:"
+		"wantsToRead": "Kilo Code bu dosyayı okumak istiyor:",
+		"didRead": "Kilo Code bu dosyayı okudu:",
+		"wantsToEdit": "Kilo Code bu dosyayı düzenlemek istiyor:",
+		"wantsToCreate": "Kilo Code yeni bir dosya oluşturmak istiyor:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Roo bu dizindeki üst düzey dosyaları görüntülemek istiyor:",
-		"didViewTopLevel": "Roo bu dizindeki üst düzey dosyaları görüntüledi:",
-		"wantsToViewRecursive": "Roo bu dizindeki tüm dosyaları özyinelemeli olarak görüntülemek istiyor:",
-		"didViewRecursive": "Roo bu dizindeki tüm dosyaları özyinelemeli olarak görüntüledi:",
-		"wantsToViewDefinitions": "Roo bu dizinde kullanılan kaynak kod tanımlama isimlerini görüntülemek istiyor:",
-		"didViewDefinitions": "Roo bu dizinde kullanılan kaynak kod tanımlama isimlerini görüntüledi:",
-		"wantsToSearch": "Roo bu dizinde <code>{{regex}}</code> için arama yapmak istiyor:",
-		"didSearch": "Roo bu dizinde <code>{{regex}}</code> için arama yaptı:"
+		"wantsToViewTopLevel": "Kilo Code bu dizindeki üst düzey dosyaları görüntülemek istiyor:",
+		"didViewTopLevel": "Kilo Code bu dizindeki üst düzey dosyaları görüntüledi:",
+		"wantsToViewRecursive": "Kilo Code bu dizindeki tüm dosyaları özyinelemeli olarak görüntülemek istiyor:",
+		"didViewRecursive": "Kilo Code bu dizindeki tüm dosyaları özyinelemeli olarak görüntüledi:",
+		"wantsToViewDefinitions": "Kilo Code bu dizinde kullanılan kaynak kod tanımlama isimlerini görüntülemek istiyor:",
+		"didViewDefinitions": "Kilo Code bu dizinde kullanılan kaynak kod tanımlama isimlerini görüntüledi:",
+		"wantsToSearch": "Kilo Code bu dizinde <code>{{regex}}</code> için arama yapmak istiyor:",
+		"didSearch": "Kilo Code bu dizinde <code>{{regex}}</code> için arama yaptı:"
 	},
 	"commandOutput": "Komut Çıktısı",
 	"response": "Yanıt",
 	"arguments": "Argümanlar",
 	"mcp": {
-		"wantsToUseTool": "Roo {{serverName}} MCP sunucusunda bir araç kullanmak istiyor:",
-		"wantsToAccessResource": "Roo {{serverName}} MCP sunucusundaki bir kaynağa erişmek istiyor:"
+		"wantsToUseTool": "Kilo Code {{serverName}} MCP sunucusunda bir araç kullanmak istiyor:",
+		"wantsToAccessResource": "Kilo Code {{serverName}} MCP sunucusundaki bir kaynağa erişmek istiyor:"
 	},
 	"modes": {
-		"wantsToSwitch": "Roo <code>{{mode}}</code> moduna geçmek istiyor",
-		"wantsToSwitchWithReason": "Roo <code>{{mode}}</code> moduna geçmek istiyor çünkü: {{reason}}",
-		"didSwitch": "Roo <code>{{mode}}</code> moduna geçti",
-		"didSwitchWithReason": "Roo <code>{{mode}}</code> moduna geçti çünkü: {{reason}}"
+		"wantsToSwitch": "Kilo Code <code>{{mode}}</code> moduna geçmek istiyor",
+		"wantsToSwitchWithReason": "Kilo Code <code>{{mode}}</code> moduna geçmek istiyor çünkü: {{reason}}",
+		"didSwitch": "Kilo Code <code>{{mode}}</code> moduna geçti",
+		"didSwitchWithReason": "Kilo Code <code>{{mode}}</code> moduna geçti çünkü: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Roo <code>{{mode}}</code> modunda yeni bir alt görev oluşturmak istiyor:",
-		"wantsToFinish": "Roo bu alt görevi bitirmek istiyor"
+		"wantsToCreate": "Kilo Code <code>{{mode}}</code> modunda yeni bir alt görev oluşturmak istiyor:",
+		"wantsToFinish": "Kilo Code bu alt görevi bitirmek istiyor"
 	},
 	"questions": {
-		"hasQuestion": "Roo'nun bir sorusu var:"
+		"hasQuestion": "Kilo Code'nun bir sorusu var:"
 	},
 	"taskCompleted": "Görev Tamamlandı",
 	"shellIntegration": {
@@ -152,7 +152,7 @@
 	"autoApprove": {
 		"title": "Otomatik-onay:",
 		"none": "Hiçbiri",
-		"description": "Otomatik onay, Roo Code'un izin istemeden işlemler gerçekleştirmesine olanak tanır. Yalnızca tamamen güvendiğiniz eylemler için etkinleştirin.",
+		"description": "Otomatik onay, Kilo Code'un izin istemeden işlemler gerçekleştirmesine olanak tanır. Yalnızca tamamen güvendiğiniz eylemler için etkinleştirin.",
 		"actions": {
 			"readFiles": {
 				"label": "Dosyaları ve dizinleri oku",
@@ -201,8 +201,8 @@
 		"seconds": "{{count}}sn"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.10 Yayınlandı",
-		"description": "Roo Code 3.10 güçlü üretkenlik iyileştirmeleri getiriyor!",
+		"title": "🎉 Kilo Code 3.10 Yayınlandı",
+		"description": "Kilo Code 3.10 güçlü üretkenlik iyileştirmeleri getiriyor!",
 		"whatsNew": "Yenilikler",
 		"feature1": "Sorulara önerilen yanıtlar",
 		"feature2": "Geliştirilmiş büyük dosya işleme",
@@ -213,7 +213,7 @@
 		"detailsDiscussLinks": "<discordLink>Discord</discordLink> ve <redditLink>Reddit</redditLink> üzerinde daha fazla ayrıntı edinin ve tartışmalara katılın 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Roo tarayıcıyı kullanmak istiyor:",
+		"rooWantsToUse": "Kilo Code tarayıcıyı kullanmak istiyor:",
 		"consoleLogs": "Konsol Kayıtları",
 		"noNewLogs": "(Yeni kayıt yok)",
 		"screenshot": "Tarayıcı ekran görüntüsü",

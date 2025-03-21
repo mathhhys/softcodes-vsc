@@ -6,8 +6,8 @@
 		"createNewMode": "Neuen Modus erstellen",
 		"editModesConfig": "Moduskonfiguration bearbeiten",
 		"editGlobalModes": "Globale Modi bearbeiten",
-		"editProjectModes": "Projektmodi bearbeiten (.roomodes)",
-		"createModeHelpText": "Klicke auf +, um einen neuen benutzerdefinierten Modus zu erstellen, oder bitte Roo einfach im Chat, einen für dich zu erstellen!"
+		"editProjectModes": "Projektmodi bearbeiten (.kilocodemodes)",
+		"createModeHelpText": "Klicke auf +, um einen neuen benutzerdefinierten Modus zu erstellen, oder bitte Kilo Code einfach im Chat, einen für dich zu erstellen!"
 	},
 	"apiConfiguration": {
 		"title": "API-Konfiguration",
@@ -30,7 +30,7 @@
 	"roleDefinition": {
 		"title": "Rollendefinition",
 		"resetToDefault": "Auf Standardwerte zurücksetzen",
-		"description": "Definiere Roos Expertise und Persönlichkeit für diesen Modus. Diese Beschreibung prägt, wie Roo sich präsentiert und an Aufgaben herangeht."
+		"description": "Definiere Kilo Codes Expertise und Persönlichkeit für diesen Modus. Diese Beschreibung prägt, wie Kilo Code sich präsentiert und an Aufgaben herangeht."
 	},
 	"customInstructions": {
 		"title": "Modusspezifische benutzerdefinierte Anweisungen (optional)",
@@ -40,7 +40,7 @@
 	},
 	"globalCustomInstructions": {
 		"title": "Benutzerdefinierte Anweisungen für alle Modi",
-		"description": "Diese Anweisungen gelten für alle Modi. Sie bieten einen grundlegenden Satz von Verhaltensweisen, die durch modusspezifische Anweisungen unten erweitert werden können.\nWenn du möchtest, dass Roo in einer anderen Sprache als deiner Editor-Anzeigesprache ({{language}}) denkt und spricht, kannst du das hier angeben.",
+		"description": "Diese Anweisungen gelten für alle Modi. Sie bieten einen grundlegenden Satz von Verhaltensweisen, die durch modusspezifische Anweisungen unten erweitert werden können.\nWenn du möchtest, dass Kilo Code in einer anderen Sprache als deiner Editor-Anzeigesprache ({{language}}) denkt und spricht, kannst du das hier angeben.",
 		"loadFromFile": "Anweisungen können auch aus <span>.clinerules</span> in deinem Arbeitsbereich geladen werden."
 	},
 	"systemPrompt": {
@@ -62,7 +62,7 @@
 		"types": {
 			"ENHANCE": {
 				"label": "Prompt verbessern",
-				"description": "Verwenden Sie die Prompt-Verbesserung, um maßgeschneiderte Vorschläge oder Verbesserungen für Ihre Eingaben zu erhalten. Dies stellt sicher, dass Roo Ihre Absicht versteht und die bestmöglichen Antworten liefert. Verfügbar über das ✨-Symbol im Chat."
+				"description": "Verwenden Sie die Prompt-Verbesserung, um maßgeschneiderte Vorschläge oder Verbesserungen für Ihre Eingaben zu erhalten. Dies stellt sicher, dass Kilo Code Ihre Absicht versteht und die bestmöglichen Antworten liefert. Verfügbar über das ✨-Symbol im Chat."
 			},
 			"EXPLAIN": {
 				"label": "Code erklären",
@@ -96,11 +96,11 @@
 	},
 	"customModeCreation": {
 		"enableTitle": "Erstellung benutzerdefinierter Modi über Prompts aktivieren",
-		"description": "Wenn aktiviert, ermöglicht Roo dir, benutzerdefinierte Modi mit Prompts wie 'Erstelle mir einen benutzerdefinierten Modus, der...' zu erstellen. Die Deaktivierung reduziert deinen System-Prompt um etwa 700 Tokens, wenn diese Funktion nicht benötigt wird. Bei Deaktivierung kannst du immer noch manuell benutzerdefinierte Modi mit der +-Schaltfläche oben erstellen oder durch Bearbeiten der zugehörigen Konfigurations-JSON."
+		"description": "Wenn aktiviert, ermöglicht Kilo Code dir, benutzerdefinierte Modi mit Prompts wie 'Erstelle mir einen benutzerdefinierten Modus, der...' zu erstellen. Die Deaktivierung reduziert deinen System-Prompt um etwa 700 Tokens, wenn diese Funktion nicht benötigt wird. Bei Deaktivierung kannst du immer noch manuell benutzerdefinierte Modi mit der +-Schaltfläche oben erstellen oder durch Bearbeiten der zugehörigen Konfigurations-JSON."
 	},
 	"advancedSystemPrompt": {
 		"title": "Erweitert: System-Prompt überschreiben",
-		"description": "Du kannst den System-Prompt für diesen Modus vollständig ersetzen (abgesehen von der Rollendefinition und benutzerdefinierten Anweisungen), indem du eine Datei unter <span>.roo/system-prompt-{{slug}}</span> in deinem Arbeitsbereich erstellst. Dies ist eine sehr fortgeschrittene Funktion, die eingebaute Schutzmaßnahmen und Konsistenzprüfungen umgeht (besonders bei der Werkzeugnutzung), also sei vorsichtig!"
+		"description": "Du kannst den System-Prompt für diesen Modus vollständig ersetzen (abgesehen von der Rollendefinition und benutzerdefinierten Anweisungen), indem du eine Datei unter <span>.kilo-code/system-prompt-{{slug}}</span> in deinem Arbeitsbereich erstellst. Dies ist eine sehr fortgeschrittene Funktion, die eingebaute Schutzmaßnahmen und Konsistenzprüfungen umgeht (besonders bei der Werkzeugnutzung), also sei vorsichtig!"
 	},
 	"createModeDialog": {
 		"title": "Neuen Modus erstellen",
@@ -121,13 +121,13 @@
 				"description": "Verfügbar in allen Arbeitsbereichen"
 			},
 			"project": {
-				"label": "Projektspezifisch (.roomodes)",
+				"label": "Projektspezifisch (.kilocodemodes)",
 				"description": "Nur in diesem Arbeitsbereich verfügbar, hat Vorrang vor global"
 			}
 		},
 		"roleDefinition": {
 			"label": "Rollendefinition",
-			"description": "Definiere Roos Expertise und Persönlichkeit für diesen Modus."
+			"description": "Definiere Kilo Codes Expertise und Persönlichkeit für diesen Modus."
 		},
 		"tools": {
 			"label": "Verfügbare Werkzeuge",

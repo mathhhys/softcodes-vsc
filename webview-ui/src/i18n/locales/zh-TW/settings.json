@@ -29,13 +29,13 @@
 		"advanced": "進階",
 		"experimental": "實驗性功能",
 		"language": "語言",
-		"about": "關於 Roo Code"
+		"about": "關於 Kilo Code"
 	},
 	"autoApprove": {
-		"description": "允許 Roo 自動執行操作而無需核准。僅在您完全信任 AI 並理解相關安全風險的情況下啟用這些設定。",
+		"description": "允許 Kilo Code 自動執行操作而無需核准。僅在您完全信任 AI 並理解相關安全風險的情況下啟用這些設定。",
 		"readOnly": {
 			"label": "始終核准唯讀操作",
-			"description": "啟用後，Roo 將自動檢視目錄內容並讀取檔案，無需點擊核准按鈕。"
+			"description": "啟用後，Kilo Code 將自動檢視目錄內容並讀取檔案，無需點擊核准按鈕。"
 		},
 		"write": {
 			"label": "始終核准寫入操作",
@@ -142,13 +142,13 @@
 			"draftModelDesc": "推測解碼要正確運作，草稿模型必須來自相同的模型系列。",
 			"selectDraftModel": "選擇草稿模型",
 			"noModelsFound": "找不到草稿模型。請確保 LM Studio 已在伺服器模式下執行。",
-			"description": "LM Studio 允許您在本機電腦上執行模型。關於如何開始使用，請參閱他們的<a>快速入門指南</a>。您還需要啟動 LM Studio 的<b>本機伺服器</b>功能才能與此擴充功能一起使用。<span>注意：</span>Roo Code 使用複雜的提示，並在 Claude 模型上運作最佳。功能較弱的模型可能無法如預期運作。"
+			"description": "LM Studio 允許您在本機電腦上執行模型。關於如何開始使用，請參閱他們的<a>快速入門指南</a>。您還需要啟動 LM Studio 的<b>本機伺服器</b>功能才能與此擴充功能一起使用。<span>注意：</span>Kilo Code 使用複雜的提示，並在 Claude 模型上運作最佳。功能較弱的模型可能無法如預期運作。"
 		},
 		"ollama": {
 			"baseUrl": "基礎 URL（選用）",
 			"modelId": "模型 ID",
 			"description": "Ollama 允許您在本機電腦上執行模型。關於如何開始使用，請參閱快速入門指南。",
-			"warning": "注意：Roo Code 使用複雜的提示，並在 Claude 模型上運作最佳。功能較弱的模型可能無法如預期運作。"
+			"warning": "注意：Kilo Code 使用複雜的提示，並在 Claude 模型上運作最佳。功能較弱的模型可能無法如預期運作。"
 		},
 		"unboundApiKey": "Unbound API 金鑰",
 		"getUnboundApiKey": "取得 Unbound API 金鑰",
@@ -164,7 +164,7 @@
 			}
 		},
 		"customModel": {
-			"capabilities": "設定您的自訂 OpenAI 相容模型的功能和定價。請謹慎指定模型功能，因為它們會影響 Roo Code 的效能。",
+			"capabilities": "設定您的自訂 OpenAI 相容模型的功能和定價。請謹慎指定模型功能，因為它們會影響 Kilo Code 的效能。",
 			"maxTokens": {
 				"label": "最大輸出權杖",
 				"description": "模型在回應中可以生成的最大權杖數。（指定 -1 以允許伺服器設定最大權杖數。）"
@@ -209,7 +209,7 @@
 	"browser": {
 		"enable": {
 			"label": "啟用瀏覽器工具",
-			"description": "啟用後，Roo 可以在使用支援電腦使用的模型時使用瀏覽器與網站互動。"
+			"description": "啟用後，Kilo Code 可以在使用支援電腦使用的模型時使用瀏覽器與網站互動。"
 		},
 		"viewport": {
 			"label": "視窗大小",
@@ -237,18 +237,18 @@
 	"checkpoints": {
 		"enable": {
 			"label": "啟用自動檢查點",
-			"description": "啟用後，Roo 將在任務執行期間自動建立檢查點，使審核變更或返回到早期狀態變得容易。"
+			"description": "啟用後，Kilo Code 將在任務執行期間自動建立檢查點，使審核變更或返回到早期狀態變得容易。"
 		}
 	},
 	"notifications": {
 		"sound": {
 			"label": "啟用音效",
-			"description": "啟用後，Roo 將為通知和事件播放音效。",
+			"description": "啟用後，Kilo Code 將為通知和事件播放音效。",
 			"volumeLabel": "音量"
 		},
 		"tts": {
 			"label": "啟用文字轉語音",
-			"description": "啟用後，Roo 將使用文字轉語音功能朗讀其回應。",
+			"description": "啟用後，Kilo Code 將使用文字轉語音功能朗讀其回應。",
 			"speedLabel": "速度"
 		}
 	},
@@ -263,8 +263,8 @@
 			"description": "在目前工作目錄詳細資訊中包含的最大檔案數。較高的值提供更多內容，但會增加 token 使用量。"
 		},
 		"rooignore": {
-			"label": "在列表和搜尋中顯示 .rooignore 檔案",
-			"description": "啟用後，與 .rooignore 中模式匹配的檔案將在列表中顯示鎖定符號。禁用時，這些檔案將從檔案列表和搜尋中完全隱藏。"
+			"label": "在列表和搜尋中顯示 .kilocodeignore 檔案",
+			"description": "啟用後，與 .kilocodeignore 中模式匹配的檔案將在列表中顯示鎖定符號。禁用時，這些檔案將從檔案列表和搜尋中完全隱藏。"
 		},
 		"maxReadFile": {
 			"label": "從檔案讀取的最大行數",
@@ -288,7 +288,7 @@
 		},
 		"diff": {
 			"label": "啟用透過差異編輯",
-			"description": "啟用後，Roo 將能夠更快地編輯檔案，並將自動拒絕截斷的完整檔案寫入。與最新的 Claude 3.7 Sonnet 模型搭配最佳。",
+			"description": "啟用後，Kilo Code 將能夠更快地編輯檔案，並將自動拒絕截斷的完整檔案寫入。與最新的 Claude 3.7 Sonnet 模型搭配最佳。",
 			"strategy": {
 				"label": "Diff 策略",
 				"options": {
@@ -316,19 +316,19 @@
 		},
 		"SEARCH_AND_REPLACE": {
 			"name": "使用實驗性搜索和替換工具",
-			"description": "啟用實驗性搜索和替換工具，允許 Roo 在一個請求中替換搜索詞的多個實例。"
+			"description": "啟用實驗性搜索和替換工具，允許 Kilo Code 在一個請求中替換搜索詞的多個實例。"
 		},
 		"INSERT_BLOCK": {
 			"name": "使用實驗性插入內容工具",
-			"description": "啟用實驗性插入內容工具，允許 Roo 在特定行號插入內容，無需創建差異。"
+			"description": "啟用實驗性插入內容工具，允許 Kilo Code 在特定行號插入內容，無需創建差異。"
 		},
 		"POWER_STEERING": {
 			"name": "使用實驗性\"動力轉向\"模式",
-			"description": "啟用後，Roo 將更頻繁地提醒模型關於其當前模式定義的詳細信息。這將導致對角色定義和自定義指令的更強遵守，但每條消息將使用更多 token。"
+			"description": "啟用後，Kilo Code 將更頻繁地提醒模型關於其當前模式定義的詳細信息。這將導致對角色定義和自定義指令的更強遵守，但每條消息將使用更多 token。"
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "使用實驗性多塊差異工具",
-			"description": "啟用後，Roo 將使用多塊差異工具。這將嘗試在一個請求中更新文件中的多個代碼塊。"
+			"description": "啟用後，Kilo Code 將使用多塊差異工具。這將嘗試在一個請求中更新文件中的多個代碼塊。"
 		}
 	},
 	"temperature": {
@@ -357,18 +357,18 @@
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "擴充功能會自動獲取 <serviceLink>{{serviceName}}</serviceLink> 上可用的最新模型列表。如果您不確定選擇哪個模型，Roo Code 與 <defaultModelLink>{{defaultModelId}}</defaultModelLink> 配合最佳。您還可以搜尋\"free\"以尋找目前可用的免費選項。",
+		"automaticFetch": "擴充功能會自動獲取 <serviceLink>{{serviceName}}</serviceLink> 上可用的最新模型列表。如果您不確定選擇哪個模型，Kilo Code 與 <defaultModelLink>{{defaultModelId}}</defaultModelLink> 配合最佳。您還可以搜尋\"free\"以尋找目前可用的免費選項。",
 		"label": "模型",
 		"searchPlaceholder": "搜尋",
 		"noMatchFound": "未找到相符項目",
 		"useCustomModel": "使用自訂: {{modelId}}"
 	},
 	"footer": {
-		"feedback": "如果您有任何問題或反饋，請隨時在 <githubLink>github.com/RooVetGit/Roo-Code</githubLink> 上提出問題或加入 <redditLink>reddit.com/r/RooCode</redditLink> 或 <discordLink>discord.gg/roocode</discordLink>",
-		"version": "Roo Code v{{version}}",
+		"feedback": "如果您有任何問題或反饋，請隨時在 <githubLink>github.com/Kilo-Org/kilocode</githubLink> 上提出問題或加入 <redditLink>reddit.com/r/kilocode</redditLink> 或 <discordLink>discord.gg/fxrhCFGhkP</discordLink>",
+		"version": "Kilo Code v{{version}}",
 		"telemetry": {
 			"label": "允許匿名錯誤和使用情況報告",
-			"description": "透過發送匿名使用資料和錯誤報告來幫助改進 Roo Code。絕不會發送程式碼、提示或個人資訊。有關更多詳細資訊，請參閱我們的隱私政策。"
+			"description": "透過發送匿名使用資料和錯誤報告來幫助改進 Kilo Code。絕不會發送程式碼、提示或個人資訊。有關更多詳細資訊，請參閱我們的隱私政策。"
 		},
 		"reset": {
 			"description": "重設擴充功能中的所有全域狀態和秘密儲存。",
