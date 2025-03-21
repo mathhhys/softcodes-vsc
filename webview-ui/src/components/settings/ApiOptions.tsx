@@ -126,6 +126,8 @@ const ApiOptions = ({
 		[apiConfiguration],
 	)
 
+	console.log("WTF", selectedProvider)
+
 	// Debounced refresh model updates, only executed 250ms after the user
 	// stops typing.
 	useDebounce(
@@ -254,12 +256,13 @@ const ApiOptions = ({
 						<SelectValue placeholder={t("settings:common.select")} />
 					</SelectTrigger>
 					<SelectContent>
-						<SelectItem value="openrouter">OpenRouter</SelectItem>
-						<SelectSeparator />
-						{PROVIDERS.map(({ value, label }) => (
-							<SelectItem key={value} value={value}>
-								{label}
-							</SelectItem>
+						{PROVIDERS.map(({ value, label }, i) => (
+							<>
+								<SelectItem key={value} value={value}>
+									{label}
+								</SelectItem>
+								{i === 0 ? <SelectSeparator /> : null}
+							</>
 						))}
 					</SelectContent>
 				</Select>
@@ -1607,12 +1610,12 @@ export function getOpenRouterAuthUrl(uriScheme?: string) {
 	return `https://openrouter.ai/auth?callback_url=${uriScheme || "vscode"}://kilocode.Kilo-Code/openrouter`
 }
 
-export function getKiloCodeBackendAuthUrl(uriScheme?: string) {
+export function getKiloCodeBackendAuthUrl() {
 	return `https://kilocode.ai/auth/signin?source=vscode`
 }
 
 export function normalizeApiConfiguration(apiConfiguration?: ApiConfiguration) {
-	const provider = apiConfiguration?.apiProvider || "anthropic"
+	const provider = apiConfiguration?.apiProvider ?? PROVIDERS[0].value
 	const modelId = apiConfiguration?.apiModelId
 
 	const getProviderData = (models: Record<string, ModelInfo>, defaultId: string) => {

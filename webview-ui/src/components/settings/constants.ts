@@ -23,6 +23,7 @@ export const MODELS_BY_PROVIDER: Partial<Record<ApiProvider, Record<string, Mode
 export const PROVIDERS = [
 	{ value: "kilocode", label: "Kilo Code" },
 	{ value: "fireworks", label: "Fireworks" },
+	{ value: "openrouter", label: "OpenRouter" },
 	{ value: "anthropic", label: "Anthropic" },
 	{ value: "gemini", label: "Google Gemini" },
 	{ value: "deepseek", label: "DeepSeek" },
@@ -38,7 +39,7 @@ export const PROVIDERS = [
 	{ value: "unbound", label: "Unbound" },
 	{ value: "requesty", label: "Requesty" },
 	{ value: "human-relay", label: "Human Relay" },
-].sort((a, b) => a.label.localeCompare(b.label))
+]
 
 export const AWS_REGIONS = [
 	{ value: "us-east-1", label: "us-east-1" },
