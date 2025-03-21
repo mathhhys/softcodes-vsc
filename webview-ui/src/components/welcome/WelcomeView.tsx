@@ -31,7 +31,6 @@ const WelcomeView = () => {
 		<Tab>
 			<TabContent className="flex flex-col gap-5">
 				<h2 className="m-0 p-0">{t("welcome:greeting")}</h2>
-				<div>{t("welcome:introduction")}</div>
 				<ApiOptions
 					fromWelcomeView
 					apiConfiguration={apiConfiguration || {}}
