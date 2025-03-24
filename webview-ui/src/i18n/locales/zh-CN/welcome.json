@@ -1,5 +1,18 @@
 {
 	"greeting": "你好，我是 Kilo Code！",
 	"notice": "首先，请配置一个大模型 API 服务商。",
-	"start": "开始吧！"
+	"start": "开始吧！",
+	"chooseProvider": "选择一个 API 服务商开始：",
+	"routers": {
+		"requesty": {
+			"description": "你的优化 LLM 路由器",
+			"incentive": "$1 免费额度"
+		},
+		"openrouter": {
+			"description": "LLM 的统一接口"
+		}
+	},
+	"startRouter": "通过路由器快速设置",
+	"startCustom": "使用你自己的 API 密钥",
+	"or": "或"
 }

@@ -1,5 +1,18 @@
 {
 	"greeting": "Hi, I'm Kilo Code!",
 	"notice": "To get started, this extension needs an API provider.",
-	"start": "Let's go!"
+	"start": "Let's go!",
+	"chooseProvider": "Choose an API provider to get started:",
+	"routers": {
+		"requesty": {
+			"description": "Your optimized LLM router",
+			"incentive": "$1 free credit"
+		},
+		"openrouter": {
+			"description": "A unified interface for LLMs"
+		}
+	},
+	"startRouter": "Express Setup Through a Router",
+	"startCustom": "Bring Your Own API Key",
+	"or": "or"
 }

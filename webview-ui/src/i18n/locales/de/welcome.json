@@ -1,5 +1,18 @@
 {
 	"greeting": "Hallo, ich bin Kilo Code!",
 	"notice": "Um loszulegen, benötigt diese Erweiterung einen API-Anbieter.",
-	"start": "Los geht's!"
+	"start": "Los geht's!",
+	"chooseProvider": "Wähle einen API-Anbieter, um zu beginnen:",
+	"routers": {
+		"requesty": {
+			"description": "Dein optimierter LLM-Router",
+			"incentive": "$1 Guthaben gratis"
+		},
+		"openrouter": {
+			"description": "Eine einheitliche Schnittstelle für LLMs"
+		}
+	},
+	"startRouter": "Express-Einrichtung über einen Router",
+	"startCustom": "Eigenen API-Schlüssel verwenden",
+	"or": "oder"
 }

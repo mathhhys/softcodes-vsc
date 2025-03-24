@@ -1,5 +1,18 @@
 {
 	"greeting": "こんにちは、私はルーです！",
 	"notice": "開始するには、この拡張機能にはAPIプロバイダーが必要です。",
-	"start": "さあ、始めましょう！"
+	"start": "さあ、始めましょう！",
+	"chooseProvider": "開始するにはAPIプロバイダーを選択してください：",
+	"routers": {
+		"requesty": {
+			"description": "最適化されたLLMルーター",
+			"incentive": "$1の無料クレジット"
+		},
+		"openrouter": {
+			"description": "LLMsのための統一インターフェース"
+		}
+	},
+	"startRouter": "ルーター経由の簡単セットアップ",
+	"startCustom": "自分のAPIキーを使用",
+	"or": "または"
 }

@@ -6,7 +6,6 @@ export const handleUri = async (uri: vscode.Uri) => {
 	const path = uri.path
 	const query = new URLSearchParams(uri.query.replace(/\+/g, "%2B"))
 	const visibleProvider = ClineProvider.getVisibleInstance()
-
 	if (!visibleProvider) {
 		return
 	}
@@ -30,6 +29,13 @@ export const handleUri = async (uri: vscode.Uri) => {
 			const token = query.get("token")
 			if (token) {
 				await visibleProvider.handleKiloCodeCallback(token)
+			}
+			break
+		}
+		case "/requesty": {
+			const code = query.get("code")
+			if (code) {
+				await visibleProvider.handleRequestyCallback(code)
 			}
 			break
 		}

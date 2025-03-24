@@ -2,9 +2,9 @@
 
 import { formatResponse } from "../responses"
 import { RooIgnoreController, LOCK_TEXT_SYMBOL } from "../../ignore/RooIgnoreController"
-import * as path from "path"
 import { fileExistsAtPath } from "../../../utils/fs"
 import * as fs from "fs/promises"
+import { toPosix } from "./utils"
 
 // Mock dependencies
 jest.mock("../../../utils/fs")
@@ -84,7 +84,9 @@ describe("RooIgnore Response Formatting", () => {
 			controller.validateAccess = jest.fn().mockImplementation((filePath: string) => {
 				// Only allow files not matching these patterns
 				return (
-					!filePath.includes("node_modules") && !filePath.includes(".git") && !filePath.includes("secrets/")
+					!filePath.includes("node_modules") &&
+					!filePath.includes(".git") &&
+					!toPosix(filePath).includes("secrets/")
 				)
 			})
 
@@ -126,7 +128,9 @@ describe("RooIgnore Response Formatting", () => {
 			controller.validateAccess = jest.fn().mockImplementation((filePath: string) => {
 				// Only allow files not matching these patterns
 				return (
-					!filePath.includes("node_modules") && !filePath.includes(".git") && !filePath.includes("secrets/")
+					!filePath.includes("node_modules") &&
+					!filePath.includes(".git") &&
+					!toPosix(filePath).includes("secrets/")
 				)
 			})
 

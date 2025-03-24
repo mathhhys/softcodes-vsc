@@ -1,5 +1,18 @@
 {
 	"greeting": "Xin chào, tôi là Kilo Code!",
 	"notice": "Để bắt đầu, tiện ích mở rộng này cần một nhà cung cấp API.",
-	"start": "Bắt đầu thôi!"
+	"start": "Bắt đầu thôi!",
+	"chooseProvider": "Chọn một nhà cung cấp API để bắt đầu:",
+	"routers": {
+		"requesty": {
+			"description": "Bộ định tuyến LLM được tối ưu hóa của bạn",
+			"incentive": "$1 tín dụng miễn phí"
+		},
+		"openrouter": {
+			"description": "Giao diện thống nhất cho các LLM"
+		}
+	},
+	"startRouter": "Thiết lập nhanh qua bộ định tuyến",
+	"startCustom": "Sử dụng khóa API của riêng bạn",
+	"or": "hoặc"
 }
