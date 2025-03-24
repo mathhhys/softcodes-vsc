@@ -1,5 +1,18 @@
 {
 	"greeting": "¡Hola, soy Kilo Code!",
 	"notice": "Para comenzar, esta extensión necesita un proveedor de API.",
-	"start": "¡Vamos!"
+	"start": "¡Vamos!",
+	"chooseProvider": "Elige un proveedor de API para comenzar:",
+	"routers": {
+		"requesty": {
+			"description": "Tu router LLM optimizado",
+			"incentive": "$1 de crédito gratis"
+		},
+		"openrouter": {
+			"description": "Una interfaz unificada para LLMs"
+		}
+	},
+	"startRouter": "Configuración rápida a través de un router",
+	"startCustom": "Usa tu propia clave API",
+	"or": "o"
 }

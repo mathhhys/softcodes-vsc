@@ -1,5 +1,19 @@
 {
 	"greeting": "Merhaba, ben Kilo Code!",
+	"introduction": "Ajan tabanlı kodlama yeteneklerindeki son gelişmeler ve dosya oluşturma ve düzenleme, karmaşık projeleri keşfetme, tarayıcı kullanma ve terminal komutları çalıştırma (tabii ki senin izninle) gibi işlemleri yapmamı sağlayan araçlara erişim sayesinde her türlü görevi gerçekleştirebilirim. Hatta MCP'yi kullanarak yeni araçlar oluşturabilir ve kendi yeteneklerimi genişletebilirim.",
 	"notice": "Başlamak için bu eklentinin bir API sağlayıcısına ihtiyacı var.",
-	"start": "Hadi başlayalım!"
+	"start": "Hadi başlayalım!",
+	"chooseProvider": "Başlamak için bir API sağlayıcısı seç:",
+	"routers": {
+		"requesty": {
+			"description": "Optimize edilmiş LLM yönlendiricin",
+			"incentive": "$1 ücretsiz kredi"
+		},
+		"openrouter": {
+			"description": "LLM'ler için birleşik bir arayüz"
+		}
+	},
+	"startRouter": "Yönlendirici Üzerinden Hızlı Kurulum",
+	"startCustom": "Kendi API Anahtarını Kullan",
+	"or": "veya"
 }

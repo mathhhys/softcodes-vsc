@@ -10,7 +10,18 @@ import * as vscode from "vscode"
 
 import { changeLanguage, t } from "../../i18n"
 import { setPanel } from "../../activate/registerCommands"
-import { ApiConfiguration, ApiProvider, ModelInfo, API_CONFIG_KEYS } from "../../shared/api"
+import {
+	ApiConfiguration,
+	ApiProvider,
+	ModelInfo,
+	API_CONFIG_KEYS,
+	requestyDefaultModelId,
+	requestyDefaultModelInfo,
+	openRouterDefaultModelId,
+	openRouterDefaultModelInfo,
+	glamaDefaultModelId,
+	glamaDefaultModelInfo,
+} from "../../shared/api"
 import { findLast } from "../../shared/array"
 import { supportPrompt } from "../../shared/support-prompt"
 import { GlobalFileNames } from "../../shared/globalFileNames"
@@ -588,6 +599,8 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			"codicon.css",
 		])
 
+		const imagesUri = getUri(webview, this.contextProxy.extensionUri, ["assets", "images"])
+
 		const file = "src/index.tsx"
 		const scriptUri = `http://${localServerUrl}/${file}`
 
@@ -606,7 +619,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			`font-src ${webview.cspSource}`,
 			`style-src ${webview.cspSource} 'unsafe-inline' https://* http://${localServerUrl} http://0.0.0.0:${localPort}`,
 			`img-src ${webview.cspSource} data:`,
-			`script-src 'unsafe-eval' https://* https://*.posthog.com http://${localServerUrl} http://0.0.0.0:${localPort} 'nonce-${nonce}'`,
+			`script-src 'unsafe-eval' ${webview.cspSource} https://* https://*.posthog.com http://${localServerUrl} http://0.0.0.0:${localPort} 'nonce-${nonce}'`,
 			`connect-src https://* https://*.posthog.com ws://${localServerUrl} ws://0.0.0.0:${localPort} http://${localServerUrl} http://0.0.0.0:${localPort}`,
 		]
 
@@ -619,6 +632,9 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 					<meta http-equiv="Content-Security-Policy" content="${csp.join("; ")}">
 					<link rel="stylesheet" type="text/css" href="${stylesUri}">
 					<link href="${codiconsUri}" rel="stylesheet" />
+					<script nonce="${nonce}">
+						window.IMAGES_BASE_URI = "${imagesUri}"
+					</script>
 					<title>Kilo Code</title>
 				</head>
 				<body>
@@ -667,6 +683,8 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			"codicon.css",
 		])
 
+		const imagesUri = getUri(webview, this.contextProxy.extensionUri, ["assets", "images"])
+
 		// const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "assets", "main.js"))
 
 		// const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "assets", "reset.css"))
@@ -699,6 +717,9 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
             <meta http-equiv="Content-Security-Policy" content="default-src 'none'; font-src ${webview.cspSource}; style-src ${webview.cspSource} 'unsafe-inline'; img-src ${webview.cspSource} data:; script-src 'nonce-${nonce}' https://us-assets.i.posthog.com; connect-src https://openrouter.ai https://us.i.posthog.com https://us-assets.i.posthog.com;">
             <link rel="stylesheet" type="text/css" href="${stylesUri}">
 			<link href="${codiconsUri}" rel="stylesheet" />
+			<script nonce="${nonce}">
+				window.IMAGES_BASE_URI = "${imagesUri}"
+			</script>
             <title>Kilo Code</title>
           </head>
           <body>
@@ -1799,23 +1820,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 						break
 					case "upsertApiConfiguration":
 						if (message.text && message.apiConfiguration) {
-							try {
-								await this.configManager.saveConfig(message.text, message.apiConfiguration)
-								const listApiConfig = await this.configManager.listConfig()
-
-								await Promise.all([
-									this.updateGlobalState("listApiConfigMeta", listApiConfig),
-									this.updateApiConfiguration(message.apiConfiguration),
-									this.updateGlobalState("currentApiConfigName", message.text),
-								])
-
-								await this.postStateToWebview()
-							} catch (error) {
-								this.outputChannel.appendLine(
-									`Error create new api configuration: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`,
-								)
-								vscode.window.showErrorMessage(t("common:errors.create_api_config"))
-							}
+							await this.upsertApiConfiguration(message.text, message.apiConfiguration)
 						}
 						break
 					case "renameApiConfiguration":
@@ -2025,6 +2030,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 				apiConfiguration.apiModelId || apiConfiguration.openRouterModelId || "",
 				fuzzyMatchThreshold,
 				Experiments.isEnabled(experiments, EXPERIMENT_IDS.DIFF_STRATEGY),
+				Experiments.isEnabled(experiments, EXPERIMENT_IDS.MULTI_SEARCH_AND_REPLACE),
 			)
 			const cwd = this.cwd
 
@@ -2223,9 +2229,10 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 	// OpenRouter
 
 	async handleOpenRouterCallback(code: string) {
+		let { apiConfiguration, currentApiConfigName } = await this.getState()
+
 		let apiKey: string
 		try {
-			const { apiConfiguration } = await this.getState()
 			const baseUrl = apiConfiguration.openRouterBaseUrl || "https://openrouter.ai/api/v1"
 			// Extract the base domain for the auth endpoint
 			const baseUrlDomain = baseUrl.match(/^(https?:\/\/[^\/]+)/)?.[1] || "https://openrouter.ai"
@@ -2242,17 +2249,15 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			throw error
 		}
 
-		const openrouter: ApiProvider = "openrouter"
-		await this.contextProxy.setValues({
-			apiProvider: openrouter,
+		const newConfiguration: ApiConfiguration = {
+			...apiConfiguration,
+			apiProvider: "openrouter",
 			openRouterApiKey: apiKey,
-		})
-
-		await this.postStateToWebview()
-		if (this.getCurrentCline()) {
-			this.getCurrentCline()!.api = buildApiHandler({ apiProvider: openrouter, openRouterApiKey: apiKey })
+			openRouterModelId: apiConfiguration?.openRouterModelId || openRouterDefaultModelId,
+			openRouterModelInfo: apiConfiguration?.openRouterModelInfo || openRouterDefaultModelInfo,
 		}
-		// await this.postMessageToWebview({ type: "action", action: "settingsButtonClicked" }) // bad ux if user is on welcome
+
+		await this.upsertApiConfiguration(currentApiConfigName, newConfiguration)
 	}
 
 	// Glama
@@ -2273,19 +2278,55 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			throw error
 		}
 
-		const glama: ApiProvider = "glama"
-		await this.contextProxy.setValues({
-			apiProvider: glama,
+		const { apiConfiguration, currentApiConfigName } = await this.getState()
+
+		const newConfiguration: ApiConfiguration = {
+			...apiConfiguration,
+			apiProvider: "glama",
 			glamaApiKey: apiKey,
-		})
-		await this.postStateToWebview()
-		if (this.getCurrentCline()) {
-			this.getCurrentCline()!.api = buildApiHandler({
-				apiProvider: glama,
-				glamaApiKey: apiKey,
-			})
+			glamaModelId: apiConfiguration?.glamaModelId || glamaDefaultModelId,
+			glamaModelInfo: apiConfiguration?.glamaModelInfo || glamaDefaultModelInfo,
 		}
-		// await this.postMessageToWebview({ type: "action", action: "settingsButtonClicked" }) // bad ux if user is on welcome
+
+		await this.upsertApiConfiguration(currentApiConfigName, newConfiguration)
+	}
+
+	// Requesty
+
+	async handleRequestyCallback(code: string) {
+		let { apiConfiguration, currentApiConfigName } = await this.getState()
+
+		const newConfiguration: ApiConfiguration = {
+			...apiConfiguration,
+			apiProvider: "requesty",
+			requestyApiKey: code,
+			requestyModelId: apiConfiguration?.requestyModelId || requestyDefaultModelId,
+			requestyModelInfo: apiConfiguration?.requestyModelInfo || requestyDefaultModelInfo,
+		}
+
+		await this.upsertApiConfiguration(currentApiConfigName, newConfiguration)
+	}
+
+	// Save configuration
+
+	async upsertApiConfiguration(configName: string, apiConfiguration: ApiConfiguration) {
+		try {
+			await this.configManager.saveConfig(configName, apiConfiguration)
+			const listApiConfig = await this.configManager.listConfig()
+
+			await Promise.all([
+				this.updateGlobalState("listApiConfigMeta", listApiConfig),
+				this.updateApiConfiguration(apiConfiguration),
+				this.updateGlobalState("currentApiConfigName", configName),
+			])
+
+			await this.postStateToWebview()
+		} catch (error) {
+			this.outputChannel.appendLine(
+				`Error create new api configuration: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`,
+			)
+			vscode.window.showErrorMessage(t("common:errors.create_api_config"))
+		}
 	}
 
 	async handleKiloCodeCallback(token: string) {
@@ -2610,7 +2651,12 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		let customModes = valuePromises[idx] as ModeConfig[] | undefined
 
 		// Determine apiProvider with the same logic as before
-		let apiProvider: ApiProvider = stateValues.apiProvider
+		let apiProvider: ApiProvider
+		if (stateValues.apiProvider) {
+			apiProvider = stateValues.apiProvider
+		} else {
+			apiProvider = "kilocode"
+		}
 
 		// Build the apiConfiguration object combining state values and secrets
 		// Using the dynamic approach with API_CONFIG_KEYS
