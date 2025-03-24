@@ -1,5 +1,14 @@
 # Roo Code Changelog
 
+## 3.10.3
+
+### Patch Changes
+
+- Update the welcome page to provide 1-click OAuth flows with LLM routers or more advanced configuration with custom providers.
+- Auto-truncate
+- Changes maxTokens to 8192 for anthropic models that supports it
+- Support mentioning binary files
+
 ## [3.10.2] - 2025-03-21
 
 - Fixes to context mentions on Windows
