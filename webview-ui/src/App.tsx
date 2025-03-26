@@ -14,6 +14,7 @@ import WelcomeView from "./components/welcome/WelcomeView"
 import McpView from "./components/mcp/McpView"
 import PromptsView from "./components/prompts/PromptsView"
 import { HumanRelayDialog } from "./components/human-relay/HumanRelayDialog"
+import BottomControls from "./components/chat/BottomControls"
 
 type Tab = "settings" | "history" | "mcp" | "prompts" | "chat"
 
@@ -94,9 +95,11 @@ const App = () => {
 	) : (
 		<>
 			{tab === "prompts" && <PromptsView onDone={() => switchTab("chat")} />}
-			{tab === "mcp" && <McpView onDone={() => switchTab("chat")} />}
+			{tab === "mcp" && <McpView onDone={() => switchTab("settings")} />}
 			{tab === "history" && <HistoryView onDone={() => switchTab("chat")} />}
-			{tab === "settings" && <SettingsView ref={settingsRef} onDone={() => setTab("chat")} />}
+			{tab === "settings" && (
+				<SettingsView ref={settingsRef} onDone={() => setTab("chat")} onOpenMcp={() => setTab("mcp")} />
+			)}
 			<ChatView
 				isHidden={tab !== "chat"}
 				showAnnouncement={showAnnouncement}
@@ -111,6 +114,12 @@ const App = () => {
 				onSubmit={(requestId, text) => vscode.postMessage({ type: "humanRelayResponse", requestId, text })}
 				onCancel={(requestId) => vscode.postMessage({ type: "humanRelayCancel", requestId })}
 			/>
+			{/* Chat view contains its own bottom controls */}
+			{tab !== "chat" && (
+				<div className="fixed inset-0 top-auto">
+					<BottomControls />
+				</div>
+			)}
 		</>
 	)
 }
