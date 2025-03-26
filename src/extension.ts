@@ -69,9 +69,17 @@ export async function activate(context: vscode.ExtensionContext) {
 		outputChannel.appendLine("First installation detected, opening Kilo Code sidebar!")
 		try {
 			await vscode.commands.executeCommand("kilo-code.SidebarProvider.focus")
+
+			outputChannel.appendLine("Opening Kilo Code walkthrough")
+			await vscode.commands.executeCommand(
+				"workbench.action.openWalkthrough",
+				"kilocode.kilo-code#kiloCodeWalkthrough",
+				false,
+			)
+
 			context.globalState.update("firstInstallCompleted", true)
 		} catch (error) {
-			outputChannel.appendLine(`Error opening sidebar: ${error.message}`)
+			outputChannel.appendLine(`Error during first-time setup: ${error.message}`)
 		}
 	}
 
