@@ -28,7 +28,18 @@ export function parseAssistantMessage(assistantMessage: string) {
 			const paramClosingTag = `</${currentParamName}>`
 			if (currentParamValue.endsWith(paramClosingTag)) {
 				// end of param value
-				currentToolUse.params[currentParamName] = currentParamValue.slice(0, -paramClosingTag.length).trim()
+				let paramValue = currentParamValue.slice(0, -paramClosingTag.length).trim()
+
+				if (currentToolUse.name === "execute_command" && currentParamName === "command") {
+					// Some models XML encode ampersands in the <command></command> tag, some don't
+					// to minimize chances of unintended consequences, we only XML decode &amp; for now
+					// NOTE(emn): this is a hacky workaround to an empirically observed problem.
+					// We know it's not a perfect solution and in corner cases can make things worse, but let's try this for now. 
+					// kilocode_change
+					paramValue = paramValue.replaceAll("&amp;", "&")
+				}
+
+				currentToolUse.params[currentParamName] = paramValue
 				currentParamName = undefined
 				continue
 			} else {
