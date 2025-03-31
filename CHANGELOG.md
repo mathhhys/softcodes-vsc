@@ -1,8 +1,6 @@
 # Roo Code Changelog
 
-## 3.11.1
-
-### Patch Changes
+## [3.11.1]
 
 - Relax provider profiles schema and add telemetry
 
