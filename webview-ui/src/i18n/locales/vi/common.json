@@ -1,8 +1,8 @@
 {
 	"number_format": {
 		"thousand_suffix": "k",
-		"million_suffix": "tr",
-		"billion_suffix": "tỷ"
+		"million_suffix": "m",
+		"billion_suffix": "b"
 	},
 	"feedback": {
 		"title": "Phản hồi",

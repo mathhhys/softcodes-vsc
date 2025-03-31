@@ -12,6 +12,8 @@
 		"export": "Eksportuj historię zadań",
 		"delete": "Usuń zadanie (Shift + Kliknięcie, aby pominąć potwierdzenie)"
 	},
+	"unpin": "Odepnij",
+	"pin": "Przypnij",
 	"tokenProgress": {
 		"availableSpace": "Dostępne miejsce: {{amount}} tokenów",
 		"tokensUsed": "Wykorzystane tokeny: {{used}} z {{total}}",
@@ -104,10 +106,15 @@
 		},
 		"current": "Bieżący"
 	},
+	"instructions": {
+		"wantsToFetch": "Kilo Code chce pobrać szczegółowe instrukcje, aby pomóc w bieżącym zadaniu"
+	},
 	"fileOperations": {
 		"wantsToRead": "Kilo Code chce przeczytać ten plik:",
+		"wantsToReadOutsideWorkspace": "Kilo Code chce przeczytać ten plik poza obszarem roboczym:",
 		"didRead": "Kilo Code przeczytał ten plik:",
 		"wantsToEdit": "Kilo Code chce edytować ten plik:",
+		"wantsToEditOutsideWorkspace": "Kilo Code chce edytować ten plik poza obszarem roboczym:",
 		"wantsToCreate": "Kilo Code chce utworzyć nowy plik:"
 	},
 	"directoryOperations": {
@@ -151,7 +158,7 @@
 	"autoApprove": {
 		"title": "Automatyczne zatwierdzanie:",
 		"none": "Brak",
-		"description": "Automatyczne zatwierdzanie pozwala Kilo Code wykonywać działania bez pytania o pozwolenie. Włącz tylko dla działań, którym w pełni ufasz.",
+		"description": "Automatyczne zatwierdzanie pozwala Kilo Code wykonywać działania bez pytania o pozwolenie. Włącz tylko dla działań, którym w pełni ufasz. Bardziej szczegółowa konfiguracja dostępna w <settingsLink>Ustawieniach</settingsLink>.",
 		"actions": {
 			"readFiles": {
 				"label": "Czytaj pliki i katalogi",
@@ -199,15 +206,18 @@
 		"thinking": "Myślenie",
 		"seconds": "{{count}} s"
 	},
+	"followUpSuggest": {
+		"copyToInput": "Kopiuj do pola wprowadzania (lub Shift + kliknięcie)"
+	},
 	"announcement": {
-		"title": "🎉 Kilo Code 3.10 wydany",
-		"description": "Kilo Code 3.10 przynosi potężne usprawnienia produktywności!",
+		"title": "🎉 Roo Code 3.11 wydany",
+		"description": "Roo Code 3.11 przynosi znaczące usprawnienia wydajności i nowe funkcje!",
 		"whatsNew": "Co nowego",
-		"feature1": "Sugerowane odpowiedzi na pytania",
-		"feature2": "Ulepszenia obsługi dużych plików",
-		"feature3": "Przebudowane wyszukiwanie plików przez @-wzmianki",
-		"feature4": "",
-		"feature5": "",
+		"feature1": "Szybkie edycje - Zmiany są teraz stosowane znacznie szybciej. Mniej czekania, więcej kodowania.",
+		"feature2": "Salda kluczy API - Sprawdź stan swoich kont OpenRouter i Requesty w ustawieniach.",
+		"feature3": "Konfiguracja MCP na poziomie projektu - Teraz możesz skonfigurować ją dla każdego projektu/przestrzeni roboczej.",
+		"feature4": "Ulepszenia wsparcia dla Gemini - Inteligentniejsze ponawianie, poprawione escapowanie, dodano do dostawcy Vertex.",
+		"feature5": "Import/Export ustawień - Łatwo twórz kopie zapasowe lub udostępniaj swoją konfigurację między różnymi środowiskami.",
 		"hideButton": "Ukryj ogłoszenie",
 		"detailsDiscussLinks": "Uzyskaj więcej szczegółów i dołącz do dyskusji na <discordLink>Discord</discordLink> i <redditLink>Reddit</redditLink> 🚀"
 	},

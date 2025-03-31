@@ -8,8 +8,6 @@ import { Checkbox } from "vscrui"
 import { VSCodeLink, VSCodeRadio, VSCodeRadioGroup, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
 import { ExternalLinkIcon } from "@radix-ui/react-icons"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectSeparator, Button } from "@/components/ui"
-
 import {
 	ApiConfiguration,
 	ModelInfo,
@@ -44,19 +42,23 @@ import {
 import { ExtensionMessage } from "../../../../src/shared/ExtensionMessage"
 
 import { vscode } from "@/utils/vscode"
+import { validateApiConfiguration, validateModelId, validateBedrockArn } from "@/utils/validate"
 import {
 	useOpenRouterModelProviders,
 	OPENROUTER_DEFAULT_PROVIDER_NAME,
 } from "@/components/ui/hooks/useOpenRouterModelProviders"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectSeparator, Button } from "@/components/ui"
 
 import { MODELS_BY_PROVIDER, PROVIDERS, AWS_REGIONS, VERTEX_REGIONS } from "./constants"
 import { VSCodeButtonLink } from "../common/VSCodeButtonLink"
 import { ModelInfoView } from "./ModelInfoView"
 import { ModelPicker } from "./ModelPicker"
 import { TemperatureControl } from "./TemperatureControl"
-import { validateApiConfiguration, validateModelId, validateBedrockArn } from "@/utils/validate"
 import { ApiErrorMessage } from "./ApiErrorMessage"
 import { ThinkingBudget } from "./ThinkingBudget"
+import { R1FormatSetting } from "./R1FormatSetting"
+import { OpenRouterBalanceDisplay } from "./OpenRouterBalanceDisplay"
+import { RequestyBalanceDisplay } from "./RequestyBalanceDisplay"
 
 interface ApiOptionsProps {
 	uriScheme: string | undefined
@@ -106,7 +108,6 @@ const ApiOptions = ({
 		!!apiConfiguration?.googleGeminiBaseUrl,
 	)
 	const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
-
 	const noTransform = <T,>(value: T) => value
 
 	const inputEventTransform = <E,>(event: E) => (event as { target: HTMLInputElement })?.target?.value as any
@@ -244,10 +245,55 @@ const ApiOptions = ({
 		[selectedProvider],
 	)
 
+	// Base URL for provider documentation
+	const DOC_BASE_URL = "https://docs.roocode.com/providers"
+
+	// Custom URL path mappings for providers with different slugs
+	const providerUrlSlugs: Record<string, string> = {
+		"openai-native": "openai",
+		openai: "openai-compatible",
+	}
+
+	// Helper function to get provider display name from PROVIDERS constant
+	const getProviderDisplayName = (providerKey: string): string | undefined => {
+		const provider = PROVIDERS.find((p) => p.value === providerKey)
+		return provider?.label
+	}
+
+	// Helper function to get the documentation URL and name for the currently selected provider
+	const getSelectedProviderDocUrl = (): { url: string; name: string } | undefined => {
+		const displayName = getProviderDisplayName(selectedProvider)
+		if (!displayName) {
+			return undefined
+		}
+
+		// Get the URL slug - use custom mapping if available, otherwise use the provider key
+		const urlSlug = providerUrlSlugs[selectedProvider] || selectedProvider
+
+		return {
+			url: `${DOC_BASE_URL}/${urlSlug}`,
+			name: displayName,
+		}
+	}
+
 	return (
 		<div className="flex flex-col gap-3">
-			<div>
-				<label className="block font-medium mb-1">{t("settings:providers.apiProvider")}</label>
+			<div className="flex flex-col gap-1 relative">
+				<div className="flex justify-between items-center">
+					<label className="block font-medium mb-1">{t("settings:providers.apiProvider")}</label>
+					{getSelectedProviderDocUrl() && (
+						<div className="text-xs text-vscode-descriptionForeground">
+							<VSCodeLink
+								href={getSelectedProviderDocUrl()!.url}
+								className="hover:text-vscode-foreground"
+								target="_blank">
+								{t("settings:providers.providerDocumentation", {
+									provider: getSelectedProviderDocUrl()!.name,
+								})}
+							</VSCodeLink>
+						</div>
+					)}
+				</div>
 				<Select
 					value={selectedProvider}
 					onValueChange={(value) => setApiConfigurationField("apiProvider", value as ApiProvider)}>
@@ -337,7 +383,15 @@ const ApiOptions = ({
 						onInput={handleInputChange("openRouterApiKey")}
 						placeholder={t("settings:placeholders.apiKey")}
 						className="w-full">
-						<label className="block font-medium mb-1">{t("settings:providers.openRouterApiKey")}</label>
+						<div className="flex justify-between items-center mb-1">
+							<label className="block font-medium">{t("settings:providers.openRouterApiKey")}</label>
+							{apiConfiguration?.openRouterApiKey && (
+								<OpenRouterBalanceDisplay
+									apiKey={apiConfiguration.openRouterApiKey}
+									baseUrl={apiConfiguration.openRouterBaseUrl}
+								/>
+							)}
+						</div>
 					</VSCodeTextField>
 					<div className="text-sm text-vscode-descriptionForeground -mt-2">
 						{t("settings:providers.apiKeyStorageNotice")}
@@ -465,7 +519,12 @@ const ApiOptions = ({
 						onInput={handleInputChange("requestyApiKey")}
 						placeholder={t("settings:providers.getRequestyApiKey")}
 						className="w-full">
-						<label className="block font-medium mb-1">{t("settings:providers.requestyApiKey")}</label>
+						<div className="flex justify-between items-center mb-1">
+							<label className="block font-medium">{t("settings:providers.requestyApiKey")}</label>
+							{apiConfiguration?.requestyApiKey && (
+								<RequestyBalanceDisplay apiKey={apiConfiguration.requestyApiKey} />
+							)}
+						</div>
 					</VSCodeTextField>
 					<div className="text-sm text-vscode-descriptionForeground -mt-2">
 						{t("settings:providers.apiKeyStorageNotice")}
@@ -758,6 +817,10 @@ const ApiOptions = ({
 						modelInfoKey="openAiCustomModelInfo"
 						serviceName="OpenAI"
 						serviceUrl="https://platform.openai.com"
+					/>
+					<R1FormatSetting
+						onChange={handleInputChange("openAiR1FormatEnabled", noTransform)}
+						openAiR1FormatEnabled={apiConfiguration?.openAiR1FormatEnabled ?? false}
 					/>
 					<Checkbox
 						checked={apiConfiguration?.openAiStreamingEnabled ?? true}

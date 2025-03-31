@@ -7,6 +7,7 @@ export const ACTION_NAMES = {
 	FIX_LOGIC: "Kilo Code: Fix Logic",
 	IMPROVE: "Kilo Code: Improve Code",
 	ADD_TO_CONTEXT: "Kilo Code: Add to Context",
+	NEW_TASK: "Kilo Code: New Task",
 } as const
 
 export const COMMAND_IDS = {
@@ -14,6 +15,7 @@ export const COMMAND_IDS = {
 	FIX: "kilo-code.fixCode",
 	IMPROVE: "kilo-code.improveCode",
 	ADD_TO_CONTEXT: "kilo-code.addToContext",
+	NEW_TASK: "kilo-code.newTask",
 } as const
 
 export class CodeActionProvider implements vscode.CodeActionProvider {
@@ -55,9 +57,25 @@ export class CodeActionProvider implements vscode.CodeActionProvider {
 			const actions: vscode.CodeAction[] = []
 
 			actions.push(
+				this.createAction(
+					ACTION_NAMES.ADD_TO_CONTEXT,
+					vscode.CodeActionKind.QuickFix,
+					COMMAND_IDS.ADD_TO_CONTEXT,
+					[
+						filePath,
+						effectiveRange.text,
+						effectiveRange.range.start.line + 1,
+						effectiveRange.range.end.line + 1,
+					],
+				),
+			)
+
+			actions.push(
 				...this.createActionPair(ACTION_NAMES.EXPLAIN, vscode.CodeActionKind.QuickFix, COMMAND_IDS.EXPLAIN, [
 					filePath,
 					effectiveRange.text,
+					effectiveRange.range.start.line + 1,
+					effectiveRange.range.end.line + 1,
 				]),
 			)
 
@@ -72,6 +90,8 @@ export class CodeActionProvider implements vscode.CodeActionProvider {
 						...this.createActionPair(ACTION_NAMES.FIX, vscode.CodeActionKind.QuickFix, COMMAND_IDS.FIX, [
 							filePath,
 							effectiveRange.text,
+							effectiveRange.range.start.line + 1,
+							effectiveRange.range.end.line + 1,
 							diagnosticMessages,
 						]),
 					)
@@ -81,6 +101,8 @@ export class CodeActionProvider implements vscode.CodeActionProvider {
 					...this.createActionPair(ACTION_NAMES.FIX_LOGIC, vscode.CodeActionKind.QuickFix, COMMAND_IDS.FIX, [
 						filePath,
 						effectiveRange.text,
+						effectiveRange.range.start.line + 1,
+						effectiveRange.range.end.line + 1,
 					]),
 				)
 			}
@@ -90,16 +112,12 @@ export class CodeActionProvider implements vscode.CodeActionProvider {
 					ACTION_NAMES.IMPROVE,
 					vscode.CodeActionKind.RefactorRewrite,
 					COMMAND_IDS.IMPROVE,
-					[filePath, effectiveRange.text],
-				),
-			)
-
-			actions.push(
-				this.createAction(
-					ACTION_NAMES.ADD_TO_CONTEXT,
-					vscode.CodeActionKind.QuickFix,
-					COMMAND_IDS.ADD_TO_CONTEXT,
-					[filePath, effectiveRange.text],
+					[
+						filePath,
+						effectiveRange.text,
+						effectiveRange.range.start.line + 1,
+						effectiveRange.range.end.line + 1,
+					],
 				),
 			)
 

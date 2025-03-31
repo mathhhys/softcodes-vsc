@@ -4,6 +4,7 @@ import delay from "delay"
 import { ClineProvider } from "../core/webview/ClineProvider"
 
 import { registerHumanRelayCallback, unregisterHumanRelayCallback, handleHumanRelayResponse } from "./humanRelay"
+import { handleNewTask } from "./handleTask"
 
 // Store panel references in both modes
 let sidebarPanel: vscode.WebviewView | undefined = undefined
@@ -49,6 +50,7 @@ export const registerCommands = (options: RegisterCommandOptions) => {
 
 const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOptions) => {
 	return {
+		"kilo-code.activationCompleted": () => {},
 		"kilo-code.plusButtonClicked": async () => {
 			await provider.removeClineFromStack()
 			await provider.postStateToWebview()
@@ -85,6 +87,11 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 		"kilo-code.registerHumanRelayCallback": registerHumanRelayCallback,
 		"kilo-code.unregisterHumanRelayCallback": unregisterHumanRelayCallback,
 		"kilo-code.handleHumanRelayResponse": handleHumanRelayResponse,
+		"kilo-code.newTask": handleNewTask,
+		"kilo-code.setCustomStoragePath": async () => {
+			const { promptForCustomStoragePath } = await import("../shared/storagePathManager")
+			await promptForCustomStoragePath()
+		},
 	}
 }
 

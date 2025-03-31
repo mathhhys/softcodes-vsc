@@ -1,8 +1,8 @@
 {
 	"number_format": {
 		"thousand_suffix": "k",
-		"million_suffix": "M",
-		"billion_suffix": "B"
+		"million_suffix": "m",
+		"billion_suffix": "b"
 	},
 	"feedback": {
 		"title": "フィードバック",

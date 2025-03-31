@@ -1,12 +1,13 @@
 import { HTMLAttributes } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { Trans } from "react-i18next"
-import { Info } from "lucide-react"
+import { Info, Download, Upload, TriangleAlert } from "lucide-react"
 
-import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 
 import { vscode } from "@/utils/vscode"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui"
 
 import { SectionHeader } from "./SectionHeader"
 import { Section } from "./Section"
@@ -39,15 +40,19 @@ export const About = ({ version, className, ...props }: AboutProps) => {
 					/>
 				</div>
 
-				<div className="flex justify-between items-center gap-3">
-					<p>{t("settings:footer.reset.description")}</p>
-					<VSCodeButton
-						onClick={() => vscode.postMessage({ type: "resetState" })}
-						appearance="secondary"
-						className="shrink-0">
-						<span className="codicon codicon-warning text-vscode-errorForeground mr-1" />
-						{t("settings:footer.reset.button")}
-					</VSCodeButton>
+				<div className="flex items-center gap-2 mt-2">
+					<Button onClick={() => vscode.postMessage({ type: "exportSettings" })}>
+						<Upload className="p-0.5" />
+						{t("settings:footer.settings.export")}
+					</Button>
+					<Button onClick={() => vscode.postMessage({ type: "importSettings" })}>
+						<Download className="p-0.5" />
+						{t("settings:footer.settings.import")}
+					</Button>
+					<Button variant="destructive" onClick={() => vscode.postMessage({ type: "resetState" })}>
+						<TriangleAlert className="p-0.5" />
+						{t("settings:footer.settings.reset")}
+					</Button>
 				</div>
 			</Section>
 		</div>

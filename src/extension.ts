@@ -1,10 +1,11 @@
 import * as vscode from "vscode"
 import * as dotenvx from "@dotenvx/dotenvx"
+import * as path from "path"
 
 // Load environment variables from .env file
 try {
 	// Specify path to .env file in the project root directory
-	const envPath = __dirname + "/../.env"
+	const envPath = path.join(__dirname, "..", ".env")
 	dotenvx.config({ path: envPath })
 } catch (e) {
 	// Silently handle environment loading errors
@@ -20,6 +21,7 @@ import { DIFF_VIEW_URI_SCHEME } from "./integrations/editor/DiffViewProvider"
 import { McpServerManager } from "./services/mcp/McpServerManager"
 import { TerminalRegistry } from "./integrations/terminal/TerminalRegistry"
 import { API } from "./exports/api"
+import { migrateSettings } from "./utils/migrateSettings"
 
 import { handleUri, registerCommands, registerCodeActions, registerTerminalActions } from "./activate"
 import { formatLanguage } from "./shared/language"
@@ -42,6 +44,9 @@ export async function activate(context: vscode.ExtensionContext) {
 	outputChannel = vscode.window.createOutputChannel("Kilo-Code")
 	context.subscriptions.push(outputChannel)
 	outputChannel.appendLine("Kilo Code extension activated")
+
+	// Migrate old settings to new
+	await migrateSettings(context, outputChannel)
 
 	// Initialize i18n for internationalization support
 	initializeI18n(context.globalState.get("language") ?? "en-US") // kilocode_change
@@ -122,6 +127,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	registerCodeActions(context)
 	registerTerminalActions(context)
+
+	// Allows other extensions to activate once Roo is ready.
+	vscode.commands.executeCommand("kilo-code.activationCompleted")
 
 	// Implements the `RooCodeAPI` interface.
 	return new API(outputChannel, provider)
