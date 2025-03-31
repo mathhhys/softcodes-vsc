@@ -2415,15 +2415,16 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		}
 	}
 
+	// kilocode_change:
 	async handleKiloCodeCallback(token: string) {
 		const kilocode: ApiProvider = "kilocode"
+		let { apiConfiguration, currentApiConfigName } = await this.getState()
 
-		await this.contextProxy.setValues({
-			apiProvider: kilocode,
+		await this.upsertApiConfiguration(currentApiConfigName, {
+			...apiConfiguration,
+			apiProvider: "kilocode",
 			kilocodeToken: token,
 		})
-
-		await this.postStateToWebview()
 
 		vscode.window.showInformationMessage("Kilo Code successfully configured!")
 
