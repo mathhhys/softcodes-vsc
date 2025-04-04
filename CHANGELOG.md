@@ -1,5 +1,12 @@
 # Roo Code Changelog
 
+## 3.11.5
+
+### Patch Changes
+
+- v3.11.5
+- Revert "Better logic for choosing the view column when opening Roo in a tab"
+
 ## [3.11.4] - 2025-04-02
 
 - Correctly post state to webview when the current task is cleared (thanks @wkordalski!)
