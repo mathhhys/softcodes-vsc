@@ -396,6 +396,7 @@ export const providerSettingsSchema = z.object({
 	fakeAi: z.unknown().optional(),
 	// kilocode_change
 	kilocodeToken: z.string().optional(),
+	kilocodeProvider: z.string().optional(),
 	fireworksModelId: z.string().optional(),
 	fireworksApiKey: z.string().optional(),
 })
@@ -483,6 +484,7 @@ const providerSettingsRecord: ProviderSettingsRecord = {
 	// Fake AI
 	fakeAi: undefined,
 	// kilocode_change
+	kilocodeProvider: undefined,
 	kilocodeToken: undefined,
 	fireworksModelId: undefined,
 	fireworksApiKey: undefined,
