@@ -172,7 +172,6 @@ export type ExtensionState = Pick<
 	| "enhancementApiConfigId"
 > & {
 	version: string
-	osInfo: string
 	clineMessages: ClineMessage[]
 	currentTaskItem?: HistoryItem
 	apiConfiguration?: ApiConfiguration

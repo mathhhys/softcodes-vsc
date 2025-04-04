@@ -132,7 +132,9 @@ export async function activate(context: vscode.ExtensionContext) {
 	vscode.commands.executeCommand("kilo-code.activationCompleted")
 
 	// Implements the `RooCodeAPI` interface.
-	return new API(outputChannel, provider)
+	const socketPath = process.env.ROO_CODE_IPC_SOCKET_PATH
+	const enableLogging = typeof socketPath === "string"
+	return new API(outputChannel, provider, socketPath, enableLogging)
 }
 
 // This method is called when your extension is deactivated
