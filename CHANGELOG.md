@@ -1,11 +1,13 @@
 # Roo Code Changelog
 
-## 3.11.5
+## [3.11.5] - 2025-04-03
 
-### Patch Changes
-
-- v3.11.5
-- Revert "Better logic for choosing the view column when opening Roo in a tab"
+- Add prompt caching for Amazon Bedrock (thanks @Smartsheet-JB-Brown!)
+- Add support for configuring the current working directory of MCP servers (thanks @shoopapa!)
+- Add profile management functions to API (thanks @gtaylor!)
+- Improvements to diff editing functionality, tests, and error messages (thanks @p12tic!)
+- Fix for follow-up questions grabbing the focus (thanks @diarmidmackenzie!)
+- Show menu buttons when popping the extension out into a new tab (thanks @benny123tw!)
 
 ## [3.11.4] - 2025-04-02
 
