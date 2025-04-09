@@ -1,10 +1,16 @@
 # Roo Code Changelog
 
-## 3.11.11
+## [3.11.11] - 2025-04-09
 
-### Patch Changes
-
-- v3.11.11
+- Fix highlighting interaction with mode/profile dropdowns (thanks @atlasgong!)
+- Add the ability to set Host header and legacy OpenAI API in the OpenAI-compatible provider for better proxy support
+- Improvements to TypeScript, C++, Go, Java, Python tree-sitter parsers (thanks @KJ7LNW!)
+- Fixes to terminal working directory logic (thanks @KJ7LNW!)
+- Improve readFileTool XML output format (thanks @KJ7LNW!)
+- Add o1-pro support (thanks @arthurauffray!)
+- Follow symlinked rules files/directories to allow for more flexible rule setups
+- Focus Roo Code in the sidebar when running tasks in the sidebar via the API
+- Improve subtasks UI
 
 ## [3.11.10] - 2025-04-08
 
