@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.11.11
+
+### Patch Changes
+
+- v3.11.11
+
 ## [3.11.10] - 2025-04-08
 
 - Fix bug where nested .roo/rules directories are not respected properly (thanks @taisukeoe!)
