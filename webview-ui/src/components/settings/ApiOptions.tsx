@@ -319,8 +319,32 @@ const ApiOptions = ({
 			{selectedProvider === "kilocode" && (
 				<>
 					<div style={{ marginTop: "0px" }} className="text-sm text-vscode-descriptionForeground -mt-2">
-						Uses Claude 3.7 Sonnet. You get $15 for free.
+						You get $15 for free. Choose between Claude and Gemini 2.5 models.
 					</div>
+
+					<div>
+						<label className="block font-medium mb-1">Provider Type</label>
+						<Select
+							value={apiConfiguration?.kilocodeModel || "claude37"}
+							onValueChange={(value) =>
+								setApiConfigurationField("kilocodeModel", value as "claude37" | "gemini25" | "quasar")
+							}>
+							<SelectTrigger className="w-full">
+								<SelectValue placeholder="Select provider" />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value="claude37">Claude 3.7 Sonnet</SelectItem>
+								<SelectItem value="gemini25">Gemini 2.5 Pro</SelectItem>
+								<SelectItem value="quasar">Quasar Alpha</SelectItem>
+							</SelectContent>
+						</Select>
+						<div className="text-sm text-vscode-descriptionForeground mt-1">
+							{apiConfiguration?.kilocodeModel === "gemini25"
+								? "Gemini 2.5 Pro is Google's most capable model for reasoning, coding, and multimodal tasks."
+								: "Claude 3.7 Sonnet is Anthropic's most capable model for reasoning, coding, and multimodal tasks."}
+						</div>
+					</div>
+
 					{apiConfiguration.kilocodeToken ? (
 						<div>
 							<Button
