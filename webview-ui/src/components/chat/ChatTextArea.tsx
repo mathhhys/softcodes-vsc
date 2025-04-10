@@ -20,6 +20,7 @@ import {
 } from "@/utils/context-mentions"
 import { convertToMentionPath } from "@/utils/path-mentions"
 import { SelectDropdown, DropdownOptionType, Button } from "@/components/ui"
+import { normalizeApiConfiguration } from "../settings/ApiOptions" // kilocode_change
 
 import Thumbnails from "../common/Thumbnails"
 import { MAX_IMAGES_PER_MESSAGE } from "./ChatView"
@@ -75,6 +76,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			cwd,
 			pinnedApiConfigs,
 			togglePinnedApiConfig,
+			apiConfiguration, // kilocode_change
 		} = useExtensionState()
 
 		// Find the ID and display text for the currently selected API configuration
@@ -85,6 +87,13 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 				displayName: currentApiConfigName || "", // Use the name directly for display
 			}
 		}, [listApiConfigMeta, currentApiConfigName])
+
+		// kilocode_change start
+		const { selectedModelId, selectedProvider } = useMemo(() => {
+			const { selectedModelId, selectedProvider } = normalizeApiConfiguration(apiConfiguration)
+			return { selectedModelId, selectedProvider }
+		}, [apiConfiguration])
+		// kilocode_change end
 
 		const [gitCommits, setGitCommits] = useState<any[]>([])
 		const [showDropdown, setShowDropdown] = useState(false)
@@ -718,7 +727,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			}
 		})
 
-		const placeholderBottomText = `\n(${t("chat:addContext")}${shouldDisableImages ? `, ${t("chat:dragFiles")}` : `, ${t("chat:dragFilesImages")}`})`
+		// kilocode_change
+		// const placeholderBottomText = `\n(${t("chat:addContext")}${shouldDisableImages ? `, ${t("chat:dragFiles")}` : `, ${t("chat:dragFilesImages")}`})`
 
 		return (
 			<div
@@ -885,6 +895,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 									"flex-none flex-grow",
 									"z-[2]",
 									"scrollbar-none",
+									"pb-10", // kilocode_change
 								)}
 								onScroll={() => updateHighlights()}
 							/>
@@ -915,7 +926,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 										"ease-in-out",
 										textAreaDisabled ? "opacity-35" : "opacity-70",
 									)}>
-									{placeholderBottomText}
+									{/* kilocode_change {placeholderBottomText} */}
 								</div>
 							)}
 						</div>
@@ -934,7 +945,16 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 					/>
 				)}
 
-				<div className={cn("flex", "justify-between", "items-center", "mt-auto", "pt-0.5")}>
+				<div
+					// kilocode_change start
+					style={{
+						marginTop: "-44px",
+						zIndex: 2,
+						paddingLeft: "10px",
+						paddingRight: "10px",
+					}}
+					// kilocode_change end
+					className={cn("flex", "justify-between", "items-center", "mt-auto", "pt-0.5")}>
 					<div className={cn("flex", "items-center", "gap-1", "min-w-0")}>
 						{/* Mode selector - fixed width */}
 						<div className="shrink-0">
@@ -969,7 +989,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 									vscode.postMessage({ type: "mode", text: value })
 								}}
 								shortcutText={modeShortcutText}
-								triggerClassName="w-full"
+								// kilocode_change: add different border and background colors
+								triggerClassName="w-full bg-[#1e1e1e] border-[#333333] hover:bg-[#2d2d2d]"
 							/>
 						</div>
 
@@ -1034,7 +1055,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 									}
 								}}
 								contentClassName="max-h-[300px] overflow-y-auto"
-								triggerClassName="w-full text-ellipsis overflow-hidden"
+								// kilocode_change: add different border and background colors
+								triggerClassName="w-full text-ellipsis overflow-hidden bg-[#1e1e1e] border-[#333333] hover:bg-[#2d2d2d]"
 								itemClassName="group"
 								renderItem={({ type, value, label, pinned }) => {
 									if (type !== DropdownOptionType.ITEM) {
@@ -1076,6 +1098,14 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 								}}
 							/>
 						</div>
+
+						{/* kilocode_change begin: Model display */}
+						<div className="flex items-center mx-2">
+							<span className="text-xs text-vscode-descriptionForeground opacity-70">
+								{selectedProvider}:{selectedModelId}
+							</span>
+						</div>
+						{/* kilocode_change end */}
 					</div>
 
 					{/* Right side - action buttons */}
@@ -1105,6 +1135,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							}}
 						/>
 						<IconButton
+							className="hidden" // kilocode_change
 							iconClass="codicon-device-camera"
 							title={t("chat:addImages")}
 							disabled={shouldDisableImages}
