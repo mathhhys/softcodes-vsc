@@ -57,7 +57,7 @@ When applying the diffs, be extra careful to remember to change any closing brac
 ALWAYS make as many changes in a single 'apply_diff' request as possible using multiple SEARCH/REPLACE blocks
 
 Parameters:
-- path: (required) The path of the file to modify (relative to the current working directory ${args.cwd})
+- path: (required) The path of the file to modify (relative to the current workspace directory ${args.cwd})
 - diff: (required) The search/replace block defining the changes.
 
 Diff format:
@@ -110,7 +110,7 @@ Search/Replace content with multi edits:
 :start_line:1
 :end_line:2
 -------
-def calculate_sum(items):
+def calculate_total(items):
     sum = 0
 =======
 def calculate_sum(items):
@@ -480,7 +480,7 @@ Only use a single line of '=======' between search and replacement content, beca
 
 				diffResults.push({
 					success: false,
-					error: `No sufficiently similar match found${lineRange} (${Math.floor(bestMatchScore * 100)}% similar, needs ${Math.floor(this.fuzzyThreshold * 100)}%)\n\nDebug Info:\n- Similarity Score: ${Math.floor(bestMatchScore * 100)}%\n- Required Threshold: ${Math.floor(this.fuzzyThreshold * 100)}%\n- Search Range: ${startLine && endLine ? `lines ${startLine}-${endLine}` : "start to end"}\n- Tip: Use read_file to get the latest content of the file before attempting the diff again, as the file content may have changed\n\nSearch Content:\n${searchChunk}${bestMatchSection}${originalContentSection}`,
+					error: `No sufficiently similar match found${lineRange} (${Math.floor(bestMatchScore * 100)}% similar, needs ${Math.floor(this.fuzzyThreshold * 100)}%)\n\nDebug Info:\n- Similarity Score: ${Math.floor(bestMatchScore * 100)}%\n- Required Threshold: ${Math.floor(this.fuzzyThreshold * 100)}%\n- Search Range: ${startLine && endLine ? `lines ${startLine}-${endLine}` : "start to end"}\n- Tip: Use the read_file tool to get the latest content of the file before attempting to use the apply_diff tool again, as the file content may have changed\n\nSearch Content:\n${searchChunk}${bestMatchSection}${originalContentSection}`,
 				})
 				continue
 			}

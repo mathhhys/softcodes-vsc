@@ -99,6 +99,8 @@
 		"enterProfileName": "Profil adını girin",
 		"createProfile": "Profil oluştur",
 		"cannotDeleteOnlyProfile": "Yalnızca tek profili silemezsiniz",
+		"searchPlaceholder": "Profilleri ara",
+		"noMatchFound": "Eşleşen profil bulunamadı",
 		"vscodeLmDescription": "VS Code Dil Modeli API'si, diğer VS Code uzantıları tarafından sağlanan modelleri çalıştırmanıza olanak tanır (GitHub Copilot dahil ancak bunlarla sınırlı değildir). Başlamanın en kolay yolu, VS Code Marketplace'ten Copilot ve Copilot Chat uzantılarını yüklemektir.",
 		"awsCustomArnUse": "Kullanmak istediğiniz model için geçerli bir AWS Bedrock ARN'si girin. Format örnekleri:",
 		"awsCustomArnDesc": "ARN içindeki bölgenin yukarıda seçilen AWS Bölgesiyle eşleştiğinden emin olun.",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Glama API Anahtarı",
 		"getGlamaApiKey": "Glama API Anahtarı Al",
 		"useCustomBaseUrl": "Özel temel URL kullan",
+		"useHostHeader": "Özel Host başlığı kullan",
+		"useLegacyFormat": "Eski OpenAI API formatını kullan",
 		"requestyApiKey": "Requesty API Anahtarı",
 		"getRequestyApiKey": "Requesty API Anahtarı Al",
 		"openRouterTransformsText": "İstem ve mesaj zincirlerini bağlam boyutuna sıkıştır (<a>OpenRouter Dönüşümleri</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "Varsayılanlara Sıfırla"
+		},
+		"rateLimitSeconds": {
+			"label": "Hız sınırı",
+			"description": "API istekleri arasındaki minimum süre."
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "Hız sınırı",
-			"description": "API istekleri arasındaki minimum süre."
-		},
 		"diff": {
 			"label": "Diff'ler aracılığıyla düzenlemeyi etkinleştir",
 			"description": "Etkinleştirildiğinde, Kilo Code dosyaları daha hızlı düzenleyebilecek ve kesik tam dosya yazımlarını otomatik olarak reddedecektir. En son Claude 3.7 Sonnet modeliyle en iyi şekilde çalışır.",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Azure API sürümünü ayarla",
 		"gemini": {
 			"freeRequests": "* Dakikada {{count}} isteğe kadar ücretsiz. Bundan sonra, ücretlendirme istem boyutuna bağlıdır.",
-			"pricingDetails": "Daha fazla bilgi için fiyatlandırma ayrıntılarına bakın."
+			"pricingDetails": "Daha fazla bilgi için fiyatlandırma ayrıntılarına bakın.",
+			"billingEstimate": "* Ücretlendirme bir tahmindir - kesin maliyet istem boyutuna bağlıdır."
 		}
 	},
 	"modelPicker": {

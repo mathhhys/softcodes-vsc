@@ -88,6 +88,8 @@ type ProviderSettings = {
 	vertexRegion?: string | undefined
 	openAiBaseUrl?: string | undefined
 	openAiApiKey?: string | undefined
+	openAiHostHeader?: string | undefined
+	openAiLegacyFormat?: boolean | undefined
 	openAiR1FormatEnabled?: boolean | undefined
 	openAiModelId?: string | undefined
 	openAiCustomModelInfo?:
@@ -179,6 +181,7 @@ type ProviderSettings = {
 	modelMaxTokens?: number | undefined
 	modelMaxThinkingTokens?: number | undefined
 	includeMaxTokens?: boolean | undefined
+	rateLimitSeconds?: number | undefined
 	fakeAi?: unknown | undefined
 	kilocodeToken?: string | undefined
 	kilocodeModel?: ("claude37" | "gemini25" | "quasar") | undefined
@@ -236,6 +239,7 @@ type GlobalSettings = {
 				cacheReads?: number | undefined
 				totalCost: number
 				size?: number | undefined
+				workspace?: string | undefined
 		  }[]
 		| undefined
 	autoApprovalEnabled?: boolean | undefined
@@ -388,6 +392,7 @@ type ClineMessage = {
 				| "mcp_server_response"
 				| "new_task_started"
 				| "new_task"
+				| "subtask_result"
 				| "checkpoint_saved"
 				| "rooignore_error"
 		  )
@@ -467,6 +472,7 @@ type RooCodeEvents = {
 							| "mcp_server_response"
 							| "new_task_started"
 							| "new_task"
+							| "subtask_result"
 							| "checkpoint_saved"
 							| "rooignore_error"
 					  )
@@ -558,6 +564,18 @@ interface RooCodeAPI extends EventEmitter<RooCodeEvents> {
 		images?: string[]
 		newTab?: boolean
 	}): Promise<string>
+	/**
+	 * Resumes a task with the given ID.
+	 * @param taskId The ID of the task to resume.
+	 * @throws Error if the task is not found in the task history.
+	 */
+	resumeTask(taskId: string): Promise<void>
+	/**
+	 * Checks if a task with the given ID is in the task history.
+	 * @param taskId The ID of the task to check.
+	 * @returns True if the task is in the task history, false otherwise.
+	 */
+	isTaskInHistory(taskId: string): Promise<boolean>
 	/**
 	 * Returns the current task stack.
 	 * @returns An array of task IDs.

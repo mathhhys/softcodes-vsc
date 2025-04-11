@@ -99,6 +99,8 @@
 		"enterProfileName": "Entrez le nom du profil",
 		"createProfile": "Créer un profil",
 		"cannotDeleteOnlyProfile": "Impossible de supprimer le seul profil",
+		"searchPlaceholder": "Rechercher des profils",
+		"noMatchFound": "Aucun profil correspondant trouvé",
 		"vscodeLmDescription": "L'API du modèle de langage VS Code vous permet d'exécuter des modèles fournis par d'autres extensions VS Code (y compris, mais sans s'y limiter, GitHub Copilot). Le moyen le plus simple de commencer est d'installer les extensions Copilot et Copilot Chat depuis le VS Code Marketplace.",
 		"awsCustomArnUse": "Entrez un ARN AWS Bedrock valide pour le modèle que vous souhaitez utiliser. Exemples de format :",
 		"awsCustomArnDesc": "Assurez-vous que la région dans l'ARN correspond à la région AWS sélectionnée ci-dessus.",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Clé API Glama",
 		"getGlamaApiKey": "Obtenir la clé API Glama",
 		"useCustomBaseUrl": "Utiliser une URL de base personnalisée",
+		"useHostHeader": "Utiliser un en-tête Host personnalisé",
+		"useLegacyFormat": "Utiliser le format API OpenAI hérité",
 		"requestyApiKey": "Clé API Requesty",
 		"getRequestyApiKey": "Obtenir la clé API Requesty",
 		"openRouterTransformsText": "Compresser les prompts et chaînes de messages à la taille du contexte (<a>Transformations OpenRouter</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "Réinitialiser les valeurs par défaut"
+		},
+		"rateLimitSeconds": {
+			"label": "Limite de débit",
+			"description": "Temps minimum entre les requêtes API."
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "Limite de débit",
-			"description": "Temps minimum entre les requêtes API."
-		},
 		"diff": {
 			"label": "Activer l'édition via des diffs",
 			"description": "Lorsque cette option est activée, Kilo Code pourra éditer des fichiers plus rapidement et rejettera automatiquement les écritures de fichiers complets tronqués. Fonctionne mieux avec le dernier modèle Claude 3.7 Sonnet.",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Définir la version de l'API Azure",
 		"gemini": {
 			"freeRequests": "* Gratuit jusqu'à {{count}} requêtes par minute. Après cela, la facturation dépend de la taille du prompt.",
-			"pricingDetails": "Pour plus d'informations, voir les détails de tarification."
+			"pricingDetails": "Pour plus d'informations, voir les détails de tarification.",
+			"billingEstimate": "* La facturation est une estimation - le coût exact dépend de la taille du prompt."
 		}
 	},
 	"modelPicker": {

@@ -99,6 +99,8 @@
 		"enterProfileName": "Enter profile name",
 		"createProfile": "Create Profile",
 		"cannotDeleteOnlyProfile": "Cannot delete the only profile",
+		"searchPlaceholder": "Search profiles",
+		"noMatchFound": "No matching profiles found",
 		"vscodeLmDescription": " The VS Code Language Model API allows you to run models provided by other VS Code extensions (including but not limited to GitHub Copilot). The easiest way to get started is to install the Copilot and Copilot Chat extensions from the VS Code Marketplace.",
 		"awsCustomArnUse": "Enter a valid AWS Bedrock ARN for the model you want to use. Format examples:",
 		"awsCustomArnDesc": "Make sure the region in the ARN matches your selected AWS Region above.",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Glama API Key",
 		"getGlamaApiKey": "Get Glama API Key",
 		"useCustomBaseUrl": "Use custom base URL",
+		"useHostHeader": "Use custom Host header",
+		"useLegacyFormat": "Use legacy OpenAI API format",
 		"requestyApiKey": "Requesty API Key",
 		"getRequestyApiKey": "Get Requesty API Key",
 		"openRouterTransformsText": "Compress prompts and message chains to the context size (<a>OpenRouter Transforms</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "Reset to Defaults"
+		},
+		"rateLimitSeconds": {
+			"label": "Rate limit",
+			"description": "Minimum time between API requests."
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "Rate limit",
-			"description": "Minimum time between API requests."
-		},
 		"diff": {
 			"label": "Enable editing through diffs",
 			"description": "When enabled, Kilo Code will be able to edit files more quickly and will automatically reject truncated full-file writes. Works best with the latest Claude 3.7 Sonnet model.",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Set Azure API version",
 		"gemini": {
 			"freeRequests": "* Free up to {{count}} requests per minute. After that, billing depends on prompt size.",
-			"pricingDetails": "For more info, see pricing details."
+			"pricingDetails": "For more info, see pricing details.",
+			"billingEstimate": "* Billing is an estimate - exact cost depends on prompt size."
 		}
 	},
 	"modelPicker": {

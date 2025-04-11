@@ -54,6 +54,7 @@ import { VSCodeButtonLink } from "../common/VSCodeButtonLink"
 import { ModelInfoView } from "./ModelInfoView"
 import { ModelPicker } from "./ModelPicker"
 import { TemperatureControl } from "./TemperatureControl"
+import { RateLimitSecondsControl } from "./RateLimitSecondsControl"
 import { ApiErrorMessage } from "./ApiErrorMessage"
 import { ThinkingBudget } from "./ThinkingBudget"
 import { R1FormatSetting } from "./R1FormatSetting"
@@ -104,6 +105,8 @@ const ApiOptions = ({
 	const [anthropicBaseUrlSelected, setAnthropicBaseUrlSelected] = useState(!!apiConfiguration?.anthropicBaseUrl)
 	const [azureApiVersionSelected, setAzureApiVersionSelected] = useState(!!apiConfiguration?.azureApiVersion)
 	const [openRouterBaseUrlSelected, setOpenRouterBaseUrlSelected] = useState(!!apiConfiguration?.openRouterBaseUrl)
+	const [openAiHostHeaderSelected, setOpenAiHostHeaderSelected] = useState(!!apiConfiguration?.openAiHostHeader)
+	const [openAiLegacyFormatSelected, setOpenAiLegacyFormatSelected] = useState(!!apiConfiguration?.openAiLegacyFormat)
 	const [googleGeminiBaseUrlSelected, setGoogleGeminiBaseUrlSelected] = useState(
 		!!apiConfiguration?.googleGeminiBaseUrl,
 	)
@@ -146,7 +149,11 @@ const ApiOptions = ({
 			} else if (selectedProvider === "openai") {
 				vscode.postMessage({
 					type: "refreshOpenAiModels",
-					values: { baseUrl: apiConfiguration?.openAiBaseUrl, apiKey: apiConfiguration?.openAiApiKey },
+					values: {
+						baseUrl: apiConfiguration?.openAiBaseUrl,
+						apiKey: apiConfiguration?.openAiApiKey,
+						hostHeader: apiConfiguration?.openAiHostHeader,
+					},
 				})
 			} else if (selectedProvider === "ollama") {
 				vscode.postMessage({ type: "requestOllamaModels", text: apiConfiguration?.ollamaBaseUrl })
@@ -872,6 +879,16 @@ const ApiOptions = ({
 						onChange={handleInputChange("openAiR1FormatEnabled", noTransform)}
 						openAiR1FormatEnabled={apiConfiguration?.openAiR1FormatEnabled ?? false}
 					/>
+					<div>
+						<Checkbox
+							checked={openAiLegacyFormatSelected}
+							onChange={(checked: boolean) => {
+								setOpenAiLegacyFormatSelected(checked)
+								setApiConfigurationField("openAiLegacyFormat", checked)
+							}}>
+							{t("settings:providers.useLegacyFormat")}
+						</Checkbox>
+					</div>
 					<Checkbox
 						checked={apiConfiguration?.openAiStreamingEnabled ?? true}
 						onChange={handleInputChange("openAiStreamingEnabled", noTransform)}>
@@ -899,6 +916,28 @@ const ApiOptions = ({
 								value={apiConfiguration?.azureApiVersion || ""}
 								onInput={handleInputChange("azureApiVersion")}
 								placeholder={`Default: ${azureOpenAiDefaultApiVersion}`}
+								className="w-full mt-1"
+							/>
+						)}
+					</div>
+
+					<div>
+						<Checkbox
+							checked={openAiHostHeaderSelected}
+							onChange={(checked: boolean) => {
+								setOpenAiHostHeaderSelected(checked)
+
+								if (!checked) {
+									setApiConfigurationField("openAiHostHeader", "")
+								}
+							}}>
+							{t("settings:providers.useHostHeader")}
+						</Checkbox>
+						{openAiHostHeaderSelected && (
+							<VSCodeTextField
+								value={apiConfiguration?.openAiHostHeader || ""}
+								onInput={handleInputChange("openAiHostHeader")}
+								placeholder="custom-api-hostname.example.com"
 								className="w-full mt-1"
 							/>
 						)}
@@ -1717,11 +1756,17 @@ const ApiOptions = ({
 			)}
 
 			{!fromWelcomeView && (
-				<TemperatureControl
-					value={apiConfiguration?.modelTemperature}
-					onChange={handleInputChange("modelTemperature", noTransform)}
-					maxValue={2}
-				/>
+				<>
+					<TemperatureControl
+						value={apiConfiguration?.modelTemperature}
+						onChange={handleInputChange("modelTemperature", noTransform)}
+						maxValue={2}
+					/>
+					<RateLimitSecondsControl
+						value={apiConfiguration.rateLimitSeconds || 0}
+						onChange={(value) => setApiConfigurationField("rateLimitSeconds", value)}
+					/>
+				</>
 			)}
 		</div>
 	)

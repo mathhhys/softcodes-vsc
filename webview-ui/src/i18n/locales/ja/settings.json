@@ -99,6 +99,8 @@
 		"enterProfileName": "プロファイル名を入力",
 		"createProfile": "プロファイルを作成",
 		"cannotDeleteOnlyProfile": "唯一のプロファイルは削除できません",
+		"searchPlaceholder": "プロファイルを検索",
+		"noMatchFound": "一致するプロファイルが見つかりません",
 		"vscodeLmDescription": "VS Code言語モデルAPIを使用すると、他のVS Code拡張機能（GitHub Copilotなど）が提供するモデルを実行できます。最も簡単な方法は、VS Code MarketplaceからCopilotおよびCopilot Chat拡張機能をインストールすることです。",
 		"awsCustomArnUse": "使用したいモデルの有効なAWS Bedrock ARNを入力してください。形式の例:",
 		"awsCustomArnDesc": "ARN内のリージョンが上で選択したAWSリージョンと一致していることを確認してください。",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Glama APIキー",
 		"getGlamaApiKey": "Glama APIキーを取得",
 		"useCustomBaseUrl": "カスタムベースURLを使用",
+		"useHostHeader": "カスタムHostヘッダーを使用",
+		"useLegacyFormat": "レガシーOpenAI API形式を使用",
 		"requestyApiKey": "Requesty APIキー",
 		"getRequestyApiKey": "Requesty APIキーを取得",
 		"openRouterTransformsText": "プロンプトとメッセージチェーンをコンテキストサイズに圧縮 (<a>OpenRouter Transforms</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "デフォルトにリセット"
+		},
+		"rateLimitSeconds": {
+			"label": "レート制限",
+			"description": "APIリクエスト間の最小時間。"
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "レート制限",
-			"description": "APIリクエスト間の最小時間。"
-		},
 		"diff": {
 			"label": "diff経由の編集を有効化",
 			"description": "有効にすると、Kilo Codeはファイルをより迅速に編集でき、切り詰められた全ファイル書き込みを自動的に拒否します。最新のClaude 3.7 Sonnetモデルで最良に機能します。",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Azure APIバージョンを設定",
 		"gemini": {
 			"freeRequests": "* 1分間あたり{{count}}リクエストまで無料。それ以降は、プロンプトサイズに応じて課金されます。",
-			"pricingDetails": "詳細は価格情報をご覧ください。"
+			"pricingDetails": "詳細は価格情報をご覧ください。",
+			"billingEstimate": "* 課金は見積もりです - 正確な費用はプロンプトのサイズによって異なります。"
 		}
 	},
 	"modelPicker": {

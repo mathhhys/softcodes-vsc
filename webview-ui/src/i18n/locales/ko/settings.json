@@ -99,6 +99,8 @@
 		"enterProfileName": "프로필 이름 입력",
 		"createProfile": "프로필 생성",
 		"cannotDeleteOnlyProfile": "유일한 프로필은 삭제할 수 없습니다",
+		"searchPlaceholder": "프로필 검색",
+		"noMatchFound": "일치하는 프로필이 없습니다",
 		"vscodeLmDescription": "VS Code 언어 모델 API를 사용하면 GitHub Copilot을 포함한 기타 VS Code 확장 프로그램이 제공하는 모델을 실행할 수 있습니다. 시작하려면 VS Code 마켓플레이스에서 Copilot 및 Copilot Chat 확장 프로그램을 설치하는 것이 가장 쉽습니다.",
 		"awsCustomArnUse": "사용하려는 모델의 유효한 AWS Bedrock ARN을 입력하세요. 형식 예시:",
 		"awsCustomArnDesc": "ARN의 리전이 위에서 선택한 AWS 리전과 일치하는지 확인하세요.",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Glama API 키",
 		"getGlamaApiKey": "Glama API 키 받기",
 		"useCustomBaseUrl": "사용자 정의 기본 URL 사용",
+		"useHostHeader": "사용자 정의 Host 헤더 사용",
+		"useLegacyFormat": "레거시 OpenAI API 형식 사용",
 		"requestyApiKey": "Requesty API 키",
 		"getRequestyApiKey": "Requesty API 키 받기",
 		"openRouterTransformsText": "프롬프트와 메시지 체인을 컨텍스트 크기로 압축 (<a>OpenRouter Transforms</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "기본값으로 재설정"
+		},
+		"rateLimitSeconds": {
+			"label": "속도 제한",
+			"description": "API 요청 간 최소 시간."
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "속도 제한",
-			"description": "API 요청 간 최소 시간."
-		},
 		"diff": {
 			"label": "diff를 통한 편집 활성화",
 			"description": "활성화되면 Kilo Code는 파일을 더 빠르게 편집할 수 있으며 잘린 전체 파일 쓰기를 자동으로 거부합니다. 최신 Claude 3.7 Sonnet 모델에서 가장 잘 작동합니다.",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Azure API 버전 설정",
 		"gemini": {
 			"freeRequests": "* 분당 {{count}}개의 요청까지 무료. 이후에는 프롬프트 크기에 따라 요금이 부과됩니다.",
-			"pricingDetails": "자세한 내용은 가격 정보를 참조하세요."
+			"pricingDetails": "자세한 내용은 가격 정보를 참조하세요.",
+			"billingEstimate": "* 요금은 추정치입니다 - 정확한 비용은 프롬프트 크기에 따라 달라집니다."
 		}
 	},
 	"modelPicker": {

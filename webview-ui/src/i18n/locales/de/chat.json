@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "Initialer Checkpoint",
 		"regular": "Checkpoint",
+		"initializingWarning": "Checkpoint wird noch initialisiert... Falls dies zu lange dauert, kannst du Checkpoints in den <settingsLink>Einstellungen</settingsLink> deaktivieren und deine Aufgabe neu starten.",
 		"menu": {
 			"viewDiff": "Unterschiede anzeigen",
 			"restore": "Checkpoint wiederherstellen",
@@ -142,7 +143,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code möchte eine neue Teilaufgabe im <code>{{mode}}</code>-Modus erstellen:",
-		"wantsToFinish": "Kilo Code möchte diese Teilaufgabe abschließen"
+		"wantsToFinish": "Kilo Code möchte diese Teilaufgabe abschließen",
+		"newTaskContent": "Teilaufgabenanweisungen",
+		"completionContent": "Teilaufgabe abgeschlossen",
+		"resultContent": "Teilaufgabenergebnisse",
+		"defaultResult": "Bitte fahre mit der nächsten Aufgabe fort.",
+		"completionInstructions": "Teilaufgabe abgeschlossen! Du kannst die Ergebnisse überprüfen und Korrekturen oder nächste Schritte vorschlagen. Wenn alles gut aussieht, bestätige, um das Ergebnis an die übergeordnete Aufgabe zurückzugeben."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code hat eine Frage:"

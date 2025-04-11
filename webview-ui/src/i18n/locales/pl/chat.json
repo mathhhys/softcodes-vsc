@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "Początkowy punkt kontrolny",
 		"regular": "Punkt kontrolny",
+		"initializingWarning": "Trwa inicjalizacja punktu kontrolnego... Jeśli to trwa zbyt długo, możesz wyłączyć punkty kontrolne w <settingsLink>ustawieniach</settingsLink> i uruchomić zadanie ponownie.",
 		"menu": {
 			"viewDiff": "Zobacz różnice",
 			"restore": "Przywróć punkt kontrolny",
@@ -142,7 +143,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code chce utworzyć nowe podzadanie w trybie <code>{{mode}}</code>:",
-		"wantsToFinish": "Kilo Code chce zakończyć to podzadanie"
+		"wantsToFinish": "Kilo Code chce zakończyć to podzadanie",
+		"newTaskContent": "Instrukcje podzadania",
+		"completionContent": "Podzadanie zakończone",
+		"resultContent": "Wyniki podzadania",
+		"defaultResult": "Proszę kontynuować następne zadanie.",
+		"completionInstructions": "Podzadanie zakończone! Możesz przejrzeć wyniki i zasugerować poprawki lub następne kroki. Jeśli wszystko wygląda dobrze, potwierdź, aby zwrócić wynik do zadania nadrzędnego."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code ma pytanie:"
