@@ -99,6 +99,8 @@
 		"enterProfileName": "Digite o nome do perfil",
 		"createProfile": "Criar perfil",
 		"cannotDeleteOnlyProfile": "Não é possível excluir o único perfil",
+		"searchPlaceholder": "Pesquisar perfis",
+		"noMatchFound": "Nenhum perfil correspondente encontrado",
 		"vscodeLmDescription": "A API do Modelo de Linguagem do VS Code permite executar modelos fornecidos por outras extensões do VS Code (incluindo, mas não se limitando, ao GitHub Copilot). A maneira mais fácil de começar é instalar as extensões Copilot e Copilot Chat no VS Code Marketplace.",
 		"awsCustomArnUse": "Insira um ARN AWS Bedrock válido para o modelo que deseja usar. Exemplos de formato:",
 		"awsCustomArnDesc": "Certifique-se de que a região no ARN corresponde à região AWS selecionada acima.",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Chave de API Glama",
 		"getGlamaApiKey": "Obter chave de API Glama",
 		"useCustomBaseUrl": "Usar URL base personalizado",
+		"useHostHeader": "Usar cabeçalho Host personalizado",
+		"useLegacyFormat": "Usar formato de API OpenAI legado",
 		"requestyApiKey": "Chave de API Requesty",
 		"getRequestyApiKey": "Obter chave de API Requesty",
 		"openRouterTransformsText": "Comprimir prompts e cadeias de mensagens para o tamanho do contexto (<a>Transformações OpenRouter</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "Restaurar Padrões"
+		},
+		"rateLimitSeconds": {
+			"label": "Limite de taxa",
+			"description": "Tempo mínimo entre requisições de API."
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "Limite de taxa",
-			"description": "Tempo mínimo entre requisições de API."
-		},
 		"diff": {
 			"label": "Ativar edição através de diffs",
 			"description": "Quando ativado, o Kilo Code poderá editar arquivos mais rapidamente e rejeitará automaticamente escritas completas de arquivos truncados. Funciona melhor com o modelo mais recente Claude 3.7 Sonnet.",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Definir versão da API Azure",
 		"gemini": {
 			"freeRequests": "* Gratuito até {{count}} requisições por minuto. Depois disso, a cobrança depende do tamanho do prompt.",
-			"pricingDetails": "Para mais informações, consulte os detalhes de preços."
+			"pricingDetails": "Para mais informações, consulte os detalhes de preços.",
+			"billingEstimate": "* A cobrança é uma estimativa - o custo exato depende do tamanho do prompt."
 		}
 	},
 	"modelPicker": {

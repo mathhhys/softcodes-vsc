@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "İlk Kontrol Noktası",
 		"regular": "Kontrol Noktası",
+		"initializingWarning": "Kontrol noktası hala başlatılıyor... Bu çok uzun sürerse, <settingsLink>ayarlar</settingsLink> bölümünden kontrol noktalarını devre dışı bırakabilir ve görevinizi yeniden başlatabilirsiniz.",
 		"menu": {
 			"viewDiff": "Farkları Görüntüle",
 			"restore": "Kontrol Noktasını Geri Yükle",
@@ -142,7 +143,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code <code>{{mode}}</code> modunda yeni bir alt görev oluşturmak istiyor:",
-		"wantsToFinish": "Kilo Code bu alt görevi bitirmek istiyor"
+		"wantsToFinish": "Kilo Code bu alt görevi bitirmek istiyor",
+		"newTaskContent": "Alt Görev Talimatları",
+		"completionContent": "Alt Görev Tamamlandı",
+		"resultContent": "Alt Görev Sonuçları",
+		"defaultResult": "Lütfen sonraki göreve devam edin.",
+		"completionInstructions": "Alt görev tamamlandı! Sonuçları inceleyebilir ve düzeltmeler veya sonraki adımlar önerebilirsiniz. Her şey iyi görünüyorsa, sonucu üst göreve döndürmek için onaylayın."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code'nun bir sorusu var:"

@@ -91,6 +91,7 @@
 	"checkpoint": {
 		"initial": "Initial Checkpoint",
 		"regular": "Checkpoint",
+		"initializingWarning": "Still initializing checkpoint... If this takes too long, you can disable checkpoints in <settingsLink>settings</settingsLink> and restart your task.",
 		"menu": {
 			"viewDiff": "View Diff",
 			"restore": "Restore Checkpoint",
@@ -140,7 +141,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code wants to create a new subtask in {{mode}} mode:",
-		"wantsToFinish": "Kilo Code wants to finish this subtask"
+		"wantsToFinish": "Kilo Code wants to finish this subtask",
+		"newTaskContent": "Subtask Instructions",
+		"completionContent": "Subtask Completed",
+		"resultContent": "Subtask Results",
+		"defaultResult": "Please continue to the next task.",
+		"completionInstructions": "Subtask completed! You can review the results and suggest any corrections or next steps. If everything looks good, confirm to return the result to the parent task."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code has a question:"

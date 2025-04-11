@@ -34,3 +34,6 @@ docs/_site/
 
 #Logging
 logs
+
+# Vite development
+.vite-port

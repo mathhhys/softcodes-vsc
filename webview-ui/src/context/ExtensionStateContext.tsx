@@ -59,8 +59,6 @@ export interface ExtensionStateContextType extends ExtensionState {
 	setAlwaysApproveResubmit: (value: boolean) => void
 	requestDelaySeconds: number
 	setRequestDelaySeconds: (value: number) => void
-	rateLimitSeconds: number
-	setRateLimitSeconds: (value: number) => void
 	setCurrentApiConfigName: (value: string) => void
 	setListApiConfigMeta: (value: ApiConfigMeta[]) => void
 	mode: Mode
@@ -148,7 +146,6 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		enableMcpServerCreation: true,
 		alwaysApproveResubmit: false,
 		requestDelaySeconds: 5,
-		rateLimitSeconds: 0, // Minimum time between successive requests (0 = disabled)
 		currentApiConfigName: "default",
 		listApiConfigMeta: [],
 		mode: defaultModeSlug,
@@ -311,7 +308,6 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 			setState((prevState) => ({ ...prevState, enableMcpServerCreation: value })),
 		setAlwaysApproveResubmit: (value) => setState((prevState) => ({ ...prevState, alwaysApproveResubmit: value })),
 		setRequestDelaySeconds: (value) => setState((prevState) => ({ ...prevState, requestDelaySeconds: value })),
-		setRateLimitSeconds: (value) => setState((prevState) => ({ ...prevState, rateLimitSeconds: value })),
 		setCurrentApiConfigName: (value) => setState((prevState) => ({ ...prevState, currentApiConfigName: value })),
 		setListApiConfigMeta,
 		setMode: (value: Mode) => setState((prevState) => ({ ...prevState, mode: value })),

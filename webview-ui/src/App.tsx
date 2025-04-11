@@ -46,12 +46,16 @@ const App = () => {
 	const chatViewRef = useRef<{ focusInput: () => void }>(null) // kilocode_change
 
 	const switchTab = useCallback((newTab: Tab) => {
+		setCurrentSection(undefined)
+
 		if (settingsRef.current?.checkUnsaveChanges) {
 			settingsRef.current.checkUnsaveChanges(() => setTab(newTab))
 		} else {
 			setTab(newTab)
 		}
 	}, [])
+
+	const [currentSection, setCurrentSection] = useState<string | undefined>(undefined)
 
 	const onMessage = useCallback(
 		(e: MessageEvent) => {
@@ -69,9 +73,11 @@ const App = () => {
 				// kilocode_change end
 
 				const newTab = tabsByMessageAction[message.action]
+				const section = message.values?.section as string | undefined
 
 				if (newTab) {
 					switchTab(newTab)
+					setCurrentSection(section)
 				}
 			}
 
@@ -110,7 +116,12 @@ const App = () => {
 			{tab === "mcp" && <McpView onDone={() => switchTab("settings")} />}
 			{tab === "history" && <HistoryView onDone={() => switchTab("chat")} />}
 			{tab === "settings" && (
-				<SettingsView ref={settingsRef} onDone={() => setTab("chat")} onOpenMcp={() => setTab("mcp")} />
+				<SettingsView
+					ref={settingsRef}
+					onDone={() => switchTab("chat")}
+					onOpenMcp={() => switchTab("mcp")}
+					targetSection={currentSection}
+				/>
 			)}
 			<ChatView
 				ref={chatViewRef}

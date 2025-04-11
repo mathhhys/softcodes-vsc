@@ -1,6 +1,5 @@
 import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
-import { Button as VSCodeButton } from "vscrui"
 import {
 	CheckCheck,
 	SquareMousePointer,
@@ -83,9 +82,10 @@ type SectionName = (typeof sectionNames)[number]
 type SettingsViewProps = {
 	onDone: () => void
 	onOpenMcp: () => void
+	targetSection?: string
 }
 
-const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, onOpenMcp }, ref) => {
+const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, onOpenMcp, targetSection }, ref) => {
 	const { t } = useAppTranslation()
 
 	const extensionState = useExtensionState()
@@ -129,7 +129,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 		maxOpenTabsContext,
 		maxWorkspaceFiles,
 		mcpEnabled,
-		rateLimitSeconds,
 		requestDelaySeconds,
 		remoteBrowserHost,
 		screenshotQuality,
@@ -254,7 +253,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 			vscode.postMessage({ type: "mcpEnabled", bool: mcpEnabled })
 			vscode.postMessage({ type: "alwaysApproveResubmit", bool: alwaysApproveResubmit })
 			vscode.postMessage({ type: "requestDelaySeconds", value: requestDelaySeconds })
-			vscode.postMessage({ type: "rateLimitSeconds", value: rateLimitSeconds })
 			vscode.postMessage({ type: "maxOpenTabsContext", value: maxOpenTabsContext })
 			vscode.postMessage({ type: "maxWorkspaceFiles", value: maxWorkspaceFiles ?? 200 })
 			vscode.postMessage({ type: "showRooIgnoredFiles", bool: showRooIgnoredFiles })
@@ -331,6 +329,17 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 
 	const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => ref.current?.scrollIntoView()
 
+	// Scroll to target section when specified
+	useEffect(() => {
+		if (targetSection) {
+			const sectionObj = sections.find((section) => section.id === targetSection)
+			if (sectionObj && sectionObj.ref.current) {
+				// Use setTimeout to ensure the scroll happens after render
+				setTimeout(() => scrollToSection(sectionObj.ref), 500)
+			}
+		}
+	}, [targetSection, sections])
+
 	return (
 		<Tab>
 			<TabHeader className="flex justify-between items-center gap-2">
@@ -358,8 +367,8 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 					</DropdownMenu>
 				</div>
 				<div className="flex gap-2">
-					<VSCodeButton
-						appearance={isSettingValid ? "primary" : "secondary"}
+					<Button
+						variant={isSettingValid ? "default" : "secondary"}
 						className={!isSettingValid ? "!border-vscode-errorForeground" : ""}
 						title={
 							!isSettingValid
@@ -372,13 +381,13 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 						disabled={!isChangeDetected || !isSettingValid}
 						data-testid="save-button">
 						{t("settings:common.save")}
-					</VSCodeButton>
-					<VSCodeButton
-						appearance="secondary"
+					</Button>
+					<Button
+						variant="secondary"
 						title={t("settings:header.doneButtonTooltip")}
 						onClick={() => checkUnsaveChanges(onDone)}>
 						{t("settings:common.done")}
-					</VSCodeButton>
+					</Button>
 				</div>
 			</TabHeader>
 
@@ -497,7 +506,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 
 				<div ref={advancedRef}>
 					<AdvancedSettings
-						rateLimitSeconds={rateLimitSeconds}
 						diffEnabled={diffEnabled}
 						fuzzyMatchThreshold={fuzzyMatchThreshold}
 						setCachedStateField={setCachedStateField}

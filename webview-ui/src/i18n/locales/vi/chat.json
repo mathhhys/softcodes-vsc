@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "Điểm kiểm tra ban đầu",
 		"regular": "Điểm kiểm tra",
+		"initializingWarning": "Đang khởi tạo điểm kiểm tra... Nếu quá trình này mất quá nhiều thời gian, bạn có thể vô hiệu hóa điểm kiểm tra trong <settingsLink>cài đặt</settingsLink> và khởi động lại tác vụ của bạn.",
 		"menu": {
 			"viewDiff": "Xem khác biệt",
 			"restore": "Khôi phục điểm kiểm tra",
@@ -142,7 +143,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code muốn tạo một nhiệm vụ phụ mới trong chế độ <code>{{mode}}</code>:",
-		"wantsToFinish": "Kilo Code muốn hoàn thành nhiệm vụ phụ này"
+		"wantsToFinish": "Kilo Code muốn hoàn thành nhiệm vụ phụ này",
+		"newTaskContent": "Hướng dẫn nhiệm vụ phụ",
+		"completionContent": "Nhiệm vụ phụ đã hoàn thành",
+		"resultContent": "Kết quả nhiệm vụ phụ",
+		"defaultResult": "Vui lòng tiếp tục với nhiệm vụ tiếp theo.",
+		"completionInstructions": "Nhiệm vụ phụ đã hoàn thành! Bạn có thể xem lại kết quả và đề xuất các sửa đổi hoặc bước tiếp theo. Nếu mọi thứ có vẻ tốt, hãy xác nhận để trả kết quả về nhiệm vụ chính."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code có một câu hỏi:"

@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "Ponto de verificação inicial",
 		"regular": "Ponto de verificação",
+		"initializingWarning": "Ainda inicializando ponto de verificação... Se isso demorar muito, você pode desativar os pontos de verificação nas <settingsLink>configurações</settingsLink> e reiniciar sua tarefa.",
 		"menu": {
 			"viewDiff": "Ver diferenças",
 			"restore": "Restaurar ponto de verificação",
@@ -142,7 +143,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code quer criar uma nova subtarefa no modo <code>{{mode}}</code>:",
-		"wantsToFinish": "Kilo Code quer finalizar esta subtarefa"
+		"wantsToFinish": "Kilo Code quer finalizar esta subtarefa",
+		"newTaskContent": "Instruções da subtarefa",
+		"completionContent": "Subtarefa concluída",
+		"resultContent": "Resultados da subtarefa",
+		"defaultResult": "Por favor, continue com a próxima tarefa.",
+		"completionInstructions": "Subtarefa concluída! Você pode revisar os resultados e sugerir correções ou próximos passos. Se tudo parecer bom, confirme para retornar o resultado à tarefa principal."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code tem uma pergunta:"

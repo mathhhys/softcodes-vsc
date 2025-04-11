@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "Punt de control inicial",
 		"regular": "Punt de control",
+		"initializingWarning": "Encara s'està inicialitzant el punt de control... Si això triga massa, pots desactivar els punts de control a la <settingsLink>configuració</settingsLink> i reiniciar la teva tasca.",
 		"menu": {
 			"viewDiff": "Veure diferències",
 			"restore": "Restaurar punt de control",
@@ -142,7 +143,12 @@
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code vol crear una nova subtasca en mode <code>{{mode}}</code>:",
-		"wantsToFinish": "Kilo Code vol finalitzar aquesta subtasca"
+		"wantsToFinish": "Kilo Code vol finalitzar aquesta subtasca",
+		"newTaskContent": "Instruccions de la subtasca",
+		"completionContent": "Subtasca completada",
+		"resultContent": "Resultats de la subtasca",
+		"defaultResult": "Si us plau, continua amb la següent tasca.",
+		"completionInstructions": "Subtasca completada! Pots revisar els resultats i suggerir correccions o següents passos. Si tot sembla correcte, confirma per tornar el resultat a la tasca principal."
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code té una pregunta:"

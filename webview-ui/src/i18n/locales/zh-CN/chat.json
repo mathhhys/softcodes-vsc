@@ -1,12 +1,12 @@
 {
-	"greeting": "Kilo Code能为您做什么？",
+	"greeting": "Kilo Code 能为您做什么？",
 	"task": {
 		"title": "任务",
-		"seeMore": "查看更多",
-		"seeLess": "查看更少",
-		"tokens": "Tokens:",
+		"seeMore": "展开",
+		"seeLess": "收起",
+		"tokens": "Token 用量:",
 		"cache": "缓存:",
-		"apiCost": "API成本:",
+		"apiCost": "API 费用:",
 		"contextWindow": "上下文窗口:",
 		"closeAndStart": "关闭任务并开始新任务",
 		"export": "导出任务历史",
@@ -15,9 +15,9 @@
 	"unpin": "取消置顶",
 	"pin": "置顶",
 	"tokenProgress": {
-		"availableSpace": "可用空间: {{amount}} tokens",
-		"tokensUsed": "已使用tokens: {{used}} / {{total}}",
-		"reservedForResponse": "为模型响应保留: {{amount}} tokens"
+		"availableSpace": "可用: {{amount}}",
+		"tokensUsed": "已使用: {{used}} / {{total}}",
+		"reservedForResponse": "已保留: {{amount}}"
 	},
 	"retry": {
 		"title": "重试",
@@ -28,7 +28,7 @@
 		"tooltip": "开始一个新任务"
 	},
 	"proceedAnyways": {
-		"title": "仍继续",
+		"title": "仍然继续",
 		"tooltip": "在命令执行时继续"
 	},
 	"save": {
@@ -49,15 +49,15 @@
 		"tooltip": "执行此命令"
 	},
 	"proceedWhileRunning": {
-		"title": "运行时继续",
-		"tooltip": "尽管有警告仍继续"
+		"title": "强制继续",
+		"tooltip": "忽略运行中的命令并继续"
 	},
 	"resumeTask": {
 		"title": "恢复任务",
 		"tooltip": "继续当前任务"
 	},
 	"terminate": {
-		"title": "终止",
+		"title": "结束",
 		"tooltip": "结束当前任务"
 	},
 	"cancel": {
@@ -65,16 +65,17 @@
 		"tooltip": "取消当前操作"
 	},
 	"scrollToBottom": "滚动到聊天底部",
+	"aboutMe": "基于最新的AI编程技术，我可以逐步处理复杂软件开发任务。支持创建编辑文件、分析复杂项目、浏览器操作及运行终端命令，不仅能提供代码补全和基础答疑，还能完成更高阶的开发协助。通过MCP系统，我甚至可以自己制作新工具，持续提升解决问题的能力。",
 	"selectMode": "选择交互模式",
 	"selectApiConfig": "选择API配置",
-	"enhancePrompt": "使用附加上下文增强提示",
+	"enhancePrompt": "增强提示词",
 	"addImages": "添加图片到消息",
 	"sendMessage": "发送消息",
 	"typeMessage": "输入消息...",
 	"typeTask": "构建、查找、询问",
 	"addContext": "@添加上下文，/切换模式",
-	"dragFiles": "按住shift拖动文件",
-	"dragFilesImages": "按住shift拖动文件/图片",
+	"dragFiles": "Shift+拖拽文件",
+	"dragFilesImages": "Shift+拖拽文件/图片",
 	"enhancePromptDescription": "'增强提示'按钮通过提供额外上下文、澄清或重新表述来帮助改进您的请求。尝试在此处输入请求，然后再次点击按钮查看其工作原理。",
 	"errorReadingFile": "读取文件时出错:",
 	"noValidImages": "没有处理有效图片",
@@ -93,16 +94,17 @@
 	"checkpoint": {
 		"initial": "初始检查点",
 		"regular": "检查点",
+		"initializingWarning": "正在初始化检查点...如果耗时过长，你可以在<settingsLink>设置</settingsLink>中禁用检查点并重新启动任务。",
 		"menu": {
 			"viewDiff": "查看差异",
 			"restore": "恢复检查点",
 			"restoreFiles": "恢复文件",
-			"restoreFilesDescription": "将您的项目文件恢复到此时点拍摄的快照。",
+			"restoreFilesDescription": "将项目文件恢复到此检查点状态",
 			"restoreFilesAndTask": "恢复文件和任务",
 			"confirm": "确认",
 			"cancel": "取消",
 			"cannotUndo": "此操作无法撤消。",
-			"restoreFilesAndTaskDescription": "将您的项目文件恢复到此时点拍摄的快照，并删除此点之后的所有消息。"
+			"restoreFilesAndTaskDescription": "恢复文件至此时状态，并清除后续对话记录"
 		},
 		"current": "当前"
 	},
@@ -110,39 +112,44 @@
 		"wantsToFetch": "Kilo Code 想要获取详细指示以协助当前任务"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code想读取此文件:",
-		"wantsToReadOutsideWorkspace": "Kilo Code想读取此工作区外的文件:",
-		"didRead": "Kilo Code已读取此文件:",
-		"wantsToEdit": "Kilo Code想编辑此文件:",
-		"wantsToEditOutsideWorkspace": "Kilo Code想编辑此工作区外的文件:",
-		"wantsToCreate": "Kilo Code想创建新文件:"
+		"wantsToRead": "需要读取文件:",
+		"wantsToReadOutsideWorkspace": "请求访问外部文件:",
+		"didRead": "已读取文件:",
+		"wantsToEdit": "需要编辑文件:",
+		"wantsToEditOutsideWorkspace": "需要编辑外部文件:",
+		"wantsToCreate": "需要新建文件:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code想查看此目录中的顶层文件:",
-		"didViewTopLevel": "Kilo Code已查看此目录中的顶层文件:",
-		"wantsToViewRecursive": "Kilo Code想递归查看此目录中的所有文件:",
-		"didViewRecursive": "Kilo Code已递归查看此目录中的所有文件:",
+		"wantsToViewTopLevel": "需要查看目录文件列表:",
+		"didViewTopLevel": "已查看目录文件列表:",
+		"wantsToViewRecursive": "需要查看目录所有文件:",
+		"didViewRecursive": "已查看目录所有文件:",
 		"wantsToViewDefinitions": "Kilo Code想查看此目录中使用的源代码定义名称:",
 		"didViewDefinitions": "Kilo Code已查看此目录中使用的源代码定义名称:",
-		"wantsToSearch": "Kilo Code想在此目录中搜索 <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code已在此目录中搜索 <code>{{regex}}</code>:"
+		"wantsToSearch": "需要搜索内容: {{regex}}",
+		"didSearch": "已完成内容搜索: {{regex}}"
 	},
 	"commandOutput": "命令输出",
 	"response": "响应",
 	"arguments": "参数",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code想在{{serverName}} MCP服务器上使用工具:",
-		"wantsToAccessResource": "Kilo Code想访问{{serverName}} MCP服务器上的资源:"
+		"wantsToUseTool": "Kilo Code想在{{serverName}} MCP上使用工具:",
+		"wantsToAccessResource": "Kilo Code想访问{{serverName}} MCP服务上的资源:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code想切换到<code>{{mode}}</code>模式",
-		"wantsToSwitchWithReason": "Kilo Code想切换到<code>{{mode}}</code>模式，原因: {{reason}}",
-		"didSwitch": "Kilo Code已切换到<code>{{mode}}</code>模式",
-		"didSwitchWithReason": "Kilo Code已切换到<code>{{mode}}</code>模式，原因: {{reason}}"
+		"wantsToSwitch": "即将切换至{{mode}}模式",
+		"wantsToSwitchWithReason": "即将切换至{{mode}}模式（原因：{{reason}}）",
+		"didSwitch": "已切换至{{mode}}模式",
+		"didSwitchWithReason": "已切换至{{mode}}模式（原因：{{reason}}）"
 	},
 	"subtasks": {
 		"wantsToCreate": "Kilo Code想在<code>{{mode}}</code>模式下创建新子任务:",
-		"wantsToFinish": "Kilo Code想完成此子任务"
+		"wantsToFinish": "Kilo Code想完成此子任务",
+		"newTaskContent": "子任务说明",
+		"completionContent": "子任务已完成",
+		"resultContent": "子任务结果",
+		"defaultResult": "请继续下一个任务。",
+		"completionInstructions": "子任务已完成！您可以查看结果并提出修改或下一步建议。如果一切正常，请确认以将结果返回给主任务。"
 	},
 	"questions": {
 		"hasQuestion": "Kilo Code有一个问题:"
@@ -158,47 +165,47 @@
 	"autoApprove": {
 		"title": "自动批准:",
 		"none": "无",
-		"description": "自动批准允许Kilo Code无需请求许可即可执行操作。仅为您完全信任的操作启用。更详细的配置可在<settingsLink>设置</settingsLink>中查看。",
+		"description": "允许直接执行操作无需确认，请谨慎启用。前往<settingsLink>设置</settingsLink>调整",
 		"actions": {
 			"readFiles": {
 				"label": "读取文件和目录",
 				"shortName": "读取",
-				"description": "允许访问读取计算机上的任何文件。"
+				"description": "允许读取系统中的文件内容"
 			},
 			"editFiles": {
 				"label": "编辑文件",
 				"shortName": "编辑",
-				"description": "允许修改计算机上的任何文件。"
+				"description": "允许修改系统中的文件"
 			},
 			"executeCommands": {
-				"label": "执行已批准的命令",
+				"label": "执行命令",
 				"shortName": "命令",
-				"description": "允许执行已批准的终端命令。您可以在设置面板中配置此项。"
+				"description": "允许执行终端命令。"
 			},
 			"useBrowser": {
-				"label": "使用浏览器",
+				"label": "浏览器",
 				"shortName": "浏览器",
-				"description": "允许在无头浏览器中启动并与任何网站交互的能力。"
+				"description": "允许通过无头浏览器访问网站"
 			},
 			"useMcp": {
-				"label": "使用MCP服务器",
+				"label": "MCP服务",
 				"shortName": "MCP",
-				"description": "允许使用可能修改文件系统或与API交互的已配置MCP服务器。"
+				"description": "允许访问配置好的 MCP 服务（可能涉及文件系统或API操作）"
 			},
 			"switchModes": {
 				"label": "切换模式",
 				"shortName": "模式",
-				"description": "允许在不需要批准的情况下自动切换不同模式。"
+				"description": "允许自动切换工作模式"
 			},
 			"subtasks": {
 				"label": "创建和完成子任务",
 				"shortName": "子任务",
-				"description": "允许在不需要批准的情况下创建和完成子任务。"
+				"description": "允许自主创建和管理子任务"
 			},
 			"retryRequests": {
 				"label": "重试失败的请求",
 				"shortName": "重试",
-				"description": "当提供者返回错误响应时自动重试失败的API请求。"
+				"description": "API请求失败时自动重试"
 			}
 		}
 	},
@@ -210,8 +217,8 @@
 		"copyToInput": "复制到输入框（或按住Shift点击）"
 	},
 	"announcement": {
-		"title": "使用回旋镖任务完成更多工作 🪃",
-		"description": "将工作拆分成子任务，每个子任务在专门的模式中运行，如code、architect、debug或自定义模式。",
+		"title": "允许任务拆分",
+		"description": "将复杂任务拆分到不同模式（编程/架构/调试）执行",
 		"learnMore": "了解更多 →",
 		"hideButton": "隐藏公告"
 	},
@@ -229,7 +236,7 @@
 		"sessionStarted": "浏览器会话已启动",
 		"actions": {
 			"title": "浏览器操作: ",
-			"launch": "在 {{url}} 启动浏览器",
+			"launch": "访问 {{url}}",
 			"click": "点击 ({{coordinate}})",
 			"type": "输入 \"{{text}}\"",
 			"scrollDown": "向下滚动",

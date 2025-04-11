@@ -93,6 +93,7 @@
 	"checkpoint": {
 		"initial": "初期チェックポイント",
 		"regular": "チェックポイント",
+		"initializingWarning": "チェックポイントの初期化中... 時間がかかりすぎる場合は、<settingsLink>設定</settingsLink>でチェックポイントを無効にしてタスクを再開できます。",
 		"menu": {
 			"viewDiff": "差分を表示",
 			"restore": "チェックポイントを復元",
@@ -141,8 +142,13 @@
 		"didSwitchWithReason": "Kilo Codeは次の理由で<code>{{mode}}</code>モードに切り替えました: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Codeは<code>{{mode}}</code>モードで新しいサブタスクを作成したい:",
-		"wantsToFinish": "Kilo Codeはこのサブタスクを終了したい"
+		"wantsToCreate": "Kilo Code<code>{{mode}}</code>モードで新しいサブタスクを作成したい:",
+		"wantsToFinish": "Kilo Codeはこのサブタスクを終了したい",
+		"newTaskContent": "サブタスク指示",
+		"completionContent": "サブタスク完了",
+		"resultContent": "サブタスク結果",
+		"defaultResult": "次のタスクに進んでください。",
+		"completionInstructions": "サブタスク完了！結果を確認し、修正や次のステップを提案できます。問題なければ、親タスクに結果を返すために確認してください。"
 	},
 	"questions": {
 		"hasQuestion": "Kilo Codeは質問があります:"

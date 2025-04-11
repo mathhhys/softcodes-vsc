@@ -99,6 +99,8 @@
 		"enterProfileName": "Inserisci il nome del profilo",
 		"createProfile": "Crea profilo",
 		"cannotDeleteOnlyProfile": "Impossibile eliminare l'unico profilo",
+		"searchPlaceholder": "Cerca profili",
+		"noMatchFound": "Nessun profilo corrispondente trovato",
 		"vscodeLmDescription": "L'API del Modello di Linguaggio di VS Code consente di eseguire modelli forniti da altre estensioni di VS Code (incluso, ma non limitato a, GitHub Copilot). Il modo più semplice per iniziare è installare le estensioni Copilot e Copilot Chat dal VS Code Marketplace.",
 		"awsCustomArnUse": "Inserisci un ARN AWS Bedrock valido per il modello che desideri utilizzare. Esempi di formato:",
 		"awsCustomArnDesc": "Assicurati che la regione nell'ARN corrisponda alla regione AWS selezionata sopra.",
@@ -108,6 +110,8 @@
 		"glamaApiKey": "Chiave API Glama",
 		"getGlamaApiKey": "Ottieni chiave API Glama",
 		"useCustomBaseUrl": "Usa URL base personalizzato",
+		"useHostHeader": "Usa intestazione Host personalizzata",
+		"useLegacyFormat": "Usa formato API OpenAI legacy",
 		"requestyApiKey": "Chiave API Requesty",
 		"getRequestyApiKey": "Ottieni chiave API Requesty",
 		"openRouterTransformsText": "Comprimi prompt e catene di messaggi alla dimensione del contesto (<a>Trasformazioni OpenRouter</a>)",
@@ -217,6 +221,10 @@
 				}
 			},
 			"resetDefaults": "Ripristina valori predefiniti"
+		},
+		"rateLimitSeconds": {
+			"label": "Limite di frequenza",
+			"description": "Tempo minimo tra le richieste API."
 		}
 	},
 	"browser": {
@@ -297,10 +305,6 @@
 		}
 	},
 	"advanced": {
-		"rateLimit": {
-			"label": "Limite di frequenza",
-			"description": "Tempo minimo tra le richieste API."
-		},
 		"diff": {
 			"label": "Abilita modifica tramite diff",
 			"description": "Quando abilitato, Kilo Code sarà in grado di modificare i file più velocemente e rifiuterà automaticamente scritture di file completi troncati. Funziona meglio con l'ultimo modello Claude 3.7 Sonnet.",
@@ -370,7 +374,8 @@
 		"azureApiVersion": "Imposta versione API Azure",
 		"gemini": {
 			"freeRequests": "* Gratuito fino a {{count}} richieste al minuto. Dopo, la fatturazione dipende dalla dimensione del prompt.",
-			"pricingDetails": "Per maggiori informazioni, vedi i dettagli sui prezzi."
+			"pricingDetails": "Per maggiori informazioni, vedi i dettagli sui prezzi.",
+			"billingEstimate": "* La fatturazione è una stima - il costo esatto dipende dalle dimensioni del prompt."
 		}
 	},
 	"modelPicker": {
