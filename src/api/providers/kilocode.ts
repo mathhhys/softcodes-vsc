@@ -5,8 +5,9 @@ import { anthropicDefaultModelId, anthropicModels, ApiHandlerOptions, ModelInfo 
 import { ApiStream } from "../transform/stream"
 import { BaseProvider } from "./base-provider"
 import { ANTHROPIC_DEFAULT_MAX_TOKENS } from "./constants"
-import { SingleCompletionHandler, getModelParams } from "../index"
-import { OpenRouterHandler } from "./openrouter"
+import { SingleCompletionHandler } from "../index"
+import { KilocodeOpenrouterHandler } from "./kilocode-openrouter"
+import { getModelParams } from "../getModelParams"
 
 export class KiloCodeHandler extends BaseProvider implements SingleCompletionHandler {
 	private handler: BaseProvider & SingleCompletionHandler
@@ -21,18 +22,15 @@ export class KiloCodeHandler extends BaseProvider implements SingleCompletionHan
 			this.handler = new KiloCodeAnthropicHandler(options)
 		} else if (modelType === "gemini25" || modelType === "quasar") {
 			// Determine the correct OpenRouter model ID based on the selected KiloCode model type
-			const targetOpenRouterModelId =
-				modelType === "quasar" ? "openrouter/quasar-alpha" : "google/gemini-2.5-pro-preview-03-25" // Default to Gemini 2.5 for 'gemini25'
 
 			const openrouterOptions = {
 				...options,
 				openRouterBaseUrl: "https://kilocode.ai/api/openrouter/",
+				// openRouterBaseUrl: "http://localhost:3000/api/openrouter/",
 				openRouterApiKey: options.kilocodeToken,
-				// Explicitly set the model ID for the OpenRouter handler
-				openRouterModelId: targetOpenRouterModelId,
 			}
 
-			this.handler = new OpenRouterHandler(openrouterOptions)
+			this.handler = new KilocodeOpenrouterHandler(openrouterOptions)
 		} else {
 			throw new Error("Invalid KiloCode provider")
 		}
@@ -43,7 +41,7 @@ export class KiloCodeHandler extends BaseProvider implements SingleCompletionHan
 	}
 
 	getModel(): { id: string; info: ModelInfo } {
-		if (this.handler instanceof OpenRouterHandler) {
+		if (this.handler instanceof KilocodeOpenrouterHandler) {
 			// Check if it's gemini or quasar
 			if (this.options.kilocodeModel === "quasar") {
 				return {
