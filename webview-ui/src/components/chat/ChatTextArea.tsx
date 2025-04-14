@@ -994,8 +994,9 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							/>
 						</div>
 
-						{/* API configuration selector - flexible width */}
-						<div className={cn("flex-1", "min-w-0", "overflow-hidden")}>
+						{/* kilocode_change: fixed width */}
+						{/* API configuration selector - fixed width */}
+						<div className={cn("shrink-0", "w-[70px]", "overflow-hidden")}>
 							<SelectDropdown
 								value={currentConfigId}
 								disabled={selectApiConfigDisabled}
@@ -1104,8 +1105,10 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 						</div>
 
 						{/* kilocode_change begin: Model display */}
-						<div className="flex items-center mx-2">
-							<span className="text-xs text-vscode-descriptionForeground opacity-70">
+						<div
+							className="flex items-center mx-2 overflow-hidden"
+							title={`${selectedProvider}:${selectedModelId}`}>
+							<span className="text-xs text-vscode-descriptionForeground opacity-70 truncate">
 								{selectedProvider}:{selectedModelId}
 							</span>
 						</div>
