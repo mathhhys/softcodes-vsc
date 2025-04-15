@@ -1,5 +1,12 @@
 # Roo Code Changelog
 
+## 3.11.17
+
+### Patch Changes
+
+- Remove auto-approve button useMemo
+- v3.11.17
+
 ## [3.11.16] - 2025-04-14
 
 - Add gpt-4.1, gpt-4.1-mini, and gpt-4.1-nano to the OpenAI provider
