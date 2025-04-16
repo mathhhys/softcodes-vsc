@@ -121,7 +121,7 @@ const App = () => {
 					onDone={() => switchTab("chat")}
 					onOpenMcp={() => switchTab("mcp")}
 					targetSection={currentSection}
-				/>
+				/> // kilocode_change
 			)}
 			<ChatView
 				ref={chatViewRef}
