@@ -132,6 +132,13 @@ const ApiOptions = ({
 		[apiConfiguration],
 	)
 
+	// Update apiConfiguration.aiModelId whenever selectedModelId changes.
+	useEffect(() => {
+		if (selectedModelId) {
+			setApiConfigurationField("apiModelId", selectedModelId)
+		}
+	}, [selectedModelId, setApiConfigurationField])
+
 	// Debounced refresh model updates, only executed 250ms after the user
 	// stops typing.
 	useDebounce(
@@ -509,18 +516,29 @@ const ApiOptions = ({
 
 								if (!checked) {
 									setApiConfigurationField("anthropicBaseUrl", "")
+									setApiConfigurationField("anthropicUseAuthToken", false) // added
 								}
 							}}>
 							{t("settings:providers.useCustomBaseUrl")}
 						</Checkbox>
 						{anthropicBaseUrlSelected && (
-							<VSCodeTextField
-								value={apiConfiguration?.anthropicBaseUrl || ""}
-								type="url"
-								onInput={handleInputChange("anthropicBaseUrl")}
-								placeholder="https://api.anthropic.com"
-								className="w-full mt-1"
-							/>
+							<>
+								<VSCodeTextField
+									value={apiConfiguration?.anthropicBaseUrl || ""}
+									type="url"
+									onInput={handleInputChange("anthropicBaseUrl")}
+									placeholder="https://api.anthropic.com"
+									className="w-full mt-1"
+								/>
+
+								{/* added */}
+								<Checkbox
+									checked={apiConfiguration?.anthropicUseAuthToken ?? false}
+									onChange={handleInputChange("anthropicUseAuthToken", noTransform)}
+									className="w-full mt-1">
+									{t("settings:providers.anthropicUseAuthToken")}
+								</Checkbox>
+							</>
 						)}
 					</div>
 				</>
@@ -945,7 +963,7 @@ const ApiOptions = ({
 					</div>
 
 					<div className="flex flex-col gap-3">
-						<div className="text-sm text-vscode-descriptionForeground">
+						<div className="text-sm text-vscode-descriptionForeground whitespace-pre-line">
 							{t("settings:providers.customModel.capabilities")}
 						</div>
 

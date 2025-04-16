@@ -74,6 +74,7 @@ const ChatView = (
 		showAutoApproveMenu, // kilocode_change
 		alwaysAllowSubtasks,
 		customModes,
+		showGreeting,
 	} = useExtensionState()
 
 	//const task = messages.length > 0 ? (messages[0].say === "task" ? messages[0] : undefined) : undefined) : undefined
@@ -110,7 +111,6 @@ const ChatView = (
 	const [showScrollToBottom, setShowScrollToBottom] = useState(false)
 	const [isAtBottom, setIsAtBottom] = useState(false)
 	const lastTtsRef = useRef<string>("")
-
 	const [wasStreaming, setWasStreaming] = useState<boolean>(false)
 	const [showCheckpointWarning, setShowCheckpointWarning] = useState<boolean>(false)
 
@@ -1221,9 +1221,11 @@ const ChatView = (
 						paddingBottom: "10px",
 					}}>
 					{showAnnouncement && <Announcement version={version} hideAnnouncement={hideAnnouncement} />}
-					<div style={{ padding: "0 20px", flexShrink: 0 }}>
-						<h2>{t("chat:greeting")}</h2>
-					</div>
+					{showGreeting === true && (
+						<div style={{ padding: "0 20px", flexShrink: 0 }}>
+							<h2>{t("chat:greeting")}</h2>
+						</div>
+					)}
 					{taskHistory.length > 0 && <HistoryPreview showHistoryView={showHistoryView} />}
 				</div>
 			)}

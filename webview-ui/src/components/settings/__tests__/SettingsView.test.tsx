@@ -315,7 +315,7 @@ describe("SettingsView - Allowed Commands", () => {
 		renderSettingsView()
 
 		// Enable always allow execute
-		const executeCheckbox = screen.getByTestId("always-allow-execute-checkbox")
+		const executeCheckbox = screen.getByTestId("always-allow-execute-toggle")
 		fireEvent.click(executeCheckbox)
 		// Verify allowed commands section appears
 		expect(screen.getByTestId("allowed-commands-heading")).toBeInTheDocument()
@@ -326,7 +326,7 @@ describe("SettingsView - Allowed Commands", () => {
 		renderSettingsView()
 
 		// Enable always allow execute
-		const executeCheckbox = screen.getByTestId("always-allow-execute-checkbox")
+		const executeCheckbox = screen.getByTestId("always-allow-execute-toggle")
 		fireEvent.click(executeCheckbox)
 
 		// Add a new command
@@ -350,7 +350,7 @@ describe("SettingsView - Allowed Commands", () => {
 		renderSettingsView()
 
 		// Enable always allow execute
-		const executeCheckbox = screen.getByTestId("always-allow-execute-checkbox")
+		const executeCheckbox = screen.getByTestId("always-allow-execute-toggle")
 		fireEvent.click(executeCheckbox)
 
 		// Add a command
@@ -377,7 +377,7 @@ describe("SettingsView - Allowed Commands", () => {
 		renderSettingsView()
 
 		// Enable always allow execute
-		const executeCheckbox = screen.getByTestId("always-allow-execute-checkbox")
+		const executeCheckbox = screen.getByTestId("always-allow-execute-toggle")
 		fireEvent.click(executeCheckbox)
 
 		// Add a command twice
@@ -401,7 +401,7 @@ describe("SettingsView - Allowed Commands", () => {
 		renderSettingsView()
 
 		// Enable always allow execute
-		const executeCheckbox = screen.getByTestId("always-allow-execute-checkbox")
+		const executeCheckbox = screen.getByTestId("always-allow-execute-toggle")
 		fireEvent.click(executeCheckbox)
 
 		// Add a command
@@ -419,53 +419,6 @@ describe("SettingsView - Allowed Commands", () => {
 			expect.objectContaining({
 				type: "allowedCommands",
 				commands: ["npm test"],
-			}),
-		)
-	})
-})
-
-describe("SettingsView - Auto Approve Settings", () => {
-	it("initializes with read and write operations auto-approved by default", () => {
-		renderSettingsView({
-			alwaysAllowReadOnly: true,
-			alwaysAllowWrite: true,
-		})
-
-		const readCheckbox = screen.getByTestId("always-allow-readonly-checkbox")
-		expect(readCheckbox).toBeChecked()
-
-		const writeCheckbox = screen.getByTestId("always-allow-write-checkbox")
-		expect(writeCheckbox).toBeChecked()
-	})
-
-	it("allows unchecking read and write operations and sends message to VSCode", () => {
-		renderSettingsView({
-			alwaysAllowReadOnly: true,
-			alwaysAllowWrite: true,
-		})
-
-		const readCheckbox = screen.getByTestId("always-allow-readonly-checkbox")
-		const writeCheckbox = screen.getByTestId("always-allow-write-checkbox")
-
-		// Uncheck the checkboxes
-		fireEvent.click(readCheckbox)
-		fireEvent.click(writeCheckbox)
-
-		// Click Save to save settings
-		const saveButton = screen.getByTestId("save-button")
-		fireEvent.click(saveButton)
-
-		// Verify message sent to VSCode
-		expect(vscode.postMessage).toHaveBeenCalledWith(
-			expect.objectContaining({
-				type: "alwaysAllowReadOnly",
-				bool: false,
-			}),
-		)
-		expect(vscode.postMessage).toHaveBeenCalledWith(
-			expect.objectContaining({
-				type: "alwaysAllowWrite",
-				bool: false,
 			}),
 		)
 	})

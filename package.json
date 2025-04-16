@@ -1,7 +1,7 @@
 {
 	"name": "kilo-code",
-	"displayName": "Kilo Code",
-	"description": "A whole dev team of AI agents in your editor.",
+	"displayName": "%extension.displayName%",
+	"description": "%extension.description%",
 	"publisher": "kilocode",
 	"version": "4.14.4",
 	"icon": "assets/icons/logo-outline-black.png",
@@ -107,26 +107,20 @@
 		"submenus": [
 			{
 				"id": "kilo-code.contextMenu",
-				"label": "Kilo Code"
+				"label": "%views.contextMenu.label%"
 			},
 			{
 				"id": "kilo-code.terminalMenu",
-				"label": "Kilo Code"
+				"label": "%views.terminalMenu.label%"
 			}
 		],
 		"viewsContainers": {
 			"activitybar": [
 				{
 					"id": "kilo-code-ActivityBar",
-					"title": "Kilo Code (⇧⌘A)",
+					"title": "%views.activitybar.title%",
 					"icon": "assets/icons/kilo.png",
 					"when": "isMac"
-				},
-				{
-					"id": "kilo-code-ActivityBar",
-					"title": "Kilo Code (shift-ctrl-A)",
-					"icon": "assets/icons/kilo.png",
-					"when": "!isMac"
 				}
 			]
 		},
@@ -142,103 +136,103 @@
 		"commands": [
 			{
 				"command": "kilo-code.plusButtonClicked",
-				"title": "New Task",
+				"title": "%command.newTask.title%",
 				"icon": "$(add)"
 			},
 			{
 				"command": "kilo-code.mcpButtonClicked",
-				"title": "MCP Servers",
+				"title": "%command.mcpServers.title%",
 				"icon": "$(server)"
 			},
 			{
 				"command": "kilo-code.promptsButtonClicked",
-				"title": "Prompts",
+				"title": "%command.prompts.title%",
 				"icon": "$(notebook)"
 			},
 			{
 				"command": "kilo-code.historyButtonClicked",
-				"title": "History",
+				"title": "%command.history.title%",
 				"icon": "$(history)"
 			},
 			{
 				"command": "kilo-code.popoutButtonClicked",
-				"title": "Open in Editor",
+				"title": "%command.openInEditor.title%",
 				"icon": "$(link-external)"
 			},
 			{
 				"command": "kilo-code.settingsButtonClicked",
-				"title": "Settings",
+				"title": "%command.settings.title%",
 				"icon": "$(settings-gear)"
 			},
 			{
 				"command": "kilo-code.helpButtonClicked",
-				"title": "Documentation",
+				"title": "%command.documentation.title%",
 				"icon": "$(question)"
 			},
 			{
 				"command": "kilo-code.openInNewTab",
-				"title": "Open In New Tab",
-				"category": "Kilo Code"
+				"title": "%command.openInNewTab.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.explainCode",
-				"title": "Explain Code",
-				"category": "Kilo Code"
+				"title": "%command.explainCode.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.fixCode",
-				"title": "Fix Code",
-				"category": "Kilo Code"
+				"title": "%command.fixCode.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.improveCode",
-				"title": "Improve Code",
-				"category": "Kilo Code"
+				"title": "%command.improveCode.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.addToContext",
-				"title": "Add To Context",
-				"category": "Kilo Code"
+				"title": "%command.addToContext.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.newTask",
-				"title": "New Task",
-				"category": "Kilo Code"
+				"title": "%command.newTask.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.terminalAddToContext",
-				"title": "Add Terminal Content to Context",
-				"category": "Kilo Code"
+				"title": "%command.terminal.addToContext.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.terminalFixCommand",
-				"title": "Fix This Command",
-				"category": "Kilo Code"
+				"title": "%command.terminal.fixCommand.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.terminalExplainCommand",
-				"title": "Explain This Command",
-				"category": "Kilo Code"
+				"title": "%command.terminal.explainCommand.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.terminalFixCommandInCurrentTask",
-				"title": "Fix This Command (Current Task)",
-				"category": "Kilo Code"
+				"title": "%command.terminal.fixCommandInCurrentTask.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.terminalExplainCommandInCurrentTask",
-				"title": "Explain This Command (Current Task)",
-				"category": "Terminal"
+				"title": "%command.terminal.explainCommandInCurrentTask.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.setCustomStoragePath",
-				"title": "Set Custom Storage Path",
-				"category": "Kilo Code"
+				"title": "%command.setCustomStoragePath.title%",
+				"category": "%extension.displayName%"
 			},
 			{
 				"command": "kilo-code.focusChatInput",
-				"title": "Focus Chat Input",
-				"category": "Kilo Code"
+				"title": "%command.focusInput.title%",
+				"category": "%extension.displayName%"
 			}
 		],
 		"keybindings": [
@@ -358,7 +352,7 @@
 			]
 		},
 		"configuration": {
-			"title": "Kilo Code",
+			"title": "%configuration.title%",
 			"properties": {
 				"kilo-code.allowedCommands": {
 					"type": "array",
@@ -373,26 +367,26 @@
 						"git diff",
 						"git show"
 					],
-					"description": "Commands that can be auto-executed when 'Always approve execute operations' is enabled"
+					"description": "%commands.allowedCommands.description%"
 				},
 				"kilo-code.vsCodeLmModelSelector": {
 					"type": "object",
 					"properties": {
 						"vendor": {
 							"type": "string",
-							"description": "The vendor of the language model (e.g. copilot)"
+							"description": "%settings.vsCodeLmModelSelector.vendor.description%"
 						},
 						"family": {
 							"type": "string",
-							"description": "The family of the language model (e.g. gpt-4)"
+							"description": "%settings.vsCodeLmModelSelector.family.description%"
 						}
 					},
-					"description": "Settings for VSCode Language Model API"
+					"description": "%settings.vsCodeLmModelSelector.description%"
 				},
 				"kilo-code.customStoragePath": {
 					"type": "string",
 					"default": "",
-					"description": "Custom storage path. Leave empty to use the default location. Supports absolute paths (e.g. 'D:\\KiloCodeStorage')"
+					"description": "%settings.customStoragePath.description%"
 				}
 			}
 		}
@@ -407,7 +401,7 @@
 		"install-webview": "cd webview-ui && npm install",
 		"install-e2e": "cd e2e && npm install",
 		"lint": "npm-run-all -l -p lint:*",
-		"lint:extension": "eslint src --ext ts",
+		"lint:extension": "eslint src/**/*.ts",
 		"lint:webview": "cd webview-ui && npm run lint",
 		"lint:e2e": "cd e2e && npm run lint",
 		"check-types": "npm-run-all -l -p check-types:*",
@@ -509,11 +503,13 @@
 		"@types/diff-match-patch": "^1.0.36",
 		"@types/glob": "^8.1.0",
 		"@types/jest": "^29.5.14",
+		"@types/mocha": "^10.0.10",
 		"@types/node": "20.x",
 		"@types/node-ipc": "^9.2.3",
 		"@types/string-similarity": "^4.0.2",
 		"@typescript-eslint/eslint-plugin": "^7.14.1",
 		"@typescript-eslint/parser": "^7.11.0",
+		"@vscode/test-electron": "^2.5.2",
 		"@vscode/vsce": "^3.3.2",
 		"esbuild": "^0.24.0",
 		"eslint": "^8.57.0",

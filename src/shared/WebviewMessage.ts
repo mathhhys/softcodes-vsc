@@ -87,6 +87,12 @@ export interface WebviewMessage {
 		| "deleteMessage"
 		| "terminalOutputLineLimit"
 		| "terminalShellIntegrationTimeout"
+		| "terminalCommandDelay"
+		| "terminalPowershellCounter"
+		| "terminalZshClearEolMark"
+		| "terminalZshOhMy"
+		| "terminalZshP10k"
+		| "terminalZdotdir"
 		| "mcpEnabled"
 		| "enableMcpServerCreation"
 		| "searchCommits"
@@ -131,6 +137,7 @@ export interface WebviewMessage {
 		| "downloadMcp" // kilocode_change
 		| "showSystemNotification" // kilocode_change
 		| "showAutoApproveMenu" // kilocode_change
+		| "showGreeting"
 	text?: string
 	disabled?: boolean
 	askResponse?: ClineAskResponse

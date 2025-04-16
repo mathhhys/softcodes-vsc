@@ -600,32 +600,65 @@ describe("Rules directory reading", () => {
 		} as any)
 
 		// Simulate listing files including a symlink
-		readdirMock.mockResolvedValueOnce([
-			{
-				name: "regular.txt",
-				isFile: () => true,
-				isSymbolicLink: () => false,
-				parentPath: "/fake/path/.kilocode/rules",
-			},
-			{
-				name: "link.txt",
-				isFile: () => false,
-				isSymbolicLink: () => true,
-				parentPath: "/fake/path/.kilocode/rules",
-			},
-		] as any)
+		readdirMock
+			.mockResolvedValueOnce([
+				{
+					name: "regular.txt",
+					isFile: () => true,
+					isSymbolicLink: () => false,
+					parentPath: "/fake/path/.kilocode/rules",
+				},
+				{
+					name: "link.txt",
+					isFile: () => false,
+					isSymbolicLink: () => true,
+					parentPath: "/fake/path/.kilocode/rules",
+				},
+				{
+					name: "link_dir",
+					isFile: () => false,
+					isSymbolicLink: () => true,
+					parentPath: "/fake/path/.kilocode/rules",
+				},
+				{
+					name: "nested_link.txt",
+					isFile: () => false,
+					isSymbolicLink: () => true,
+					parentPath: "/fake/path/.kilocode/rules",
+				},
+			] as any)
+			.mockResolvedValueOnce([
+				{
+					name: "subdir_link.txt",
+					isFile: () => true,
+					parentPath: "/fake/path/.kilocode/rules/symlink-target-dir",
+				},
+			] as any)
 
 		// Simulate readlink response
-		readlinkMock.mockResolvedValueOnce("../symlink-target.txt")
+		readlinkMock
+			.mockResolvedValueOnce("../symlink-target.txt")
+			.mockResolvedValueOnce("../symlink-target-dir")
+			.mockResolvedValueOnce("../nested-symlink")
+			.mockResolvedValueOnce("nested-symlink-target.txt")
 
 		// Reset and set up the stat mock with more granular control
 		statMock.mockReset()
 		statMock.mockImplementation((path: string) => {
 			// For directory check
-			if (path === "/fake/path/.kilocode/rules") {
+			if (path === "/fake/path/.kilocode/rules" || path.endsWith("dir")) {
 				return Promise.resolve({
 					isDirectory: jest.fn().mockReturnValue(true),
 					isFile: jest.fn().mockReturnValue(false),
+				} as any)
+			}
+
+			// For symlink check
+			if (path.endsWith("symlink")) {
+				return Promise.resolve({
+					isDirectory: jest.fn().mockReturnValue(false),
+					isFile: jest.fn().mockReturnValue(false),
+					isSymbolicLink: jest.fn().mockReturnValue(true),
 				} as any)
 			}
 
@@ -644,6 +677,12 @@ describe("Rules directory reading", () => {
 			if (filePath.toString() === "/fake/path/.kilocode/rules/../symlink-target.txt") {
 				return Promise.resolve("symlink target content")
 			}
+			if (filePath.toString() === "/fake/path/.kilocode/rules/symlink-target-dir/subdir_link.txt") {
+				return Promise.resolve("regular file content under symlink target dir")
+			}
+			if (filePath.toString() === "/fake/path/.kilocode/rules/../nested-symlink-target.txt") {
+				return Promise.resolve("nested symlink target content")
+			}
 			return Promise.reject({ code: "ENOENT" })
 		})
 
@@ -654,13 +693,23 @@ describe("Rules directory reading", () => {
 		expect(result).toContain("regular file content")
 		expect(result).toContain("# Rules from /fake/path/.kilocode/rules/../symlink-target.txt:")
 		expect(result).toContain("symlink target content")
+		expect(result).toContain("# Rules from /fake/path/.kilocode/rules/symlink-target-dir/subdir_link.txt:")
+		expect(result).toContain("regular file content under symlink target dir")
+		expect(result).toContain("# Rules from /fake/path/.kilocode/rules/../nested-symlink-target.txt:")
+		expect(result).toContain("nested symlink target content")
 
 		// Verify readlink was called with the symlink path
 		expect(readlinkMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/link.txt")
+		expect(readlinkMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/link_dir")
 
 		// Verify both files were read
 		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/regular.txt", "utf-8")
 		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/../symlink-target.txt", "utf-8")
+		expect(readFileMock).toHaveBeenCalledWith(
+			"/fake/path/.kilocode/rules/symlink-target-dir/subdir_link.txt",
+			"utf-8",
+		)
+		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/../nested-symlink-target.txt", "utf-8")
 	})
 	beforeEach(() => {
 		jest.clearAllMocks()

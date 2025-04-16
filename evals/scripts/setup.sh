@@ -25,14 +25,14 @@ has_asdf_plugin() {
 }
 
 build_extension() {
-  echo "🔨 Building the Roo Code extension..."
+  echo "🔨 Building the Kilo Code extension..."
   cd ..
   mkdir -p bin
   npm run install-extension -- --silent --no-audit || exit 1
   npm run install-webview -- --silent --no-audit || exit 1
   npm run install-e2e -- --silent --no-audit || exit 1
-  npx vsce package --out bin/roo-code-latest.vsix || exit 1
-  code --install-extension bin/roo-code-latest.vsix || exit 1
+  npx vsce package --out bin/kilo-code-latest.vsix || exit 1
+  code --install-extension bin/kilo-code-latest.vsix || exit 1
   cd evals
 }
 
@@ -179,8 +179,8 @@ for i in "${!options[@]}"; do
   case "${plugin}" in
   "nodejs")
     if ! command -v node &>/dev/null; then
-      asdf install nodejs v20.18.1 || exit 1
-      asdf set nodejs v20.18.1 || exit 1
+      asdf install nodejs 20.18.1 || exit 1
+      asdf set nodejs 20.18.1 || exit 1
       NODE_VERSION=$(node --version)
       echo "✅ Node.js is installed ($NODE_VERSION)"
     else
@@ -275,12 +275,31 @@ fi
 
 pnpm install --silent || exit 1
 
+if ! command -v code &>/dev/null; then
+  echo "⚠️ Visual Studio Code cli is not installed"
+  exit 1
+else
+  VSCODE_VERSION=$(code --version | head -n 1)
+  echo "✅ Visual Studio Code is installed ($VSCODE_VERSION)"
+fi
+
+# To reset VSCode:
+# rm -rvf ~/.vscode && rm -rvf ~/Library/Application\ Support/Code
+
+echo "🔌 Installing Visual Studio Code extensions..."
+code --install-extension golang.go &>/dev/null || exit 1
+code --install-extension dbaeumer.vscode-eslint&>/dev/null || exit 1
+code --install-extension redhat.java &>/dev/null || exit 1
+code --install-extension ms-python.python&>/dev/null || exit 1
+code --install-extension rust-lang.rust-analyzer &>/dev/null || exit 1
+code --install-extension kilocode.Kilo-Code &>/dev/null || exit 1
+
 if [[ ! -d "../../evals" ]]; then
   if gh auth status &>/dev/null; then
     read -p "🔗 Would you like to be able to share eval results? (Y/n): " fork_evals
 
     if [[ "$fork_evals" =~ ^[Yy]|^$ ]]; then
-      gh repo fork cte/evals ../../evals || exit 1
+      gh repo fork cte/evals --clone ../../evals || exit 1
     else
       gh repo clone cte/evals ../../evals || exit 1
     fi
@@ -293,11 +312,9 @@ if [[ ! -s .env ]]; then
   cp .env.sample .env || exit 1
 fi
 
-if [[ ! -s /tmp/evals.db ]]; then
-  echo "🗄️ Creating database..."
-  pnpm --filter @evals/db db:push || exit 1
-  pnpm --filter @evals/db db:enable-wal || exit 1
-fi
+echo "🗄️ Syncing Kilo Code evals database..."
+pnpm --filter @evals/db db:push &>/dev/null || exit 1
+pnpm --filter @evals/db db:enable-wal &>/dev/null || exit 1
 
 if ! grep -q "OPENROUTER_API_KEY" .env; then
   read -p "🔐 Enter your OpenRouter API key (sk-or-v1-...): " openrouter_api_key
@@ -306,18 +323,10 @@ if ! grep -q "OPENROUTER_API_KEY" .env; then
   echo "OPENROUTER_API_KEY=$openrouter_api_key" >> .env || exit 1
 fi
 
-if ! command -v code &>/dev/null; then
-  echo "⚠️ Visual Studio Code cli is not installed"
-  exit 1
-else
-  VSCODE_VERSION=$(code --version | head -n 1)
-  echo "✅ Visual Studio Code is installed ($VSCODE_VERSION)"
-fi
-
-if [[ ! -s "../bin/roo-code-latest.vsix" ]]; then
+if [[ ! -s "../bin/kilo-code-latest.vsix" ]]; then
   build_extension
 else
-  read -p "💻 Do you want to build a new version of the Roo Code extension? (y/N): " build_extension
+  read -p "💻 Do you want to build a new version of the Kilo Code extension? (y/N): " build_extension
 
   if [[ "$build_extension" =~ ^[Yy]$ ]]; then
     build_extension
