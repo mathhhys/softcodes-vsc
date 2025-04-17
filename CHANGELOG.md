@@ -1,8 +1,10 @@
 # Roo Code Changelog
 
-## [3.12.3]
+## [3.12.3] - 2025-04-17
 
-- v3.12.3
+- Fix character escaping issues in Gemini diff edits
+- Support dragging and dropping tabs into the chat box (thanks @NyxJae!)
+- Make sure slash commands only fire at the beginning of the chat box (thanks @logosstone!)
 
 ## [3.12.2] - 2025-04-16
 
