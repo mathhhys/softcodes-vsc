@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.12.3
+
+### Patch Changes
+
+- v3.12.3
+
 ## [3.12.2] - 2025-04-16
 
 - Add OpenAI o3 & 4o-mini (thanks @PeterDaveHello!)
