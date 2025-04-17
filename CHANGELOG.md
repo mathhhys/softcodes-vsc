@@ -1,5 +1,9 @@
 # kilo-code
 
+## [4.16.1]
+
+- Fix http referer header
+
 ## 4.16.0
 
 ### Minor Changes
