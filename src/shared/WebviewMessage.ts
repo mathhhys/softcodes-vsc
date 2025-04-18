@@ -69,7 +69,6 @@ export interface WebviewMessage {
 		| "soundVolume"
 		| "diffEnabled"
 		| "enableCheckpoints"
-		| "checkpointStorage"
 		| "browserViewportSize"
 		| "screenshotQuality"
 		| "remoteBrowserHost"

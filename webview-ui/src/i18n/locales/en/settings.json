@@ -132,6 +132,8 @@
 		"getMistralApiKey": "Get Mistral / Codestral API Key",
 		"codestralBaseUrl": "Codestral Base URL (Optional)",
 		"codestralBaseUrlDesc": "Set an alternative URL for the Codestral model.",
+		"xaiApiKey": "xAI API Key",
+		"getXaiApiKey": "Get xAI API Key",
 		"awsCredentials": "AWS Credentials",
 		"awsProfile": "AWS Profile",
 		"awsProfileName": "AWS Profile Name",
@@ -229,6 +231,12 @@
 		"rateLimitSeconds": {
 			"label": "Rate limit",
 			"description": "Minimum time between API requests."
+		},
+		"reasoningEffort": {
+			"label": "Model Reasoning Effort",
+			"high": "High",
+			"medium": "Medium",
+			"low": "Low"
 		}
 	},
 	"browser": {
