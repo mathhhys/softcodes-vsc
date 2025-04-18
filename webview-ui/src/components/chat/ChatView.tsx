@@ -1,6 +1,6 @@
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import debounce from "debounce"
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react" // kilocode_change
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
 import { useDeepCompareEffect, useEvent, useMount } from "react-use"
 import { Virtuoso, type VirtuosoHandle } from "react-virtuoso"
 import styled from "styled-components"
@@ -42,13 +42,18 @@ interface ChatViewProps {
 	showHistoryView: () => void
 }
 
+export interface ChatViewRef {
+	acceptInput: () => void
+	focusInput: () => void // kilocode_change
+}
+
 export const MAX_IMAGES_PER_MESSAGE = 20 // Anthropic limits to 20 images
 
 const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0
 
-const ChatView = (
-	{ isHidden, showAnnouncement, hideAnnouncement, showHistoryView }: ChatViewProps,
-	ref: React.ForwardedRef<{ focusInput: () => void }>, // kilocode_change
+const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewProps> = (
+	{ isHidden, showAnnouncement, hideAnnouncement, showHistoryView },
+	ref,
 ) => {
 	const { t } = useAppTranslation()
 	const modeShortcutText = `${isMac ? "⌘" : "Ctrl"} + . ${t("chat:forNextMode")}`
@@ -87,16 +92,6 @@ const ChatView = (
 	const textAreaRef = useRef<HTMLTextAreaElement>(null)
 	const [textAreaDisabled, setTextAreaDisabled] = useState(false)
 	const [selectedImages, setSelectedImages] = useState<string[]>([])
-
-	// kilocode_change begin
-	React.useImperativeHandle(ref, () => ({
-		focusInput: () => {
-			if (textAreaRef.current) {
-				textAreaRef.current.focus()
-			}
-		},
-	}))
-	// kilcode_change end
 
 	// we need to hold on to the ask because useEffect > lastMessage will always let us know when an ask comes in and handle it, but by the time handleMessage is called, the last message might not be the ask anymore (it could be a say that followed)
 	const [clineAsk, setClineAsk] = useState<ClineAsk | undefined>(undefined)
@@ -1177,6 +1172,23 @@ const ChatView = (
 		}
 	}, [handleKeyDown])
 
+	useImperativeHandle(ref, () => ({
+		acceptInput: () => {
+			if (enableButtons && primaryButtonText) {
+				handlePrimaryButtonClick(inputValue, selectedImages)
+			} else if (!textAreaDisabled && (inputValue.trim() || selectedImages.length > 0)) {
+				handleSendMessage(inputValue, selectedImages)
+			}
+		},
+		// kilocode_change start
+		focusInput: () => {
+			if (textAreaRef.current) {
+				textAreaRef.current.focus()
+			}
+		},
+		// kilocode_change end
+	}))
+
 	return (
 		<div
 			style={{
@@ -1401,7 +1413,7 @@ const ChatView = (
 	)
 }
 
-const ChatViewWithRef = React.forwardRef<{ focusInput: () => void }, ChatViewProps>(ChatView) // kilocode_change
+const ChatView = forwardRef(ChatViewComponent)
 
 const ScrollToBottomButton = styled.div`
 	background-color: color-mix(in srgb, var(--vscode-toolbar-hoverBackground) 55%, transparent);
@@ -1423,4 +1435,4 @@ const ScrollToBottomButton = styled.div`
 	}
 `
 
-export default ChatViewWithRef // kilocode_Change: export ChatViewWithRef instead of ChatView
+export default ChatView

@@ -314,6 +314,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							const direction = event.key === "ArrowUp" ? -1 : 1
 							const options = getContextMenuOptions(
 								searchQuery,
+								inputValue,
 								selectedType,
 								queryItems,
 								fileSearchResults,
@@ -350,6 +351,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 						event.preventDefault()
 						const selectedOption = getContextMenuOptions(
 							searchQuery,
+							inputValue,
 							selectedType,
 							queryItems,
 							fileSearchResults,
@@ -621,7 +623,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 				e.preventDefault()
 				setIsDraggingOver(false)
 
-				const text = e.dataTransfer.getData("text")
+				const text = e.dataTransfer.getData("application/vnd.code.uri-list")
 				if (text) {
 					// Split text on newlines to handle multiple files
 					const lines = text.split(/\r?\n/).filter((line) => line.trim() !== "")
@@ -790,6 +792,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 								<ContextMenu
 									onSelect={handleMentionSelect}
 									searchQuery={searchQuery}
+									inputValue={inputValue}
 									onMouseDown={handleMenuMouseDown}
 									selectedIndex={selectedMenuIndex}
 									setSelectedIndex={setSelectedMenuIndex}

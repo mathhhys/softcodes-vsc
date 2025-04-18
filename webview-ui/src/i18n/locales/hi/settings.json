@@ -132,6 +132,8 @@
 		"getMistralApiKey": "Mistral / Codestral API कुंजी प्राप्त करें",
 		"codestralBaseUrl": "Codestral बेस URL (वैकल्पिक)",
 		"codestralBaseUrlDesc": "Codestral मॉडल के लिए वैकल्पिक URL सेट करें।",
+		"xaiApiKey": "xAI API कुंजी",
+		"getXaiApiKey": "xAI API कुंजी प्राप्त करें",
 		"awsCredentials": "AWS क्रेडेंशियल्स",
 		"awsProfile": "AWS प्रोफाइल",
 		"awsProfileName": "AWS प्रोफाइल नाम",
@@ -229,6 +231,12 @@
 		"rateLimitSeconds": {
 			"label": "दर सीमा",
 			"description": "API अनुरोधों के बीच न्यूनतम समय।"
+		},
+		"reasoningEffort": {
+			"label": "मॉडल तर्क प्रयास",
+			"high": "उच्च",
+			"medium": "मध्यम",
+			"low": "निम्न"
 		}
 	},
 	"browser": {

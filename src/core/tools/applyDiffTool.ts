@@ -10,7 +10,7 @@ import { addLineNumbers } from "../../integrations/misc/extract-text"
 import path from "path"
 import fs from "fs/promises"
 import { RecordSource } from "../context-tracking/FileContextTrackerTypes"
-
+import { unescapeHtmlEntities } from "../../utils/text-normalization"
 export async function applyDiffTool(
 	cline: Cline,
 	block: ToolUse,
@@ -20,7 +20,11 @@ export async function applyDiffTool(
 	removeClosingTag: RemoveClosingTag,
 ) {
 	const relPath: string | undefined = block.params.path
-	const diffContent: string | undefined = block.params.diff
+	let diffContent: string | undefined = block.params.diff
+
+	if (diffContent && !cline.api.getModel().id.includes("claude")) {
+		diffContent = unescapeHtmlEntities(diffContent)
+	}
 
 	const sharedMessageProps: ClineSayTool = {
 		tool: "appliedDiff",

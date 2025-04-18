@@ -747,7 +747,7 @@ export class AwsBedrockHandler extends BaseProvider implements SingleCompletionH
 	> = {
 		ACCESS_DENIED: {
 			patterns: ["access", "denied", "permission"],
-			messageTemplate: `You don't have access to the model specified. 
+			messageTemplate: `You don't have access to the model specified.
 
 Please verify:
 1. Try cross-region inference if you're using a foundation model

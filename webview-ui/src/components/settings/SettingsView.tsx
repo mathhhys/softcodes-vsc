@@ -8,7 +8,6 @@ import {
 	Bell,
 	Database,
 	SquareTerminal,
-	Cog,
 	FlaskConical,
 	AlertTriangle,
 	Globe,
@@ -54,7 +53,6 @@ import { InterfaceSettings } from "./InterfaceSettings"
 import { NotificationSettings } from "./NotificationSettings"
 import { ContextManagementSettings } from "./ContextManagementSettings"
 import { TerminalSettings } from "./TerminalSettings"
-import { AdvancedSettings } from "./AdvancedSettings"
 import { ExperimentalSettings } from "./ExperimentalSettings"
 import { LanguageSettings } from "./LanguageSettings"
 import { About } from "./About"
@@ -73,7 +71,6 @@ const sectionNames = [
 	"notifications",
 	"contextManagement",
 	"terminal",
-	"advanced",
 	"experimental",
 	"language",
 	"mcp",
@@ -134,7 +131,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 		browserToolEnabled,
 		browserViewportSize,
 		enableCheckpoints,
-		checkpointStorage,
 		diffEnabled,
 		experiments,
 		fuzzyMatchThreshold,
@@ -261,7 +257,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 			vscode.postMessage({ type: "soundVolume", value: soundVolume })
 			vscode.postMessage({ type: "diffEnabled", bool: diffEnabled })
 			vscode.postMessage({ type: "enableCheckpoints", bool: enableCheckpoints })
-			vscode.postMessage({ type: "checkpointStorage", text: checkpointStorage })
 			vscode.postMessage({ type: "browserViewportSize", text: browserViewportSize })
 			vscode.postMessage({ type: "remoteBrowserHost", text: remoteBrowserHost })
 			vscode.postMessage({ type: "remoteBrowserEnabled", bool: remoteBrowserEnabled })
@@ -329,7 +324,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 	const notificationsRef = useRef<HTMLDivElement>(null)
 	const contextManagementRef = useRef<HTMLDivElement>(null)
 	const terminalRef = useRef<HTMLDivElement>(null)
-	const advancedRef = useRef<HTMLDivElement>(null)
 	const experimentalRef = useRef<HTMLDivElement>(null)
 	const languageRef = useRef<HTMLDivElement>(null)
 	const aboutRef = useRef<HTMLDivElement>(null)
@@ -345,7 +339,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 			{ id: "notifications", icon: Bell, ref: notificationsRef },
 			{ id: "contextManagement", icon: Database, ref: contextManagementRef },
 			{ id: "terminal", icon: SquareTerminal, ref: terminalRef },
-			{ id: "advanced", icon: Cog, ref: advancedRef },
 			{ id: "experimental", icon: FlaskConical, ref: experimentalRef },
 			{ id: "language", icon: Globe, ref: languageRef },
 			{ id: "mcp", icon: Server, ref: mcpRef },
@@ -360,7 +353,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 			notificationsRef,
 			contextManagementRef,
 			terminalRef,
-			advancedRef,
 			experimentalRef,
 		],
 	)
@@ -510,7 +502,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 				<div ref={checkpointsRef}>
 					<CheckpointSettings
 						enableCheckpoints={enableCheckpoints}
-						checkpointStorage={checkpointStorage}
 						setCachedStateField={setCachedStateField}
 					/>
 				</div>
@@ -549,14 +540,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, o
 						terminalZshOhMy={terminalZshOhMy}
 						terminalZshP10k={terminalZshP10k}
 						terminalZdotdir={terminalZdotdir}
-						setCachedStateField={setCachedStateField}
-					/>
-				</div>
-
-				<div ref={advancedRef}>
-					<AdvancedSettings
-						diffEnabled={diffEnabled}
-						fuzzyMatchThreshold={fuzzyMatchThreshold}
 						setCachedStateField={setCachedStateField}
 					/>
 				</div>
