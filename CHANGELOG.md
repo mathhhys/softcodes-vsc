@@ -1,10 +1,7 @@
 # Roo Code Changelog
 
-## 3.13.2
+## [3.13.2] - 2025-04-18
 
-### Patch Changes
-
-- Roo Code v3.13 announcement
 - Allow custom URLs for Gemini provider
 
 ## [3.13.1] - 2025-04-18
