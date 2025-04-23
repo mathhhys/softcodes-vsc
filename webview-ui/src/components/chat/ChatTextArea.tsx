@@ -951,7 +951,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 				<div
 					// kilocode_change start
 					style={{
-						marginTop: "-44px",
+						// marginTop: "-44px", // Removed to prevent overlap with image thumbnails
 						zIndex: 2,
 						paddingLeft: "10px",
 						paddingRight: "10px",
