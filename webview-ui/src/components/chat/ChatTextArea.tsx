@@ -898,7 +898,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 									"flex-none flex-grow",
 									"z-[2]",
 									"scrollbar-none",
-									"pb-10", // kilocode_change
+									"pb-16", // Increased padding to prevent overlap with control bar
 								)}
 								onScroll={() => updateHighlights()}
 							/>
@@ -999,7 +999,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 
 						{/* kilocode_change: fixed width */}
 						{/* API configuration selector - fixed width */}
-						<div className={cn("shrink-0", "w-[70px]", "overflow-hidden")}>
+						<div className={cn("overflow-hidden")}>
 							<SelectDropdown
 								value={currentConfigId}
 								disabled={selectApiConfigDisabled}
