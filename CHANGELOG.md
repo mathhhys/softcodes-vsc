@@ -1,5 +1,12 @@
 # Roo Code Changelog
 
+## 3.14.2
+
+### Patch Changes
+
+- Enable prompt caching for Gemini (with some improvements)
+- Allow users to turn prompt caching on / off for Gemini 2.5 on OpenRouter
+
 ## [3.14.1] - 2025-04-24
 
 - Disable Gemini caching while we investigate issues reported by the community.
