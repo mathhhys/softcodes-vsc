@@ -1,5 +1,16 @@
 # Roo Code Changelog
 
+## 3.15.0
+
+### Minor Changes
+
+- Updates default model id for Unbound from claude 3.5 to 3.7
+
+### Patch Changes
+
+- Omit reasoning params for non-reasoning models
+- Update tips
+
 ## [3.14.2] - 2025-04-24
 
 - Enable prompt caching for Gemini (with some improvements)
