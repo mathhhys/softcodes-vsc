@@ -24,6 +24,7 @@ import McpToolRow from "../mcp/McpToolRow"
 import { Mention } from "./Mention"
 import { CheckpointSaved } from "./checkpoints/CheckpointSaved"
 import { FollowUpSuggest } from "./FollowUpSuggest"
+import { LowCreditWarning } from "../kilocode/chat/LowCreditWarning" // kilocode_change
 
 interface ChatRowProps {
 	message: ClineMessage
@@ -1230,6 +1231,10 @@ export const ChatRowContent = ({
 							/>
 						</>
 					)
+				// kilocode_change begin
+				case "payment_required_prompt": {
+					return <LowCreditWarning message={message} />
+				} // kilocode_change end
 				default:
 					return null
 			}

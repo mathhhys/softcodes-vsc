@@ -435,6 +435,7 @@ type ClineMessage = {
 				| "browser_action_launch"
 				| "use_mcp_server"
 				| "finishTask"
+				| "payment_required_prompt"
 		  )
 		| undefined
 	say?:
@@ -516,6 +517,7 @@ type RooCodeEvents = {
 							| "browser_action_launch"
 							| "use_mcp_server"
 							| "finishTask"
+							| "payment_required_prompt"
 					  )
 					| undefined
 				say?:

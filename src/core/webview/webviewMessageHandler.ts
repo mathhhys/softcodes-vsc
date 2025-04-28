@@ -591,6 +591,11 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 				showSystemNotification(message.notificationOptions)
 			}
 			break
+		case "openInBrowser":
+			if (message.url) {
+				vscode.env.openExternal(vscode.Uri.parse(message.url))
+			}
+			break
 		// kilocode_change end
 		case "soundEnabled":
 			const soundEnabled = message.bool ?? true

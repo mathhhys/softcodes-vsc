@@ -70,6 +70,8 @@ export interface ExtensionMessage {
 		| "toggleApiConfigPin"
 		| "mcpMarketplaceCatalog" // kilocode_change
 		| "mcpDownloadDetails" // kilocode_change
+		| "showSystemNotification" // kilocode_change
+		| "openInBrowser" // kilocode_change
 		| "acceptInput"
 	text?: string
 	action?:
@@ -116,6 +118,12 @@ export interface ExtensionMessage {
 	error?: string
 	mcpMarketplaceCatalog?: McpMarketplaceCatalog // kilocode_change
 	mcpDownloadDetails?: McpDownloadResponse // kilocode_change
+	notificationOptions?: {
+		title?: string
+		subtitle?: string
+		message: string
+	} // kilocode_change
+	url?: string // kilocode_change
 }
 
 export type ExtensionState = Pick<

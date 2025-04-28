@@ -17,6 +17,8 @@ import { TokenUsage, ToolUsage, ToolName } from "../schemas"
 import { ApiHandler, buildApiHandler } from "../api"
 import { ApiStream } from "../api/transform/stream"
 
+import { t } from "../i18n" // kilocode_change
+
 // shared
 import { ApiConfiguration } from "../shared/api"
 import { findLastIndex } from "../shared/array"
@@ -1060,8 +1062,32 @@ export class Cline extends EventEmitter<ClineEvents> {
 			yield firstChunk.value
 			this.isWaitingForFirstChunk = false
 		} catch (error) {
-			// note that this api_req_failed ask is unique in that we only present this option if the api hasn't streamed any content yet (ie it fails on the first chunk due), as it would allow them to hit a retry button. However if the api failed mid-stream, it could be in any arbitrary state where some tools may have executed, so that error is handled differently and requires cancelling the task entirely.
-			if (alwaysApproveResubmit) {
+			// kilocode_change start
+			// Check for payment required error from KiloCode provider
+			if ((error as any).status === 402 && apiConfiguration?.apiProvider === "kilocode") {
+				const balance = (error as any).balance ?? "0.00"
+				const buyCreditsUrl = (error as any).buyCreditsUrl ?? "https://kilocode.ai/profile"
+
+				const { response } = await this.ask(
+					"payment_required_prompt",
+					JSON.stringify({
+						title: t("kilocode:lowCreditWarning.title"),
+						message: t("kilocode:lowCreditWarning.message"),
+						balance: balance,
+						buyCreditsUrl: buyCreditsUrl,
+					}),
+				)
+
+				if (response === "retry_clicked") {
+					yield* this.attemptApiRequest(previousApiReqIndex, retryAttempt + 1)
+				} else {
+					// Handle other responses or cancellations if necessary
+					// If the user cancels the dialog, we should probably abort.
+					throw error // Rethrow to signal failure upwards
+				}
+				// Removed incorrect closing brace and comments from lines 1274-1276
+			} else if (alwaysApproveResubmit) {
+				// kilocode_change end
 				let errorMsg
 
 				if (error.error?.metadata?.raw) {

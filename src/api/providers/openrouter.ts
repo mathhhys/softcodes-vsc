@@ -142,7 +142,8 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 			...((this.options.openRouterUseMiddleOutTransform ?? true) && { transforms: ["middle-out"] }),
 			...(reasoningEffort && { reasoning: { effort: reasoningEffort } }),
 		}
-		const stream = await this.client.chat.completions.create(completionParams)
+		let stream
+		stream = await this.client.chat.completions.create(completionParams)
 
 		let lastUsage: CompletionUsage | undefined = undefined
 
