@@ -20,7 +20,7 @@ import {
 } from "@src/utils/context-mentions"
 import { convertToMentionPath } from "@/utils/path-mentions"
 import { SelectDropdown, DropdownOptionType, Button } from "@/components/ui"
-import { normalizeApiConfiguration } from "@/utils/normalizeApiConfiguration" // kilocode_change
+// import { normalizeApiConfiguration } from "@/utils/normalizeApiConfiguration" // kilocode_change
 import { useVSCodeTheme } from "@/kilocode/hooks/useVSCodeTheme" // kilocode_change
 
 import Thumbnails from "../common/Thumbnails"
@@ -77,7 +77,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			cwd,
 			pinnedApiConfigs,
 			togglePinnedApiConfig,
-			apiConfiguration, // kilocode_change
+			// apiConfiguration, // kilocode_change
 		} = useExtensionState()
 
 		const currentTheme = useVSCodeTheme() // kilocode_change
@@ -92,10 +92,12 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 		}, [listApiConfigMeta, currentApiConfigName])
 
 		// kilocode_change start
-		const { selectedModelId, selectedProvider } = useMemo(() => {
-			const { selectedModelId, selectedProvider } = normalizeApiConfiguration(apiConfiguration)
-			return { selectedModelId, selectedProvider }
-		}, [apiConfiguration])
+		const selectedModelId = "duppadup"
+		const selectedProvider = "huppapup"
+		// const { selectedModelId, selectedProvider } = useMemo(() => {
+		// 	const { selectedModelId, selectedProvider } = normalizeApiConfiguration(apiConfiguration)
+		// 	return { selectedModelId, selectedProvider }
+		// }, [apiConfiguration])
 		// kilocode_change end
 
 		const [gitCommits, setGitCommits] = useState<any[]>([])
@@ -134,7 +136,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 
 		// Close dropdown when clicking outside.
 		useEffect(() => {
-			const handleClickOutside = (event: MouseEvent) => {
+			const handleClickOutside = (_event: MouseEvent) => {
 				if (showDropdown) {
 					setShowDropdown(false)
 				}
