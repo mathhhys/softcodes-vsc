@@ -20,7 +20,7 @@ import {
 } from "@src/utils/context-mentions"
 import { convertToMentionPath } from "@/utils/path-mentions"
 import { SelectDropdown, DropdownOptionType, Button } from "@/components/ui"
-import { normalizeApiConfiguration } from "@/utils/normalizeApiConfiguration" // kilocode_change
+// import { normalizeApiConfiguration } from "@/utils/normalizeApiConfiguration" // kilocode_change
 import { useVSCodeTheme } from "@/kilocode/hooks/useVSCodeTheme" // kilocode_change
 
 import Thumbnails from "../common/Thumbnails"
@@ -29,6 +29,8 @@ import ContextMenu from "./ContextMenu"
 import { VolumeX, Pin, Check } from "lucide-react"
 import { IconButton } from "./IconButton"
 import { cn } from "@/lib/utils"
+
+import { useSelectedModel } from "../ui/hooks/useSelectedModel"
 
 interface ChatTextAreaProps {
 	inputValue: string
@@ -92,10 +94,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 		}, [listApiConfigMeta, currentApiConfigName])
 
 		// kilocode_change start
-		const { selectedModelId, selectedProvider } = useMemo(() => {
-			const { selectedModelId, selectedProvider } = normalizeApiConfiguration(apiConfiguration)
-			return { selectedModelId, selectedProvider }
-		}, [apiConfiguration])
+		const { id: selectedModelId, provider: selectedProvider } = useSelectedModel(apiConfiguration)
 		// kilocode_change end
 
 		const [gitCommits, setGitCommits] = useState<any[]>([])
@@ -134,7 +133,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 
 		// Close dropdown when clicking outside.
 		useEffect(() => {
-			const handleClickOutside = (event: MouseEvent) => {
+			const handleClickOutside = (_event: MouseEvent) => {
 				if (showDropdown) {
 					setShowDropdown(false)
 				}
