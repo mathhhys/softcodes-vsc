@@ -26,7 +26,7 @@ import {
 	glamaDefaultModelId,
 	unboundDefaultModelId,
 } from "@roo/shared/api"
-
+import { kilocodeOpenrouterModels } from "@roo/shared/kilocode/api"
 import { useRouterModels } from "./useRouterModels"
 
 export const useSelectedModel = (apiConfiguration?: ApiConfiguration) => {
@@ -57,6 +57,19 @@ function getSelectedModelId({ provider, apiConfiguration }: { provider: string; 
 			return apiConfiguration?.vsCodeLmModelSelector
 				? `${apiConfiguration.vsCodeLmModelSelector.vendor}/${apiConfiguration.vsCodeLmModelSelector.family}`
 				: ""
+		// kilocode_change begin
+		case "kilocode":
+			// TODO: in line with kilocode-openrouter provider use hardcoded for now but info needs to be fetched later
+			const displayModelId = {
+				gemini25: "Gemini 2.5 Pro",
+				gemini25flashpreview: "Gemini 2.5 Flash Preview",
+				claude37: "Claude 3.7 Sonnet",
+				gpt41: "GPT 4.1",
+			}
+
+			return displayModelId[apiConfiguration?.kilocodeModel ?? "claude37"]
+
+		// kilocode_change end
 		default:
 			return apiConfiguration.apiModelId ?? anthropicDefaultModelId
 	}
@@ -118,6 +131,18 @@ function getSelectedModelInfo({
 				...vscodeLlmModels[modelFamily as keyof typeof vscodeLlmModels],
 				supportsImages: false, // VSCode LM API currently doesn't support images.
 			}
+
+		// kilocode_change begin
+		case "kilocode":
+			const displayConfigs = {
+				gemini25: kilocodeOpenrouterModels["google/gemini-2.5-pro-preview-03-25"],
+				gemini25flashpreview: kilocodeOpenrouterModels["google/gemini-2.5-flash-preview"],
+				claude37: anthropicModels["claude-3-7-sonnet-20250219"],
+				gpt41: kilocodeOpenrouterModels["openai/gpt-4.1"],
+			}
+
+			return displayConfigs[apiConfiguration?.kilocodeModel ?? "claude37"]
+		// kilocode_change end
 		default:
 			return anthropicModels[id as keyof typeof anthropicModels] ?? anthropicModels[anthropicDefaultModelId]
 	}

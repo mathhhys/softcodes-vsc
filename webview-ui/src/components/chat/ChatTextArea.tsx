@@ -30,6 +30,8 @@ import { VolumeX, Pin, Check } from "lucide-react"
 import { IconButton } from "./IconButton"
 import { cn } from "@/lib/utils"
 
+import { useSelectedModel } from "../ui/hooks/useSelectedModel"
+
 interface ChatTextAreaProps {
 	inputValue: string
 	setInputValue: (value: string) => void
@@ -77,7 +79,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			cwd,
 			pinnedApiConfigs,
 			togglePinnedApiConfig,
-			// apiConfiguration, // kilocode_change
+			apiConfiguration, // kilocode_change
 		} = useExtensionState()
 
 		const currentTheme = useVSCodeTheme() // kilocode_change
@@ -92,12 +94,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 		}, [listApiConfigMeta, currentApiConfigName])
 
 		// kilocode_change start
-		const selectedModelId = "duppadup"
-		const selectedProvider = "huppapup"
-		// const { selectedModelId, selectedProvider } = useMemo(() => {
-		// 	const { selectedModelId, selectedProvider } = normalizeApiConfiguration(apiConfiguration)
-		// 	return { selectedModelId, selectedProvider }
-		// }, [apiConfiguration])
+		const { id: selectedModelId, provider: selectedProvider } = useSelectedModel(apiConfiguration)
 		// kilocode_change end
 
 		const [gitCommits, setGitCommits] = useState<any[]>([])
