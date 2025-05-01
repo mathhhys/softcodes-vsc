@@ -92,6 +92,10 @@ import { validateToolUse } from "./mode-validator"
 import { MultiSearchReplaceDiffStrategy } from "./diff/strategies/multi-search-replace"
 import { readApiMessages, saveApiMessages, readTaskMessages, saveTaskMessages, taskMetadata } from "./task-persistence"
 
+// kilocode_change begin
+import { parseSlashCommands } from "./slash-commands"
+// kilocode_change end
+
 type UserContent = Array<Anthropic.Messages.ContentBlockParam>
 
 export type ClineEvents = {
@@ -1920,16 +1924,24 @@ export class Cline extends EventEmitter<ClineEvents> {
 
 				if (block.type === "text") {
 					if (shouldProcessMentions(block.text)) {
+						// kilocode_change begin: pull slash commands from Cline
+						let parsedText = await parseMentions(
+							block.text,
+							this.cwd,
+							this.urlContentFetcher,
+							this.fileContextTracker,
+						)
+
+						// when parsing slash commands, we still want to allow the user to provide their desired context
+						parsedText = parseSlashCommands(parsedText)
+
 						return {
 							...block,
-							text: await parseMentions(
-								block.text,
-								this.cwd,
-								this.urlContentFetcher,
-								this.fileContextTracker,
-							),
+							text: parsedText,
 						}
+						// kilocode_change end
 					}
+
 					return block
 				} else if (block.type === "tool_result") {
 					if (typeof block.content === "string") {
