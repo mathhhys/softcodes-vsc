@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.20.0
-
-### Minor Changes
+## [4.20.0]
 
 - Include slash commands from Cline, include /newtask command
 
