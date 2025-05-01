@@ -1,5 +1,11 @@
 # kilo-code
 
+## 4.20.0
+
+### Minor Changes
+
+- Include slash commands from Cline, include /newtask command
+
 ## 4.19.1
 
 ### Patch Changes
