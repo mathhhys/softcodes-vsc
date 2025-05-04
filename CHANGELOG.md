@@ -1,8 +1,6 @@
 # Roo Code Changelog
 
-## 3.15.5
-
-### Patch Changes
+## [3.15.5]
 
 - Update @google/genai to 0.12
 
