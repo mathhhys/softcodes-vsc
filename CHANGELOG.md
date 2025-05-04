@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.15.5
+
+### Patch Changes
+
+- Update @google/genai to 0.12
+
 ## [3.15.4] - 2025-05-04
 
 - Fix a nasty bug that would cause Roo Code to hang, particularly in orchestrator mode
