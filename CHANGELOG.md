@@ -1,6 +1,6 @@
 # Roo Code Changelog
 
-## [3.16.3]
+## [3.16.3] - 2025-05-08
 
 - Revert "Tailwind migration"
 
