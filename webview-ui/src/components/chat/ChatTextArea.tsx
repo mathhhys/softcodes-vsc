@@ -1156,6 +1156,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 									...getAllModes(customModes).map((mode) => ({
 										value: mode.slug,
 										label: mode.name,
+										codicon: mode.iconName, // kilocode_change
 										type: DropdownOptionType.ITEM,
 									})),
 									{
