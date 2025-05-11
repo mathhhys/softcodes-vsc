@@ -205,12 +205,12 @@
 		"copyToInput": "In Eingabefeld kopieren (oder Shift + Klick)"
 	},
 	"announcement": {
-		"title": "🎉 Roo Code 3.15 veröffentlicht",
-		"description": "Roo Code 3.15 bringt neue Funktionen und Verbesserungen basierend auf deinem Feedback.",
+		"title": "🎉 Roo Code 3.16 veröffentlicht",
+		"description": "Roo Code 3.16 bringt neue Funktionen und Verbesserungen basierend auf deinem Feedback.",
 		"whatsNew": "Was ist neu",
-		"feature1": "<bold>Prompt-Caching für Vertex</bold>: Prompt-Caching-Unterstützung für Vertex AI hinzugefügt, verbessert Antwortzeiten und reduziert API-Kosten",
-		"feature2": "<bold>Terminal-Fallback</bold>: Implementierung eines Fallback-Mechanismus, wenn die VSCode-Terminal-Shell-Integration fehlschlägt",
-		"feature3": "<bold>Verbesserte Code-Snippets</bold>: Verbesserte Darstellung und Interaktion mit Code-Snippets in der Chat-Oberfläche",
+		"feature1": "<bold>Groq und Chutes API-Provider</bold>: Unterstützung für Groq und Chutes API-Provider hinzugefügt (danke @shariqriazz!)",
+		"feature2": "<bold>Klickbare Code-Referenzen</bold>: Code-Referenzen in Modellantworten navigieren jetzt direkt zu Quellzeilen (danke @KJ7LNW!)",
+		"feature3": "<bold>MCP-Stabilitätsverbesserungen</bold>: Mehrere Fehler behoben, um die Stabilität von MCP-Integrationen zu verbessern",
 		"hideButton": "Ankündigung ausblenden",
 		"detailsDiscussLinks": "Erhalte mehr Details und diskutiere auf <discordLink>Discord</discordLink> und <redditLink>Reddit</redditLink> 🚀"
 	},
@@ -234,6 +234,15 @@
 			"scrollDown": "Nach unten scrollen",
 			"scrollUp": "Nach oben scrollen",
 			"close": "Browser schließen"
+		}
+	},
+	"codeblock": {
+		"tooltips": {
+			"expand": "Code-Block erweitern",
+			"collapse": "Code-Block reduzieren",
+			"enable_wrap": "Zeilenumbruch aktivieren",
+			"disable_wrap": "Zeilenumbruch deaktivieren",
+			"copy_code": "Code kopieren"
 		}
 	},
 	"systemPromptWarning": "WARNUNG: Benutzerdefinierte Systemaufforderung aktiv. Dies kann die Funktionalität erheblich beeinträchtigen und zu unvorhersehbarem Verhalten führen.",

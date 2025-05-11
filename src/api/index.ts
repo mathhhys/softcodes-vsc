@@ -23,6 +23,9 @@ import { KiloCodeHandler } from "./providers/kilocode"
 import { FireworksHandler } from "./providers/fireworks"
 import { FakeAIHandler } from "./providers/fake-ai"
 import { XAIHandler } from "./providers/xai"
+import { GroqHandler } from "./providers/groq"
+import { ChutesHandler } from "./providers/chutes"
+import { LiteLLMHandler } from "./providers/litellm"
 
 export interface SingleCompletionHandler {
 	completePrompt(prompt: string): Promise<string>
@@ -92,6 +95,12 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 			return new FakeAIHandler(options)
 		case "xai":
 			return new XAIHandler(options)
+		case "groq":
+			return new GroqHandler(options)
+		case "chutes":
+			return new ChutesHandler(options)
+		case "litellm":
+			return new LiteLLMHandler(options)
 		default:
 			return new AnthropicHandler(options)
 	}
