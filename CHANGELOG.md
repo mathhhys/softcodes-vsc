@@ -1,8 +1,6 @@
 # Roo Code Changelog
 
-## 3.16.6
-
-### Patch Changes
+## [3.16.6]
 
 - Restore profile management work + fix #3434
 
