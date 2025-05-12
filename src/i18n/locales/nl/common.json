@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Roo Code",
+		"name": "Kilo Code",
 		"description": "Een compleet ontwikkelteam van AI-agenten in je editor."
 	},
 	"number_format": {
@@ -51,7 +51,7 @@
 		"delete_api_config": "Verwijderen van API-configuratie mislukt",
 		"list_api_config": "Ophalen van lijst met API-configuraties mislukt",
 		"update_server_timeout": "Bijwerken van server-timeout mislukt",
-		"create_mcp_json": "Aanmaken of openen van .roo/mcp.json mislukt: {{error}}",
+		"create_mcp_json": "Aanmaken of openen van .kilocode/mcp.json mislukt: {{error}}",
 		"hmr_not_running": "Lokale ontwikkelserver draait niet, HMR werkt niet. Voer 'npm run dev' uit voordat je de extensie start om HMR in te schakelen.",
 		"retrieve_current_mode": "Fout: ophalen van huidige modus uit status mislukt.",
 		"failed_delete_repo": "Verwijderen van gekoppelde schaduwrepository of branch mislukt: {{error}}",
@@ -89,12 +89,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Voer een aangepast opslagpad voor gespreksgeschiedenis in, laat leeg voor standaardlocatie",
-		"path_placeholder": "D:\\RooCodeStorage",
-		"enter_absolute_path": "Voer een absoluut pad in (bijv. D:\\RooCodeStorage of /home/user/storage)",
+		"path_placeholder": "D:\\KiloCodeStorage",
+		"enter_absolute_path": "Voer een absoluut pad in (bijv. D:\\KiloCodeStorage of /home/user/storage)",
 		"enter_valid_path": "Voer een geldig pad in"
 	},
 	"input": {
-		"task_prompt": "Wat moet Roo doen?",
+		"task_prompt": "Wat moet Kilo Code doen?",
 		"task_placeholder": "Typ hier je taak"
 	}
 }

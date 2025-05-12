@@ -6,8 +6,8 @@
 		"createNewMode": "Nieuwe modus aanmaken",
 		"editModesConfig": "Modusconfiguratie bewerken",
 		"editGlobalModes": "Globale modi bewerken",
-		"editProjectModes": "Projectmodi bewerken (.roomodes)",
-		"createModeHelpText": "Klik op + om een nieuwe aangepaste modus te maken, of vraag Roo in de chat om er een voor je te maken!",
+		"editProjectModes": "Projectmodi bewerken (.kilocodemodes)",
+		"createModeHelpText": "Klik op + om een nieuwe aangepaste modus te maken, of vraag Kilo Code in de chat om er een voor je te maken!",
 		"selectMode": "Modus zoeken"
 	},
 	"apiConfiguration": {
@@ -32,18 +32,18 @@
 	"roleDefinition": {
 		"title": "Roldefinitie",
 		"resetToDefault": "Terugzetten naar standaard",
-		"description": "Definieer Roo's expertise en persoonlijkheid voor deze modus. Deze beschrijving bepaalt hoe Roo zich presenteert en taken benadert."
+		"description": "Definieer Kilo Code's expertise en persoonlijkheid voor deze modus. Deze beschrijving bepaalt hoe Kilo Code zich presenteert en taken benadert."
 	},
 	"customInstructions": {
 		"title": "Modusspecifieke instructies (optioneel)",
 		"resetToDefault": "Terugzetten naar standaard",
 		"description": "Voeg gedragsrichtlijnen toe die specifiek zijn voor de modus {{modeName}}.",
-		"loadFromFile": "Modusspecifieke instructies voor {{mode}} kunnen ook worden geladen uit de map <span>.roo/rules-{{slug}}/</span> in je werkruimte (.roorules-{{slug}} en .clinerules-{{slug}} zijn verouderd en werken binnenkort niet meer)."
+		"loadFromFile": "Modusspecifieke instructies voor {{mode}} kunnen ook worden geladen uit de map <span>.kilocode/rules-{{slug}}/</span> in je werkruimte (.kilocoderules-{{slug}} en .clinerules-{{slug}} zijn verouderd en werken binnenkort niet meer)."
 	},
 	"globalCustomInstructions": {
 		"title": "Aangepaste instructies voor alle modi",
-		"description": "Deze instructies gelden voor alle modi. Ze bieden een basisset aan gedragingen die kunnen worden uitgebreid met modusspecifieke instructies hieronder.\nWil je dat Roo in een andere taal denkt en spreekt dan de weergavetaal van je editor ({{language}}), dan kun je dat hier aangeven.",
-		"loadFromFile": "Instructies kunnen ook worden geladen uit de map <span>.roo/rules/</span> in je werkruimte (.roorules en .clinerules zijn verouderd en werken binnenkort niet meer)."
+		"description": "Deze instructies gelden voor alle modi. Ze bieden een basisset aan gedragingen die kunnen worden uitgebreid met modusspecifieke instructies hieronder.\nWil je dat Kilo Code in een andere taal denkt en spreekt dan de weergavetaal van je editor ({{language}}), dan kun je dat hier aangeven.",
+		"loadFromFile": "Instructies kunnen ook worden geladen uit de map <span>.kilocode/rules/</span> in je werkruimte (.kilocoderules en .clinerules zijn verouderd en werken binnenkort niet meer)."
 	},
 	"systemPrompt": {
 		"preview": "Systeemprompt bekijken",
@@ -64,7 +64,7 @@
 		"types": {
 			"ENHANCE": {
 				"label": "Prompt verbeteren",
-				"description": "Gebruik promptverbetering om op maat gemaakte suggesties of verbeteringen voor je invoer te krijgen. Zo begrijpt Roo je intentie en krijg je de best mogelijke antwoorden. Beschikbaar via het ✨-icoon in de chat."
+				"description": "Gebruik promptverbetering om op maat gemaakte suggesties of verbeteringen voor je invoer te krijgen. Zo begrijpt Kilo Code je intentie en krijg je de best mogelijke antwoorden. Beschikbaar via het ✨-icoon in de chat."
 			},
 			"EXPLAIN": {
 				"label": "Code uitleggen",
@@ -102,7 +102,7 @@
 	},
 	"advancedSystemPrompt": {
 		"title": "Geavanceerd: Systeemprompt overschrijven",
-		"description": "Je kunt de systeemprompt voor deze modus volledig vervangen (behalve de roldefinitie en aangepaste instructies) door een bestand aan te maken op <span>.roo/system-prompt-{{slug}}</span> in je werkruimte. Dit is een zeer geavanceerde functie die ingebouwde beveiligingen en consistentiecontroles omzeilt (vooral rond toolgebruik), dus wees voorzichtig!"
+		"description": "Je kunt de systeemprompt voor deze modus volledig vervangen (behalve de roldefinitie en aangepaste instructies) door een bestand aan te maken op <span>.kilocode/system-prompt-{{slug}}</span> in je werkruimte. Dit is een zeer geavanceerde functie die ingebouwde beveiligingen en consistentiecontroles omzeilt (vooral rond toolgebruik), dus wees voorzichtig!"
 	},
 	"createModeDialog": {
 		"title": "Nieuwe modus aanmaken",
@@ -123,13 +123,13 @@
 				"description": "Beschikbaar in alle werkruimtes"
 			},
 			"project": {
-				"label": "Projectspecifiek (.roomodes)",
+				"label": "Projectspecifiek (.kilocodemodes)",
 				"description": "Alleen beschikbaar in deze werkruimte, heeft voorrang op globaal"
 			}
 		},
 		"roleDefinition": {
 			"label": "Roldefinitie",
-			"description": "Definieer Roo's expertise en persoonlijkheid voor deze modus."
+			"description": "Definieer Kilo Code's expertise en persoonlijkheid voor deze modus."
 		},
 		"tools": {
 			"label": "Beschikbare tools",
