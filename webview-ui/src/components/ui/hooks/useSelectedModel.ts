@@ -32,7 +32,7 @@ import {
 	unboundDefaultModelId,
 	litellmDefaultModelId,
 } from "@roo/shared/api"
-import { kilocodeOpenrouterModels } from "@roo/shared/kilocode/api"
+
 import { useRouterModels } from "./useRouterModels"
 
 export const useSelectedModel = (apiConfiguration?: ApiConfiguration) => {
@@ -177,17 +177,23 @@ function getSelectedModel({
 				claude37: "Claude 3.7 Sonnet",
 				gpt41: "GPT 4.1",
 			}
-			const id = displayModelId[apiConfiguration?.kilocodeModel ?? "claude37"]
+			const id = displayModelId[(apiConfiguration?.kilocodeModel as keyof typeof displayModelId) ?? "claude37"]
 
-			const displayConfigs = {
-				gemini25: kilocodeOpenrouterModels["google/gemini-2.5-pro-preview-03-25"],
-				gemini25flashpreview: kilocodeOpenrouterModels["google/gemini-2.5-flash-preview"],
-				claude37: anthropicModels["claude-3-7-sonnet-20250219"],
-				gpt41: kilocodeOpenrouterModels["openai/gpt-4.1"],
+			// Use the fetched models from routerModels
+			if (routerModels?.["kilocode-openrouter"] && apiConfiguration?.kilocodeModel) {
+				// Find the model in the fetched models
+				const modelEntries = Object.entries(routerModels["kilocode-openrouter"])
+
+				// Try to find a model with a matching ID or name
+				for (const [modelId, modelInfo] of modelEntries) {
+					if (modelId.toLowerCase().includes(apiConfiguration.kilocodeModel.toLowerCase())) {
+						return { id, info: modelInfo }
+					}
+				}
 			}
-			const info = displayConfigs[apiConfiguration?.kilocodeModel ?? "claude37"]
 
-			return { id, info }
+			// Fallback to anthropic model if no match found
+			return { id, info: anthropicModels["claude-3-7-sonnet-20250219"] }
 		}
 		// kilocode_change end
 

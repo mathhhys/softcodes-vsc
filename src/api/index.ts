@@ -19,13 +19,13 @@ import { ApiStream } from "./transform/stream"
 import { UnboundHandler } from "./providers/unbound"
 import { RequestyHandler } from "./providers/requesty"
 import { HumanRelayHandler } from "./providers/human-relay"
-import { KiloCodeHandler } from "./providers/kilocode"
 import { FireworksHandler } from "./providers/fireworks"
 import { FakeAIHandler } from "./providers/fake-ai"
 import { XAIHandler } from "./providers/xai"
 import { GroqHandler } from "./providers/groq"
 import { ChutesHandler } from "./providers/chutes"
 import { LiteLLMHandler } from "./providers/litellm"
+import { KilocodeOpenrouterHandler } from "./providers/kilocode-openrouter"
 
 export interface SingleCompletionHandler {
 	completePrompt(prompt: string): Promise<string>
@@ -52,7 +52,7 @@ export function buildApiHandler(configuration: ApiConfiguration): ApiHandler {
 
 	switch (apiProvider) {
 		case "kilocode":
-			return new KiloCodeHandler(options)
+			return new KilocodeOpenrouterHandler(options)
 		case "anthropic":
 			return new AnthropicHandler(options)
 		case "glama":

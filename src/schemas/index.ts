@@ -107,6 +107,7 @@ export type ReasoningEffort = z.infer<typeof reasoningEffortsSchema>
  */
 
 export const modelInfoSchema = z.object({
+	preferredIndex: z.number().optional(), // kilocode_change
 	maxTokens: z.number().nullish(),
 	maxThinkingTokens: z.number().nullish(),
 	contextWindow: z.number(),
@@ -237,6 +238,7 @@ export const modeConfigSchema = z.object({
 	customInstructions: z.string().optional(),
 	groups: groupEntryArraySchema,
 	source: z.enum(["global", "project"]).optional(),
+	iconName: z.string().optional(), // kilocode_change
 })
 
 export type ModeConfig = z.infer<typeof modeConfigSchema>
@@ -453,7 +455,7 @@ export const providerSettingsSchema = z.object({
 	fakeAi: z.unknown().optional(),
 	// kilocode_change
 	kilocodeToken: z.string().optional(),
-	kilocodeModel: z.enum(["claude37", "gemini25", "gpt41", "gemini25flashpreview"]).optional(),
+	kilocodeModel: z.string().optional(),
 	fireworksModelId: z.string().optional(),
 	fireworksApiKey: z.string().optional(),
 })

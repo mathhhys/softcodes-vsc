@@ -1792,7 +1792,7 @@ export const COMPUTER_USE_MODELS = new Set([
 	"anthropic/claude-3.7-sonnet:thinking",
 ])
 
-const routerNames = ["openrouter", "requesty", "glama", "unbound", "litellm"] as const
+const routerNames = ["openrouter", "requesty", "glama", "unbound", "litellm", "kilocode-openrouter"] as const
 
 export type RouterName = (typeof routerNames)[number]
 

@@ -5,7 +5,6 @@ import { VSCodeLink, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
 
 import { getKiloCodeBackendAuthUrl } from "../kilocode/helpers" // kilocode_change
 
-import { ProviderSettings } from "@roo/schemas"
 import {
 	type ProviderName,
 	type ApiConfiguration,
@@ -54,6 +53,7 @@ import {
 
 import { MODELS_BY_PROVIDER, PROVIDERS, REASONING_MODELS } from "./constants"
 import { inputEventTransform, noTransform } from "./transforms"
+import { ModelPicker } from "./ModelPicker"
 import { ModelInfoView } from "./ModelInfoView"
 import { ApiErrorMessage } from "./ApiErrorMessage"
 import { ThinkingBudget } from "./ThinkingBudget"
@@ -222,16 +222,6 @@ const ApiOptions = ({
 		[selectedProvider],
 	)
 
-	// kilocode_change start
-	const kilocodeDescriptions = {
-		claude37: "Claude 3.7 Sonnet is Anthropic's most capable model for reasoning, coding, and multimodal tasks.",
-		gemini25: "Gemini 2.5 Pro is Google's most capable model for reasoning, coding, and multimodal tasks.",
-		gpt41: "GPT-4.1 is OpenAI's most capable model for reasoning, coding, and multimodal tasks.",
-		gemini25flashpreview:
-			"Gemini 2.5 Flash Preview is Google's most capable model for reasoning, coding, and multimodal tasks.",
-	}
-	// kilocode_change end
-
 	const onProviderChange = useCallback(
 		(value: ProviderName) => {
 			// It would be much easier to have a single attribute that stores
@@ -340,27 +330,15 @@ const ApiOptions = ({
 						You get $20 for free. Choose between Claude and Gemini 2.5 models.
 					</div>
 
-					<div>
-						<label className="block font-medium mb-1">Provider Type</label>
-						<Select
-							value={apiConfiguration?.kilocodeModel || "claude37"}
-							onValueChange={(value) =>
-								setApiConfigurationField("kilocodeModel", value as ProviderSettings["kilocodeModel"])
-							}>
-							<SelectTrigger className="w-full">
-								<SelectValue placeholder="Select provider" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="claude37">Claude 3.7 Sonnet</SelectItem>
-								<SelectItem value="gemini25">Gemini 2.5 Pro</SelectItem>
-								<SelectItem value="gemini25flashpreview">Gemini 2.5 Flash Preview</SelectItem>
-								<SelectItem value="gpt41">GPT 4.1</SelectItem>
-							</SelectContent>
-						</Select>
-						<div className="text-sm text-vscode-descriptionForeground mt-1">
-							{kilocodeDescriptions[apiConfiguration?.kilocodeModel ?? "claude37"]}
-						</div>
-					</div>
+					<ModelPicker
+						apiConfiguration={apiConfiguration}
+						setApiConfigurationField={setApiConfigurationField}
+						defaultModelId="claude37"
+						models={routerModels?.["kilocode-openrouter"] ?? {}}
+						modelIdKey="kilocodeModel"
+						serviceName="Kilo Code"
+						serviceUrl="https://kilocode.ai"
+					/>
 
 					{/* kilocode_change start */}
 					{!hideKiloCodeButton &&

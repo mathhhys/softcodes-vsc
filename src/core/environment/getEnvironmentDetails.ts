@@ -17,6 +17,9 @@ import { formatResponse } from "../prompts/responses"
 
 import { Cline } from "../Cline"
 
+import { OpenRouterHandler } from "../../api/providers/openrouter"
+import { KilocodeOpenrouterHandler } from "../../api/providers/kilocode-openrouter"
+
 export async function getEnvironmentDetails(cline: Cline, includeFileDetails: boolean = false) {
 	let details = ""
 
@@ -190,6 +193,12 @@ export async function getEnvironmentDetails(cline: Cline, includeFileDetails: bo
 
 	// Add context tokens information.
 	const { contextTokens, totalCost } = getApiMetrics(cline.clineMessages)
+	// kilocode_change
+	// Be sure to fetch the model information before we need it.
+	if (cline.api instanceof OpenRouterHandler || cline.api instanceof KilocodeOpenrouterHandler) {
+		const api = cline.api as OpenRouterHandler
+		await api.fetchModel()
+	}
 	const modelInfo = cline.api.getModel().info
 	const contextWindow = modelInfo.contextWindow
 

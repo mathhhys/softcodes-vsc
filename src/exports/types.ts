@@ -60,6 +60,7 @@ type ProviderSettings = {
 	openAiModelId?: string | undefined
 	openAiCustomModelInfo?:
 		| ({
+				preferredIndex?: number | undefined
 				maxTokens?: (number | null) | undefined
 				maxThinkingTokens?: (number | null) | undefined
 				contextWindow: number
@@ -141,7 +142,7 @@ type ProviderSettings = {
 	rateLimitSeconds?: number | undefined
 	fakeAi?: unknown | undefined
 	kilocodeToken?: string | undefined
-	kilocodeModel?: ("claude37" | "gemini25" | "gpt41" | "gemini25flashpreview") | undefined
+	kilocodeModel?: string | undefined
 	fireworksModelId?: string | undefined
 	fireworksApiKey?: string | undefined
 }
@@ -300,6 +301,7 @@ type GlobalSettings = {
 					  ]
 				)[]
 				source?: ("global" | "project") | undefined
+				iconName?: string | undefined
 		  }[]
 		| undefined
 	customModePrompts?:
