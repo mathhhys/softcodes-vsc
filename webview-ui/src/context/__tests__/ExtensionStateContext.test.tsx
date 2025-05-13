@@ -1,13 +1,12 @@
-// cd webview-ui && npx jest src/context/__tests__/ExtensionStateContext.test.tsx
+// npx jest src/context/__tests__/ExtensionStateContext.test.tsx
 
 import { render, screen, act } from "@testing-library/react"
 
 import { ExtensionState } from "@roo/shared/ExtensionMessage"
 import { ExtensionStateContextProvider, useExtensionState, mergeExtensionState } from "../ExtensionStateContext"
 import { ExperimentId } from "@roo/shared/experiments"
-import { ApiConfiguration } from "@roo/shared/api"
+import { ProviderSettings } from "@roo/shared/api"
 
-// Test component that consumes the context
 const TestComponent = () => {
 	const {
 		allowedCommands,
@@ -37,9 +36,9 @@ const TestComponent = () => {
 	)
 }
 
-// Test component for API configuration
 const ApiConfigTestComponent = () => {
 	const { apiConfiguration, setApiConfiguration } = useExtensionState()
+
 	return (
 		<div>
 			<div data-testid="api-configuration">{JSON.stringify(apiConfiguration)}</div>
@@ -238,7 +237,7 @@ describe("mergeExtensionState", () => {
 			customModes: [],
 			maxOpenTabsContext: 20,
 			maxWorkspaceFiles: 100,
-			apiConfiguration: { providerId: "openrouter" } as ApiConfiguration,
+			apiConfiguration: { providerId: "openrouter" } as ProviderSettings,
 			showRooIgnoredFiles: true,
 			renderContext: "sidebar",
 			maxReadFileLine: 500,

@@ -15,12 +15,12 @@ import { Terminal } from "../../integrations/terminal/Terminal"
 import { arePathsEqual } from "../../utils/path"
 import { formatResponse } from "../prompts/responses"
 
-import { Cline } from "../Cline"
+import { Task } from "../task/Task"
 
 import { OpenRouterHandler } from "../../api/providers/openrouter"
 import { KilocodeOpenrouterHandler } from "../../api/providers/kilocode-openrouter"
 
-export async function getEnvironmentDetails(cline: Cline, includeFileDetails: boolean = false) {
+export async function getEnvironmentDetails(cline: Task, includeFileDetails: boolean = false) {
 	let details = ""
 
 	const clineProvider = cline.providerRef.deref()

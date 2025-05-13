@@ -409,7 +409,7 @@ input[cmdk-input]:focus {
 }
 
 /*
- * Use geometric precision for codicons to avoid blurriness 
+ * Use geometric precision for codicons to avoid blurriness
  */
 
 .codicon[class*="codicon-"] {
@@ -424,3 +424,10 @@ input[cmdk-input]:focus {
 	color: transparent;
 }
 /* kilocode_change end */
+/*
+ * Fix the color of <a> in ChatView
+ */
+
+a:focus {
+	outline: 1px solid var(--vscode-focusBorder);
+}

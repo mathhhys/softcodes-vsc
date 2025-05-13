@@ -2,8 +2,8 @@ import { GitCommit } from "../utils/git"
 
 import {
 	GlobalSettings,
-	ApiConfigMeta,
-	ProviderSettings as ApiConfiguration,
+	ProviderSettingsEntry,
+	ProviderSettings,
 	HistoryItem,
 	ModeConfig,
 	ExperimentId,
@@ -17,7 +17,7 @@ import { McpMarketplaceCatalog, McpDownloadResponse } from "./kilocode/mcp"
 import { Mode } from "./modes"
 import { RouterModels } from "./api"
 
-export type { ApiConfigMeta, ToolProgressStatus }
+export type { ProviderSettingsEntry, ToolProgressStatus }
 
 export interface LanguageModelChatSelector {
 	vendor?: string
@@ -98,7 +98,7 @@ export interface ExtensionMessage {
 	vsCodeLmModels?: { vendor?: string; family?: string; version?: string; id?: string }[]
 	mcpServers?: McpServer[]
 	commits?: GitCommit[]
-	listApiConfig?: ApiConfigMeta[]
+	listApiConfig?: ProviderSettingsEntry[]
 	mode?: Mode
 	customMode?: ModeConfig
 	slug?: string
@@ -184,7 +184,7 @@ export type ExtensionState = Pick<
 	version: string
 	clineMessages: ClineMessage[]
 	currentTaskItem?: HistoryItem
-	apiConfiguration?: ApiConfiguration
+	apiConfiguration?: ProviderSettings
 	uriScheme?: string
 	shouldShowAnnouncement: boolean
 

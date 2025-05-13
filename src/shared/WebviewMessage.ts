@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { ApiConfiguration } from "./api"
+import { ProviderSettings } from "./api"
 import { Mode, PromptComponent, ModeConfig } from "./modes"
 
 export type ClineAskResponse = "yesButtonClicked" | "noButtonClicked" | "messageResponse" | "retry_clicked" // kilocode_change: Added for payment required dialog
@@ -11,7 +11,6 @@ export type AudioType = "notification" | "celebration" | "progress_loop"
 
 export interface WebviewMessage {
 	type:
-		| "apiConfiguration"
 		| "deleteMultipleTasksWithIds"
 		| "currentApiConfigName"
 		| "saveApiConfiguration"
@@ -145,7 +144,7 @@ export interface WebviewMessage {
 	text?: string
 	disabled?: boolean
 	askResponse?: ClineAskResponse
-	apiConfiguration?: ApiConfiguration
+	apiConfiguration?: ProviderSettings
 	images?: string[]
 	bool?: boolean
 	value?: number
