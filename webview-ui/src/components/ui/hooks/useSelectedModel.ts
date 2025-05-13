@@ -187,7 +187,7 @@ function getSelectedModel({
 				// Try to find a model with a matching ID or name
 				for (const [modelId, modelInfo] of modelEntries) {
 					if (modelId.toLowerCase().includes(apiConfiguration.kilocodeModel.toLowerCase())) {
-						return { id, info: modelInfo }
+						return { id: modelId, info: modelInfo }
 					}
 				}
 			}
