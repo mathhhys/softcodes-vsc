@@ -84,6 +84,13 @@ export function validateApiConfiguration(apiConfiguration: ProviderSettings): st
 				return "You must provide a valid API key or choose a different provider."
 			}
 			break
+		// kilocode_change start
+		case "kilocode":
+			if (!apiConfiguration.kilocodeToken || !apiConfiguration.kilocodeModel) {
+				return i18next.t("settings:validation.apiKey")
+			}
+			break
+		// kilocode_change end
 	}
 
 	return undefined

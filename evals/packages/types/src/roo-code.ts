@@ -5,7 +5,6 @@ import { Equals, Keys, AssertEqual } from "./utils.js"
 /**
  * ProviderName
  */
-
 export const providerNames = [
 	"anthropic",
 	"glama",
@@ -25,6 +24,7 @@ export const providerNames = [
 	"human-relay",
 	"fake-ai",
 	"xai",
+	"kilocode", // kilocode change
 ] as const
 
 export const providerNamesSchema = z.enum(providerNames)
@@ -477,6 +477,13 @@ const litellmSchema = z.object({
 	litellmModelId: z.string().optional(),
 })
 
+// kilocode_change start
+const kilocodeSchema = z.object({
+	kilocodeToken: z.string().optional(),
+	kilocodeModel: z.string().optional(),
+})
+// kilocode_change end
+
 const defaultSchema = z.object({
 	apiProvider: z.undefined(),
 })
@@ -588,6 +595,13 @@ export const providerSettingsSchemaDiscriminated = z
 				apiProvider: z.literal("litellm"),
 			}),
 		),
+		// kilocode_change start
+		kilocodeSchema.merge(
+			z.object({
+				apiProvider: z.literal("kilocode"),
+			}),
+		),
+		// kilocode_change end
 		defaultSchema,
 	])
 	.and(genericProviderSettingsSchema)
@@ -615,6 +629,7 @@ export const providerSettingsSchema = z.object({
 	...groqSchema.shape,
 	...chutesSchema.shape,
 	...litellmSchema.shape,
+	...kilocodeSchema.shape, // kilocode_change
 	...genericProviderSettingsSchema.shape,
 })
 
@@ -716,6 +731,11 @@ const providerSettingsRecord: ProviderSettingsRecord = {
 	litellmBaseUrl: undefined,
 	litellmApiKey: undefined,
 	litellmModelId: undefined,
+	// kilocode_change start
+	// Kilocode
+	kilocodeToken: undefined,
+	kilocodeModel: undefined,
+	// kilocode_change end
 }
 
 export const PROVIDER_SETTINGS_KEYS = Object.keys(providerSettingsRecord) as Keys<ProviderSettings>[]
@@ -910,6 +930,7 @@ export type SecretState = Pick<
 	| "unboundApiKey"
 	| "requestyApiKey"
 	| "xaiApiKey"
+	| "kilocodeToken" // kilocode_change
 >
 
 type SecretStateRecord = Record<Keys<SecretState>, undefined>
@@ -929,6 +950,7 @@ const secretStateRecord: SecretStateRecord = {
 	unboundApiKey: undefined,
 	requestyApiKey: undefined,
 	xaiApiKey: undefined,
+	kilocodeToken: undefined, // kilocode_change
 }
 
 export const SECRET_STATE_KEYS = Object.keys(secretStateRecord) as Keys<SecretState>[]

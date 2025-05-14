@@ -12,8 +12,7 @@ import { McpState } from "../shared/kilocode/mcp"
  */
 
 export const providerNames = [
-	// kilocode_change
-	"kilocode",
+	"kilocode", // kilocode_change
 	"fireworks",
 	"anthropic",
 	"glama",
@@ -504,6 +503,13 @@ const litellmSchema = baseProviderSettingsSchema.extend({
 	litellmModelId: z.string().optional(),
 })
 
+// kilocode_change start
+const kilocodeSchema = baseProviderSettingsSchema.extend({
+	kilocodeToken: z.string().optional(),
+	kilocodeModel: z.string().optional(),
+})
+// kilocode_change end
+
 const defaultSchema = z.object({
 	apiProvider: z.undefined(),
 })
@@ -530,6 +536,7 @@ export const providerSettingsSchemaDiscriminated = z.discriminatedUnion("apiProv
 	groqSchema.merge(z.object({ apiProvider: z.literal("groq") })),
 	chutesSchema.merge(z.object({ apiProvider: z.literal("chutes") })),
 	litellmSchema.merge(z.object({ apiProvider: z.literal("litellm") })),
+	kilocodeSchema.merge(z.object({ apiProvider: z.literal("kilocode") })), // kilocode_change
 	defaultSchema,
 ])
 
@@ -558,6 +565,7 @@ export const providerSettingsSchema = z
 	.merge(groqSchema)
 	.merge(chutesSchema)
 	.merge(litellmSchema)
+	.merge(kilocodeSchema) // kilocode_change
 
 export type ProviderSettings = z.infer<typeof providerSettingsSchema>
 
@@ -650,9 +658,10 @@ const providerSettingsRecord: ProviderSettingsRecord = {
 	// kilocode_change start
 	kilocodeToken: undefined,
 	kilocodeModel: undefined,
+	// kilocode_change end
+	// Fireworks
 	fireworksModelId: undefined,
 	fireworksApiKey: undefined,
-	// kilocode_change end
 	// X.AI (Grok)
 	xaiApiKey: undefined,
 	// Groq
