@@ -14,17 +14,22 @@ try {
 
 import "./utils/path" // Necessary to have access to String.prototype.toPosix.
 
-import { initializeI18n } from "./i18n"
 import { ContextProxy } from "./core/config/ContextProxy"
 import { ClineProvider } from "./core/webview/ClineProvider"
-import { CodeActionProvider } from "./core/CodeActionProvider"
 import { DIFF_VIEW_URI_SCHEME } from "./integrations/editor/DiffViewProvider"
-import { McpServerManager } from "./services/mcp/McpServerManager"
 import { TerminalRegistry } from "./integrations/terminal/TerminalRegistry"
+import { McpServerManager } from "./services/mcp/McpServerManager"
 import { API } from "./exports/api"
 import { migrateSettings } from "./utils/migrateSettings"
 
-import { handleUri, registerCommands, registerCodeActions, registerTerminalActions } from "./activate"
+import {
+	handleUri,
+	registerCommands,
+	registerCodeActions,
+	registerTerminalActions,
+	CodeActionProvider,
+} from "./activate"
+import { initializeI18n } from "./i18n"
 
 /**
  * Built using https://github.com/microsoft/vscode-webview-ui-toolkit
