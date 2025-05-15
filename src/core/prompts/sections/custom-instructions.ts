@@ -156,8 +156,19 @@ function formatDirectoryContent(dirPath: string, files: Array<{ filename: string
  * Load rule files from the specified directory
  */
 export async function loadRuleFiles(cwd: string): Promise<string> {
+	// kilocode_change start: add kilocode directory, leave fallback to roo directory
 	// Check for .kilocode/rules/ directory
-	const rooRulesDir = path.join(cwd, ".kilocode", "rules")
+	const kilocodeRulesDir = path.join(cwd, ".kilocode", "rules")
+	if (await directoryExists(kilocodeRulesDir)) {
+		const files = await readTextFilesFromDirectory(kilocodeRulesDir)
+		if (files.length > 0) {
+			return formatDirectoryContent(kilocodeRulesDir, files)
+		}
+	}
+	// kilocode_change end
+
+	// Check for .roo/rules/ directory as fallback
+	const rooRulesDir = path.join(cwd, ".roo", "rules")
 	if (await directoryExists(rooRulesDir)) {
 		const files = await readTextFilesFromDirectory(rooRulesDir)
 		if (files.length > 0) {
@@ -192,13 +203,27 @@ export async function addCustomInstructions(
 	let usedRuleFile = ""
 
 	if (mode) {
+		// kilocode_change start: add kilocode directory, leave fallback to roo directory
 		// Check for .kilocode/rules-${mode}/ directory
-		const modeRulesDir = path.join(cwd, ".kilocode", `rules-${mode}`)
-		if (await directoryExists(modeRulesDir)) {
-			const files = await readTextFilesFromDirectory(modeRulesDir)
+		const kilocodeModeRulesDir = path.join(cwd, ".kilocode", `rules-${mode}`)
+		if (await directoryExists(kilocodeModeRulesDir)) {
+			const files = await readTextFilesFromDirectory(kilocodeModeRulesDir)
 			if (files.length > 0) {
-				modeRuleContent = formatDirectoryContent(modeRulesDir, files)
-				usedRuleFile = modeRulesDir
+				modeRuleContent = formatDirectoryContent(kilocodeModeRulesDir, files)
+				usedRuleFile = kilocodeModeRulesDir
+			}
+		}
+		// kilocode_change end
+
+		// Check for .roo/rules-${mode}/ directory
+		if (!modeRuleContent) {
+			const rooModeRulesDir = path.join(cwd, ".roo", `rules-${mode}`)
+			if (await directoryExists(rooModeRulesDir)) {
+				const files = await readTextFilesFromDirectory(rooModeRulesDir)
+				if (files.length > 0) {
+					modeRuleContent = formatDirectoryContent(rooModeRulesDir, files)
+					usedRuleFile = rooModeRulesDir
+				}
 			}
 		}
 
