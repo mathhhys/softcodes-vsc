@@ -1,10 +1,8 @@
 # Roo Code Changelog
 
-## 3.17.2
+## 3.17.2 - 2025-05-15
 
-### Patch Changes
-
-- Revert "Switch to the new Roo message parser"
+- Revert "Switch to the new Roo message parser" (appears to cause a tool parsing bug)
 - Lock the versions of vsce and ovsx
 
 ## [3.17.1] - 2025-05-15
