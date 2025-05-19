@@ -1251,7 +1251,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			terminalZshP10k,
 			terminalZdotdir,
 			fuzzyMatchThreshold,
-			mcpEnabled,
+			// mcpEnabled,  // kilocode_change: always true
 			enableMcpServerCreation,
 			alwaysApproveResubmit,
 			requestDelaySeconds,
@@ -1330,7 +1330,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			terminalZshP10k: terminalZshP10k ?? false,
 			terminalZdotdir: terminalZdotdir ?? false,
 			fuzzyMatchThreshold: fuzzyMatchThreshold ?? 1.0,
-			mcpEnabled: mcpEnabled ?? true,
+			mcpEnabled: true, // kilocode_change: always true
 			enableMcpServerCreation: enableMcpServerCreation ?? true,
 			alwaysApproveResubmit: alwaysApproveResubmit ?? false,
 			requestDelaySeconds: requestDelaySeconds ?? 10,
@@ -1427,7 +1427,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			terminalCompressProgressBar: stateValues.terminalCompressProgressBar ?? true,
 			mode: stateValues.mode ?? defaultModeSlug,
 			language: stateValues.language ?? formatLanguage(vscode.env.language),
-			mcpEnabled: stateValues.mcpEnabled ?? true,
+			mcpEnabled: true, // kilocode_change: always true
 			enableMcpServerCreation: stateValues.enableMcpServerCreation ?? true,
 			alwaysApproveResubmit: stateValues.alwaysApproveResubmit ?? false,
 			requestDelaySeconds: Math.max(5, stateValues.requestDelaySeconds ?? 10),

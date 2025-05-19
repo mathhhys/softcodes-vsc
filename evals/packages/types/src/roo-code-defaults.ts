@@ -58,7 +58,7 @@ export const rooCodeDefaults: RooCodeSettings = {
 	language: "en",
 	telemetrySetting: "enabled",
 
-	mcpEnabled: false,
+	mcpEnabled: true,
 
 	mode: "code",
 
