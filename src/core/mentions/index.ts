@@ -278,4 +278,4 @@ export async function getLatestTerminalOutput(): Promise<string> {
 }
 
 // Export processUserContentMentions from its own file
-export { processUserContentMentions } from "./processUserContentMentions"
+export { loadContext } from "./processUserContentMentions"

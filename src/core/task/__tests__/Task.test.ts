@@ -12,7 +12,7 @@ import { ClineProvider } from "../../webview/ClineProvider"
 import { ProviderSettings, ModelInfo } from "../../../shared/api"
 import { ApiStreamChunk } from "../../../api/transform/stream"
 import { ContextProxy } from "../../config/ContextProxy"
-import { processUserContentMentions } from "../../mentions/processUserContentMentions"
+import { loadContext } from "../../mentions/processUserContentMentions"
 
 jest.mock("execa", () => ({
 	execa: jest.fn(),
@@ -817,7 +817,7 @@ describe("Cline", () => {
 						} as Anthropic.ToolResultBlockParam,
 					]
 
-					const processedContent = await processUserContentMentions({
+					const [processedContent] = await loadContext({
 						userContent,
 						cwd: cline.cwd,
 						urlContentFetcher: cline.urlContentFetcher,
