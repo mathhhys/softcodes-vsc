@@ -17,7 +17,7 @@ export const openRouterModelSchema = z.object({
 	description: z.string().optional(),
 	context_length: z.number(),
 	max_completion_tokens: z.number().nullish(),
-	preferredIndex: z.number().optional(), // kilocode_change
+	preferredIndex: z.number().nullish(), // kilocode_change
 	architecture: z
 		.object({
 			modality: z.string().nullish(),
