@@ -1031,7 +1031,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		if (kilorulesErorr) {
 			await this.say(
 				"error",
-				"Issue with processing the /newrule command. Double check that, if '.kilorules' already exists, it's a directory and not a file. Otherwise there was an issue referencing this file/directory",
+				"Issue with processing the /newrule command. Double check that, if '.kilocode/rules' already exists, it's a directory and not a file. Otherwise there was an issue referencing this file/directory",
 			)
 		}
 

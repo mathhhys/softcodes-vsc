@@ -3,8 +3,8 @@ import * as path from "path"
 import fs from "fs/promises"
 
 /**
- * Converts .kilorules file to directory and places old .kilorule file inside directory, renaming it
- * Doesn't do anything if .kilorules dir already exists or doesn't exist
+ * Converts .kilocode/rules file to directory and places old .kilocode/rules file inside directory, renaming it
+ * Doesn't do anything if .kilocode/rules dir already exists or doesn't exist
  * Returns whether there are any uncaught errors
  */
 export async function ensureLocalKilorulesDirExists(
@@ -15,7 +15,7 @@ export async function ensureLocalKilorulesDirExists(
 		const exists = await fileExistsAtPath(kilorulePath)
 
 		if (exists && !(await isDirectory(kilorulePath))) {
-			// logic to convert .clinerules file into directory, and rename the rules file to {defaultRuleFilename}
+			// logic to convert file into directory, and rename the rules file to {defaultRuleFilename}
 			const content = await fs.readFile(kilorulePath, "utf8")
 			const tempPath = kilorulePath + ".bak"
 			await fs.rename(kilorulePath, tempPath) // create backup
