@@ -13,6 +13,10 @@ export function getSupportedSlashCommands(customModes?: any[]): SlashCommand[] {
 			name: "newtask",
 			description: "Create a new task with context from the current task",
 		},
+		{
+			name: "newrule",
+			description: "Create a new Kilo rule with context from your conversation",
+		},
 	]
 
 	// Add mode-switching commands dynamically

@@ -1036,6 +1036,7 @@ export const toolNames = [
 	"switch_mode",
 	"new_task",
 	"fetch_instructions",
+	"new_rule",
 ] as const
 
 export const toolNamesSchema = z.enum(toolNames)

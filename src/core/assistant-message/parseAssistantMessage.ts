@@ -74,8 +74,10 @@ export function parseAssistantMessage(assistantMessage: string): AssistantMessag
 				// To work around this, we get the string between the starting
 				// ontent tag and the LAST content tag.
 				const contentParamName: ToolParamName = "content"
-
-				if (currentToolUse.name === "write_to_file" && accumulator.endsWith(`</${contentParamName}>`)) {
+				if (
+					(currentToolUse.name === "write_to_file" || currentToolUse.name === "new_rule") && // kilocode_change
+					accumulator.endsWith(`</${contentParamName}>`)
+				) {
 					const toolContent = accumulator.slice(currentToolUseStartIndex)
 					const contentStartTag = `<${contentParamName}>`
 					const contentEndTag = `</${contentParamName}>`

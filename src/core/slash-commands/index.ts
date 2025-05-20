@@ -1,14 +1,15 @@
-import { newTaskToolResponse } from "../prompts/commands"
+import { newTaskToolResponse, newRuleToolResponse } from "../prompts/commands"
 
 /**
  * Processes text for slash commands and transforms them with appropriate instructions
  * This is called after parseMentions() to process any slash commands in the user's message
  */
-export function parseSlashCommands(text: string): string {
-	const SUPPORTED_COMMANDS = ["newtask"]
+export function parseSlashCommands(text: string): { processedText: string; needsKilorulesFileCheck: boolean } {
+	const SUPPORTED_COMMANDS = ["newtask", "newrule"]
 
 	const commandReplacements: Record<string, string> = {
 		newtask: newTaskToolResponse(),
+		newrule: newRuleToolResponse(),
 	}
 
 	// this currently allows matching prepended whitespace prior to /slash-command
@@ -46,11 +47,11 @@ export function parseSlashCommands(text: string): string {
 					text.substring(0, slashCommandStartIndex) + text.substring(slashCommandEndIndex)
 				const processedText = commandReplacements[commandName] + textWithoutSlashCommand
 
-				return processedText
+				return { processedText, needsKilorulesFileCheck: commandName === "newrule" ? true : false }
 			}
 		}
 	}
 
 	// if no supported commands are found, return the original text
-	return text
+	return { processedText: text, needsKilorulesFileCheck: false }
 }

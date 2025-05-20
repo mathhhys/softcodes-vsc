@@ -75,10 +75,10 @@ import {
 	checkpointRestore,
 	checkpointDiff,
 } from "../checkpoints"
-import { processUserContentMentions } from "../mentions/processUserContentMentions"
 import { ApiMessage } from "../task-persistence/apiMessages"
 import { getMessagesSinceLastSummary } from "../condense"
 import { maybeRemoveImageBlocks } from "../../api/transform/image-cleaning"
+import { loadContext } from "../mentions/processUserContentMentions" // kilocode_change
 
 export type ClineEvents = {
 	message: [{ action: "created" | "updated"; message: ClineMessage }]
@@ -1019,7 +1019,7 @@ export class Task extends EventEmitter<ClineEvents> {
 			}),
 		)
 
-		const parsedUserContent = await processUserContentMentions({
+		const [parsedUserContent, kilorulesErorr] = await loadContext({
 			userContent,
 			cwd: this.cwd,
 			urlContentFetcher: this.urlContentFetcher,
@@ -1027,6 +1027,13 @@ export class Task extends EventEmitter<ClineEvents> {
 		})
 
 		const environmentDetails = await getEnvironmentDetails(this, includeFileDetails)
+
+		if (kilorulesErorr) {
+			await this.say(
+				"error",
+				"Issue with processing the /newrule command. Double check that, if '.kilorules' already exists, it's a directory and not a file. Otherwise there was an issue referencing this file/directory",
+			)
+		}
 
 		// Add environment details as its own text block, separate from tool
 		// results.
