@@ -243,7 +243,7 @@ export async function getEnvironmentDetails(cline: Task, includeFileDetails: boo
 	if (
 		!isToolAllowedForMode("write_to_file", currentMode, customModes ?? [], { apply_diff: cline.diffEnabled }) &&
 		!isToolAllowedForMode("apply_diff", currentMode, customModes ?? [], { apply_diff: cline.diffEnabled }) &&
-		!isToolAllowedForMode("new_rule", currentMode, customModes ?? [], { apply_diff: cline.diffEnabled })
+		!isToolAllowedForMode("new_rule", currentMode, customModes ?? [], { apply_diff: cline.diffEnabled }) // kilocode_change
 	) {
 		const currentModeName = getModeBySlug(currentMode, customModes)?.name ?? currentMode
 		const defaultModeName = getModeBySlug(defaultModeSlug, customModes)?.name ?? defaultModeSlug

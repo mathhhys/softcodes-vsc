@@ -48,6 +48,7 @@ Below is the the user's input when they indicated that they wanted to create a n
 </explicit_instructions>\n
 `
 
+// kilocode_change start
 export const newRuleToolResponse = () =>
 	`<explicit_instructions type="new_rule">
 The user has explicitly asked you to help them create a new Kilo rule file inside the .kilocode/rules top-level directory based on the conversation up to this point in time. The user may have provided instructions or additional information for you to consider when creating the new Kilo rule.
@@ -95,3 +96,4 @@ Example:
 Below is the user's input when they indicated that they wanted to create a new Kilo rule file.
 </explicit_instructions>\n
 `
+// kilocode_change end
