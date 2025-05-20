@@ -25,7 +25,7 @@ const modelRouterBaseModelSchema = z.object({
 	description: z.string().optional(),
 	context_length: z.number(),
 	max_completion_tokens: z.number().nullish(),
-	preferredIndex: z.number().optional(), // kilocode_change
+	preferredIndex: z.number().nullish(), // kilocode_change
 	pricing: openRouterPricingSchema.optional(),
 })
 

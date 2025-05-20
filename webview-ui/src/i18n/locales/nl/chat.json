@@ -12,6 +12,9 @@
 		"export": "Taakgeschiedenis exporteren",
 		"delete": "Taak verwijderen (Shift + Klik om bevestiging over te slaan)"
 	},
+	"history": {
+		"title": "Geschiedenis"
+	},
 	"unpin": "Losmaken",
 	"pin": "Vastmaken",
 	"retry": {

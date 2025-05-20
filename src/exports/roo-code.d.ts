@@ -249,7 +249,7 @@ type ProviderSettings = {
 	openAiModelId?: string | undefined
 	openAiCustomModelInfo?:
 		| ({
-				preferredIndex?: number | undefined
+				preferredIndex?: (number | null) | undefined
 				maxTokens?: (number | null) | undefined
 				maxThinkingTokens?: (number | null) | undefined
 				contextWindow: number
@@ -643,7 +643,7 @@ type IpcMessage =
 								openAiModelId?: string | undefined
 								openAiCustomModelInfo?:
 									| ({
-											preferredIndex?: number | undefined
+											preferredIndex?: (number | null) | undefined
 											maxTokens?: (number | null) | undefined
 											maxThinkingTokens?: (number | null) | undefined
 											contextWindow: number
@@ -1118,7 +1118,7 @@ type TaskCommand =
 					openAiModelId?: string | undefined
 					openAiCustomModelInfo?:
 						| ({
-								preferredIndex?: number | undefined
+								preferredIndex?: (number | null) | undefined
 								maxTokens?: (number | null) | undefined
 								maxThinkingTokens?: (number | null) | undefined
 								contextWindow: number

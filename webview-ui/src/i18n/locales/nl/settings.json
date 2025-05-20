@@ -79,6 +79,10 @@
 			"allowedCommandsDescription": "Commando-prefixen die automatisch kunnen worden uitgevoerd als 'Altijd goedkeuren voor uitvoeren' is ingeschakeld. Voeg * toe om alle commando's toe te staan (gebruik met voorzichtigheid).",
 			"commandPlaceholder": "Voer commando-prefix in (bijv. 'git ')",
 			"addButton": "Toevoegen"
+		},
+		"showMenu": {
+			"label": "Menu voor automatisch goedkeuren weergeven in chatweergave",
+			"description": "Wanneer ingeschakeld, wordt het menu voor automatisch goedkeuren onderaan de chatweergave weergegeven, zodat u snel toegang hebt tot de instellingen voor automatisch goedkeuren"
 		}
 	},
 	"providers": {
