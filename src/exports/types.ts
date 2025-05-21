@@ -559,6 +559,7 @@ type RooCodeEvents = {
 			| "switch_mode"
 			| "new_task"
 			| "fetch_instructions"
+			| "new_rule"
 		),
 		string,
 	]
