@@ -78,7 +78,7 @@ import {
 import { ApiMessage } from "../task-persistence/apiMessages"
 import { getMessagesSinceLastSummary } from "../condense"
 import { maybeRemoveImageBlocks } from "../../api/transform/image-cleaning"
-import { processKiloUserContentMentions } from "../mentions/processKiloUserContentMentions"
+import { processKiloUserContentMentions } from "../mentions/processKiloUserContentMentions" // kilocode_change
 
 export type ClineEvents = {
 	message: [{ action: "created" | "updated"; message: ClineMessage }]
