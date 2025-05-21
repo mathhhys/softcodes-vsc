@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.18.1
+
+### Patch Changes
+
+- Fix vsix sanity check
+
 ## [3.18.0] - 2025-05-21
 
 - Add support for Gemini 2.5 Flash preview models (thanks @shariqriazz and @daniel-lxs!)
