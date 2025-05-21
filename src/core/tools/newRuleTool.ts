@@ -5,7 +5,6 @@ import { Task } from "../task/Task"
 import { ClineSayTool } from "../../shared/ExtensionMessage"
 import { formatResponse } from "../prompts/responses"
 import { ToolUse, AskApproval, HandleError, PushToolResult, RemoveClosingTag } from "../../shared/tools"
-import { RecordSource } from "../context-tracking/FileContextTrackerTypes"
 import { fileExistsAtPath } from "../../utils/fs"
 import { addLineNumbers, stripLineNumbers, everyLineHasLineNumbers } from "../../integrations/misc/extract-text"
 import { getReadablePath } from "../../utils/path"
@@ -144,11 +143,6 @@ export async function newRuleTool(
 			}
 
 			const { newProblemsMessage, userEdits, finalContent } = await cline.diffViewProvider.saveChanges()
-
-			// Track file edit operation
-			if (relPath) {
-				await cline.getFileContextTracker().trackFileContext(relPath, "roo_edited" as RecordSource)
-			}
 
 			cline.didEditFile = true // used to determine if we should wait for busy terminal to update before sending api request
 
