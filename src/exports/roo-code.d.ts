@@ -72,6 +72,8 @@ type GlobalSettings = {
 	alwaysAllowSubtasks?: boolean | undefined
 	alwaysAllowExecute?: boolean | undefined
 	allowedCommands?: string[] | undefined
+	allowedMaxRequests?: number | undefined
+	autoCondenseContextPercent?: number | undefined
 	browserToolEnabled?: boolean | undefined
 	browserViewportSize?: string | undefined
 	showAutoApproveMenu?: boolean | undefined
@@ -183,6 +185,31 @@ type GlobalSettings = {
 	enhancementApiConfigId?: string | undefined
 	historyPreviewCollapsed?: boolean | undefined
 }
+
+type ProviderName =
+	| "kilocode"
+	| "fireworks"
+	| "anthropic"
+	| "glama"
+	| "openrouter"
+	| "bedrock"
+	| "vertex"
+	| "openai"
+	| "ollama"
+	| "vscode-lm"
+	| "lmstudio"
+	| "gemini"
+	| "openai-native"
+	| "mistral"
+	| "deepseek"
+	| "unbound"
+	| "requesty"
+	| "human-relay"
+	| "fake-ai"
+	| "xai"
+	| "groq"
+	| "chutes"
+	| "litellm"
 
 type ProviderSettings = {
 	apiProvider?:
@@ -379,6 +406,7 @@ type ClineMessage = {
 				| "payment_required_prompt"
 				| "report_bug"
 				| "condense"
+				| "auto_approval_max_req_reached"
 		  )
 		| undefined
 	say?:
@@ -404,6 +432,7 @@ type ClineMessage = {
 				| "checkpoint_saved"
 				| "rooignore_error"
 				| "diff_error"
+				| "condense_context"
 		  )
 		| undefined
 	text?: string | undefined
@@ -420,6 +449,14 @@ type ClineMessage = {
 		| {
 				icon?: string | undefined
 				text?: string | undefined
+		  }
+		| undefined
+	contextCondense?:
+		| {
+				cost: number
+				prevContextTokens: number
+				newContextTokens: number
+				summary: string
 		  }
 		| undefined
 }
@@ -457,6 +494,7 @@ type RooCodeEvents = {
 							| "payment_required_prompt"
 							| "report_bug"
 							| "condense"
+							| "auto_approval_max_req_reached"
 					  )
 					| undefined
 				say?:
@@ -482,6 +520,7 @@ type RooCodeEvents = {
 							| "checkpoint_saved"
 							| "rooignore_error"
 							| "diff_error"
+							| "condense_context"
 					  )
 					| undefined
 				text?: string | undefined
@@ -498,6 +537,14 @@ type RooCodeEvents = {
 					| {
 							icon?: string | undefined
 							text?: string | undefined
+					  }
+					| undefined
+				contextCondense?:
+					| {
+							cost: number
+							prevContextTokens: number
+							newContextTokens: number
+							summary: string
 					  }
 					| undefined
 			}
@@ -797,6 +844,8 @@ type IpcMessage =
 								alwaysAllowSubtasks?: boolean | undefined
 								alwaysAllowExecute?: boolean | undefined
 								allowedCommands?: string[] | undefined
+								allowedMaxRequests?: number | undefined
+								autoCondenseContextPercent?: number | undefined
 								browserToolEnabled?: boolean | undefined
 								browserViewportSize?: string | undefined
 								showAutoApproveMenu?: boolean | undefined
@@ -949,6 +998,7 @@ type IpcMessage =
 												| "payment_required_prompt"
 												| "report_bug"
 												| "condense"
+												| "auto_approval_max_req_reached"
 										  )
 										| undefined
 									say?:
@@ -974,6 +1024,7 @@ type IpcMessage =
 												| "checkpoint_saved"
 												| "rooignore_error"
 												| "diff_error"
+												| "condense_context"
 										  )
 										| undefined
 									text?: string | undefined
@@ -990,6 +1041,14 @@ type IpcMessage =
 										| {
 												icon?: string | undefined
 												text?: string | undefined
+										  }
+										| undefined
+									contextCondense?:
+										| {
+												cost: number
+												prevContextTokens: number
+												newContextTokens: number
+												summary: string
 										  }
 										| undefined
 								}
@@ -1280,6 +1339,8 @@ type TaskCommand =
 					alwaysAllowSubtasks?: boolean | undefined
 					alwaysAllowExecute?: boolean | undefined
 					allowedCommands?: string[] | undefined
+					allowedMaxRequests?: number | undefined
+					autoCondenseContextPercent?: number | undefined
 					browserToolEnabled?: boolean | undefined
 					browserViewportSize?: string | undefined
 					showAutoApproveMenu?: boolean | undefined
@@ -1428,6 +1489,7 @@ type TaskEvent =
 									| "payment_required_prompt"
 									| "report_bug"
 									| "condense"
+									| "auto_approval_max_req_reached"
 							  )
 							| undefined
 						say?:
@@ -1453,6 +1515,7 @@ type TaskEvent =
 									| "checkpoint_saved"
 									| "rooignore_error"
 									| "diff_error"
+									| "condense_context"
 							  )
 							| undefined
 						text?: string | undefined
@@ -1469,6 +1532,14 @@ type TaskEvent =
 							| {
 									icon?: string | undefined
 									text?: string | undefined
+							  }
+							| undefined
+						contextCondense?:
+							| {
+									cost: number
+									prevContextTokens: number
+									newContextTokens: number
+									summary: string
 							  }
 							| undefined
 					}
@@ -1542,6 +1613,40 @@ type TaskEvent =
 			]
 	  }
 
+declare const Package: {
+	readonly publisher: string
+	readonly name: string
+	readonly version: string
+	readonly outputChannel: string
+}
+/**
+ * ProviderName
+ */
+declare const providerNames: readonly [
+	"kilocode",
+	"fireworks",
+	"anthropic",
+	"glama",
+	"openrouter",
+	"bedrock",
+	"vertex",
+	"openai",
+	"ollama",
+	"vscode-lm",
+	"lmstudio",
+	"gemini",
+	"openai-native",
+	"mistral",
+	"deepseek",
+	"unbound",
+	"requesty",
+	"human-relay",
+	"fake-ai",
+	"xai",
+	"groq",
+	"chutes",
+	"litellm",
+]
 /**
  * RooCodeEvent
  */
@@ -1728,6 +1833,8 @@ export {
 	IpcMessageType,
 	IpcOrigin,
 	type IpcServerEvents,
+	Package,
+	type ProviderName,
 	type ProviderSettings,
 	type ProviderSettingsEntry,
 	type RooCodeAPI,
@@ -1738,4 +1845,5 @@ export {
 	type TaskCommand,
 	type TaskEvent,
 	type TokenUsage,
+	providerNames,
 }
