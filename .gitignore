@@ -10,6 +10,9 @@ mock/
 
 .DS_Store
 
+# IDEs
+.idea
+
 # Builds
 bin/
 *.vsix
@@ -41,3 +44,7 @@ logs
 
 # kilocode_change
 .history/
+
+# IntelliJ and Qodo plugin folders
+.idea/
+.qodo/

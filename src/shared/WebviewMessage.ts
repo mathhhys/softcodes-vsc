@@ -62,7 +62,9 @@ export interface WebviewMessage {
 		| "alwaysAllowBrowser"
 		| "alwaysAllowMcp"
 		| "alwaysAllowModeSwitch"
+		| "allowedMaxRequests"
 		| "alwaysAllowSubtasks"
+		| "autoCondenseContextPercent"
 		| "playSound"
 		| "playTts"
 		| "stopTts"
@@ -149,6 +151,7 @@ export interface WebviewMessage {
 		| "balanceDataResponse" // kilocode_change
 		| "condense" // kilocode_change
 		| "toggleWorkflow" // kilocode_change
+		| "condenseTaskContextRequest"
 	text?: string
 	disabled?: boolean
 	askResponse?: ClineAskResponse
