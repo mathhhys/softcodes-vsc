@@ -23,7 +23,7 @@ export const Package = {
 	publisher: process.env.PKG_PUBLISHER || publisher,
 	name: process.env.PKG_NAME || name,
 	version: process.env.PKG_VERSION || version,
-	outputChannel: process.env.PKG_OUTPUT_CHANNEL || "Roo-Code",
+	outputChannel: process.env.PKG_OUTPUT_CHANNEL || "Kilo-Code",
 } as const
 
 /**
