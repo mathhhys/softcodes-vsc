@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Próg wyzwalający inteligentną kondensację kontekstu",
-			"description": "Gdy okno kontekstu osiągnie ten próg, Roo automatycznie je skondensuje."
+			"description": "Gdy okno kontekstu osiągnie ten próg, Kilo Code automatycznie je skondensuje."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Automatycznie wyzwalaj inteligentną kondensację kontekstu",

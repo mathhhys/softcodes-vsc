@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Drempelwaarde om intelligente contextcompressie te activeren",
-			"description": "Wanneer het contextvenster deze drempelwaarde bereikt, zal Roo het automatisch comprimeren."
+			"description": "Wanneer het contextvenster deze drempelwaarde bereikt, zal Kilo Code het automatisch comprimeren."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Automatisch intelligente contextcompressie activeren",

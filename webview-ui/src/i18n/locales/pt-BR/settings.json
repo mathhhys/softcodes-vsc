@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Limite para acionar a condensação inteligente de contexto",
-			"description": "Quando a janela de contexto atingir este limite, o Roo a condensará automaticamente."
+			"description": "Quando a janela de contexto atingir este limite, o Kilo Code a condensará automaticamente."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Acionar automaticamente a condensação inteligente de contexto",

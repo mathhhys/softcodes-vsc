@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Threshold to trigger intelligent context condensing",
-			"description": "When the context window reaches this threshold, Roo will automatically condense it."
+			"description": "When the context window reaches this threshold, Kilo Code will automatically condense it."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Automatically trigger intelligent context condensing",

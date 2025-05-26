@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Akıllı bağlam sıkıştırmayı tetikleyecek eşik",
-			"description": "Bağlam penceresi bu eşiğe ulaştığında, Roo otomatik olarak sıkıştıracaktır."
+			"description": "Bağlam penceresi bu eşiğe ulaştığında, Kilo Code otomatik olarak sıkıştıracaktır."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Akıllı bağlam sıkıştırmayı otomatik olarak tetikle",

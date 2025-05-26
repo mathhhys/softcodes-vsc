@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Ngưỡng kích hoạt nén ngữ cảnh thông minh",
-			"description": "Khi cửa sổ ngữ cảnh đạt đến ngưỡng này, Roo sẽ tự động nén nó."
+			"description": "Khi cửa sổ ngữ cảnh đạt đến ngưỡng này, Kilo Code sẽ tự động nén nó."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Tự động kích hoạt nén ngữ cảnh thông minh",

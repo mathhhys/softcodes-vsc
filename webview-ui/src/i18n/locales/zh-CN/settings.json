@@ -410,7 +410,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "触发智能上下文压缩的阈值",
-			"description": "当上下文窗口达到此阈值时，Roo 将自动压缩它。"
+			"description": "当上下文窗口达到此阈值时，Kilo Code 将自动压缩它。"
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "自动触发智能上下文压缩",

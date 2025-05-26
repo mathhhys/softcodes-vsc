@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Seuil pour déclencher la condensation intelligente du contexte",
-			"description": "Lorsque la fenêtre de contexte atteint ce seuil, Roo la condensera automatiquement."
+			"description": "Lorsque la fenêtre de contexte atteint ce seuil, Kilo Code la condensera automatiquement."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Déclencher automatiquement la condensation intelligente du contexte",

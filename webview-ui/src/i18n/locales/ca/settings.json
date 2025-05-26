@@ -409,7 +409,7 @@
 		"warning": "⚠️",
 		"autoCondenseContextPercent": {
 			"label": "Llindar per activar la condensació intel·ligent de context",
-			"description": "Quan la finestra de context assoleix aquest llindar, Roo la condensarà automàticament."
+			"description": "Quan la finestra de context assoleix aquest llindar, Kilo Code la condensarà automàticament."
 		},
 		"AUTO_CONDENSE_CONTEXT": {
 			"name": "Activar automàticament la condensació intel·ligent de context",
