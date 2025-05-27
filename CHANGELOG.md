@@ -1,5 +1,15 @@
 # Roo Code Changelog
 
+## 3.18.5
+
+### Patch Changes
+
+- Improve the prompt for the "modes" e2e test
+- Add thinking controls for Requesty
+- Add version to @roo-code/types
+- v3.18.5
+- Fix Posthog by correctly copying .env in the build process
+
 ## [3.18.4] - 2025-05-25
 
 - Fix codebase indexing settings saving and Ollama indexing (thanks @daniel-lxs!)
