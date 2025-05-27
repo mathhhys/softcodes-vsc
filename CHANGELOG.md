@@ -1,14 +1,11 @@
 # Roo Code Changelog
 
-## 3.18.5
+## [3.18.5] - 2025-05-27
 
-### Patch Changes
-
-- Improve the prompt for the "modes" e2e test
-- Add thinking controls for Requesty
-- Add version to @roo-code/types
-- v3.18.5
-- Fix Posthog by correctly copying .env in the build process
+- Add thinking controls for Requesty (thanks @dtrugman!)
+- Re-enable telemetry
+- Improve zh-TW Traditional Chinese locale (thanks @chrarnoldus)
+- Improve model metadata for LiteLLM
 
 ## [3.18.4] - 2025-05-25
 
