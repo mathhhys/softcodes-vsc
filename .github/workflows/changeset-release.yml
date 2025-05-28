@@ -56,7 +56,7 @@ jobs:
               with:
                   commit: "changeset version bump"
                   title: "Changeset version bump"
-                  version: npm run version-packages # This performs the changeset version bump
+                  version: npx pnpm changeset:version # This performs the changeset version bump
               env:
                   GITHUB_TOKEN: ${{ secrets.CROSS_REPO_ACCESS_TOKEN }}
 

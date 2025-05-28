@@ -24,12 +24,12 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npx pnpm install
-      - name: Compile
-        run: npm run compile
+      - name: Build
+        run: npx pnpm build
       - name: Check types
-        run: npm run check-types
+        run: npx pnpm check-types
       - name: Lint
-        run: npm run lint
+        run: npx pnpm lint
 
   check-translations:
     runs-on: ubuntu-latest
@@ -61,8 +61,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npx pnpm install
-      - name: Compile (to build and copy WASM files)
-        run: npm run compile
+      - name: Build (to build and copy WASM files)
+        run: npx pnpm build
       - name: Run unit tests
         run: npx jest --silent
 
