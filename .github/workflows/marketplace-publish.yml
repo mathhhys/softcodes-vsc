@@ -98,5 +98,5 @@ jobs:
                     --title "Release v${current_package_version}" \
                     --notes "$changelog_content" \
                     --target ${{ env.GIT_REF }} \
-                    bin/roo-cline-${current_package_version}.vsix
+                    bin/kilo-code-${current_package_version}.vsix
                   echo "Successfully created GitHub Release v${current_package_version}"
