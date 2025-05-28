@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm run install:all
+        run: pnpm install
       - name: Compile
         run: npm run compile
       - name: Check types
@@ -42,7 +42,7 @@ jobs:
           node-version: '18'
           cache: 'npm'
       - name: Install dependencies
-        run: npm run install:all
+        run: pnpm install
       - name: Verify all translations are complete
         run: node scripts/find-missing-translations.js
 
@@ -60,7 +60,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm run install:all
+        run: pnpm install
       - name: Compile (to build and copy WASM files)
         run: npm run compile
       - name: Run unit tests
@@ -80,7 +80,7 @@ jobs:
           node-version: '18'
           cache: 'npm'
       - name: Install dependencies
-        run: npm run install:all
+        run: pnpm install
       - name: Run unit tests
         working-directory: webview-ui
         run: npx jest --silent
@@ -120,7 +120,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm run install:all
+        run: pnpm install
       - name: Create .env.local file
         working-directory: e2e
         run: echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" > .env.local
