@@ -64,6 +64,7 @@ jobs:
       - name: Build (to build and copy WASM files)
         run: npx pnpm build
       - name: Run unit tests
+        working-directory: src
         run: npx jest --silent
 
   test-webview:
