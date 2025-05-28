@@ -31,7 +31,7 @@ jobs:
             - name: Install Dependencies
               run: |
                   npm install -g vsce ovsx
-                  pnpm install
+                  npx pnpm install
             #  To be enabled if we do  want to use posthog in extension perhaps in the future?
             # - name: Create .env file
             #   run: echo "POSTHOG_API_KEY=${{ secrets.POSTHOG_API_KEY }}" >> .env
