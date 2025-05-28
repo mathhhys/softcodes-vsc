@@ -10,6 +10,7 @@ on:
 
 env:
   NODE_VERSION: 20.18.1
+  PNPM_VERSION: 10.8.1
 
 jobs:
   compile:
@@ -17,32 +18,40 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npx pnpm install
+        run: pnpm install
       - name: Build
-        run: npx pnpm build
+        run: pnpm build
       - name: Check types
-        run: npx pnpm check-types
+        run: pnpm check-types
       - name: Lint
-        run: npx pnpm lint
+        run: pnpm lint
 
   check-translations:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npx pnpm install
+        run: pnpm install
       - name: Verify all translations are complete
         run: node scripts/find-missing-translations.js
 
@@ -54,18 +63,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npx pnpm install
+        run: pnpm install
       - name: Build (to build and copy WASM files)
-        run: npx pnpm build
+        run: pnpm build
       - name: Run unit tests
         working-directory: src
-        run: npx jest --silent
+        run: pnpm test
 
   test-webview:
     runs-on: ${{ matrix.os }}
@@ -75,16 +88,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npx pnpm install
+        run: pnpm install
       - name: Run unit tests
         working-directory: webview-ui
-        run: npx jest --silent
+        run: pnpm test
 
   unit-test:
     needs: [test-extension, test-webview]
@@ -115,11 +132,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'pnpm'
       - name: Install dependencies
         run: npx pnpm install
       - name: Create .env.local file
@@ -127,4 +148,4 @@ jobs:
         run: echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" > .env.local
       - name: Run integration tests
         working-directory: e2e
-        run: xvfb-run -a npm run ci
+        run: xvfb-run -a pnpm ci
