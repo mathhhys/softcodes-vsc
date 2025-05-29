@@ -13,6 +13,7 @@ env:
   PNPM_VERSION: 10.8.1
 
 jobs:
+<<<<<<< HEAD
   compile:
     runs-on: ubuntu-latest
     steps:
@@ -36,6 +37,8 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+=======
+>>>>>>> upstream-at-v3.18.5
   check-translations:
     runs-on: ubuntu-latest
     steps:
@@ -55,11 +58,16 @@ jobs:
       - name: Verify all translations are complete
         run: node scripts/find-missing-translations.js
 
+<<<<<<< HEAD
   test-extension:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+=======
+  knip:
+    runs-on: ubuntu-latest
+>>>>>>> upstream-at-v3.18.5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -74,6 +82,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+<<<<<<< HEAD
       - name: Build (to build and copy WASM files)
         run: pnpm build
       - name: Run unit tests
@@ -105,10 +114,53 @@ jobs:
 
   unit-test:
     needs: [test-extension, test-webview]
+=======
+      - name: Run knip checks
+        run: pnpm knip
+
+  compile:
+>>>>>>> upstream-at-v3.18.5
     runs-on: ubuntu-latest
     steps:
-      - name: NO-OP
-        run: echo "All unit tests passed."
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Lint
+        run: pnpm lint
+      - name: Check types
+        run: pnpm check-types
+
+  platform-unit-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run unit tests
+        run: pnpm test
 
   check-openrouter-api-key:
     runs-on: ubuntu-latest
@@ -147,5 +199,17 @@ jobs:
         working-directory: e2e
         run: echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" > .env.local
       - name: Run integration tests
+<<<<<<< HEAD
         working-directory: e2e
         run: xvfb-run -a pnpm ci
+=======
+        working-directory: apps/vscode-e2e
+        run: xvfb-run -a pnpm test:ci
+
+  unit-test:
+    needs: [platform-unit-test] # [platform-unit-test, integration-test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: NO-OP
+        run: echo "All tests passed."
+>>>>>>> upstream-at-v3.18.5
