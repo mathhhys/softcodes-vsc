@@ -168,8 +168,8 @@
 		"didSearch": "Kilo Code searched this directory for <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Roo wants to search the codebase for <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Roo wants to search the codebase for <code>{{query}}</code> in <code>{{path}}</code>:",
+		"wantsToSearch": "Kilo Code wants to search the codebase for <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Kilo Code wants to search the codebase for <code>{{query}}</code> in <code>{{path}}</code>:",
 		"didSearch": "Found {{count}} result(s) for <code>{{query}}</code>:"
 	},
 	"commandOutput": "Command Output",

@@ -268,8 +268,8 @@
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Roo wil de codebase doorzoeken op <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Roo wil de codebase doorzoeken op <code>{{query}}</code> in <code>{{path}}</code>:",
+		"wantsToSearch": "Kilo Code wil de codebase doorzoeken op <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Kilo Code wil de codebase doorzoeken op <code>{{query}}</code> in <code>{{path}}</code>:",
 		"didSearch": "{{count}} resultaat/resultaten gevonden voor <code>{{query}}</code>:"
 	}
 }

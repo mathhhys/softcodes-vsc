@@ -268,8 +268,8 @@
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Roo хочет выполнить поиск в кодовой базе по <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Roo хочет выполнить поиск в кодовой базе по <code>{{query}}</code> в <code>{{path}}</code>:",
+		"wantsToSearch": "Kilo Code хочет выполнить поиск в кодовой базе по <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Kilo Code хочет выполнить поиск в кодовой базе по <code>{{query}}</code> в <code>{{path}}</code>:",
 		"didSearch": "Найдено {{count}} результат(ов) для <code>{{query}}</code>:"
 	}
 }
