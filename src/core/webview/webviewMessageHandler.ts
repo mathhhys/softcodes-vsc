@@ -302,6 +302,7 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 				glama: {},
 				unbound: {},
 				litellm: {},
+				"kilocode-openrouter": {}, // kilocode_change
 			}
 
 			const safeGetModels = async (options: GetModelsOptions): Promise<ModelRecord> => {

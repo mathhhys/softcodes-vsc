@@ -2221,6 +2221,7 @@ describe("ClineProvider - Router Models", () => {
 				glama: mockModels,
 				unbound: mockModels,
 				litellm: mockModels,
+				"kilocode-openrouter": mockModels,
 			},
 		})
 	})
@@ -2249,6 +2250,7 @@ describe("ClineProvider - Router Models", () => {
 			.mockRejectedValueOnce(new Error("Requesty API error")) // requesty fail
 			.mockResolvedValueOnce(mockModels) // glama success
 			.mockRejectedValueOnce(new Error("Unbound API error")) // unbound fail
+			.mockRejectedValueOnce(new Error("Kilocode-OpenRouter API error")) // kilocode-openrouter fail
 			.mockRejectedValueOnce(new Error("LiteLLM connection failed")) // litellm fail
 
 		await messageHandler({ type: "requestRouterModels" })
@@ -2262,6 +2264,7 @@ describe("ClineProvider - Router Models", () => {
 				glama: mockModels,
 				unbound: {},
 				litellm: {},
+				"kilocode-openrouter": {},
 			},
 		})
 
@@ -2278,6 +2281,13 @@ describe("ClineProvider - Router Models", () => {
 			success: false,
 			error: "Unbound API error",
 			values: { provider: "unbound" },
+		})
+
+		expect(mockPostMessage).toHaveBeenCalledWith({
+			type: "singleRouterModelFetchResponse",
+			success: false,
+			error: "Kilocode-OpenRouter API error",
+			values: { provider: "kilocode-openrouter" },
 		})
 
 		expect(mockPostMessage).toHaveBeenCalledWith({
@@ -2359,6 +2369,7 @@ describe("ClineProvider - Router Models", () => {
 				glama: mockModels,
 				unbound: mockModels,
 				litellm: {},
+				"kilocode-openrouter": mockModels,
 			},
 		})
 	})

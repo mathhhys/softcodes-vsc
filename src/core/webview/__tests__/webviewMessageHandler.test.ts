@@ -70,6 +70,7 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 				glama: mockModels,
 				unbound: mockModels,
 				litellm: mockModels,
+				"kilocode-openrouter": mockModels,
 			},
 		})
 	})
@@ -155,6 +156,7 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 				glama: mockModels,
 				unbound: mockModels,
 				litellm: {},
+				"kilocode-openrouter": mockModels,
 			},
 		})
 	})
@@ -175,6 +177,7 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 			.mockRejectedValueOnce(new Error("Requesty API error")) // requesty
 			.mockResolvedValueOnce(mockModels) // glama
 			.mockRejectedValueOnce(new Error("Unbound API error")) // unbound
+			.mockResolvedValueOnce(mockModels) // kilocode-openrouter
 			.mockRejectedValueOnce(new Error("LiteLLM connection failed")) // litellm
 
 		await webviewMessageHandler(mockClineProvider, {
@@ -190,6 +193,7 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 				glama: mockModels,
 				unbound: {},
 				litellm: {},
+				"kilocode-openrouter": mockModels,
 			},
 		})
 
@@ -219,11 +223,12 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 	it("handles Error objects and string errors correctly", async () => {
 		// Mock providers to fail with different error types
 		mockGetModels
-			.mockRejectedValueOnce(new Error("Structured error message")) // Error object
-			.mockRejectedValueOnce("String error message") // String error
-			.mockRejectedValueOnce({ message: "Object with message" }) // Object error
-			.mockResolvedValueOnce({}) // Success
-			.mockResolvedValueOnce({}) // Success
+			.mockRejectedValueOnce(new Error("Structured error message")) // openrouter - Error object
+			.mockRejectedValueOnce("String error message") // requesty - String error
+			.mockRejectedValueOnce({ message: "Object with message" }) // glama - Object error
+			.mockResolvedValueOnce({}) // unbound - Success
+			.mockResolvedValueOnce({}) // kilocode-openrouter - Success
+			.mockResolvedValueOnce({}) // litellm - Success
 
 		await webviewMessageHandler(mockClineProvider, {
 			type: "requestRouterModels",
