@@ -167,6 +167,8 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		mcpEnabled: true,
 		enableMcpServerCreation: true,
 		alwaysApproveResubmit: false,
+		alwaysAllowWrite: true, // kilocode_change
+		alwaysAllowReadOnly: true, // kilocode_change
 		requestDelaySeconds: 5,
 		currentApiConfigName: "default",
 		listApiConfigMeta: [],
