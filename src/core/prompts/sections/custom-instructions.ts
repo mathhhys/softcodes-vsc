@@ -1,7 +1,6 @@
 import fs from "fs/promises"
 import path from "path"
 
-// kilocode_change start
 let vscodeAPI: typeof import("vscode") | undefined
 try {
 	vscodeAPI = require("vscode")
@@ -11,14 +10,10 @@ try {
 	// This is acceptable as notifications are a progressive enhancement.
 }
 
-let hasShownNonKilocodeRulesMessage = false
-// kilocode_change end
+let hasShownNonKilocodeRulesMessage = false // kilocode_change
 
+import { LANGUAGES, isLanguage } from "../../../shared/language"
 import { Dirent } from "fs"
-
-import { isLanguage } from "@roo-code/types"
-
-import { LANGUAGES } from "../../../shared/language"
 
 /**
  * Safely read a file and return its trimmed content

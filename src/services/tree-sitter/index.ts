@@ -90,8 +90,6 @@ const extensions = [
 	"erb",
 ].map((e) => `.${e}`)
 
-export { extensions }
-
 export async function parseSourceCodeDefinitionsForFile(
 	filePath: string,
 	rooIgnoreController?: RooIgnoreController,

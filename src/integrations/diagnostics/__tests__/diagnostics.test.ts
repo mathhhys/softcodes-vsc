@@ -1,6 +1,5 @@
 import * as vscode from "vscode"
-
-import { diagnosticsToProblemsString } from "../index"
+import { diagnosticsToProblemsString } from ".."
 
 // Mock path module
 jest.mock("path", () => ({

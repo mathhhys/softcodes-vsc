@@ -2,9 +2,7 @@ import * as path from "path"
 import * as vscode from "vscode"
 import { promises as fs } from "fs"
 
-import type { ModeConfig } from "@roo-code/types"
-
-import { getAllModesWithPrompts } from "../../../shared/modes"
+import { ModeConfig, getAllModesWithPrompts } from "../../../shared/modes"
 
 export async function getModesSection(context: vscode.ExtensionContext): Promise<string> {
 	const settingsDir = path.join(context.globalStorageUri.fsPath, "settings")

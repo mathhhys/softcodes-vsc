@@ -18,7 +18,7 @@ function asObjectSafe(value: any): object {
 
 		// Handle pre-existing objects
 		if (typeof value === "object") {
-			return { ...value }
+			return Object.assign({}, value)
 		}
 
 		return {}

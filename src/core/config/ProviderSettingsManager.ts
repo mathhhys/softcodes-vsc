@@ -1,12 +1,7 @@
 import { ExtensionContext } from "vscode"
 import { z } from "zod"
 
-import {
-	type ProviderSettingsEntry,
-	providerSettingsSchema,
-	providerSettingsSchemaDiscriminated,
-} from "@roo-code/types"
-
+import { providerSettingsSchema, ProviderSettingsEntry, providerSettingsSchemaDiscriminated } from "../../schemas"
 import { Mode, modes } from "../../shared/modes"
 
 const providerSettingsWithIdSchema = providerSettingsSchema.extend({ id: z.string().optional() })

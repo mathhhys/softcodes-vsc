@@ -1,9 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
-
-import type { ModelInfo } from "@roo-code/types"
-
-import type { ApiHandler, SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
-import type { ApiHandlerOptions } from "../../shared/api"
+import { ApiHandler, SingleCompletionHandler } from "../index"
+import { ApiHandlerOptions, ModelInfo } from "../../shared/api"
 import { ApiStream } from "../transform/stream"
 
 interface FakeAI {
@@ -21,11 +18,7 @@ interface FakeAI {
 	 */
 	removeFromCache?: () => void
 
-	createMessage(
-		systemPrompt: string,
-		messages: Anthropic.Messages.MessageParam[],
-		metadata?: ApiHandlerCreateMessageMetadata,
-	): ApiStream
+	createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream
 	getModel(): { id: string; info: ModelInfo }
 	countTokens(content: Array<Anthropic.Messages.ContentBlockParam>): Promise<number>
 	completePrompt(prompt: string): Promise<string>
@@ -59,12 +52,8 @@ export class FakeAIHandler implements ApiHandler, SingleCompletionHandler {
 		this.ai = cachedFakeAi
 	}
 
-	async *createMessage(
-		systemPrompt: string,
-		messages: Anthropic.Messages.MessageParam[],
-		metadata?: ApiHandlerCreateMessageMetadata,
-	): ApiStream {
-		yield* this.ai.createMessage(systemPrompt, messages, metadata)
+	async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
+		yield* this.ai.createMessage(systemPrompt, messages)
 	}
 
 	getModel(): { id: string; info: ModelInfo } {

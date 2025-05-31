@@ -1,9 +1,8 @@
-import { useQuery } from "@tanstack/react-query"
-
-import { RouterModels } from "@roo/api"
-import { ExtensionMessage } from "@roo/ExtensionMessage"
+import { RouterModels } from "@roo/shared/api"
 
 import { vscode } from "@src/utils/vscode"
+import { ExtensionMessage } from "@roo/shared/ExtensionMessage"
+import { useQuery } from "@tanstack/react-query"
 
 const getRouterModels = async () =>
 	new Promise<RouterModels>((resolve, reject) => {

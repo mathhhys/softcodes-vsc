@@ -7,13 +7,11 @@ import { RequestyHandler } from "../requesty"
 import { ApiHandlerOptions } from "../../../shared/api"
 
 jest.mock("openai")
-
 jest.mock("delay", () => jest.fn(() => Promise.resolve()))
-
 jest.mock("../fetchers/modelCache", () => ({
 	getModels: jest.fn().mockImplementation(() => {
 		return Promise.resolve({
-			"coding/claude-4-sonnet": {
+			"coding/claude-3-7-sonnet": {
 				maxTokens: 8192,
 				contextWindow: 200000,
 				supportsImages: true,
@@ -23,7 +21,7 @@ jest.mock("../fetchers/modelCache", () => ({
 				outputPrice: 15,
 				cacheWritesPrice: 3.75,
 				cacheReadsPrice: 0.3,
-				description: "Claude 4 Sonnet",
+				description: "Claude 3.7 Sonnet",
 			},
 		})
 	}),
@@ -32,7 +30,7 @@ jest.mock("../fetchers/modelCache", () => ({
 describe("RequestyHandler", () => {
 	const mockOptions: ApiHandlerOptions = {
 		requestyApiKey: "test-key",
-		requestyModelId: "coding/claude-4-sonnet",
+		requestyModelId: "coding/claude-3-7-sonnet",
 	}
 
 	beforeEach(() => jest.clearAllMocks())
@@ -68,7 +66,7 @@ describe("RequestyHandler", () => {
 					outputPrice: 15,
 					cacheWritesPrice: 3.75,
 					cacheReadsPrice: 0.3,
-					description: "Claude 4 Sonnet",
+					description: "Claude 3.7 Sonnet",
 				},
 			})
 		})
@@ -89,7 +87,7 @@ describe("RequestyHandler", () => {
 					outputPrice: 15,
 					cacheWritesPrice: 3.75,
 					cacheReadsPrice: 0.3,
-					description: "Claude 4 Sonnet",
+					description: "Claude 3.7 Sonnet",
 				},
 			})
 		})
@@ -152,7 +150,7 @@ describe("RequestyHandler", () => {
 			// Verify OpenAI client was called with correct parameters
 			expect(mockCreate).toHaveBeenCalledWith(
 				expect.objectContaining({
-					max_tokens: 8192,
+					max_tokens: undefined,
 					messages: [
 						{
 							role: "system",
@@ -163,10 +161,10 @@ describe("RequestyHandler", () => {
 							content: "test message",
 						},
 					],
-					model: "coding/claude-4-sonnet",
+					model: "coding/claude-3-7-sonnet",
 					stream: true,
 					stream_options: { include_usage: true },
-					temperature: 0,
+					temperature: undefined,
 				}),
 			)
 		})
@@ -200,9 +198,9 @@ describe("RequestyHandler", () => {
 
 			expect(mockCreate).toHaveBeenCalledWith({
 				model: mockOptions.requestyModelId,
-				max_tokens: 8192,
+				max_tokens: undefined,
 				messages: [{ role: "system", content: "test prompt" }],
-				temperature: 0,
+				temperature: undefined,
 			})
 		})
 

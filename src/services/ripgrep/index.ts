@@ -48,7 +48,7 @@ rel/path/to/helper.ts
 │----
 */
 
-const isWindows = process.platform.startsWith("win")
+const isWindows = /^win/.test(process.platform)
 const binName = isWindows ? "rg.exe" : "rg"
 
 interface SearchFileResult {

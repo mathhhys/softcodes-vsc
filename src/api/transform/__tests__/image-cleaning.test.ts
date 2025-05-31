@@ -1,8 +1,7 @@
-import type { ModelInfo } from "@roo-code/types"
-
-import { ApiHandler } from "../../index"
+import { ApiHandler } from "../.."
 import { ApiMessage } from "../../../core/task-persistence/apiMessages"
 import { maybeRemoveImageBlocks } from "../image-cleaning"
+import { ModelInfo } from "../../../shared/api"
 
 describe("maybeRemoveImageBlocks", () => {
 	// Mock ApiHandler factory function

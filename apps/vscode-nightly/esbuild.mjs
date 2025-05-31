@@ -9,17 +9,16 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 async function main() {
-	const name = "extension-nightly"
 	const production = process.argv.includes("--production")
 	const minify = production
 	const sourcemap = !production
 
 	const overrideJson = JSON.parse(fs.readFileSync(path.join(__dirname, "package.nightly.json"), "utf8"))
-	console.log(`[${name}] name: ${overrideJson.name}`)
-	console.log(`[${name}] version: ${overrideJson.version}`)
+	console.log(`[main] name: ${overrideJson.name}`)
+	console.log(`[main] version: ${overrideJson.version}`)
 
 	const gitSha = getGitSha()
-	console.log(`[${name}] gitSha: ${gitSha}`)
+	console.log(`[main] gitSha: ${gitSha}`)
 
 	/**
 	 * @type {import('esbuild').BuildOptions}
@@ -33,9 +32,9 @@ async function main() {
 		sourcesContent: false,
 		platform: "node",
 		define: {
-			"process.env.PKG_NAME": '"kilo-code-nightly"',
+			"process.env.PKG_NAME": '"roo-code-nightly"',
 			"process.env.PKG_VERSION": `"${overrideJson.version}"`,
-			"process.env.PKG_OUTPUT_CHANNEL": '"Kilo-Code-Nightly"',
+			"process.env.PKG_OUTPUT_CHANNEL": '"Roo-Code-Nightly"',
 			...(gitSha ? { "process.env.PKG_SHA": `"${gitSha}"` } : {}),
 		},
 	}
@@ -44,22 +43,12 @@ async function main() {
 	const buildDir = path.join(__dirname, "build")
 	const distDir = path.join(buildDir, "dist")
 
-	console.log(`[${name}] srcDir: ${srcDir}`)
-	console.log(`[${name}] buildDir: ${buildDir}`)
-	console.log(`[${name}] distDir: ${distDir}`)
-
-	// Clean build directory before starting new build
-	if (fs.existsSync(buildDir)) {
-		console.log(`[${name}] Cleaning build directory: ${buildDir}`)
-		fs.rmSync(buildDir, { recursive: true, force: true })
-	}
-
 	/**
 	 * @type {import('esbuild').Plugin[]}
 	 */
 	const plugins = [
 		{
-			name: "copyPaths",
+			name: "copy-files",
 			setup(build) {
 				build.onEnd(() => {
 					copyPaths(
@@ -67,7 +56,6 @@ async function main() {
 							["../README.md", "README.md"],
 							["../CHANGELOG.md", "CHANGELOG.md"],
 							["../LICENSE", "LICENSE"],
-							["../.env", ".env", { optional: true }],
 							[".vscodeignore", ".vscodeignore"],
 							["assets", "assets"],
 							["integrations", "integrations"],
@@ -81,7 +69,7 @@ async function main() {
 			},
 		},
 		{
-			name: "generatePackageJson",
+			name: "generate-package-json",
 			setup(build) {
 				build.onEnd(() => {
 					const packageJson = JSON.parse(fs.readFileSync(path.join(srcDir, "package.json"), "utf8"))
@@ -93,7 +81,7 @@ async function main() {
 					})
 
 					fs.writeFileSync(path.join(buildDir, "package.json"), JSON.stringify(generatedPackageJson, null, 2))
-					console.log(`[generatePackageJson] Generated package.json`)
+					console.log(`[generate-package-json] Generated package.json`)
 
 					let count = 0
 
@@ -104,7 +92,7 @@ async function main() {
 						}
 					})
 
-					console.log(`[generatePackageJson] Copied ${count} package.nls*.json files to ${buildDir}`)
+					console.log(`[copy-src] Copied ${count} package.nls*.json files to ${buildDir}`)
 
 					const nlsPkg = JSON.parse(fs.readFileSync(path.join(srcDir, "package.nls.json"), "utf8"))
 
@@ -117,18 +105,18 @@ async function main() {
 						JSON.stringify({ ...nlsPkg, ...nlsNightlyPkg }, null, 2),
 					)
 
-					console.log(`[generatePackageJson] Generated package.nls.json`)
+					console.log(`[copy-src] Generated package.nls.json`)
 				})
 			},
 		},
 		{
-			name: "copyWasms",
+			name: "copy-wasms",
 			setup(build) {
 				build.onEnd(() => copyWasms(srcDir, distDir))
 			},
 		},
 		{
-			name: "copyLocales",
+			name: "copy-locales",
 			setup(build) {
 				build.onEnd(() => copyLocales(srcDir, distDir))
 			},

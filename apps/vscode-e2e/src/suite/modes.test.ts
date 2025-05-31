@@ -1,24 +1,46 @@
 import * as assert from "assert"
 
+import type { RooCodeAPI, ClineMessage } from "@roo-code/types"
+
 import { waitUntilCompleted } from "./utils"
 
 suite("Kilo Code Modes", () => {
 	test("Should handle switching modes correctly", async () => {
-		const modes: string[] = []
+		// @ts-expect-error - Expose the API to the tests.
+		const api = globalThis.api as RooCodeAPI
 
-		globalThis.api.on("taskModeSwitched", (_taskId, mode) => modes.push(mode))
+		/**
+		 * Switch modes.
+		 */
 
-		const switchModesTaskId = await globalThis.api.startNewTask({
-			configuration: { mode: "code", alwaysAllowModeSwitch: true, autoApprovalEnabled: true },
-			text: "For each of `architect`, `ask`, and `debug` use the `switch_mode` tool to switch to that mode.",
+		const switchModesPrompt =
+			"For each mode (Architect, Ask, Debug) respond with the mode name and what it specializes in after switching to that mode."
+
+		const messages: ClineMessage[] = []
+
+		const modeSwitches: string[] = []
+
+		api.on("taskModeSwitched", (_taskId, mode) => {
+			console.log("taskModeSwitched", mode)
+			modeSwitches.push(mode)
 		})
 
-		await waitUntilCompleted({ api: globalThis.api, taskId: switchModesTaskId })
-		await globalThis.api.cancelCurrentTask()
+		api.on("message", ({ message }) => {
+			if (message.type === "say" && message.partial === false) {
+				messages.push(message)
+			}
+		})
 
-		assert.ok(modes.includes("architect"))
-		assert.ok(modes.includes("ask"))
-		assert.ok(modes.includes("debug"))
-		assert.ok(modes.length === 3)
+		const switchModesTaskId = await api.startNewTask({
+			configuration: { mode: "code", alwaysAllowModeSwitch: true, autoApprovalEnabled: true },
+			text: switchModesPrompt,
+		})
+
+		await waitUntilCompleted({ api, taskId: switchModesTaskId })
+		await api.cancelCurrentTask()
+
+		assert.ok(modeSwitches.includes("architect"))
+		assert.ok(modeSwitches.includes("ask"))
+		assert.ok(modeSwitches.includes("debug"))
 	})
 })

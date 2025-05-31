@@ -2,7 +2,7 @@ import * as vscode from "vscode"
 import * as path from "path"
 import * as fs from "fs/promises"
 
-import { Package } from "../shared/package"
+import { Package } from "../schemas"
 import { t } from "../i18n"
 
 /**

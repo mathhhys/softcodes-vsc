@@ -70,8 +70,6 @@ type TruncateOptions = {
 	autoCondenseContextPercent: number
 	systemPrompt: string
 	taskId: string
-	customCondensingPrompt?: string
-	condensingApiHandler?: ApiHandler
 }
 
 type TruncateResponse = SummarizeResponse & { prevContextTokens: number }
@@ -93,8 +91,6 @@ export async function truncateConversationIfNeeded({
 	autoCondenseContextPercent,
 	systemPrompt,
 	taskId,
-	customCondensingPrompt,
-	condensingApiHandler,
 }: TruncateOptions): Promise<TruncateResponse> {
 	// Calculate the maximum tokens reserved for response
 	const reservedTokens = maxTokens || contextWindow * 0.2
@@ -117,15 +113,7 @@ export async function truncateConversationIfNeeded({
 		const contextPercent = (100 * prevContextTokens) / contextWindow
 		if (contextPercent >= autoCondenseContextPercent || prevContextTokens > allowedTokens) {
 			// Attempt to intelligently condense the context
-			const result = await summarizeConversation(
-				messages,
-				apiHandler,
-				systemPrompt,
-				taskId,
-				true, // automatic trigger
-				customCondensingPrompt,
-				condensingApiHandler,
-			)
+			const result = await summarizeConversation(messages, apiHandler, systemPrompt, taskId, true)
 			if (result.summary) {
 				return { ...result, prevContextTokens }
 			}

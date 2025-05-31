@@ -1,15 +1,13 @@
 import * as vscode from "vscode"
 import * as path from "path"
 import * as fs from "fs/promises"
-
-import * as yaml from "yaml"
-
-import { type ModeConfig, customModesSettingsSchema } from "@roo-code/types"
-
+import { customModesSettingsSchema } from "../../schemas"
+import { ModeConfig } from "../../shared/modes"
 import { fileExistsAtPath } from "../../utils/fs"
 import { arePathsEqual, getWorkspacePath } from "../../utils/path"
 import { logger } from "../../utils/logging"
 import { GlobalFileNames } from "../../shared/globalFileNames"
+import * as yaml from "yaml"
 
 const ROOMODES_FILENAME = ".kilocodemodes"
 

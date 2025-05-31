@@ -5,16 +5,15 @@ import {
 	GLOBAL_SETTINGS_KEYS,
 	SECRET_STATE_KEYS,
 	GLOBAL_STATE_KEYS,
-	type ProviderSettings,
-	type GlobalSettings,
-	type SecretState,
-	type GlobalState,
-	type RooCodeSettings,
+	ProviderSettings,
+	GlobalSettings,
+	SecretState,
+	GlobalState,
+	RooCodeSettings,
 	providerSettingsSchema,
 	globalSettingsSchema,
 	isSecretStateKey,
-} from "@roo-code/types"
-
+} from "../../schemas"
 import { logger } from "../../utils/logging"
 
 type GlobalStateKey = keyof GlobalState

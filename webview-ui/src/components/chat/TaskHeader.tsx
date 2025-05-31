@@ -5,10 +5,9 @@ import { VSCodeBadge } from "@vscode/webview-ui-toolkit/react"
 import { CloudUpload, CloudDownload } from "lucide-react"
 import { validateSlashCommand } from "@/utils/slash-commands"
 
-import type { ClineMessage } from "@roo-code/types"
+import { ClineMessage } from "@roo/shared/ExtensionMessage"
 
-import { getModelMaxOutputTokens } from "@roo/api"
-
+import { getMaxTokensForModel } from "@src/utils/model-utils"
 import { formatLargeNumber } from "@src/utils/format"
 import { cn } from "@src/lib/utils"
 import { Button } from "@src/components/ui"
@@ -19,7 +18,7 @@ import Thumbnails from "../common/Thumbnails"
 
 import { TaskActions } from "./TaskActions"
 import { ContextWindowProgress } from "./ContextWindowProgress"
-import { mentionRegexGlobal } from "@roo/context-mentions"
+import { mentionRegexGlobal } from "@roo/shared/context-mentions"
 
 import { vscode } from "@/utils/vscode" // kilocode_change: pull slash commands from Cline
 
@@ -52,7 +51,7 @@ const TaskHeader = ({
 }: TaskHeaderProps) => {
 	const { t } = useTranslation()
 	const { apiConfiguration, currentTaskItem, customModes } = useExtensionState()
-	const { id: modelId, info: model } = useSelectedModel(apiConfiguration)
+	const { info: model } = useSelectedModel(apiConfiguration)
 	const [isTaskExpanded, setIsTaskExpanded] = useState(false)
 
 	const textContainerRef = useRef<HTMLDivElement>(null)
@@ -103,11 +102,7 @@ const TaskHeader = ({
 						<ContextWindowProgress
 							contextWindow={contextWindow}
 							contextTokens={contextTokens || 0}
-							maxTokens={
-								model
-									? getModelMaxOutputTokens({ modelId, model, settings: apiConfiguration })
-									: undefined
-							}
+							maxTokens={getMaxTokensForModel(model, apiConfiguration)}
 						/>
 						{!!totalCost && <VSCodeBadge>${totalCost.toFixed(2)}</VSCodeBadge>}
 					</div>
@@ -144,15 +139,7 @@ const TaskHeader = ({
 									<ContextWindowProgress
 										contextWindow={contextWindow}
 										contextTokens={contextTokens || 0}
-										maxTokens={
-											model
-												? getModelMaxOutputTokens({
-														modelId,
-														model,
-														settings: apiConfiguration,
-													})
-												: undefined
-										}
+										maxTokens={getMaxTokensForModel(model, apiConfiguration)}
 									/>
 								</div>
 							)}

@@ -1,8 +1,4 @@
-// npx jest src/shared/__tests__/experiments.test.ts
-
-import type { ExperimentId } from "@roo-code/types"
-
-import { EXPERIMENT_IDS, experimentConfigsMap, experiments as Experiments } from "../experiments"
+import { EXPERIMENT_IDS, experimentConfigsMap, experiments as Experiments, ExperimentId } from "../experiments"
 
 describe("experiments", () => {
 	describe("POWER_STEERING", () => {
