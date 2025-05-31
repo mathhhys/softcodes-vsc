@@ -1,6 +1,4 @@
-# kilo-code
-
-## 4.31.0
+# kilo-## 4.31.0
 
 ### Minor Changes
 
