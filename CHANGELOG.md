@@ -1,4 +1,8 @@
-# kilo-code
+# kilo-## 4.31.0
+
+### Minor Changes
+
+- [#561](https://github.com/Kilo-Org/kilocode/pull/561) [`4e8c7f2`](https://github.com/Kilo-Org/kilocode/commit/4e8c7f2394af0e0bef642a209acc6d6572602297) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Revert previous update, we found some issues, apologies
 
 ## 4.30.0
 
