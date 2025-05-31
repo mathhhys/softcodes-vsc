@@ -1,7 +1,6 @@
 // npx jest src/core/tools/__tests__/ToolRepetitionDetector.test.ts
 
-import type { ToolName } from "@roo-code/types"
-
+import type { ToolName } from "../../../schemas"
 import type { ToolUse } from "../../../shared/tools"
 
 import { ToolRepetitionDetector } from "../ToolRepetitionDetector"

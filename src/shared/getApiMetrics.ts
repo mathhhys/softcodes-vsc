@@ -1,4 +1,6 @@
-import type { TokenUsage, ClineMessage } from "@roo-code/types"
+import { TokenUsage } from "../schemas"
+
+import { ClineMessage } from "./ExtensionMessage"
 
 export type ParsedApiReqStartedTextType = {
 	tokensIn: number

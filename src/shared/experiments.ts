@@ -1,4 +1,7 @@
-import type { AssertEqual, Equals, Keys, Values, ExperimentId } from "@roo-code/types"
+import { ExperimentId } from "../schemas"
+import { AssertEqual, Equals, Keys, Values } from "../utils/type-fu"
+
+export type { ExperimentId }
 
 export const EXPERIMENT_IDS = {
 	POWER_STEERING: "powerSteering",

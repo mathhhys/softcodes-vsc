@@ -1,7 +1,6 @@
 import * as vscode from "vscode"
 
-import { TerminalActionId, TerminalActionPromptType } from "@roo-code/types"
-
+import { TerminalActionId, TerminalActionPromptType } from "../schemas"
 import { getTerminalCommand } from "../utils/commands"
 import { ClineProvider } from "../core/webview/ClineProvider"
 import { Terminal } from "../integrations/terminal/Terminal"

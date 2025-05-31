@@ -2,16 +2,12 @@ import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
 import axios from "axios"
 
-import type { ModelInfo } from "@roo-code/types"
-
-import { ApiHandlerOptions, openAiModelInfoSaneDefaults } from "../../shared/api"
-import { XmlMatcher } from "../../utils/xml-matcher"
-
+import { SingleCompletionHandler } from "../"
+import { ApiHandlerOptions, ModelInfo, openAiModelInfoSaneDefaults } from "../../shared/api"
 import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
-
 import { BaseProvider } from "./base-provider"
-import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
+import { XmlMatcher } from "../../utils/xml-matcher"
 
 const LMSTUDIO_DEFAULT_TEMPERATURE = 0
 
@@ -28,11 +24,7 @@ export class LmStudioHandler extends BaseProvider implements SingleCompletionHan
 		})
 	}
 
-	override async *createMessage(
-		systemPrompt: string,
-		messages: Anthropic.Messages.MessageParam[],
-		metadata?: ApiHandlerCreateMessageMetadata,
-	): ApiStream {
+	override async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
 		const openAiMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
 			{ role: "system", content: systemPrompt },
 			...convertToOpenAiMessages(messages),

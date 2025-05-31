@@ -17,7 +17,7 @@ jest.mock("lucide-react", () => {
 	return new Proxy(
 		{},
 		{
-			get: function (_obj, prop) {
+			get: function (obj, prop) {
 				// Return a component factory for any icon that's requested
 				if (prop === "__esModule") {
 					return true

@@ -2,12 +2,9 @@ import { HTMLAttributes } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { Globe } from "lucide-react"
 
-import type { Language } from "@roo-code/types"
-
-import { LANGUAGES } from "@roo/language"
-
-import { cn } from "@src/lib/utils"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@src/components/ui"
+import { cn } from "@/lib/utils"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui"
+import { Language, LANGUAGES } from "@roo/shared/language"
 
 import { SetCachedStateField } from "./types"
 import { SectionHeader } from "./SectionHeader"

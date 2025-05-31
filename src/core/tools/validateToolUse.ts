@@ -1,6 +1,5 @@
-import type { ToolName, ModeConfig } from "@roo-code/types"
-
-import { Mode, isToolAllowedForMode } from "../../shared/modes"
+import { ToolName } from "../../schemas"
+import { Mode, isToolAllowedForMode, ModeConfig } from "../../shared/modes"
 
 export function validateToolUse(
 	toolName: ToolName,

@@ -1,9 +1,14 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
 import { ApiHandler, SingleCompletionHandler } from "../"
-import { ApiHandlerOptions, FireworksModelId, fireworksDefaultModelId, fireworksModels } from "../../shared/api"
-import { type ModelInfo } from "@roo-code/types"
-import { calculateApiCostOpenAI } from "../../shared/cost"
+import {
+	ApiHandlerOptions,
+	FireworksModelId,
+	ModelInfo,
+	fireworksDefaultModelId,
+	fireworksModels,
+} from "../../shared/api"
+import { calculateApiCostOpenAI } from "../../utils/cost"
 import { convertToOpenAiMessages } from "../transform/openai-format"
 import { ApiStream } from "../transform/stream"
 import { BaseProvider } from "./base-provider"

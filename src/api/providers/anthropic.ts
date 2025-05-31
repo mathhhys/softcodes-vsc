@@ -1,17 +1,18 @@
 import { Anthropic } from "@anthropic-ai/sdk"
-import { Stream as AnthropicStream } from "@anthropic-ai/sdk/streaming"
 import { CacheControlEphemeral } from "@anthropic-ai/sdk/resources"
-
-import type { ModelInfo } from "@roo-code/types"
-
-import { anthropicDefaultModelId, AnthropicModelId, anthropicModels, ApiHandlerOptions } from "../../shared/api"
-
+import { Stream as AnthropicStream } from "@anthropic-ai/sdk/streaming"
+import {
+	anthropicDefaultModelId,
+	AnthropicModelId,
+	anthropicModels,
+	ApiHandlerOptions,
+	ModelInfo,
+} from "../../shared/api"
+import { getModelParams } from "../getModelParams"
+import { SingleCompletionHandler } from "../index"
 import { ApiStream } from "../transform/stream"
-import { getModelParams } from "../transform/model-params"
-
-import { ANTHROPIC_DEFAULT_MAX_TOKENS } from "./constants"
 import { BaseProvider } from "./base-provider"
-import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
+import { ANTHROPIC_DEFAULT_MAX_TOKENS } from "./constants"
 
 export class AnthropicHandler extends BaseProvider implements SingleCompletionHandler {
 	private options: ApiHandlerOptions
@@ -30,14 +31,10 @@ export class AnthropicHandler extends BaseProvider implements SingleCompletionHa
 		})
 	}
 
-	async *createMessage(
-		systemPrompt: string,
-		messages: Anthropic.Messages.MessageParam[],
-		metadata?: ApiHandlerCreateMessageMetadata,
-	): ApiStream {
+	async *createMessage(systemPrompt: string, messages: Anthropic.Messages.MessageParam[]): ApiStream {
 		let stream: AnthropicStream<Anthropic.Messages.RawMessageStreamEvent>
 		const cacheControl: CacheControlEphemeral = { type: "ephemeral" }
-		let { id: modelId, betas = [], maxTokens, temperature, reasoning: thinking } = this.getModel()
+		let { id: modelId, maxTokens, thinking, temperature, virtualId } = this.getModel()
 
 		switch (modelId) {
 			case "claude-sonnet-4-20250514":
@@ -95,6 +92,14 @@ export class AnthropicHandler extends BaseProvider implements SingleCompletionHa
 						// prompt caching: https://x.com/alexalbert__/status/1823751995901272068
 						// https://github.com/anthropics/anthropic-sdk-typescript?tab=readme-ov-file#default-headers
 						// https://github.com/anthropics/anthropic-sdk-typescript/commit/c920b77fc67bd839bfeb6716ceab9d7c9bbe7393
+
+						const betas = []
+
+						// Enable extended thinking for Claude 3.7 Sonnet only.
+						// https://docs.anthropic.com/en/docs/about-claude/models/migrating-to-claude-4#extended-output-no-longer-supported
+						if (virtualId === "claude-3-7-sonnet-20250219:thinking") {
+							betas.push("output-128k-2025-02-19")
+						}
 
 						// Then check for models that support prompt caching
 						switch (modelId) {
@@ -200,22 +205,24 @@ export class AnthropicHandler extends BaseProvider implements SingleCompletionHa
 		let id = modelId && modelId in anthropicModels ? (modelId as AnthropicModelId) : anthropicDefaultModelId
 		const info: ModelInfo = anthropicModels[id]
 
-		const params = getModelParams({
-			format: "anthropic",
-			modelId: id,
-			model: info,
-			settings: this.options,
-		})
+		// Track the original model ID for special variant handling
+		const virtualId = id
 
-		// The `:thinking` suffix indicates that the model is a "Hybrid"
-		// reasoning model and that reasoning is required to be enabled.
-		// The actual model ID honored by Anthropic's API does not have this
-		// suffix.
+		// The `:thinking` variants are virtual identifiers for models with a thinking budget.
+		// We can handle this more elegantly in the future.
+		if (id === "claude-3-7-sonnet-20250219:thinking") {
+			id = "claude-3-7-sonnet-20250219"
+		} else if (id === "claude-sonnet-4-20250514:thinking") {
+			id = "claude-sonnet-4-20250514"
+		} else if (id === "claude-opus-4-20250514:thinking") {
+			id = "claude-opus-4-20250514"
+		}
+
 		return {
-			id: id === "claude-3-7-sonnet-20250219:thinking" ? "claude-3-7-sonnet-20250219" : id,
+			id,
 			info,
-			betas: id === "claude-3-7-sonnet-20250219:thinking" ? ["output-128k-2025-02-19"] : undefined,
-			...params,
+			virtualId, // Include the original ID to use for header selection
+			...getModelParams({ options: this.options, model: info, defaultMaxTokens: ANTHROPIC_DEFAULT_MAX_TOKENS }),
 		}
 	}
 

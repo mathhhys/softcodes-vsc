@@ -1,10 +1,9 @@
 // npx jest src/core/config/__tests__/ContextProxy.test.ts
 
 import * as vscode from "vscode"
-
-import { GLOBAL_STATE_KEYS, SECRET_STATE_KEYS } from "@roo-code/types"
-
 import { ContextProxy } from "../ContextProxy"
+
+import { GLOBAL_STATE_KEYS, SECRET_STATE_KEYS } from "../../../schemas"
 
 jest.mock("vscode", () => ({
 	Uri: {

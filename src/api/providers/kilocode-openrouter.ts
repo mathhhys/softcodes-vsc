@@ -1,8 +1,7 @@
-import { ApiHandlerOptions, ModelRecord } from "../../shared/api"
+import { ApiHandlerOptions, PROMPT_CACHING_MODELS, ModelRecord } from "../../shared/api"
 import { OpenRouterHandler } from "./openrouter"
-import { getModelParams } from "../transform/model-params"
+import { getModelParams } from "../getModelParams"
 import { getModels } from "./fetchers/modelCache"
-import { DEEP_SEEK_DEFAULT_TEMPERATURE } from "./constants"
 
 /**
  * A custom OpenRouter handler that overrides the getModel function
@@ -26,6 +25,7 @@ export class KilocodeOpenrouterHandler extends OpenRouterHandler {
 		let id
 		let info
 		let defaultTemperature = 0
+		let topP = undefined
 
 		const selectedModel = this.options.kilocodeModel ?? "gemini25"
 
@@ -50,21 +50,19 @@ export class KilocodeOpenrouterHandler extends OpenRouterHandler {
 			throw new Error(`Unsupported model: ${selectedModel}`)
 		}
 
-		const isDeepSeekR1 = id.startsWith("deepseek/deepseek-r1") || id === "perplexity/sonar-reasoning"
-
-		const params = getModelParams({
-			format: "openrouter",
-			modelId: id,
-			model: info,
-			settings: this.options,
-			defaultTemperature: isDeepSeekR1 ? DEEP_SEEK_DEFAULT_TEMPERATURE : defaultTemperature,
-		})
-
-		return { id, info, topP: isDeepSeekR1 ? 0.95 : undefined, ...params }
+		return {
+			id,
+			info,
+			...getModelParams({ options: this.options, model: info, defaultTemperature }),
+			topP,
+			promptCache: {
+				supported: PROMPT_CACHING_MODELS.has(id),
+			},
+		}
 	}
 
 	public override async fetchModel() {
-		this.models = await getModels({ provider: "kilocode-openrouter" })
+		this.models = await getModels("kilocode-openrouter")
 		return this.getModel()
 	}
 }

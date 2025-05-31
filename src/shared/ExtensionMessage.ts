@@ -1,20 +1,24 @@
-import type {
+import { GitCommit } from "../utils/git"
+
+import {
 	GlobalSettings,
 	ProviderSettingsEntry,
 	ProviderSettings,
 	HistoryItem,
 	ModeConfig,
 	ExperimentId,
+	ClineAsk,
+	ClineSay,
+	ToolProgressStatus,
 	ClineMessage,
-} from "@roo-code/types"
-
-import { GitCommit } from "../utils/git"
-
+} from "../schemas"
 import { McpServer } from "./mcp"
 import { McpMarketplaceCatalog, McpDownloadResponse } from "./kilocode/mcp"
 import { Mode } from "./modes"
 import { RouterModels } from "./api"
 import { ProfileDataResponsePayload, BalanceDataResponsePayload } from "./WebviewMessage"
+
+export type { ProviderSettingsEntry, ToolProgressStatus }
 
 export interface LanguageModelChatSelector {
 	vendor?: string
@@ -74,10 +78,6 @@ export interface ExtensionMessage {
 		| "profileDataResponse" // kilocode_change
 		| "balanceDataResponse" // kilocode_change
 		| "condenseTaskContextResponse"
-		| "singleRouterModelFetchResponse"
-		| "indexingStatusUpdate"
-		| "indexCleared"
-		| "codebaseIndexConfig"
 	text?: string
 	action?:
 		| "chatButtonClicked"
@@ -189,10 +189,6 @@ export type ExtensionState = Pick<
 	| "customSupportPrompts"
 	| "enhancementApiConfigId"
 	| "workflowToggles" // kilocode_change
-	| "condensingApiConfigId"
-	| "customCondensingPrompt"
-	| "codebaseIndexConfig"
-	| "codebaseIndexModels"
 > & {
 	version: string
 	clineMessages: ClineMessage[]
@@ -231,12 +227,13 @@ export type ExtensionState = Pick<
 	autoCondenseContextPercent: number
 }
 
+export type { ClineMessage, ClineAsk, ClineSay }
+
 export interface ClineSayTool {
 	tool:
 		| "editedExistingFile"
 		| "appliedDiff"
 		| "newFileCreated"
-		| "codebaseSearch"
 		| "readFile"
 		| "fetchInstructions"
 		| "listFilesTopLevel"
@@ -263,7 +260,6 @@ export interface ClineSayTool {
 	startLine?: number
 	endLine?: number
 	lineNumber?: number
-	query?: string
 }
 
 // Must keep in sync with system prompt.

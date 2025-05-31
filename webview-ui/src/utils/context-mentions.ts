@@ -1,8 +1,6 @@
+import { mentionRegex } from "@roo/shared/context-mentions"
 import { Fzf } from "fzf"
-
-import type { ModeConfig } from "@roo-code/types"
-
-import { mentionRegex } from "@roo/context-mentions"
+import { ModeConfig } from "@roo/shared/modes"
 
 import { escapeSpaces } from "./path-mentions"
 

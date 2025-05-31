@@ -1,10 +1,6 @@
-// npx jest src/components/settings/__tests__/ThinkingBudget.test.tsx
-
 import { render, screen, fireEvent } from "@testing-library/react"
-
-import type { ModelInfo } from "@roo-code/types"
-
 import { ThinkingBudget } from "../ThinkingBudget"
+import { ModelInfo } from "@roo/shared/api"
 
 jest.mock("@/components/ui", () => ({
 	Slider: ({ value, onValueChange, min, max }: any) => (
@@ -21,8 +17,7 @@ jest.mock("@/components/ui", () => ({
 
 describe("ThinkingBudget", () => {
 	const mockModelInfo: ModelInfo = {
-		supportsReasoningBudget: true,
-		requiredReasoningBudget: true,
+		thinking: true,
 		maxTokens: 16384,
 		contextWindow: 200000,
 		supportsPromptCache: true,
@@ -45,11 +40,11 @@ describe("ThinkingBudget", () => {
 				{...defaultProps}
 				modelInfo={{
 					...mockModelInfo,
+					thinking: false,
 					maxTokens: 16384,
 					contextWindow: 200000,
 					supportsPromptCache: true,
 					supportsImages: true,
-					supportsReasoningBudget: false,
 				}}
 			/>,
 		)

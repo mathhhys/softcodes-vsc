@@ -1,8 +1,7 @@
 import axios from "axios"
 
-import type { ModelInfo } from "@roo-code/types"
-
-import { parseApiPrice } from "../../../shared/cost"
+import { ModelInfo } from "../../../shared/api"
+import { parseApiPrice } from "../../../utils/cost"
 
 export async function getRequestyModels(apiKey?: string): Promise<Record<string, ModelInfo>> {
 	const models: Record<string, ModelInfo> = {}
@@ -19,17 +18,12 @@ export async function getRequestyModels(apiKey?: string): Promise<Record<string,
 		const rawModels = response.data.data
 
 		for (const rawModel of rawModels) {
-			const reasoningBudget = rawModel.supports_reasoning && rawModel.id.includes("claude")
-			const reasoningEffort = rawModel.supports_reasoning && rawModel.id.includes("openai")
-
 			const modelInfo: ModelInfo = {
 				maxTokens: rawModel.max_output_tokens,
 				contextWindow: rawModel.context_window,
 				supportsPromptCache: rawModel.supports_caching,
 				supportsImages: rawModel.supports_vision,
 				supportsComputerUse: rawModel.supports_computer_use,
-				supportsReasoningBudget: reasoningBudget,
-				supportsReasoningEffort: reasoningEffort,
 				inputPrice: parseApiPrice(rawModel.input_price),
 				outputPrice: parseApiPrice(rawModel.output_price),
 				description: rawModel.description,

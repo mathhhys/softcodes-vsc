@@ -9,14 +9,10 @@ fi
 if [ "$OS" = "Windows_NT" ]; then
   pnpm_cmd="pnpm.cmd"
 else
-  if command -v pnpm >/dev/null 2>&1; then
-    pnpm_cmd="pnpm"
-  else
-    pnpm_cmd="npx pnpm"
-  fi
+  pnpm_cmd="pnpm"
 fi
 
-$pnpm_cmd run check-types
+"$pnpm_cmd" run check-types
 
 # Check for new changesets.
 NEW_CHANGESETS=$(find .changeset -name "*.md" ! -name "README.md" | wc -l | tr -d ' ')
