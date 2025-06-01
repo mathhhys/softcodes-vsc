@@ -226,6 +226,7 @@ export type SecretState = Pick<
 	| "litellmApiKey"
 	| "codeIndexOpenAiKey"
 	| "codeIndexQdrantApiKey"
+	| "kilocodeToken" // kilocode_change
 >
 
 export const SECRET_STATE_KEYS = keysOf<SecretState>()([
@@ -248,6 +249,7 @@ export const SECRET_STATE_KEYS = keysOf<SecretState>()([
 	"litellmApiKey",
 	"codeIndexOpenAiKey",
 	"codeIndexQdrantApiKey",
+	"kilocodeToken", // kilocode_change
 ])
 
 export const isSecretStateKey = (key: string): key is Keys<SecretState> =>
