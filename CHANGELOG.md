@@ -1,10 +1,8 @@
 # Roo Code Changelog
 
-## 3.19.3
+## [3.19.3] - 2025-06-02
 
-### Patch Changes
-
--   - Fix SSE MCP Invocation - Fixed SSE connection issue in McpHub.ts by ensuring transport.start override only applies to stdio transports, allowing SSE and streamable-http transports to retain their original start methods (thanks @taylorwilsdon!)
+- Fix SSE MCP Invocation - Fixed SSE connection issue in McpHub.ts by ensuring transport.start override only applies to stdio transports, allowing SSE and streamable-http transports to retain their original start methods (thanks @taylorwilsdon!)
 
 ## [3.19.2] - 2025-06-01
 
