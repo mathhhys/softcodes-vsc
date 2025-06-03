@@ -3,6 +3,7 @@ import { OpenRouterHandler } from "./openrouter"
 import { getModelParams } from "../transform/model-params"
 import { getModels } from "./fetchers/modelCache"
 import { DEEP_SEEK_DEFAULT_TEMPERATURE } from "./constants"
+import { getKiloBaseUriFromToken } from "../../utils/kilocode-token"
 
 /**
  * A custom OpenRouter handler that overrides the getModel function
@@ -64,20 +65,17 @@ export class KilocodeOpenrouterHandler extends OpenRouterHandler {
 	}
 
 	public override async fetchModel() {
-		this.models = await getModels({ provider: "kilocode-openrouter" })
+		if (!this.options.kilocodeToken || !this.options.openRouterBaseUrl) {
+			throw new Error("KiloCode toke + baseUrl is required to fetch models")
+		}
+		this.models = await getModels({
+			provider: "kilocode-openrouter",
+			kilocodeToken: this.options.kilocodeToken,
+		})
 		return this.getModel()
 	}
 }
 
 function getKiloBaseUri(options: ApiHandlerOptions) {
-	try {
-		const token = options.kilocodeToken as string
-		const payload_string = token.split(".")[1]
-		const payload = JSON.parse(Buffer.from(payload_string, "base64").toString())
-		//note: this is UNTRUSTED, so we need to make sure we're OK with this being manipulated by an attacker; e.g. we should not read uri's from the JWT directly.
-		if (payload.env === "development") return "http://localhost:3000"
-	} catch (_error) {
-		console.warn("Failed to get base URL from Kilo Code token")
-	}
-	return "https://kilocode.ai"
+	return getKiloBaseUriFromToken(options.kilocodeToken ?? "")
 }
