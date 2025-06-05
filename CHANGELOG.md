@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.19.4
+
+### Patch Changes
+
+-   - Add Gemini Pro 06-05 model support (thanks @daniel-lxs and @shariqriazz!)
+
 ## [3.19.3] - 2025-06-02
 
 - Fix SSE MCP Invocation - Fixed SSE connection issue in McpHub.ts by ensuring transport.start override only applies to stdio transports, allowing SSE and streamable-http transports to retain their original start methods (thanks @taylorwilsdon!)
