@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.19.7
+
+### Patch Changes
+
+-   - Fix McpHub sidebar focus behavior to prevent unwanted focus grabbing (thanks @mrubens!)
+
 ## [3.19.6] - 2025-06-09
 
 - Replace explicit caching with implicit caching to reduce latency for Gemini models
