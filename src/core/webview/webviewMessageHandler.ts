@@ -212,6 +212,27 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 				provider.exportTaskWithId(currentTaskId)
 			}
 			break
+		case "shareCurrentTask":
+			const shareTaskId = provider.getCurrentCline()?.taskId
+			if (!shareTaskId) {
+				vscode.window.showErrorMessage(t("common:errors.share_no_active_task"))
+				break
+			}
+
+			try {
+				const success = await CloudService.instance.shareTask(shareTaskId)
+				if (success) {
+					// Show success message
+					vscode.window.showInformationMessage(t("common:info.share_link_copied"))
+				} else {
+					// Show generic failure message
+					vscode.window.showErrorMessage(t("common:errors.share_task_failed"))
+				}
+			} catch (error) {
+				// Show generic failure message
+				vscode.window.showErrorMessage(t("common:errors.share_task_failed"))
+			}
+			break
 		case "showTaskWithId":
 			provider.showTaskWithId(message.text!)
 			break
@@ -504,7 +525,7 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 					}
 				}
 			} catch (error) {
-				vscode.window.showErrorMessage(t("common:errors.create_mcp_json", { error: `${error}` }))
+				vscode.window.showErrorMessage(t("mcp:errors.create_json", { error: `${error}` }))
 			}
 
 			break
@@ -589,6 +610,14 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 			}
 			break
 		// kilocode_change end
+		case "refreshAllMcpServers": {
+			const mcpHub = provider.getMcpHub()
+			if (mcpHub) {
+				await mcpHub.refreshAllConnections()
+			}
+			break
+		}
+		// playSound handler removed - now handled directly in the webview
 		case "soundEnabled":
 			const soundEnabled = message.bool ?? true
 			await updateGlobalState("soundEnabled", soundEnabled)

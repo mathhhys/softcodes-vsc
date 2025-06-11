@@ -8,7 +8,7 @@ import { runEvals } from "./runEvals.js"
 import { processTask } from "./processTask.js"
 
 const main = async () => {
-	const result = await run(
+	await run(
 		command({
 			name: "cli",
 			description: "Execute an eval run.",
@@ -32,7 +32,7 @@ const main = async () => {
 					if (runId !== -1) {
 						await runEvals(runId)
 					} else {
-						await processTask(taskId)
+						await processTask({ taskId })
 					}
 				} catch (error) {
 					console.error(error)
@@ -43,7 +43,6 @@ const main = async () => {
 		process.argv.slice(2),
 	)
 
-	console.log(result)
 	process.exit(0)
 }
 

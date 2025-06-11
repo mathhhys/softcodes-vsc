@@ -1330,6 +1330,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			historyPreviewCollapsed,
 			cloudUserInfo,
 			cloudIsAuthenticated,
+			sharingEnabled,
 			organizationAllowList,
 			maxConcurrentFileReads,
 			condensingApiConfigId,
@@ -1436,6 +1437,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			workflowToggles, // kilocode_change
 			cloudUserInfo,
 			cloudIsAuthenticated: cloudIsAuthenticated ?? false,
+			sharingEnabled: sharingEnabled ?? false,
 			organizationAllowList,
 			condensingApiConfigId,
 			customCondensingPrompt,
@@ -1498,6 +1500,16 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		} catch (error) {
 			console.error(
 				`[getState] failed to get cloud authentication state: ${error instanceof Error ? error.message : String(error)}`,
+			)
+		}
+
+		let sharingEnabled: boolean = false
+
+		try {
+			sharingEnabled = await CloudService.instance.canShareTask()
+		} catch (error) {
+			console.error(
+				`[getState] failed to get sharing enabled state: ${error instanceof Error ? error.message : String(error)}`,
 			)
 		}
 
@@ -1577,6 +1589,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			historyPreviewCollapsed: stateValues.historyPreviewCollapsed ?? false,
 			cloudUserInfo,
 			cloudIsAuthenticated,
+			sharingEnabled,
 			organizationAllowList,
 			// Explicitly add condensing settings
 			condensingApiConfigId: stateValues.condensingApiConfigId,
