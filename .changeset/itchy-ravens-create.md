@@ -2,8 +2,14 @@
 "kilo-code": minor
 ---
 
-Include changes from Roo Code v3.19.6:
+Include changes from Roo Code v3.19.7:
 
+- Fix McpHub sidebar focus behavior to prevent unwanted focus grabbing
+- Disable checkpoint functionality when nested git repositories are detected to prevent conflicts
+- Remove unused Storybook components and dependencies to reduce bundle size
+- Add data-testid ESLint rule for improved testing standards (thanks @elianiva!)
+- Update development dependencies including eslint, knip, @types/node, i18next, fast-xml-parser, and @google/genai
+- Improve CI infrastructure with GitHub Actions and Blacksmith runner migrations
 - Replace explicit caching with implicit caching to reduce latency for Gemini models
 - Clarify that the default concurrent file read limit is 15 files (thanks @olearycrew!)
 - Fix copy button logic (thanks @samhvw8!)
