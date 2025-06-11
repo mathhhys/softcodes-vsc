@@ -39,11 +39,12 @@ type OpenRouterModelProvider = ModelInfo & {
 	label: string
 }
 
-async function getOpenRouterProvidersForModel(modelId: string) {
+async function getOpenRouterProvidersForModel(modelId: string, baseUrl?: string) {
 	const models: Record<string, OpenRouterModelProvider> = {}
 
+	const apiBase = baseUrl?.trim() || "https://openrouter.ai/api/v1"
 	try {
-		const response = await axios.get(`https://openrouter.ai/api/v1/models/${modelId}/endpoints`)
+		const response = await axios.get(`${apiBase.replace(/\/$/, "")}/models/${modelId}/endpoints`)
 		const result = openRouterEndpointsSchema.safeParse(response.data)
 
 		if (!result.success) {
@@ -112,9 +113,13 @@ type UseOpenRouterModelProvidersOptions = Omit<
 	"queryKey" | "queryFn"
 >
 
-export const useOpenRouterModelProviders = (modelId?: string, options?: UseOpenRouterModelProvidersOptions) =>
+export const useOpenRouterModelProviders = (
+	modelId?: string,
+	baseUrl?: string,
+	options?: UseOpenRouterModelProvidersOptions,
+) =>
 	useQuery<Record<string, OpenRouterModelProvider>>({
-		queryKey: ["openrouter-model-providers", modelId],
-		queryFn: () => (modelId ? getOpenRouterProvidersForModel(modelId) : {}),
+		queryKey: ["openrouter-model-providers", modelId, baseUrl],
+		queryFn: () => (modelId ? getOpenRouterProvidersForModel(modelId, baseUrl) : {}),
 		...options,
 	})
