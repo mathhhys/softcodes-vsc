@@ -123,6 +123,40 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 
 			provider.isViewLaunched = true
 			break
+		case "updateAllowedConnectDomains":
+			if (message.text) {
+				const newDomain = message.text
+				const config = vscode.workspace.getConfiguration(Package.name)
+				const allowedConnectDomains: string[] = config.get("allowedConnectDomains") || []
+
+				if (!allowedConnectDomains.includes(newDomain)) {
+					allowedConnectDomains.push(newDomain)
+					try {
+						await config.update(
+							"allowedConnectDomains",
+							allowedConnectDomains,
+							vscode.ConfigurationTarget.Global,
+						)
+						vscode.window
+							.showInformationMessage(
+								`Kilo Code: To apply the new custom base URL changes (${newDomain}), please reload the window.`,
+								"Reload",
+							)
+							.then((selection) => {
+								if (selection === "Reload") {
+									vscode.commands.executeCommand("workbench.action.reloadWindow")
+								}
+							})
+					} catch (error) {
+						provider.log(`Error updating kilo-code.allowedConnectDomains: ${error.message || error}`)
+						showSystemNotification({
+							message: `Kilo Code: Failed to update allowed connect domains. Please ensure 'kilo-code.allowedConnectDomains' is registered in your extension's package.json. Error: ${error.message || error}`,
+							title: "Kilo Code",
+						})
+					}
+				}
+			}
+			break
 		case "newTask":
 			// Initializing new instance of Cline will make sure that any
 			// agentically running promises in old instance don't affect our new

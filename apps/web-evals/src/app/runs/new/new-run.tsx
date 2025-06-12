@@ -89,6 +89,10 @@ export function NewRun() {
 
 	const [model, suite, settings] = watch(["model", "suite", "settings", "concurrency"])
 
+	const openRouterBaseUrl = settings?.openRouterBaseUrl
+	const models = useOpenRouterModels(openRouterBaseUrl)
+	const exercises = useExercises()
+
 	const [systemPromptDialogOpen, setSystemPromptDialogOpen] = useState(false)
 	const [systemPrompt, setSystemPrompt] = useState("")
 	const systemPromptRef = useRef<HTMLTextAreaElement>(null)
