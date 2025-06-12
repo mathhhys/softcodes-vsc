@@ -68,5 +68,8 @@ export const getOpenRouterModels = async (baseUrl?: string): Promise<OpenRouterM
 		}, {} as OpenRouterModelRecord)
 }
 
-export const useOpenRouterModels = () =>
-	useQuery<OpenRouterModelRecord>({ queryKey: ["getOpenRouterModels"], queryFn: getOpenRouterModels })
+export const useOpenRouterModels = (baseUrl?: string) =>
+	useQuery<OpenRouterModelRecord>({
+		queryKey: ["getOpenRouterModels", baseUrl],
+		queryFn: ({ queryKey }) => getOpenRouterModels(queryKey[1] as string),
+	})
