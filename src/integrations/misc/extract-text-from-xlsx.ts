@@ -44,7 +44,7 @@ function formatCellValue(cell: ExcelJS.Cell): string {
 /**
  * Extract and format text from xlsx files
  */
-export async function extractTextFromExcel(filePath: string): Promise<string> {
+export async function extractTextFromXLSX(filePath: string): Promise<string> {
 	const workbook = new ExcelJS.Workbook()
 	let excelText = ""
 
