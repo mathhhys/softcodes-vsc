@@ -2,9 +2,6 @@ import ExcelJS from "exceljs"
 
 const ROW_LIMIT = 50000
 
-/**
- * Format the data inside Excel cells
- */
 function formatCellValue(cell: ExcelJS.Cell): string {
 	const value = cell.value
 	if (value === null || value === undefined) {
@@ -43,9 +40,6 @@ function formatCellValue(cell: ExcelJS.Cell): string {
 	return value.toString()
 }
 
-/**
- * Extract and format text from xlsx files
- */
 export async function extractTextFromXLSX(filePath: string): Promise<string> {
 	const workbook = new ExcelJS.Workbook()
 	let excelText = ""
