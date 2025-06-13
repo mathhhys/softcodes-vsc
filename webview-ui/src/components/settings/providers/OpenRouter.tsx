@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useState } from "react"
 import { Trans } from "react-i18next"
 import { Checkbox } from "vscrui"
 import { VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
@@ -16,7 +16,6 @@ import {
 } from "@src/components/ui/hooks/useOpenRouterModelProviders"
 import { VSCodeButtonLink } from "@src/components/common/VSCodeButtonLink"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@src/components/ui"
-import { vscode } from "@src/utils/vscode"
 
 import { inputEventTransform, noTransform } from "../transforms"
 
@@ -45,20 +44,6 @@ export const OpenRouter = ({
 	const { t } = useAppTranslation()
 
 	const [openRouterBaseUrlSelected, setOpenRouterBaseUrlSelected] = useState(!!apiConfiguration?.openRouterBaseUrl)
-
-	useEffect(() => {
-		if (apiConfiguration?.openRouterBaseUrl) {
-			try {
-				const url = new URL(apiConfiguration.openRouterBaseUrl)
-				vscode.postMessage({
-					type: "updateAllowedConnectDomains",
-					text: "https://" + url.hostname,
-				})
-			} catch (error) {
-				console.error("Invalid OpenRouter base URL:", error)
-			}
-		}
-	}, [apiConfiguration?.openRouterBaseUrl])
 
 	const handleInputChange = useCallback(
 		<K extends keyof ProviderSettings, E>(
@@ -118,14 +103,14 @@ export const OpenRouter = ({
 								setOpenRouterBaseUrlSelected(checked)
 
 								if (!checked) {
-									setApiConfigurationField("openRouterBaseUrl", "https://openrouter.ai/api/v1")
+									setApiConfigurationField("openRouterBaseUrl", "")
 								}
 							}}>
 							{t("settings:providers.useCustomBaseUrl")}
 						</Checkbox>
 						{openRouterBaseUrlSelected && (
 							<VSCodeTextField
-								value={apiConfiguration?.openRouterBaseUrl || "https://openrouter.ai/api/v1"}
+								value={apiConfiguration?.openRouterBaseUrl || ""}
 								type="url"
 								onInput={handleInputChange("openRouterBaseUrl")}
 								placeholder="Default: https://openrouter.ai/api/v1"
@@ -152,7 +137,7 @@ export const OpenRouter = ({
 				models={routerModels?.openrouter ?? {}}
 				modelIdKey="openRouterModelId"
 				serviceName="OpenRouter"
-				serviceUrl={`${apiConfiguration?.openRouterBaseUrl || "https://openrouter.ai/api/v1"}/models`}
+				serviceUrl="https://openrouter.ai/models"
 				organizationAllowList={organizationAllowList}
 			/>
 			{openRouterModelProviders && Object.keys(openRouterModelProviders).length > 0 && (
@@ -161,8 +146,7 @@ export const OpenRouter = ({
 						<label className="block font-medium mb-1">
 							{t("settings:providers.openRouter.providerRouting.title")}
 						</label>
-						<a
-							href={`${apiConfiguration?.openRouterBaseUrl || "https://openrouter.ai/api/v1"}/${selectedModelId}/providers`}>
+						<a href={`https://openrouter.ai/${selectedModelId}/providers`}>
 							<ExternalLinkIcon className="w-4 h-4" />
 						</a>
 					</div>

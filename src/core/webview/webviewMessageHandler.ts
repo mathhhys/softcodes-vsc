@@ -379,7 +379,6 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 			}
 
 			const modelFetchPromises: Array<{ key: RouterName; options: GetModelsOptions }> = [
-				{ key: "openrouter", options: { provider: "openrouter" } },
 				{ key: "requesty", options: { provider: "requesty", apiKey: apiConfiguration.requestyApiKey } },
 				{ key: "glama", options: { provider: "glama" } },
 				{ key: "unbound", options: { provider: "unbound", apiKey: apiConfiguration.unboundApiKey } },
@@ -388,6 +387,17 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 					options: { provider: "kilocode-openrouter", kilocodeToken: apiConfiguration.kilocodeToken },
 				}, // kilocode_change
 			]
+
+			const openRouterApiKey = apiConfiguration.openRouterApiKey || message?.values?.openRouterApiKey
+			const openRouterBaseUrl = apiConfiguration.openRouterBaseUrl || message?.values?.openRouterBaseUrl
+			if (openRouterApiKey && openRouterBaseUrl) {
+				modelFetchPromises.push({
+					key: "openrouter",
+					options: { provider: "openrouter", apiKey: openRouterApiKey, baseUrl: openRouterBaseUrl },
+				})
+			} else {
+				modelFetchPromises.push({ key: "openrouter", options: { provider: "openrouter" } })
+			}
 
 			const litellmApiKey = apiConfiguration.litellmApiKey || message?.values?.litellmApiKey
 			const litellmBaseUrl = apiConfiguration.litellmBaseUrl || message?.values?.litellmBaseUrl

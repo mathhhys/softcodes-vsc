@@ -44,7 +44,7 @@ async function getOpenRouterProvidersForModel(modelId: string, baseUrl?: string)
 
 	const apiBase = baseUrl?.trim() || "https://openrouter.ai/api/v1"
 	try {
-		const response = await axios.get(`${apiBase.replace(/\/$/, "")}/models/${modelId}/endpoints`)
+		const response = await axios.get(`${apiBase}/models/${modelId}/endpoints`)
 		const result = openRouterEndpointsSchema.safeParse(response.data)
 
 		if (!result.success) {
