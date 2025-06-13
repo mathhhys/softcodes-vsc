@@ -6,7 +6,7 @@ import styled from "styled-components"
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../ui/tooltip"
 import { vscode } from "@/utils/vscode"
-import BottomButton from "../../ui/BottomButton"
+import BottomButton from "../BottomButton"
 
 import RulesWorkflowsSection from "./RulesWorkflowsSection"
 

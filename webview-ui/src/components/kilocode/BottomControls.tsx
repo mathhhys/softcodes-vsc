@@ -1,8 +1,8 @@
 import React from "react"
 import { vscode } from "../../utils/vscode"
 import { useAppTranslation } from "@/i18n/TranslationContext"
-import KiloRulesToggleModal from "../kilocode/rules/KiloRulesToggleModal"
-import BottomButton from "../ui/BottomButton"
+import KiloRulesToggleModal from "./rules/KiloRulesToggleModal"
+import BottomButton from "./BottomButton"
 
 const BottomControls: React.FC = () => {
 	const { t } = useAppTranslation()
