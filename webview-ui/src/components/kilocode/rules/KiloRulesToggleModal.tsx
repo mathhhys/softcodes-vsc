@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react"
 import { useWindowSize, useClickAway } from "react-use"
-import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { useTranslation } from "react-i18next"
 import styled from "styled-components"
 
@@ -104,18 +104,12 @@ const KiloRulesToggleModal: React.FC = () => {
 				<TooltipProvider>
 					<Tooltip open={isVisible ? false : undefined}>
 						<TooltipTrigger asChild>
-							<VSCodeButton
-								appearance="icon"
+							<button
+								className="vscode-button flex items-center gap-1.5 p-0.75 rounded-sm text-vscode-foreground cursor-pointer hover:bg-vscode-list-hoverBackground"
 								aria-label={t("kilocode:rules.ariaLabel")}
-								onClick={() => setIsVisible(!isVisible)}
-								style={{ padding: "0px 0px", height: "20px" }}>
-								<div className="flex items-center gap-1 text-xs whitespace-nowrap min-w-0 w-full">
-									<span
-										className="codicon codicon-law flex items-center"
-										style={{ fontSize: "12.5px", marginBottom: 1 }}
-									/>
-								</div>
-							</VSCodeButton>
+								onClick={() => setIsVisible(!isVisible)}>
+								<span className="codicon codicon-law text-sm"></span>
+							</button>
 						</TooltipTrigger>
 						<TooltipContent>{t("kilocode:rules.tooltip")}</TooltipContent>
 					</Tooltip>
