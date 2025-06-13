@@ -307,13 +307,14 @@ const ApiOptions = ({
 						<SelectValue placeholder={t("settings:common.select")} />
 					</SelectTrigger>
 					<SelectContent>
+						{/*  kilocode_change start: separator */}
 						{PROVIDERS.map(({ value, label }, i) => (
 							<Fragment key={value}>
 								<SelectItem value={value}>{label}</SelectItem>
-								{/*  kilocode_change */}
 								{i === 0 ? <SelectSeparator /> : null}
 							</Fragment>
 						))}
+						{/*  kilocode_change end */}
 					</SelectContent>
 				</Select>
 			</div>
