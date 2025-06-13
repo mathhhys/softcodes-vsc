@@ -1,5 +1,7 @@
 import ExcelJS from "exceljs"
 
+const ROW_LIMIT = 50000
+
 /**
  * Format the data inside Excel cells
  */
@@ -60,7 +62,7 @@ export async function extractTextFromXLSX(filePath: string): Promise<string> {
 
 		worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
 			// Optional: limit processing for very large sheets
-			if (rowNumber > 50000) {
+			if (rowNumber > ROW_LIMIT) {
 				excelText += `[... truncated at row ${rowNumber} ...]\n`
 				return false
 			}
