@@ -48,49 +48,44 @@ export async function extractTextFromExcel(filePath: string): Promise<string> {
 	const workbook = new ExcelJS.Workbook()
 	let excelText = ""
 
-	try {
-		await workbook.xlsx.readFile(filePath)
+	await workbook.xlsx.readFile(filePath)
 
-		workbook.eachSheet((worksheet, sheetId) => {
-			// Skip hidden sheets
-			if (worksheet.state === "hidden" || worksheet.state === "veryHidden") {
-				return
+	workbook.eachSheet((worksheet, sheetId) => {
+		// Skip hidden sheets
+		if (worksheet.state === "hidden" || worksheet.state === "veryHidden") {
+			return
+		}
+
+		excelText += `--- Sheet: ${worksheet.name} ---\n`
+
+		worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+			// Optional: limit processing for very large sheets
+			if (rowNumber > 50000) {
+				excelText += `[... truncated at row ${rowNumber} ...]\n`
+				return false
 			}
 
-			excelText += `--- Sheet: ${worksheet.name} ---\n`
+			const rowTexts: string[] = []
+			let hasContent = false
 
-			worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
-				// Optional: limit processing for very large sheets
-				if (rowNumber > 50000) {
-					excelText += `[... truncated at row ${rowNumber} ...]\n`
-					return false
+			row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+				const cellText = formatCellValue(cell)
+				if (cellText.trim()) {
+					hasContent = true
 				}
-
-				const rowTexts: string[] = []
-				let hasContent = false
-
-				row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-					const cellText = formatCellValue(cell)
-					if (cellText.trim()) {
-						hasContent = true
-					}
-					rowTexts.push(cellText)
-				})
-
-				// Only add rows with actual content
-				if (hasContent) {
-					excelText += rowTexts.join("\t") + "\n"
-				}
-
-				return true
+				rowTexts.push(cellText)
 			})
 
-			excelText += "\n" // Blank line between sheets
+			// Only add rows with actual content
+			if (hasContent) {
+				excelText += rowTexts.join("\t") + "\n"
+			}
+
+			return true
 		})
 
-		return excelText.trim()
-	} catch (error: any) {
-		console.error(`Error extracting text from Excel ${filePath}:`, error)
-		throw new Error(`Failed to extract text from Excel: ${error.message}`)
-	}
+		excelText += "\n" // Blank line between sheets
+	})
+
+	return excelText.trim()
 }
