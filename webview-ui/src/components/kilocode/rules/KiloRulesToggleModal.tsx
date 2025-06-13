@@ -146,11 +146,11 @@ const KiloRulesToggleModal: React.FC = () => {
 								gap: "1px",
 								borderBottom: "1px solid var(--vscode-panel-border)",
 							}}>
-							<StyledTabButton isActive={currentView === "rule"} onClick={() => setCurrentView("rule")}>
+							<StyledTabButton $isActive={currentView === "rule"} onClick={() => setCurrentView("rule")}>
 								{t("kilocode:rules.tabs.rules")}
 							</StyledTabButton>
 							<StyledTabButton
-								isActive={currentView === "workflow"}
+								$isActive={currentView === "workflow"}
 								onClick={() => setCurrentView("workflow")}>
 								{t("kilocode:rules.tabs.workflows")}
 							</StyledTabButton>
@@ -196,11 +196,11 @@ const KiloRulesToggleModal: React.FC = () => {
 	)
 }
 
-const StyledTabButton = styled.button<{ isActive: boolean }>`
+const StyledTabButton = styled.button<{ $isActive: boolean }>`
 	background: none;
 	border: none;
-	border-bottom: 2px solid ${(props) => (props.isActive ? "var(--vscode-foreground)" : "transparent")};
-	color: ${(props) => (props.isActive ? "var(--vscode-foreground)" : "var(--vscode-descriptionForeground)")};
+	border-bottom: 2px solid ${(props) => (props.$isActive ? "var(--vscode-foreground)" : "transparent")};
+	color: ${(props) => (props.$isActive ? "var(--vscode-foreground)" : "var(--vscode-descriptionForeground)")};
 	padding: 8px 16px;
 	cursor: pointer;
 	font-size: 13px;
