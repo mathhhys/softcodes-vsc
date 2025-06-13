@@ -18,7 +18,7 @@ function formatCellValue(cell: ExcelJS.Cell): string {
 
 	// Handle dates - ExcelJS can parse them as Date objects
 	if (value instanceof Date) {
-		return value.toISOString().split("T")[0] // Just the date part
+		return value.toISOString().split("T")[0]
 	}
 
 	// Handle rich text
@@ -53,7 +53,6 @@ export async function extractTextFromXLSX(filePath: string): Promise<string> {
 	await workbook.xlsx.readFile(filePath)
 
 	workbook.eachSheet((worksheet, sheetId) => {
-		// Skip hidden sheets
 		if (worksheet.state === "hidden" || worksheet.state === "veryHidden") {
 			return
 		}
@@ -61,7 +60,6 @@ export async function extractTextFromXLSX(filePath: string): Promise<string> {
 		excelText += `--- Sheet: ${worksheet.name} ---\n`
 
 		worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
-			// Optional: limit processing for very large sheets
 			if (rowNumber > ROW_LIMIT) {
 				excelText += `[... truncated at row ${rowNumber} ...]\n`
 				return false
@@ -78,7 +76,6 @@ export async function extractTextFromXLSX(filePath: string): Promise<string> {
 				rowTexts.push(cellText)
 			})
 
-			// Only add rows with actual content
 			if (hasContent) {
 				excelText += rowTexts.join("\t") + "\n"
 			}
@@ -86,7 +83,7 @@ export async function extractTextFromXLSX(filePath: string): Promise<string> {
 			return true
 		})
 
-		excelText += "\n" // Blank line between sheets
+		excelText += "\n"
 	})
 
 	return excelText.trim()
