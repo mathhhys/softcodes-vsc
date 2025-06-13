@@ -1,7 +1,8 @@
 import React from "react"
 import { vscode } from "../../utils/vscode"
 import { useAppTranslation } from "@/i18n/TranslationContext"
-import KiloRulesToggleModal from "../kilocode/rules/KiloRulesToggleModal"
+import KiloRulesToggleModal from "./rules/KiloRulesToggleModal"
+import BottomButton from "./BottomButton"
 
 const BottomControls: React.FC = () => {
 	const { t } = useAppTranslation()
@@ -14,12 +15,11 @@ const BottomControls: React.FC = () => {
 		<div className="flex flex-row justify-end w-auto h-[30px] mx-3.5 mb-1">
 			<div className="flex items-center gap-1">
 				<KiloRulesToggleModal />
-				<button
-					className="vscode-button flex items-center gap-1.5 p-0.75 rounded-sm text-vscode-foreground cursor-pointer hover:bg-vscode-list-hoverBackground"
+				<BottomButton
+					iconClass="codicon-feedback"
 					title={t("common:feedback.title")}
-					onClick={showFeedbackOptions}>
-					<span className="codicon codicon-feedback text-sm"></span>
-				</button>
+					onClick={showFeedbackOptions}
+				/>
 			</div>
 		</div>
 	)
