@@ -14,7 +14,7 @@ import WelcomeView from "./components/kilocode/Welcome/WelcomeView" // kilocode_
 import ProfileView from "./components/kilocode/profile/ProfileView" // kilocode_change
 import ModesView from "./components/modes/ModesView"
 import { HumanRelayDialog } from "./components/human-relay/HumanRelayDialog"
-import BottomControls from "./components/chat/BottomControls" // kilocode_change
+import BottomControls from "./components/kilocode/BottomControls" // kilocode_change
 import { AccountView } from "./components/account/AccountView"
 
 type Tab = "settings" | "history" | "mcp" | "modes" | "chat" | "account" | "profile" // kilocode_change: add "profile"
