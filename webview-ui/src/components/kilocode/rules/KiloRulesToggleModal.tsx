@@ -6,6 +6,7 @@ import styled from "styled-components"
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../ui/tooltip"
 import { vscode } from "@/utils/vscode"
+import BottomButton from "../../ui/BottomButton"
 
 import RulesWorkflowsSection from "./RulesWorkflowsSection"
 
@@ -104,12 +105,11 @@ const KiloRulesToggleModal: React.FC = () => {
 				<TooltipProvider>
 					<Tooltip open={isVisible ? false : undefined}>
 						<TooltipTrigger asChild>
-							<button
-								className="vscode-button flex items-center gap-1.5 p-0.75 rounded-sm text-vscode-foreground cursor-pointer hover:bg-vscode-list-hoverBackground"
-								aria-label={t("kilocode:rules.ariaLabel")}
-								onClick={() => setIsVisible(!isVisible)}>
-								<span className="codicon codicon-law text-sm"></span>
-							</button>
+							<BottomButton
+								iconClass="codicon-law"
+								ariaLabel={t("kilocode:rules.ariaLabel")}
+								onClick={() => setIsVisible(!isVisible)}
+							/>
 						</TooltipTrigger>
 						<TooltipContent>{t("kilocode:rules.tooltip")}</TooltipContent>
 					</Tooltip>
