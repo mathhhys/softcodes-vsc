@@ -50,7 +50,7 @@ const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, variant, isSelect
 
 			{/* Action Buttons */}
 			{!isSelectionMode && (
-				<div className="flex flex-row gap-0 items-center opacity-50 hover:opacity-100">
+				<div className="flex flex-row gap-0 items-center opacity-20 group-hover:opacity-50 hover:opacity-100">
 					{/* kilocode_change start */}
 					{/* Favorite Star Button */}
 					<Button

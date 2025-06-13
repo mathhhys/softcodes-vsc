@@ -53,7 +53,10 @@ export const globalSettingsSchema = z.object({
 	browserToolEnabled: z.boolean().optional(),
 	browserViewportSize: z.string().optional(),
 	showAutoApproveMenu: z.boolean().optional(), // kilocode_change
-	workflowToggles: z.record(z.string(), z.boolean()).optional(), // kilocode_change
+	localWorkflowToggles: z.record(z.string(), z.boolean()).optional(), // kilocode_change
+	globalWorkflowToggles: z.record(z.string(), z.boolean()).optional(), // kilocode_change
+	localRulesToggles: z.record(z.string(), z.boolean()).optional(), // kilocode_change
+	globalRulesToggles: z.record(z.string(), z.boolean()).optional(), // kilocode_change
 	screenshotQuality: z.number().optional(),
 	remoteBrowserEnabled: z.boolean().optional(),
 	remoteBrowserHost: z.string().optional(),
