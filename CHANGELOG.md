@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.20.3
+
+### Patch Changes
+
+-   - Resolve diff editor race condition in multi-monitor setups (thanks @daniel-lxs!)
+
 ## [3.20.2] - 2025-06-13
 
 - Limit search_files to only look within the workspace for improved security
