@@ -56,10 +56,11 @@ export const OpenRouter = ({
 		[setApiConfigurationField],
 	)
 
-	// kilocode_change: openRouterBaseUrl
+	// kilocode_change start: openRouterBaseUrl, apiKey
 	const { data: openRouterModelProviders } = useOpenRouterModelProviders(
 		apiConfiguration?.openRouterModelId,
 		apiConfiguration?.openRouterBaseUrl,
+		apiConfiguration?.apiKey,
 		{
 			enabled:
 				!!apiConfiguration?.openRouterModelId &&
@@ -68,6 +69,7 @@ export const OpenRouter = ({
 				apiConfiguration.openRouterModelId in routerModels.openrouter,
 		},
 	)
+	// kilocode_change end
 
 	return (
 		<>

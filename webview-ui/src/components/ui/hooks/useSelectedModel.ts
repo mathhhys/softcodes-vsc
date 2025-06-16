@@ -42,7 +42,13 @@ export const useSelectedModel = (apiConfiguration?: ProviderSettings) => {
 	const openRouterModelId = provider === "openrouter" ? apiConfiguration?.openRouterModelId : undefined
 
 	const routerModels = useRouterModels()
-	const openRouterModelProviders = useOpenRouterModelProviders(openRouterModelId, apiConfiguration?.openRouterBaseUrl) // kilocode_change openRouterBaseUrl
+	// kilocode_change start openRouterBaseUrl, apiKey
+	const openRouterModelProviders = useOpenRouterModelProviders(
+		openRouterModelId,
+		apiConfiguration?.openRouterBaseUrl,
+		apiConfiguration?.apiKey,
+	)
+	// kilocode_change end
 
 	const { id, info } =
 		apiConfiguration &&

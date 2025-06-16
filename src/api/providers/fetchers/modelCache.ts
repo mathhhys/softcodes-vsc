@@ -55,7 +55,7 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 				// kilocode_change start: base url and bearer token
 				models = await getOpenRouterModels({
 					openRouterBaseUrl: options.baseUrl,
-					headers: { Authorization: `Bearer ${options.apiKey}` },
+					headers: options.apiKey ? { Authorization: `Bearer ${options.apiKey}` } : undefined,
 				})
 				// kilocode_change end
 				break

@@ -39,15 +39,17 @@ type OpenRouterModelProvider = ModelInfo & {
 	label: string
 }
 
-// kilocode_change: baseUrl
-async function getOpenRouterProvidersForModel(modelId: string, baseUrl?: string) {
+// kilocode_change: baseUrl, apiKey
+async function getOpenRouterProvidersForModel(modelId: string, baseUrl?: string, apiKey?: string) {
 	const models: Record<string, OpenRouterModelProvider> = {}
 
 	try {
-		// kilocode_change: baseUrl
+		// kilocode_change start: baseUrl, apiKey
 		const response = await axios.get(
 			`${baseUrl?.trim() ?? "https://openrouter.ai/api/v1"}/models/${modelId}/endpoints`,
+			apiKey ? { headers: { Authorization: `Bearer ${apiKey}` } } : undefined,
 		)
+		// kilocode_change end
 		const result = openRouterEndpointsSchema.safeParse(response.data)
 
 		if (!result.success) {
@@ -116,15 +118,16 @@ type UseOpenRouterModelProvidersOptions = Omit<
 	"queryKey" | "queryFn"
 >
 
-// kilocode_change start: baseUrl
+// kilocode_change start: baseUrl, apiKey
 export const useOpenRouterModelProviders = (
 	modelId?: string,
 	baseUrl?: string,
+	apiKey?: string,
 	options?: UseOpenRouterModelProvidersOptions,
 ) =>
 	useQuery<Record<string, OpenRouterModelProvider>>({
 		queryKey: ["openrouter-model-providers", modelId, baseUrl],
-		queryFn: () => (modelId ? getOpenRouterProvidersForModel(modelId, baseUrl) : {}),
+		queryFn: () => (modelId ? getOpenRouterProvidersForModel(modelId, baseUrl, apiKey) : {}),
 		...options,
 	})
 // kilocode_change end
