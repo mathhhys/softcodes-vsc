@@ -52,10 +52,12 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 	try {
 		switch (provider) {
 			case "openrouter":
+				// kilocode_change start: base url and bearer token
 				models = await getOpenRouterModels({
 					openRouterBaseUrl: options.baseUrl,
 					headers: { Authorization: `Bearer ${options.apiKey}` },
 				})
+				// kilocode_change end
 				break
 			case "requesty":
 				// Requesty models endpoint requires an API key for per-user custom policies

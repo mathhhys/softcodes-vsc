@@ -35,16 +35,19 @@ const openRouterEndpointsSchema = z.object({
 	}),
 })
 
-export type OpenRouterModelProvider = ModelInfo & {
+type OpenRouterModelProvider = ModelInfo & {
 	label: string
 }
 
+// kilocode_change: baseUrl
 async function getOpenRouterProvidersForModel(modelId: string, baseUrl?: string) {
 	const models: Record<string, OpenRouterModelProvider> = {}
 
-	const apiBase = baseUrl?.trim() || "https://openrouter.ai/api/v1"
 	try {
-		const response = await axios.get(`${apiBase}/models/${modelId}/endpoints`)
+		// kilocode_change: baseUrl
+		const response = await axios.get(
+			`${baseUrl?.trim() ?? "https://openrouter.ai/api/v1"}/models/${modelId}/endpoints`,
+		)
 		const result = openRouterEndpointsSchema.safeParse(response.data)
 
 		if (!result.success) {
@@ -113,6 +116,7 @@ type UseOpenRouterModelProvidersOptions = Omit<
 	"queryKey" | "queryFn"
 >
 
+// kilocode_change start: baseUrl
 export const useOpenRouterModelProviders = (
 	modelId?: string,
 	baseUrl?: string,
@@ -123,3 +127,4 @@ export const useOpenRouterModelProviders = (
 		queryFn: () => (modelId ? getOpenRouterProvidersForModel(modelId, baseUrl) : {}),
 		...options,
 	})
+// kilocode_change end

@@ -179,7 +179,6 @@ export interface WebviewMessage {
 		| "codebaseIndexConfig"
 		| "telemetrySetting"
 		| "toggleTaskFavorite" // kilocode_change
-		| "updateAllowedConnectDomains" // kilocode_change
 	text?: string
 	disabled?: boolean
 	askResponse?: ClineAskResponse

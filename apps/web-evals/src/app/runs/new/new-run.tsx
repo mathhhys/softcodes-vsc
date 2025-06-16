@@ -65,6 +65,7 @@ export function NewRun() {
 	const modelSearchResultsRef = useRef<Map<string, number>>(new Map())
 	const modelSearchValueRef = useRef("")
 
+	const models = useOpenRouterModels()
 	const exercises = useQuery({ queryKey: ["getExercises"], queryFn: () => getExercises() })
 
 	const form = useForm<FormValues>({
@@ -87,9 +88,6 @@ export function NewRun() {
 	} = form
 
 	const [model, suite, settings] = watch(["model", "suite", "settings", "concurrency"])
-
-	const openRouterBaseUrl = settings?.openRouterBaseUrl
-	const models = useOpenRouterModels(openRouterBaseUrl)
 
 	const [systemPromptDialogOpen, setSystemPromptDialogOpen] = useState(false)
 	const [systemPrompt, setSystemPrompt] = useState("")
