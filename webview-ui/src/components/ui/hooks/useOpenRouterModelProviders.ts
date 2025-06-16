@@ -126,7 +126,7 @@ export const useOpenRouterModelProviders = (
 	options?: UseOpenRouterModelProvidersOptions,
 ) =>
 	useQuery<Record<string, OpenRouterModelProvider>>({
-		queryKey: ["openrouter-model-providers", modelId, baseUrl],
+		queryKey: ["openrouter-model-providers", modelId, baseUrl, apiKey],
 		queryFn: () => (modelId ? getOpenRouterProvidersForModel(modelId, baseUrl, apiKey) : {}),
 		...options,
 	})
