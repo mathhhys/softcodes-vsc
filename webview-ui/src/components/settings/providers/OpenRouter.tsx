@@ -56,6 +56,7 @@ export const OpenRouter = ({
 		[setApiConfigurationField],
 	)
 
+	// kilocode_change: openRouterBaseUrl
 	const { data: openRouterModelProviders } = useOpenRouterModelProviders(
 		apiConfiguration?.openRouterModelId,
 		apiConfiguration?.openRouterBaseUrl,
@@ -160,9 +161,9 @@ export const OpenRouter = ({
 							<SelectItem value={OPENROUTER_DEFAULT_PROVIDER_NAME}>
 								{OPENROUTER_DEFAULT_PROVIDER_NAME}
 							</SelectItem>
-							{Object.entries(openRouterModelProviders).map(([value, provider]) => (
+							{Object.entries(openRouterModelProviders).map(([value, { label }]) => (
 								<SelectItem key={value} value={value}>
-									{provider.label}
+									{label}
 								</SelectItem>
 							))}
 						</SelectContent>
