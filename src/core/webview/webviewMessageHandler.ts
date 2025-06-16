@@ -345,8 +345,8 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 			}
 
 			// kilocode_change start: openrouter auth, kilocode provider
-			const openRouterApiKey = apiConfiguration.openRouterApiKey ?? message?.values?.openRouterApiKey
-			const openRouterBaseUrl = apiConfiguration.openRouterBaseUrl ?? message?.values?.openRouterBaseUrl
+			const openRouterApiKey = apiConfiguration.openRouterApiKey || message?.values?.openRouterApiKey
+			const openRouterBaseUrl = apiConfiguration.openRouterBaseUrl || message?.values?.openRouterBaseUrl
 
 			const modelFetchPromises: Array<{ key: RouterName; options: GetModelsOptions }> = [
 				{
