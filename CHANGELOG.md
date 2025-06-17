@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.38.0
-
-### Minor Changes
+## [v4.38.0]
 
 - [#719](https://github.com/Kilo-Org/kilocode/pull/719) [`cc77370`](https://github.com/Kilo-Org/kilocode/commit/cc77370eb451348d3929ab1b94ca34af4de517f3) Thanks [@hassoncs](https://github.com/hassoncs)! - ## New Features
 
