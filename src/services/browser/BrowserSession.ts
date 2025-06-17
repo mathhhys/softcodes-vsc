@@ -21,6 +21,7 @@ export class BrowserSession {
 	private page?: Page
 	private currentMousePosition?: string
 	private lastConnectionAttempt?: number
+	private isUsingRemoteBrowser: boolean = false // kilocode_change https://github.com/Kilo-Org/kilocode/pull/747
 
 	constructor(context: vscode.ExtensionContext) {
 		this.context = context
@@ -70,6 +71,7 @@ export class BrowserSession {
 			defaultViewport: this.getViewport(),
 			// headless: false,
 		})
+		this.isUsingRemoteBrowser = false // kilocode_change https://github.com/Kilo-Org/kilocode/pull/747
 	}
 
 	/**
@@ -86,6 +88,7 @@ export class BrowserSession {
 			console.log(`Connected to remote browser at ${chromeHostUrl}`)
 			this.context.globalState.update("cachedChromeHostUrl", chromeHostUrl)
 			this.lastConnectionAttempt = Date.now()
+			this.isUsingRemoteBrowser = true // kilocode_change https://github.com/Kilo-Org/kilocode/pull/747
 
 			return true
 		} catch (error) {
@@ -192,8 +195,10 @@ export class BrowserSession {
 		if (this.browser || this.page) {
 			console.log("closing browser...")
 
-			const remoteBrowserEnabled = this.context.globalState.get("remoteBrowserEnabled") as boolean | undefined
-			if (remoteBrowserEnabled && this.browser) {
+			// kilocode_change start https://github.com/Kilo-Org/kilocode/pull/747
+			if (this.isUsingRemoteBrowser && this.browser) {
+				// kilocode_change end https://github.com/Kilo-Org/kilocode/pull/747
+
 				await this.browser.disconnect().catch(() => {})
 			} else {
 				await this.browser?.close().catch(() => {})
@@ -212,6 +217,7 @@ export class BrowserSession {
 		this.browser = undefined
 		this.page = undefined
 		this.currentMousePosition = undefined
+		this.isUsingRemoteBrowser = false // kilocode_change https://github.com/Kilo-Org/kilocode/pull/747
 	}
 
 	async doAction(action: (page: Page) => Promise<void>): Promise<BrowserActionResult> {
