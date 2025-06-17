@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react"
 import { withTheme } from "./decorators"
+import { withChromaticDecorator } from "./ChromaticDecorator"
 
 import "./storybook.css"
 
@@ -37,7 +38,7 @@ const preview: Preview = {
 			},
 		},
 	},
-	decorators: [withTheme],
+	decorators: [withTheme, withChromaticDecorator],
 }
 
 export default preview
