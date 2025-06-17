@@ -17,7 +17,7 @@
 
 ### Patch Changes
 
-- [#740](https://github.com/Kilo-Org/kilocode/pull/740) [`48af442`](https://github.com/Kilo-Org/kilocode/commit/48af4429e0815eb6366cfa3a37015eadbd1df126) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - The OpenRouter provider now uses the custom base URL when fetching the model list.
+- [#706](https://github.com/Kilo-Org/kilocode/pull/706) [`48af442`](https://github.com/Kilo-Org/kilocode/commit/48af4429e0815eb6366cfa3a37015eadbd1df126) Thanks [@cobra91](https://github.com/cobra91)! - The OpenRouter provider now uses the custom base URL when fetching the model list.
 
 ## [v4.37.0]
 
