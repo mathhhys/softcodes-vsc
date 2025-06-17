@@ -1,0 +1,54 @@
+name: Chromatic Visual Testing
+
+on:
+    workflow_dispatch:
+    push:
+        branches: [main]
+    pull_request:
+        types: [opened, reopened, ready_for_review, synchronize]
+        branches: [main]
+
+env:
+    NODE_VERSION: 20.18.1
+    PNPM_VERSION: 10.8.1
+
+jobs:
+    chromatic:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  # Chromatic needs full git history for baseline comparison
+                  fetch-depth: 0
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: ${{ env.PNPM_VERSION }}
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Build Storybook
+              run: pnpm --filter @roo-code/storybook build-storybook
+
+            - name: Run Chromatic
+              uses: chromaui/action@latest
+              with:
+                  # Chromatic project token (you'll need to add this as a GitHub secret)
+                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+                  # Path to your built Storybook
+                  storybookBuildDir: apps/storybook/storybook-static
+                  # Only run on main branch and PRs
+                  onlyChanged: true
+                  # Exit with error code if there are visual changes (for PR blocking)
+                  exitOnceUploaded: ${{ github.event_name == 'pull_request' }}
+                  # Skip Chromatic on dependabot PRs
+                  skip: ${{ github.actor == 'dependabot[bot]' }}
