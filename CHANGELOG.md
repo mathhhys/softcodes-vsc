@@ -1,5 +1,26 @@
 # kilo-code
 
+## 4.38.0
+
+### Minor Changes
+
+- [#719](https://github.com/Kilo-Org/kilocode/pull/719) [`cc77370`](https://github.com/Kilo-Org/kilocode/commit/cc77370eb451348d3929ab1b94ca34af4de517f3) Thanks [@hassoncs](https://github.com/hassoncs)! - ## New Features
+
+    Add ability to customize git commit generation prompt and provider
+
+    ### Customized Commit Message Generation Prompts & Providers
+
+    - **Custom API Configuration**: Added support for selecting a specific API configuration for commit message generation in Settings > Prompts
+    - **Enhanced Commit Message Support**: Introduced a new `COMMIT_MESSAGE` support prompt type with comprehensive conventional commit format guidance
+
+    ### Bug Fixes
+
+    - The support prompts can now be saved/discarded like other settings
+
+### Patch Changes
+
+- [#740](https://github.com/Kilo-Org/kilocode/pull/740) [`48af442`](https://github.com/Kilo-Org/kilocode/commit/48af4429e0815eb6366cfa3a37015eadbd1df126) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - The OpenRouter provider now uses the custom base URL when fetching the model list.
+
 ## [v4.37.0]
 
 ### Minor Changes
