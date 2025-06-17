@@ -344,16 +344,24 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 				}
 			}
 
+			// kilocode_change start: openrouter auth, kilocode provider
+			const openRouterApiKey = apiConfiguration.openRouterApiKey || message?.values?.openRouterApiKey
+			const openRouterBaseUrl = apiConfiguration.openRouterBaseUrl || message?.values?.openRouterBaseUrl
+
 			const modelFetchPromises: Array<{ key: RouterName; options: GetModelsOptions }> = [
-				{ key: "openrouter", options: { provider: "openrouter" } },
+				{
+					key: "openrouter",
+					options: { provider: "openrouter", apiKey: openRouterApiKey, baseUrl: openRouterBaseUrl },
+				},
 				{ key: "requesty", options: { provider: "requesty", apiKey: apiConfiguration.requestyApiKey } },
 				{ key: "glama", options: { provider: "glama" } },
 				{ key: "unbound", options: { provider: "unbound", apiKey: apiConfiguration.unboundApiKey } },
 				{
 					key: "kilocode-openrouter",
 					options: { provider: "kilocode-openrouter", kilocodeToken: apiConfiguration.kilocodeToken },
-				}, // kilocode_change
+				},
 			]
+			// kilocode_change end
 
 			const litellmApiKey = apiConfiguration.litellmApiKey || message?.values?.litellmApiKey
 			const litellmBaseUrl = apiConfiguration.litellmBaseUrl || message?.values?.litellmBaseUrl

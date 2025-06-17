@@ -17,13 +17,13 @@ import { GetModelsOptions } from "../../../shared/api"
 import { getKiloBaseUriFromToken } from "../../../utils/kilocode-token"
 const memoryCache = new NodeCache({ stdTTL: 5 * 60, checkperiod: 5 * 60 })
 
-async function writeModels(router: RouterName, data: ModelRecord) {
+export /*kilocode_change*/ async function writeModels(router: RouterName, data: ModelRecord) {
 	const filename = `${router}_models.json`
 	const cacheDir = await getCacheDirectoryPath(ContextProxy.instance.globalStorageUri.fsPath)
 	await fs.writeFile(path.join(cacheDir, filename), JSON.stringify(data))
 }
 
-async function readModels(router: RouterName): Promise<ModelRecord | undefined> {
+export /*kilocode_change*/ async function readModels(router: RouterName): Promise<ModelRecord | undefined> {
 	const filename = `${router}_models.json`
 	const cacheDir = await getCacheDirectoryPath(ContextProxy.instance.globalStorageUri.fsPath)
 	const filePath = path.join(cacheDir, filename)
@@ -44,7 +44,12 @@ async function readModels(router: RouterName): Promise<ModelRecord | undefined> 
  */
 export const getModels = async (options: GetModelsOptions): Promise<ModelRecord> => {
 	const { provider } = options
-	let models = memoryCache.get<ModelRecord>(provider)
+
+	// kilocode_change start: cacheKey
+	const cacheKey = JSON.stringify(options)
+	let models = memoryCache.get<ModelRecord>(cacheKey)
+	// kilocode_cache end
+
 	if (models) {
 		return models
 	}
@@ -52,7 +57,12 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 	try {
 		switch (provider) {
 			case "openrouter":
-				models = await getOpenRouterModels()
+				// kilocode_change start: base url and bearer token
+				models = await getOpenRouterModels({
+					openRouterBaseUrl: options.baseUrl,
+					headers: options.apiKey ? { Authorization: `Bearer ${options.apiKey}` } : undefined,
+				})
+				// kilocode_change end
 				break
 			case "requesty":
 				// Requesty models endpoint requires an API key for per-user custom policies
@@ -85,7 +95,9 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 		}
 
 		// Cache the fetched models (even if empty, to signify a successful fetch with no models)
-		memoryCache.set(provider, models)
+		memoryCache.set(cacheKey, models) // kilocode_change: cacheKey
+
+		/* kilocode_change: skip useless file IO
 		await writeModels(provider, models).catch((err) =>
 			console.error(`[getModels] Error writing ${provider} models to file cache:`, err),
 		)
@@ -96,6 +108,7 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 		} catch (error) {
 			console.error(`[getModels] error reading ${provider} models from file cache`, error)
 		}
+		*/
 		return models || {}
 	} catch (error) {
 		// Log the error and re-throw it so the caller can handle it (e.g., show a UI message).

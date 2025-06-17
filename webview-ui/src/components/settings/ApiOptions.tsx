@@ -143,7 +143,12 @@ const ApiOptions = ({
 		info: selectedModelInfo,
 	} = useSelectedModel(apiConfiguration)
 
-	const { data: routerModels, refetch: refetchRouterModels } = useRouterModels()
+	// kilocode_change start: queryKey
+	const { data: routerModels, refetch: refetchRouterModels } = useRouterModels({
+		openRouterBaseUrl: apiConfiguration?.openRouterBaseUrl,
+		openRouterApiKey: apiConfiguration?.openRouterApiKey,
+	})
+	// kilocode_change end
 
 	// Update `apiModelId` whenever `selectedModelId` changes.
 	useEffect(() => {
