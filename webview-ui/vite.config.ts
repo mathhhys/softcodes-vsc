@@ -96,6 +96,7 @@ export default defineConfig(({ mode }) => {
 			reportCompressedSize: false,
 			sourcemap: true,
 			rollupOptions: {
+				external: ["vscode"], // kilocode_change: we inadvertently import vscode into the webview: @roo/modes => src/shared/modes => ../core/prompts/sections/custom-instructions
 				output: {
 					entryFileNames: `assets/[name].js`,
 					chunkFileNames: (chunkInfo) => {
@@ -151,7 +152,7 @@ export default defineConfig(({ mode }) => {
 				"dagre", // Explicitly include dagre for pre-bundling
 				// Add other known large mermaid dependencies if identified
 			],
-			exclude: ["@vscode/codicons", "vscode-oniguruma", "shiki"],
+			exclude: ["@vscode/codicons", "vscode-oniguruma", "shiki", "vscode" /*kilocode_change*/],
 		},
 		assetsInclude: ["**/*.wasm", "**/*.wav"],
 	}
