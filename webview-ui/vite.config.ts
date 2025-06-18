@@ -96,7 +96,7 @@ export default defineConfig(({ mode }) => {
 			reportCompressedSize: false,
 			sourcemap: true,
 			rollupOptions: {
-				external: ["vscode"], // kilocode_change: we inadvertenly import vscode into the webview: @roo/modes => src/shared/modes => ../core/prompts/sections/custom-instructions
+				external: ["vscode"], // kilocode_change: we inadvertently import vscode into the webview: @roo/modes => src/shared/modes => ../core/prompts/sections/custom-instructions
 				output: {
 					entryFileNames: `assets/[name].js`,
 					chunkFileNames: (chunkInfo) => {
