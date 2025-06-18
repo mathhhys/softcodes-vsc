@@ -46,6 +46,9 @@ jobs:
 
             - name: Run Chromatic
               id: chromatic
+              # Skip Chromatic for external fork PRs (they don't have access to secrets)
+              # and dependabot PRs
+              if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
               uses: chromaui/action@latest
               with:
                   # Chromatic project token (you'll need to add this as a GitHub secret)
@@ -56,30 +59,23 @@ jobs:
                   onlyChanged: true
                   # Exit with error code if there are visual changes (for PR blocking)
                   exitOnceUploaded: ${{ github.event_name == 'pull_request' }}
-                  # Skip Chromatic on dependabot PRs
-                  skip: ${{ github.actor == 'dependabot[bot]' }}
                   # Enable GitHub PR comments integration
                   token: ${{ secrets.GITHUB_TOKEN }}
 
-            # Add a summary of the Chromatic build results to the workflow summary
-            - name: Chromatic Build Summary
-              if: always() && steps.chromatic.outputs.url != ''
+            - name: Skip Chromatic (External Fork or Dependabot)
+              if: ${{ github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]' }}
               run: |
-                  echo "## Chromatic Build Results" >> $GITHUB_STEP_SUMMARY
+                  echo "## Chromatic Visual Testing Skipped" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
-                  echo "### Build Information" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Build URL:** [View on Chromatic](${{ steps.chromatic.outputs.url }})" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Changes:** ${{ steps.chromatic.outputs.changeCount || 0 }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Components:** ${{ steps.chromatic.outputs.componentCount || 0 }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Snapshots:** ${{ steps.chromatic.outputs.snapshotCount || 0 }}" >> $GITHUB_STEP_SUMMARY
-
-                  if [[ "${{ steps.chromatic.outputs.changeCount }}" != "0" ]]; then
-                    echo "" >> $GITHUB_STEP_SUMMARY
-                    echo "⚠️ **Visual changes detected!** Please review in Chromatic." >> $GITHUB_STEP_SUMMARY
+                  if [[ "${{ github.actor }}" == "dependabot[bot]" ]]; then
+                    echo "⚠️ **Chromatic testing was skipped for this Dependabot PR.**" >> $GITHUB_STEP_SUMMARY
                   else
-                    echo "" >> $GITHUB_STEP_SUMMARY
-                    echo "✅ **No visual changes detected.**" >> $GITHUB_STEP_SUMMARY
+                    echo "⚠️ **Chromatic testing was skipped for this external fork PR.**" >> $GITHUB_STEP_SUMMARY
                   fi
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "Visual regression testing will be performed when a maintainer reviews and merges this PR." >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**For maintainers:** Consider manually triggering Chromatic if visual changes are expected." >> $GITHUB_STEP_SUMMARY
 
             # Add a summary of the Chromatic build results to the workflow summary
             - name: Chromatic Build Summary
