@@ -46,24 +46,19 @@ jobs:
 
             - name: Run Chromatic
               id: chromatic
-              # Skip Chromatic for external fork PRs (they don't have access to secrets)
-              # and dependabot PRs
-              if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
+              # Skip Chromatic for external fork PRs (they don't have access to secrets) and dependabot PRs
+              if: ${{ (github.event_name == 'push') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
               uses: chromaui/action@latest
               with:
-                  # Chromatic project token (you'll need to add this as a GitHub secret)
                   projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-                  # Path to your built Storybook
                   storybookBuildDir: apps/storybook/storybook-static
-                  # Only run on main branch and PRs
                   onlyChanged: true
-                  # Exit with error code if there are visual changes (for PR blocking)
                   exitOnceUploaded: ${{ github.event_name == 'pull_request' }}
                   # Enable GitHub PR comments integration
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Skip Chromatic (External Fork or Dependabot)
-              if: ${{ github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]' }}
+              if: ${{ github.event_name == 'pull_request' && (github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]') }}
               run: |
                   echo "## Chromatic Visual Testing Skipped" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
@@ -85,9 +80,9 @@ jobs:
                   echo "" >> $GITHUB_STEP_SUMMARY
                   echo "### Build Information" >> $GITHUB_STEP_SUMMARY
                   echo "- **Build URL:** [View on Chromatic](${{ steps.chromatic.outputs.url }})" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Changes:** ${{ steps.chromatic.outputs.changeCount || 0 }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Components:** ${{ steps.chromatic.outputs.componentCount || 0 }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Snapshots:** ${{ steps.chromatic.outputs.snapshotCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Changes:** ${{ steps.chromatic.outputs.changeCount || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Components:** ${{ steps.chromatic.outputs.componentCount || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Snapshots:** ${{ steps.chromatic.outputs.specCount || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
 
                   if [[ "${{ steps.chromatic.outputs.changeCount }}" != "0" ]]; then
                     echo "" >> $GITHUB_STEP_SUMMARY
