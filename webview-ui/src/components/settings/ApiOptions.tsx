@@ -53,6 +53,7 @@ import {
 	Vertex,
 	VSCodeLM,
 	XAI,
+	Cerebras, // kilocode_change
 } from "./providers"
 
 import { MODELS_BY_PROVIDER, PROVIDERS } from "./constants"
@@ -258,6 +259,13 @@ const ApiOptions = ({
 						setApiConfigurationField("kilocodeModel", "claude37")
 					}
 					break
+				// kilocode_change start
+				case "cerebras":
+					if (!apiConfiguration.cerebrasModelId) {
+						setApiConfigurationField("cerebrasModelId", "cerebras/llama3.1-8b")
+					}
+					break
+				// kilocode_change end
 			}
 
 			setApiConfigurationField("apiProvider", value)
@@ -270,6 +278,7 @@ const ApiOptions = ({
 			apiConfiguration.requestyModelId,
 			apiConfiguration.litellmModelId,
 			apiConfiguration.kilocodeModel,
+			apiConfiguration.cerebrasModelId, // kilocode_change
 		],
 	)
 
@@ -517,6 +526,12 @@ const ApiOptions = ({
 			{selectedProvider === "chutes" && (
 				<Chutes apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
 			)}
+
+			{/* kilocode_change start */}
+			{selectedProvider === "cerebras" && (
+				<Cerebras apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
+			)}
+			{/* kilocode_change end */}
 
 			{selectedProvider === "litellm" && (
 				<LiteLLM
