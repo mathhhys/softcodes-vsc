@@ -26,6 +26,7 @@ const preview: Preview = {
 			],
 		},
 	},
+
 	globalTypes: {
 		theme: {
 			description: "Global Theme",
@@ -33,7 +34,7 @@ const preview: Preview = {
 			toolbar: {
 				title: "Theme",
 				icon: "paintbrush",
-				items: ["light", "dark"],
+				items: ["light", "dark", "both"],
 				dynamicTitle: true,
 			},
 		},
