@@ -46,31 +46,19 @@ jobs:
 
             - name: Run Chromatic
               id: chromatic
-              # Skip Chromatic for external fork PRs (they don't have access to secrets) and dependabot PRs
-              if: ${{ (github.event_name == 'push') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
               uses: chromaui/action@latest
               with:
+                  # Project token is now public in package.json for open source contributions
                   projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
                   storybookBuildDir: apps/storybook/storybook-static
                   onlyChanged: true
                   exitOnceUploaded: ${{ github.event_name == 'pull_request' }}
+                  # Skip dependabot PRs and renovate PRs using glob patterns
+                  skip: "@(dependabot/**|renovate/**)"
                   # Enable GitHub PR comments integration
                   token: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Skip Chromatic (External Fork or Dependabot)
-              if: ${{ github.event_name == 'pull_request' && (github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]') }}
-              run: |
-                  echo "## Chromatic Visual Testing Skipped" >> $GITHUB_STEP_SUMMARY
-                  echo "" >> $GITHUB_STEP_SUMMARY
-                  if [[ "${{ github.actor }}" == "dependabot[bot]" ]]; then
-                    echo "⚠️ **Chromatic testing was skipped for this Dependabot PR.**" >> $GITHUB_STEP_SUMMARY
-                  else
-                    echo "⚠️ **Chromatic testing was skipped for this external fork PR.**" >> $GITHUB_STEP_SUMMARY
-                  fi
-                  echo "" >> $GITHUB_STEP_SUMMARY
-                  echo "Visual regression testing will be performed when a maintainer reviews and merges this PR." >> $GITHUB_STEP_SUMMARY
-                  echo "" >> $GITHUB_STEP_SUMMARY
-                  echo "**For maintainers:** Consider manually triggering Chromatic if visual changes are expected." >> $GITHUB_STEP_SUMMARY
+                  # Auto-accept changes on main branch to keep it clean
+                  autoAcceptChanges: ${{ github.ref == 'refs/heads/main' && 'main' || '' }}
 
             # Add a summary of the Chromatic build results to the workflow summary
             - name: Chromatic Build Summary
