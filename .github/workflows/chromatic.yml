@@ -40,6 +40,7 @@ jobs:
               run: pnpm --filter @roo-code/storybook build-storybook
 
             - name: Run Chromatic
+              id: chromatic
               uses: chromaui/action@latest
               with:
                   # Chromatic project token (you'll need to add this as a GitHub secret)
@@ -54,3 +55,43 @@ jobs:
                   skip: ${{ github.actor == 'dependabot[bot]' }}
                   # Enable GitHub PR comments integration
                   token: ${{ secrets.GITHUB_TOKEN }}
+
+            # Add a summary of the Chromatic build results to the workflow summary
+            - name: Chromatic Build Summary
+              if: always() && steps.chromatic.outputs.url != ''
+              run: |
+                  echo "## Chromatic Build Results" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "### Build Information" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Build URL:** [View on Chromatic](${{ steps.chromatic.outputs.url }})" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Changes:** ${{ steps.chromatic.outputs.changeCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Components:** ${{ steps.chromatic.outputs.componentCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Snapshots:** ${{ steps.chromatic.outputs.snapshotCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+
+                  if [[ "${{ steps.chromatic.outputs.changeCount }}" != "0" ]]; then
+                    echo "" >> $GITHUB_STEP_SUMMARY
+                    echo "⚠️ **Visual changes detected!** Please review in Chromatic." >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "" >> $GITHUB_STEP_SUMMARY
+                    echo "✅ **No visual changes detected.**" >> $GITHUB_STEP_SUMMARY
+                  fi
+
+            # Add a summary of the Chromatic build results to the workflow summary
+            - name: Chromatic Build Summary
+              if: always() && steps.chromatic.outputs.url != ''
+              run: |
+                  echo "## Chromatic Build Results" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "### Build Information" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Build URL:** [View on Chromatic](${{ steps.chromatic.outputs.url }})" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Changes:** ${{ steps.chromatic.outputs.changeCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Components:** ${{ steps.chromatic.outputs.componentCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Snapshots:** ${{ steps.chromatic.outputs.snapshotCount || 0 }}" >> $GITHUB_STEP_SUMMARY
+
+                  if [[ "${{ steps.chromatic.outputs.changeCount }}" != "0" ]]; then
+                    echo "" >> $GITHUB_STEP_SUMMARY
+                    echo "⚠️ **Visual changes detected!** Please review in Chromatic." >> $GITHUB_STEP_SUMMARY
+                  else
+                    echo "" >> $GITHUB_STEP_SUMMARY
+                    echo "✅ **No visual changes detected.**" >> $GITHUB_STEP_SUMMARY
+                  fi

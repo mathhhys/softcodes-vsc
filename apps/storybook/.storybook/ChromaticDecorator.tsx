@@ -23,7 +23,7 @@ const chromaticStyles = cn("absolute size-full top-0 left-0 right-0 bottom-0")
 function ChromaticDecorator({ children, theme }: { children: ReactNode; theme: string }) {
 	const styles = cn(baseStyles, isChromatic() && chromaticStyles)
 	return (
-		<div className={styles}>
+		<div className={styles} data-chromatic={isChromatic() ? "true" : "false"}>
 			{isChromatic() || theme === "both" ? (
 				<div className="flex w-full">
 					<ThemeModeContainer theme="dark">{children}</ThemeModeContainer>
