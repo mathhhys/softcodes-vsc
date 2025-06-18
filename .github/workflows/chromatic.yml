@@ -8,6 +8,11 @@ on:
         types: [opened, reopened, ready_for_review, synchronize]
         branches: [main]
 
+# Add concurrency to cancel in-progress jobs when a new workflow is triggered
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
 env:
     NODE_VERSION: 20.18.1
     PNPM_VERSION: 10.8.1
