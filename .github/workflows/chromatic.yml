@@ -52,3 +52,5 @@ jobs:
                   exitOnceUploaded: ${{ github.event_name == 'pull_request' }}
                   # Skip Chromatic on dependabot PRs
                   skip: ${{ github.actor == 'dependabot[bot]' }}
+                  # Enable GitHub PR comments integration
+                  token: ${{ secrets.GITHUB_TOKEN }}
