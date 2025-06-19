@@ -67,6 +67,7 @@ import { TemperatureControl } from "./TemperatureControl"
 import { RateLimitSecondsControl } from "./RateLimitSecondsControl"
 import { BedrockCustomArn } from "./providers/BedrockCustomArn"
 import { buildDocLink } from "@src/utils/docLinks"
+import { cerebrasDefaultModelId } from "@roo/api"
 
 export interface ApiOptionsProps {
 	uriScheme: string | undefined
@@ -262,7 +263,7 @@ const ApiOptions = ({
 				// kilocode_change start
 				case "cerebras":
 					if (!apiConfiguration.cerebrasModelId) {
-						setApiConfigurationField("cerebrasModelId", "cerebras/llama3.1-8b")
+						setApiConfigurationField("cerebrasModelId", cerebrasDefaultModelId)
 					}
 					break
 				// kilocode_change end
