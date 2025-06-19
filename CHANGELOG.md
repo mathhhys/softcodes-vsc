@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.39.0
-
-### Minor Changes
+## [v4.39.0]
 
 - [#777](https://github.com/Kilo-Org/kilocode/pull/777) [`b04ad66`](https://github.com/Kilo-Org/kilocode/commit/b04ad661e195ca42430bd7d1c6f5a247cf3ff49b) Thanks [@markijbema](https://github.com/markijbema)! - Added Cerebras API provider (from Cline)
 
