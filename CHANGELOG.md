@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.21.1
+
+### Patch Changes
+
+-   - Fix: improve error handling for codebase search embeddings (thanks @hannesrudolph!)
+
 ## [3.21.0] - 2025-06-17
 
 - Add Roo Marketplace to make it easy to discover and install great MCPs and modes!
