@@ -172,7 +172,11 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 				outputTokens: lastUsage.completion_tokens || 0,
 				// Waiting on OpenRouter to figure out what this represents in the Gemini case
 				// and how to best support it.
-				// cacheReadTokens: lastUsage.prompt_tokens_details?.cached_tokens,
+				// kilocode_change start: show cached tokens for non-Google models
+				cacheReadTokens: modelId.startsWith("google/")
+					? undefined
+					: lastUsage.prompt_tokens_details?.cached_tokens,
+				// kilocode_change end
 				reasoningTokens: lastUsage.completion_tokens_details?.reasoning_tokens,
 				totalCost: (lastUsage.is_byok ? BYOK_COST_MULTIPLIER : 1) * (lastUsage.cost || 0),
 			}
