@@ -35,7 +35,7 @@ export const TaskTimelineMessage = memo(({ data, activeIndex, onClick }: TaskTim
 
 	return (
 		<div
-			className="mr-0.5 relative h-full"
+			className="mr-0.5 relative overflow-hidden"
 			style={{ width: `${data.sizeData.width}px`, height: `${MAX_HEIGHT_PX}px` }}>
 			<div
 				className={cn(
@@ -45,7 +45,7 @@ export const TaskTimelineMessage = memo(({ data, activeIndex, onClick }: TaskTim
 					isActive && "animate-slow-pulse-delayed",
 					data.color,
 				)}
-				style={{ height: `${((data.sizeData.height - 2) / MAX_HEIGHT_PX) * 100}%` }}
+				style={{ height: `${(data.sizeData.height / MAX_HEIGHT_PX) * 100}%` }}
 				onClick={onClick}
 				title={tooltip}
 			/>
