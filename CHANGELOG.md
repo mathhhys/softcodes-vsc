@@ -1,6 +1,6 @@
 # kilo-code
 
-## 4.40.0
+## [v4.40.0]
 
 ### Minor Changes
 
