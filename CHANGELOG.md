@@ -1,6 +1,12 @@
 # kilo-code
 
-## 4.39.1
+## [v4.39.2]
+
+### Patch Changes
+
+- [#788](https://github.com/Kilo-Org/kilocode/pull/788) [`120f6ce`](https://github.com/Kilo-Org/kilocode/commit/120f6cee1dac1a1e05a715eee82b0bd12f127344) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Fix cache read stats not being shown in the Chat window
+
+## [v4.39.1]
 
 ### Patch Changes
 
