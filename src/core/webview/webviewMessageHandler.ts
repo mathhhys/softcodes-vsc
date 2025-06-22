@@ -1590,10 +1590,9 @@ export const webviewMessageHandler = async (
 		case "telemetrySetting": {
 			const telemetrySetting = message.text as TelemetrySetting
 			await updateGlobalState("telemetrySetting", telemetrySetting)
-			// kilocode_change: do not get instance
-			// const isOptedIn = telemetrySetting === "enabled"
+			const isOptedIn = telemetrySetting === "enabled"
 
-			// TelemetryService.instance.updateTelemetryState(isOptedIn)
+			TelemetryService.instance.updateTelemetryState(isOptedIn)
 			await provider.postStateToWebview()
 			break
 		}
@@ -1604,8 +1603,7 @@ export const webviewMessageHandler = async (
 		}
 		case "rooCloudSignIn": {
 			try {
-				// kilocode_change: do not get instance
-				// TelemetryService.instance.captureEvent(TelemetryEventName.AUTHENTICATION_INITIATED)
+				TelemetryService.instance.captureEvent(TelemetryEventName.AUTHENTICATION_INITIATED)
 				await CloudService.instance.login()
 			} catch (error) {
 				provider.log(`AuthService#login failed: ${error}`)

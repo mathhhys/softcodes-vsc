@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
 
 import type { CloudUserInfo, TelemetryEvent, OrganizationAllowList } from "@roo-code/types"
-// import { TelemetryService } from "@roo-code/telemetry" // kilocode_change
+import { TelemetryService } from "@roo-code/telemetry"
 
 import { CloudServiceCallbacks } from "./types"
 import { AuthService } from "./AuthService"
@@ -53,7 +53,7 @@ export class CloudService {
 			this.shareService = new ShareService(this.authService, this.settingsService, this.log)
 
 			try {
-				// TelemetryService.instance.register(this.telemetryClient)
+				TelemetryService.instance.register(this.telemetryClient)
 			} catch (error) {
 				this.log("[CloudService] Failed to register TelemetryClient:", error)
 			}
