@@ -16,7 +16,7 @@ import ProfileView from "./components/kilocode/profile/ProfileView" // kilocode_
 import ModesView from "./components/modes/ModesView"
 import { HumanRelayDialog } from "./components/human-relay/HumanRelayDialog"
 import BottomControls from "./components/kilocode/BottomControls" // kilocode_change
-import { AccountView } from "./components/account/AccountView"
+// import { AccountView } from "./components/account/AccountView" // kilocode_change: we have our own profile view
 import { useAddNonInteractiveClickListener } from "./components/ui/hooks/useNonInteractiveClick"
 
 type Tab = "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account" | "profile" // kilocode_change: add "profile"

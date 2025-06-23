@@ -23,6 +23,24 @@ describe("Model Validation Functions", () => {
 				outputPrice: 5.0,
 			},
 		},
+		"kilocode-openrouter": {
+			"valid-model": {
+				maxTokens: 8192,
+				contextWindow: 200000,
+				supportsImages: true,
+				supportsPromptCache: false,
+				inputPrice: 3.0,
+				outputPrice: 15.0,
+			},
+			"another-valid-model": {
+				maxTokens: 4096,
+				contextWindow: 100000,
+				supportsImages: false,
+				supportsPromptCache: false,
+				inputPrice: 1.0,
+				outputPrice: 5.0,
+			},
+		},
 		glama: {
 			"valid-model": {
 				maxTokens: 8192,

@@ -55,9 +55,9 @@ export const workspace = {
 		stat: () => Promise.resolve({ type: 1, ctime: 0, mtime: 0, size: 0 }),
 	},
 	workspaceState: {
-		get: jest.fn().mockResolvedValue(undefined),
-		update: jest.fn().mockResolvedValue(undefined),
-		keys: jest.fn().mockReturnValue([]),
+		get: vi.fn().mockResolvedValue(undefined),
+		update: vi.fn().mockResolvedValue(undefined),
+		keys: vi.fn().mockReturnValue([]),
 	},
 }
 

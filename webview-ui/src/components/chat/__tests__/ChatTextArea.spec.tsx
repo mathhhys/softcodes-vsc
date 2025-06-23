@@ -34,8 +34,8 @@ const mockConvertToMentionPath = pathMentions.convertToMentionPath as ReturnType
 // Mock ExtensionStateContext
 vi.mock("@src/context/ExtensionStateContext")
 
-jest.mock("@src/components/ui/hooks/useSelectedModel", () => ({
-	useSelectedModel: jest.fn(() => ({
+vi.mock("@src/components/ui/hooks/useSelectedModel", () => ({
+	useSelectedModel: vi.fn(() => ({
 		id: "mock-model-id",
 		provider: "mock-provider",
 	})),

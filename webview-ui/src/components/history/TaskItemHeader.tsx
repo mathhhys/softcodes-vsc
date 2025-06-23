@@ -4,8 +4,8 @@ import { formatDate } from "@/utils/format"
 import { DeleteButton } from "./DeleteButton"
 import { cn } from "@/lib/utils"
 import { Button } from "@src/components/ui"
-
 import { vscode } from "@/utils/vscode" // kilocode_change: pull slash commands from Cline
+import { useAppTranslation } from "@/i18n/TranslationContext"
 
 export interface TaskItemHeaderProps {
 	item: HistoryItem
@@ -14,6 +14,8 @@ export interface TaskItemHeaderProps {
 }
 
 const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, isSelectionMode, onDelete }) => {
+	const { t } = useAppTranslation()
+
 	// kilocode_change start
 	// Standardized icon styles
 	const actionIconStyle: React.CSSProperties = {
