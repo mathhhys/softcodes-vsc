@@ -2,11 +2,15 @@ import { memo, useRef, useEffect, useCallback, useMemo } from "react"
 import { Virtuoso, type VirtuosoHandle } from "react-virtuoso"
 import type { ClineMessage } from "@roo-code/types"
 import { TaskTimelineMessage } from "./TaskTimelineMessage"
-import { VirtuosoHorizontalNoScrollbarScroller } from "../ui/VirtuosoHorizontalNoScrollbarScroller"
-import { MAX_HEIGHT_PX } from "../../utils/timeline/calculateTaskTimelineSizes"
+import { MAX_HEIGHT_PX as TASK_TIMELINE_MAX_HEIGHT_PX } from "../../utils/timeline/calculateTaskTimelineSizes"
 import { consolidateMessagesForTimeline } from "../../utils/timeline/consolidateMessagesForTimeline"
 import { calculateTaskTimelineSizes } from "../../utils/timeline/calculateTaskTimelineSizes"
 import { getTaskTimelineMessageColor } from "../../utils/timeline/taskTimelineTypeRegistry"
+
+// We hide the scrollbars for the TaskTimeline by wrapping it in a container with
+// overflow hidden. This hides the scrollbars for the actual Virtuoso element
+// by clipping them out view. This just needs to be greater than the webview scrollbar width.
+const SCROLLBAR_WIDTH_PX = 15
 
 interface TaskTimelineProps {
 	groupedMessages: (ClineMessage | ClineMessage[])[]
@@ -66,7 +70,7 @@ export const TaskTimeline = memo<TaskTimelineProps>(({ groupedMessages, onMessag
 	}, [groupedMessages.length, timelineMessagesData.length])
 
 	return (
-		<div className="w-full px-2">
+		<div className="w-full px-2 overflow-hidden" style={{ height: `${TASK_TIMELINE_MAX_HEIGHT_PX}px` }}>
 			<Virtuoso
 				ref={virtuosoRef}
 				data={timelineMessagesData}
@@ -74,10 +78,7 @@ export const TaskTimeline = memo<TaskTimelineProps>(({ groupedMessages, onMessag
 				horizontalDirection={true}
 				initialTopMostItemIndex={timelineMessagesData.length - 1}
 				className="w-full"
-				style={{ height: `${MAX_HEIGHT_PX}px` }}
-				components={{
-					Scroller: VirtuosoHorizontalNoScrollbarScroller,
-				}}
+				style={{ height: `${TASK_TIMELINE_MAX_HEIGHT_PX + SCROLLBAR_WIDTH_PX}px` }}
 			/>
 		</div>
 	)

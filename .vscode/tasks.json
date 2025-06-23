@@ -72,6 +72,28 @@
 				"group": "watch",
 				"reveal": "always"
 			}
+		},
+		{
+			"label": "storybook",
+			"type": "shell",
+			"command": "kill -9 $(lsof -t -i tcp:6006) 2>/dev/null || true && npx turbo storybook",
+			"group": "build",
+			"problemMatcher": {
+				"owner": "storybook",
+				"pattern": {
+					"regexp": "^$"
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": ".*Storybook.*",
+					"endsPattern": ".*Local:.*http://localhost:6006.*"
+				}
+			},
+			"isBackground": true,
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
 		}
 	]
 }

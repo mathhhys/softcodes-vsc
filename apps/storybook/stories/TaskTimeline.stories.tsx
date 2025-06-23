@@ -5,7 +5,6 @@ import {
 	createComponentCreationMessages,
 	createDebuggingMessages,
 	createFullStackMessages,
-	createQuickTaskMessages,
 	createMessageTypeVarietyMessages,
 } from "../src/mockData/clineMessages"
 
@@ -29,7 +28,6 @@ export const CompletedTask: Story = {
 	args: {
 		groupedMessages: createComponentCreationMessages(),
 		onMessageClick: fn(),
-		currentMessageIndex: undefined,
 		isTaskActive: false,
 	},
 }
@@ -38,7 +36,6 @@ export const ActiveTask: Story = {
 	args: {
 		groupedMessages: createDebuggingMessages(),
 		onMessageClick: fn(),
-		currentMessageIndex: 7, // Last message is active
 		isTaskActive: true,
 	},
 }
@@ -47,7 +44,6 @@ export const LongTask: Story = {
 	args: {
 		groupedMessages: createFullStackMessages(),
 		onMessageClick: fn(),
-		currentMessageIndex: undefined,
 		isTaskActive: false,
 	},
 }
@@ -57,7 +53,6 @@ export const AllMessageTypes: Story = {
 	args: {
 		groupedMessages: createMessageTypeVarietyMessages(),
 		onMessageClick: fn(),
-		currentMessageIndex: undefined,
 		isTaskActive: false,
 	},
 	parameters: {
@@ -67,4 +62,20 @@ export const AllMessageTypes: Story = {
 			},
 		},
 	},
+}
+
+export const NarrowWindow: Story = {
+	name: "Narrow Window",
+	args: {
+		groupedMessages: createMessageTypeVarietyMessages(),
+		onMessageClick: fn(),
+		isTaskActive: false,
+	},
+	decorators: [
+		(Story) => (
+			<div className="w-[100px] border-2 border-gray-300 p-2">
+				<Story />
+			</div>
+		),
+	],
 }
