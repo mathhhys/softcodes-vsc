@@ -351,9 +351,9 @@ describe("ClineProvider", () => {
 				keys: vi.fn().mockImplementation(() => Object.keys(globalState)),
 			},
 			workspaceState: {
-				get: jest.fn().mockResolvedValue(undefined),
-				update: jest.fn().mockResolvedValue(undefined),
-				keys: jest.fn().mockReturnValue([]),
+				get: vi.fn().mockResolvedValue(undefined),
+				update: vi.fn().mockResolvedValue(undefined),
+				keys: vi.fn().mockReturnValue([]),
 			},
 			secrets: {
 				get: vi.fn().mockImplementation((key: string) => secrets[key]),
@@ -1806,9 +1806,9 @@ describe("Project MCP Settings", () => {
 				keys: vi.fn().mockReturnValue([]),
 			},
 			workspaceState: {
-				get: jest.fn().mockResolvedValue(undefined),
-				update: jest.fn().mockResolvedValue(undefined),
-				keys: jest.fn().mockReturnValue([]),
+				get: vi.fn().mockResolvedValue(undefined),
+				update: vi.fn().mockResolvedValue(undefined),
+				keys: vi.fn().mockReturnValue([]),
 			},
 			secrets: {
 				get: vi.fn(),
@@ -1997,7 +1997,6 @@ vi.mock("../../../api/providers/fetchers/modelCache", () => ({
 	flushModels: vi.fn(),
 }))
 
-
 describe("ClineProvider - Router Models", () => {
 	let provider: ClineProvider
 	let mockContext: vscode.ExtensionContext
@@ -2058,9 +2057,9 @@ describe("ClineProvider - Router Models", () => {
 			onDidChangeVisibility: vi.fn().mockImplementation(() => ({ dispose: vi.fn() })),
 		} as unknown as vscode.WebviewView
 
-		if (!TelemetryService.hasInstance()) {
-			TelemetryService.createInstance([])
-		}
+		// if (!TelemetryService.hasInstance()) {
+		// 	TelemetryService.createInstance([])
+		// }
 
 		provider = new ClineProvider(mockContext, mockOutputChannel, "sidebar", new ContextProxy(mockContext))
 	})

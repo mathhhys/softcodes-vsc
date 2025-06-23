@@ -943,6 +943,7 @@ describe("Cline", () => {
 					apiConfiguration: mockApiConfig,
 					task: "parent task",
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				// Mock the API stream response
@@ -979,6 +980,7 @@ describe("Cline", () => {
 					parentTask: parent,
 					rootTask: parent,
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				// Mock the child's API stream
@@ -1016,6 +1018,7 @@ describe("Cline", () => {
 					apiConfiguration: mockApiConfig,
 					task: "parent task",
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				// Mock the API stream response
@@ -1054,6 +1057,7 @@ describe("Cline", () => {
 					parentTask: parent,
 					rootTask: parent,
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				vi.spyOn(child.api, "createMessage").mockReturnValue(mockStream)
@@ -1076,6 +1080,7 @@ describe("Cline", () => {
 					apiConfiguration: mockApiConfig,
 					task: "parent task",
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				// Mock the API stream response
@@ -1109,6 +1114,7 @@ describe("Cline", () => {
 					parentTask: parent,
 					rootTask: parent,
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				vi.spyOn(child1.api, "createMessage").mockReturnValue(mockStream)
@@ -1132,6 +1138,7 @@ describe("Cline", () => {
 					parentTask: parent,
 					rootTask: parent,
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				vi.spyOn(child2.api, "createMessage").mockReturnValue(mockStream)
@@ -1157,6 +1164,7 @@ describe("Cline", () => {
 					apiConfiguration: mockApiConfig,
 					task: "parent task",
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				// Mock the API stream response
@@ -1190,6 +1198,7 @@ describe("Cline", () => {
 					parentTask: parent,
 					rootTask: parent,
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				vi.spyOn(child.api, "createMessage").mockReturnValue(mockStream)
@@ -1209,6 +1218,7 @@ describe("Cline", () => {
 					apiConfiguration: mockApiConfig,
 					task: "test task",
 					startTask: false,
+					context: mockExtensionContext,
 				})
 
 				// Mock the API stream response

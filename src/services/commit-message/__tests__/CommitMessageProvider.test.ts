@@ -3,26 +3,27 @@ import { CommitMessageProvider } from "../CommitMessageProvider"
 import { GitExtensionService, GitChange } from "../GitExtensionService"
 import { ContextProxy } from "../../../core/config/ContextProxy"
 import { singleCompletionHandler } from "../../../utils/single-completion-handler"
+import type { Mock } from "vitest"
 
 // Mock dependencies
-jest.mock("../../../core/config/ContextProxy")
-jest.mock("../../../utils/single-completion-handler")
-jest.mock("../GitExtensionService")
-jest.mock("child_process")
-jest.mock("vscode", () => ({
+vi.mock("../../../core/config/ContextProxy")
+vi.mock("../../../utils/single-completion-handler")
+vi.mock("../GitExtensionService")
+vi.mock("child_process")
+vi.mock("vscode", () => ({
 	window: {
-		showInformationMessage: jest.fn(),
-		showErrorMessage: jest.fn(),
-		withProgress: jest.fn().mockImplementation((_, callback) => callback({ report: jest.fn() })),
+		showInformationMessage: vi.fn(),
+		showErrorMessage: vi.fn(),
+		withProgress: vi.fn().mockImplementation((_, callback) => callback({ report: vi.fn() })),
 	},
 	workspace: {
 		workspaceFolders: [{ uri: { fsPath: "/mock/workspace" } }],
 	},
 	commands: {
-		registerCommand: jest.fn(),
+		registerCommand: vi.fn(),
 	},
-	ExtensionContext: jest.fn(),
-	OutputChannel: jest.fn(),
+	ExtensionContext: vi.fn(),
+	OutputChannel: vi.fn(),
 	ProgressLocation: {
 		SourceControl: 1,
 		Window: 2,
@@ -34,33 +35,34 @@ describe("CommitMessageProvider", () => {
 	let commitMessageProvider: CommitMessageProvider
 	let mockContext: vscode.ExtensionContext
 	let mockOutputChannel: vscode.OutputChannel
-	let mockGitService: jest.Mocked<GitExtensionService>
-	let mockExecSync: jest.Mock
+	let mockGitService: GitExtensionService
+	let mockExecSync: Mock<any>
 
-	beforeEach(() => {
+	beforeEach(async () => {
 		mockContext = {} as vscode.ExtensionContext
 		mockOutputChannel = {
-			appendLine: jest.fn(),
+			appendLine: vi.fn(),
 		} as unknown as vscode.OutputChannel
 
 		// Mock child_process.execSync
-		mockExecSync = jest.fn()
-		jest.requireMock("child_process").execSync = mockExecSync
+		mockExecSync = vi.fn()
+		const childProcessMock = await vi.importMock("child_process")
+		;(childProcessMock as any).execSync = mockExecSync
 
 		// Setup GitExtensionService mock
-		mockGitService = new GitExtensionService() as jest.Mocked<GitExtensionService>
-		GitExtensionService.prototype.initialize = jest.fn().mockResolvedValue(true)
-		GitExtensionService.prototype.gatherStagedChanges = jest.fn()
-		GitExtensionService.prototype.setCommitMessage = jest.fn()
-		GitExtensionService.prototype.executeGitCommand = jest.fn().mockReturnValue("")
-		GitExtensionService.prototype.getCommitContext = jest.fn().mockReturnValue("Modified file1.ts, Added file2.ts")
+		mockGitService = new GitExtensionService()
+		mockGitService.initialize = vi.fn().mockResolvedValue(true)
+		mockGitService.gatherStagedChanges = vi.fn()
+		mockGitService.setCommitMessage = vi.fn()
+		mockGitService.executeGitCommand = vi.fn().mockReturnValue("")
+		mockGitService.getCommitContext = vi.fn().mockReturnValue("Modified file1.ts, Added file2.ts")
 
 		// Setup ContextProxy mock
 		const mockContextProxy = {
-			getProviderSettings: jest.fn().mockReturnValue({
+			getProviderSettings: vi.fn().mockReturnValue({
 				kilocodeToken: "mock-token",
 			}),
-			getValue: jest.fn().mockImplementation((key: string) => {
+			getValue: vi.fn().mockImplementation((key: string) => {
 				switch (key) {
 					case "commitMessageApiConfigId":
 						return undefined
@@ -76,7 +78,7 @@ describe("CommitMessageProvider", () => {
 		;(ContextProxy as any).instance = mockContextProxy
 
 		// Setup singleCompletionHandler mock
-		;(singleCompletionHandler as jest.Mock).mockResolvedValue(
+		vi.mocked(singleCompletionHandler).mockResolvedValue(
 			"feat(commit): implement conventional commit message generator",
 		)
 
@@ -86,7 +88,7 @@ describe("CommitMessageProvider", () => {
 	})
 
 	afterEach(() => {
-		jest.clearAllMocks()
+		vi.clearAllMocks()
 	})
 
 	describe("generateCommitMessage", () => {
@@ -95,33 +97,37 @@ describe("CommitMessageProvider", () => {
 				{ filePath: "file1.ts", status: "Modified" },
 				{ filePath: "file2.ts", status: "Added" },
 			]
-			mockGitService.gatherStagedChanges.mockResolvedValue(mockChanges)
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue(mockChanges)
 
 			// Call the method
 			await commitMessageProvider.generateCommitMessage()
 
 			// Verify basic flow
-			expect(mockGitService.getCommitContext).toHaveBeenCalledWith(mockChanges)
+			expect(vi.mocked(mockGitService.getCommitContext)).toHaveBeenCalledWith(mockChanges)
 			expect(singleCompletionHandler).toHaveBeenCalled()
-			expect(mockGitService.setCommitMessage).toHaveBeenCalled()
+			expect(vi.mocked(mockGitService.setCommitMessage)).toHaveBeenCalled()
 		})
 
 		it("should handle code blocks and formatting in AI responses", async () => {
-			mockGitService.gatherStagedChanges.mockResolvedValue([{ filePath: "file.ts", status: "Modified" }])
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue([
+				{ filePath: "file.ts", status: "Modified" },
+			])
 
 			// Mock AI response with code blocks
-			;(singleCompletionHandler as jest.Mock).mockResolvedValue("```\nfeat(core): add feature\n```")
+			vi.mocked(singleCompletionHandler).mockResolvedValue("```\nfeat(core): add feature\n```")
 
 			// Call the method
 			await commitMessageProvider.generateCommitMessage()
 
 			// Verify code blocks are removed
-			expect(mockGitService.setCommitMessage).toHaveBeenCalledWith("feat(core): add feature")
+			expect(vi.mocked(mockGitService.setCommitMessage)).toHaveBeenCalledWith("feat(core): add feature")
 		})
 
 		it("should show error message when generation fails", async () => {
-			mockGitService.gatherStagedChanges.mockResolvedValue([{ filePath: "file.ts", status: "Modified" }])
-			;(singleCompletionHandler as jest.Mock).mockRejectedValue(new Error("API error"))
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue([
+				{ filePath: "file.ts", status: "Modified" },
+			])
+			vi.mocked(singleCompletionHandler).mockRejectedValue(new Error("API error"))
 
 			// Call the method
 			await commitMessageProvider.generateCommitMessage()
@@ -132,40 +138,40 @@ describe("CommitMessageProvider", () => {
 
 		it("should show information message when there are no staged changes", async () => {
 			// Mock no staged changes
-			mockGitService.gatherStagedChanges.mockResolvedValue(null)
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue(null)
 
 			// Call the method
 			await commitMessageProvider.generateCommitMessage()
 
 			// Verify that it shows the appropriate message and doesn't proceed
 			expect(vscode.window.showInformationMessage).toHaveBeenCalled()
-			expect(mockGitService.getCommitContext).not.toHaveBeenCalled()
+			expect(vi.mocked(mockGitService.getCommitContext)).not.toHaveBeenCalled()
 			expect(singleCompletionHandler).not.toHaveBeenCalled()
-			expect(mockGitService.setCommitMessage).not.toHaveBeenCalled()
+			expect(vi.mocked(mockGitService.setCommitMessage)).not.toHaveBeenCalled()
 		})
 
 		it("should show information message when staged changes array is empty", async () => {
 			// Mock empty staged changes array
-			mockGitService.gatherStagedChanges.mockResolvedValue([])
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue([])
 
 			// Call the method
 			await commitMessageProvider.generateCommitMessage()
 
 			// Verify that it shows the appropriate message and doesn't proceed
 			expect(vscode.window.showInformationMessage).toHaveBeenCalled()
-			expect(mockGitService.getCommitContext).not.toHaveBeenCalled()
+			expect(vi.mocked(mockGitService.getCommitContext)).not.toHaveBeenCalled()
 			expect(singleCompletionHandler).not.toHaveBeenCalled()
-			expect(mockGitService.setCommitMessage).not.toHaveBeenCalled()
+			expect(vi.mocked(mockGitService.setCommitMessage)).not.toHaveBeenCalled()
 		})
 
 		it("should use custom API config when commitMessageApiConfigId is set", async () => {
 			const mockChanges: GitChange[] = [{ filePath: "file.ts", status: "Modified" }]
-			mockGitService.gatherStagedChanges.mockResolvedValue(mockChanges)
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue(mockChanges)
 
 			// Mock custom API config
 			const customApiConfig = { apiProvider: "openai", apiKey: "custom-key" }
 			const mockProviderSettingsManager = {
-				getProfile: jest.fn().mockResolvedValue({ name: "Custom Config", ...customApiConfig }),
+				getProfile: vi.fn().mockResolvedValue({ name: "Custom Config", ...customApiConfig }),
 			}
 			;(commitMessageProvider as any).providerSettingsManager = mockProviderSettingsManager
 
@@ -193,11 +199,11 @@ describe("CommitMessageProvider", () => {
 
 		it("should fall back to default config when custom API config fails to load", async () => {
 			const mockChanges: GitChange[] = [{ filePath: "file.ts", status: "Modified" }]
-			mockGitService.gatherStagedChanges.mockResolvedValue(mockChanges)
+			vi.mocked(mockGitService.gatherStagedChanges).mockResolvedValue(mockChanges)
 
 			// Mock provider settings manager to throw error
 			const mockProviderSettingsManager = {
-				getProfile: jest.fn().mockRejectedValue(new Error("Config not found")),
+				getProfile: vi.fn().mockRejectedValue(new Error("Config not found")),
 			}
 			;(commitMessageProvider as any).providerSettingsManager = mockProviderSettingsManager
 
