@@ -5,18 +5,25 @@ import { CerebrasModelId, cerebrasDefaultModelId, cerebrasModels } from "../../.
 import { CerebrasHandler } from "../cerebras"
 import type { Mock } from "vitest"
 
+const mockCreate = vi.fn()
 vi.mock("@cerebras/cerebras_cloud_sdk", () => {
-	const createMock = vi.fn()
-	return vi.fn(() => ({ chat: { completions: { create: createMock } } }))
+	return {
+		__esModule: true,
+		default: vi.fn().mockImplementation(() => ({
+			chat: {
+				completions: {
+					create: mockCreate,
+				},
+			},
+		})),
+	}
 })
 
 describe("CerebrasHandler", () => {
 	let handler: CerebrasHandler
-	let mockCreate: Mock
 
 	beforeEach(() => {
 		vi.clearAllMocks()
-		mockCreate = (Cerebras as unknown as Mock)().chat.completions.create
 		handler = new CerebrasHandler({ cerebrasApiKey: "test-cerebras-api-key" })
 	})
 

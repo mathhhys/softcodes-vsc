@@ -6,7 +6,33 @@ import { singleCompletionHandler } from "../../../utils/single-completion-handle
 import type { Mock } from "vitest"
 
 // Mock dependencies
-vi.mock("../../../core/config/ContextProxy")
+vi.mock("../../../core/config/ContextProxy", () => {
+	const mockContextProxy = {
+		getProviderSettings: vi.fn().mockReturnValue({
+			kilocodeToken: "mock-token",
+		}),
+		getValue: vi.fn().mockImplementation((key: string) => {
+			switch (key) {
+				case "commitMessageApiConfigId":
+					return undefined
+				case "listApiConfigMeta":
+					return []
+				case "customSupportPrompts":
+					return {}
+				default:
+					return undefined
+			}
+		}),
+	}
+
+	return {
+		ContextProxy: {
+			get instance() {
+				return mockContextProxy
+			},
+		},
+	}
+})
 vi.mock("../../../utils/single-completion-handler")
 vi.mock("../GitExtensionService")
 vi.mock("child_process")
@@ -56,26 +82,6 @@ describe("CommitMessageProvider", () => {
 		mockGitService.setCommitMessage = vi.fn()
 		mockGitService.executeGitCommand = vi.fn().mockReturnValue("")
 		mockGitService.getCommitContext = vi.fn().mockReturnValue("Modified file1.ts, Added file2.ts")
-
-		// Setup ContextProxy mock
-		const mockContextProxy = {
-			getProviderSettings: vi.fn().mockReturnValue({
-				kilocodeToken: "mock-token",
-			}),
-			getValue: vi.fn().mockImplementation((key: string) => {
-				switch (key) {
-					case "commitMessageApiConfigId":
-						return undefined
-					case "listApiConfigMeta":
-						return []
-					case "customSupportPrompts":
-						return {}
-					default:
-						return undefined
-				}
-			}),
-		}
-		;(ContextProxy as any).instance = mockContextProxy
 
 		// Setup singleCompletionHandler mock
 		vi.mocked(singleCompletionHandler).mockResolvedValue(
@@ -175,9 +181,12 @@ describe("CommitMessageProvider", () => {
 			}
 			;(commitMessageProvider as any).providerSettingsManager = mockProviderSettingsManager
 
-			// Setup ContextProxy to return custom config ID
-			const mockContextProxy = (ContextProxy as any).instance
-			mockContextProxy.getValue.mockImplementation((key: string) => {
+			// Update the ContextProxy mock to return custom config ID
+			const { ContextProxy: MockedContextProxy } = (await vi.importMock(
+				"../../../core/config/ContextProxy",
+			)) as any
+			const mockInstance = MockedContextProxy.instance
+			mockInstance.getValue.mockImplementation((key: string) => {
 				switch (key) {
 					case "commitMessageApiConfigId":
 						return "custom-config-id"
@@ -207,9 +216,12 @@ describe("CommitMessageProvider", () => {
 			}
 			;(commitMessageProvider as any).providerSettingsManager = mockProviderSettingsManager
 
-			// Setup ContextProxy to return custom config ID
-			const mockContextProxy = (ContextProxy as any).instance
-			mockContextProxy.getValue.mockImplementation((key: string) => {
+			// Update the ContextProxy mock to return invalid config ID
+			const { ContextProxy: MockedContextProxy } = (await vi.importMock(
+				"../../../core/config/ContextProxy",
+			)) as any
+			const mockInstance = MockedContextProxy.instance
+			mockInstance.getValue.mockImplementation((key: string) => {
 				switch (key) {
 					case "commitMessageApiConfigId":
 						return "invalid-config-id"
@@ -223,7 +235,7 @@ describe("CommitMessageProvider", () => {
 			})
 
 			const defaultConfig = { kilocodeToken: "mock-token" }
-			mockContextProxy.getProviderSettings.mockReturnValue(defaultConfig)
+			mockInstance.getProviderSettings.mockReturnValue(defaultConfig)
 
 			await commitMessageProvider.generateCommitMessage()
 

@@ -209,20 +209,29 @@ describe("loadRuleFiles", () => {
 
 		const result = await loadRuleFiles("/fake/path")
 		const expectedPath1 =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file1.txt" : "/fake/path/.kilocode/rules/file1.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file1.txt"
+				: "/fake/path/.kilocode/rules/file1.txt"
 		const expectedPath2 =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file2.txt" : "/fake/path/.kilocode/rules/file2.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file2.txt"
+				: "/fake/path/.kilocode/rules/file2.txt"
 		expect(result).toContain(`# Rules from ${expectedPath1}:`)
 		expect(result).toContain("content of file1")
 		expect(result).toContain(`# Rules from ${expectedPath2}:`)
 		expect(result).toContain("content of file2")
 
 		// We expect both checks because our new implementation checks the files again for validation
-		const expectedRulesDir = process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules" : "/fake/path/.kilocode/rules"
+		const expectedRulesDir =
+			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules" : "/fake/path/.kilocode/rules"
 		const expectedFile1Path =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file1.txt" : "/fake/path/.kilocode/rules/file1.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file1.txt"
+				: "/fake/path/.kilocode/rules/file1.txt"
 		const expectedFile2Path =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file2.txt" : "/fake/path/.kilocode/rules/file2.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file2.txt"
+				: "/fake/path/.kilocode/rules/file2.txt"
 
 		expect(statMock).toHaveBeenCalledWith(expectedRulesDir)
 		expect(statMock).toHaveBeenCalledWith(expectedFile1Path)
@@ -330,13 +339,13 @@ describe("loadRuleFiles", () => {
 			const pathStr = filePath.toString()
 			// Handle both Unix and Windows path separators
 			const normalizedPath = pathStr.replace(/\\/g, "/")
-			if (normalizedPath === "/fake/path/.roo/rules/root.txt") {
+			if (normalizedPath === "/fake/path/.kilocode/rules/root.txt") {
 				return Promise.resolve("root file content")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/subdir/nested1.txt") {
+			if (normalizedPath === "/fake/path/.kilocode/rules/subdir/nested1.txt") {
 				return Promise.resolve("nested file 1 content")
 			}
-			if (normalizedPath === "/fake/path/.roo/rules/subdir/subdir2/nested2.txt") {
+			if (normalizedPath === "/fake/path/.kilocode/rules/subdir/subdir2/nested2.txt") {
 				return Promise.resolve("nested file 2 content")
 			}
 			return Promise.reject({ code: "ENOENT" })
@@ -346,7 +355,9 @@ describe("loadRuleFiles", () => {
 
 		// Check root file content
 		const expectedRootPath =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\root.txt" : "/fake/path/.kilocode/rules/root.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\root.txt"
+				: "/fake/path/.kilocode/rules/root.txt"
 		const expectedNested1Path =
 			process.platform === "win32"
 				? "\\fake\\path\\.kilocode\\rules\\subdir\\nested1.txt"
@@ -367,7 +378,9 @@ describe("loadRuleFiles", () => {
 
 		// Verify correct paths were checked
 		const expectedRootPath2 =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\root.txt" : "/fake/path/.kilocode/rules/root.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\root.txt"
+				: "/fake/path/.kilocode/rules/root.txt"
 		const expectedNested1Path2 =
 			process.platform === "win32"
 				? "\\fake\\path\\.kilocode\\rules\\subdir\\nested1.txt"
@@ -524,8 +537,8 @@ describe("addCustomInstructions", () => {
 			// Handle both Unix and Windows path separators
 			const normalizedPath = path.toString().replace(/\\/g, "/")
 			if (
-				normalizedPath.includes("/fake/path/.roo/rules-test-mode/rule1.txt") ||
-				normalizedPath.includes("/fake/path/.roo/rules-test-mode/rule2.txt")
+				normalizedPath.includes("/fake/path/.kilocode/rules-test-mode/rule1.txt") ||
+				normalizedPath.includes("/fake/path/.kilocode/rules-test-mode/rule2.txt")
 			) {
 				return Promise.resolve({
 					isFile: vi.fn().mockReturnValue(true),
@@ -558,7 +571,9 @@ describe("addCustomInstructions", () => {
 		)
 
 		const expectedTestModeDir =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules-test-mode" : "/fake/path/.kilocode/rules-test-mode"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules-test-mode"
+				: "/fake/path/.kilocode/rules-test-mode"
 		const expectedRule1Path =
 			process.platform === "win32"
 				? "\\fake\\path\\.kilocode\\rules-test-mode\\rule1.txt"
@@ -575,7 +590,9 @@ describe("addCustomInstructions", () => {
 		expect(result).toContain("mode specific rule 2")
 
 		const expectedTestModeDir2 =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules-test-mode" : "/fake/path/.kilocode/rules-test-mode"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules-test-mode"
+				: "/fake/path/.kilocode/rules-test-mode"
 		const expectedRule1Path2 =
 			process.platform === "win32"
 				? "\\fake\\path\\.kilocode\\rules-test-mode\\rule1.txt"
@@ -668,7 +685,9 @@ describe("addCustomInstructions", () => {
 		)
 
 		const expectedTestModeDir =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules-test-mode" : "/fake/path/.kilocode/rules-test-mode"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules-test-mode"
+				: "/fake/path/.kilocode/rules-test-mode"
 		const expectedRule1Path =
 			process.platform === "win32"
 				? "\\fake\\path\\.kilocode\\rules-test-mode\\rule1.txt"
@@ -703,7 +722,8 @@ describe("Directory existence checks", () => {
 		await loadRuleFiles("/fake/path")
 
 		// Verify stat was called to check directory existence
-		const expectedRulesDir = process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules" : "/fake/path/.kilocode/rules"
+		const expectedRulesDir =
+			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules" : "/fake/path/.kilocode/rules"
 		expect(statMock).toHaveBeenCalledWith(expectedRulesDir)
 	})
 
@@ -855,7 +875,10 @@ describe("Rules directory reading", () => {
 		// Verify both files were read
 		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/regular.txt", "utf-8")
 		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/symlink-target.txt", "utf-8")
-		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/rules/symlink-target-dir/subdir_link.txt", "utf-8")
+		expect(readFileMock).toHaveBeenCalledWith(
+			"/fake/path/.kilocode/rules/symlink-target-dir/subdir_link.txt",
+			"utf-8",
+		)
 		expect(readFileMock).toHaveBeenCalledWith("/fake/path/.kilocode/nested-symlink-target.txt", "utf-8")
 	})
 	beforeEach(() => {
@@ -908,11 +931,17 @@ describe("Rules directory reading", () => {
 		const result = await loadRuleFiles("/fake/path")
 
 		const expectedFile1Path =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file1.txt" : "/fake/path/.kilocode/rules/file1.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file1.txt"
+				: "/fake/path/.kilocode/rules/file1.txt"
 		const expectedFile2Path =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file2.txt" : "/fake/path/.kilocode/rules/file2.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file2.txt"
+				: "/fake/path/.kilocode/rules/file2.txt"
 		const expectedFile3Path =
-			process.platform === "win32" ? "\\fake\\path\\.kilocode\\rules\\file3.txt" : "/fake/path/.kilocode/rules/file3.txt"
+			process.platform === "win32"
+				? "\\fake\\path\\.kilocode\\rules\\file3.txt"
+				: "/fake/path/.kilocode/rules/file3.txt"
 
 		expect(result).toContain(`# Rules from ${expectedFile1Path}:`)
 		expect(result).toContain("content of file1")
