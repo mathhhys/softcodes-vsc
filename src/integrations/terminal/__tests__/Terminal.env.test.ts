@@ -1,14 +1,15 @@
 import { Terminal } from "../Terminal"
 import { getWorkspacePath } from "../../../utils/path"
+import { MockedFunction } from "vitest"
 
-jest.mock("../../../utils/path", () => ({ getWorkspacePath: jest.fn() }))
+vi.mock("../../../utils/path", () => ({ getWorkspacePath: vi.fn() }))
 
 describe("Terminal Environment Variables", () => {
 	const mockWorkspacePath = "/Users/test/workspace"
-	const mockGetWorkspacePath = getWorkspacePath as jest.MockedFunction<typeof getWorkspacePath>
+	const mockGetWorkspacePath = getWorkspacePath as MockedFunction<typeof getWorkspacePath>
 
 	beforeEach(() => {
-		jest.clearAllMocks()
+		vi.clearAllMocks()
 	})
 
 	it("should include WORKSPACE_ROOT environment variable", () => {
