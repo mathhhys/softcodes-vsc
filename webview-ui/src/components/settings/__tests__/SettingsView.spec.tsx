@@ -12,7 +12,9 @@ vi.mock("@src/utils/vscode", () => ({ vscode: { postMessage: vi.fn() } }))
 // Mock the validate functions to prevent validation errors
 vi.mock("@src/utils/validate", () => ({
 	validateApiConfiguration: vi.fn().mockReturnValue(undefined),
+	validateApiConfigurationExcludingModelErrors: vi.fn().mockReturnValue(undefined),
 	validateModelId: vi.fn().mockReturnValue(undefined),
+	getModelValidationError: vi.fn().mockReturnValue(undefined),
 }))
 // kilocode_change end
 
@@ -120,7 +122,7 @@ vi.mock("@/components/ui", () => ({
 		/>
 	),
 	// kilocode_change start
-    DropdownMenu: ({ children }: any) => <div data-testid="dropdown-menu">{children}</div>,
+	DropdownMenu: ({ children }: any) => <div data-testid="dropdown-menu">{children}</div>,
 	DropdownMenuTrigger: ({ children }: any) => <div data-testid="dropdown-menu-trigger">{children}</div>,
 	DropdownMenuContent: ({ children }: any) => <div data-testid="dropdown-menu-content">{children}</div>,
 	DropdownMenuItem: ({ children, onClick }: any) => (
@@ -152,6 +154,7 @@ vi.mock("@/components/ui", () => ({
 	),
 	SelectTrigger: ({ children }: any) => <div data-testid="select-trigger">{children}</div>,
 	SelectValue: ({ placeholder }: any) => <div data-testid="select-value">{placeholder}</div>,
+	SelectSeparator: () => <div data-testid="select-separator" />,
 	AlertDialog: ({ children, open }: any) => (
 		<div data-testid="alert-dialog" data-open={open}>
 			{children}
@@ -198,7 +201,7 @@ const mockPostMessage = (state: any) => {
 }
 
 // kilocode_change on next line, initial state initialization to work with localized checkboxes
-const renderSettingsView = (initialState = {}) => { 
+const renderSettingsView = (initialState = {}) => {
 	const onDone = vi.fn()
 	const queryClient = new QueryClient()
 

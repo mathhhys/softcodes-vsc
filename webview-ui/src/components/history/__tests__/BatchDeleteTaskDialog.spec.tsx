@@ -21,6 +21,19 @@ vi.mock("@/i18n/TranslationContext", () => ({
 	}),
 }))
 
+// kilocode_change start: add mocks
+vi.mock("../useTaskSearch", () => ({
+	useTaskSearch: () => ({
+		tasks: [
+			{ id: "task-1", isFavorited: false },
+			{ id: "task-2", isFavorited: true },
+			{ id: "task-3", isFavorited: false },
+			{ id: "task-4", isFavorited: true },
+		],
+	}),
+}))
+// kilocode_change end
+
 describe("BatchDeleteTaskDialog", () => {
 	const mockTaskIds = ["task-1", "task-2", "task-3"]
 	const mockOnOpenChange = vi.fn()

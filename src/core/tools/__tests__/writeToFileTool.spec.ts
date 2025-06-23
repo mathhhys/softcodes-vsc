@@ -95,7 +95,7 @@ vi.mock("../../ignore/RooIgnoreController", () => ({
 describe("writeToFileTool", () => {
 	// Test data
 	const testFilePath = "test/file.txt"
-	const absoluteFilePath = process.platform === "win32" ? "C:\\test\\file.txt" : "/test/file.txt"
+	const absoluteFilePath = process.platform === "win32" ? "D:\\test\\file.txt" : "/test/file.txt"
 	const testContent = "Line 1\nLine 2\nLine 3"
 	const testContentWithMarkdown = "```javascript\nLine 1\nLine 2\n```"
 
