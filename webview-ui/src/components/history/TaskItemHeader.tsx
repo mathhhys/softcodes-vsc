@@ -3,6 +3,9 @@ import type { HistoryItem } from "@roo-code/types"
 import { formatDate } from "@/utils/format"
 import { DeleteButton } from "./DeleteButton"
 import { cn } from "@/lib/utils"
+import { Button } from "@src/components/ui"
+
+import { vscode } from "@/utils/vscode" // kilocode_change: pull slash commands from Cline
 
 export interface TaskItemHeaderProps {
 	item: HistoryItem
@@ -10,10 +13,8 @@ export interface TaskItemHeaderProps {
 	onDelete?: (taskId: string) => void
 }
 
-<<<<<<< HEAD
-const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, variant, isSelectionMode, t, onDelete }) => {
-	const isCompact = variant === "compact"
-
+const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, isSelectionMode, onDelete }) => {
+	// kilocode_change start
 	// Standardized icon styles
 	const actionIconStyle: React.CSSProperties = {
 		fontSize: "16px",
@@ -21,25 +22,12 @@ const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, variant, isSelect
 		verticalAlign: "middle",
 	}
 
-	const handleDeleteClick = (e: React.MouseEvent) => {
-		e.stopPropagation()
-		if (e.shiftKey) {
-			vscode.postMessage({ type: "deleteTaskWithId", text: item.id })
-		} else if (onDelete) {
-			onDelete(item.id)
-		}
-	}
-
-	// kilocode_change start
 	const handleFavoriteClick = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		vscode.postMessage({ type: "toggleTaskFavorite", text: item.id })
 	}
 	// kilocode_change end
 
-=======
-const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, isSelectionMode, onDelete }) => {
->>>>>>> upstream-at-v3.21.1
 	return (
 		<div
 			className={cn("flex justify-between items-center", {
@@ -56,7 +44,6 @@ const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, isSelectionMode, 
 			{/* Action Buttons */}
 			{!isSelectionMode && (
 				<div className="flex flex-row gap-0 items-center opacity-20 group-hover:opacity-50 hover:opacity-100">
-<<<<<<< HEAD
 					{/* kilocode_change start */}
 					{/* Favorite Star Button */}
 					<Button
@@ -72,31 +59,7 @@ const TaskItemHeader: React.FC<TaskItemHeaderProps> = ({ item, isSelectionMode, 
 						/>
 					</Button>
 					{/* kilocode_change end */}
-
-					{isCompact ? (
-						<CopyButton itemTask={item.task} />
-					) : (
-						<>
-							{onDelete && (
-								<Button
-									variant="ghost"
-									size="icon"
-									title={t("history:deleteTaskTitle")}
-									data-testid="delete-task-button"
-									onClick={handleDeleteClick}>
-									<span className="codicon codicon-trash" style={actionIconStyle} />
-								</Button>
-							)}
-							{!isCompact && item.size && (
-								<span className="text-vscode-descriptionForeground ml-1 text-sm">
-									{prettyBytes(item.size)}
-								</span>
-							)}
-						</>
-					)}
-=======
 					{onDelete && <DeleteButton itemId={item.id} onDelete={onDelete} />}
->>>>>>> upstream-at-v3.21.1
 				</div>
 			)}
 		</div>

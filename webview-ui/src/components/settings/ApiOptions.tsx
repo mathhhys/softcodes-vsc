@@ -246,46 +246,6 @@ const ApiOptions = ({
 			// modelId is not set then you immediately end up in an error state.
 			// To address that we set the modelId to the default value for th
 			// provider if it's not already set.
-<<<<<<< HEAD
-			switch (value) {
-				case "openrouter":
-					if (!apiConfiguration.openRouterModelId) {
-						setApiConfigurationField("openRouterModelId", openRouterDefaultModelId)
-					}
-					break
-				case "glama":
-					if (!apiConfiguration.glamaModelId) {
-						setApiConfigurationField("glamaModelId", glamaDefaultModelId)
-					}
-					break
-				case "unbound":
-					if (!apiConfiguration.unboundModelId) {
-						setApiConfigurationField("unboundModelId", unboundDefaultModelId)
-					}
-					break
-				case "requesty":
-					if (!apiConfiguration.requestyModelId) {
-						setApiConfigurationField("requestyModelId", requestyDefaultModelId)
-					}
-					break
-				case "litellm":
-					if (!apiConfiguration.litellmModelId) {
-						setApiConfigurationField("litellmModelId", litellmDefaultModelId)
-					}
-					break
-				case "kilocode":
-					if (!apiConfiguration.kilocodeModel) {
-						setApiConfigurationField("kilocodeModel", "claude37")
-					}
-					break
-				// kilocode_change start
-				case "cerebras":
-					if (!apiConfiguration.cerebrasModelId) {
-						setApiConfigurationField("cerebrasModelId", cerebrasDefaultModelId)
-					}
-					break
-				// kilocode_change end
-=======
 			const validateAndResetModel = (
 				modelId: string | undefined,
 				field: keyof ProviderSettings,
@@ -301,7 +261,6 @@ const ApiOptions = ({
 				if (shouldSetDefault) {
 					setApiConfigurationField(field, defaultValue)
 				}
->>>>>>> upstream-at-v3.21.1
 			}
 
 			// Define a mapping object that associates each provider with its model configuration
@@ -332,6 +291,8 @@ const ApiOptions = ({
 				openai: { field: "openAiModelId" },
 				ollama: { field: "ollamaModelId" },
 				lmstudio: { field: "lmStudioModelId" },
+				kilocode: { field: "kilocodeModel", default: "claude37" }, // kilocode_change
+				cerebras: { field: "cerebrasModelId", default: cerebrasDefaultModelId }, // kilocode_change
 			}
 
 			const config = PROVIDER_MODEL_CONFIG[value]
@@ -343,20 +304,7 @@ const ApiOptions = ({
 				)
 			}
 		},
-<<<<<<< HEAD
-		[
-			setApiConfigurationField,
-			apiConfiguration.openRouterModelId,
-			apiConfiguration.glamaModelId,
-			apiConfiguration.unboundModelId,
-			apiConfiguration.requestyModelId,
-			apiConfiguration.litellmModelId,
-			apiConfiguration.kilocodeModel,
-			apiConfiguration.cerebrasModelId, // kilocode_change
-		],
-=======
 		[setApiConfigurationField, apiConfiguration],
->>>>>>> upstream-at-v3.21.1
 	)
 
 	const modelValidationError = useMemo(() => {

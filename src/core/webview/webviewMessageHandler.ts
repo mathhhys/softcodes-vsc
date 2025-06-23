@@ -875,7 +875,7 @@ export const webviewMessageHandler = async (
 				}
 
 				// Replace all prompts with the new values from the cached state
-				await updateGlobalState("customSupportPrompts", message.values )
+				await updateGlobalState("customSupportPrompts", message.values)
 				await provider.postStateToWebview()
 			} catch (error) {
 				provider.log(
@@ -1703,7 +1703,6 @@ export const webviewMessageHandler = async (
 			}
 			break
 		}
-<<<<<<< HEAD
 		// kilocode_change start
 		case "toggleTaskFavorite":
 			if (message.text) {
@@ -1711,13 +1710,11 @@ export const webviewMessageHandler = async (
 			}
 			break
 		// kilocode_change end
-=======
 		case "focusPanelRequest": {
 			// Execute the focusPanel command to focus the WebView
 			await vscode.commands.executeCommand(getCommand("focusPanel"))
 			break
 		}
->>>>>>> upstream-at-v3.21.1
 		case "filterMarketplaceItems": {
 			if (marketplaceManager && message.filters) {
 				try {

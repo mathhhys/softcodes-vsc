@@ -57,12 +57,8 @@ export const ModelPicker = ({
 	serviceUrl,
 	apiConfiguration,
 	setApiConfigurationField,
-<<<<<<< HEAD
 	// organizationAllowList, // kilocode_change: unused
-=======
-	organizationAllowList,
 	errorMessage,
->>>>>>> upstream-at-v3.21.1
 }: ModelPickerProps) => {
 	const { t } = useAppTranslation()
 
@@ -194,7 +190,6 @@ export const ModelPicker = ({
 									)}
 								</CommandEmpty>
 								<CommandGroup>
-<<<<<<< HEAD
 									{/* kilocode_change start */}
 									{modelIds.map((model, i) => {
 										const isPreferred = models?.[model]?.preferredIndex !== null
@@ -207,6 +202,7 @@ export const ModelPicker = ({
 												<CommandItem
 													value={model}
 													onSelect={onSelect}
+													data-testid={`model-option-${model}`}
 													className={cn(isPreferred ? "font-semibold" : "")}>
 													{model}
 													<Check
@@ -220,23 +216,6 @@ export const ModelPicker = ({
 										)
 									})}
 									{/* kilocode_change end */}
-=======
-									{modelIds.map((model) => (
-										<CommandItem
-											key={model}
-											value={model}
-											onSelect={onSelect}
-											data-testid={`model-option-${model}`}>
-											{model}
-											<Check
-												className={cn(
-													"size-4 p-0.5 ml-auto",
-													model === selectedModelId ? "opacity-100" : "opacity-0",
-												)}
-											/>
-										</CommandItem>
-									))}
->>>>>>> upstream-at-v3.21.1
 								</CommandGroup>
 							</CommandList>
 							{searchValue && !modelIds.includes(searchValue) && (
