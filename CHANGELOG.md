@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.21.5
+
+### Patch Changes
+
+-   - Fix Qdrant URL prefix handling for QdrantClient initialization (thanks @CW-B-W!)
+
 ## [3.21.4] - 2025-06-23
 
 - Fix start line not working in multiple apply diff (thanks @samhvw8!)
