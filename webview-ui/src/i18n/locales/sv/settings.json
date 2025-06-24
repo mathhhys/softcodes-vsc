@@ -1,650 +1,610 @@
 {
 	"common": {
-		"save": "Save",
-		"done": "Done",
-		"cancel": "Cancel",
-		"reset": "Reset",
-		"select": "Select",
-		"add": "Add Header",
-		"remove": "Remove"
+		"save": "Spara",
+		"done": "Klar",
+		"cancel": "Avbryt",
+		"reset": "Återställ",
+		"select": "Välj",
+		"add": "Lägg till rubrik",
+		"remove": "Ta bort"
 	},
 	"header": {
-		"title": "Settings",
-		"saveButtonTooltip": "Save changes",
-		"nothingChangedTooltip": "Nothing changed",
-		"doneButtonTooltip": "Discard unsaved changes and close settings panel"
+		"title": "Inställningar",
+		"saveButtonTooltip": "Spara ändringar",
+		"nothingChangedTooltip": "Inget har ändrats",
+		"doneButtonTooltip": "Ignorera osparade ändringar och stäng inställningspanelen"
 	},
 	"unsavedChangesDialog": {
-		"title": "Unsaved Changes",
-		"description": "Do you want to discard changes and continue?",
-		"cancelButton": "Cancel",
-		"discardButton": "Discard changes"
+		"title": "Osparade ändringar",
+		"description": "Vill du ignorera ändringarna och fortsätta?",
+		"cancelButton": "Avbryt",
+		"discardButton": "Ignorera ändringar"
 	},
 	"sections": {
-		"providers": "Providers",
-		"autoApprove": "Auto-Approve",
-		"browser": "Browser",
-		"checkpoints": "Checkpoints",
-		"display": "Display",
-		"notifications": "Notifications",
-		"contextManagement": "Context",
+		"providers": "Leverantörer",
+		"autoApprove": "Auto-godkänn",
+		"browser": "Webbläsare",
+		"checkpoints": "Kontrollpunkter",
+		"display": "Visa",
+		"notifications": "Meddelanden",
+		"contextManagement": "Kontext",
 		"terminal": "Terminal",
-		"prompts": "Prompts",
-		"experimental": "Experimental",
-		"language": "Language",
-		"about": "About Kilo Code"
+		"prompts": "Prompter",
+		"experimental": "Experimentell",
+		"language": "Språk",
+		"about": "Om Kilo Code"
 	},
 	"prompts": {
-		"description": "Configure support prompts that are used for quick actions like enhancing prompts, explaining code, and fixing issues. These prompts help Kilo Code provide better assistance for common development tasks."
+		"description": "Konfigurera supportprompter som används för snabba åtgärder som att förbättra prompter, förklara kod och åtgärda problem. Dessa prompter hjälper Kilo Code att ge bättre hjälp för vanliga utvecklingsuppgifter."
 	},
 	"codeIndex": {
-		"title": "Codebase Indexing",
-		"enableLabel": "Enable Codebase Indexing",
-		"enableDescription": "<0>Codebase Indexing</0> is an experimental feature that creates a semantic search index of your project using AI embeddings. This enables Kilo Code to better understand and navigate large codebases by finding relevant code based on meaning rather than just keywords.",
-		"providerLabel": "Embeddings Provider",
-		"selectProviderPlaceholder": "Select provider",
+		"title": "Indexering av kodbas",
+		"enableLabel": "Aktivera indexering av kodbas",
+		"enableDescription": "<0>Indexering av kodbas</0> är en experimentell funktion som skapar ett semantiskt sökindex över ditt projekt med hjälp av AI-inbäddningar. Detta gör att Kilo Code bättre kan förstå och navigera i stora kodbaser genom att hitta relevant kod baserat på betydelse snarare än bara nyckelord.",
+		"providerLabel": "Leverantör av inbäddningar",
+		"selectProviderPlaceholder": "Välj leverantör",
 		"openaiProvider": "OpenAI",
 		"ollamaProvider": "Ollama",
-		"openaiCompatibleProvider": "OpenAI Compatible",
-		"openaiKeyLabel": "OpenAI Key:",
-		"openaiCompatibleBaseUrlLabel": "Base URL:",
-		"openaiCompatibleApiKeyLabel": "API Key:",
-		"openaiCompatibleModelDimensionLabel": "Embedding Dimension:",
-		"openaiCompatibleModelDimensionPlaceholder": "e.g., 1536",
-		"openaiCompatibleModelDimensionDescription": "The embedding dimension (output size) for your model. Check your provider's documentation for this value. Common values: 384, 768, 1536, 3072.",
-		"modelLabel": "Model",
-		"selectModelPlaceholder": "Select model",
+		"openaiCompatibleProvider": "OpenAI-kompatibel",
+		"openaiKeyLabel": "OpenAI-nyckel:",
+		"openaiCompatibleBaseUrlLabel": "Bas-URL:",
+		"openaiCompatibleApiKeyLabel": "API-nyckel:",
+		"openaiCompatibleModelDimensionLabel": "Inbäddningsdimension:",
+		"openaiCompatibleModelDimensionPlaceholder": "t.ex. 1536",
+		"openaiCompatibleModelDimensionDescription": "Inbäddningsdimensionen (utmatningsstorleken) for din modell. Kontrollera din leverantörs dokumentation for detta värde. Vanliga värden: 384, 768, 1536, 3072.",
+		"modelLabel": "Modell",
+		"selectModelPlaceholder": "Välj modell",
 		"ollamaUrlLabel": "Ollama URL:",
 		"qdrantUrlLabel": "Qdrant URL",
-		"qdrantKeyLabel": "Qdrant Key:",
-		"startIndexingButton": "Start Indexing",
-		"clearIndexDataButton": "Clear Index Data",
-		"unsavedSettingsMessage": "Please save your settings before starting the indexing process.",
+		"qdrantKeyLabel": "Qdrant-nyckel:",
+		"startIndexingButton": "Starta indexering",
+		"clearIndexDataButton": "Rensa indexdata",
+		"unsavedSettingsMessage": "Spara dina inställningar innan du startar indexeringsprocessen.",
 		"clearDataDialog": {
-			"title": "Are you sure?",
-			"description": "This action cannot be undone. This will permanently delete your codebase index data.",
-			"cancelButton": "Cancel",
-			"confirmButton": "Clear Data"
+			"title": "Är du säker?",
+			"description": "Denna åtgärd kan inte ångras. Detta kommer att radera dina kodbasindexdata permanent.",
+			"cancelButton": "Avbryt",
+			"confirmButton": "Rensa data"
 		}
 	},
 	"autoApprove": {
-		"description": "Allow Kilo Code to automatically perform operations without requiring approval. Enable these settings only if you fully trust the AI and understand the associated security risks.",
+		"description": "Tillåt Kilo Code att automatiskt utföra åtgärder utan att kräva godkännande. Aktivera dessa inställningar endast om du litar fullt ut på AI:n och förstår de tillhörande säkerhetsriskerna.",
 		"readOnly": {
-			"label": "Read",
-			"description": "When enabled, Kilo Code will automatically view directory contents and read files without requiring you to click the Approve button.",
+			"label": "Läs",
+			"description": "När den är aktiverad kommer Kilo Code automatiskt att visa kataloginnehåll och läsa filer utan att du behöver klicka på knappen Godkänn.",
 			"outsideWorkspace": {
-				"label": "Include files outside workspace",
-				"description": "Allow Kilo Code to read files outside the current workspace without requiring approval."
+				"label": "Inkludera filer utanför arbetsytan",
+				"description": "Tillåt Kilo Code att läsa filer utanför den aktuella arbetsytan utan att kräva godkännande."
 			}
 		},
 		"write": {
-			"label": "Write",
-			"description": "Automatically create and edit files without requiring approval",
-			"delayLabel": "Delay after writes to allow diagnostics to detect potential problems",
+			"label": "Skriv",
+			"description": "Skapa och redigera filer automatiskt utan att kräva godkännande",
+			"delayLabel": "Fördröjning efter skrivningar för att tillåta diagnostik att upptäcka potentiella problem",
 			"outsideWorkspace": {
-				"label": "Include files outside workspace",
-				"description": "Allow Kilo Code to create and edit files outside the current workspace without requiring approval."
+				"label": "Inkludera filer utanför arbetsytan",
+				"description": "Tillåt Kilo Code att skapa och redigera filer utanför den aktuella arbetsytan utan att kräva godkännande."
 			},
 			"protected": {
-				"label": "Include protected files",
-				"description": "Allow Kilo Code to create and edit protected files (like .kilocodeignore and .kilocode/ configuration files) without requiring approval."
+				"label": "Inkludera skyddade filer",
+				"description": "Tillåt Kilo Code att skapa och redigera skyddade filer (som .kilocodeignore och konfigurationsfiler i .kilocode/) utan att kräva godkännande."
 			}
 		},
 		"browser": {
-			"label": "Browser",
-			"description": "Automatically perform browser actions without requiring approval. Note: Only applies when the model supports computer use"
+			"label": "Webbläsare",
+			"description": "Utför webbläsaråtgärder automatiskt utan att kräva godkännande. Obs: Gäller endast när modellen stöder datoranvändning"
 		},
 		"retry": {
-			"label": "Retry",
-			"description": "Automatically retry failed API requests when server returns an error response",
-			"delayLabel": "Delay before retrying the request"
+			"label": "Försök igen",
+			"description": "Försök automatiskt igen misslyckade API-förfrågningar när servern returnerar ett felsvar",
+			"delayLabel": "Fördröjning innan förfrågan görs om"
 		},
 		"mcp": {
 			"label": "MCP",
-			"description": "Enable auto-approval of individual MCP tools in the MCP Servers view (requires both this setting and the tool's individual \"Always allow\" checkbox)"
+			"description": "Aktivera automatisk godkännande av enskilda MCP-verktyg i vyn MCP-servrar (kräver både denna inställning och verktygets individuella kryssruta \"Tillåt alltid\")"
 		},
 		"modeSwitch": {
-			"label": "Mode",
-			"description": "Automatically switch between different modes without requiring approval"
+			"label": "Läge",
+			"description": "Växla automatiskt mellan olika lägen utan att kräva godkännande"
 		},
 		"subtasks": {
-			"label": "Subtasks",
-			"description": "Allow creation and completion of subtasks without requiring approval"
+			"label": "Deluppgifter",
+			"description": "Tillåt skapande och slutförande av deluppgifter utan att kräva godkännande"
 		},
 		"execute": {
-			"label": "Execute",
-			"description": "Automatically execute allowed terminal commands without requiring approval",
-			"allowedCommands": "Allowed Auto-Execute Commands",
-			"allowedCommandsDescription": "Command prefixes that can be auto-executed when \"Always approve execute operations\" is enabled. Add * to allow all commands (use with caution).",
-			"commandPlaceholder": "Enter command prefix (e.g., 'git ')",
-			"addButton": "Add"
+			"label": "Kör",
+			"description": "Kör tillåtna terminalkommandon automatiskt utan att kräva godkännande",
+			"allowedCommands": "Tillåtna kommandon för automatisk körning",
+			"allowedCommandsDescription": "Kommando-prefix som kan köras automatiskt när \"Godkänn alltid körningsoperationer\" är aktiverat. Lägg till * för att tillåta alla kommandon (använd med försiktighet).",
+			"commandPlaceholder": "Ange kommandoprefix (t.ex. 'git ')",
+			"addButton": "Lägg till"
 		},
 		"showMenu": {
-			"label": "Show auto-approve menu in chat view",
-			"description": "When enabled, the auto-approve menu will be displayed at the bottom of the chat view, allowing quick access to auto-approve settings"
+			"label": "Visa auto-godkänn-menyn i chattvyn",
+			"description": "När den är aktiverad kommer auto-godkänn-menyn att visas längst ner i chattvyn, vilket ger snabb åtkomst till auto-godkänn-inställningarna"
 		},
 		"apiRequestLimit": {
-			"title": "Max Requests",
-			"description": "Automatically make this many API requests before asking for approval to continue with the task.",
-			"unlimited": "Unlimited"
+			"title": "Max antal förfrågningar",
+			"description": "Gör automatiskt så här många API-förfrågningar innan du ber om godkännande för att fortsätta med uppgiften.",
+			"unlimited": "Obegränsat"
 		}
 	},
 	"providers": {
-		"providerDocumentation": "{{provider}} documentation",
-		"configProfile": "Configuration Profile",
-		"description": "Save different API configurations to quickly switch between providers and settings.",
-		"apiProvider": "API Provider",
-		"model": "Model",
-		"nameEmpty": "Name cannot be empty",
-		"nameExists": "A profile with this name already exists",
-		"deleteProfile": "Delete Profile",
-		"invalidArnFormat": "Invalid ARN format. Please check the examples above.",
-		"enterNewName": "Enter new name",
-		"addProfile": "Add Profile",
-		"renameProfile": "Rename Profile",
-		"newProfile": "New Configuration Profile",
-		"enterProfileName": "Enter profile name",
-		"createProfile": "Create Profile",
-		"cannotDeleteOnlyProfile": "Cannot delete the only profile",
-		"searchPlaceholder": "Search profiles",
-		"noMatchFound": "No matching profiles found",
-		"vscodeLmDescription": " The VS Code Language Model API allows you to run models provided by other VS Code extensions (including but not limited to GitHub Copilot). The easiest way to get started is to install the Copilot and Copilot Chat extensions from the VS Code Marketplace.",
-		"awsCustomArnUse": "Enter a valid Amazon Bedrock ARN for the model you want to use. Format examples:",
-		"awsCustomArnDesc": "Make sure the region in the ARN matches your selected AWS Region above.",
-		"openRouterApiKey": "OpenRouter API Key",
-		"getOpenRouterApiKey": "Get OpenRouter API Key",
-		"apiKeyStorageNotice": "API keys are stored securely in VSCode's Secret Storage",
-		"glamaApiKey": "Glama API Key",
-		"getGlamaApiKey": "Get Glama API Key",
-		"useCustomBaseUrl": "Use custom base URL",
-		"useReasoning": "Enable reasoning",
-		"useHostHeader": "Use custom Host header",
-		"useLegacyFormat": "Use legacy OpenAI API format",
-		"customHeaders": "Custom Headers",
-		"headerName": "Header name",
-		"headerValue": "Header value",
-		"noCustomHeaders": "No custom headers defined. Click the + button to add one.",
-		"requestyApiKey": "Requesty API Key",
+		"providerDocumentation": "{{provider}} dokumentation",
+		"configProfile": "Konfigurationsprofil",
+		"description": "Spara olika API-konfigurationer för att snabbt växla mellan leverantörer och inställningar.",
+		"apiProvider": "API-leverantör",
+		"model": "Modell",
+		"nameEmpty": "Namnet får inte vara tomt",
+		"nameExists": "En profil med det här namnet finns redan",
+		"deleteProfile": "Ta bort profil",
+		"invalidArnFormat": "Ogiltigt ARN-format. Kontrollera exemplen ovan.",
+		"enterNewName": "Ange nytt namn",
+		"addProfile": "Lägg till profil",
+		"renameProfile": "Byt namn på profil",
+		"newProfile": "Ny konfigurationsprofil",
+		"enterProfileName": "Ange profilnamn",
+		"createProfile": "Skapa profil",
+		"cannotDeleteOnlyProfile": "Det går inte att ta bort den enda profilen",
+		"searchPlaceholder": "Sök profiler",
+		"noMatchFound": "Inga matchande profiler hittades",
+		"vscodeLmDescription": "VS Code Language Model API låter dig köra modeller som tillhandahålls av andra VS Code-tillägg (inklusive men inte begränsat till GitHub Copilot). Det enklaste sättet att komma igång är att installera tilläggen Copilot och Copilot Chat från VS Code Marketplace.",
+		"awsCustomArnUse": "Ange en giltig Amazon Bedrock ARN för den modell du vill använda. Formatexempel:",
+		"awsCustomArnDesc": "Se till att regionen i ARN matchar din valda AWS-region ovan.",
+		"openRouterApiKey": "OpenRouter API-nyckel",
+		"getOpenRouterApiKey": "Hämta OpenRouter API-nyckel",
+		"apiKeyStorageNotice": "API-nycklar lagras säkert i VSCode's Secret Storage",
+		"glamaApiKey": "Glama API-nyckel",
+		"getGlamaApiKey": "Hämta Glama API-nyckel",
+		"useCustomBaseUrl": "Använd anpassad bas-URL",
+		"useReasoning": "Aktivera resonemang",
+		"useHostHeader": "Använd anpassad Host-header",
+		"useLegacyFormat": "Använd äldre OpenAI API-format",
+		"customHeaders": "Anpassade headers",
+		"headerName": "Header-namn",
+		"headerValue": "Header-värde",
+		"noCustomHeaders": "Inga anpassade headers definierade. Klicka på +-knappen för att lägga till en.",
+		"requestyApiKey": "Requesty API-nyckel",
 		"refreshModels": {
-			"label": "Refresh Models",
-			"hint": "Please reopen the settings to see the latest models.",
-			"loading": "Refreshing models list...",
-			"success": "Models list refreshed successfully!",
-			"error": "Failed to refresh models list. Please try again."
+			"label": "Uppdatera modeller",
+			"hint": "Öppna inställningarna igen för att se de senaste modellerna.",
+			"loading": "Uppdaterar modellista...",
+			"success": "Modellistan uppdaterades!",
+			"error": "Misslyckades med att uppdatera modellistan. Försök igen."
 		},
-		"getRequestyApiKey": "Get Requesty API Key",
-		"openRouterTransformsText": "Compress prompts and message chains to the context size (<a>OpenRouter Transforms</a>)",
-		"anthropicApiKey": "Anthropic API Key",
-		"getAnthropicApiKey": "Get Anthropic API Key",
-		"anthropicUseAuthToken": "Pass Anthropic API Key as Authorization header instead of X-Api-Key",
-		"chutesApiKey": "Chutes API Key",
-		"getChutesApiKey": "Get Chutes API Key",
-		"deepSeekApiKey": "DeepSeek API Key",
-		"getDeepSeekApiKey": "Get DeepSeek API Key",
-		"geminiApiKey": "Gemini API Key",
-		"getGroqApiKey": "Get Groq API Key",
-		"groqApiKey": "Groq API Key",
-		"getGeminiApiKey": "Get Gemini API Key",
-		"openAiApiKey": "OpenAI API Key",
-		"apiKey": "API Key",
-		"openAiBaseUrl": "Base URL",
-		"getOpenAiApiKey": "Get OpenAI API Key",
-		"mistralApiKey": "Mistral API Key",
-		"getMistralApiKey": "Get Mistral / Codestral API Key",
-		"codestralBaseUrl": "Codestral Base URL (Optional)",
-		"codestralBaseUrlDesc": "Set an alternative URL for the Codestral model.",
-		"xaiApiKey": "xAI API Key",
-		"getXaiApiKey": "Get xAI API Key",
-		"litellmApiKey": "LiteLLM API Key",
-		"litellmBaseUrl": "LiteLLM Base URL",
-		"awsCredentials": "AWS Credentials",
-		"awsProfile": "AWS Profile",
-		"awsProfileName": "AWS Profile Name",
-		"awsAccessKey": "AWS Access Key",
-		"awsSecretKey": "AWS Secret Key",
-		"awsSessionToken": "AWS Session Token",
-		"awsRegion": "AWS Region",
-		"awsCrossRegion": "Use cross-region inference",
+		"getRequestyApiKey": "Hämta Requesty API-nyckel",
+		"openRouterTransformsText": "Komprimera prompter och meddelandekedjor till kontextstorleken (<a>OpenRouter Transforms</a>)",
+		"anthropicApiKey": "Anthropic API-nyckel",
+		"getAnthropicApiKey": "Hämta Anthropic API-nyckel",
+		"anthropicUseAuthToken": "Skicka Anthropic API-nyckel som Authorization-header istället för X-Api-Key",
+		"chutesApiKey": "Chutes API-nyckel",
+		"getChutesApiKey": "Hämta Chutes API-nyckel",
+		"deepSeekApiKey": "DeepSeek API-nyckel",
+		"getDeepSeekApiKey": "Hämta DeepSeek API-nyckel",
+		"geminiApiKey": "Gemini API-nyckel",
+		"getGroqApiKey": "Hämta Groq API-nyckel",
+		"groqApiKey": "Groq API-nyckel",
+		"getGeminiApiKey": "Hämta Gemini API-nyckel",
+		"openAiApiKey": "OpenAI API-nyckel",
+		"apiKey": "API-nyckel",
+		"openAiBaseUrl": "Bas-URL",
+		"getOpenAiApiKey": "Hämta OpenAI API-nyckel",
+		"mistralApiKey": "Mistral API-nyckel",
+		"getMistralApiKey": "Hämta Mistral / Codestral API-nyckel",
+		"codestralBaseUrl": "Codestral bas-URL (valfritt)",
+		"codestralBaseUrlDesc": "Ange en alternativ URL för Codestral-modellen.",
+		"xaiApiKey": "xAI API-nyckel",
+		"getXaiApiKey": "Hämta xAI API-nyckel",
+		"litellmApiKey": "LiteLLM API-nyckel",
+		"litellmBaseUrl": "LiteLLM bas-URL",
+		"awsCredentials": "AWS-uppgifter",
+		"awsProfile": "AWS-profil",
+		"awsProfileName": "AWS-profilnamn",
+		"awsAccessKey": "AWS-åtkomstnyckel",
+		"awsSecretKey": "AWS-hemlignyckel",
+		"awsSessionToken": "AWS-sessionstoken",
+		"awsRegion": "AWS-region",
+		"awsCrossRegion": "Använd korsregional inferens",
 		"awsBedrockVpc": {
-			"useCustomVpcEndpoint": "Use custom VPC endpoint",
-			"vpcEndpointUrlPlaceholder": "Enter VPC Endpoint URL (optional)",
-			"examples": "Examples:"
+			"useCustomVpcEndpoint": "Använd anpassad VPC-slutpunkt",
+			"vpcEndpointUrlPlaceholder": "Ange VPC-slutpunkts-URL (valfritt)",
+			"examples": "Exempel:"
 		},
-		"enablePromptCaching": "Enable prompt caching",
-		"enablePromptCachingTitle": "Enable prompt caching to improve performance and reduce costs for supported models.",
-		"cacheUsageNote": "Note: If you don't see cache usage, try selecting a different model and then selecting your desired model again.",
-		"vscodeLmModel": "Language Model",
-		"vscodeLmWarning": "Note: This is a very experimental integration and provider support will vary. If you get an error about a model not being supported, that's an issue on the provider's end.",
+		"enablePromptCaching": "Aktivera prompt-cachelagring",
+		"enablePromptCachingTitle": "Aktivera prompt-cachelagring för att förbättra prestanda och minska kostnaderna för modeller som stöds.",
+		"cacheUsageNote": "Obs: Om du inte ser någon cacheanvändning, prova att välja en annan modell och välj sedan din önskade modell igen.",
+		"vscodeLmModel": "Språkmodell",
+		"vscodeLmWarning": "Obs: Detta är en mycket experimentell integration och leverantörsstödet kommer att variera. Om du får ett felmeddelande om att en modell inte stöds är det ett problem på leverantörens sida.",
 		"googleCloudSetup": {
-			"title": "To use Google Cloud Vertex AI, you need to:",
-			"step1": "1. Create a Google Cloud account, enable the Vertex AI API & enable the desired Claude models.",
-			"step2": "2. Install the Google Cloud CLI & configure application default credentials.",
-			"step3": "3. Or create a service account with credentials."
+			"title": "För att använda Google Cloud Vertex AI behöver du:",
+			"step1": "1. Skapa ett Google Cloud-konto, aktivera Vertex AI API och aktivera de önskade Claude-modellerna.",
+			"step2": "2. Installera Google Cloud CLI och konfigurera standardinloggningsuppgifter för program.",
+			"step3": "3. Eller skapa ett tjänstekonto med inloggningsuppgifter."
 		},
-		"googleCloudCredentials": "Google Cloud Credentials",
-		"googleCloudKeyFile": "Google Cloud Key File Path",
-		"googleCloudProjectId": "Google Cloud Project ID",
-		"googleCloudRegion": "Google Cloud Region",
+		"googleCloudCredentials": "Google Cloud-inloggningsuppgifter",
+		"googleCloudKeyFile": "Sökväg till Google Cloud-nyckelfil",
+		"googleCloudProjectId": "Google Cloud-projekt-ID",
+		"googleCloudRegion": "Google Cloud-region",
 		"lmStudio": {
-			"baseUrl": "Base URL (optional)",
-			"modelId": "Model ID",
-			"speculativeDecoding": "Enable Speculative Decoding",
-			"draftModelId": "Draft Model ID",
-			"draftModelDesc": "Draft model must be from the same model family for speculative decoding to work correctly.",
-			"selectDraftModel": "Select Draft Model",
-			"noModelsFound": "No draft models found. Please ensure LM Studio is running with Server Mode enabled.",
-			"description": "LM Studio allows you to run models locally on your computer. For instructions on how to get started, see their <a>quickstart guide</a>. You will also need to start LM Studio's <b>local server</b> feature to use it with this extension. <span>Note:</span> Kilo Code uses complex prompts and works best with Claude models. Less capable models may not work as expected."
+			"baseUrl": "Bas-URL (valfritt)",
+			"modelId": "Modell-ID",
+			"speculativeDecoding": "Aktivera spekulativ avkodning",
+			"draftModelId": "Utkastmodell-ID",
+			"draftModelDesc": "Utkastmodellen måste komma från samma modellfamilj för att spekulativ avkodning ska fungera korrekt.",
+			"selectDraftModel": "Välj utkastmodell",
+			"noModelsFound": "Inga utkastmodeller hittades. Se till att LM Studio körs med serverläget aktiverat.",
+			"description": "LM Studio låter dig köra modeller lokalt på din dator. För instruktioner om hur du kommer igång, se deras <a>snabbstartsguide</a>. Du måste också starta LM Studios <b>lokala server</b>-funktion för att använda den med det här tillägget. <span>Obs:</span> Kilo Code använder komplexa prompter och fungerar bäst med Claude-modeller. Mindre kapabla modeller kanske inte fungerar som förväntat."
 		},
 		"ollama": {
-			"baseUrl": "Base URL (optional)",
-			"modelId": "Model ID",
-			"description": "Ollama allows you to run models locally on your computer. For instructions on how to get started, see their quickstart guide.",
-			"warning": "Note: Kilo Code uses complex prompts and works best with Claude models. Less capable models may not work as expected."
+			"baseUrl": "Bas-URL (valfritt)",
+			"modelId": "Modell-ID",
+			"description": "Ollama låter dig köra modeller lokalt på din dator. För instruktioner om hur du kommer igång, se deras snabbstartsguide.",
+			"warning": "Obs: Kilo Code använder komplexa prompter och fungerar bäst med Claude-modeller. Mindre kapabla modeller kanske inte fungerar som förväntat."
 		},
-		"unboundApiKey": "Unbound API Key",
-		"getUnboundApiKey": "Get Unbound API Key",
-		"unboundRefreshModelsSuccess": "Models list updated! You can now select from the latest models.",
-		"unboundInvalidApiKey": "Invalid API key. Please check your API key and try again.",
+		"unboundApiKey": "Unbound API-nyckel",
+		"getUnboundApiKey": "Hämta Unbound API-nyckel",
+		"unboundRefreshModelsSuccess": "Modellistan har uppdaterats! Du kan nu välja bland de senaste modellerna.",
+		"unboundInvalidApiKey": "Ogiltig API-nyckel. Kontrollera din API-nyckel och försök igen.",
 		"humanRelay": {
-			"description": "No API key is required, but the user needs to help copy and paste the information to the web chat AI.",
-			"instructions": "During use, a dialog box will pop up and the current message will be copied to the clipboard automatically. You need to paste these to web versions of AI (such as ChatGPT or Claude), then copy the AI's reply back to the dialog box and click the confirm button."
+			"description": "Ingen API-nyckel krävs, men användaren måste hjälpa till att kopiera och klistra in informationen i webbchatt-AI:n.",
+			"instructions": "Under användning kommer en dialogruta att dyka upp och det aktuella meddelandet kommer att kopieras automatiskt till urklipp. Du måste klistra in dessa i webbversioner av AI (som ChatGPT eller Claude), sedan kopiera AI:ns svar tillbaka till dialogrutan och klicka på bekräfta-knappen."
 		},
 		"openRouter": {
 			"providerRouting": {
-				"title": "OpenRouter Provider Routing",
-				"description": "OpenRouter routes requests to the best available providers for your model. By default, requests are load balanced across the top providers to maximize uptime. However, you can choose a specific provider to use for this model.",
-				"learnMore": "Learn more about provider routing"
+				"title": "OpenRouter-leverantörsdirigering",
+				"description": "OpenRouter dirigerar förfrågningar till de bästa tillgängliga leverantörerna för din modell. Som standard är förfrågningarna lastbalanserade över de bästa leverantörerna för att maximera drifttiden. Du kan dock välja en specifik leverantör att använda för den här modellen.",
+				"learnMore": "Läs mer om leverantörsdirigering"
 			}
 		},
 		"cerebras": {
-			"apiKey": "Cerebras API Key",
-			"getApiKey": "Get Cerebras API Key"
+			"apiKey": "Cerebras API-nyckel",
+			"getApiKey": "Hämta Cerebras API-nyckel"
 		},
 		"customModel": {
-			"capabilities": "Configure the capabilities and pricing for your custom OpenAI-compatible model. Be careful when specifying the model capabilities, as they can affect how Kilo Code performs.",
+			"capabilities": "Konfigurera funktionerna och prissättningen för din anpassade OpenAI-kompatibla modell. Var försiktig när du anger modellens funktioner, eftersom de kan påverka hur Kilo Code presterar.",
 			"maxTokens": {
-				"label": "Max Output Tokens",
-				"description": "Maximum number of tokens the model can generate in a response. (Specify -1 to allow the server to set the max tokens.)"
+				"label": "Max antal utdatatoken",
+				"description": "Maximalt antal token som modellen kan generera i ett svar. (Ange -1 för att låta servern ställa in max antal token.)"
 			},
 			"contextWindow": {
-				"label": "Context Window Size",
-				"description": "Total tokens (input + output) the model can process."
+				"label": "Kontextfönstrets storlek",
+				"description": "Totalt antal token (inmatning + utmatning) som modellen kan bearbeta."
 			},
 			"imageSupport": {
-				"label": "Image Support",
-				"description": "Is this model capable of processing and understanding images?"
+				"label": "Bildstöd",
+				"description": "Kan den här modellen bearbeta och förstå bilder?"
 			},
 			"computerUse": {
-				"label": "Computer Use",
-				"description": "Is this model capable of interacting with a browser? (e.g. Claude 3.7 Sonnet)."
+				"label": "Datoranvändning",
+				"description": "Kan den här modellen interagera med en webbläsare? (t.ex. Claude 3.7 Sonnet)."
 			},
 			"promptCache": {
-				"label": "Prompt Caching",
-				"description": "Is this model capable of caching prompts?"
+				"label": "Prompt-cachelagring",
+				"description": "Kan den här modellen cachelagra prompter?"
 			},
 			"pricing": {
 				"input": {
-					"label": "Input Price",
-					"description": "Cost per million tokens in the input/prompt. This affects the cost of sending context and instructions to the model."
+					"label": "Inmatningspris",
+					"description": "Kostnad per miljon token i inmatningen/prompten. Detta påverkar kostnaden för att skicka kontext och instruktioner till modellen."
 				},
 				"output": {
-					"label": "Output Price",
-					"description": "Cost per million tokens in the model's response. This affects the cost of generated content and completions."
+					"label": "Utmatningspris",
+					"description": "Kostnad per miljon token i modellens svar. Detta påverkar kostnaden för genererat innehåll och slutföranden."
 				},
 				"cacheReads": {
-					"label": "Cache Reads Price",
-					"description": "Cost per million tokens for reading from the cache. This is the price charged when a cached response is retrieved."
+					"label": "Pris för cache-läsningar",
+					"description": "Kostnad per miljon token för att läsa från cachen. Detta är priset som debiteras när ett cachat svar hämtas."
 				},
 				"cacheWrites": {
-					"label": "Cache Writes Price",
-					"description": "Cost per million tokens for writing to the cache. This is the price charged when a prompt is cached for the first time."
+					"label": "Pris för cache-skrivningar",
+					"description": "Kostnad per miljon token för att skriva till cachen. Detta är priset som debiteras när en prompt cachelagras för första gången."
 				}
 			},
-			"resetDefaults": "Reset to Defaults"
+			"resetDefaults": "Återställ till standard"
 		},
 		"rateLimitSeconds": {
-			"label": "Rate limit",
-			"description": "Minimum time between API requests."
+			"label": "Hastighetsbegränsning",
+			"description": "Minsta tid mellan API-förfrågningar."
 		},
 		"reasoningEffort": {
-			"label": "Model Reasoning Effort",
-			"high": "High",
-			"medium": "Medium",
-			"low": "Low"
+			"label": "Modellens resonemangsansträngning",
+			"high": "Hög",
+			"medium": "Medel",
+			"low": "Låg"
 		},
-		"setReasoningLevel": "Enable Reasoning Effort",
+		"setReasoningLevel": "Aktivera resonemangsansträngning",
 		"claudeCode": {
-			"pathLabel": "Claude Code Path",
-			"description": "Optional path to your Claude Code CLI. Defaults to 'claude' if not set.",
-			"placeholder": "Default: claude"
+			"pathLabel": "Sökväg till Claude Code",
+			"description": "Valfri sökväg till din Claude Code CLI. Standard är 'claude' om den inte är inställd.",
+			"placeholder": "Standard: claude"
 		}
 	},
 	"browser": {
 		"enable": {
-			"label": "Enable browser tool",
-			"description": "When enabled, Kilo Code can use a browser to interact with websites when using models that support computer use. <0>Learn more</0>"
+			"label": "Aktivera webbläsarverktyg",
+			"description": "När den är aktiverad kan Kilo Code använda en webbläsare för att interagera med webbplatser när du använder modeller som stöder datoranvändning. <0>Läs mer</0>"
 		},
 		"viewport": {
-			"label": "Viewport size",
-			"description": "Select the viewport size for browser interactions. This affects how websites are displayed and interacted with.",
+			"label": "Visningsområdets storlek",
+			"description": "Välj visningsområdets storlek för webbläsarinteraktioner. Detta påverkar hur webbplatser visas och interageras med.",
 			"options": {
-				"largeDesktop": "Large Desktop (1280x800)",
-				"smallDesktop": "Small Desktop (900x600)",
-				"tablet": "Tablet (768x1024)",
-				"mobile": "Mobile (360x640)"
+				"largeDesktop": "Stor dator (1280x800)",
+				"smallDesktop": "Liten dator (900x600)",
+				"tablet": "Surfplatta (768x1024)",
+				"mobile": "Mobil (360x640)"
 			}
 		},
 		"screenshotQuality": {
-			"label": "Screenshot quality",
-			"description": "Adjust the WebP quality of browser screenshots. Higher values provide clearer screenshots but increase token usage."
+			"label": "Skärmbildskvalitet",
+			"description": "Justera WebP-kvaliteten på webbläsarskärmbilder. Högre värden ger tydligare skärmbilder men ökar tokenanvändningen."
 		},
 		"remote": {
-			"label": "Use remote browser connection",
-			"description": "Connect to a Chrome browser running with remote debugging enabled (--remote-debugging-port=9222).",
-			"urlPlaceholder": "Custom URL (e.g., http://localhost:9222)",
-			"testButton": "Test Connection",
-			"testingButton": "Testing...",
-			"instructions": "Enter the DevTools Protocol host address or leave empty to auto-discover Chrome local instances. The Test Connection button will try the custom URL if provided, or auto-discover if the field is empty."
+			"label": "Använd fjärranslutning till webbläsare",
+			"description": "Anslut till en Chrome-webbläsare som körs med fjärrfelsökning aktiverad (--remote-debugging-port=9222).",
+			"urlPlaceholder": "Anpassad URL (t.ex. http://localhost:9222)",
+			"testButton": "Testa anslutning",
+			"testingButton": "Testar...",
+			"instructions": "Ange DevTools Protocol-värdadressen eller lämna tomt för att automatiskt upptäcka lokala Chrome-instanser. Knappen Testa anslutning kommer att prova den anpassade URL:en om den anges, eller automatiskt upptäcka om fältet är tomt."
 		}
 	},
 	"checkpoints": {
 		"enable": {
-			"label": "Enable automatic checkpoints",
-			"description": "When enabled, Kilo Code will automatically create checkpoints during task execution, making it easy to review changes or revert to earlier states. <0>Learn more</0>"
+			"label": "Aktivera automatiska kontrollpunkter",
+			"description": "När den är aktiverad kommer Kilo Code automatiskt att skapa kontrollpunkter under uppgiftskörning, vilket gör det enkelt att granska ändringar eller återgå till tidigare tillstånd. <0>Läs mer</0>"
 		}
 	},
 	"display": {
 		"taskTimeline": {
-			"label": "Show task timeline",
-			"description": "Display a visual timeline of task messages, colorized by type, allowing you to quickly view task progress and scroll back to specific points in the task's history."
+			"label": "Visa uppgiftstidslinje",
+			"description": "Visa en visuell tidslinje med uppgiftsmeddelanden, färgkodade efter typ, så att du snabbt kan se uppgiftens framsteg och bläddra tillbaka till specifika punkter i uppgiftens historik."
 		}
 	},
 	"notifications": {
 		"sound": {
-			"label": "Enable sound effects",
-			"description": "When enabled, Kilo Code will play sound effects for notifications and events.",
-			"volumeLabel": "Volume"
+			"label": "Aktivera ljudeffekter",
+			"description": "När den är aktiverad kommer Kilo Code att spela upp ljudeffekter för meddelanden och händelser.",
+			"volumeLabel": "Volym"
 		},
 		"tts": {
-			"label": "Enable text-to-speech",
-			"description": "When enabled, Kilo Code will read aloud its responses using text-to-speech.",
-			"speedLabel": "Speed"
+			"label": "Aktivera text-till-tal",
+			"description": "När den är aktiverad kommer Kilo Code att läsa upp sina svar med text-till-tal.",
+			"speedLabel": "Hastighet"
 		}
 	},
 	"contextManagement": {
-		"description": "Control what information is included in the AI's context window, affecting token usage and response quality",
+		"description": "Kontrollera vilken information som inkluderas i AI:ns kontextfönster, vilket påverkar tokenanvändning och svarskvalitet",
 		"autoCondenseContextPercent": {
-			"label": "Threshold to trigger intelligent context condensing",
-			"description": "When the context window reaches this threshold, Kilo Code will automatically condense it."
+			"label": "Tröskel för att utlösa intelligent kontextkondensering",
+			"description": "När kontextfönstret når denna tröskel kommer Kilo Code automatiskt att kondensera det."
 		},
 		"condensingApiConfiguration": {
-			"label": "API Configuration for Context Condensing",
-			"description": "Select which API configuration to use for context condensing operations. Leave unselected to use the current active configuration.",
-			"useCurrentConfig": "Default"
+			"label": "API-konfiguration för kontextkondensering",
+			"description": "Välj vilken API-konfiguration som ska användas för kontextkondenseringsoperationer. Lämna omarkerad för att använda den nuvarande aktiva konfigurationen.",
+			"useCurrentConfig": "Standard"
 		},
 		"customCondensingPrompt": {
-			"label": "Custom Context Condensing Prompt",
-			"description": "Customize the system prompt used for context condensing. Leave empty to use the default prompt.",
-			"placeholder": "Enter your custom condensing prompt here...\n\nYou can use the same structure as the default prompt:\n- Previous Conversation\n- Current Work\n- Key Technical Concepts\n- Relevant Files and Code\n- Problem Solving\n- Pending Tasks and Next Steps",
-			"reset": "Reset to Default",
-			"hint": "Empty = use default prompt"
+			"label": "Anpassad prompt för kontextkondensering",
+			"description": "Anpassa systemprompten som används för kontextkondensering. Lämna tomt för att använda standardprompten.",
+			"placeholder": "Ange din anpassade kondenseringsprompt här...\n\nDu kan använda samma struktur som standardprompten:\n- Föregående konversation\n- Nuvarande arbete\n- Viktiga tekniska koncept\n- Relevanta filer och kod\n- Problemlösning\n- Väntande uppgifter och nästa steg",
+			"reset": "Återställ till standard",
+			"hint": "Tom = använd standardprompt"
 		},
 		"autoCondenseContext": {
-			"name": "Automatically trigger intelligent context condensing",
-			"description": "When enabled, Roo will automatically condense the context when the threshold is reached. When disabled, you can still manually trigger context condensing."
+			"name": "Utlös automatiskt intelligent kontextkondensering",
+			"description": "När den är aktiverad kommer Roo automatiskt att kondensera kontexten när tröskeln uppnås. När den är inaktiverad kan du fortfarande manuellt utlösa kontextkondensering."
 		},
 		"openTabs": {
-			"label": "Open tabs context limit",
-			"description": "Maximum number of VSCode open tabs to include in context. Higher values provide more context but increase token usage."
+			"label": "Kontextgräns för öppna flikar",
+			"description": "Maximalt antal öppna VSCode-flikar som ska inkluderas i kontexten. Högre värden ger mer kontext men ökar tokenanvändningen."
 		},
 		"workspaceFiles": {
-			"label": "Workspace files context limit",
-			"description": "Maximum number of files to include in current working directory details. Higher values provide more context but increase token usage."
+			"label": "Kontextgräns för arbetsytefiler",
+			"description": "Maximalt antal filer som ska inkluderas i informationen om den aktuella arbetskatalogen. Högre värden ger mer kontext men ökar tokenanvändningen."
 		},
 		"rooignore": {
-			"label": "Show .kilocodeignore'd files in lists and searches",
-			"description": "When enabled, files matching patterns in .kilocodeignore will be shown in lists with a lock symbol. When disabled, these files will be completely hidden from file lists and searches."
+			"label": "Visa .kilocodeignore-ignorerade filer i listor och sökningar",
+			"description": "När den är aktiverad kommer filer som matchar mönster i .kilocodeignore att visas i listor med en låssymbol. När den är inaktiverad kommer dessa filer att vara helt dolda från fillistor och sökningar."
 		},
 		"maxConcurrentFileReads": {
-			"label": "Concurrent file reads limit",
-			"description": "Maximum number of files the 'read_file' tool can process concurrently. Higher values may speed up reading multiple small files but increase memory usage."
+			"label": "Gräns för samtidiga filläsningar",
+			"description": "Maximalt antal filer som verktyget 'read_file' kan bearbeta samtidigt. Högre värden kan påskynda läsningen av flera små filer men ökar minnesanvändningen."
 		},
 		"maxReadFile": {
-			"label": "File read auto-truncate threshold",
-			"description": "Kilo Code reads this number of lines when the model omits start/end values. If this number is less than the file's total, Kilo Code generates a line number index of code definitions. Special cases: -1 instructs Kilo Code to read the entire file (without indexing), and 0 instructs it to read no lines and provides line indexes only for minimal context. Lower values minimize initial context usage, enabling precise subsequent line-range reads. Explicit start/end requests are not limited by this setting.",
-			"lines": "lines",
-			"always_full_read": "Always read entire file"
+			"label": "Tröskel för automatisk avkortning av filläsning",
+			"description": "Kilo Code läser detta antal rader när modellen utelämnar start-/slutvärden. Om detta antal är mindre än filens totala antal, genererar Kilo Code ett radnummerindex över koddefinitioner. Specialfall: -1 instruerar Kilo Code att läsa hela filen (utan indexering), och 0 instruerar den att inte läsa några rader och ger endast radindex för minimal kontext. Lägre värden minimerar den initiala kontextanvändningen, vilket möjliggör exakta efterföljande läsningar av radintervall. Explicita start-/slutförfrågningar begränsas inte av denna inställning.",
+			"lines": "rader",
+			"always_full_read": "Läs alltid hela filen"
 		},
 		"condensingThreshold": {
-			"label": "Condensing Trigger Threshold",
-			"selectProfile": "Configure threshold for profile",
-			"defaultProfile": "Global Default (all profiles)",
-			"defaultDescription": "When context reaches this percentage, it will be automatically condensed for all profiles unless they have custom settings",
-			"profileDescription": "Custom threshold for this profile only (overrides global default)",
-			"inheritDescription": "This profile inherits the global default threshold ({{threshold}}%)",
-			"usesGlobal": "(uses global {{threshold}}%)"
+			"label": "Utlösningströskel för kondensering",
+			"selectProfile": "Konfigurera tröskel för profil",
+			"defaultProfile": "Global standard (alla profiler)",
+			"defaultDescription": "När kontexten når denna procentandel kommer den automatiskt att kondenseras för alla profiler om de inte har anpassade inställningar",
+			"profileDescription": "Anpassad tröskel endast för den här profilen (ersätter global standard)",
+			"inheritDescription": "Den här profilen ärver den globala standardtröskeln ({{threshold}}%)",
+			"usesGlobal": "(använder global {{threshold}}%)"
 		}
 	},
 	"terminal": {
 		"basic": {
-			"label": "Terminal Settings: Basic",
-			"description": "Basic terminal settings"
+			"label": "Terminalinställningar: Grundläggande",
+			"description": "Grundläggande terminalinställningar"
 		},
 		"advanced": {
-			"label": "Terminal Settings: Advanced",
-			"description": "The following options may require a terminal restart to apply the setting."
+			"label": "Terminalinställningar: Avancerat",
+			"description": "Följande alternativ kan kräva en omstart av terminalen för att inställningen ska gälla."
 		},
 		"outputLineLimit": {
-			"label": "Terminal output limit",
-			"description": "Maximum number of lines to include in terminal output when executing commands. When exceeded lines will be removed from the middle, saving tokens. <0>Learn more</0>"
+			"label": "Gräns för terminalutdata",
+			"description": "Maximalt antal rader som ska inkluderas i terminalutdata vid körning av kommandon. När gränsen överskrids kommer rader att tas bort från mitten, vilket sparar token. <0>Läs mer</0>"
 		},
 		"shellIntegrationTimeout": {
-			"label": "Terminal shell integration timeout",
-			"description": "Maximum time to wait for shell integration to initialize before executing commands. For users with long shell startup times, this value may need to be increased if you see \"Shell Integration Unavailable\" errors in the terminal. <0>Learn more</0>"
+			"label": "Timeout för terminalskalintegration",
+			"description": "Maximal väntetid för skalintegration att initieras innan kommandon körs. För användare med långa starttider för skalet kan detta värde behöva ökas om du ser felmeddelanden om ”Skalintegration otillgänglig” i terminalen. <0>Läs mer</0>"
 		},
 		"shellIntegrationDisabled": {
-			"label": "Disable terminal shell integration",
-			"description": "Enable this if terminal commands aren't working correctly or you see 'Shell Integration Unavailable' errors. This uses a simpler method to run commands, bypassing some advanced terminal features. <0>Learn more</0>"
+			"label": "Inaktivera terminalskalintegration",
+			"description": "Aktivera detta om terminalkommandon inte fungerar korrekt eller om du ser felmeddelanden om 'Skalintegration otillgänglig'. Detta använder en enklare metod för att köra kommandon och kringgår vissa avancerade terminalfunktioner. <0>Läs mer</0>"
 		},
 		"commandDelay": {
-			"label": "Terminal command delay",
-			"description": "Delay in milliseconds to add after command execution. The default setting of 0 disables the delay completely. This can help ensure command output is fully captured in terminals with timing issues. In most terminals it is implemented by setting `PROMPT_COMMAND='sleep N'` and Powershell appends `start-sleep` to the end of each command. Originally was workaround for VSCode bug#237208 and may not be needed. <0>Learn more</0>"
+			"label": "Fördröjning för terminalkommando",
+			"description": "Fördröjning i millisekunder som läggs till efter kommandokörning. Standardinställningen 0 inaktiverar fördröjningen helt. Detta kan hjälpa till att säkerställa att kommandoutdata fångas upp helt i terminaler med tidsproblem. I de flesta terminaler implementeras det genom att ställa in `PROMPT_COMMAND='sleep N'` och Powershell lägger till `start-sleep` i slutet av varje kommando. Ursprungligen var detta en lösning för VSCode-bugg#237208 och kanske inte längre behövs. <0>Läs mer</0>"
 		},
 		"compressProgressBar": {
-			"label": "Compress progress bar output",
-			"description": "When enabled, processes terminal output with carriage returns (\\r) to simulate how a real terminal would display content. This removes intermediate progress bar states, retaining only the final state, which conserves context space for more relevant information. <0>Learn more</0>"
+			"label": "Komprimera utdata för förloppsindikator",
+			"description": "När den är aktiverad bearbetar den terminalutdata med vagnretur (\\r) för att simulera hur en riktig terminal skulle visa innehåll. Detta tar bort mellanliggande tillstånd för förloppsindikatorn och behåller endast det slutliga tillståndet, vilket sparar kontextutrymme för mer relevant information. <0>Läs mer</0>"
 		},
 		"powershellCounter": {
-			"label": "Enable PowerShell counter workaround",
-			"description": "When enabled, adds a counter to PowerShell commands to ensure proper command execution. This helps with PowerShell terminals that might have issues with command output capture. <0>Learn more</0>"
+			"label": "Aktivera PowerShell-räknar-workaround",
+			"description": "När den är aktiverad lägger den till en räknare i PowerShell-kommandon för att säkerställa korrekt kommandokörning. Detta hjälper till med PowerShell-terminaler som kan ha problem med att fånga kommandoutdata. <0>Läs mer</0>"
 		},
 		"zshClearEolMark": {
-			"label": "Clear ZSH EOL mark",
-			"description": "When enabled, clears the ZSH end-of-line mark by setting PROMPT_EOL_MARK=''. This prevents issues with command output interpretation when output ends with special characters like '%'. <0>Learn more</0>"
+			"label": "Rensa ZSH EOL-märke",
+			"description": "När den är aktiverad rensar den ZSH:s slut-på-rad-märke genom att ställa in PROMPT_EOL_MARK=''. Detta förhindrar problem med tolkning av kommandoutdata när utdata slutar med specialtecken som '%'. <0>Läs mer</0>"
 		},
 		"zshOhMy": {
-			"label": "Enable Oh My Zsh integration",
-			"description": "When enabled, sets ITERM_SHELL_INTEGRATION_INSTALLED=Yes to enable Oh My Zsh shell integration features. Applying this setting might require restarting the IDE. <0>Learn more</0>"
+			"label": "Aktivera Oh My Zsh-integration",
+			"description": "När den är aktiverad ställer den in ITERM_SHELL_INTEGRATION_INSTALLED=Yes för att aktivera Oh My Zsh-skalintegrationsfunktioner. Att tillämpa den här inställningen kan kräva en omstart av IDE. <0>Läs mer</0>"
 		},
 		"zshP10k": {
-			"label": "Enable Powerlevel10k integration",
-			"description": "When enabled, sets POWERLEVEL9K_TERM_SHELL_INTEGRATION=true to enable Powerlevel10k shell integration features. <0>Learn more</0>"
+			"label": "Aktivera Powerlevel10k-integration",
+			"description": "När den är aktiverad ställer den in POWERLEVEL9K_TERM_SHELL_INTEGRATION=true för att aktivera Powerlevel10k-skalintegrationsfunktioner. <0>Läs mer</0>"
 		},
 		"zdotdir": {
-			"label": "Enable ZDOTDIR handling",
-			"description": "When enabled, creates a temporary directory for ZDOTDIR to handle zsh shell integration properly. This ensures VSCode shell integration works correctly with zsh while preserving your zsh configuration. <0>Learn more</0>"
+			"label": "Aktivera ZDOTDIR-hantering",
+			"description": "När den är aktiverad skapar den en tillfällig katalog för ZDOTDIR för att hantera zsh-skalintegration korrekt. Detta säkerställer att VSCode-skalintegration fungerar korrekt med zsh samtidigt som din zsh-konfiguration bevaras. <0>Läs mer</0>"
 		},
 		"inheritEnv": {
-			"label": "Inherit environment variables",
-			"description": "When enabled, the terminal will inherit environment variables from VSCode's parent process, such as user-profile-defined shell integration settings. This directly toggles VSCode global setting `terminal.integrated.inheritEnv`. <0>Learn more</0>"
+			"label": "Ärv miljövariabler",
+			"description": "När den är aktiverad kommer terminalen att ärva miljövariabler från VSCode:s överordnade process, till exempel skalintegrationsinställningar som definieras av användarprofilen. Detta växlar direkt VSCode:s globala inställning `terminal.integrated.inheritEnv`. <0>Läs mer</0>"
 		}
 	},
 	"advanced": {
 		"diff": {
-			"label": "Enable editing through diffs",
-			"description": "When enabled, Kilo Code will be able to edit files more quickly and will automatically reject truncated full-file writes. Works best with the latest Claude 4 Sonnet model.",
+			"label": "Aktivera redigering via diffar",
+			"description": "När den är aktiverad kommer Kilo Code att kunna redigera filer snabbare och kommer automatiskt att avvisa trunkerade helfilsskrivningar. Fungerar bäst med den senaste Claude 4 Sonnet-modellen.",
 			"strategy": {
-				"label": "Diff strategy",
+				"label": "Diff-strategi",
 				"options": {
-					"standard": "Standard (Single block)",
-					"multiBlock": "Experimental: Multi-block diff",
-					"unified": "Experimental: Unified diff"
+					"standard": "Standard (enkelblock)",
+					"multiBlock": "Experimentell: Flerblocks-diff",
+					"unified": "Experimentell: Enhetlig diff"
 				},
 				"descriptions": {
-					"standard": "Standard diff strategy applies changes to a single code block at a time.",
-					"unified": "Unified diff strategy takes multiple approaches to applying diffs and chooses the best approach.",
-					"multiBlock": "Multi-block diff strategy allows updating multiple code blocks in a file in one request."
+					"standard": "Standard diff-strategi tillämpar ändringar på ett kodblock i taget.",
+					"unified": "Enhetlig diff-strategi använder flera metoder för att tillämpa diffar och väljer den bästa metoden.",
+					"multiBlock": "Flerblocks-diff-strategi tillåter uppdatering av flera kodblock i en fil i en enda förfrågan."
 				}
 			},
 			"matchPrecision": {
-				"label": "Match precision",
-				"description": "This slider controls how precisely code sections must match when applying diffs. Lower values allow more flexible matching but increase the risk of incorrect replacements. Use values below 100% with extreme caution."
+				"label": "Matchningsprecision"
 			}
 		}
 	},
 	"experimental": {
 		"DIFF_STRATEGY_UNIFIED": {
-			"name": "Use experimental unified diff strategy",
-			"description": "Enable the experimental unified diff strategy. This strategy might reduce the number of retries caused by model errors but may cause unexpected behavior or incorrect edits. Only enable if you understand the risks and are willing to carefully review all changes."
+			"label": "Aktivera enhetlig diff",
+			"description": "En annan experimentell diff-strategi som vi kommer att försöka ersätta med flerblocks-diff i framtiden."
 		},
 		"SEARCH_AND_REPLACE": {
-			"name": "Use experimental search and replace tool",
-			"description": "Enable the experimental search and replace tool, allowing Kilo Code to replace multiple instances of a search term in one request."
+			"label": "Aktivera Sök och ersätt",
+			"description": "Lägg till ett sök_och_ersätt-verktyg som kan hantera reguljära uttryck"
 		},
 		"INSERT_BLOCK": {
-			"name": "Use experimental insert content tool",
-			"description": "Enable the experimental insert content tool, allowing Kilo Code to insert content at specific line numbers without needing to create a diff."
+			"label": "Aktivera Infoga block",
+			"description": "Lägg till ett infoga_innehåll-verktyg som kan infoga rader i en fil"
 		},
 		"POWER_STEERING": {
-			"name": "Use experimental \"power steering\" mode",
-			"description": "When enabled, Kilo Code will remind the model about the details of its current mode definition more frequently. This will lead to stronger adherence to role definitions and custom instructions, but will use more tokens per message."
+			"label": "Aktivera servostyrning",
+			"description": "Fråga automatiskt om korrigeringar när problem upptäcks"
 		},
 		"AUTOCOMPLETE": {
-			"name": "Use experimental \"autocomplete\" feature",
-			"description": "When enabled, Kilo Code will provide inline code suggestions as you type. Requires Kilo Code API Provider."
+			"label": "Aktivera automatisk komplettering (alfa)",
+			"description": "Utlös förslag när du skriver i redigeraren. Obs: Fungerar för närvarande endast med Anthropic-modeller."
 		},
 		"CONCURRENT_FILE_READS": {
-			"name": "Enable concurrent file reads",
-			"description": "When enabled, Kilo Code can read multiple files in a single request. When disabled, Kilo Code must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
+			"label": "Aktivera samtidiga filläsningar",
+			"description": "Snabba upp läsningen av flera små filer, men öka minnesanvändningen."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
-			"name": "Use experimental multi block diff tool",
-			"description": "When enabled, Kilo Code will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
+			"label": "Aktivera flera sökningar och ersättningar",
+			"description": "Lägg till stöd för flera sök-/ersättningsoperationer i ett enda verktygsanrop"
 		},
 		"MARKETPLACE": {
-			"name": "Enable Marketplace",
-			"description": "When enabled, you can install MCPs and custom modes from the Marketplace."
+			"label": "Aktivera marknadsplats",
+			"description": "Upptäck, dela och installera anpassade Kilo Code-lägen och MCP-servrar."
 		},
 		"MULTI_FILE_APPLY_DIFF": {
-			"name": "Enable concurrent file edits",
-			"description": "When enabled, Kilo Code can edit multiple files in a single request. When disabled, Kilo Code must edit files one at a time. Disabling this can help when working with less capable models or when you want more control over file modifications."
+			"label": "Aktivera flerfils-Apply Diff (alfa)",
+			"description": "Obs: Att aktivera den här funktionen kan få AI att misslyckas med avancerade uppgifter.\n\nTillåter apply_diff att rikta in sig på flera filer i ett enda verktygsanrop. Minskar latens men kan påverka prestanda."
 		}
 	},
 	"promptCaching": {
-		"label": "Disable prompt caching",
-		"description": "When checked, Kilo Code will not use prompt caching for this model."
+		"title": "Prompt-cachelagring",
+		"description": "Prompt-cachelagring lagrar resultat från ofta använda prompter, vilket minskar latens och API-kostnader. När en prompt cachelagras hämtar Kilo Code snabbt svaret från cacheminnet istället för att skicka en ny begäran till API:et. Detta förbättrar prestandan för repetitiva frågor och sparar token."
 	},
 	"temperature": {
-		"useCustom": "Use custom temperature",
-		"description": "Controls randomness in the model's responses.",
-		"rangeDescription": "Higher values make output more random, lower values make it more deterministic."
+		"label": "Temperatur",
+		"description": "Kontrollera slumpmässigheten: lägre värde är mer deterministiskt; högre är mer kreativt. Obs: Alla modeller eller leverantörer stöder inte denna parameter.",
+		"high": "Hög",
+		"low": "Låg"
 	},
 	"modelInfo": {
-		"supportsImages": "Supports images",
-		"noImages": "Does not support images",
-		"supportsComputerUse": "Supports computer use",
-		"noComputerUse": "Does not support computer use",
-		"supportsPromptCache": "Supports prompt caching",
-		"noPromptCache": "Does not support prompt caching",
-		"maxOutput": "Max output",
-		"inputPrice": "Input price",
-		"outputPrice": "Output price",
-		"cacheReadsPrice": "Cache reads price",
-		"cacheWritesPrice": "Cache writes price",
-		"enableStreaming": "Enable streaming",
-		"enableR1Format": "Enable R1 model parameters",
-		"enableR1FormatTips": "Must be enabled when using R1 models such as QWQ to prevent 400 errors",
-		"useAzure": "Use Azure",
-		"azureApiVersion": "Set Azure API version",
+		"context": "Kontext:",
+		"tokens": "token",
+		"imageSupport": "Bildstöd:",
+		"yes": "Ja",
+		"no": "Nej",
+		"pricing": "Prissättning:",
+		"input": "Inmatning",
+		"output": "Utmatning",
+		"perMillion": "per 1 miljon token",
 		"gemini": {
-			"freeRequests": "* Free up to {{count}} requests per minute. After that, billing depends on prompt size.",
-			"pricingDetails": "For more info, see pricing details.",
-			"billingEstimate": "* Billing is an estimate - exact cost depends on prompt size."
+			"safety": {
+				"label": "Säkerhetsinställningar",
+				"description": "Konfigurera säkerhetsinställningar för Gemini-modeller. Högre inställningar leder till mer blockerat innehåll.",
+				"sexual": "Sexuellt explicit",
+				"hate": "Hat",
+				"harassment": "Trakasserier",
+				"dangerous": "Farligt"
+			}
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "The extension automatically fetches the latest list of models available on <serviceLink>{{serviceName}}</serviceLink>. If you're unsure which model to choose, Kilo Code works best with <defaultModelLink>{{defaultModelId}}</defaultModelLink>. You can also try searching \"free\" for no-cost options currently available.",
-		"label": "Model",
-		"searchPlaceholder": "Search",
-		"noMatchFound": "No match found",
-		"useCustomModel": "Use custom: {{modelId}}"
+		"perMillionTokens": "per 1 miljon token",
+		"input": "I",
+		"output": "O",
+		"cacheRead": "CR",
+		"cacheWrite": "CW",
+		"tokens": "token"
 	},
 	"footer": {
-		"feedback": "If you have any questions or feedback, feel free to open an issue at <githubLink>github.com/Kilo-Org/kilocode</githubLink> or join <redditLink>reddit.com/r/kilocode</redditLink> or <discordLink>kilocode.ai/discord</discordLink>.",
-		"support": "For financial questions, please contact Customer Support at <supportLink>hi@kilocode.ai</supportLink>",
+		"version": "Version: {{version}}",
+		"release_notes": "Utgivningsanmärkningar",
 		"telemetry": {
-			"label": "Allow anonymous error and usage reporting",
-			"description": "Help improve Kilo Code by sending anonymous usage data and error reports. No code, prompts, or personal information is ever sent. See our privacy policy for more details."
+			"label": "Telemetri",
+			"description": "Hjälper till att förbättra Kilo Code genom att skicka anonyma användningsdata. <0>Läs mer</0>"
 		},
 		"settings": {
-			"import": "Import",
-			"export": "Export",
-			"reset": "Reset"
+			"label": "Inställningar",
+			"import": "Importera inställningar",
+			"export": "Exportera inställningar"
 		}
 	},
 	"thinkingBudget": {
-		"maxTokens": "Max Tokens",
-		"maxThinkingTokens": "Max Thinking Tokens"
+		"label": "Tänkande budget",
+		"description": "Ange en gräns för de token som modellen kan använda för att 'tänka' innan den svarar. En högre budget möjliggör mer komplexa resonemang men kan öka latensen. Obs: Alla modeller eller leverantörer stöder inte det här alternativet."
 	},
 	"validation": {
-		"apiKey": "You must provide a valid API key.",
-		"awsRegion": "You must choose a region to use with Amazon Bedrock.",
-		"googleCloud": "You must provide a valid Google Cloud Project ID and Region.",
-		"modelId": "You must provide a valid model ID.",
-		"modelSelector": "You must provide a valid model selector.",
-		"openAi": "You must provide a valid base URL, API key, and model ID.",
-		"arn": {
-			"invalidFormat": "Invalid ARN format. Please check the format requirements.",
-			"regionMismatch": "Warning: The region in your ARN ({{arnRegion}}) does not match your selected region ({{region}}). This may cause access issues. The provider will use the region from the ARN."
-		},
-		"modelAvailability": "The model ID ({{modelId}}) you provided is not available. Please choose a different model.",
-		"providerNotAllowed": "Provider '{{provider}}' is not allowed by your organization",
-		"modelNotAllowed": "Model '{{model}}' is not allowed for provider '{{provider}}' by your organization",
-		"profileInvalid": "This profile contains a provider or model that is not allowed by your organization"
+		"port": "Port måste vara ett nummer mellan 1 och 65535",
+		"baseUrl": "Bas-URL måste vara en giltig URL",
+		"apiKey": "API-nyckel krävs"
 	},
 	"placeholders": {
-		"apiKey": "Enter API Key...",
-		"profileName": "Enter profile name",
-		"accessKey": "Enter Access Key...",
-		"secretKey": "Enter Secret Key...",
-		"sessionToken": "Enter Session Token...",
-		"credentialsJson": "Enter Credentials JSON...",
-		"keyFilePath": "Enter Key File Path...",
-		"projectId": "Enter Project ID...",
-		"customArn": "Enter ARN (e.g. arn:aws:bedrock:us-east-1:123456789012:foundation-model/my-model)",
-		"baseUrl": "Enter base URL...",
-		"modelId": {
-			"lmStudio": "e.g. meta-llama-3.1-8b-instruct",
-			"lmStudioDraft": "e.g. lmstudio-community/llama-3.2-1b-instruct",
-			"ollama": "e.g. llama3.1"
-		},
 		"numbers": {
-			"maxTokens": "e.g. 4096",
-			"contextWindow": "e.g. 128000",
-			"inputPrice": "e.g. 0.0001",
-			"outputPrice": "e.g. 0.0002",
-			"cacheWritePrice": "e.g. 0.00005"
+			"zero": "0",
+			"one": "1",
+			"one_hundred": "100"
 		}
-	},
-	"defaults": {
-		"ollamaUrl": "Default: http://localhost:11434",
-		"lmStudioUrl": "Default: http://localhost:1234",
-		"geminiUrl": "Default: https://generativelanguage.googleapis.com"
-	},
-	"labels": {
-		"customArn": "Custom ARN",
-		"useCustomArn": "Use custom ARN..."
-	},
-	"includeMaxOutputTokens": "Include max output tokens",
-	"includeMaxOutputTokensDescription": "Send max output tokens parameter in API requests. Some providers may not support this."
+	}
 }

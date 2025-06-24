@@ -1,650 +1,610 @@
 {
 	"common": {
-		"save": "Save",
-		"done": "Done",
-		"cancel": "Cancel",
-		"reset": "Reset",
-		"select": "Select",
-		"add": "Add Header",
-		"remove": "Remove"
+		"save": "Αποθήκευση",
+		"done": "Τέλος",
+		"cancel": "Ακύρωση",
+		"reset": "Επαναφορά",
+		"select": "Επιλογή",
+		"add": "Προσθήκη Κεφαλίδας",
+		"remove": "Αφαίρεση"
 	},
 	"header": {
-		"title": "Settings",
-		"saveButtonTooltip": "Save changes",
-		"nothingChangedTooltip": "Nothing changed",
-		"doneButtonTooltip": "Discard unsaved changes and close settings panel"
+		"title": "Ρυθμίσεις",
+		"saveButtonTooltip": "Αποθήκευση αλλαγών",
+		"nothingChangedTooltip": "Δεν άλλαξε τίποタ",
+		"doneButtonTooltip": "Απόρριψη μη αποθηκευμένων αλλαγών και κλείσιμο του πίνακα ρυθμίσεων"
 	},
 	"unsavedChangesDialog": {
-		"title": "Unsaved Changes",
-		"description": "Do you want to discard changes and continue?",
-		"cancelButton": "Cancel",
-		"discardButton": "Discard changes"
+		"title": "Μη αποθηκευμένες αλλαγές",
+		"description": "Θέλετε να απορρίψετε τις αλλαγές και να συνεχίσετε;",
+		"cancelButton": "Ακύρωση",
+		"discardButton": "Απόρριψη αλλαγών"
 	},
 	"sections": {
-		"providers": "Providers",
-		"autoApprove": "Auto-Approve",
-		"browser": "Browser",
-		"checkpoints": "Checkpoints",
-		"display": "Display",
-		"notifications": "Notifications",
-		"contextManagement": "Context",
-		"terminal": "Terminal",
+		"providers": "Πάροχοι",
+		"autoApprove": "Αυτόματη Έγκριση",
+		"browser": "Περιηγητής",
+		"checkpoints": "Σημεία Ελέγχου",
+		"display": "Οθόνη",
+		"notifications": "Ειδοποιήσεις",
+		"contextManagement": "Πλαίσιο",
+		"terminal": "Τερματικό",
 		"prompts": "Prompts",
-		"experimental": "Experimental",
-		"language": "Language",
-		"about": "About Kilo Code"
+		"experimental": "Πειραματικό",
+		"language": "Γλώσσα",
+		"about": "Σχετικά με το Kilo Code"
 	},
 	"prompts": {
-		"description": "Configure support prompts that are used for quick actions like enhancing prompts, explaining code, and fixing issues. These prompts help Kilo Code provide better assistance for common development tasks."
+		"description": "Διαμορφώστε τα support prompts που χρησιμοποιούνται για γρήγορες ενέργειες όπως η βελτίωση των prompts, η εξήγηση κώδικα και η διόρθωση προβλημάτων. Αυτά τα prompts βοηθούν το Kilo Code να παρέχει καλύτερη βοήθεια για κοινές εργασίες ανάπτυξης."
 	},
 	"codeIndex": {
-		"title": "Codebase Indexing",
-		"enableLabel": "Enable Codebase Indexing",
-		"enableDescription": "<0>Codebase Indexing</0> is an experimental feature that creates a semantic search index of your project using AI embeddings. This enables Kilo Code to better understand and navigate large codebases by finding relevant code based on meaning rather than just keywords.",
-		"providerLabel": "Embeddings Provider",
-		"selectProviderPlaceholder": "Select provider",
+		"title": "Ευρετηρίαση Codebase",
+		"enableLabel": "Ενεργοποίηση Ευρετηρίασης Codebase",
+		"enableDescription": "Η <0>Ευρετηρίαση Codebase</0> είναι μια πειραματική λειτουργία που δημιουργεί έναν ευρετήριο σημασιολογικής αναζήτησης του έργου σας χρησιμοποιώντας AI embeddings. Αυτό επιτρέπει στο Kilo Code να κατανοεί και να περιηγείται καλύτερα σε μεγάλες codebase βρίσκοντας σχετικό κώδικα με βάση το νόημα και όχι μόνο τις λέξεις-κλειδιά.",
+		"providerLabel": "Πάροχος Embeddings",
+		"selectProviderPlaceholder": "Επιλογή παρόχου",
 		"openaiProvider": "OpenAI",
 		"ollamaProvider": "Ollama",
-		"openaiCompatibleProvider": "OpenAI Compatible",
-		"openaiKeyLabel": "OpenAI Key:",
-		"openaiCompatibleBaseUrlLabel": "Base URL:",
-		"openaiCompatibleApiKeyLabel": "API Key:",
-		"openaiCompatibleModelDimensionLabel": "Embedding Dimension:",
-		"openaiCompatibleModelDimensionPlaceholder": "e.g., 1536",
-		"openaiCompatibleModelDimensionDescription": "The embedding dimension (output size) for your model. Check your provider's documentation for this value. Common values: 384, 768, 1536, 3072.",
-		"modelLabel": "Model",
-		"selectModelPlaceholder": "Select model",
-		"ollamaUrlLabel": "Ollama URL:",
-		"qdrantUrlLabel": "Qdrant URL",
-		"qdrantKeyLabel": "Qdrant Key:",
-		"startIndexingButton": "Start Indexing",
-		"clearIndexDataButton": "Clear Index Data",
-		"unsavedSettingsMessage": "Please save your settings before starting the indexing process.",
+		"openaiCompatibleProvider": "Συμβατό με OpenAI",
+		"openaiKeyLabel": "Κλειδί OpenAI:",
+		"openaiCompatibleBaseUrlLabel": "Βασικό URL:",
+		"openaiCompatibleApiKeyLabel": "Κλειδί API:",
+		"openaiCompatibleModelDimensionLabel": "Διάσταση Embedding:",
+		"openaiCompatibleModelDimensionPlaceholder": "π.χ., 1536",
+		"openaiCompatibleModelDimensionDescription": "Η διάσταση embedding (μέγεθος εξόδου) για το μοντέλο σας. Ελέγξτε την τεκμηρίωση του παρόχου σας για αυτήν την τιμή. Κοινές τιμές: 384, 768, 1536, 3072.",
+		"modelLabel": "Μοντέλο",
+		"selectModelPlaceholder": "Επιλογή μοντέλου",
+		"ollamaUrlLabel": "URL Ollama:",
+		"qdrantUrlLabel": "URL Qdrant",
+		"qdrantKeyLabel": "Κλειδί Qdrant:",
+		"startIndexingButton": "Έναρξη Ευρετηρίασης",
+		"clearIndexDataButton": "Εκκαθάριση Δεδομένων Ευρετηρίου",
+		"unsavedSettingsMessage": "Παρακαλώ αποθηκεύστε τις ρυθμίσεις σας πριν ξεκινήσετε τη διαδικασία ευρετηρίασης.",
 		"clearDataDialog": {
-			"title": "Are you sure?",
-			"description": "This action cannot be undone. This will permanently delete your codebase index data.",
-			"cancelButton": "Cancel",
-			"confirmButton": "Clear Data"
+			"title": "Είστε σίγουροι;",
+			"description": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θα διαγράψει οριστικά τα δεδομένα του ευρετηρίου codebase σας.",
+			"cancelButton": "Ακύρωση",
+			"confirmButton": "Εκκαθάριση Δεδομένων"
 		}
 	},
 	"autoApprove": {
-		"description": "Allow Kilo Code to automatically perform operations without requiring approval. Enable these settings only if you fully trust the AI and understand the associated security risks.",
+		"description": "Επιτρέψτε στο Kilo Code να εκτελεί αυτόματα λειτουργίες χωρίς να απαιτείται έγκριση. Ενεργοποιήστε αυτές τις ρυθμίσεις μόνο εάν εμπιστεύεστε πλήρως την AI και κατανοείτε τους σχετικούς κινδύνους ασφαλείας.",
 		"readOnly": {
-			"label": "Read",
-			"description": "When enabled, Kilo Code will automatically view directory contents and read files without requiring you to click the Approve button.",
+			"label": "Ανάγνωση",
+			"description": "Όταν είναι ενεργοποιημένο, το Kilo Code θα προβάλλει αυτόματα τα περιεχόμενα του καταλόγου και θα διαβάζει αρχεία χωρίς να χρειάζεται να κάνετε κλικ στο κουμπί Έγκριση.",
 			"outsideWorkspace": {
-				"label": "Include files outside workspace",
-				"description": "Allow Kilo Code to read files outside the current workspace without requiring approval."
+				"label": "Συμπερίληψη αρχείων εκτός χώρου εργασίας",
+				"description": "Επιτρέψτε στο Kilo Code να διαβάζει αρχεία εκτός του τρέχοντος χώρου εργασίας χωρίς να απαιτείται έγκριση."
 			}
 		},
 		"write": {
-			"label": "Write",
-			"description": "Automatically create and edit files without requiring approval",
-			"delayLabel": "Delay after writes to allow diagnostics to detect potential problems",
+			"label": "Εγγραφή",
+			"description": "Αυτόματη δημιουργία και επεξεργασία αρχείων χωρίς να απαιτείται έγκριση",
+			"delayLabel": "Καθυστέρηση μετά τις εγγραφές για να επιτραπεί στα διαγνωστικά να εντοπίσουν πιθανά προβλήματα",
 			"outsideWorkspace": {
-				"label": "Include files outside workspace",
-				"description": "Allow Kilo Code to create and edit files outside the current workspace without requiring approval."
+				"label": "Συμπερίληψη αρχείων εκτός χώρου εργασίας",
+				"description": "Επιτρέψτε στο Kilo Code να δημιουργεί και να επεξεργάζεται αρχεία εκτός του τρέχοντος χώρου εργασίας χωρίς να απαιτείται έγκριση."
 			},
 			"protected": {
-				"label": "Include protected files",
-				"description": "Allow Kilo Code to create and edit protected files (like .kilocodeignore and .kilocode/ configuration files) without requiring approval."
+				"label": "Συμπερίληψη προστατευμένων αρχείων",
+				"description": "Επιτρέψτε στο Kilo Code να δημιουργεί και να επεξεργάζεται προστατευμένα αρχεία (όπως .kilocodeignore και αρχεία διαμόρφωσης .kilocode/) χωρίς να απαιτείται έγκριση."
 			}
 		},
 		"browser": {
-			"label": "Browser",
-			"description": "Automatically perform browser actions without requiring approval. Note: Only applies when the model supports computer use"
+			"label": "Περιηγητής",
+			"description": "Αυτόματη εκτέλεση ενεργειών προγράμματος περιήγησης χωρίς να απαιτείται έγκριση. Σημείωση: Ισχύει μόνο όταν το μοντέλο υποστηρίζει τη χρήση υπολογιστή"
 		},
 		"retry": {
-			"label": "Retry",
-			"description": "Automatically retry failed API requests when server returns an error response",
-			"delayLabel": "Delay before retrying the request"
+			"label": "Επανάληψη",
+			"description": "Αυτόματη επανάληψη αποτυχημένων αιτημάτων API όταν ο διακομιστής επιστρέφει απάντηση σφάλματος",
+			"delayLabel": "Καθυστέρηση πριν την επανάληψη του αιτήματος"
 		},
 		"mcp": {
 			"label": "MCP",
-			"description": "Enable auto-approval of individual MCP tools in the MCP Servers view (requires both this setting and the tool's individual \"Always allow\" checkbox)"
+			"description": "Ενεργοποίηση αυτόματης έγκρισης μεμονωμένων εργαλείων MCP στην προβολή MCP Servers (απαιτείται τόσο αυτή η ρύθμιση όσο και το ατομικό πλαίσιο ελέγχου \"Να επιτρέπεται πάντα\" του εργαλείου)"
 		},
 		"modeSwitch": {
-			"label": "Mode",
-			"description": "Automatically switch between different modes without requiring approval"
+			"label": "Λειτουργία",
+			"description": "Αυτόματη εναλλαγή μεταξύ διαφορετικών λειτουργιών χωρίς να απαιτείται έγκριση"
 		},
 		"subtasks": {
-			"label": "Subtasks",
-			"description": "Allow creation and completion of subtasks without requiring approval"
+			"label": "Δευτερεύοντα καθήκοντα",
+			"description": "Να επιτρέπεται η δημιουργία και η ολοκλήρωση δευτερευόντων εργασιών χωρίς να απαιτείται έγκριση"
 		},
 		"execute": {
-			"label": "Execute",
-			"description": "Automatically execute allowed terminal commands without requiring approval",
-			"allowedCommands": "Allowed Auto-Execute Commands",
-			"allowedCommandsDescription": "Command prefixes that can be auto-executed when \"Always approve execute operations\" is enabled. Add * to allow all commands (use with caution).",
-			"commandPlaceholder": "Enter command prefix (e.g., 'git ')",
-			"addButton": "Add"
+			"label": "Εκτέλεση",
+			"description": "Αυτόματη εκτέλεση επιτρεπόμενων εντολών τερματικού χωρίς να απαιτείται έγκριση",
+			"allowedCommands": "Επιτρεπόμενες εντολές αυτόματης εκτέλεσης",
+			"allowedCommandsDescription": "Τα προθέματα εντολών που μπορούν να εκτελεστούν αυτόματα όταν είναι ενεργοποιημένη η επιλογή \"Να εγκρίνονται πάντα οι λειτουργίες εκτέλεσης\". Προσθέστε * για να επιτρέπονται όλες οι εντολές (χρησιμοποιήστε με προσοχή).",
+			"commandPlaceholder": "Εισαγάγετε πρόθεμα εντολής (π.χ. 'git ')",
+			"addButton": "Προσθήκη"
 		},
 		"showMenu": {
-			"label": "Show auto-approve menu in chat view",
-			"description": "When enabled, the auto-approve menu will be displayed at the bottom of the chat view, allowing quick access to auto-approve settings"
+			"label": "Εμφάνιση μενού αυτόματης έγκρισης στην προβολή συνομιλίας",
+			"description": "Όταν είναι ενεργοποιημένο, το μενού αυτόματης έγκρισης θα εμφανίζεται στο κάτω μέρος της προβολής συνομιλίας, επιτρέποντας τη γρήγορη πρόσβαση στις ρυθμίσεις αυτόματης έγκρισης"
 		},
 		"apiRequestLimit": {
-			"title": "Max Requests",
-			"description": "Automatically make this many API requests before asking for approval to continue with the task.",
-			"unlimited": "Unlimited"
+			"title": "Μέγιστος αριθμός αιτήσεων",
+			"description": "Αυτόματη υποβολή αυτού του αριθμού αιτήσεων API πριν ζητηθεί έγκριση για να συνεχιστεί η εργασία.",
+			"unlimited": "Απεριόριστα"
 		}
 	},
 	"providers": {
-		"providerDocumentation": "{{provider}} documentation",
-		"configProfile": "Configuration Profile",
-		"description": "Save different API configurations to quickly switch between providers and settings.",
-		"apiProvider": "API Provider",
-		"model": "Model",
-		"nameEmpty": "Name cannot be empty",
-		"nameExists": "A profile with this name already exists",
-		"deleteProfile": "Delete Profile",
-		"invalidArnFormat": "Invalid ARN format. Please check the examples above.",
-		"enterNewName": "Enter new name",
-		"addProfile": "Add Profile",
-		"renameProfile": "Rename Profile",
-		"newProfile": "New Configuration Profile",
-		"enterProfileName": "Enter profile name",
-		"createProfile": "Create Profile",
-		"cannotDeleteOnlyProfile": "Cannot delete the only profile",
-		"searchPlaceholder": "Search profiles",
-		"noMatchFound": "No matching profiles found",
-		"vscodeLmDescription": " The VS Code Language Model API allows you to run models provided by other VS Code extensions (including but not limited to GitHub Copilot). The easiest way to get started is to install the Copilot and Copilot Chat extensions from the VS Code Marketplace.",
-		"awsCustomArnUse": "Enter a valid Amazon Bedrock ARN for the model you want to use. Format examples:",
-		"awsCustomArnDesc": "Make sure the region in the ARN matches your selected AWS Region above.",
-		"openRouterApiKey": "OpenRouter API Key",
-		"getOpenRouterApiKey": "Get OpenRouter API Key",
-		"apiKeyStorageNotice": "API keys are stored securely in VSCode's Secret Storage",
-		"glamaApiKey": "Glama API Key",
-		"getGlamaApiKey": "Get Glama API Key",
-		"useCustomBaseUrl": "Use custom base URL",
-		"useReasoning": "Enable reasoning",
-		"useHostHeader": "Use custom Host header",
-		"useLegacyFormat": "Use legacy OpenAI API format",
-		"customHeaders": "Custom Headers",
-		"headerName": "Header name",
-		"headerValue": "Header value",
-		"noCustomHeaders": "No custom headers defined. Click the + button to add one.",
-		"requestyApiKey": "Requesty API Key",
+		"providerDocumentation": "Τεκμηρίωση {{provider}}",
+		"configProfile": "Προφίλ διαμόρφωσης",
+		"description": "Αποθηκεύστε διαφορετικές διαμορφώσεις API για γρήγορη εναλλαγή μεταξύ παρόχων και ρυθμίσεων.",
+		"apiProvider": "Πάροχος API",
+		"model": "Μοντέλο",
+		"nameEmpty": "Το όνομα δεν μπορεί να είναι κενό",
+		"nameExists": "Ένα προφίλ με αυτό το όνομα υπάρχει ήδη",
+		"deleteProfile": "Διαγραφή προφίλ",
+		"invalidArnFormat": "Μη έγκυρη μορφή ARN. Ελέγξτε τα παραπάνω παραδείγματα.",
+		"enterNewName": "Εισαγάγετε νέο όνομα",
+		"addProfile": "Προσθήκη προφίλ",
+		"renameProfile": "Μετονομασία προφίλ",
+		"newProfile": "Νέο προφίλ διαμόρφωσης",
+		"enterProfileName": "Εισαγάγετε όνομα προφίλ",
+		"createProfile": "Δημιουργία προφίλ",
+		"cannotDeleteOnlyProfile": "Δεν είναι δυνατή η διαγραφή του μοναδικού προφίλ",
+		"searchPlaceholder": "Αναζήτηση προφίλ",
+		"noMatchFound": "Δεν βρέθηκαν προφίλ που ταιριάζουν",
+		"vscodeLmDescription": "Το VS Code Language Model API σάς επιτρέπει να εκτελείτε μοντέλα που παρέχονται από άλλες επεκτάσεις του VS Code (συμπεριλαμβανομένων, ενδεικτικά, του GitHub Copilot). Ο ευκολότερος τρόπος για να ξεκινήσετε είναι να εγκαταστήσετε τις επεκτάσεις Copilot και Copilot Chat από το VS Code Marketplace.",
+		"awsCustomArnUse": "Εισαγάγετε ένα έγκυρο Amazon Bedrock ARN για το μοντέλο που θέλετε να χρησιμοποιήσετε. Παραδείγματα μορφής:",
+		"awsCustomArnDesc": "Βεβαιωθείτε ότι η περιοχή στο ARN ταιριάζει με την επιλεγμένη περιοχή AWS παραπάνω.",
+		"openRouterApiKey": "Κλειδί API OpenRouter",
+		"getOpenRouterApiKey": "Λήψη κλειδιού API OpenRouter",
+		"apiKeyStorageNotice": "Τα κλειδιά API αποθηκεύονται με ασφάλεια στο Secret Storage του VSCode",
+		"glamaApiKey": "Κλειδί API Glama",
+		"getGlamaApiKey": "Λήψη κλειδιού API Glama",
+		"useCustomBaseUrl": "Χρήση προσαρμοσμένου βασικού URL",
+		"useReasoning": "Ενεργοποίηση συλλογισμού",
+		"useHostHeader": "Χρήση προσαρμοσμένης κεφαλίδας Host",
+		"useLegacyFormat": "Χρήση παλαιού μορφότυπου API OpenAI",
+		"customHeaders": "Προσαρμοσμένες κεφαλίδες",
+		"headerName": "Όνομα κεφαλίδας",
+		"headerValue": "Τιμή κεφαλίδας",
+		"noCustomHeaders": "Δεν έχουν οριστεί προσαρμοσμένες κεφαλίδες. Κάντε κλικ στο κουμπί + για να προσθέσετε μία.",
+		"requestyApiKey": "Κλειδί API Requesty",
 		"refreshModels": {
-			"label": "Refresh Models",
-			"hint": "Please reopen the settings to see the latest models.",
-			"loading": "Refreshing models list...",
-			"success": "Models list refreshed successfully!",
-			"error": "Failed to refresh models list. Please try again."
+			"label": "Ανανέωση μοντέλων",
+			"hint": "Ανοίξτε ξανά τις ρυθμίσεις για να δείτε τα πιο πρόσφατα μοντέλα.",
+			"loading": "Ανανέωση λίστας μοντέλων...",
+			"success": "Η λίστα μοντέλων ανανεώθηκε με επιτυχία!",
+			"error": "Αποτυχία ανανέωσης της λίστας μοντέλων. Δοκιμάστε ξανά."
 		},
-		"getRequestyApiKey": "Get Requesty API Key",
-		"openRouterTransformsText": "Compress prompts and message chains to the context size (<a>OpenRouter Transforms</a>)",
-		"anthropicApiKey": "Anthropic API Key",
-		"getAnthropicApiKey": "Get Anthropic API Key",
-		"anthropicUseAuthToken": "Pass Anthropic API Key as Authorization header instead of X-Api-Key",
-		"chutesApiKey": "Chutes API Key",
-		"getChutesApiKey": "Get Chutes API Key",
-		"deepSeekApiKey": "DeepSeek API Key",
-		"getDeepSeekApiKey": "Get DeepSeek API Key",
-		"geminiApiKey": "Gemini API Key",
-		"getGroqApiKey": "Get Groq API Key",
-		"groqApiKey": "Groq API Key",
-		"getGeminiApiKey": "Get Gemini API Key",
-		"openAiApiKey": "OpenAI API Key",
-		"apiKey": "API Key",
-		"openAiBaseUrl": "Base URL",
-		"getOpenAiApiKey": "Get OpenAI API Key",
-		"mistralApiKey": "Mistral API Key",
-		"getMistralApiKey": "Get Mistral / Codestral API Key",
-		"codestralBaseUrl": "Codestral Base URL (Optional)",
-		"codestralBaseUrlDesc": "Set an alternative URL for the Codestral model.",
-		"xaiApiKey": "xAI API Key",
-		"getXaiApiKey": "Get xAI API Key",
-		"litellmApiKey": "LiteLLM API Key",
-		"litellmBaseUrl": "LiteLLM Base URL",
-		"awsCredentials": "AWS Credentials",
-		"awsProfile": "AWS Profile",
-		"awsProfileName": "AWS Profile Name",
-		"awsAccessKey": "AWS Access Key",
-		"awsSecretKey": "AWS Secret Key",
-		"awsSessionToken": "AWS Session Token",
-		"awsRegion": "AWS Region",
-		"awsCrossRegion": "Use cross-region inference",
+		"getRequestyApiKey": "Λήψη κλειδιού API Requesty",
+		"openRouterTransformsText": "Συμπίεση μηνυμάτων και αλυσίδων μηνυμάτων στο μέγεθος του πλαισίου (<a>Μετασχηματισμοί OpenRouter</a>)",
+		"anthropicApiKey": "Κλειδί API Anthropic",
+		"getAnthropicApiKey": "Λήψη κλειδιού API Anthropic",
+		"anthropicUseAuthToken": "Να γίνεται αποστολή του κλειδιού API Anthropic ως κεφαλίδα Authorization αντί για X-Api-Key",
+		"chutesApiKey": "Κλειδί API Chutes",
+		"getChutesApiKey": "Λήψη κλειδιού API Chutes",
+		"deepSeekApiKey": "Κλειδί API DeepSeek",
+		"getDeepSeekApiKey": "Λήψη κλειδιού API DeepSeek",
+		"geminiApiKey": "Κλειδί API Gemini",
+		"getGroqApiKey": "Λήψη κλειδιού API Groq",
+		"groqApiKey": "Κλειδί API Groq",
+		"getGeminiApiKey": "Λήψη κλειδιού API Gemini",
+		"openAiApiKey": "Κλειδί API OpenAI",
+		"apiKey": "Κλειδί API",
+		"openAiBaseUrl": "Βασικό URL",
+		"getOpenAiApiKey": "Λήψη κλειδιού API OpenAI",
+		"mistralApiKey": "Κλειδί API Mistral",
+		"getMistralApiKey": "Λήψη κλειδιού API Mistral / Codestral",
+		"codestralBaseUrl": "Βασικό URL Codestral (Προαιρετικό)",
+		"codestralBaseUrlDesc": "Ορίστε μια εναλλακτική διεύθυνση URL για το μοντέλο Codestral.",
+		"xaiApiKey": "Κλειδί API xAI",
+		"getXaiApiKey": "Λήψη κλειδιού API xAI",
+		"litellmApiKey": "Κλειδί API LiteLLM",
+		"litellmBaseUrl": "Βασικό URL LiteLLM",
+		"awsCredentials": "Διαπιστευτήρια AWS",
+		"awsProfile": "Προφίλ AWS",
+		"awsProfileName": "Όνομα προφίλ AWS",
+		"awsAccessKey": "Κλειδί πρόσβασης AWS",
+		"awsSecretKey": "Μυστικό κλειδί AWS",
+		"awsSessionToken": "Διακριτικό συνεδρίας AWS",
+		"awsRegion": "Περιοχή AWS",
+		"awsCrossRegion": "Χρήση διαπεριφερειακής εξαγωγής συμπερασμάτων",
 		"awsBedrockVpc": {
-			"useCustomVpcEndpoint": "Use custom VPC endpoint",
-			"vpcEndpointUrlPlaceholder": "Enter VPC Endpoint URL (optional)",
-			"examples": "Examples:"
+			"useCustomVpcEndpoint": "Χρήση προσαρμοσμένου τελικού σημείου VPC",
+			"vpcEndpointUrlPlaceholder": "Εισαγάγετε URL τελικού σημείου VPC (προαιρετικό)",
+			"examples": "Παραδείγματα:"
 		},
-		"enablePromptCaching": "Enable prompt caching",
-		"enablePromptCachingTitle": "Enable prompt caching to improve performance and reduce costs for supported models.",
-		"cacheUsageNote": "Note: If you don't see cache usage, try selecting a different model and then selecting your desired model again.",
-		"vscodeLmModel": "Language Model",
-		"vscodeLmWarning": "Note: This is a very experimental integration and provider support will vary. If you get an error about a model not being supported, that's an issue on the provider's end.",
+		"enablePromptCaching": "Ενεργοποίηση προσωρινής αποθήκευσης προτροπών",
+		"enablePromptCachingTitle": "Ενεργοποιήστε την προσωρινή αποθήκευση προτροπών για να βελτιώσετε την απόδοση και να μειώσετε το κόστος για τα υποστηριζόμενα μοντέλα.",
+		"cacheUsageNote": "Σημείωση: Εάν δεν βλέπετε χρήση της προσωρινής αποθήκευσης, δοκιμάστε να επιλέξετε ένα διαφορετικό μοντέλο και, στη συνέχεια, επιλέξτε ξανά το επιθυμητό μοντέλο.",
+		"vscodeLmModel": "Γλωσσικό μοντέλο",
+		"vscodeLmWarning": "Σημείωση: Πρόκειται για μια πολύ πειραματική ενοποίηση και η υποστήριξη του παρόχου θα διαφέρει. Εάν λάβετε ένα σφάλμα σχετικά με ένα μοντέλο που δεν υποστηρίζεται, αυτό είναι πρόβλημα από την πλευρά του παρόχου.",
 		"googleCloudSetup": {
-			"title": "To use Google Cloud Vertex AI, you need to:",
-			"step1": "1. Create a Google Cloud account, enable the Vertex AI API & enable the desired Claude models.",
-			"step2": "2. Install the Google Cloud CLI & configure application default credentials.",
-			"step3": "3. Or create a service account with credentials."
+			"title": "Για να χρησιμοποιήσετε το Google Cloud Vertex AI, πρέπει:",
+			"step1": "1. Να δημιουργήσετε έναν λογαριασμό Google Cloud, να ενεργοποιήσετε το Vertex AI API και να ενεργοποιήσετε τα επιθυμητά μοντέλα Claude.",
+			"step2": "2. Να εγκαταστήσετε το Google Cloud CLI και να διαμορφώσετε τα προεπιλεγμένα διαπιστευτήρια εφαρμογής.",
+			"step3": "3. Ή να δημιουργήσετε έναν λογαριασμό υπηρεσίας με διαπιστευτήρια."
 		},
-		"googleCloudCredentials": "Google Cloud Credentials",
-		"googleCloudKeyFile": "Google Cloud Key File Path",
-		"googleCloudProjectId": "Google Cloud Project ID",
-		"googleCloudRegion": "Google Cloud Region",
+		"googleCloudCredentials": "Διαπιστευτήρια Google Cloud",
+		"googleCloudKeyFile": "Διαδρομή αρχείου κλειδιού Google Cloud",
+		"googleCloudProjectId": "Αναγνωριστικό έργου Google Cloud",
+		"googleCloudRegion": "Περιοχή Google Cloud",
 		"lmStudio": {
-			"baseUrl": "Base URL (optional)",
-			"modelId": "Model ID",
-			"speculativeDecoding": "Enable Speculative Decoding",
-			"draftModelId": "Draft Model ID",
-			"draftModelDesc": "Draft model must be from the same model family for speculative decoding to work correctly.",
-			"selectDraftModel": "Select Draft Model",
-			"noModelsFound": "No draft models found. Please ensure LM Studio is running with Server Mode enabled.",
-			"description": "LM Studio allows you to run models locally on your computer. For instructions on how to get started, see their <a>quickstart guide</a>. You will also need to start LM Studio's <b>local server</b> feature to use it with this extension. <span>Note:</span> Kilo Code uses complex prompts and works best with Claude models. Less capable models may not work as expected."
+			"baseUrl": "Βασική διεύθυνση URL (προαιρετικό)",
+			"modelId": "Αναγνωριστικό μοντέλου",
+			"speculativeDecoding": "Ενεργοποίηση κερδοσκοπικής αποκωδικοποίησης",
+			"draftModelId": "Αναγνωριστικό μοντέλου πρόχειρου",
+			"draftModelDesc": "Το μοντέλο πρόχειρου πρέπει να προέρχεται από την ίδια οικογένεια μοντέλων για να λειτουργεί σωστά η κερδοσκοπική αποκωδικοποίηση.",
+			"selectDraftModel": "Επιλογή μοντέλου πρόχειρου",
+			"noModelsFound": "Δεν βρέθηκαν μοντέλα πρόχειρου. Βεβαιωθείτε ότι το LM Studio εκτελείται με ενεργοποιημένη τη λειτουργία διακομιστή.",
+			"description": "Το LM Studio σάς επιτρέπει να εκτελείτε μοντέλα τοπικά στον υπολογιστή σας. Για οδηγίες σχετικά με το πώς να ξεκινήσετε, ανατρέξτε στον <a>οδηγό γρήγορης εκκίνησης</a>. Θα χρειαστεί επίσης να ξεκινήσετε τη λειτουργία <b>τοπικού διακομιστή</b> του LM Studio για να το χρησιμοποιήσετε με αυτήν την επέκταση. <span>Σημείωση:</span> Το Kilo Code χρησιμοποιεί σύνθετες προτροπές και λειτουργεί καλύτερα με μοντέλα Claude. Λιγότερο ικανά μοντέλα ενδέχεται να μην λειτουργούν όπως αναμένεται."
 		},
 		"ollama": {
-			"baseUrl": "Base URL (optional)",
-			"modelId": "Model ID",
-			"description": "Ollama allows you to run models locally on your computer. For instructions on how to get started, see their quickstart guide.",
-			"warning": "Note: Kilo Code uses complex prompts and works best with Claude models. Less capable models may not work as expected."
+			"baseUrl": "Βασική διεύθυνση URL (προαιρετικό)",
+			"modelId": "Αναγνωριστικό μοντέλου",
+			"description": "Το Ollama σάς επιτρέπει να εκτελείτε μοντέλα τοπικά στον υπολογιστή σας. Για οδηγίες σχετικά με το πώς να ξεκινήσετε, ανατρέξτε στον οδηγό γρήγορης εκκίνησης.",
+			"warning": "Σημείωση: Το Kilo Code χρησιμοποιεί σύνθετες προτροπές και λειτουργεί καλύτερα με μοντέλα Claude. Λιγότερο ικανά μοντέλα ενδέχεται να μην λειτουργούν όπως αναμένεται."
 		},
-		"unboundApiKey": "Unbound API Key",
-		"getUnboundApiKey": "Get Unbound API Key",
-		"unboundRefreshModelsSuccess": "Models list updated! You can now select from the latest models.",
-		"unboundInvalidApiKey": "Invalid API key. Please check your API key and try again.",
+		"unboundApiKey": "Κλειδί API Unbound",
+		"getUnboundApiKey": "Λήψη κλειδιού API Unbound",
+		"unboundRefreshModelsSuccess": "Η λίστα μοντέλων ενημερώθηκε! Τώρα μπορείτε να επιλέξετε από τα πιο πρόσφατα μοντέλα.",
+		"unboundInvalidApiKey": "Μη έγκυρο κλειδί API. Ελέγξτε το κλειδί API και προσπαθήστε ξανά.",
 		"humanRelay": {
-			"description": "No API key is required, but the user needs to help copy and paste the information to the web chat AI.",
-			"instructions": "During use, a dialog box will pop up and the current message will be copied to the clipboard automatically. You need to paste these to web versions of AI (such as ChatGPT or Claude), then copy the AI's reply back to the dialog box and click the confirm button."
+			"description": "Δεν απαιτείται κλειδί API, αλλά ο χρήστης πρέπει να βοηθήσει στην αντιγραφή και επικόλληση των πληροφοριών στο web chat AI.",
+			"instructions": "Κατά τη χρήση, θα εμφανιστεί ένα παράθυρο διαλόγου και το τρέχον μήνυμα θα αντιγραφεί αυτόματα στο πρόχειρο. Πρέπει να τα επικολλήσετε σε εκδόσεις web του AI (όπως το ChatGPT ή το Claude), στη συνέχεια να αντιγράψετε την απάντηση του AI πίσω στο παράθυρο διαλόγου και να κάνετε κλικ στο κουμπί επιβεβαίωσης."
 		},
 		"openRouter": {
 			"providerRouting": {
-				"title": "OpenRouter Provider Routing",
-				"description": "OpenRouter routes requests to the best available providers for your model. By default, requests are load balanced across the top providers to maximize uptime. However, you can choose a specific provider to use for this model.",
-				"learnMore": "Learn more about provider routing"
+				"title": "δρομολόγηση παρόχου OpenRouter",
+				"description": "Το OpenRouter δρομολογεί τα αιτήματα στους καλύτερους διαθέσιμους παρόχους για το μοντέλο σας. Από προεπιλογή, τα αιτήματα εξισορροπούνται ως προς το φορτίο στους κορυφαίους παρόχους για τη μεγιστοποίηση του χρόνου λειτουργίας. Ωστόσο, μπορείτε να επιλέξετε έναν συγκεκριμένο πάροχο για να χρησιμοποιήσετε για αυτό το μοντέλο.",
+				"learnMore": "Μάθετε περισσότερα για τη δρομολόγηση παρόχων"
 			}
 		},
 		"cerebras": {
-			"apiKey": "Cerebras API Key",
-			"getApiKey": "Get Cerebras API Key"
+			"apiKey": "Κλειδί API Cerebras",
+			"getApiKey": "Λήψη κλειδιού API Cerebras"
 		},
 		"customModel": {
-			"capabilities": "Configure the capabilities and pricing for your custom OpenAI-compatible model. Be careful when specifying the model capabilities, as they can affect how Kilo Code performs.",
+			"capabilities": "Διαμορφώστε τις δυνατότητες και την τιμολόγηση για το προσαρμοσμένο μοντέλο σας που είναι συμβατό με το OpenAI. Να είστε προσεκτικοί κατά τον καθορισμό των δυνατοτήτων του μοντέλου, καθώς μπορούν να επηρεάσουν την απόδοση του Kilo Code.",
 			"maxTokens": {
-				"label": "Max Output Tokens",
-				"description": "Maximum number of tokens the model can generate in a response. (Specify -1 to allow the server to set the max tokens.)"
+				"label": "Μέγιστος αριθμός διακριτικών εξόδου",
+				"description": "Μέγιστος αριθμός διακριτικών που μπορεί να δημιουργήσει το μοντέλο σε μια απόκριση. (Καθορίστε -1 για να επιτρέψετε στον διακομιστή να ορίσει τα μέγιστα διακριτικά.)"
 			},
 			"contextWindow": {
-				"label": "Context Window Size",
-				"description": "Total tokens (input + output) the model can process."
+				"label": "Μέγεθος παραθύρου πλαισίου",
+				"description": "Συνολικά διακριτικά (είσοδος + έξοδος) που μπορεί να επεξεργαστεί το μοντέλο."
 			},
 			"imageSupport": {
-				"label": "Image Support",
-				"description": "Is this model capable of processing and understanding images?"
+				"label": "Υποστήριξη εικόνας",
+				"description": "Είναι αυτό το μοντέλο ικανό να επεξεργάζεται και να κατανοεί εικόνες;"
 			},
 			"computerUse": {
-				"label": "Computer Use",
-				"description": "Is this model capable of interacting with a browser? (e.g. Claude 3.7 Sonnet)."
+				"label": "Χρήση υπολογιστή",
+				"description": "Είναι αυτό το μοντέλο ικανό να αλληλεπιδρά με ένα πρόγραμμα περιήγησης; (π.χ. Claude 3.7 Sonnet)."
 			},
 			"promptCache": {
-				"label": "Prompt Caching",
-				"description": "Is this model capable of caching prompts?"
+				"label": "Προσωρινή αποθήκευση προτροπών",
+				"description": "Είναι αυτό το μοντέλο ικανό να αποθηκεύει προσωρινά προτροπές;"
 			},
 			"pricing": {
 				"input": {
-					"label": "Input Price",
-					"description": "Cost per million tokens in the input/prompt. This affects the cost of sending context and instructions to the model."
+					"label": "Τιμή εισόδου",
+					"description": "Κόστος ανά εκατομμύριο διακριτικά στην είσοδο/προτροπή. Αυτό επηρεάζει το κόστος αποστολής πλαισίου και οδηγιών στο μοντέλο."
 				},
 				"output": {
-					"label": "Output Price",
-					"description": "Cost per million tokens in the model's response. This affects the cost of generated content and completions."
+					"label": "Τιμή εξόδου",
+					"description": "Κόστος ανά εκατομμύριο διακριτικά στην απόκριση του μοντέλου. Αυτό επηρεάζει το κόστος του παραγόμενου περιεχομένου και των ολοκληρώσεων."
 				},
 				"cacheReads": {
-					"label": "Cache Reads Price",
-					"description": "Cost per million tokens for reading from the cache. This is the price charged when a cached response is retrieved."
+					"label": "Τιμή ανάγνωσης προσωρινής μνήμης",
+					"description": "Κόστος ανά εκατομμύριο διακριτικά για την ανάγνωση από την προσωρινή μνήμη. Αυτή είναι η τιμή που χρεώνεται όταν ανακτάται μια αποθηκευμένη απόκριση."
 				},
 				"cacheWrites": {
-					"label": "Cache Writes Price",
-					"description": "Cost per million tokens for writing to the cache. This is the price charged when a prompt is cached for the first time."
+					"label": "Τιμή εγγραφής στην προσωρινή μνήμη",
+					"description": "Κόστος ανά εκατομμύριο διακριτικά για την εγγραφή στην προσωρινή μνήμη. Αυτή είναι η τιμή που χρεώνεται όταν μια προτροπή αποθηκεύεται για πρώτη φορά."
 				}
 			},
-			"resetDefaults": "Reset to Defaults"
+			"resetDefaults": "Επαναφορά στις προεπιλογές"
 		},
 		"rateLimitSeconds": {
-			"label": "Rate limit",
-			"description": "Minimum time between API requests."
+			"label": "Όριο ρυθμού",
+			"description": "Ελάχιστος χρόνος μεταξύ αιτημάτων API."
 		},
 		"reasoningEffort": {
-			"label": "Model Reasoning Effort",
-			"high": "High",
-			"medium": "Medium",
-			"low": "Low"
+			"label": "Προσπάθεια συλλογισμού μοντέλου",
+			"high": "Υψηλή",
+			"medium": "Μεσαία",
+			"low": "Χαμηλή"
 		},
-		"setReasoningLevel": "Enable Reasoning Effort",
+		"setReasoningLevel": "Ενεργοποίηση προσπάθειας συλλογισμού",
 		"claudeCode": {
-			"pathLabel": "Claude Code Path",
-			"description": "Optional path to your Claude Code CLI. Defaults to 'claude' if not set.",
-			"placeholder": "Default: claude"
+			"pathLabel": "Διαδρομή Claude Code",
+			"description": "Προαιρετική διαδρομή προς το Claude Code CLI. Προεπιλογή 'claude' εάν δεν οριστεί.",
+			"placeholder": "Προεπιλογή: claude"
 		}
 	},
 	"browser": {
 		"enable": {
-			"label": "Enable browser tool",
-			"description": "When enabled, Kilo Code can use a browser to interact with websites when using models that support computer use. <0>Learn more</0>"
+			"label": "Ενεργοποίηση εργαλείου περιηγητή",
+			"description": "Όταν είναι ενεργοποιημένο, το Kilo Code μπορεί να χρησιμοποιήσει ένα πρόγραμμα περιήγησης για να αλληλεπιδράσει με ιστότοπους όταν χρησιμοποιούνται μοντέλα που υποστηρίζουν τη χρήση υπολογιστή. <0>Μάθετε περισσότερα</0>"
 		},
 		"viewport": {
-			"label": "Viewport size",
-			"description": "Select the viewport size for browser interactions. This affects how websites are displayed and interacted with.",
+			"label": "Μέγεθος παραθύρου προβολής",
+			"description": "Επιλέξτε το μέγεθος του παραθύρου προβολής για αλληλεπιδράσεις με το πρόγραμμα περιήγησης. Αυτό επηρεάζει τον τρόπο εμφάνισης και αλληλεπίδρασης με τους ιστότοπους.",
 			"options": {
-				"largeDesktop": "Large Desktop (1280x800)",
-				"smallDesktop": "Small Desktop (900x600)",
+				"largeDesktop": "Μεγάλη επιφάνεια εργασίας (1280x800)",
+				"smallDesktop": "Μικρή επιφάνεια εργασίας (900x600)",
 				"tablet": "Tablet (768x1024)",
-				"mobile": "Mobile (360x640)"
+				"mobile": "Κινητό (360x640)"
 			}
 		},
 		"screenshotQuality": {
-			"label": "Screenshot quality",
-			"description": "Adjust the WebP quality of browser screenshots. Higher values provide clearer screenshots but increase token usage."
+			"label": "Ποιότητα στιγμιότυπου οθόνης",
+			"description": "Προσαρμόστε την ποιότητα WebP των στιγμιότυπων οθόνης του προγράμματος περιήγησης. Οι υψηλότερες τιμές παρέχουν καθαρότερα στιγμιότυπα οθόνης αλλά αυξάνουν τη χρήση διακριτικών."
 		},
 		"remote": {
-			"label": "Use remote browser connection",
-			"description": "Connect to a Chrome browser running with remote debugging enabled (--remote-debugging-port=9222).",
-			"urlPlaceholder": "Custom URL (e.g., http://localhost:9222)",
-			"testButton": "Test Connection",
-			"testingButton": "Testing...",
-			"instructions": "Enter the DevTools Protocol host address or leave empty to auto-discover Chrome local instances. The Test Connection button will try the custom URL if provided, or auto-discover if the field is empty."
+			"label": "Χρήση απομακρυσμένης σύνδεσης προγράμματος περιήγησης",
+			"description": "Σύνδεση σε πρόγραμμα περιήγησης Chrome που εκτελείται με ενεργοποιημένο τον απομακρυσμένο εντοπισμό σφαλμάτων (--remote-debugging-port=9222).",
+			"urlPlaceholder": "Προσαρμοσμένη διεύθυνση URL (π.χ., http://localhost:9222)",
+			"testButton": "Δοκιμή σύνδεσης",
+			"testingButton": "Δοκιμή...",
+			"instructions": "Εισαγάγετε τη διεύθυνση κεντρικού υπολογιστή του πρωτοκόλλου DevTools ή αφήστε το κενό για αυτόματη ανακάλυψη τοπικών παρουσιών του Chrome. Το κουμπί Δοκιμή σύνδεσης θα δοκιμάσει την προσαρμοσμένη διεύθυνση URL εάν παρέχεται ή θα πραγματοποιήσει αυτόματη ανακάλυψη εάν το πεδίο είναι κενό."
 		}
 	},
 	"checkpoints": {
 		"enable": {
-			"label": "Enable automatic checkpoints",
-			"description": "When enabled, Kilo Code will automatically create checkpoints during task execution, making it easy to review changes or revert to earlier states. <0>Learn more</0>"
+			"label": "Ενεργοποίηση αυτόματων σημείων ελέγχου",
+			"description": "Όταν είναι ενεργοποιημένο, το Kilo Code θα δημιουργεί αυτόματα σημεία ελέγχου κατά την εκτέλεση της εργασίας, διευκολύνοντας την αναθεώρηση αλλαγών ή την επαναφορά σε προηγούμενες καταστάσεις. <0>Μάθετε περισσότερα</0>"
 		}
 	},
 	"display": {
 		"taskTimeline": {
-			"label": "Show task timeline",
-			"description": "Display a visual timeline of task messages, colorized by type, allowing you to quickly view task progress and scroll back to specific points in the task's history."
+			"label": "Εμφάνιση χρονοδιαγράμματος εργασίας",
+			"description": "Εμφάνιση οπτικού χρονοδιαγράμματος των μηνυμάτων εργασίας, χρωματισμένο ανά τύπο, επιτρέποντάς σας να βλέπετε γρήγορα την πρόοδο της εργασίας και να επιστρέφετε σε συγκεκριμένα σημεία στο ιστορικό της εργασίας."
 		}
 	},
 	"notifications": {
 		"sound": {
-			"label": "Enable sound effects",
-			"description": "When enabled, Kilo Code will play sound effects for notifications and events.",
-			"volumeLabel": "Volume"
+			"label": "Ενεργοποίηση ηχητικών εφέ",
+			"description": "Όταν είναι ενεργοποιημένο, το Kilo Code θα αναπαράγει ηχητικά εφέ για ειδοποιήσεις και συμβάντα.",
+			"volumeLabel": "Ένταση"
 		},
 		"tts": {
-			"label": "Enable text-to-speech",
-			"description": "When enabled, Kilo Code will read aloud its responses using text-to-speech.",
-			"speedLabel": "Speed"
+			"label": "Ενεργοποίηση μετατροπής κειμένου σε ομιλία",
+			"description": "Όταν είναι ενεργοποιημένο, το Kilo Code θα διαβάζει δυνατά τις απαντήσεις του χρησιμοποιώντας μετατροπή κειμένου σε ομιλία.",
+			"speedLabel": "Ταχύτητα"
 		}
 	},
 	"contextManagement": {
-		"description": "Control what information is included in the AI's context window, affecting token usage and response quality",
+		"description": "Ελέγξτε ποιες πληροφορίες περιλαμβάνονται στο παράθυρο περιβάλλοντος της AI, επηρεάζοντας τη χρήση διακριτικών και την ποιότητα της απόκρισης",
 		"autoCondenseContextPercent": {
-			"label": "Threshold to trigger intelligent context condensing",
-			"description": "When the context window reaches this threshold, Kilo Code will automatically condense it."
+			"label": "Όριο για την ενεργοποίηση της έξυπνης συμπύκνωσης περιβάλλοντος",
+			"description": "Όταν το παράθυρο περιβάλλοντος φτάσει σε αυτό το όριο, το Kilo Code θα το συμπυκνώσει αυτόματα."
 		},
 		"condensingApiConfiguration": {
-			"label": "API Configuration for Context Condensing",
-			"description": "Select which API configuration to use for context condensing operations. Leave unselected to use the current active configuration.",
-			"useCurrentConfig": "Default"
+			"label": "Διαμόρφωση API για συμπύκνωση περιβάλλοντος",
+			"description": "Επιλέξτε ποια διαμόρφωση API θα χρησιμοποιηθεί για τις λειτουργίες συμπύκνωσης περιβάλλοντος. Αφήστε το κενό για να χρησιμοποιήσετε την τρέχουσα ενεργή διαμόρφωση.",
+			"useCurrentConfig": "Προεπιλογή"
 		},
 		"customCondensingPrompt": {
-			"label": "Custom Context Condensing Prompt",
-			"description": "Customize the system prompt used for context condensing. Leave empty to use the default prompt.",
-			"placeholder": "Enter your custom condensing prompt here...\n\nYou can use the same structure as the default prompt:\n- Previous Conversation\n- Current Work\n- Key Technical Concepts\n- Relevant Files and Code\n- Problem Solving\n- Pending Tasks and Next Steps",
-			"reset": "Reset to Default",
-			"hint": "Empty = use default prompt"
+			"label": "Προσαρμοσμένη προτροπή συμπύκνωσης περιβάλλοντος",
+			"description": "Προσαρμόστε την προτροπή συστήματος που χρησιμοποιείται για τη συμπύκνωση περιβάλλοντος. Αφήστε το κενό για να χρησιμοποιήσετε την προεπιλεγμένη προτροπή.",
+			"placeholder": "Εισαγάγετε εδώ την προσαρμοσμένη προτροπή συμπύκνωσης...\n\nΜπορείτε να χρησιμοποιήσετε την ίδια δομή με την προεπιλεγμένη προτροπή:\n- Προηγούμενη συνομιλία\n- Τρέχουσα εργασία\n- Βασικές τεχνικές έννοιες\n- Σχετικά αρχεία και κώδικας\n- Επίλυση προβλημάτων\n- Εκκρεμείς εργασίες και επόμενα βήματα",
+			"reset": "Επαναφορά στην προεπιλογή",
+			"hint": "Κενό = χρήση προεπιλεγμένης προτροπής"
 		},
 		"autoCondenseContext": {
-			"name": "Automatically trigger intelligent context condensing",
-			"description": "When enabled, Roo will automatically condense the context when the threshold is reached. When disabled, you can still manually trigger context condensing."
+			"name": "Αυτόματη ενεργοποίηση της έξυπνης συμπύκνωσης περιβάλλοντος",
+			"description": "Όταν είναι ενεργοποιημένο, το Roo θα συμπυκνώσει αυτόματα το περιβάλλον όταν επιτευχθεί το όριο. Όταν είναι απενεργοποιημένο, μπορείτε ακόμα να ενεργοποιήσετε χειροκίνητα τη συμπύκνωση περιβάλλοντος."
 		},
 		"openTabs": {
-			"label": "Open tabs context limit",
-			"description": "Maximum number of VSCode open tabs to include in context. Higher values provide more context but increase token usage."
+			"label": "Όριο περιβάλλοντος ανοιχτών καρτελών",
+			"description": "Μέγιστος αριθμός ανοιχτών καρτελών VSCode που θα συμπεριληφθούν στο περιβάλλον. Οι υψηλότερες τιμές παρέχουν περισσότερο περιβάλλον αλλά αυξάνουν τη χρήση διακριτικών."
 		},
 		"workspaceFiles": {
-			"label": "Workspace files context limit",
-			"description": "Maximum number of files to include in current working directory details. Higher values provide more context but increase token usage."
+			"label": "Όριο περιβάλλοντος αρχείων χώρου εργασίας",
+			"description": "Μέγιστος αριθμός αρχείων που θα συμπεριληφθούν στις λεπτομέρειες του τρέχοντος καταλόγου εργασίας. Οι υψηλότερες τιμές παρέχουν περισσότερο περιβάλλον αλλά αυξάνουν τη χρήση διακριτικών."
 		},
 		"rooignore": {
-			"label": "Show .kilocodeignore'd files in lists and searches",
-			"description": "When enabled, files matching patterns in .kilocodeignore will be shown in lists with a lock symbol. When disabled, these files will be completely hidden from file lists and searches."
+			"label": "Εμφάνιση αρχείων .kilocodeignore σε λίστες και αναζητήσεις",
+			"description": "Όταν είναι ενεργοποιημένο, τα αρχεία που ταιριάζουν με μοτίβα στο .kilocodeignore θα εμφανίζονται σε λίστες με σύμβολο κλειδαριάς. Όταν είναι απενεργοποιημένο, αυτά τα αρχεία θα είναι εντελώς κρυμμένα από τις λίστες αρχείων και τις αναζητήσεις."
 		},
 		"maxConcurrentFileReads": {
-			"label": "Concurrent file reads limit",
-			"description": "Maximum number of files the 'read_file' tool can process concurrently. Higher values may speed up reading multiple small files but increase memory usage."
+			"label": "Όριο ταυτόχρονων αναγνώσεων αρχείων",
+			"description": "Μέγιστος αριθμός αρχείων που μπορεί να επεξεργαστεί ταυτόχρονα το εργαλείο 'read_file'. Οι υψηλότερες τιμές μπορεί να επιταχύνουν την ανάγνωση πολλών μικρών αρχείων αλλά αυξάνουν τη χρήση μνήμης."
 		},
 		"maxReadFile": {
-			"label": "File read auto-truncate threshold",
-			"description": "Kilo Code reads this number of lines when the model omits start/end values. If this number is less than the file's total, Kilo Code generates a line number index of code definitions. Special cases: -1 instructs Kilo Code to read the entire file (without indexing), and 0 instructs it to read no lines and provides line indexes only for minimal context. Lower values minimize initial context usage, enabling precise subsequent line-range reads. Explicit start/end requests are not limited by this setting.",
-			"lines": "lines",
-			"always_full_read": "Always read entire file"
+			"label": "Όριο αυτόματης περικοπής ανάγνωσης αρχείου",
+			"description": "Το Kilo Code διαβάζει αυτόν τον αριθμό γραμμών όταν το μοντέλο παραλείπει τις τιμές έναρξης/λήξης. Εάν αυτός ο αριθμός είναι μικρότερος από το σύνολο του αρχείου, το Kilo Code δημιουργεί έναν ευρετήριο αριθμών γραμμών των ορισμών κώδικα. Ειδικές περιπτώσεις: -1 δίνει εντολή στο Kilo Code να διαβάσει ολόκληρο το αρχείο (χωρίς ευρετηρίαση) και 0 του δίνει εντολή να μην διαβάσει καμία γραμμή και παρέχει μόνο ευρετήρια γραμμών για ελάχιστο περιβάλλον. Οι χαμηλότερες τιμές ελαχιστοποιούν την αρχική χρήση περιβάλλοντος, επιτρέποντας ακριβείς επακόλουθες αναγνώσεις εύρους γραμμών. Οι ρητές αιτήσεις έναρξης/λήξης δεν περιορίζονται από αυτήν τη ρύθμιση.",
+			"lines": "γραμμές",
+			"always_full_read": "Να διαβάζεται πάντα ολόκληρο το αρχείο"
 		},
 		"condensingThreshold": {
-			"label": "Condensing Trigger Threshold",
-			"selectProfile": "Configure threshold for profile",
-			"defaultProfile": "Global Default (all profiles)",
-			"defaultDescription": "When context reaches this percentage, it will be automatically condensed for all profiles unless they have custom settings",
-			"profileDescription": "Custom threshold for this profile only (overrides global default)",
-			"inheritDescription": "This profile inherits the global default threshold ({{threshold}}%)",
-			"usesGlobal": "(uses global {{threshold}}%)"
+			"label": "Όριο ενεργοποίησης συμπύκνωσης",
+			"selectProfile": "Διαμόρφωση ορίου για προφίλ",
+			"defaultProfile": "Παγκόσμια προεπιλογή (όλα τα προφίλ)",
+			"defaultDescription": "Όταν το περιβάλλον φτάσει σε αυτό το ποσοστό, θα συμπυκνωθεί αυτόματα για όλα τα προφίλ, εκτός εάν έχουν προσαρμοσμένες ρυθμίσεις",
+			"profileDescription": "Προσαρμοσμένο όριο μόνο για αυτό το προφίλ (αντικαθιστά την παγκόσμια προεπιλογή)",
+			"inheritDescription": "Αυτό το προφίλ κληρονομεί το παγκόσμιο προεπιλεγμένο όριο ({{threshold}}%)",
+			"usesGlobal": "(χρησιμοποιεί παγκόσμιο {{threshold}}%)"
 		}
 	},
 	"terminal": {
 		"basic": {
-			"label": "Terminal Settings: Basic",
-			"description": "Basic terminal settings"
+			"label": "Ρυθμίσεις τερματικού: Βασικές",
+			"description": "Βασικές ρυθμίσεις τερματικού"
 		},
 		"advanced": {
-			"label": "Terminal Settings: Advanced",
-			"description": "The following options may require a terminal restart to apply the setting."
+			"label": "Ρυθμίσεις τερματικού: Προηγμένες",
+			"description": "Οι ακόλουθες επιλογές ενδέχεται να απαιτούν επανεκκίνηση του τερματικού για την εφαρμογή της ρύθμισης."
 		},
 		"outputLineLimit": {
-			"label": "Terminal output limit",
-			"description": "Maximum number of lines to include in terminal output when executing commands. When exceeded lines will be removed from the middle, saving tokens. <0>Learn more</0>"
+			"label": "Όριο εξόδου τερματικού",
+			"description": "Μέγιστος αριθμός γραμμών που θα συμπεριληφθούν στην έξοδο του τερματικού κατά την εκτέλεση εντολών. Όταν ξεπεραστεί, οι γραμμές θα αφαιρεθούν από τη μέση, εξοικονομώντας διακριτικά. <0>Μάθετε περισσότερα</0>"
 		},
 		"shellIntegrationTimeout": {
-			"label": "Terminal shell integration timeout",
-			"description": "Maximum time to wait for shell integration to initialize before executing commands. For users with long shell startup times, this value may need to be increased if you see \"Shell Integration Unavailable\" errors in the terminal. <0>Learn more</0>"
+			"label": "Χρονικό όριο ενοποίησης κελύφους τερματικού",
+			"description": "Μέγιστος χρόνος αναμονής για την προετοιμασία της ενοποίησης κελύφους πριν από την εκτέλεση εντολών. Για χρήστες με μεγάλους χρόνους εκκίνησης κελύφους, αυτή η τιμή μπορεί να χρειαστεί να αυξηθεί εάν βλέπετε σφάλματα \"Μη διαθέσιμη ενοποίηση κελύφους\" στο τερματικό. <0>Μάθετε περισσότερα</0>"
 		},
 		"shellIntegrationDisabled": {
-			"label": "Disable terminal shell integration",
-			"description": "Enable this if terminal commands aren't working correctly or you see 'Shell Integration Unavailable' errors. This uses a simpler method to run commands, bypassing some advanced terminal features. <0>Learn more</0>"
+			"label": "Απενεργοποίηση ενοποίησης κελύφους τερματικού",
+			"description": "Ενεργοποιήστε αυτό εάν οι εντολές του τερματικού δεν λειτουργούν σωστά ή εάν βλέπετε σφάλματα 'Μη διαθέσιμη ενοποίηση κελύφους'. Αυτό χρησιμοποιεί μια απλούστερη μέθοδο για την εκτέλεση εντολών, παρακάμπτοντας ορισμένες προηγμένες δυνατότητες του τερματικού. <0>Μάθετε περισσότερα</0>"
 		},
 		"commandDelay": {
-			"label": "Terminal command delay",
-			"description": "Delay in milliseconds to add after command execution. The default setting of 0 disables the delay completely. This can help ensure command output is fully captured in terminals with timing issues. In most terminals it is implemented by setting `PROMPT_COMMAND='sleep N'` and Powershell appends `start-sleep` to the end of each command. Originally was workaround for VSCode bug#237208 and may not be needed. <0>Learn more</0>"
+			"label": "Καθυστέρηση εντολής τερματικού",
+			"description": "Καθυστέρηση σε χιλιοστά του δευτερολέπτου που προστίθεται μετά την εκτέλεση της εντολής. Η προεπιλεγμένη ρύθμιση 0 απενεργοποιεί πλήρως την καθυστέρηση. Αυτό μπορεί να βοηθήσει να διασφαλιστεί ότι η έξοδος της εντολής καταγράφεται πλήρως σε τερματικά με προβλήματα συγχρονισμού. Στα περισσότερα τερματικά υλοποιείται με τον ορισμό `PROMPT_COMMAND='sleep N'` και το Powershell προσθέτει το `start-sleep` στο τέλος κάθε εντολής. Αρχικά ήταν λύση για το σφάλμα VSCode#237208 και μπορεί να μην είναι πλέον απαραίτητο. <0>Μάθετε περισσότερα</0>"
 		},
 		"compressProgressBar": {
-			"label": "Compress progress bar output",
-			"description": "When enabled, processes terminal output with carriage returns (\\r) to simulate how a real terminal would display content. This removes intermediate progress bar states, retaining only the final state, which conserves context space for more relevant information. <0>Learn more</0>"
+			"label": "Συμπίεση εξόδου γραμμής προόδου",
+			"description": "Όταν είναι ενεργοποιημένο, επεξεργάζεται την έξοδο του τερματικού με επιστροφές μεταφοράς (\\r) για να προσομοιώσει τον τρόπο με τον οποίο ένα πραγματικό τερματικό θα εμφάνιζε το περιεχόμενο. Αυτό αφαιρεί τις ενδιάμεσες καταστάσεις της γραμμής προόδου, διατηρώντας μόνο την τελική κατάσταση, η οποία εξοικονομεί χώρο περιβάλλοντος για πιο σχετικές πληροφορίες. <0>Μάθετε περισσότερα</0>"
 		},
 		"powershellCounter": {
-			"label": "Enable PowerShell counter workaround",
-			"description": "When enabled, adds a counter to PowerShell commands to ensure proper command execution. This helps with PowerShell terminals that might have issues with command output capture. <0>Learn more</0>"
+			"label": "Ενεργοποίηση λύσης μετρητή PowerShell",
+			"description": "Όταν είναι ενεργοποιημένο, προσθέτει έναν μετρητή στις εντολές PowerShell για να διασφαλίσει τη σωστή εκτέλεση της εντολής. Αυτό βοηθά με τερματικά PowerShell που ενδέχεται να έχουν προβλήματα με τη λήψη εξόδου εντολών. <0>Μάθετε περισσότερα</0>"
 		},
 		"zshClearEolMark": {
-			"label": "Clear ZSH EOL mark",
-			"description": "When enabled, clears the ZSH end-of-line mark by setting PROMPT_EOL_MARK=''. This prevents issues with command output interpretation when output ends with special characters like '%'. <0>Learn more</0>"
+			"label": "Εκκαθάριση σήματος EOL ZSH",
+			"description": "Όταν είναι ενεργοποιημένο, εκκαθαρίζει το σήμα τέλους γραμμής ZSH ορίζοντας PROMPT_EOL_MARK=''. Αυτό αποτρέπει προβλήματα με την ερμηνεία της εξόδου εντολών όταν η έξοδος τελειώνει με ειδικούς χαρακτήρες όπως '%'. <0>Μάθετε περισσότερα</0>"
 		},
 		"zshOhMy": {
-			"label": "Enable Oh My Zsh integration",
-			"description": "When enabled, sets ITERM_SHELL_INTEGRATION_INSTALLED=Yes to enable Oh My Zsh shell integration features. Applying this setting might require restarting the IDE. <0>Learn more</0>"
+			"label": "Ενεργοποίηση ενοποίησης Oh My Zsh",
+			"description": "Όταν είναι ενεργοποιημένο, ορίζει το ITERM_SHELL_INTEGRATION_INSTALLED=Yes για να ενεργοποιήσει τις δυνατότητες ενοποίησης κελύφους Oh My Zsh. Η εφαρμογή αυτής της ρύθμισης ενδέχεται να απαιτεί επανεκκίνηση του IDE. <0>Μάθετε περισσότερα</0>"
 		},
 		"zshP10k": {
-			"label": "Enable Powerlevel10k integration",
-			"description": "When enabled, sets POWERLEVEL9K_TERM_SHELL_INTEGRATION=true to enable Powerlevel10k shell integration features. <0>Learn more</0>"
+			"label": "Ενεργοποίηση ενοποίησης Powerlevel10k",
+			"description": "Όταν είναι ενεργοποιημένο, ορίζει το POWERLEVEL9K_TERM_SHELL_INTEGRATION=true για να ενεργοποιήσει τις δυνατότητες ενοποίησης κελύφους Powerlevel10k. <0>Μάθετε περισσότερα</0>"
 		},
 		"zdotdir": {
-			"label": "Enable ZDOTDIR handling",
-			"description": "When enabled, creates a temporary directory for ZDOTDIR to handle zsh shell integration properly. This ensures VSCode shell integration works correctly with zsh while preserving your zsh configuration. <0>Learn more</0>"
+			"label": "Ενεργοποίηση διαχείρισης ZDOTDIR",
+			"description": "Όταν είναι ενεργοποιημένο, δημιουργεί έναν προσωρινό κατάλογο για το ZDOTDIR για τη σωστή διαχείριση της ενοποίησης κελύφους zsh. Αυτό διασφαλίζει ότι η ενοποίηση κελύφους VSCode λειτουργεί σωστά με το zsh διατηρώντας παράλληλα τη διαμόρφωση του zsh. <0>Μάθετε περισσότερα</0>"
 		},
 		"inheritEnv": {
-			"label": "Inherit environment variables",
-			"description": "When enabled, the terminal will inherit environment variables from VSCode's parent process, such as user-profile-defined shell integration settings. This directly toggles VSCode global setting `terminal.integrated.inheritEnv`. <0>Learn more</0>"
+			"label": "Κληρονομικότητα μεταβλητών περιβάλλοντος",
+			"description": "Όταν είναι ενεργοποιημένο, το τερματικό θα κληρονομήσει μεταβλητές περιβάλλοντος από τη γονική διαδικασία του VSCode, όπως οι ρυθμίσεις ενοποίησης κελύφους που ορίζονται από το προφίλ χρήστη. Αυτό αλλάζει απευθείας την καθολική ρύθμιση του VSCode `terminal.integrated.inheritEnv`. <0>Μάθετε περισσότερα</0>"
 		}
 	},
 	"advanced": {
 		"diff": {
-			"label": "Enable editing through diffs",
-			"description": "When enabled, Kilo Code will be able to edit files more quickly and will automatically reject truncated full-file writes. Works best with the latest Claude 4 Sonnet model.",
+			"label": "Ενεργοποίησηแก้ไข μέσω διαφορών",
+			"description": "Όταν είναι ενεργοποιημένο, το Kilo Code θα μπορεί να επεξεργάζεται αρχεία πιο γρήγορα και θα απορρίπτει αυτόματα τις περικομμένες εγγραφές ολόκληρων αρχείων. Λειτουργεί καλύτερα με το πιο πρόσφατο μοντέλο Claude 4 Sonnet.",
 			"strategy": {
-				"label": "Diff strategy",
+				"label": "Στρατηγική Diff",
 				"options": {
-					"standard": "Standard (Single block)",
-					"multiBlock": "Experimental: Multi-block diff",
-					"unified": "Experimental: Unified diff"
+					"standard": "Τυπική (Μεμονωμένο μπλοκ)",
+					"multiBlock": "Πειραματικό: Diff πολλαπλών μπλοκ",
+					"unified": "Πειραματικό: Ενοποιημένο diff"
 				},
 				"descriptions": {
-					"standard": "Standard diff strategy applies changes to a single code block at a time.",
-					"unified": "Unified diff strategy takes multiple approaches to applying diffs and chooses the best approach.",
-					"multiBlock": "Multi-block diff strategy allows updating multiple code blocks in a file in one request."
+					"standard": "Η τυπική στρατηγική diff εφαρμόζει αλλαγές σε ένα μόνο μπλοκ κώδικα κάθε φορά.",
+					"unified": "Η ενοποιημένη στρατηγική diff υιοθετεί πολλαπλές προσεγγίσεις για την εφαρμογή διαφορών και επιλέγει την καλύτερη προσέγγιση.",
+					"multiBlock": "Η στρατηγική diff πολλαπλών μπλοκ επιτρέπει την ενημέρωση πολλαπλών μπλοκ κώδικα σε ένα αρχείο με μία μόνο αίτηση."
 				}
 			},
 			"matchPrecision": {
-				"label": "Match precision",
-				"description": "This slider controls how precisely code sections must match when applying diffs. Lower values allow more flexible matching but increase the risk of incorrect replacements. Use values below 100% with extreme caution."
+				"label": "Ακρίβεια αντιστοίχισης"
 			}
 		}
 	},
 	"experimental": {
 		"DIFF_STRATEGY_UNIFIED": {
-			"name": "Use experimental unified diff strategy",
-			"description": "Enable the experimental unified diff strategy. This strategy might reduce the number of retries caused by model errors but may cause unexpected behavior or incorrect edits. Only enable if you understand the risks and are willing to carefully review all changes."
+			"label": "Ενεργοποίηση Ενοποιημένου diff",
+			"description": "Μια άλλη πειραματική στρατηγική diff που θα προσπαθήσουμε να αντικαταστήσουμε με το multi-block diff στο μέλλον."
 		},
 		"SEARCH_AND_REPLACE": {
-			"name": "Use experimental search and replace tool",
-			"description": "Enable the experimental search and replace tool, allowing Kilo Code to replace multiple instances of a search term in one request."
+			"label": "Ενεργοποίηση Αναζήτησης και Αντικατάστασης",
+			"description": "Προσθήκη εργαλείου search_and_replace με δυνατότητα regex"
 		},
 		"INSERT_BLOCK": {
-			"name": "Use experimental insert content tool",
-			"description": "Enable the experimental insert content tool, allowing Kilo Code to insert content at specific line numbers without needing to create a diff."
+			"label": "Ενεργοποίηση Εισαγωγής Μπλοκ",
+			"description": "Προσθήκη εργαλείου insert_content με δυνατότητα εισαγωγής γραμμών σε ένα αρχείο"
 		},
 		"POWER_STEERING": {
-			"name": "Use experimental \"power steering\" mode",
-			"description": "When enabled, Kilo Code will remind the model about the details of its current mode definition more frequently. This will lead to stronger adherence to role definitions and custom instructions, but will use more tokens per message."
+			"label": "Ενεργοποίηση Power Steering",
+			"description": "Αυτόματη προτροπή για διορθώσεις όταν εντοπίζονται προβλήματα"
 		},
 		"AUTOCOMPLETE": {
-			"name": "Use experimental \"autocomplete\" feature",
-			"description": "When enabled, Kilo Code will provide inline code suggestions as you type. Requires Kilo Code API Provider."
+			"label": "Ενεργοποίηση Αυτόματης Συμπλήρωσης (Alpha)",
+			"description": "Ενεργοποίηση προτάσεων καθώς πληκτρολογείτε στον επεξεργαστή. Σημείωση: Προς το παρόν λειτουργεί μόνο με μοντέλα Anthropic."
 		},
 		"CONCURRENT_FILE_READS": {
-			"name": "Enable concurrent file reads",
-			"description": "When enabled, Kilo Code can read multiple files in a single request. When disabled, Kilo Code must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
+			"label": "Ενεργοποίηση ταυτόχρονων αναγνώσεων αρχείων",
+			"description": "Επιτάχυνση της ανάγνωσης πολλαπλών μικρών αρχείων, αλλά αύξηση της χρήσης μνήμης."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
-			"name": "Use experimental multi block diff tool",
-			"description": "When enabled, Kilo Code will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
+			"label": "Ενεργοποίηση πολλαπλών αναζητήσεων και αντικαταστάσεων",
+			"description": "Προσθήκη υποστήριξης για πολλαπλές λειτουργίες αναζήτησης/αντικατάστασης σε μία κλήση εργαλείου"
 		},
 		"MARKETPLACE": {
-			"name": "Enable Marketplace",
-			"description": "When enabled, you can install MCPs and custom modes from the Marketplace."
+			"label": "Ενεργοποίηση Marketplace",
+			"description": "Ανακαλύψτε, μοιραστείτε και εγκαταστήστε προσαρμοσμένες λειτουργίες Kilo Code και διακομιστές MCP."
 		},
 		"MULTI_FILE_APPLY_DIFF": {
-			"name": "Enable concurrent file edits",
-			"description": "When enabled, Kilo Code can edit multiple files in a single request. When disabled, Kilo Code must edit files one at a time. Disabling this can help when working with less capable models or when you want more control over file modifications."
+			"label": "Ενεργοποίηση πολλαπλών αρχείων Apply Diff (Alpha)",
+			"description": "Σημείωση: Η ενεργοποίηση αυτής της δυνατότητας μπορεί να προκαλέσει αποτυχία της AI σε προηγμένες εργασίες.\n\nΕπιτρέπει στο apply_diff να στοχεύει πολλαπλά αρχεία σε μία κλήση εργαλείου. Μειώνει την καθυστέρηση αλλά μπορεί να επηρεάσει την απόδοση."
 		}
 	},
 	"promptCaching": {
-		"label": "Disable prompt caching",
-		"description": "When checked, Kilo Code will not use prompt caching for this model."
+		"title": "Προσωρινή αποθήκευση προτροπών",
+		"description": "Η προσωρινή αποθήκευση προτροπών αποθηκεύει αποτελέσματα από συχνά χρησιμοποιούμενες προτροπές, μειώνοντας την καθυστέρηση και το κόστος του API. Όταν μια προτροπή αποθηκεύεται προσωρινά, το Kilo Code ανακτά γρήγορα την απάντηση από την προσωρινή μνήμη αντί να στέλνει ένα νέο αίτημα στο API. Αυτό βελτιώνει την απόδοση για επαναλαμβανόμενες ερωτήσεις και εξοικονομεί διακριτικά."
 	},
 	"temperature": {
-		"useCustom": "Use custom temperature",
-		"description": "Controls randomness in the model's responses.",
-		"rangeDescription": "Higher values make output more random, lower values make it more deterministic."
+		"label": "Θερμοκρασία",
+		"description": "Ελέγξτε την τυχαιότητα: Η χαμηλότερη τιμή είναι πιο ντετερμινιστική. υψηλότερη είναι πιο δημιουργική. Σημείωση: Δεν υποστηρίζουν όλα τα μοντέλα ή οι πάροχοι αυτήν την παράμετρο.",
+		"high": "Υψηλή",
+		"low": "Χαμηλή"
 	},
 	"modelInfo": {
-		"supportsImages": "Supports images",
-		"noImages": "Does not support images",
-		"supportsComputerUse": "Supports computer use",
-		"noComputerUse": "Does not support computer use",
-		"supportsPromptCache": "Supports prompt caching",
-		"noPromptCache": "Does not support prompt caching",
-		"maxOutput": "Max output",
-		"inputPrice": "Input price",
-		"outputPrice": "Output price",
-		"cacheReadsPrice": "Cache reads price",
-		"cacheWritesPrice": "Cache writes price",
-		"enableStreaming": "Enable streaming",
-		"enableR1Format": "Enable R1 model parameters",
-		"enableR1FormatTips": "Must be enabled when using R1 models such as QWQ to prevent 400 errors",
-		"useAzure": "Use Azure",
-		"azureApiVersion": "Set Azure API version",
+		"context": "Πλαίσιο:",
+		"tokens": "διακριτικά",
+		"imageSupport": "Υποστήριξη εικόνας:",
+		"yes": "Ναι",
+		"no": "Όχι",
+		"pricing": "Τιμολόγηση:",
+		"input": "Είσοδος",
+		"output": "Έξοδος",
+		"perMillion": "ανά 1 εκατομμύριο διακριτικά",
 		"gemini": {
-			"freeRequests": "* Free up to {{count}} requests per minute. After that, billing depends on prompt size.",
-			"pricingDetails": "For more info, see pricing details.",
-			"billingEstimate": "* Billing is an estimate - exact cost depends on prompt size."
+			"safety": {
+				"label": "Ρυθμίσεις ασφαλείας",
+				"description": "Διαμορφώστε τις ρυθμίσεις ασφαλείας για τα μοντέλα Gemini. Οι υψηλότερες ρυθμίσεις θα οδηγήσουν σε περισσότερο αποκλεισμένο περιεχόμενο.",
+				"sexual": "Σεξουαλικά ρητό",
+				"hate": "Μίσος",
+				"harassment": "Παρενόχληση",
+				"dangerous": "Επικίνδυνο"
+			}
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "The extension automatically fetches the latest list of models available on <serviceLink>{{serviceName}}</serviceLink>. If you're unsure which model to choose, Kilo Code works best with <defaultModelLink>{{defaultModelId}}</defaultModelLink>. You can also try searching \"free\" for no-cost options currently available.",
-		"label": "Model",
-		"searchPlaceholder": "Search",
-		"noMatchFound": "No match found",
-		"useCustomModel": "Use custom: {{modelId}}"
+		"perMillionTokens": "ανά 1 εκατομμύριο διακριτικά",
+		"input": "I",
+		"output": "O",
+		"cacheRead": "CR",
+		"cacheWrite": "CW",
+		"tokens": "διακριτικά"
 	},
 	"footer": {
-		"feedback": "If you have any questions or feedback, feel free to open an issue at <githubLink>github.com/Kilo-Org/kilocode</githubLink> or join <redditLink>reddit.com/r/kilocode</redditLink> or <discordLink>kilocode.ai/discord</discordLink>.",
-		"support": "For financial questions, please contact Customer Support at <supportLink>hi@kilocode.ai</supportLink>",
+		"version": "Έκδοση: {{version}}",
+		"release_notes": "Σημειώσεις έκδοσης",
 		"telemetry": {
-			"label": "Allow anonymous error and usage reporting",
-			"description": "Help improve Kilo Code by sending anonymous usage data and error reports. No code, prompts, or personal information is ever sent. See our privacy policy for more details."
+			"label": "Τηλεμετρία",
+			"description": "Βοηθά στη βελτίωση του Kilo Code στέλνοντας ανώνυμα δεδομένα χρήσης. <0>Μάθετε περισσότερα</0>"
 		},
 		"settings": {
-			"import": "Import",
-			"export": "Export",
-			"reset": "Reset"
+			"label": "Ρυθμίσεις",
+			"import": "Εισαγωγή ρυθμίσεων",
+			"export": "Εξαγωγή ρυθμίσεων"
 		}
 	},
 	"thinkingBudget": {
-		"maxTokens": "Max Tokens",
-		"maxThinkingTokens": "Max Thinking Tokens"
+		"label": "Προϋπολογισμός σκέψης",
+		"description": "Ορίστε ένα όριο στα διακριτικά που μπορεί να χρησιμοποιήσει το μοντέλο για 'σκέψη' πριν απαντήσει. Ένας υψηλότερος προϋπολογισμός επιτρέπει πιο σύνθετο συλλογισμό αλλά μπορεί να αυξήσει την καθυστέρηση. Σημείωση: Δεν υποστηρίζουν όλα τα μοντέλα ή οι πάροχοι αυτήν την επιλογή."
 	},
 	"validation": {
-		"apiKey": "You must provide a valid API key.",
-		"awsRegion": "You must choose a region to use with Amazon Bedrock.",
-		"googleCloud": "You must provide a valid Google Cloud Project ID and Region.",
-		"modelId": "You must provide a valid model ID.",
-		"modelSelector": "You must provide a valid model selector.",
-		"openAi": "You must provide a valid base URL, API key, and model ID.",
-		"arn": {
-			"invalidFormat": "Invalid ARN format. Please check the format requirements.",
-			"regionMismatch": "Warning: The region in your ARN ({{arnRegion}}) does not match your selected region ({{region}}). This may cause access issues. The provider will use the region from the ARN."
-		},
-		"modelAvailability": "The model ID ({{modelId}}) you provided is not available. Please choose a different model.",
-		"providerNotAllowed": "Provider '{{provider}}' is not allowed by your organization",
-		"modelNotAllowed": "Model '{{model}}' is not allowed for provider '{{provider}}' by your organization",
-		"profileInvalid": "This profile contains a provider or model that is not allowed by your organization"
+		"port": "Η θύρα πρέπει να είναι ένας αριθμός μεταξύ 1 και 65535",
+		"baseUrl": "Η βασική διεύθυνση URL πρέπει να είναι μια έγκυρη διεύθυνση URL",
+		"apiKey": "Απαιτείται κλειδί API"
 	},
 	"placeholders": {
-		"apiKey": "Enter API Key...",
-		"profileName": "Enter profile name",
-		"accessKey": "Enter Access Key...",
-		"secretKey": "Enter Secret Key...",
-		"sessionToken": "Enter Session Token...",
-		"credentialsJson": "Enter Credentials JSON...",
-		"keyFilePath": "Enter Key File Path...",
-		"projectId": "Enter Project ID...",
-		"customArn": "Enter ARN (e.g. arn:aws:bedrock:us-east-1:123456789012:foundation-model/my-model)",
-		"baseUrl": "Enter base URL...",
-		"modelId": {
-			"lmStudio": "e.g. meta-llama-3.1-8b-instruct",
-			"lmStudioDraft": "e.g. lmstudio-community/llama-3.2-1b-instruct",
-			"ollama": "e.g. llama3.1"
-		},
 		"numbers": {
-			"maxTokens": "e.g. 4096",
-			"contextWindow": "e.g. 128000",
-			"inputPrice": "e.g. 0.0001",
-			"outputPrice": "e.g. 0.0002",
-			"cacheWritePrice": "e.g. 0.00005"
+			"zero": "0",
+			"one": "1",
+			"one_hundred": "100"
 		}
-	},
-	"defaults": {
-		"ollamaUrl": "Default: http://localhost:11434",
-		"lmStudioUrl": "Default: http://localhost:1234",
-		"geminiUrl": "Default: https://generativelanguage.googleapis.com"
-	},
-	"labels": {
-		"customArn": "Custom ARN",
-		"useCustomArn": "Use custom ARN..."
-	},
-	"includeMaxOutputTokens": "Include max output tokens",
-	"includeMaxOutputTokensDescription": "Send max output tokens parameter in API requests. Some providers may not support this."
+	}
 }

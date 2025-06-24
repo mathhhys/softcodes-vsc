@@ -411,7 +411,200 @@
 		},
 		"maxReadFile": {
 			"label": "File read auto-truncate threshold",
-			"description": "Binabasa ng Kilo Code ang ganitong bilang ng mga linya kapag inalis ng model ang mga start/end value. Kung ang bilang na ito ay mas mababa sa kabuuan ng file, gumagawa ang Kilo Code ng line number index ng mga code definition."
+			"description": "Binabasa ng Kilo Code ang ganitong bilang ng mga linya kapag inalis ng model ang mga start/end value. Kung ang bilang na ito ay mas mababa sa kabuuan ng file, gumagawa ang Kilo Code ng line number index ng mga code definition. Mga espesyal na kaso: -1 ay nag-uutos sa Kilo Code na basahin ang buong file (nang walang pag-index), at 0 ay nag-uutos dito na huwag magbasa ng mga linya at nagbibigay lamang ng mga line index para sa minimal na context. Ang mas mababang value ay nagpapababa ng paunang paggamit ng context, na nagbibigay-daan sa tumpak na kasunod na pagbasa ng line-range. Ang mga tahasang start/end request ay hindi limitado ng setting na ito.",
+			"lines": "mga linya",
+			"always_full_read": "Laging basahin ang buong file"
+		},
+		"condensingThreshold": {
+			"label": "Condensing Trigger Threshold",
+			"selectProfile": "I-configure ang threshold para sa profile",
+			"defaultProfile": "Global Default (lahat ng profile)",
+			"defaultDescription": "Kapag naabot ng context ang porsyentong ito, awtomatiko itong ico-condense para sa lahat ng profile maliban kung mayroon silang mga custom setting",
+			"profileDescription": "Custom threshold para lamang sa profile na ito (nag-o-override sa global default)",
+			"inheritDescription": "Ang profile na ito ay nagmamana ng global default threshold ({{threshold}}%)",
+			"usesGlobal": "(gumagamit ng global na {{threshold}}%)"
+		}
+	},
+	"terminal": {
+		"basic": {
+			"label": "Mga Setting ng Terminal: Basic",
+			"description": "Mga pangunahing setting ng terminal"
+		},
+		"advanced": {
+			"label": "Mga Setting ng Terminal: Advanced",
+			"description": "Ang mga sumusunod na opsyon ay maaaring mangailangan ng pag-restart ng terminal para mailapat ang setting."
+		},
+		"outputLineLimit": {
+			"label": "Limitasyon ng output ng terminal",
+			"description": "Maximum na bilang ng mga linya na isasama sa terminal output kapag nag-e-execute ng mga command. Kapag lumampas, aalisin ang mga linya mula sa gitna, na nakakatipid ng mga token. <0>Alamin pa</0>"
+		},
+		"shellIntegrationTimeout": {
+			"label": "Timeout ng terminal shell integration",
+			"description": "Maximum na oras na maghintay para mag-initialize ang shell integration bago mag-execute ng mga command. Para sa mga user na may mahabang startup time ng shell, maaaring kailanganing taasan ang value na ito kung nakakakita ka ng mga error na \"Shell Integration Unavailable\" sa terminal. <0>Alamin pa</0>"
+		},
+		"shellIntegrationDisabled": {
+			"label": "I-disable ang terminal shell integration",
+			"description": "I-enable ito kung hindi gumagana nang tama ang mga terminal command o nakakakita ka ng mga error na 'Shell Integration Unavailable'. Gumagamit ito ng mas simpleng paraan para magpatakbo ng mga command, na lumalampas sa ilang advanced na feature ng terminal. <0>Alamin pa</0>"
+		},
+		"commandDelay": {
+			"label": "Pagkaantala ng terminal command",
+			"description": "Pagkaantala sa millisecond na idaragdag pagkatapos ng pag-execute ng command. Ang default na setting na 0 ay ganap na nag-disable ng pagkaantala. Makakatulong ito na matiyak na ganap na makuha ang output ng command sa mga terminal na may mga isyu sa timing. Sa karamihan ng mga terminal, ipinapatupad ito sa pamamagitan ng pagtatakda ng `PROMPT_COMMAND='sleep N'` at idinaragdag ng Powershell ang `start-sleep` sa dulo ng bawat command. Orihinal na workaround para sa VSCode bug#237208 at maaaring hindi na kailanganin. <0>Alamin pa</0>"
+		},
+		"compressProgressBar": {
+			"label": "I-compress ang output ng progress bar",
+			"description": "Kapag naka-enable, pinoproseso ang terminal output na may mga carriage return (\\r) para gayahin kung paano ipapakita ng isang tunay na terminal ang nilalaman. Tinatanggal nito ang mga intermediate na estado ng progress bar, na pinapanatili lamang ang panghuling estado, na nakakatipid ng espasyo sa context para sa mas relevant na impormasyon. <0>Alamin pa</0>"
+		},
+		"powershellCounter": {
+			"label": "I-enable ang PowerShell counter workaround",
+			"description": "Kapag naka-enable, nagdaragdag ng counter sa mga PowerShell command para matiyak ang tamang pag-execute ng command. Nakakatulong ito sa mga PowerShell terminal na maaaring may mga isyu sa pagkuha ng output ng command. <0>Alamin pa</0>"
+		},
+		"zshClearEolMark": {
+			"label": "I-clear ang ZSH EOL mark",
+			"description": "Kapag naka-enable, nililinis nito ang ZSH end-of-line mark sa pamamagitan ng pagtatakda ng PROMPT_EOL_MARK=''. Pinipigilan nito ang mga isyu sa interpretasyon ng output ng command kapag nagtatapos ang output sa mga espesyal na character tulad ng '%'. <0>Alamin pa</0>"
+		},
+		"zshOhMy": {
+			"label": "I-enable ang Oh My Zsh integration",
+			"description": "Kapag naka-enable, itinatakda ang ITERM_SHELL_INTEGRATION_INSTALLED=Yes para i-enable ang mga feature ng Oh My Zsh shell integration. Ang paglalapat ng setting na ito ay maaaring mangailangan ng pag-restart ng IDE. <0>Alamin pa</0>"
+		},
+		"zshP10k": {
+			"label": "I-enable ang Powerlevel10k integration",
+			"description": "Kapag naka-enable, itinatakda ang POWERLEVEL9K_TERM_SHELL_INTEGRATION=true para i-enable ang mga feature ng Powerlevel10k shell integration. <0>Alamin pa</0>"
+		},
+		"zdotdir": {
+			"label": "I-enable ang ZDOTDIR handling",
+			"description": "Kapag naka-enable, gumagawa ng pansamantalang directory para sa ZDOTDIR para maayos na hawakan ang zsh shell integration. Tinitiyak nito na gumagana nang tama ang VSCode shell integration sa zsh habang pinapanatili ang iyong zsh configuration. <0>Alamin pa</0>"
+		},
+		"inheritEnv": {
+			"label": "Magmana ng mga environment variable",
+			"description": "Kapag naka-enable, magmamana ang terminal ng mga environment variable mula sa parent process ng VSCode, tulad ng mga setting ng shell integration na tinukoy sa user-profile. Direktang nagto-toggle ito ng global na setting ng VSCode na `terminal.integrated.inheritEnv`. <0>Alamin pa</0>"
+		}
+	},
+	"advanced": {
+		"diff": {
+			"label": "I-enable ang pag-e-edit sa pamamagitan ng mga diff",
+			"description": "Kapag naka-enable, mas mabilis na makakapag-edit ng mga file ang Kilo Code at awtomatikong tatanggihan ang mga truncated full-file write. Pinakamahusay na gumagana sa pinakabagong Claude 4 Sonnet model.",
+			"strategy": {
+				"label": "Diff strategy",
+				"options": {
+					"standard": "Standard (Isang block)",
+					"multiBlock": "Experimental: Multi-block diff",
+					"unified": "Experimental: Unified diff"
+				},
+				"descriptions": {
+					"standard": "Ang standard diff strategy ay naglalapat ng mga pagbabago sa isang code block sa isang pagkakataon.",
+					"unified": "Ang unified diff strategy ay gumagamit ng maraming paraan para ilapat ang mga diff at pinipili ang pinakamahusay na paraan.",
+					"multiBlock": "Ang multi-block diff strategy ay nagbibigay-daan sa pag-update ng maraming code block sa isang file sa isang request."
+				}
+			},
+			"matchPrecision": {
+				"label": "Tumpak na pagtutugma"
+			}
+		}
+	},
+	"experimental": {
+		"DIFF_STRATEGY_UNIFIED": {
+			"label": "I-enable ang Unified diff",
+			"description": "Isa pang experimental diff strategy na susubukan naming palitan ng multi-block diff sa hinaharap."
+		},
+		"SEARCH_AND_REPLACE": {
+			"label": "I-enable ang Search and Replace",
+			"description": "Magdagdag ng search_and_replace tool na kayang mag-regex"
+		},
+		"INSERT_BLOCK": {
+			"label": "I-enable ang Insert Block",
+			"description": "Magdagdag ng insert_content tool na kayang mag-insert ng mga linya sa isang file"
+		},
+		"POWER_STEERING": {
+			"label": "I-enable ang Power Steering",
+			"description": "Awtomatikong mag-prompt para sa mga pagwawasto kapag nakita ang mga isyu"
+		},
+		"AUTOCOMPLETE": {
+			"label": "I-enable ang Autocomplete (Alpha)",
+			"description": "Mag-trigger ng mga mungkahi habang nagta-type ka sa editor. Tandaan: Kasalukuyang gumagana lang sa Anthropic models."
+		},
+		"CONCURRENT_FILE_READS": {
+			"label": "I-enable ang sabay-sabay na pagbasa ng file",
+			"description": "Pabilisin ang pagbasa ng maraming maliliit na file, ngunit nagpapataas ng paggamit ng memory."
+		},
+		"MULTI_SEARCH_AND_REPLACE": {
+			"label": "I-enable ang Maramihang Search And Replace",
+			"description": "Magdagdag ng suporta para sa maraming search/replace operation sa isang tawag ng tool"
+		},
+		"MARKETPLACE": {
+			"label": "I-enable ang Marketplace",
+			"description": "Tuklasin, ibahagi, at i-install ang mga custom na Kilo Code mode at MCP server."
+		},
+		"MULTI_FILE_APPLY_DIFF": {
+			"label": "I-enable ang Maramihang File Apply Diff (Alpha)",
+			"description": "Tandaan: Ang pag-enable sa feature na ito ay maaaring maging sanhi ng pagkabigo ng AI sa mga advanced na gawain.\n\nNagbibigay-daan sa apply_diff na mag-target ng maraming file sa isang tool call. Nagpapababa ng latency ngunit maaaring makaapekto sa performance."
+		}
+	},
+	"promptCaching": {
+		"title": "Prompt Caching",
+		"description": "Ang prompt caching ay nag-iimbak ng mga resulta mula sa mga madalas na ginagamit na prompt, binabawasan ang latency at gastos sa API. Kapag naka-cache ang isang prompt, mabilis na kinukuha ng Kilo Code ang sagot mula sa cache sa halip na magpadala ng bagong request sa API. Pinapabuti nito ang performance para sa mga paulit-ulit na tanong at nakakatipid ng mga token."
+	},
+	"temperature": {
+		"label": "Temperatura",
+		"description": "Kontrolin ang pagiging random: Ang mas mababang value ay mas deterministic; ang mas mataas ay mas malikhain. Tandaan: Hindi lahat ng modelo o provider ay sumusuporta sa parameter na ito.",
+		"high": "Mataas",
+		"low": "Mababa"
+	},
+	"modelInfo": {
+		"context": "Context:",
+		"tokens": "tokens",
+		"imageSupport": "Suporta sa larawan:",
+		"yes": "Oo",
+		"no": "Hindi",
+		"pricing": "Pagpepresyo:",
+		"input": "Input",
+		"output": "Output",
+		"perMillion": "bawat 1M token",
+		"gemini": {
+			"safety": {
+				"label": "Mga setting ng kaligtasan",
+				"description": "I-configure ang mga setting ng kaligtasan para sa mga model ng Gemini. Ang mas mataas na setting ay hahantong sa mas maraming hinarang na nilalaman.",
+				"sexual": "Sekswal na Hayag",
+				"hate": "Poot",
+				"harassment": "Panliligalig",
+				"dangerous": "Mapanganib"
+			}
+		}
+	},
+	"modelPicker": {
+		"perMillionTokens": "bawat 1M token",
+		"input": "I",
+		"output": "O",
+		"cacheRead": "CR",
+		"cacheWrite": "CW",
+		"tokens": "mga token"
+	},
+	"footer": {
+		"version": "Bersyon: {{version}}",
+		"release_notes": "Mga Tala sa Paglabas",
+		"telemetry": {
+			"label": "Telemetry",
+			"description": "Tumutulong na mapabuti ang Kilo Code sa pamamagitan ng pagpapadala ng anonymous na data ng paggamit. <0>Alamin pa</0>"
+		},
+		"settings": {
+			"label": "Mga Setting",
+			"import": "Mag-import ng mga setting",
+			"export": "Mag-export ng mga setting"
+		}
+	},
+	"thinkingBudget": {
+		"label": "Badyet sa pag-iisip",
+		"description": "Magtakda ng limitasyon sa mga token na maaaring gamitin ng modelo para sa 'pag-iisip' bago tumugon. Ang mas mataas na badyet ay nagbibigay-daan para sa mas kumplikadong pangangatwiran ngunit maaaring tumaas ang latency. Tandaan: Hindi lahat ng modelo o provider ay sumusuporta sa opsyon na ito."
+	},
+	"validation": {
+		"port": "Ang port ay dapat isang numero sa pagitan ng 1 at 65535",
+		"baseUrl": "Ang Base URL ay dapat isang valid na URL",
+		"apiKey": "Kailangan ng API key"
+	},
+	"placeholders": {
+		"numbers": {
+			"zero": "0",
+			"one": "1",
+			"one_hundred": "100"
 		}
 	}
 }

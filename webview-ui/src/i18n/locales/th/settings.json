@@ -1,650 +1,610 @@
 {
 	"common": {
-		"save": "Save",
-		"done": "Done",
-		"cancel": "Cancel",
-		"reset": "Reset",
-		"select": "Select",
-		"add": "Add Header",
-		"remove": "Remove"
+		"save": "บันทึก",
+		"done": "เสร็จสิ้น",
+		"cancel": "ยกเลิก",
+		"reset": "รีเซ็ต",
+		"select": "เลือก",
+		"add": "เพิ่ม Header",
+		"remove": "ลบ"
 	},
 	"header": {
-		"title": "Settings",
-		"saveButtonTooltip": "Save changes",
-		"nothingChangedTooltip": "Nothing changed",
-		"doneButtonTooltip": "Discard unsaved changes and close settings panel"
+		"title": "การตั้งค่า",
+		"saveButtonTooltip": "บันทึกการเปลี่ยนแปลง",
+		"nothingChangedTooltip": "ไม่มีอะไรเปลี่ยนแปลง",
+		"doneButtonTooltip": "ยกเลิกการเปลี่ยนแปลงที่ยังไม่ได้บันทึกและปิดแผงการตั้งค่า"
 	},
 	"unsavedChangesDialog": {
-		"title": "Unsaved Changes",
-		"description": "Do you want to discard changes and continue?",
-		"cancelButton": "Cancel",
-		"discardButton": "Discard changes"
+		"title": "การเปลี่ยนแปลงที่ยังไม่ได้บันทึก",
+		"description": "คุณต้องการยกเลิกการเปลี่ยนแปลงและดำเนินการต่อหรือไม่?",
+		"cancelButton": "ยกเลิก",
+		"discardButton": "ยกเลิกการเปลี่ยนแปลง"
 	},
 	"sections": {
-		"providers": "Providers",
-		"autoApprove": "Auto-Approve",
-		"browser": "Browser",
-		"checkpoints": "Checkpoints",
-		"display": "Display",
-		"notifications": "Notifications",
-		"contextManagement": "Context",
-		"terminal": "Terminal",
+		"providers": "ผู้ให้บริการ",
+		"autoApprove": "อนุมัติอัตโนมัติ",
+		"browser": "เบราว์เซอร์",
+		"checkpoints": "จุดตรวจสอบ",
+		"display": "การแสดงผล",
+		"notifications": "การแจ้งเตือน",
+		"contextManagement": "บริบท",
+		"terminal": "เทอร์มินัล",
 		"prompts": "Prompts",
-		"experimental": "Experimental",
-		"language": "Language",
-		"about": "About Kilo Code"
+		"experimental": "ทดลอง",
+		"language": "ภาษา",
+		"about": "เกี่ยวกับ Kilo Code"
 	},
 	"prompts": {
-		"description": "Configure support prompts that are used for quick actions like enhancing prompts, explaining code, and fixing issues. These prompts help Kilo Code provide better assistance for common development tasks."
+		"description": "กำหนดค่า support prompts ที่ใช้สำหรับการกระทำด่วน เช่น การปรับปรุง prompts, การอธิบายโค้ด, และการแก้ไขปัญหา Prompts เหล่านี้ช่วยให้ Kilo Code ให้ความช่วยเหลือที่ดีขึ้นสำหรับงานพัฒนาทั่วไป"
 	},
 	"codeIndex": {
-		"title": "Codebase Indexing",
-		"enableLabel": "Enable Codebase Indexing",
-		"enableDescription": "<0>Codebase Indexing</0> is an experimental feature that creates a semantic search index of your project using AI embeddings. This enables Kilo Code to better understand and navigate large codebases by finding relevant code based on meaning rather than just keywords.",
-		"providerLabel": "Embeddings Provider",
-		"selectProviderPlaceholder": "Select provider",
+		"title": "การสร้างดัชนี Codebase",
+		"enableLabel": "เปิดใช้งานการสร้างดัชนี Codebase",
+		"enableDescription": "<0>การสร้างดัชนี Codebase</0> เป็นคุณสมบัติทดลองที่สร้างดัชนีการค้นหาเชิงความหมายของโปรเจ็กต์ของคุณโดยใช้ AI embeddings ซึ่งช่วยให้ Kilo Code เข้าใจและนำทาง codebase ขนาดใหญ่ได้ดีขึ้นโดยการค้นหาโค้ดที่เกี่ยวข้องตามความหมายแทนที่จะเป็นแค่คีย์เวิร์ด",
+		"providerLabel": "ผู้ให้บริการ Embeddings",
+		"selectProviderPlaceholder": "เลือกผู้ให้บริการ",
 		"openaiProvider": "OpenAI",
 		"ollamaProvider": "Ollama",
-		"openaiCompatibleProvider": "OpenAI Compatible",
-		"openaiKeyLabel": "OpenAI Key:",
-		"openaiCompatibleBaseUrlLabel": "Base URL:",
-		"openaiCompatibleApiKeyLabel": "API Key:",
-		"openaiCompatibleModelDimensionLabel": "Embedding Dimension:",
-		"openaiCompatibleModelDimensionPlaceholder": "e.g., 1536",
-		"openaiCompatibleModelDimensionDescription": "The embedding dimension (output size) for your model. Check your provider's documentation for this value. Common values: 384, 768, 1536, 3072.",
-		"modelLabel": "Model",
-		"selectModelPlaceholder": "Select model",
-		"ollamaUrlLabel": "Ollama URL:",
-		"qdrantUrlLabel": "Qdrant URL",
-		"qdrantKeyLabel": "Qdrant Key:",
-		"startIndexingButton": "Start Indexing",
-		"clearIndexDataButton": "Clear Index Data",
-		"unsavedSettingsMessage": "Please save your settings before starting the indexing process.",
+		"openaiCompatibleProvider": "เข้ากันได้กับ OpenAI",
+		"openaiKeyLabel": "คีย์ OpenAI:",
+		"openaiCompatibleBaseUrlLabel": "URL พื้นฐาน:",
+		"openaiCompatibleApiKeyLabel": "คีย์ API:",
+		"openaiCompatibleModelDimensionLabel": "มิติการฝัง:",
+		"openaiCompatibleModelDimensionPlaceholder": "เช่น 1536",
+		"openaiCompatibleModelDimensionDescription": "มิติการฝัง (ขนาดเอาต์พุต) สำหรับโมเดลของคุณ ตรวจสอบเอกสารประกอบของผู้ให้บริการของคุณสำหรับค่านี้ ค่าทั่วไป: 384, 768, 1536, 3072",
+		"modelLabel": "โมเดล",
+		"selectModelPlaceholder": "เลือกโมเดล",
+		"ollamaUrlLabel": "URL ของ Ollama:",
+		"qdrantUrlLabel": "URL ของ Qdrant",
+		"qdrantKeyLabel": "คีย์ Qdrant:",
+		"startIndexingButton": "เริ่มการสร้างดัชนี",
+		"clearIndexDataButton": "ล้างข้อมูลดัชนี",
+		"unsavedSettingsMessage": "โปรดบันทึกการตั้งค่าของคุณก่อนเริ่มกระบวนการสร้างดัชนี",
 		"clearDataDialog": {
-			"title": "Are you sure?",
-			"description": "This action cannot be undone. This will permanently delete your codebase index data.",
-			"cancelButton": "Cancel",
-			"confirmButton": "Clear Data"
+			"title": "คุณแน่ใจหรือไม่?",
+			"description": "การกระทำนี้ไม่สามารถยกเลิกได้ การดำเนินการนี้จะลบข้อมูลดัชนี codebase ของคุณอย่างถาวร",
+			"cancelButton": "ยกเลิก",
+			"confirmButton": "ล้างข้อมูล"
 		}
 	},
 	"autoApprove": {
-		"description": "Allow Kilo Code to automatically perform operations without requiring approval. Enable these settings only if you fully trust the AI and understand the associated security risks.",
+		"description": "อนุญาตให้ Kilo Code ดำเนินการโดยอัตโนมัติโดยไม่ต้องขออนุมัติ เปิดใช้งานการตั้งค่าเหล่านี้เฉพาะเมื่อคุณเชื่อถือ AI อย่างเต็มที่และเข้าใจความเสี่ยงด้านความปลอดภัยที่เกี่ยวข้อง",
 		"readOnly": {
-			"label": "Read",
-			"description": "When enabled, Kilo Code will automatically view directory contents and read files without requiring you to click the Approve button.",
+			"label": "อ่าน",
+			"description": "เมื่อเปิดใช้งาน Kilo Code จะดูเนื้อหาไดเรกทอรีและอ่านไฟล์โดยอัตโนมัติโดยไม่ต้องให้คุณคลิกปุ่มอนุมัติ",
 			"outsideWorkspace": {
-				"label": "Include files outside workspace",
-				"description": "Allow Kilo Code to read files outside the current workspace without requiring approval."
+				"label": "รวมไฟล์นอกพื้นที่ทำงาน",
+				"description": "อนุญาตให้ Kilo Code อ่านไฟล์นอกพื้นที่ทำงานปัจจุบันโดยไม่ต้องขออนุมัติ"
 			}
 		},
 		"write": {
-			"label": "Write",
-			"description": "Automatically create and edit files without requiring approval",
-			"delayLabel": "Delay after writes to allow diagnostics to detect potential problems",
+			"label": "เขียน",
+			"description": "สร้างและแก้ไขไฟล์โดยอัตโนมัติโดยไม่ต้องขออนุมัติ",
+			"delayLabel": "หน่วงเวลาหลังการเขียนเพื่อให้การวินิจฉัยตรวจพบปัญหาที่อาจเกิดขึ้น",
 			"outsideWorkspace": {
-				"label": "Include files outside workspace",
-				"description": "Allow Kilo Code to create and edit files outside the current workspace without requiring approval."
+				"label": "รวมไฟล์นอกพื้นที่ทำงาน",
+				"description": "อนุญาตให้ Kilo Code สร้างและแก้ไขไฟล์นอกพื้นที่ทำงานปัจจุบันโดยไม่ต้องขออนุมัติ"
 			},
 			"protected": {
-				"label": "Include protected files",
-				"description": "Allow Kilo Code to create and edit protected files (like .kilocodeignore and .kilocode/ configuration files) without requiring approval."
+				"label": "รวมไฟล์ที่ได้รับการป้องกัน",
+				"description": "อนุญาตให้ Kilo Code สร้างและแก้ไขไฟล์ที่ได้รับการป้องกัน (เช่น .kilocodeignore และไฟล์การกำหนดค่า .kilocode/) โดยไม่ต้องขออนุมัติ"
 			}
 		},
 		"browser": {
-			"label": "Browser",
-			"description": "Automatically perform browser actions without requiring approval. Note: Only applies when the model supports computer use"
+			"label": "เบราว์เซอร์",
+			"description": "ดำเนินการเบราว์เซอร์โดยอัตโนมัติโดยไม่ต้องขออนุมัติ หมายเหตุ: ใช้ได้เฉพาะเมื่อโมเดลรองรับการใช้งานคอมพิวเตอร์"
 		},
 		"retry": {
-			"label": "Retry",
-			"description": "Automatically retry failed API requests when server returns an error response",
-			"delayLabel": "Delay before retrying the request"
+			"label": "ลองใหม่",
+			"description": "ลองส่งคำขอ API ที่ล้มเหลวอีกครั้งโดยอัตโนมัติเมื่อเซิร์ฟเวอร์ส่งคืนการตอบสนองที่ผิดพลาด",
+			"delayLabel": "หน่วงเวลาก่อนลองส่งคำขออีกครั้ง"
 		},
 		"mcp": {
 			"label": "MCP",
-			"description": "Enable auto-approval of individual MCP tools in the MCP Servers view (requires both this setting and the tool's individual \"Always allow\" checkbox)"
+			"description": "เปิดใช้งานการอนุมัติอัตโนมัติของเครื่องมือ MCP แต่ละรายการในมุมมองเซิร์ฟเวอร์ MCP (ต้องใช้ทั้งการตั้งค่านี้และช่องทำเครื่องหมาย \"อนุญาตเสมอ\" ของเครื่องมือแต่ละรายการ)"
 		},
 		"modeSwitch": {
-			"label": "Mode",
-			"description": "Automatically switch between different modes without requiring approval"
+			"label": "โหมด",
+			"description": "สลับระหว่างโหมดต่างๆ โดยอัตโนมัติโดยไม่ต้องขออนุมัติ"
 		},
 		"subtasks": {
-			"label": "Subtasks",
-			"description": "Allow creation and completion of subtasks without requiring approval"
+			"label": "งานย่อย",
+			"description": "อนุญาตให้สร้างและทำงานย่อยให้เสร็จสิ้นโดยไม่ต้องขออนุมัติ"
 		},
 		"execute": {
-			"label": "Execute",
-			"description": "Automatically execute allowed terminal commands without requiring approval",
-			"allowedCommands": "Allowed Auto-Execute Commands",
-			"allowedCommandsDescription": "Command prefixes that can be auto-executed when \"Always approve execute operations\" is enabled. Add * to allow all commands (use with caution).",
-			"commandPlaceholder": "Enter command prefix (e.g., 'git ')",
-			"addButton": "Add"
+			"label": "ดำเนินการ",
+			"description": "ดำเนินการคำสั่งเทอร์มินัลที่อนุญาตโดยอัตโนมัติโดยไม่ต้องขออนุมัติ",
+			"allowedCommands": "คำสั่งที่อนุญาตให้ดำเนินการอัตโนมัติ",
+			"allowedCommandsDescription": "คำนำหน้าคำสั่งที่สามารถดำเนินการอัตโนมัติได้เมื่อเปิดใช้งาน \"อนุมัติการดำเนินการดำเนินการเสมอ\" เพิ่ม * เพื่ออนุญาตคำสั่งทั้งหมด (ใช้ด้วยความระมัดระวัง)",
+			"commandPlaceholder": "ป้อนคำนำหน้าคำสั่ง (เช่น 'git ')",
+			"addButton": "เพิ่ม"
 		},
 		"showMenu": {
-			"label": "Show auto-approve menu in chat view",
-			"description": "When enabled, the auto-approve menu will be displayed at the bottom of the chat view, allowing quick access to auto-approve settings"
+			"label": "แสดงเมนูอนุมัติอัตโนมัติในมุมมองแชท",
+			"description": "เมื่อเปิดใช้งาน เมนูอนุมัติอัตโนมัติจะแสดงที่ด้านล่างของมุมมองแชท ทำให้สามารถเข้าถึงการตั้งค่าการอนุมัติอัตโนมัติได้อย่างรวดเร็ว"
 		},
 		"apiRequestLimit": {
-			"title": "Max Requests",
-			"description": "Automatically make this many API requests before asking for approval to continue with the task.",
-			"unlimited": "Unlimited"
+			"title": "คำขอสูงสุด",
+			"description": "ส่งคำขอ API จำนวนนี้โดยอัตโนมัติก่อนที่จะขออนุมัติเพื่อดำเนินการต่อกับงาน",
+			"unlimited": "ไม่จำกัด"
 		}
 	},
 	"providers": {
-		"providerDocumentation": "{{provider}} documentation",
-		"configProfile": "Configuration Profile",
-		"description": "Save different API configurations to quickly switch between providers and settings.",
-		"apiProvider": "API Provider",
-		"model": "Model",
-		"nameEmpty": "Name cannot be empty",
-		"nameExists": "A profile with this name already exists",
-		"deleteProfile": "Delete Profile",
-		"invalidArnFormat": "Invalid ARN format. Please check the examples above.",
-		"enterNewName": "Enter new name",
-		"addProfile": "Add Profile",
-		"renameProfile": "Rename Profile",
-		"newProfile": "New Configuration Profile",
-		"enterProfileName": "Enter profile name",
-		"createProfile": "Create Profile",
-		"cannotDeleteOnlyProfile": "Cannot delete the only profile",
-		"searchPlaceholder": "Search profiles",
-		"noMatchFound": "No matching profiles found",
-		"vscodeLmDescription": " The VS Code Language Model API allows you to run models provided by other VS Code extensions (including but not limited to GitHub Copilot). The easiest way to get started is to install the Copilot and Copilot Chat extensions from the VS Code Marketplace.",
-		"awsCustomArnUse": "Enter a valid Amazon Bedrock ARN for the model you want to use. Format examples:",
-		"awsCustomArnDesc": "Make sure the region in the ARN matches your selected AWS Region above.",
-		"openRouterApiKey": "OpenRouter API Key",
-		"getOpenRouterApiKey": "Get OpenRouter API Key",
-		"apiKeyStorageNotice": "API keys are stored securely in VSCode's Secret Storage",
-		"glamaApiKey": "Glama API Key",
-		"getGlamaApiKey": "Get Glama API Key",
-		"useCustomBaseUrl": "Use custom base URL",
-		"useReasoning": "Enable reasoning",
-		"useHostHeader": "Use custom Host header",
-		"useLegacyFormat": "Use legacy OpenAI API format",
-		"customHeaders": "Custom Headers",
-		"headerName": "Header name",
-		"headerValue": "Header value",
-		"noCustomHeaders": "No custom headers defined. Click the + button to add one.",
-		"requestyApiKey": "Requesty API Key",
+		"providerDocumentation": "เอกสารประกอบ {{provider}}",
+		"configProfile": "โปรไฟล์การกำหนดค่า",
+		"description": "บันทึกการกำหนดค่า API ต่างๆ เพื่อสลับระหว่างผู้ให้บริการและการตั้งค่าต่างๆ ได้อย่างรวดเร็ว",
+		"apiProvider": "ผู้ให้บริการ API",
+		"model": "โมเดล",
+		"nameEmpty": "ชื่อต้องไม่ว่างเปล่า",
+		"nameExists": "มีโปรไฟล์ชื่อนี้อยู่แล้ว",
+		"deleteProfile": "ลบโปรไฟล์",
+		"invalidArnFormat": "รูปแบบ ARN ไม่ถูกต้อง โปรดตรวจสอบตัวอย่างด้านบน",
+		"enterNewName": "ป้อนชื่อใหม่",
+		"addProfile": "เพิ่มโปรไฟล์",
+		"renameProfile": "เปลี่ยนชื่อโปรไฟล์",
+		"newProfile": "โปรไฟล์การกำหนดค่าใหม่",
+		"enterProfileName": "ป้อนชื่อโปรไฟล์",
+		"createProfile": "สร้างโปรไฟล์",
+		"cannotDeleteOnlyProfile": "ไม่สามารถลบโปรไฟล์เดียวได้",
+		"searchPlaceholder": "ค้นหาโปรไฟล์",
+		"noMatchFound": "ไม่พบโปรไฟล์ที่ตรงกัน",
+		"vscodeLmDescription": "API โมเดลภาษาของ VS Code ช่วยให้คุณสามารถรันโมเดลที่จัดหาโดยส่วนขยาย VS Code อื่นๆ (รวมถึงแต่ไม่จำกัดเฉพาะ GitHub Copilot) วิธีที่ง่ายที่สุดในการเริ่มต้นคือการติดตั้งส่วนขยาย Copilot และ Copilot Chat จาก VS Code Marketplace",
+		"awsCustomArnUse": "ป้อน Amazon Bedrock ARN ที่ถูกต้องสำหรับโมเดลที่คุณต้องการใช้ ตัวอย่างรูปแบบ:",
+		"awsCustomArnDesc": "ตรวจสอบให้แน่ใจว่าภูมิภาคใน ARN ตรงกับภูมิภาค AWS ที่คุณเลือกด้านบน",
+		"openRouterApiKey": "คีย์ API ของ OpenRouter",
+		"getOpenRouterApiKey": "รับคีย์ API ของ OpenRouter",
+		"apiKeyStorageNotice": "คีย์ API จะถูกเก็บไว้อย่างปลอดภัยในที่เก็บข้อมูลลับของ VSCode",
+		"glamaApiKey": "คีย์ API ของ Glama",
+		"getGlamaApiKey": "รับคีย์ API ของ Glama",
+		"useCustomBaseUrl": "ใช้ URL พื้นฐานที่กำหนดเอง",
+		"useReasoning": "เปิดใช้งานการให้เหตุผล",
+		"useHostHeader": "ใช้ส่วนหัวโฮสต์ที่กำหนดเอง",
+		"useLegacyFormat": "ใช้รูปแบบ API ของ OpenAI แบบเก่า",
+		"customHeaders": "ส่วนหัวที่กำหนดเอง",
+		"headerName": "ชื่อส่วนหัว",
+		"headerValue": "ค่าส่วนหัว",
+		"noCustomHeaders": "ไม่มีส่วนหัวที่กำหนดเองที่กำหนดไว้ คลิกปุ่ม + เพื่อเพิ่ม",
+		"requestyApiKey": "คีย์ API ของ Requesty",
 		"refreshModels": {
-			"label": "Refresh Models",
-			"hint": "Please reopen the settings to see the latest models.",
-			"loading": "Refreshing models list...",
-			"success": "Models list refreshed successfully!",
-			"error": "Failed to refresh models list. Please try again."
+			"label": "รีเฟรชโมเดล",
+			"hint": "โปรดเปิดการตั้งค่าอีกครั้งเพื่อดูโมเดลล่าสุด",
+			"loading": "กำลังรีเฟรชรายการโมเดล...",
+			"success": "รีเฟรชรายการโมเดลสำเร็จ!",
+			"error": "ไม่สามารถรีเฟรชรายการโมเดลได้ โปรดลองอีกครั้ง"
 		},
-		"getRequestyApiKey": "Get Requesty API Key",
-		"openRouterTransformsText": "Compress prompts and message chains to the context size (<a>OpenRouter Transforms</a>)",
-		"anthropicApiKey": "Anthropic API Key",
-		"getAnthropicApiKey": "Get Anthropic API Key",
-		"anthropicUseAuthToken": "Pass Anthropic API Key as Authorization header instead of X-Api-Key",
-		"chutesApiKey": "Chutes API Key",
-		"getChutesApiKey": "Get Chutes API Key",
-		"deepSeekApiKey": "DeepSeek API Key",
-		"getDeepSeekApiKey": "Get DeepSeek API Key",
-		"geminiApiKey": "Gemini API Key",
-		"getGroqApiKey": "Get Groq API Key",
-		"groqApiKey": "Groq API Key",
-		"getGeminiApiKey": "Get Gemini API Key",
-		"openAiApiKey": "OpenAI API Key",
-		"apiKey": "API Key",
-		"openAiBaseUrl": "Base URL",
-		"getOpenAiApiKey": "Get OpenAI API Key",
-		"mistralApiKey": "Mistral API Key",
-		"getMistralApiKey": "Get Mistral / Codestral API Key",
-		"codestralBaseUrl": "Codestral Base URL (Optional)",
-		"codestralBaseUrlDesc": "Set an alternative URL for the Codestral model.",
-		"xaiApiKey": "xAI API Key",
-		"getXaiApiKey": "Get xAI API Key",
-		"litellmApiKey": "LiteLLM API Key",
-		"litellmBaseUrl": "LiteLLM Base URL",
-		"awsCredentials": "AWS Credentials",
-		"awsProfile": "AWS Profile",
-		"awsProfileName": "AWS Profile Name",
-		"awsAccessKey": "AWS Access Key",
-		"awsSecretKey": "AWS Secret Key",
-		"awsSessionToken": "AWS Session Token",
-		"awsRegion": "AWS Region",
-		"awsCrossRegion": "Use cross-region inference",
+		"getRequestyApiKey": "รับคีย์ API ของ Requesty",
+		"openRouterTransformsText": "บีบอัดพรอมต์และสายข้อความให้มีขนาดบริบท (<a>OpenRouter Transforms</a>)",
+		"anthropicApiKey": "คีย์ API ของ Anthropic",
+		"getAnthropicApiKey": "รับคีย์ API ของ Anthropic",
+		"anthropicUseAuthToken": "ส่งคีย์ API ของ Anthropic เป็นส่วนหัว Authorization แทน X-Api-Key",
+		"chutesApiKey": "คีย์ API ของ Chutes",
+		"getChutesApiKey": "รับคีย์ API ของ Chutes",
+		"deepSeekApiKey": "คีย์ API ของ DeepSeek",
+		"getDeepSeekApiKey": "รับคีย์ API ของ DeepSeek",
+		"geminiApiKey": "คีย์ API ของ Gemini",
+		"getGroqApiKey": "รับคีย์ API ของ Groq",
+		"groqApiKey": "คีย์ API ของ Groq",
+		"getGeminiApiKey": "รับคีย์ API ของ Gemini",
+		"openAiApiKey": "คีย์ API ของ OpenAI",
+		"apiKey": "คีย์ API",
+		"openAiBaseUrl": "URL พื้นฐาน",
+		"getOpenAiApiKey": "รับคีย์ API ของ OpenAI",
+		"mistralApiKey": "คีย์ API ของ Mistral",
+		"getMistralApiKey": "รับคีย์ API ของ Mistral / Codestral",
+		"codestralBaseUrl": "URL พื้นฐานของ Codestral (ไม่บังคับ)",
+		"codestralBaseUrlDesc": "ตั้งค่า URL ทางเลือกสำหรับโมเดล Codestral",
+		"xaiApiKey": "คีย์ API ของ xAI",
+		"getXaiApiKey": "รับคีย์ API ของ xAI",
+		"litellmApiKey": "คีย์ API ของ LiteLLM",
+		"litellmBaseUrl": "URL พื้นฐานของ LiteLLM",
+		"awsCredentials": "ข้อมูลรับรอง AWS",
+		"awsProfile": "โปรไฟล์ AWS",
+		"awsProfileName": "ชื่อโปรไฟล์ AWS",
+		"awsAccessKey": "คีย์การเข้าถึง AWS",
+		"awsSecretKey": "คีย์ลับ AWS",
+		"awsSessionToken": "โทเค็นเซสชัน AWS",
+		"awsRegion": "ภูมิภาค AWS",
+		"awsCrossRegion": "ใช้การอนุมานข้ามภูมิภาค",
 		"awsBedrockVpc": {
-			"useCustomVpcEndpoint": "Use custom VPC endpoint",
-			"vpcEndpointUrlPlaceholder": "Enter VPC Endpoint URL (optional)",
-			"examples": "Examples:"
+			"useCustomVpcEndpoint": "ใช้ปลายทาง VPC ที่กำหนดเอง",
+			"vpcEndpointUrlPlaceholder": "ป้อน URL ปลายทาง VPC (ไม่บังคับ)",
+			"examples": "ตัวอย่าง:"
 		},
-		"enablePromptCaching": "Enable prompt caching",
-		"enablePromptCachingTitle": "Enable prompt caching to improve performance and reduce costs for supported models.",
-		"cacheUsageNote": "Note: If you don't see cache usage, try selecting a different model and then selecting your desired model again.",
-		"vscodeLmModel": "Language Model",
-		"vscodeLmWarning": "Note: This is a very experimental integration and provider support will vary. If you get an error about a model not being supported, that's an issue on the provider's end.",
+		"enablePromptCaching": "เปิดใช้งานการแคชพรอมต์",
+		"enablePromptCachingTitle": "เปิดใช้งานการแคชพรอมต์เพื่อปรับปรุงประสิทธิภาพและลดค่าใช้จ่ายสำหรับโมเดลที่รองรับ",
+		"cacheUsageNote": "หมายเหตุ: หากคุณไม่เห็นการใช้งานแคช ให้ลองเลือกโมเดลอื่นแล้วเลือกโมเดลที่คุณต้องการอีกครั้ง",
+		"vscodeLmModel": "โมเดลภาษา",
+		"vscodeLmWarning": "หมายเหตุ: นี่เป็นการผสานรวมที่ทดลองมากและการสนับสนุนจากผู้ให้บริการจะแตกต่างกันไป หากคุณได้รับข้อผิดพลาดเกี่ยวกับโมเดลที่ไม่รองรับ นั่นเป็นปัญหาจากฝั่งผู้ให้บริการ",
 		"googleCloudSetup": {
-			"title": "To use Google Cloud Vertex AI, you need to:",
-			"step1": "1. Create a Google Cloud account, enable the Vertex AI API & enable the desired Claude models.",
-			"step2": "2. Install the Google Cloud CLI & configure application default credentials.",
-			"step3": "3. Or create a service account with credentials."
+			"title": "ในการใช้ Google Cloud Vertex AI คุณต้อง:",
+			"step1": "1. สร้างบัญชี Google Cloud เปิดใช้งาน Vertex AI API และเปิดใช้งานโมเดล Claude ที่ต้องการ",
+			"step2": "2. ติดตั้ง Google Cloud CLI และกำหนดค่าข้อมูลรับรองเริ่มต้นของแอปพลิเคชัน",
+			"step3": "3. หรือสร้างบัญชีบริการพร้อมข้อมูลรับรอง"
 		},
-		"googleCloudCredentials": "Google Cloud Credentials",
-		"googleCloudKeyFile": "Google Cloud Key File Path",
-		"googleCloudProjectId": "Google Cloud Project ID",
-		"googleCloudRegion": "Google Cloud Region",
+		"googleCloudCredentials": "ข้อมูลรับรอง Google Cloud",
+		"googleCloudKeyFile": "เส้นทางไฟล์คีย์ Google Cloud",
+		"googleCloudProjectId": "รหัสโปรเจ็กต์ Google Cloud",
+		"googleCloudRegion": "ภูมิภาค Google Cloud",
 		"lmStudio": {
-			"baseUrl": "Base URL (optional)",
-			"modelId": "Model ID",
-			"speculativeDecoding": "Enable Speculative Decoding",
-			"draftModelId": "Draft Model ID",
-			"draftModelDesc": "Draft model must be from the same model family for speculative decoding to work correctly.",
-			"selectDraftModel": "Select Draft Model",
-			"noModelsFound": "No draft models found. Please ensure LM Studio is running with Server Mode enabled.",
-			"description": "LM Studio allows you to run models locally on your computer. For instructions on how to get started, see their <a>quickstart guide</a>. You will also need to start LM Studio's <b>local server</b> feature to use it with this extension. <span>Note:</span> Kilo Code uses complex prompts and works best with Claude models. Less capable models may not work as expected."
+			"baseUrl": "URL พื้นฐาน (ไม่บังคับ)",
+			"modelId": "รหัสโมเดล",
+			"speculativeDecoding": "เปิดใช้งานการถอดรหัสเชิงคาดเดา",
+			"draftModelId": "รหัสโมเดลร่าง",
+			"draftModelDesc": "โมเดลร่างต้องมาจากตระกูลโมเดลเดียวกันเพื่อให้การถอดรหัสเชิงคาดเดาทำงานได้อย่างถูกต้อง",
+			"selectDraftModel": "เลือกโมเดลร่าง",
+			"noModelsFound": "ไม่พบโมเดลร่าง โปรดตรวจสอบให้แน่ใจว่า LM Studio กำลังทำงานโดยเปิดใช้งานโหมดเซิร์ฟเวอร์",
+			"description": "LM Studio ช่วยให้คุณสามารถรันโมเดลในเครื่องคอมพิวเตอร์ของคุณได้ สำหรับคำแนะนำเกี่ยวกับวิธีเริ่มต้น โปรดดู<a>คำแนะนำเริ่มต้นอย่างรวดเร็ว</a>ของพวกเขา คุณจะต้องเริ่มคุณสมบัติ<b>เซิร์ฟเวอร์ในเครื่อง</b>ของ LM Studio เพื่อใช้กับส่วนขยายนี้ <span>หมายเหตุ:</span> Kilo Code ใช้พรอมต์ที่ซับซ้อนและทำงานได้ดีที่สุดกับโมเดล Claude โมเดลที่มีความสามารถน้อยกว่าอาจทำงานไม่เป็นไปตามที่คาดไว้"
 		},
 		"ollama": {
-			"baseUrl": "Base URL (optional)",
-			"modelId": "Model ID",
-			"description": "Ollama allows you to run models locally on your computer. For instructions on how to get started, see their quickstart guide.",
-			"warning": "Note: Kilo Code uses complex prompts and works best with Claude models. Less capable models may not work as expected."
+			"baseUrl": "URL พื้นฐาน (ไม่บังคับ)",
+			"modelId": "รหัสโมเดล",
+			"description": "Ollama ช่วยให้คุณสามารถรันโมเดลในเครื่องคอมพิวเตอร์ของคุณได้ สำหรับคำแนะนำเกี่ยวกับวิธีเริ่มต้น โปรดดูคำแนะนำเริ่มต้นอย่างรวดเร็วของพวกเขา",
+			"warning": "หมายเหตุ: Kilo Code ใช้พรอมต์ที่ซับซ้อนและทำงานได้ดีที่สุดกับโมเดล Claude โมเดลที่มีความสามารถน้อยกว่าอาจทำงานไม่เป็นไปตามที่คาดไว้"
 		},
-		"unboundApiKey": "Unbound API Key",
-		"getUnboundApiKey": "Get Unbound API Key",
-		"unboundRefreshModelsSuccess": "Models list updated! You can now select from the latest models.",
-		"unboundInvalidApiKey": "Invalid API key. Please check your API key and try again.",
+		"unboundApiKey": "คีย์ API ของ Unbound",
+		"getUnboundApiKey": "รับคีย์ API ของ Unbound",
+		"unboundRefreshModelsSuccess": "อัปเดตรายการโมเดลแล้ว! ตอนนี้คุณสามารถเลือกจากโมเดลล่าสุดได้",
+		"unboundInvalidApiKey": "คีย์ API ไม่ถูกต้อง โปรดตรวจสอบคีย์ API ของคุณแล้วลองอีกครั้ง",
 		"humanRelay": {
-			"description": "No API key is required, but the user needs to help copy and paste the information to the web chat AI.",
-			"instructions": "During use, a dialog box will pop up and the current message will be copied to the clipboard automatically. You need to paste these to web versions of AI (such as ChatGPT or Claude), then copy the AI's reply back to the dialog box and click the confirm button."
+			"description": "ไม่จำเป็นต้องใช้คีย์ API แต่ผู้ใช้ต้องช่วยคัดลอกและวางข้อมูลไปยัง AI แชทบนเว็บ",
+			"instructions": "ระหว่างการใช้งาน กล่องโต้ตอบจะปรากฏขึ้นและข้อความปัจจุบันจะถูกคัดลอกไปยังคลิปบอร์ดโดยอัตโนมัติ คุณต้องวางข้อความเหล่านี้ไปยังเวอร์ชันเว็บของ AI (เช่น ChatGPT หรือ Claude) จากนั้นคัดลอกการตอบกลับของ AI กลับไปยังกล่องโต้ตอบและคลิกปุ่มยืนยัน"
 		},
 		"openRouter": {
 			"providerRouting": {
-				"title": "OpenRouter Provider Routing",
-				"description": "OpenRouter routes requests to the best available providers for your model. By default, requests are load balanced across the top providers to maximize uptime. However, you can choose a specific provider to use for this model.",
-				"learnMore": "Learn more about provider routing"
+				"title": "การกำหนดเส้นทางผู้ให้บริการ OpenRouter",
+				"description": "OpenRouter กำหนดเส้นทางการร้องขอไปยังผู้ให้บริการที่ดีที่สุดสำหรับโมเดลของคุณ โดยค่าเริ่มต้น การร้องขอจะถูกกระจายโหลดไปยังผู้ให้บริการชั้นนำเพื่อเพิ่มเวลาทำงานสูงสุด อย่างไรก็ตาม คุณสามารถเลือกผู้ให้บริการเฉพาะเพื่อใช้สำหรับโมเดลนี้ได้",
+				"learnMore": "เรียนรู้เพิ่มเติมเกี่ยวกับการกำหนดเส้นทางผู้ให้บริการ"
 			}
 		},
 		"cerebras": {
-			"apiKey": "Cerebras API Key",
-			"getApiKey": "Get Cerebras API Key"
+			"apiKey": "คีย์ API ของ Cerebras",
+			"getApiKey": "รับคีย์ API ของ Cerebras"
 		},
 		"customModel": {
-			"capabilities": "Configure the capabilities and pricing for your custom OpenAI-compatible model. Be careful when specifying the model capabilities, as they can affect how Kilo Code performs.",
+			"capabilities": "กำหนดค่าความสามารถและราคาสำหรับโมเดลที่เข้ากันได้กับ OpenAI ที่กำหนดเองของคุณ ระมัดระวังในการระบุความสามารถของโมเดล เนื่องจากอาจส่งผลต่อประสิทธิภาพของ Kilo Code",
 			"maxTokens": {
-				"label": "Max Output Tokens",
-				"description": "Maximum number of tokens the model can generate in a response. (Specify -1 to allow the server to set the max tokens.)"
+				"label": "โทเค็นเอาต์พุตสูงสุด",
+				"description": "จำนวนโทเค็นสูงสุดที่โมเดลสามารถสร้างได้ในการตอบสนอง (ระบุ -1 เพื่อให้เซิร์ฟเวอร์ตั้งค่าโทเค็นสูงสุด)"
 			},
 			"contextWindow": {
-				"label": "Context Window Size",
-				"description": "Total tokens (input + output) the model can process."
+				"label": "ขนาดหน้าต่างบริบท",
+				"description": "โทเค็นทั้งหมด (อินพุต + เอาต์พุต) ที่โมเดลสามารถประมวลผลได้"
 			},
 			"imageSupport": {
-				"label": "Image Support",
-				"description": "Is this model capable of processing and understanding images?"
+				"label": "รองรับรูปภาพ",
+				"description": "โมเดลนี้สามารถประมวลผลและทำความเข้าใจรูปภาพได้หรือไม่?"
 			},
 			"computerUse": {
-				"label": "Computer Use",
-				"description": "Is this model capable of interacting with a browser? (e.g. Claude 3.7 Sonnet)."
+				"label": "การใช้งานคอมพิวเตอร์",
+				"description": "โมเดลนี้สามารถโต้ตอบกับเบราว์เซอร์ได้หรือไม่ (เช่น Claude 3.7 Sonnet)"
 			},
 			"promptCache": {
-				"label": "Prompt Caching",
-				"description": "Is this model capable of caching prompts?"
+				"label": "การแคชพรอมต์",
+				"description": "โมเดลนี้สามารถแคชพรอมต์ได้หรือไม่?"
 			},
 			"pricing": {
 				"input": {
-					"label": "Input Price",
-					"description": "Cost per million tokens in the input/prompt. This affects the cost of sending context and instructions to the model."
+					"label": "ราคาอินพุต",
+					"description": "ค่าใช้จ่ายต่อล้านโทเค็นในอินพุต/พรอมต์ ซึ่งส่งผลต่อค่าใช้จ่ายในการส่งบริบทและคำแนะนำไปยังโมเดล"
 				},
 				"output": {
-					"label": "Output Price",
-					"description": "Cost per million tokens in the model's response. This affects the cost of generated content and completions."
+					"label": "ราคาเอาต์พุต",
+					"description": "ค่าใช้จ่ายต่อล้านโทเค็นในการตอบสนองของโมเดล ซึ่งส่งผลต่อค่าใช้จ่ายของเนื้อหาและการเติมเต็มที่สร้างขึ้น"
 				},
 				"cacheReads": {
-					"label": "Cache Reads Price",
-					"description": "Cost per million tokens for reading from the cache. This is the price charged when a cached response is retrieved."
+					"label": "ราคาการอ่านแคช",
+					"description": "ค่าใช้จ่ายต่อล้านโทเค็นสำหรับการอ่านจากแคช นี่คือราคาที่เรียกเก็บเมื่อมีการดึงการตอบสนองที่แคชไว้"
 				},
 				"cacheWrites": {
-					"label": "Cache Writes Price",
-					"description": "Cost per million tokens for writing to the cache. This is the price charged when a prompt is cached for the first time."
+					"label": "ราคาการเขียนแคช",
+					"description": "ค่าใช้จ่ายต่อล้านโทเค็นสำหรับการเขียนไปยังแคช นี่คือราคาที่เรียกเก็บเมื่อมีการแคชพรอมต์เป็นครั้งแรก"
 				}
 			},
-			"resetDefaults": "Reset to Defaults"
+			"resetDefaults": "รีเซ็ตเป็นค่าเริ่มต้น"
 		},
 		"rateLimitSeconds": {
-			"label": "Rate limit",
-			"description": "Minimum time between API requests."
+			"label": "ขีดจำกัดอัตรา",
+			"description": "เวลาน้อยที่สุดระหว่างการร้องขอ API"
 		},
 		"reasoningEffort": {
-			"label": "Model Reasoning Effort",
-			"high": "High",
-			"medium": "Medium",
-			"low": "Low"
+			"label": "ความพยายามในการให้เหตุผลของโมเดล",
+			"high": "สูง",
+			"medium": "ปานกลาง",
+			"low": "ต่ำ"
 		},
-		"setReasoningLevel": "Enable Reasoning Effort",
+		"setReasoningLevel": "เปิดใช้งานความพยายามในการให้เหตุผล",
 		"claudeCode": {
-			"pathLabel": "Claude Code Path",
-			"description": "Optional path to your Claude Code CLI. Defaults to 'claude' if not set.",
-			"placeholder": "Default: claude"
+			"pathLabel": "เส้นทาง Claude Code",
+			"description": "เส้นทางที่ไม่บังคับไปยัง Claude Code CLI ของคุณ ค่าเริ่มต้นคือ 'claude' หากไม่ได้ตั้งค่า",
+			"placeholder": "ค่าเริ่มต้น: claude"
 		}
 	},
 	"browser": {
 		"enable": {
-			"label": "Enable browser tool",
-			"description": "When enabled, Kilo Code can use a browser to interact with websites when using models that support computer use. <0>Learn more</0>"
+			"label": "เปิดใช้งานเครื่องมือเบราว์เซอร์",
+			"description": "เมื่อเปิดใช้งาน Kilo Code สามารถใช้เบราว์เซอร์เพื่อโต้ตอบกับเว็บไซต์เมื่อใช้โมเดลที่รองรับการใช้งานคอมพิวเตอร์ <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"viewport": {
-			"label": "Viewport size",
-			"description": "Select the viewport size for browser interactions. This affects how websites are displayed and interacted with.",
+			"label": "ขนาดวิวพอร์ต",
+			"description": "เลือกขนาดวิวพอร์ตสำหรับการโต้ตอบกับเบราว์เซอร์ ซึ่งส่งผลต่อการแสดงผลและการโต้ตอบกับเว็บไซต์",
 			"options": {
-				"largeDesktop": "Large Desktop (1280x800)",
-				"smallDesktop": "Small Desktop (900x600)",
-				"tablet": "Tablet (768x1024)",
-				"mobile": "Mobile (360x640)"
+				"largeDesktop": "เดสก์ท็อปขนาดใหญ่ (1280x800)",
+				"smallDesktop": "เดสก์ท็อปขนาดเล็ก (900x600)",
+				"tablet": "แท็บเล็ต (768x1024)",
+				"mobile": "มือถือ (360x640)"
 			}
 		},
 		"screenshotQuality": {
-			"label": "Screenshot quality",
-			"description": "Adjust the WebP quality of browser screenshots. Higher values provide clearer screenshots but increase token usage."
+			"label": "คุณภาพของภาพหน้าจอ",
+			"description": "ปรับคุณภาพ WebP ของภาพหน้าจอเบราว์เซอร์ ค่าที่สูงขึ้นจะให้ภาพหน้าจอที่ชัดเจนขึ้น แต่จะเพิ่มการใช้โทเค็น"
 		},
 		"remote": {
-			"label": "Use remote browser connection",
-			"description": "Connect to a Chrome browser running with remote debugging enabled (--remote-debugging-port=9222).",
-			"urlPlaceholder": "Custom URL (e.g., http://localhost:9222)",
-			"testButton": "Test Connection",
-			"testingButton": "Testing...",
-			"instructions": "Enter the DevTools Protocol host address or leave empty to auto-discover Chrome local instances. The Test Connection button will try the custom URL if provided, or auto-discover if the field is empty."
+			"label": "ใช้การเชื่อมต่อเบราว์เซอร์ระยะไกล",
+			"description": "เชื่อมต่อกับเบราว์เซอร์ Chrome ที่ทำงานโดยเปิดใช้งานการแก้ไขข้อบกพร่องระยะไกล (--remote-debugging-port=9222)",
+			"urlPlaceholder": "URL ที่กำหนดเอง (เช่น http://localhost:9222)",
+			"testButton": "ทดสอบการเชื่อมต่อ",
+			"testingButton": "กำลังทดสอบ...",
+			"instructions": "ป้อนที่อยู่โฮสต์ DevTools Protocol หรือเว้นว่างไว้เพื่อค้นหาอินสแตนซ์ในเครื่องของ Chrome โดยอัตโนมัติ ปุ่มทดสอบการเชื่อมต่อจะลอง URL ที่กำหนดเองหากมีให้ หรือค้นหาโดยอัตโนมัติหากฟิลด์ว่างเปล่า"
 		}
 	},
 	"checkpoints": {
 		"enable": {
-			"label": "Enable automatic checkpoints",
-			"description": "When enabled, Kilo Code will automatically create checkpoints during task execution, making it easy to review changes or revert to earlier states. <0>Learn more</0>"
+			"label": "เปิดใช้งานจุดตรวจสอบอัตโนมัติ",
+			"description": "เมื่อเปิดใช้งาน Kilo Code จะสร้างจุดตรวจสอบโดยอัตโนมัติระหว่างการทำงาน ทำให้ง่ายต่อการตรวจสอบการเปลี่ยนแปลงหรือย้อนกลับไปยังสถานะก่อนหน้า <0>เรียนรู้เพิ่มเติม</0>"
 		}
 	},
 	"display": {
 		"taskTimeline": {
-			"label": "Show task timeline",
-			"description": "Display a visual timeline of task messages, colorized by type, allowing you to quickly view task progress and scroll back to specific points in the task's history."
+			"label": "แสดงไทม์ไลน์ของงาน",
+			"description": "แสดงไทม์ไลน์ภาพของข้อความงาน โดยมีสีตามประเภท ช่วยให้คุณสามารถดูความคืบหน้าของงานได้อย่างรวดเร็วและเลื่อนกลับไปยังจุดเฉพาะในประวัติของงาน"
 		}
 	},
 	"notifications": {
 		"sound": {
-			"label": "Enable sound effects",
-			"description": "When enabled, Kilo Code will play sound effects for notifications and events.",
-			"volumeLabel": "Volume"
+			"label": "เปิดใช้งานเอฟเฟกต์เสียง",
+			"description": "เมื่อเปิดใช้งาน Kilo Code จะเล่นเอฟเฟกต์เสียงสำหรับการแจ้งเตือนและเหตุการณ์",
+			"volumeLabel": "ระดับเสียง"
 		},
 		"tts": {
-			"label": "Enable text-to-speech",
-			"description": "When enabled, Kilo Code will read aloud its responses using text-to-speech.",
-			"speedLabel": "Speed"
+			"label": "เปิดใช้งานการอ่านออกเสียงข้อความ",
+			"description": "เมื่อเปิดใช้งาน Kilo Code จะอ่านออกเสียงการตอบกลับโดยใช้การอ่านออกเสียงข้อความ",
+			"speedLabel": "ความเร็ว"
 		}
 	},
 	"contextManagement": {
-		"description": "Control what information is included in the AI's context window, affecting token usage and response quality",
+		"description": "ควบคุมข้อมูลที่รวมอยู่ในหน้าต่างบริบทของ AI ซึ่งส่งผลต่อการใช้โทเค็นและคุณภาพการตอบกลับ",
 		"autoCondenseContextPercent": {
-			"label": "Threshold to trigger intelligent context condensing",
-			"description": "When the context window reaches this threshold, Kilo Code will automatically condense it."
+			"label": "เกณฑ์ในการกระตุ้นการย่อบริบทอย่างชาญฉลาด",
+			"description": "เมื่อหน้าต่างบริบทถึงเกณฑ์นี้ Kilo Code จะย่อโดยอัตโนมัติ"
 		},
 		"condensingApiConfiguration": {
-			"label": "API Configuration for Context Condensing",
-			"description": "Select which API configuration to use for context condensing operations. Leave unselected to use the current active configuration.",
-			"useCurrentConfig": "Default"
+			"label": "การกำหนดค่า API สำหรับการย่อบริบท",
+			"description": "เลือกการกำหนดค่า API ที่จะใช้สำหรับการดำเนินการย่อบริบท เว้นว่างไว้เพื่อใช้การกำหนดค่าที่ใช้งานอยู่ในปัจจุบัน",
+			"useCurrentConfig": "ค่าเริ่มต้น"
 		},
 		"customCondensingPrompt": {
-			"label": "Custom Context Condensing Prompt",
-			"description": "Customize the system prompt used for context condensing. Leave empty to use the default prompt.",
-			"placeholder": "Enter your custom condensing prompt here...\n\nYou can use the same structure as the default prompt:\n- Previous Conversation\n- Current Work\n- Key Technical Concepts\n- Relevant Files and Code\n- Problem Solving\n- Pending Tasks and Next Steps",
-			"reset": "Reset to Default",
-			"hint": "Empty = use default prompt"
+			"label": "พรอมต์การย่อบริบทที่กำหนดเอง",
+			"description": "ปรับแต่งพรอมต์ระบบที่ใช้สำหรับการย่อบริบท เว้นว่างไว้เพื่อใช้พรอมต์เริ่มต้น",
+			"placeholder": "ป้อนพรอมต์การย่อที่กำหนดเองของคุณที่นี่...\n\nคุณสามารถใช้โครงสร้างเดียวกับพรอมต์เริ่มต้น:\n- การสนทนาก่อนหน้า\n- งานปัจจุบัน\n- แนวคิดทางเทคนิคที่สำคัญ\n- ไฟล์และโค้ดที่เกี่ยวข้อง\n- การแก้ปัญหา\n- งานที่ค้างอยู่และขั้นตอนถัดไป",
+			"reset": "รีเซ็ตเป็นค่าเริ่มต้น",
+			"hint": "ว่าง = ใช้พรอมต์เริ่มต้น"
 		},
 		"autoCondenseContext": {
-			"name": "Automatically trigger intelligent context condensing",
-			"description": "When enabled, Roo will automatically condense the context when the threshold is reached. When disabled, you can still manually trigger context condensing."
+			"name": "กระตุ้นการย่อบริบทอย่างชาญฉลาดโดยอัตโนมัติ",
+			"description": "เมื่อเปิดใช้งาน Roo จะย่อบริบทโดยอัตโนมัติเมื่อถึงเกณฑ์ เมื่อปิดใช้งาน คุณยังคงสามารถกระตุ้นการย่อบริบทด้วยตนเองได้"
 		},
 		"openTabs": {
-			"label": "Open tabs context limit",
-			"description": "Maximum number of VSCode open tabs to include in context. Higher values provide more context but increase token usage."
+			"label": "ขีดจำกัดบริบทของแท็บที่เปิดอยู่",
+			"description": "จำนวนสูงสุดของแท็บที่เปิดอยู่ใน VSCode ที่จะรวมไว้ในบริบท ค่าที่สูงขึ้นจะให้บริบทมากขึ้น แต่จะเพิ่มการใช้โทเค็น"
 		},
 		"workspaceFiles": {
-			"label": "Workspace files context limit",
-			"description": "Maximum number of files to include in current working directory details. Higher values provide more context but increase token usage."
+			"label": "ขีดจำกัดบริบทของไฟล์ในพื้นที่ทำงาน",
+			"description": "จำนวนไฟล์สูงสุดที่จะรวมไว้ในรายละเอียดไดเรกทอรีการทำงานปัจจุบัน ค่าที่สูงขึ้นจะให้บริบทมากขึ้น แต่จะเพิ่มการใช้โทเค็น"
 		},
 		"rooignore": {
-			"label": "Show .kilocodeignore'd files in lists and searches",
-			"description": "When enabled, files matching patterns in .kilocodeignore will be shown in lists with a lock symbol. When disabled, these files will be completely hidden from file lists and searches."
+			"label": "แสดงไฟล์ที่ถูก .kilocodeignore ในรายการและการค้นหา",
+			"description": "เมื่อเปิดใช้งาน ไฟล์ที่ตรงกับรูปแบบใน .kilocodeignore จะแสดงในรายการพร้อมสัญลักษณ์ล็อก เมื่อปิดใช้งาน ไฟล์เหล่านี้จะถูกซ่อนอย่างสมบูรณ์จากรายการไฟล์และการค้นหา"
 		},
 		"maxConcurrentFileReads": {
-			"label": "Concurrent file reads limit",
-			"description": "Maximum number of files the 'read_file' tool can process concurrently. Higher values may speed up reading multiple small files but increase memory usage."
+			"label": "ขีดจำกัดการอ่านไฟล์พร้อมกัน",
+			"description": "จำนวนไฟล์สูงสุดที่เครื่องมือ 'read_file' สามารถประมวลผลพร้อมกันได้ ค่าที่สูงขึ้นอาจเร่งความเร็วในการอ่านไฟล์ขนาดเล็กหลายไฟล์ แต่จะเพิ่มการใช้หน่วยความจำ"
 		},
 		"maxReadFile": {
-			"label": "File read auto-truncate threshold",
-			"description": "Kilo Code reads this number of lines when the model omits start/end values. If this number is less than the file's total, Kilo Code generates a line number index of code definitions. Special cases: -1 instructs Kilo Code to read the entire file (without indexing), and 0 instructs it to read no lines and provides line indexes only for minimal context. Lower values minimize initial context usage, enabling precise subsequent line-range reads. Explicit start/end requests are not limited by this setting.",
-			"lines": "lines",
-			"always_full_read": "Always read entire file"
+			"label": "เกณฑ์การตัดทอนการอ่านไฟล์อัตโนมัติ",
+			"description": "Kilo Code อ่านจำนวนบรรทัดนี้เมื่อโมเดลละเว้นค่าเริ่มต้น/สิ้นสุด หากจำนวนนี้ น้อยกว่าจำนวนบรรทัดทั้งหมดของไฟล์ Kilo Code จะสร้างดัชนีหมายเลขบรรทัดของคำจำกัดความของโค้ด กรณีพิเศษ: -1 สั่งให้ Kilo Code อ่านทั้งไฟล์ (โดยไม่มีการสร้างดัชนี) และ 0 สั่งให้อ่านศูนย์บรรทัดและให้ดัชนีบรรทัดสำหรับบริบทน้อยที่สุดเท่านั้น ค่าที่ต่ำกว่าจะลดการใช้บริบทเริ่มต้น ทำให้สามารถอ่านช่วงบรรทัดที่แม่นยำในภายหลังได้ การร้องขอเริ่มต้น/สิ้นสุดที่ชัดเจนจะไม่ถูกจำกัดโดยการตั้งค่านี้",
+			"lines": "บรรทัด",
+			"always_full_read": "อ่านทั้งไฟล์เสมอ"
 		},
 		"condensingThreshold": {
-			"label": "Condensing Trigger Threshold",
-			"selectProfile": "Configure threshold for profile",
-			"defaultProfile": "Global Default (all profiles)",
-			"defaultDescription": "When context reaches this percentage, it will be automatically condensed for all profiles unless they have custom settings",
-			"profileDescription": "Custom threshold for this profile only (overrides global default)",
-			"inheritDescription": "This profile inherits the global default threshold ({{threshold}}%)",
-			"usesGlobal": "(uses global {{threshold}}%)"
+			"label": "เกณฑ์การกระตุ้นการย่อ",
+			"selectProfile": "กำหนดค่าเกณฑ์สำหรับโปรไฟล์",
+			"defaultProfile": "ค่าเริ่มต้นสากล (ทุกโปรไฟล์)",
+			"defaultDescription": "เมื่อบริบทถึงเปอร์เซ็นต์นี้ จะถูกย่อโดยอัตโนมัติสำหรับทุกโปรไฟล์ เว้นแต่จะมีการตั้งค่าที่กำหนดเอง",
+			"profileDescription": "เกณฑ์ที่กำหนดเองสำหรับโปรไฟล์นี้เท่านั้น (แทนที่ค่าเริ่มต้นสากล)",
+			"inheritDescription": "โปรไฟล์นี้สืบทอดเกณฑ์เริ่มต้นสากล ({{threshold}}%)",
+			"usesGlobal": "(ใช้ค่าสากล {{threshold}}%)"
 		}
 	},
 	"terminal": {
 		"basic": {
-			"label": "Terminal Settings: Basic",
-			"description": "Basic terminal settings"
+			"label": "การตั้งค่าเทอร์มินัล: พื้นฐาน",
+			"description": "การตั้งค่าเทอร์มินัลพื้นฐาน"
 		},
 		"advanced": {
-			"label": "Terminal Settings: Advanced",
-			"description": "The following options may require a terminal restart to apply the setting."
+			"label": "การตั้งค่าเทอร์มินัล: ขั้นสูง",
+			"description": "ตัวเลือกต่อไปนี้อาจต้องรีสตาร์ทเทอร์มินัลเพื่อใช้การตั้งค่า"
 		},
 		"outputLineLimit": {
-			"label": "Terminal output limit",
-			"description": "Maximum number of lines to include in terminal output when executing commands. When exceeded lines will be removed from the middle, saving tokens. <0>Learn more</0>"
+			"label": "ขีดจำกัดเอาต์พุตเทอร์มินัล",
+			"description": "จำนวนบรรทัดสูงสุดที่จะรวมไว้ในเอาต์พุตเทอร์มินัลเมื่อรันคำสั่ง เมื่อเกินจำนวนบรรทัดจะถูกลบออกจากตรงกลางเพื่อประหยัดโทเค็น <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"shellIntegrationTimeout": {
-			"label": "Terminal shell integration timeout",
-			"description": "Maximum time to wait for shell integration to initialize before executing commands. For users with long shell startup times, this value may need to be increased if you see \"Shell Integration Unavailable\" errors in the terminal. <0>Learn more</0>"
+			"label": "หมดเวลาการรวมเชลล์เทอร์มินัล",
+			"description": "เวลารอสูงสุดสำหรับการรวมเชลล์เพื่อเริ่มต้นก่อนรันคำสั่ง สำหรับผู้ใช้ที่มีเวลาเริ่มต้นเชลล์นาน อาจต้องเพิ่มค่านี้หากคุณเห็นข้อผิดพลาด \"การรวมเชลล์ไม่พร้อมใช้งาน\" ในเทอร์มินัล <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"shellIntegrationDisabled": {
-			"label": "Disable terminal shell integration",
-			"description": "Enable this if terminal commands aren't working correctly or you see 'Shell Integration Unavailable' errors. This uses a simpler method to run commands, bypassing some advanced terminal features. <0>Learn more</0>"
+			"label": "ปิดใช้งานการรวมเชลล์เทอร์มินัล",
+			"description": "เปิดใช้งานนี้หากคำสั่งเทอร์มินัลทำงานไม่ถูกต้อง หรือคุณเห็นข้อผิดพลาด 'การรวมเชลล์ไม่พร้อมใช้งาน' ซึ่งจะใช้วิธีที่ง่ายกว่าในการรันคำสั่ง โดยข้ามคุณสมบัติเทอร์มินัลขั้นสูงบางอย่าง <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"commandDelay": {
-			"label": "Terminal command delay",
-			"description": "Delay in milliseconds to add after command execution. The default setting of 0 disables the delay completely. This can help ensure command output is fully captured in terminals with timing issues. In most terminals it is implemented by setting `PROMPT_COMMAND='sleep N'` and Powershell appends `start-sleep` to the end of each command. Originally was workaround for VSCode bug#237208 and may not be needed. <0>Learn more</0>"
+			"label": "หน่วงเวลาคำสั่งเทอร์มินัล",
+			"description": "หน่วงเวลาเป็นมิลลิวินาทีที่จะเพิ่มหลังการรันคำสั่ง การตั้งค่าเริ่มต้นที่ 0 จะปิดใช้งานการหน่วงเวลาโดยสมบูรณ์ ซึ่งจะช่วยให้แน่ใจว่าเอาต์พุตคำสั่งถูกจับภาพได้อย่างสมบูรณ์ในเทอร์มินัลที่มีปัญหาเรื่องเวลา ในเทอร์มินัลส่วนใหญ่จะใช้โดยการตั้งค่า `PROMPT_COMMAND='sleep N'` และ Powershell จะเพิ่ม `start-sleep` ต่อท้ายแต่ละคำสั่ง เดิมทีเป็นวิธีแก้ปัญหาสำหรับข้อผิดพลาด VSCode#237208 และอาจไม่จำเป็นต้องใช้อีกต่อไป <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"compressProgressBar": {
-			"label": "Compress progress bar output",
-			"description": "When enabled, processes terminal output with carriage returns (\\r) to simulate how a real terminal would display content. This removes intermediate progress bar states, retaining only the final state, which conserves context space for more relevant information. <0>Learn more</0>"
+			"label": "บีบอัดเอาต์พุตแถบความคืบหน้า",
+			"description": "เมื่อเปิดใช้งาน จะประมวลผลเอาต์พุตเทอร์มินัลด้วยการคืนแคร่ตลับหมึก (\\r) เพื่อจำลองวิธีที่เทอร์มินัลจริงจะแสดงเนื้อหา ซึ่งจะลบสถานะแถบความคืบหน้ากลางออก เหลือเพียงสถานะสุดท้าย ซึ่งจะช่วยประหยัดพื้นที่บริบทสำหรับข้อมูลที่เกี่ยวข้องมากขึ้น <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"powershellCounter": {
-			"label": "Enable PowerShell counter workaround",
-			"description": "When enabled, adds a counter to PowerShell commands to ensure proper command execution. This helps with PowerShell terminals that might have issues with command output capture. <0>Learn more</0>"
+			"label": "เปิดใช้งานวิธีแก้ปัญหาตัวนับ PowerShell",
+			"description": "เมื่อเปิดใช้งาน จะเพิ่มตัวนับในคำสั่ง PowerShell เพื่อให้แน่ใจว่าการรันคำสั่งถูกต้อง ซึ่งจะช่วยแก้ปัญหาเทอร์มินัล PowerShell ที่อาจมีปัญหาเรื่องการจับภาพเอาต์พุตคำสั่ง <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"zshClearEolMark": {
-			"label": "Clear ZSH EOL mark",
-			"description": "When enabled, clears the ZSH end-of-line mark by setting PROMPT_EOL_MARK=''. This prevents issues with command output interpretation when output ends with special characters like '%'. <0>Learn more</0>"
+			"label": "ล้างเครื่องหมาย EOL ของ ZSH",
+			"description": "เมื่อเปิดใช้งาน จะล้างเครื่องหมายสิ้นสุดบรรทัดของ ZSH โดยการตั้งค่า PROMPT_EOL_MARK='' ซึ่งจะป้องกันปัญหาการตีความเอาต์พุตคำสั่งเมื่อเอาต์พุตลงท้ายด้วยอักขระพิเศษเช่น '%' <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"zshOhMy": {
-			"label": "Enable Oh My Zsh integration",
-			"description": "When enabled, sets ITERM_SHELL_INTEGRATION_INSTALLED=Yes to enable Oh My Zsh shell integration features. Applying this setting might require restarting the IDE. <0>Learn more</0>"
+			"label": "เปิดใช้งานการรวม Oh My Zsh",
+			"description": "เมื่อเปิดใช้งาน จะตั้งค่า ITERM_SHELL_INTEGRATION_INSTALLED=Yes เพื่อเปิดใช้งานคุณสมบัติการรวมเชลล์ Oh My Zsh การใช้การตั้งค่านี้อาจต้องรีสตาร์ท IDE <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"zshP10k": {
-			"label": "Enable Powerlevel10k integration",
-			"description": "When enabled, sets POWERLEVEL9K_TERM_SHELL_INTEGRATION=true to enable Powerlevel10k shell integration features. <0>Learn more</0>"
+			"label": "เปิดใช้งานการรวม Powerlevel10k",
+			"description": "เมื่อเปิดใช้งาน จะตั้งค่า POWERLEVEL9K_TERM_SHELL_INTEGRATION=true เพื่อเปิดใช้งานคุณสมบัติการรวมเชลล์ Powerlevel10k <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"zdotdir": {
-			"label": "Enable ZDOTDIR handling",
-			"description": "When enabled, creates a temporary directory for ZDOTDIR to handle zsh shell integration properly. This ensures VSCode shell integration works correctly with zsh while preserving your zsh configuration. <0>Learn more</0>"
+			"label": "เปิดใช้งานการจัดการ ZDOTDIR",
+			"description": "เมื่อเปิดใช้งาน จะสร้างไดเรกทอรีชั่วคราวสำหรับ ZDOTDIR เพื่อจัดการการรวมเชลล์ zsh อย่างถูกต้อง ซึ่งจะช่วยให้แน่ใจว่าการรวมเชลล์ VSCode ทำงานได้อย่างถูกต้องกับ zsh ในขณะที่ยังคงการกำหนดค่า zsh ของคุณไว้ <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"inheritEnv": {
-			"label": "Inherit environment variables",
-			"description": "When enabled, the terminal will inherit environment variables from VSCode's parent process, such as user-profile-defined shell integration settings. This directly toggles VSCode global setting `terminal.integrated.inheritEnv`. <0>Learn more</0>"
+			"label": "สืบทอดตัวแปรสภาพแวดล้อม",
+			"description": "เมื่อเปิดใช้งาน เทอร์มินัลจะสืบทอดตัวแปรสภาพแวดล้อมจากกระบวนการหลักของ VSCode เช่น การตั้งค่าการรวมเชลล์ที่กำหนดโดยโปรไฟล์ผู้ใช้ ซึ่งจะสลับการตั้งค่าส่วนกลางของ VSCode `terminal.integrated.inheritEnv` โดยตรง <0>เรียนรู้เพิ่มเติม</0>"
 		}
 	},
 	"advanced": {
 		"diff": {
-			"label": "Enable editing through diffs",
-			"description": "When enabled, Kilo Code will be able to edit files more quickly and will automatically reject truncated full-file writes. Works best with the latest Claude 4 Sonnet model.",
+			"label": "เปิดใช้งานการแก้ไขผ่าน diffs",
+			"description": "เมื่อเปิดใช้งาน Kilo Code จะสามารถแก้ไขไฟล์ได้เร็วขึ้นและจะปฏิเสธการเขียนไฟล์เต็มที่ถูกตัดทอนโดยอัตโนมัติ ทำงานได้ดีที่สุดกับโมเดล Claude 4 Sonnet ล่าสุด",
 			"strategy": {
-				"label": "Diff strategy",
+				"label": "กลยุทธ์ Diff",
 				"options": {
-					"standard": "Standard (Single block)",
-					"multiBlock": "Experimental: Multi-block diff",
-					"unified": "Experimental: Unified diff"
+					"standard": "มาตรฐาน (บล็อกเดียว)",
+					"multiBlock": "ทดลอง: diff หลายบล็อก",
+					"unified": "ทดลอง: diff แบบรวม"
 				},
 				"descriptions": {
-					"standard": "Standard diff strategy applies changes to a single code block at a time.",
-					"unified": "Unified diff strategy takes multiple approaches to applying diffs and chooses the best approach.",
-					"multiBlock": "Multi-block diff strategy allows updating multiple code blocks in a file in one request."
+					"standard": "กลยุทธ์ diff มาตรฐานจะใช้การเปลี่ยนแปลงกับบล็อกโค้ดทีละบล็อก",
+					"unified": "กลยุทธ์ diff แบบรวมจะใช้วิธีการต่างๆ ในการใช้ diffs และเลือกวิธีที่ดีที่สุด",
+					"multiBlock": "กลยุทธ์ diff หลายบล็อกช่วยให้อัปเดตบล็อกโค้ดหลายบล็อกในไฟล์เดียวได้ในคำขอเดียว"
 				}
 			},
 			"matchPrecision": {
-				"label": "Match precision",
-				"description": "This slider controls how precisely code sections must match when applying diffs. Lower values allow more flexible matching but increase the risk of incorrect replacements. Use values below 100% with extreme caution."
+				"label": "ความแม่นยำในการจับคู่"
 			}
 		}
 	},
 	"experimental": {
 		"DIFF_STRATEGY_UNIFIED": {
-			"name": "Use experimental unified diff strategy",
-			"description": "Enable the experimental unified diff strategy. This strategy might reduce the number of retries caused by model errors but may cause unexpected behavior or incorrect edits. Only enable if you understand the risks and are willing to carefully review all changes."
+			"label": "เปิดใช้งาน Unified diff",
+			"description": "กลยุทธ์ diff ทดลองอีกแบบหนึ่งที่เราจะพยายามแทนที่ด้วย multi-block diff ในอนาคต"
 		},
 		"SEARCH_AND_REPLACE": {
-			"name": "Use experimental search and replace tool",
-			"description": "Enable the experimental search and replace tool, allowing Kilo Code to replace multiple instances of a search term in one request."
+			"label": "เปิดใช้งานการค้นหาและแทนที่",
+			"description": "เพิ่มเครื่องมือ search_and_replace ที่สามารถใช้ regex ได้"
 		},
 		"INSERT_BLOCK": {
-			"name": "Use experimental insert content tool",
-			"description": "Enable the experimental insert content tool, allowing Kilo Code to insert content at specific line numbers without needing to create a diff."
+			"label": "เปิดใช้งาน Insert Block",
+			"description": "เพิ่มเครื่องมือ insert_content ที่สามารถแทรกบรรทัดลงในไฟล์ได้"
 		},
 		"POWER_STEERING": {
-			"name": "Use experimental \"power steering\" mode",
-			"description": "When enabled, Kilo Code will remind the model about the details of its current mode definition more frequently. This will lead to stronger adherence to role definitions and custom instructions, but will use more tokens per message."
+			"label": "เปิดใช้งาน Power Steering",
+			"description": "แจ้งให้แก้ไขโดยอัตโนมัติเมื่อตรวจพบปัญหา"
 		},
 		"AUTOCOMPLETE": {
-			"name": "Use experimental \"autocomplete\" feature",
-			"description": "When enabled, Kilo Code will provide inline code suggestions as you type. Requires Kilo Code API Provider."
+			"label": "เปิดใช้งานการเติมข้อความอัตโนมัติ (Alpha)",
+			"description": "เรียกใช้คำแนะนำขณะที่คุณพิมพ์ในตัวแก้ไข หมายเหตุ: ปัจจุบันใช้งานได้กับโมเดล Anthropic เท่านั้น"
 		},
 		"CONCURRENT_FILE_READS": {
-			"name": "Enable concurrent file reads",
-			"description": "When enabled, Kilo Code can read multiple files in a single request. When disabled, Kilo Code must read files one at a time. Disabling this can help when working with less capable models or when you want more control over file access."
+			"label": "เปิดใช้งานการอ่านไฟล์พร้อมกัน",
+			"description": "เร่งความเร็วในการอ่านไฟล์ขนาดเล็กหลายไฟล์ แต่เพิ่มการใช้หน่วยความจำ"
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
-			"name": "Use experimental multi block diff tool",
-			"description": "When enabled, Kilo Code will use multi block diff tool. This will try to update multiple code blocks in the file in one request."
+			"label": "เปิดใช้งานการค้นหาและแทนที่หลายรายการ",
+			"description": "เพิ่มการสนับสนุนสำหรับการดำเนินการค้นหา/แทนที่หลายรายการในการเรียกเครื่องมือครั้งเดียว"
 		},
 		"MARKETPLACE": {
-			"name": "Enable Marketplace",
-			"description": "When enabled, you can install MCPs and custom modes from the Marketplace."
+			"label": "เปิดใช้งาน Marketplace",
+			"description": "ค้นพบ แบ่งปัน และติดตั้งโหมด Kilo Code และเซิร์ฟเวอร์ MCP ที่กำหนดเอง"
 		},
 		"MULTI_FILE_APPLY_DIFF": {
-			"name": "Enable concurrent file edits",
-			"description": "When enabled, Kilo Code can edit multiple files in a single request. When disabled, Kilo Code must edit files one at a time. Disabling this can help when working with less capable models or when you want more control over file modifications."
+			"label": "เปิดใช้งานการใช้ diff หลายไฟล์ (Alpha)",
+			"description": "หมายเหตุ: การเปิดใช้งานคุณสมบัตินี้อาจทำให้ AI ล้มเหลวในงานขั้นสูง\n\nอนุญาตให้ apply_diff กำหนดเป้าหมายไฟล์หลายไฟล์ในการเรียกเครื่องมือครั้งเดียว ลดความล่าช้า แต่อาจส่งผลต่อประสิทธิภาพ"
 		}
 	},
 	"promptCaching": {
-		"label": "Disable prompt caching",
-		"description": "When checked, Kilo Code will not use prompt caching for this model."
+		"title": "การแคชพรอมต์",
+		"description": "การแคชพรอมต์จะเก็บผลลัพธ์จากพรอมต์ที่ใช้บ่อย ลดความล่าช้าและค่าใช้จ่าย API เมื่อมีการแคชพรอมต์ Kilo Code จะดึงคำตอบจากแคชอย่างรวดเร็วแทนที่จะส่งคำขอใหม่ไปยัง API ซึ่งจะช่วยปรับปรุงประสิทธิภาพสำหรับคำถามที่ซ้ำซากและประหยัดโทเค็น"
 	},
 	"temperature": {
-		"useCustom": "Use custom temperature",
-		"description": "Controls randomness in the model's responses.",
-		"rangeDescription": "Higher values make output more random, lower values make it more deterministic."
+		"label": "อุณหภูมิ",
+		"description": "ควบคุมความสุ่ม: ค่าที่ต่ำกว่าจะกำหนดผลลัพธ์ได้มากกว่า; ค่าที่สูงกว่าจะสร้างสรรค์มากขึ้น หมายเหตุ: ไม่ใช่ทุกโมเดลหรือผู้ให้บริการที่รองรับพารามิเตอร์นี้",
+		"high": "สูง",
+		"low": "ต่ำ"
 	},
 	"modelInfo": {
-		"supportsImages": "Supports images",
-		"noImages": "Does not support images",
-		"supportsComputerUse": "Supports computer use",
-		"noComputerUse": "Does not support computer use",
-		"supportsPromptCache": "Supports prompt caching",
-		"noPromptCache": "Does not support prompt caching",
-		"maxOutput": "Max output",
-		"inputPrice": "Input price",
-		"outputPrice": "Output price",
-		"cacheReadsPrice": "Cache reads price",
-		"cacheWritesPrice": "Cache writes price",
-		"enableStreaming": "Enable streaming",
-		"enableR1Format": "Enable R1 model parameters",
-		"enableR1FormatTips": "Must be enabled when using R1 models such as QWQ to prevent 400 errors",
-		"useAzure": "Use Azure",
-		"azureApiVersion": "Set Azure API version",
+		"context": "บริบท:",
+		"tokens": "โทเค็น",
+		"imageSupport": "รองรับรูปภาพ:",
+		"yes": "ใช่",
+		"no": "ไม่",
+		"pricing": "ราคา:",
+		"input": "อินพุต",
+		"output": "เอาต์พุต",
+		"perMillion": "ต่อ 1 ล้านโทเค็น",
 		"gemini": {
-			"freeRequests": "* Free up to {{count}} requests per minute. After that, billing depends on prompt size.",
-			"pricingDetails": "For more info, see pricing details.",
-			"billingEstimate": "* Billing is an estimate - exact cost depends on prompt size."
+			"safety": {
+				"label": "การตั้งค่าความปลอดภัย",
+				"description": "กำหนดค่าการตั้งค่าความปลอดภัยสำหรับโมเดล Gemini การตั้งค่าที่สูงขึ้นจะส่งผลให้เนื้อหาถูกบล็อกมากขึ้น",
+				"sexual": "เนื้อหาทางเพศที่โจ่งแจ้ง",
+				"hate": "ความเกลียดชัง",
+				"harassment": "การคุกคาม",
+				"dangerous": "อันตราย"
+			}
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "The extension automatically fetches the latest list of models available on <serviceLink>{{serviceName}}</serviceLink>. If you're unsure which model to choose, Kilo Code works best with <defaultModelLink>{{defaultModelId}}</defaultModelLink>. You can also try searching \"free\" for no-cost options currently available.",
-		"label": "Model",
-		"searchPlaceholder": "Search",
-		"noMatchFound": "No match found",
-		"useCustomModel": "Use custom: {{modelId}}"
+		"perMillionTokens": "ต่อ 1 ล้านโทเค็น",
+		"input": "I",
+		"output": "O",
+		"cacheRead": "CR",
+		"cacheWrite": "CW",
+		"tokens": "โทเค็น"
 	},
 	"footer": {
-		"feedback": "If you have any questions or feedback, feel free to open an issue at <githubLink>github.com/Kilo-Org/kilocode</githubLink> or join <redditLink>reddit.com/r/kilocode</redditLink> or <discordLink>kilocode.ai/discord</discordLink>.",
-		"support": "For financial questions, please contact Customer Support at <supportLink>hi@kilocode.ai</supportLink>",
+		"version": "เวอร์ชัน: {{version}}",
+		"release_notes": "บันทึกประจำรุ่น",
 		"telemetry": {
-			"label": "Allow anonymous error and usage reporting",
-			"description": "Help improve Kilo Code by sending anonymous usage data and error reports. No code, prompts, or personal information is ever sent. See our privacy policy for more details."
+			"label": "การวัดและส่งข้อมูลทางไกล",
+			"description": "ช่วยปรับปรุง Kilo Code โดยการส่งข้อมูลการใช้งานที่ไม่ระบุชื่อ <0>เรียนรู้เพิ่มเติม</0>"
 		},
 		"settings": {
-			"import": "Import",
-			"export": "Export",
-			"reset": "Reset"
+			"label": "การตั้งค่า",
+			"import": "นำเข้าการตั้งค่า",
+			"export": "ส่งออกการตั้งค่า"
 		}
 	},
 	"thinkingBudget": {
-		"maxTokens": "Max Tokens",
-		"maxThinkingTokens": "Max Thinking Tokens"
+		"label": "งบประมาณการคิด",
+		"description": "ตั้งค่าขีดจำกัดของโทเค็นที่โมเดลสามารถใช้สำหรับ 'การคิด' ก่อนที่จะตอบกลับ งบประมาณที่สูงขึ้นจะช่วยให้สามารถให้เหตุผลที่ซับซ้อนขึ้นได้ แต่อาจเพิ่มความล่าช้า หมายเหตุ: ไม่ใช่ทุกโมเดลหรือผู้ให้บริการที่รองรับตัวเลือกนี้"
 	},
 	"validation": {
-		"apiKey": "You must provide a valid API key.",
-		"awsRegion": "You must choose a region to use with Amazon Bedrock.",
-		"googleCloud": "You must provide a valid Google Cloud Project ID and Region.",
-		"modelId": "You must provide a valid model ID.",
-		"modelSelector": "You must provide a valid model selector.",
-		"openAi": "You must provide a valid base URL, API key, and model ID.",
-		"arn": {
-			"invalidFormat": "Invalid ARN format. Please check the format requirements.",
-			"regionMismatch": "Warning: The region in your ARN ({{arnRegion}}) does not match your selected region ({{region}}). This may cause access issues. The provider will use the region from the ARN."
-		},
-		"modelAvailability": "The model ID ({{modelId}}) you provided is not available. Please choose a different model.",
-		"providerNotAllowed": "Provider '{{provider}}' is not allowed by your organization",
-		"modelNotAllowed": "Model '{{model}}' is not allowed for provider '{{provider}}' by your organization",
-		"profileInvalid": "This profile contains a provider or model that is not allowed by your organization"
+		"port": "พอร์ตต้องเป็นตัวเลขระหว่าง 1 ถึง 65535",
+		"baseUrl": "URL พื้นฐานต้องเป็น URL ที่ถูกต้อง",
+		"apiKey": "ต้องการคีย์ API"
 	},
 	"placeholders": {
-		"apiKey": "Enter API Key...",
-		"profileName": "Enter profile name",
-		"accessKey": "Enter Access Key...",
-		"secretKey": "Enter Secret Key...",
-		"sessionToken": "Enter Session Token...",
-		"credentialsJson": "Enter Credentials JSON...",
-		"keyFilePath": "Enter Key File Path...",
-		"projectId": "Enter Project ID...",
-		"customArn": "Enter ARN (e.g. arn:aws:bedrock:us-east-1:123456789012:foundation-model/my-model)",
-		"baseUrl": "Enter base URL...",
-		"modelId": {
-			"lmStudio": "e.g. meta-llama-3.1-8b-instruct",
-			"lmStudioDraft": "e.g. lmstudio-community/llama-3.2-1b-instruct",
-			"ollama": "e.g. llama3.1"
-		},
 		"numbers": {
-			"maxTokens": "e.g. 4096",
-			"contextWindow": "e.g. 128000",
-			"inputPrice": "e.g. 0.0001",
-			"outputPrice": "e.g. 0.0002",
-			"cacheWritePrice": "e.g. 0.00005"
+			"zero": "0",
+			"one": "1",
+			"one_hundred": "100"
 		}
-	},
-	"defaults": {
-		"ollamaUrl": "Default: http://localhost:11434",
-		"lmStudioUrl": "Default: http://localhost:1234",
-		"geminiUrl": "Default: https://generativelanguage.googleapis.com"
-	},
-	"labels": {
-		"customArn": "Custom ARN",
-		"useCustomArn": "Use custom ARN..."
-	},
-	"includeMaxOutputTokens": "Include max output tokens",
-	"includeMaxOutputTokensDescription": "Send max output tokens parameter in API requests. Some providers may not support this."
+	}
 }
