@@ -48,10 +48,9 @@ interface CompletionUsage {
 	}
 	total_tokens?: number
 	cost?: number
-	is_byok?: boolean
 	// kilocode_change start
 	cost_details?: {
-		upstream_inference_cost?: number // this seems to be null when !is_byok
+		upstream_inference_cost?: number
 	}
 	// kilocode_change end
 }
