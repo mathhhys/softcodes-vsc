@@ -111,7 +111,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	}
 
 	const provider = new ClineProvider(context, outputChannel, "sidebar", contextProxy, codeIndexManager, mdmService)
-	// TelemetryService.instance.setProvider(provider) // kilocode_change no telemetry
+	TelemetryService.instance.setProvider(provider) // kilocode_change no telemetry
 
 	if (codeIndexManager) {
 		context.subscriptions.push(codeIndexManager)

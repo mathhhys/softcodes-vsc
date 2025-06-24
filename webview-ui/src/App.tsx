@@ -7,6 +7,8 @@ import TranslationProvider from "./i18n/TranslationContext"
 // import { MarketplaceViewStateManager } from "./components/marketplace/MarketplaceViewStateManager" // kilocode_change: we have our own marketplace
 
 import { vscode } from "./utils/vscode"
+import { telemetryClient } from "./utils/TelemetryClient"
+import { TelemetryEventName } from "@roo-code/types"
 import { ExtensionStateContextProvider, useExtensionState } from "./context/ExtensionStateContext"
 import ChatView, { ChatViewRef } from "./components/chat/ChatView"
 import HistoryView from "./components/history/HistoryView"
@@ -153,7 +155,7 @@ const App = () => {
 	// Track marketplace tab views
 	useEffect(() => {
 		if (tab === "marketplace") {
-			// telemetryClient.capture(TelemetryEventName.MARKETPLACE_TAB_VIEWED) // kilocode_change commented out
+			telemetryClient.capture(TelemetryEventName.MARKETPLACE_TAB_VIEWED)
 		}
 	}, [tab])
 
