@@ -20,8 +20,9 @@ export class TelemetryClient extends BaseTelemetryClient {
 		)
 	}
 
-	// kilocode_change: unused params
-	private async fetch(_path: string, _options: RequestInit) {
+	// kilocode_change
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	private async fetch(path: string, options: RequestInit) {
 		if (!this.authService.isAuthenticated()) {
 			return
 		}
