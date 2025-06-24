@@ -14,10 +14,20 @@ import {
 	glamaDefaultModelId,
 	unboundDefaultModelId,
 	litellmDefaultModelId,
+	openAiNativeDefaultModelId,
+	anthropicDefaultModelId,
+	geminiDefaultModelId,
+	deepSeekDefaultModelId,
+	mistralDefaultModelId,
+	xaiDefaultModelId,
+	groqDefaultModelId,
+	chutesDefaultModelId,
+	bedrockDefaultModelId,
+	vertexDefaultModelId,
 } from "@roo-code/types"
 
 import { vscode } from "@src/utils/vscode"
-import { validateApiConfiguration } from "@src/utils/validate"
+import { validateApiConfigurationExcludingModelErrors, getModelValidationError } from "@src/utils/validate"
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { useRouterModels } from "@src/components/ui/hooks/useRouterModels"
 import { useSelectedModel } from "@src/components/ui/hooks/useSelectedModel"
@@ -201,8 +211,11 @@ const ApiOptions = ({
 	)
 
 	useEffect(() => {
-		const apiValidationResult = validateApiConfiguration(apiConfiguration, routerModels, organizationAllowList)
-
+		const apiValidationResult = validateApiConfigurationExcludingModelErrors(
+			apiConfiguration,
+			routerModels,
+			organizationAllowList,
+		)
 		setErrorMessage(apiValidationResult)
 	}, [apiConfiguration, routerModels, organizationAllowList, setErrorMessage])
 
@@ -212,16 +225,20 @@ const ApiOptions = ({
 
 		const filteredModels = filterModels(models, selectedProvider, organizationAllowList)
 
-		return filteredModels
+		const modelOptions = filteredModels
 			? Object.keys(filteredModels).map((modelId) => ({
 					value: modelId,
 					label: modelId,
 				}))
 			: []
+
+		return modelOptions
 	}, [selectedProvider, organizationAllowList])
 
 	const onProviderChange = useCallback(
 		(value: ProviderName) => {
+			setApiConfigurationField("apiProvider", value)
+
 			// It would be much easier to have a single attribute that stores
 			// the modelId, but we have a separate attribute for each of
 			// OpenRouter, Glama, Unbound, and Requesty.
@@ -229,59 +246,70 @@ const ApiOptions = ({
 			// modelId is not set then you immediately end up in an error state.
 			// To address that we set the modelId to the default value for th
 			// provider if it's not already set.
-			switch (value) {
-				case "openrouter":
-					if (!apiConfiguration.openRouterModelId) {
-						setApiConfigurationField("openRouterModelId", openRouterDefaultModelId)
-					}
-					break
-				case "glama":
-					if (!apiConfiguration.glamaModelId) {
-						setApiConfigurationField("glamaModelId", glamaDefaultModelId)
-					}
-					break
-				case "unbound":
-					if (!apiConfiguration.unboundModelId) {
-						setApiConfigurationField("unboundModelId", unboundDefaultModelId)
-					}
-					break
-				case "requesty":
-					if (!apiConfiguration.requestyModelId) {
-						setApiConfigurationField("requestyModelId", requestyDefaultModelId)
-					}
-					break
-				case "litellm":
-					if (!apiConfiguration.litellmModelId) {
-						setApiConfigurationField("litellmModelId", litellmDefaultModelId)
-					}
-					break
-				case "kilocode":
-					if (!apiConfiguration.kilocodeModel) {
-						setApiConfigurationField("kilocodeModel", "claude37")
-					}
-					break
-				// kilocode_change start
-				case "cerebras":
-					if (!apiConfiguration.cerebrasModelId) {
-						setApiConfigurationField("cerebrasModelId", cerebrasDefaultModelId)
-					}
-					break
-				// kilocode_change end
+			const validateAndResetModel = (
+				modelId: string | undefined,
+				field: keyof ProviderSettings,
+				defaultValue?: string,
+			) => {
+				// in case we haven't set a default value for a provider
+				if (!defaultValue) return
+
+				// only set default if no model is set, but don't reset invalid models
+				// let users see and decide what to do with invalid model selections
+				const shouldSetDefault = !modelId
+
+				if (shouldSetDefault) {
+					setApiConfigurationField(field, defaultValue)
+				}
 			}
 
-			setApiConfigurationField("apiProvider", value)
+			// Define a mapping object that associates each provider with its model configuration
+			const PROVIDER_MODEL_CONFIG: Partial<
+				Record<
+					ProviderName,
+					{
+						field: keyof ProviderSettings
+						default?: string
+					}
+				>
+			> = {
+				openrouter: { field: "openRouterModelId", default: openRouterDefaultModelId },
+				glama: { field: "glamaModelId", default: glamaDefaultModelId },
+				unbound: { field: "unboundModelId", default: unboundDefaultModelId },
+				requesty: { field: "requestyModelId", default: requestyDefaultModelId },
+				litellm: { field: "litellmModelId", default: litellmDefaultModelId },
+				anthropic: { field: "apiModelId", default: anthropicDefaultModelId },
+				"openai-native": { field: "apiModelId", default: openAiNativeDefaultModelId },
+				gemini: { field: "apiModelId", default: geminiDefaultModelId },
+				deepseek: { field: "apiModelId", default: deepSeekDefaultModelId },
+				mistral: { field: "apiModelId", default: mistralDefaultModelId },
+				xai: { field: "apiModelId", default: xaiDefaultModelId },
+				groq: { field: "apiModelId", default: groqDefaultModelId },
+				chutes: { field: "apiModelId", default: chutesDefaultModelId },
+				bedrock: { field: "apiModelId", default: bedrockDefaultModelId },
+				vertex: { field: "apiModelId", default: vertexDefaultModelId },
+				openai: { field: "openAiModelId" },
+				ollama: { field: "ollamaModelId" },
+				lmstudio: { field: "lmStudioModelId" },
+				kilocode: { field: "kilocodeModel", default: "claude37" }, // kilocode_change
+				cerebras: { field: "cerebrasModelId", default: cerebrasDefaultModelId }, // kilocode_change
+			}
+
+			const config = PROVIDER_MODEL_CONFIG[value]
+			if (config) {
+				validateAndResetModel(
+					apiConfiguration[config.field] as string | undefined,
+					config.field,
+					config.default,
+				)
+			}
 		},
-		[
-			setApiConfigurationField,
-			apiConfiguration.openRouterModelId,
-			apiConfiguration.glamaModelId,
-			apiConfiguration.unboundModelId,
-			apiConfiguration.requestyModelId,
-			apiConfiguration.litellmModelId,
-			apiConfiguration.kilocodeModel,
-			apiConfiguration.cerebrasModelId, // kilocode_change
-		],
+		[setApiConfigurationField, apiConfiguration],
 	)
+
+	const modelValidationError = useMemo(() => {
+		return getModelValidationError(apiConfiguration, routerModels, organizationAllowList)
+	}, [apiConfiguration, routerModels, organizationAllowList])
 
 	const docs = useMemo(() => {
 		const provider = PROVIDERS.find(({ value }) => value === selectedProvider)
@@ -432,6 +460,7 @@ const ApiOptions = ({
 					uriScheme={uriScheme}
 					fromWelcomeView={fromWelcomeView}
 					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
 				/>
 			)}
 
@@ -442,6 +471,7 @@ const ApiOptions = ({
 					routerModels={routerModels}
 					refetchRouterModels={refetchRouterModels}
 					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
 				/>
 			)}
 
@@ -452,6 +482,7 @@ const ApiOptions = ({
 					routerModels={routerModels}
 					uriScheme={uriScheme}
 					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
 				/>
 			)}
 
@@ -461,6 +492,7 @@ const ApiOptions = ({
 					setApiConfigurationField={setApiConfigurationField}
 					routerModels={routerModels}
 					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
 				/>
 			)}
 
@@ -497,6 +529,7 @@ const ApiOptions = ({
 					apiConfiguration={apiConfiguration}
 					setApiConfigurationField={setApiConfigurationField}
 					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
 				/>
 			)}
 
@@ -539,6 +572,7 @@ const ApiOptions = ({
 					apiConfiguration={apiConfiguration}
 					setApiConfigurationField={setApiConfigurationField}
 					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
 				/>
 			)}
 

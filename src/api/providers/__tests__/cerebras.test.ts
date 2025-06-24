@@ -3,19 +3,27 @@ import Cerebras from "@cerebras/cerebras_cloud_sdk"
 
 import { CerebrasModelId, cerebrasDefaultModelId, cerebrasModels } from "../../../shared/api"
 import { CerebrasHandler } from "../cerebras"
+import type { Mock } from "vitest"
 
-jest.mock("@cerebras/cerebras_cloud_sdk", () => {
-	const createMock = jest.fn()
-	return jest.fn(() => ({ chat: { completions: { create: createMock } } }))
+const mockCreate = vi.fn()
+vi.mock("@cerebras/cerebras_cloud_sdk", () => {
+	return {
+		__esModule: true,
+		default: vi.fn().mockImplementation(() => ({
+			chat: {
+				completions: {
+					create: mockCreate,
+				},
+			},
+		})),
+	}
 })
 
 describe("CerebrasHandler", () => {
 	let handler: CerebrasHandler
-	let mockCreate: jest.Mock
 
 	beforeEach(() => {
-		jest.clearAllMocks()
-		mockCreate = (Cerebras as unknown as jest.Mock)().chat.completions.create
+		vi.clearAllMocks()
 		handler = new CerebrasHandler({ cerebrasApiKey: "test-cerebras-api-key" })
 	})
 
@@ -48,7 +56,7 @@ describe("CerebrasHandler", () => {
 		mockCreate.mockImplementationOnce(() => {
 			return {
 				[Symbol.asyncIterator]: () => ({
-					next: jest
+					next: vi
 						.fn()
 						.mockResolvedValueOnce({
 							done: false,
@@ -70,7 +78,7 @@ describe("CerebrasHandler", () => {
 		mockCreate.mockImplementationOnce(() => {
 			return {
 				[Symbol.asyncIterator]: () => ({
-					next: jest
+					next: vi
 						.fn()
 						.mockResolvedValueOnce({
 							done: false,
