@@ -6,6 +6,7 @@ import { MAX_HEIGHT_PX as TASK_TIMELINE_MAX_HEIGHT_PX } from "../../utils/timeli
 import { consolidateMessagesForTimeline } from "../../utils/timeline/consolidateMessagesForTimeline"
 import { calculateTaskTimelineSizes } from "../../utils/timeline/calculateTaskTimelineSizes"
 import { getTaskTimelineMessageColor } from "../../utils/timeline/taskTimelineTypeRegistry"
+import { TooltipProvider } from "../ui/tooltip"
 
 // We hide the scrollbars for the TaskTimeline by wrapping it in a container with
 // overflow hidden. This hides the scrollbars for the actual Virtuoso element
@@ -70,17 +71,19 @@ export const TaskTimeline = memo<TaskTimelineProps>(({ groupedMessages, onMessag
 	}, [groupedMessages.length, timelineMessagesData.length])
 
 	return (
-		<div className="w-full px-2 overflow-hidden" style={{ height: `${TASK_TIMELINE_MAX_HEIGHT_PX}px` }}>
-			<Virtuoso
-				ref={virtuosoRef}
-				data={timelineMessagesData}
-				itemContent={itemContent}
-				horizontalDirection={true}
-				initialTopMostItemIndex={timelineMessagesData.length - 1}
-				className="w-full"
-				style={{ height: `${TASK_TIMELINE_MAX_HEIGHT_PX + SCROLLBAR_WIDTH_PX}px` }}
-			/>
-		</div>
+		<TooltipProvider>
+			<div className="w-full px-2 overflow-hidden" style={{ height: `${TASK_TIMELINE_MAX_HEIGHT_PX}px` }}>
+				<Virtuoso
+					ref={virtuosoRef}
+					data={timelineMessagesData}
+					itemContent={itemContent}
+					horizontalDirection={true}
+					initialTopMostItemIndex={timelineMessagesData.length - 1}
+					className="w-full"
+					style={{ height: `${TASK_TIMELINE_MAX_HEIGHT_PX + SCROLLBAR_WIDTH_PX}px` }}
+				/>
+			</div>
+		</TooltipProvider>
 	)
 })
 
