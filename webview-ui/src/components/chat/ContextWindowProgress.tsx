@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 
 import { formatLargeNumber } from "@/utils/format"
 import { calculateTokenDistribution } from "@/utils/model-utils"
+import { cn } from "@/lib/utils"
 
 interface ContextWindowProgressProps {
 	contextWindow: number
@@ -25,6 +26,7 @@ export const ContextWindowProgress = ({ contextWindow, contextTokens, maxTokens 
 	// For display purposes
 	const safeContextWindow = Math.max(0, contextWindow)
 	const safeContextTokens = Math.max(0, contextTokens)
+	const highlightNearLimit = currentPercent >= 50 // kilocode_change
 
 	return (
 		<>
@@ -39,7 +41,15 @@ export const ContextWindowProgress = ({ contextWindow, contextTokens, maxTokens 
 					/>
 
 					{/* Main progress bar container */}
-					<div className="flex items-center h-1 rounded-[2px] overflow-hidden w-full bg-[color-mix(in_srgb,var(--vscode-foreground)_20%,transparent)]">
+					{/* kilocode_change start - use errorForeground when highlightNearLimit */}
+					<div
+						className={cn(
+							"flex items-center h-1 rounded-[2px] overflow-hidden w-full",
+							"bg-[color-mix(in_srgb,var(--vscode-foreground)_20%,transparent)]",
+							highlightNearLimit &&
+								"bg-[color-mix(in_srgb,var(--vscode-errorForeground)_20%,transparent)]",
+						)}>
+						{/* kilocode_change end */}
 						{/* Current tokens container */}
 						<div className="relative h-full" style={{ width: `${currentPercent}%` }}>
 							{/* Invisible overlay for current tokens section */}
@@ -52,7 +62,14 @@ export const ContextWindowProgress = ({ contextWindow, contextTokens, maxTokens 
 								data-testid="context-tokens-used"
 							/>
 							{/* Current tokens used - darkest */}
-							<div className="h-full w-full bg-[var(--vscode-foreground)] transition-width duration-300 ease-out" />
+							{/* kilocode_change start - use errorForeground when highlightNearLimit */}
+							<div
+								className={cn(
+									"h-full w-full bg-[var(--vscode-foreground)] transition-width transition-color duration-300 ease-out",
+									highlightNearLimit && "bg-[var(--vscode-errorForeground)]",
+								)}
+							/>
+							{/* kilocode_change end */}
 						</div>
 
 						{/* Container for reserved tokens */}
