@@ -1,7 +1,7 @@
 import { TelemetryEventName, type TelemetryEvent, rooCodeTelemetryEventSchema } from "@roo-code/types"
 import { BaseTelemetryClient } from "@roo-code/telemetry"
 
-import { getRooCodeApiUrl } from "./Config"
+// import { getRooCodeApiUrl } from "./Config" // kilocode_change
 import { AuthService } from "./AuthService"
 import { SettingsService } from "./SettingsService"
 
@@ -20,7 +20,8 @@ export class TelemetryClient extends BaseTelemetryClient {
 		)
 	}
 
-	private async fetch(path: string, options: RequestInit) {
+	// kilocode_change: unused params
+	private async fetch(_path: string, _options: RequestInit) {
 		if (!this.authService.isAuthenticated()) {
 			return
 		}
@@ -32,6 +33,7 @@ export class TelemetryClient extends BaseTelemetryClient {
 			return
 		}
 
+		/* kilocode_change
 		const response = await fetch(`${getRooCodeApiUrl()}/api/${path}`, {
 			...options,
 			headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -42,6 +44,7 @@ export class TelemetryClient extends BaseTelemetryClient {
 				`[TelemetryClient#fetch] ${options.method} ${path} -> ${response.status} ${response.statusText}`,
 			)
 		}
+		*/
 	}
 
 	public override async capture(event: TelemetryEvent) {
