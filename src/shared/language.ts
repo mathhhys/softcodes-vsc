@@ -6,9 +6,12 @@ import { type Language, isLanguage } from "@roo-code/types"
 
 export const LANGUAGES: Record<Language, string> = {
 	ca: "Català",
+	cs: "Čeština",
 	de: "Deutsch",
+	el: "Ελληνικά",
 	en: "English",
 	es: "Español",
+	fil: "Filipino",
 	fr: "Français",
 	hi: "हिन्दी",
 	id: "Bahasa Indonesia",
@@ -19,7 +22,10 @@ export const LANGUAGES: Record<Language, string> = {
 	pl: "Polski",
 	"pt-BR": "Português",
 	ru: "Русский",
+	sv: "Svenska",
+	th: "ไทย",
 	tr: "Türkçe",
+	uk: "Українська",
 	vi: "Tiếng Việt",
 	"zh-CN": "简体中文",
 	"zh-TW": "繁體中文",

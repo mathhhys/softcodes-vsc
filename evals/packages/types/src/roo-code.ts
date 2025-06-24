@@ -47,9 +47,12 @@ export type ToolGroup = z.infer<typeof toolGroupsSchema>
 
 export const languages = [
 	"ca",
+	"cs",
 	"de",
+	"el",
 	"en",
 	"es",
+	"fil",
 	"fr",
 	"hi",
 	"it",
@@ -59,7 +62,10 @@ export const languages = [
 	"pl",
 	"pt-BR",
 	"ru",
+	"sv",
+	"th",
 	"tr",
+	"uk",
 	"vi",
 	"zh-CN",
 	"zh-TW",
