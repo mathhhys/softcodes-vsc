@@ -3,6 +3,7 @@ import {
 	type ModelInfo,
 	anthropicModels,
 	bedrockModels,
+	claudeCodeModels,
 	deepSeekModels,
 	geminiModels,
 	mistralModels,
@@ -17,6 +18,7 @@ import { fireworksModels, cerebrasModels } from "@roo/api" // kilocode_change
 
 export const MODELS_BY_PROVIDER: Partial<Record<ProviderName, Record<string, ModelInfo>>> = {
 	anthropic: anthropicModels,
+	"claude-code": claudeCodeModels,
 	bedrock: bedrockModels,
 	deepseek: deepSeekModels,
 	gemini: geminiModels,
@@ -35,6 +37,7 @@ export const PROVIDERS = [
 	{ value: "openrouter", label: "OpenRouter" },
 	{ value: "anthropic", label: "Anthropic" },
 	{ value: "fireworks", label: "Fireworks" }, // kilocode_change
+	{ value: "claude-code", label: "Claude Code" },
 	{ value: "gemini", label: "Google Gemini" },
 	{ value: "deepseek", label: "DeepSeek" },
 	{ value: "openai-native", label: "OpenAI" },

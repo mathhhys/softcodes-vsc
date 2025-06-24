@@ -28,6 +28,7 @@ import {
 	ChutesHandler,
 	LiteLLMHandler,
 	CerebrasHandler, // kilocode_change
+	ClaudeCodeHandler,
 } from "./providers"
 // kilocode_change start
 import { FireworksHandler } from "./providers/fireworks"
@@ -71,6 +72,8 @@ export function buildApiHandler(configuration: ProviderSettings): ApiHandler {
 			return new KilocodeOpenrouterHandler(options)
 		case "anthropic":
 			return new AnthropicHandler(options)
+		case "claude-code":
+			return new ClaudeCodeHandler(options)
 		case "glama":
 			return new GlamaHandler(options)
 		case "openrouter":
