@@ -1747,6 +1747,32 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		return true
 	}
 
+	/**
+	 * Returns properties to be included in every telemetry event
+	 * This method is called by the telemetry service to get context information
+	 * like the current mode, API provider, etc.
+	 */
+	public async getTelemetryProperties(): Promise<TelemetryProperties> {
+		const { mode, apiConfiguration, language } = await this.getState()
+		const task = this.getCurrentCline()
+
+		const packageJSON = this.context.extension?.packageJSON
+
+		return {
+			appName: packageJSON?.name ?? Package.name,
+			appVersion: packageJSON?.version ?? Package.version,
+			vscodeVersion: vscode.version,
+			platform: process.platform,
+			editorName: vscode.env.appName,
+			language,
+			mode,
+			apiProvider: apiConfiguration?.apiProvider,
+			modelId: task?.api?.getModel().id,
+			diffStrategy: task?.diffStrategy?.getName(),
+			isSubtask: task ? !!task.parentTask : undefined,
+		}
+	}
+
 	// kilocode_change:
 	// MCP Marketplace
 	private async fetchMcpMarketplaceFromApi(silent: boolean = false): Promise<McpMarketplaceCatalog | undefined> {
