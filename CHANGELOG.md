@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.41.0
-
-### Minor Changes
+## [v4.41.0]
 
 - [#794](https://github.com/Kilo-Org/kilocode/pull/794) [`7113260`](https://github.com/Kilo-Org/kilocode/commit/711326037cbb38db49f6a2d12671c7974a981787) Thanks [@markijbema](https://github.com/markijbema)! - Include changes from Roo Code v3.21.1
 
