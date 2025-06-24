@@ -1,5 +1,35 @@
 # kilo-code
 
+## [v4.41.0]
+
+- [#794](https://github.com/Kilo-Org/kilocode/pull/794) [`7113260`](https://github.com/Kilo-Org/kilocode/commit/711326037cbb38db49f6a2d12671c7974a981787) Thanks [@markijbema](https://github.com/markijbema)! - Include changes from Roo Code v3.21.1
+
+    - Fix tree-sitter issues that were preventing codebase indexing from working correctly
+    - Improve error handling for codebase search embeddings
+    - Resolve MCP server execution on Windows with node version managers
+    - Default 'Enable MCP Server Creation' to false
+    - Rate limit correctly when starting a subtask (thanks @olweraltuve!)
+    - Add Gemini 2.5 models (Pro, Flash and Flash Lite) (thanks @daniel-lxs!)
+    - Add max tokens checkbox option for OpenAI compatible provider (thanks @AlexandruSmirnov!)
+    - Update provider models and prices for Groq & Mistral (thanks @KanTakahiro!)
+    - Add proper error handling for API conversation history issues (thanks @KJ7LNW!)
+    - Fix ambiguous model id error (thanks @elianiva!)
+    - Fix save/discard/revert flow for Prompt Settings (thanks @hassoncs!)
+    - Fix codebase indexing alignment with list-files hidden directory filtering (thanks @daniel-lxs!)
+    - Fix subtask completion mismatch (thanks @feifei325!)
+    - Fix Windows path normalization in MCP variable injection (thanks @daniel-lxs!)
+    - Update marketplace branding to 'Roo Marketplace' (thanks @SannidhyaSah!)
+    - Refactor to more consistent history UI (thanks @elianiva!)
+    - Adjust context menu positioning to be near Copilot
+    - Update evals Docker setup to work on Windows (thanks @StevenTCramer!)
+    - Include current working directory in terminal details
+    - Encourage use of start_line in multi-file diff to match legacy diff
+    - Always focus the panel when clicked to ensure menu buttons are visible (thanks @hassoncs!)
+
+### Patch Changes
+
+- [#829](https://github.com/Kilo-Org/kilocode/pull/829) [`8fbae6b`](https://github.com/Kilo-Org/kilocode/commit/8fbae6bf6adc6ad7f7db5a2ce5aaa8a449cc417c) Thanks [@hassoncs](https://github.com/hassoncs)! - Fixed issue causing workflows and rules not to load immediately when the extension loads
+
 ## [v4.40.1]
 
 - [#801](https://github.com/Kilo-Org/kilocode/pull/801) [`e64e172`](https://github.com/Kilo-Org/kilocode/commit/e64e172b7ccc21e7d3e1e278c3ada368b19ab43f) Thanks [@hassoncs](https://github.com/hassoncs)! - Fix minor task timeline layout shift from hidden scrollbar

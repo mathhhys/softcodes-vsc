@@ -69,6 +69,7 @@ export const webviewMessageHandler = async (
 			await refreshWorkflowToggles(provider.context, provider.cwd) // kilocode_change
 
 			provider.postStateToWebview()
+			provider.postRulesDataToWebview() // kilocode_change: send workflows and rules immediately
 			provider.workspaceTracker?.initializeFilePaths() // Don't await.
 
 			getTheme().then((theme) => provider.postMessageToWebview({ type: "theme", text: JSON.stringify(theme) }))
@@ -870,7 +871,12 @@ export const webviewMessageHandler = async (
 			break
 		case "updateSupportPrompt":
 			try {
-				await updateGlobalState("customSupportPrompts", message.values || {})
+				if (!message?.values) {
+					return
+				}
+
+				// Replace all prompts with the new values from the cached state
+				await updateGlobalState("customSupportPrompts", message.values)
 				await provider.postStateToWebview()
 			} catch (error) {
 				provider.log(
@@ -1590,10 +1596,9 @@ export const webviewMessageHandler = async (
 		case "telemetrySetting": {
 			const telemetrySetting = message.text as TelemetrySetting
 			await updateGlobalState("telemetrySetting", telemetrySetting)
-			// kilocode_change: do not get instance
-			// const isOptedIn = telemetrySetting === "enabled"
+			const isOptedIn = telemetrySetting === "enabled"
 
-			// TelemetryService.instance.updateTelemetryState(isOptedIn)
+			TelemetryService.instance.updateTelemetryState(isOptedIn)
 			await provider.postStateToWebview()
 			break
 		}
@@ -1604,8 +1609,7 @@ export const webviewMessageHandler = async (
 		}
 		case "rooCloudSignIn": {
 			try {
-				// kilocode_change: do not get instance
-				// TelemetryService.instance.captureEvent(TelemetryEventName.AUTHENTICATION_INITIATED)
+				TelemetryService.instance.captureEvent(TelemetryEventName.AUTHENTICATION_INITIATED)
 				await CloudService.instance.login()
 			} catch (error) {
 				provider.log(`AuthService#login failed: ${error}`)
@@ -1705,14 +1709,12 @@ export const webviewMessageHandler = async (
 			}
 			break
 		// kilocode_change end
+		case "focusPanelRequest": {
+			// Execute the focusPanel command to focus the WebView
+			await vscode.commands.executeCommand(getCommand("focusPanel"))
+			break
+		}
 		case "filterMarketplaceItems": {
-			// Check if marketplace is enabled before making API calls
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping API call")
-				break
-			}
-
 			if (marketplaceManager && message.filters) {
 				try {
 					await marketplaceManager.updateWithFilteredItems({
@@ -1730,13 +1732,6 @@ export const webviewMessageHandler = async (
 		}
 
 		case "installMarketplaceItem": {
-			// Check if marketplace is enabled before installing
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping installation")
-				break
-			}
-
 			if (marketplaceManager && message.mpItem && message.mpInstallOptions) {
 				try {
 					const configFilePath = await marketplaceManager.installMarketplaceItem(
@@ -1766,13 +1761,6 @@ export const webviewMessageHandler = async (
 		}
 
 		case "removeInstalledMarketplaceItem": {
-			// Check if marketplace is enabled before removing
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping removal")
-				break
-			}
-
 			if (marketplaceManager && message.mpItem && message.mpInstallOptions) {
 				try {
 					await marketplaceManager.removeInstalledMarketplaceItem(message.mpItem, message.mpInstallOptions)
@@ -1785,13 +1773,6 @@ export const webviewMessageHandler = async (
 		}
 
 		case "installMarketplaceItemWithParameters": {
-			// Check if marketplace is enabled before installing with parameters
-			const { experiments } = await provider.getState()
-			if (!experiments.marketplace) {
-				console.log("Marketplace: Feature disabled, skipping installation with parameters")
-				break
-			}
-
 			if (marketplaceManager && message.payload && "item" in message.payload && "parameters" in message.payload) {
 				try {
 					const configFilePath = await marketplaceManager.installMarketplaceItem(message.payload.item, {

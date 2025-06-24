@@ -23,6 +23,7 @@ import {
 	type HistoryItem,
 	TelemetryEventName,
 } from "@roo-code/types"
+import { TelemetryService } from "@roo-code/telemetry"
 import { CloudService } from "@roo-code/cloud"
 
 // api
@@ -152,8 +153,16 @@ export class Task extends EventEmitter<ClineEvents> {
 	// API
 	readonly apiConfiguration: ProviderSettings
 	api: ApiHandler
-	private lastApiRequestTime?: number
+	private static lastGlobalApiRequestTime?: number
 	private consecutiveAutoApprovedRequestsCount: number = 0
+
+	/**
+	 * Reset the global API request timestamp. This should only be used for testing.
+	 * @internal
+	 */
+	static resetGlobalApiRequestTime(): void {
+		Task.lastGlobalApiRequestTime = undefined
+	}
 
 	toolRepetitionDetector: ToolRepetitionDetector
 	rooIgnoreController?: RooIgnoreController
@@ -264,11 +273,11 @@ export class Task extends EventEmitter<ClineEvents> {
 		this.parentTask = parentTask
 		this.taskNumber = taskNumber
 
-		// if (historyItem) {
-		// 	TelemetryService.instance.captureTaskRestarted(this.taskId)
-		// } else {
-		// 	TelemetryService.instance.captureTaskCreated(this.taskId)
-		// } // kilocode_change
+		if (historyItem) {
+			TelemetryService.instance.captureTaskRestarted(this.taskId)
+		} else {
+			TelemetryService.instance.captureTaskCreated(this.taskId)
+		}
 
 		// Only set up diff strategy if diff is enabled
 		if (this.diffEnabled) {
@@ -1184,7 +1193,7 @@ export class Task extends EventEmitter<ClineEvents> {
 				await this.say("user_feedback", text, images)
 
 				// Track consecutive mistake errors in telemetry.
-				// TelemetryService.instance.captureConsecutiveMistakeError(this.taskId)
+				TelemetryService.instance.captureConsecutiveMistakeError(this.taskId)
 			}
 
 			this.consecutiveMistakeCount = 0
@@ -1252,7 +1261,7 @@ export class Task extends EventEmitter<ClineEvents> {
 		const finalUserContent = [...parsedUserContent, { type: "text" as const, text: environmentDetails }]
 
 		await this.addToApiConversationHistory({ role: "user", content: finalUserContent })
-		// TelemetryService.instance.captureConversationMessage(this.taskId, "user")
+		TelemetryService.instance.captureConversationMessage(this.taskId, "user")
 
 		// Since we sent off a placeholder api_req_started message to update the
 		// webview while waiting to actually start the API request (to load
@@ -1513,7 +1522,7 @@ export class Task extends EventEmitter<ClineEvents> {
 					content: [{ type: "text", text: assistantMessage }],
 				})
 
-				// TelemetryService.instance.captureConversationMessage(this.taskId, "assistant")
+				TelemetryService.instance.captureConversationMessage(this.taskId, "assistant")
 
 				// NOTE: This comment is here for future reference - this was a
 				// workaround for `userMessageContent` not getting set to true.
@@ -1756,10 +1765,11 @@ export class Task extends EventEmitter<ClineEvents> {
 
 		let rateLimitDelay = 0
 
-		// Only apply rate limiting if this isn't the first request
-		if (this.lastApiRequestTime) {
+		// Use the shared timestamp so that subtasks respect the same rate-limit
+		// window as their parent tasks.
+		if (Task.lastGlobalApiRequestTime) {
 			const now = Date.now()
-			const timeSinceLastRequest = now - this.lastApiRequestTime
+			const timeSinceLastRequest = now - Task.lastGlobalApiRequestTime
 			const rateLimit = apiConfiguration?.rateLimitSeconds || 0
 			rateLimitDelay = Math.ceil(Math.max(0, rateLimit * 1000 - timeSinceLastRequest) / 1000)
 		}
@@ -1774,8 +1784,9 @@ export class Task extends EventEmitter<ClineEvents> {
 			}
 		}
 
-		// Update last request time before making the request
-		this.lastApiRequestTime = Date.now()
+		// Update last request time before making the request so that subsequent
+		// requests — even from new subtasks — will honour the provider's rate-limit.
+		Task.lastGlobalApiRequestTime = Date.now()
 
 		const systemPrompt = await this.getSystemPrompt()
 		const { contextTokens } = this.getTokenUsage()

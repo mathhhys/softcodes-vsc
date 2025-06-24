@@ -47,8 +47,7 @@ export async function attemptCompletionTool(
 					// we have command string, which means we have the result as well, so finish it (doesnt have to exist yet)
 					await cline.say("completion_result", removeClosingTag("result", result), undefined, false)
 
-					// kilocode_change: do not get instance
-					// TelemetryService.instance.captureTaskCompleted(cline.taskId)
+					TelemetryService.instance.captureTaskCompleted(cline.taskId)
 					cline.emit("taskCompleted", cline.taskId, cline.getTokenUsage(), cline.toolUsage)
 
 					await cline.ask("command", removeClosingTag("command", command), block.partial).catch(() => {})
@@ -82,8 +81,7 @@ export async function attemptCompletionTool(
 				if (lastMessage && lastMessage.ask !== "command") {
 					// Haven't sent a command message yet so first send completion_result then command.
 					await cline.say("completion_result", result, undefined, false)
-					// kilocode_change: do not get instance
-					// TelemetryService.instance.captureTaskCompleted(cline.taskId)
+					TelemetryService.instance.captureTaskCompleted(cline.taskId)
 					cline.emit("taskCompleted", cline.taskId, cline.getTokenUsage(), cline.toolUsage)
 				}
 
@@ -108,8 +106,7 @@ export async function attemptCompletionTool(
 				commandResult = execCommandResult
 			} else {
 				await cline.say("completion_result", result, undefined, false)
-				// kilocode_change: do not get instance
-				// TelemetryService.instance.captureTaskCompleted(cline.taskId)
+				TelemetryService.instance.captureTaskCompleted(cline.taskId)
 				cline.emit("taskCompleted", cline.taskId, cline.getTokenUsage(), cline.toolUsage)
 			}
 

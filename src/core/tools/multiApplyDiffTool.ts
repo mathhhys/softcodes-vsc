@@ -153,7 +153,7 @@ Expected structure:
     <path>relative/path/to/file.ext</path>
     <diff>
       <content>diff content here</content>
-      <start_line>optional line number</start_line>
+      <start_line>line number</start_line>
     </diff>
   </file>
 </args>
@@ -427,7 +427,7 @@ Original error: ${errorMessage}`
 					const currentCount = (cline.consecutiveMistakeCountForApplyDiff.get(relPath) || 0) + 1
 					cline.consecutiveMistakeCountForApplyDiff.set(relPath, currentCount)
 
-					// TelemetryService.instance.captureDiffApplicationError(cline.taskId, currentCount)
+					TelemetryService.instance.captureDiffApplicationError(cline.taskId, currentCount)
 
 					if (diffResult.failParts && diffResult.failParts.length > 0) {
 						for (let i = 0; i < diffResult.failParts.length; i++) {
