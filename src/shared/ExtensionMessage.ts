@@ -20,6 +20,12 @@ import { ProfileDataResponsePayload, BalanceDataResponsePayload } from "./Webvie
 import { ClineRulesToggles } from "./cline-rules" // kilocode_change
 import type { MarketplaceItem } from "@roo-code/types"
 
+// Type for marketplace installed metadata
+export interface MarketplaceInstalledMetadata {
+	project: Record<string, { type: string }>
+	global: Record<string, { type: string }>
+}
+
 // Indexing status types
 export interface IndexingStatus {
 	systemStatus: string
@@ -100,6 +106,7 @@ export interface ExtensionMessage {
 		| "codebaseIndexConfig"
 		| "rulesData" // kilocode_change
 		| "marketplaceInstallResult"
+		| "marketplaceData"
 	text?: string
 	payload?: ProfileDataResponsePayload | BalanceDataResponsePayload // kilocode_change: Add payload for profile and balance data
 	action?:
@@ -160,6 +167,8 @@ export interface ExtensionMessage {
 	localRules?: ClineRulesToggles
 	globalWorkflows?: ClineRulesToggles
 	localWorkflows?: ClineRulesToggles
+	marketplaceItems?: MarketplaceItem[]
+	marketplaceInstalledMetadata?: MarketplaceInstalledMetadata
 }
 
 export type ExtensionState = Pick<
@@ -234,6 +243,7 @@ export type ExtensionState = Pick<
 	| "customCondensingPrompt"
 	| "codebaseIndexConfig"
 	| "codebaseIndexModels"
+	| "profileThresholds"
 > & {
 	version: string
 	clineMessages: ClineMessage[]
@@ -280,6 +290,7 @@ export type ExtensionState = Pick<
 	autoCondenseContextPercent: number
 	marketplaceItems?: MarketplaceItem[]
 	marketplaceInstalledMetadata?: { project: Record<string, any>; global: Record<string, any> }
+	profileThresholds: Record<string, number>
 }
 
 export interface ClineSayTool {
