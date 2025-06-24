@@ -1,4 +1,4 @@
-import { TelemetryEventName, type TelemetryEvent, rooCodeTelemetryEventSchema } from "@roo-code/types"
+import { TelemetryEventName, type TelemetryEvent } from "@roo-code/types" // kilocode_change removed rooCodeTelemetryEventSchema because unused
 import { BaseTelemetryClient } from "@roo-code/telemetry"
 
 // import { getRooCodeApiUrl } from "./Config" // kilocode_change
@@ -20,8 +20,9 @@ export class TelemetryClient extends BaseTelemetryClient {
 		)
 	}
 
-	// kilocode_change: unused params
-	private async fetch(_path: string, _options: RequestInit) {
+	// kilocode_change
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	private async fetch(path: string, options: RequestInit) {
 		if (!this.authService.isAuthenticated()) {
 			return
 		}
@@ -47,7 +48,10 @@ export class TelemetryClient extends BaseTelemetryClient {
 		*/
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public override async capture(event: TelemetryEvent) {
+		/* kilocode_change
+
 		if (!this.isTelemetryEnabled() || !this.isEventCapturable(event.event)) {
 			if (this.debug) {
 				console.info(`[TelemetryClient#capture] Skipping event: ${event.event}`)
@@ -80,6 +84,7 @@ export class TelemetryClient extends BaseTelemetryClient {
 		} catch (error) {
 			console.error(`[TelemetryClient#capture] Error sending telemetry event: ${error}`)
 		}
+		*/
 	}
 
 	public override updateTelemetryState(_didUserOptIn: boolean) {}
