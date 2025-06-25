@@ -1,5 +1,40 @@
 # kilo-code
 
+## [v4.42.0]
+
+- [#844](https://github.com/Kilo-Org/kilocode/pull/844) [`8f33721`](https://github.com/Kilo-Org/kilocode/commit/8f3372102d8a06cfbe0dd2889287befea6a347a4) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Include changes from Roo Code v3.21.5
+
+    - Fix Qdrant URL prefix handling for QdrantClient initialization (thanks @CW-B-W!)
+    - Improve LM Studio model detection to show all downloaded models (thanks @daniel-lxs!)
+    - Resolve Claude Code provider JSON parsing and reasoning block display
+    - Fix start line not working in multiple apply diff (thanks @samhvw8!)
+    - Resolve diff editor issues with markdown preview associations (thanks @daniel-lxs!)
+    - Resolve URL port handling bug for HTTPS URLs in Qdrant (thanks @benashby!)
+    - Mark unused Ollama schema properties as optional (thanks @daniel-lxs!)
+    - Close the local browser when used as fallback for remote (thanks @markijbema!)
+    - Add Claude Code provider for local CLI integration (thanks @BarreiroT!)
+    - Add profile-specific context condensing thresholds (thanks @SannidhyaSah!)
+    - Fix context length for lmstudio and ollama (thanks @thecolorblue!)
+    - Resolve MCP tool eye icon state and hide in chat context (thanks @daniel-lxs!)
+    - Add LaTeX math equation rendering in chat window
+    - Add toggle for excluding MCP server tools from the prompt (thanks @Rexarrior!)
+    - Add symlink support to list_files tool
+    - Fix marketplace blanking after populating
+    - Fix recursive directory scanning in @ mention "Add Folder" functionality (thanks @village-way!)
+    - Resolve phantom subtask display on cancel during API retry
+    - Correct Gemini 2.5 Flash pricing (thanks @daniel-lxs!)
+    - Resolve marketplace timeout issues and display installed MCPs (thanks @daniel-lxs!)
+    - Onboarding tweaks to emphasize modes (thanks @brunobergher!)
+    - Rename 'Boomerang Tasks' to 'Task Orchestration' for clarity
+    - Remove command execution from attempt_completion
+    - Fix markdown for links followed by punctuation (thanks @xyOz-dev!)
+
+### Patch Changes
+
+- [#845](https://github.com/Kilo-Org/kilocode/pull/845) [`8e53c23`](https://github.com/Kilo-Org/kilocode/commit/8e53c237151787523f7338037d5442e9e0225e94) Thanks [@hassoncs](https://github.com/hassoncs)! - Improved Task Timeline tooltips
+
+- [#825](https://github.com/Kilo-Org/kilocode/pull/825) [`b7b7f8c`](https://github.com/Kilo-Org/kilocode/commit/b7b7f8c165a0b85f504076432e2fa4ce695077b8) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Show number of cache reads for Gemini models
+
 ## [v4.41.0]
 
 - [#794](https://github.com/Kilo-Org/kilocode/pull/794) [`7113260`](https://github.com/Kilo-Org/kilocode/commit/711326037cbb38db49f6a2d12671c7974a981787) Thanks [@markijbema](https://github.com/markijbema)! - Include changes from Roo Code v3.21.1
