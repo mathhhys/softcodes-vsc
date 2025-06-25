@@ -544,4 +544,26 @@ describe("shouldShowContextMenu", () => {
 		// This case means the regex wouldn't match anyway, but confirms context menu logic
 		expect(shouldShowContextMenu("@/path/with space", 13)).toBe(false) // Cursor after unescaped space
 	})
+
+	describe("slash command + @ mention interaction", () => {
+		it("should return true for @ mentions after completed slash commands", () => {
+			expect(shouldShowContextMenu("/newtask implement @", 20)).toBe(true)
+		})
+
+		it("should return true for @ mentions with text after slash commands", () => {
+			expect(shouldShowContextMenu("/newtask implement @file", 24)).toBe(true)
+		})
+
+		it("should return true for @ mentions in middle of slash command message", () => {
+			expect(shouldShowContextMenu("/code fix the @component.tsx issue", 20)).toBe(true)
+		})
+
+		it("should return false when @ is followed by space in slash command", () => {
+			expect(shouldShowContextMenu("/newtask implement @ file", 21)).toBe(false)
+		})
+
+		it("should return true for multiple @ mentions after slash command", () => {
+			expect(shouldShowContextMenu("/debug check @file1.ts and @file2.ts", 30)).toBe(true)
+		})
+	})
 })
