@@ -497,114 +497,154 @@
 				}
 			},
 			"matchPrecision": {
-				"label": "Matchningsprecision"
+				"label": "Matchningsprecision",
+				"description": "Den här skjutreglaget kontrollerar hur exakt kodsektioner måste matcha när diffar tillämpas. Lägre värden tillåter mer flexibel matchning men ökar risken för felaktiga ersättningar. Använd värden under 100% med extrem försiktighet."
 			}
 		}
 	},
 	"experimental": {
 		"DIFF_STRATEGY_UNIFIED": {
-			"label": "Aktivera enhetlig diff",
-			"description": "En annan experimentell diff-strategi som vi kommer att försöka ersätta med flerblocks-diff i framtiden."
+			"name": "Använd experimentell enhetlig diff-strategi",
+			"description": "Aktivera den experimentella enhetliga diff-strategin. Den här strategin kan minska antalet omförsök som orsakas av modellfel men kan orsaka oväntat beteende eller felaktiga redigeringar. Aktivera endast om du förstår riskerna och är villig att noggrant granska alla ändringar."
 		},
 		"SEARCH_AND_REPLACE": {
-			"label": "Aktivera Sök och ersätt",
-			"description": "Lägg till ett sök_och_ersätt-verktyg som kan hantera reguljära uttryck"
+			"name": "Använd experimentellt sök och ersätt-verktyg",
+			"description": "Aktivera det experimentella sök och ersätt-verktyget, vilket låter Kilo Code ersätta flera instanser av en sökterm i en förfrågan."
 		},
 		"INSERT_BLOCK": {
-			"label": "Aktivera Infoga block",
-			"description": "Lägg till ett infoga_innehåll-verktyg som kan infoga rader i en fil"
+			"name": "Använd experimentellt infoga innehåll-verktyg",
+			"description": "Aktivera det experimentella infoga innehåll-verktyget, vilket låter Kilo Code infoga innehåll på specifika radnummer utan att behöva skapa en diff."
 		},
 		"POWER_STEERING": {
-			"label": "Aktivera servostyrning",
-			"description": "Fråga automatiskt om korrigeringar när problem upptäcks"
+			"name": "Använd experimentellt \"servostyrnings\"-läge",
+			"description": "När det är aktiverat kommer Kilo Code att påminna modellen om detaljerna i dess nuvarande lägedefinition oftare. Detta leder till starkare efterlevnad av rolldefinitioner och anpassade instruktioner, men kommer att använda fler token per meddelande."
 		},
 		"AUTOCOMPLETE": {
-			"label": "Aktivera automatisk komplettering (alfa)",
-			"description": "Utlös förslag när du skriver i redigeraren. Obs: Fungerar för närvarande endast med Anthropic-modeller."
+			"name": "Använd experimentell \"autokomplettering\"-funktion",
+			"description": "När den är aktiverad kommer Kilo Code att ge inline-kodförslag när du skriver. Kräver Kilo Code API-leverantör."
 		},
 		"CONCURRENT_FILE_READS": {
-			"label": "Aktivera samtidiga filläsningar",
-			"description": "Snabba upp läsningen av flera små filer, men öka minnesanvändningen."
+			"name": "Aktivera samtidiga filläsningar",
+			"description": "När den är aktiverad kan Kilo Code läsa flera filer i en enda förfrågan. När den är inaktiverad måste Kilo Code läsa filer en i taget. Att inaktivera detta kan hjälpa när du arbetar med mindre kapabla modeller eller när du vill ha mer kontroll över filåtkomst."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
-			"label": "Aktivera flera sökningar och ersättningar",
-			"description": "Lägg till stöd för flera sök-/ersättningsoperationer i ett enda verktygsanrop"
+			"name": "Använd experimentellt flerblocks diff-verktyg",
+			"description": "När det är aktiverat kommer Kilo Code att använda flerblocks diff-verktyget. Detta kommer att försöka uppdatera flera kodblock i filen i en förfrågan."
 		},
 		"MARKETPLACE": {
-			"label": "Aktivera marknadsplats",
-			"description": "Upptäck, dela och installera anpassade Kilo Code-lägen och MCP-servrar."
+			"name": "Aktivera marknadsplats",
+			"description": "När den är aktiverad kan du installera MCP:er och anpassade lägen från marknadsplatsen."
 		},
 		"MULTI_FILE_APPLY_DIFF": {
-			"label": "Aktivera flerfils-Apply Diff (alfa)",
-			"description": "Obs: Att aktivera den här funktionen kan få AI att misslyckas med avancerade uppgifter.\n\nTillåter apply_diff att rikta in sig på flera filer i ett enda verktygsanrop. Minskar latens men kan påverka prestanda."
+			"name": "Aktivera samtidiga filredigeringar",
+			"description": "När den är aktiverad kan Kilo Code redigera flera filer i en enda förfrågan. När den är inaktiverad måste Kilo Code redigera filer en i taget. Att inaktivera detta kan hjälpa när du arbetar med mindre kapabla modeller eller när du vill ha mer kontroll över filmodifieringar."
 		}
 	},
 	"promptCaching": {
-		"title": "Prompt-cachelagring",
-		"description": "Prompt-cachelagring lagrar resultat från ofta använda prompter, vilket minskar latens och API-kostnader. När en prompt cachelagras hämtar Kilo Code snabbt svaret från cacheminnet istället för att skicka en ny begäran till API:et. Detta förbättrar prestandan för repetitiva frågor och sparar token."
+		"label": "Inaktivera prompt-cachelagring",
+		"description": "När den är markerad kommer Kilo Code inte att använda prompt-cachelagring för den här modellen."
 	},
 	"temperature": {
-		"label": "Temperatur",
-		"description": "Kontrollera slumpmässigheten: lägre värde är mer deterministiskt; högre är mer kreativt. Obs: Alla modeller eller leverantörer stöder inte denna parameter.",
-		"high": "Hög",
-		"low": "Låg"
+		"useCustom": "Använd anpassad temperatur",
+		"description": "Kontrollerar slumpmässighet i modellens svar.",
+		"rangeDescription": "Högre värden gör utdata mer slumpmässiga, lägre värden gör den mer deterministisk."
 	},
 	"modelInfo": {
-		"context": "Kontext:",
-		"tokens": "token",
-		"imageSupport": "Bildstöd:",
-		"yes": "Ja",
-		"no": "Nej",
-		"pricing": "Prissättning:",
-		"input": "Inmatning",
-		"output": "Utmatning",
-		"perMillion": "per 1 miljon token",
+		"supportsImages": "Stöder bilder",
+		"noImages": "Stöder inte bilder",
+		"supportsComputerUse": "Stöder datoranvändning",
+		"noComputerUse": "Stöder inte datoranvändning",
+		"supportsPromptCache": "Stöder prompt-cachelagring",
+		"noPromptCache": "Stöder inte prompt-cachelagring",
+		"maxOutput": "Max utdata",
+		"inputPrice": "Inmatningspris",
+		"outputPrice": "Utmatningspris",
+		"cacheReadsPrice": "Pris för cache-läsningar",
+		"cacheWritesPrice": "Pris för cache-skrivningar",
+		"enableStreaming": "Aktivera strömning",
+		"enableR1Format": "Aktivera R1-modellparametrar",
+		"enableR1FormatTips": "Måste vara aktiverat när du använder R1-modeller som QWQ för att förhindra 400-fel",
+		"useAzure": "Använd Azure",
+		"azureApiVersion": "Ställ in Azure API-version",
 		"gemini": {
-			"safety": {
-				"label": "Säkerhetsinställningar",
-				"description": "Konfigurera säkerhetsinställningar för Gemini-modeller. Högre inställningar leder till mer blockerat innehåll.",
-				"sexual": "Sexuellt explicit",
-				"hate": "Hat",
-				"harassment": "Trakasserier",
-				"dangerous": "Farligt"
-			}
+			"freeRequests": "* Gratis upp till {{count}} förfrågningar per minut. Efter det beror faktureringen på promptstorlek.",
+			"pricingDetails": "För mer information, se prissättningsdetaljer.",
+			"billingEstimate": "* Fakturering är en uppskattning - exakt kostnad beror på promptstorlek."
 		}
 	},
 	"modelPicker": {
-		"perMillionTokens": "per 1 miljon token",
-		"input": "I",
-		"output": "O",
-		"cacheRead": "CR",
-		"cacheWrite": "CW",
-		"tokens": "token"
+		"automaticFetch": "Tillägget hämtar automatiskt den senaste listan över modeller som är tillgängliga på <serviceLink>{{serviceName}}</serviceLink>. Om du är osäker på vilken modell du ska välja fungerar Kilo Code bäst med <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Du kan också prova att söka \"free\" för kostnadsfria alternativ som för närvarande är tillgängliga.",
+		"label": "Modell",
+		"searchPlaceholder": "Sök",
+		"noMatchFound": "Ingen matchning hittades",
+		"useCustomModel": "Använd anpassad: {{modelId}}"
 	},
 	"footer": {
-		"version": "Version: {{version}}",
-		"release_notes": "Utgivningsanmärkningar",
+		"feedback": "Om du har några frågor eller feedback, skapa gärna ett ärende på <githubLink>github.com/Kilo-Org/kilocode</githubLink> eller gå med i <redditLink>reddit.com/r/kilocode</redditLink> eller <discordLink>kilocode.ai/discord</discordLink>.",
+		"support": "För ekonomiska frågor, kontakta kundsupport på <supportLink>hi@kilocode.ai</supportLink>",
 		"telemetry": {
-			"label": "Telemetri",
-			"description": "Hjälper till att förbättra Kilo Code genom att skicka anonyma användningsdata. <0>Läs mer</0>"
+			"label": "Tillåt anonym fel- och användningsrapportering",
+			"description": "Hjälp till att förbättra Kilo Code genom att skicka anonym användningsdata och felrapporter. Ingen kod, prompter eller personlig information skickas någonsin. Se vår integritetspolicy för mer information."
 		},
 		"settings": {
-			"label": "Inställningar",
-			"import": "Importera inställningar",
-			"export": "Exportera inställningar"
+			"import": "Importera",
+			"export": "Exportera",
+			"reset": "Återställ"
 		}
 	},
 	"thinkingBudget": {
-		"label": "Tänkande budget",
-		"description": "Ange en gräns för de token som modellen kan använda för att 'tänka' innan den svarar. En högre budget möjliggör mer komplexa resonemang men kan öka latensen. Obs: Alla modeller eller leverantörer stöder inte det här alternativet."
+		"maxTokens": "Max token",
+		"maxThinkingTokens": "Max tänkande token"
 	},
 	"validation": {
-		"port": "Port måste vara ett nummer mellan 1 och 65535",
-		"baseUrl": "Bas-URL måste vara en giltig URL",
-		"apiKey": "API-nyckel krävs"
+		"apiKey": "Du måste ange en giltig API-nyckel.",
+		"awsRegion": "Du måste välja en region att använda med Amazon Bedrock.",
+		"googleCloud": "Du måste ange ett giltigt Google Cloud-projekt-ID och region.",
+		"modelId": "Du måste ange ett giltigt modell-ID.",
+		"modelSelector": "Du måste ange en giltig modellväljare.",
+		"openAi": "Du måste ange en giltig bas-URL, API-nyckel och modell-ID.",
+		"arn": {
+			"invalidFormat": "Ogiltigt ARN-format. Kontrollera formatkraven.",
+			"regionMismatch": "Varning: Regionen i din ARN ({{arnRegion}}) matchar inte din valda region ({{region}}). Detta kan orsaka åtkomstproblem. Leverantören kommer att använda regionen från ARN."
+		},
+		"modelAvailability": "Modell-ID:t ({{modelId}}) du angav är inte tillgängligt. Välj en annan modell.",
+		"providerNotAllowed": "Leverantör '{{provider}}' är inte tillåten av din organisation",
+		"modelNotAllowed": "Modell '{{model}}' är inte tillåten för leverantör '{{provider}}' av din organisation",
+		"profileInvalid": "Den här profilen innehåller en leverantör eller modell som inte är tillåten av din organisation"
 	},
 	"placeholders": {
+		"apiKey": "Ange API-nyckel...",
+		"profileName": "Ange profilnamn",
+		"accessKey": "Ange åtkomstnyckel...",
+		"secretKey": "Ange hemlig nyckel...",
+		"sessionToken": "Ange sessionstoken...",
+		"credentialsJson": "Ange inloggningsuppgifter JSON...",
+		"keyFilePath": "Ange sökväg till nyckelfil...",
+		"projectId": "Ange projekt-ID...",
+		"customArn": "Ange ARN (t.ex. arn:aws:bedrock:us-east-1:123456789012:foundation-model/my-model)",
+		"baseUrl": "Ange bas-URL...",
+		"modelId": {
+			"lmStudio": "t.ex. meta-llama-3.1-8b-instruct",
+			"lmStudioDraft": "t.ex. lmstudio-community/llama-3.2-1b-instruct",
+			"ollama": "t.ex. llama3.1"
+		},
 		"numbers": {
-			"zero": "0",
-			"one": "1",
-			"one_hundred": "100"
+			"maxTokens": "t.ex. 4096",
+			"contextWindow": "t.ex. 128000",
+			"inputPrice": "t.ex. 0.0001",
+			"outputPrice": "t.ex. 0.0002",
+			"cacheWritePrice": "t.ex. 0.00005"
 		}
-	}
+	},
+	"defaults": {
+		"ollamaUrl": "Standard: http://localhost:11434",
+		"lmStudioUrl": "Standard: http://localhost:1234",
+		"geminiUrl": "Standard: https://generativelanguage.googleapis.com"
+	},
+	"labels": {
+		"customArn": "Anpassad ARN",
+		"useCustomArn": "Använd anpassad ARN..."
+	},
+	"includeMaxOutputTokens": "Inkludera max utdatatoken",
+	"includeMaxOutputTokensDescription": "Skicka max utdatatoken-parameter i API-förfrågningar. Vissa leverantörer kanske inte stöder detta."
 }

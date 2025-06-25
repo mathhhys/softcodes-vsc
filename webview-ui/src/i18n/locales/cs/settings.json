@@ -497,114 +497,154 @@
 				}
 			},
 			"matchPrecision": {
-				"label": "Přesnost shody"
+				"label": "Přesnost shody",
+				"description": "Tento posuvník řídí, jak přesně musí sekce kódu odpovídat při aplikaci diffů. Nižší hodnoty umožňují flexibilnější shodu, ale zvyšují riziko nesprávných nahrazení. Používejte hodnoty pod 100% s extrémní opatrností."
 			}
 		}
 	},
 	"experimental": {
 		"DIFF_STRATEGY_UNIFIED": {
-			"label": "Povolit sjednocený diff",
-			"description": "Další experimentální strategie diff, kterou se v budoucnu pokusíme nahradit diffem s více bloky."
+			"name": "Použít experimentální sjednocenou strategii diff",
+			"description": "Povolit experimentální sjednocenou strategii diff. Tato strategie může snížit počet opakování způsobených chybami modelu, ale může způsobit neočekávané chování nebo nesprávné úpravy. Povolte pouze pokud rozumíte rizikům a jste ochotni pečlivě zkontrolovat všechny změny."
 		},
 		"SEARCH_AND_REPLACE": {
-			"label": "Povolit hledání a nahrazování",
-			"description": "Přidat nástroj search_and_replace, který podporuje regulární výrazy"
+			"name": "Použít experimentální nástroj hledání a nahrazování",
+			"description": "Povolit experimentální nástroj hledání a nahrazování, který umožňuje Kilo Code nahradit více výskytů hledaného výrazu v jednom požadavku."
 		},
 		"INSERT_BLOCK": {
-			"label": "Povolit vkládání bloku",
-			"description": "Přidat nástroj insert_content, který může vkládat řádky do souboru"
+			"name": "Použít experimentální nástroj vkládání obsahu",
+			"description": "Povolit experimentální nástroj vkládání obsahu, který umožňuje Kilo Code vkládat obsah na konkrétní čísla řádků bez nutnosti vytvářet diff."
 		},
 		"POWER_STEERING": {
-			"label": "Povolit posilovač řízení",
-			"description": "Automaticky vyzvat k opravám při zjištění problémů"
+			"name": "Použít experimentální režim \"posilovače řízení\"",
+			"description": "Pokud je povoleno, Kilo Code bude modelu častěji připomínat podrobnosti jeho aktuální definice režimu. To povede k silnějšímu dodržování definic rolí a vlastních instrukcí, ale použije více tokenů na zprávu."
 		},
 		"AUTOCOMPLETE": {
-			"label": "Povolit automatické doplňování (alfa)",
-			"description": "Spouštět návrhy při psaní v editoru. Poznámka: V současné době funguje pouze s modely Anthropic."
+			"name": "Použít experimentální funkci \"automatického doplňování\"",
+			"description": "Pokud je povoleno, Kilo Code bude poskytovat návrhy kódu přímo při psaní. Vyžaduje Kilo Code API Provider."
 		},
 		"CONCURRENT_FILE_READS": {
-			"label": "Povolit souběžné čtení souborů",
-			"description": "Zrychlit čtení více malých souborů, ale zvýšit využití paměti."
+			"name": "Povolit souběžné čtení souborů",
+			"description": "Pokud je povoleno, Kilo Code může číst více souborů v jednom požadavku. Pokud je zakázáno, Kilo Code musí číst soubory jeden po druhém. Zakázání může pomoci při práci s méně schopnými modely nebo když chcete mít větší kontrolu nad přístupem k souborům."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
-			"label": "Povolit vícenásobné hledání a nahrazování",
-			"description": "Přidat podporu pro více operací hledání/nahrazování v jednom volání nástroje"
+			"name": "Použít experimentální nástroj diff s více bloky",
+			"description": "Pokud je povoleno, Kilo Code bude používat nástroj diff s více bloky. To se pokusí aktualizovat více bloků kódu v souboru v jednom požadavku."
 		},
 		"MARKETPLACE": {
-			"label": "Povolit Marketplace",
-			"description": "Objevujte, sdílejte a instalujte vlastní režimy Kilo Code a servery MCP."
+			"name": "Povolit Marketplace",
+			"description": "Pokud je povoleno, můžete instalovat MCP a vlastní režimy z Marketplace."
 		},
 		"MULTI_FILE_APPLY_DIFF": {
-			"label": "Povolit vícenásobný Apply Diff (alfa)",
-			"description": "Poznámka: Povolení této funkce může způsobit selhání AI u pokročilých úkolů.\n\nUmožňuje apply_diff cílit na více souborů v jednom volání nástroje. Snižuje latenci, ale může ovlivnit výkon."
+			"name": "Povolit souběžné úpravy souborů",
+			"description": "Pokud je povoleno, Kilo Code může upravovat více souborů v jednom požadavku. Pokud je zakázáno, Kilo Code musí upravovat soubory jeden po druhém. Zakázání může pomoci při práci s méně schopnými modely nebo když chcete mít větší kontrolu nad úpravami souborů."
 		}
 	},
 	"promptCaching": {
-		"title": "Ukládání výzev do mezipaměti",
-		"description": "Ukládání výzev do mezipaměti ukládá výsledky z často používaných výzev, čímž se snižuje latence a náklady na API. Když je výzva uložena do mezipaměti, Kilo Code rychle načte odpověď z mezipaměti namísto odeslání nového požadavku na API. Tím se zlepšuje výkon u opakovaných dotazů a šetří se tokeny."
+		"label": "Zakázat ukládání výzev do mezipaměti",
+		"description": "Pokud je zaškrtnuto, Kilo Code nebude používat ukládání výzev do mezipaměti pro tento model."
 	},
 	"temperature": {
-		"label": "Teplota",
-		"description": "Kontrolujte náhodnost: nižší hodnota je determinističtější; vyšší je kreativnější. Poznámka: Ne všechny modely nebo poskytovatelé podporují tento parametr.",
-		"high": "Vysoká",
-		"low": "Nízká"
+		"useCustom": "Použít vlastní teplotu",
+		"description": "Řídí náhodnost v odpovědích modelu.",
+		"rangeDescription": "Vyšší hodnoty činí výstup náhodnějším, nižší hodnoty jej činí determinističtějším."
 	},
 	"modelInfo": {
-		"context": "Kontext:",
-		"tokens": "tokeny",
-		"imageSupport": "Podpora obrázků:",
-		"yes": "Ano",
-		"no": "Ne",
-		"pricing": "Ceny:",
-		"input": "Vstup",
-		"output": "Výstup",
-		"perMillion": "za 1 milion tokenů",
+		"supportsImages": "Podporuje obrázky",
+		"noImages": "Nepodporuje obrázky",
+		"supportsComputerUse": "Podporuje používání počítače",
+		"noComputerUse": "Nepodporuje používání počítače",
+		"supportsPromptCache": "Podporuje ukládání výzev do mezipaměti",
+		"noPromptCache": "Nepodporuje ukládání výzev do mezipaměti",
+		"maxOutput": "Maximální výstup",
+		"inputPrice": "Cena vstupu",
+		"outputPrice": "Cena výstupu",
+		"cacheReadsPrice": "Cena čtení z mezipaměti",
+		"cacheWritesPrice": "Cena zápisu do mezipaměti",
+		"enableStreaming": "Povolit streamování",
+		"enableR1Format": "Povolit parametry modelu R1",
+		"enableR1FormatTips": "Musí být povoleno při používání modelů R1, jako je QWQ, aby se předešlo chybám 400",
+		"useAzure": "Použít Azure",
+		"azureApiVersion": "Nastavit verzi Azure API",
 		"gemini": {
-			"safety": {
-				"label": "Nastavení bezpečnosti",
-				"description": "Nakonfigurujte nastavení bezpečnosti pro modely Gemini. Vyšší nastavení povede k blokování většího množství obsahu.",
-				"sexual": "Sexuálně explicitní",
-				"hate": "Nenávist",
-				"harassment": "Obtěžování",
-				"dangerous": "Nebezpečný"
-			}
+			"freeRequests": "* Zdarma až {{count}} požadavků za minutu. Poté závisí fakturace na velikosti výzvy.",
+			"pricingDetails": "Další informace najdete v podrobnostech o cenách.",
+			"billingEstimate": "* Fakturace je odhad - přesná cena závisí na velikosti výzvy."
 		}
 	},
 	"modelPicker": {
-		"perMillionTokens": "za 1 milion tokenů",
-		"input": "I",
-		"output": "O",
-		"cacheRead": "CR",
-		"cacheWrite": "CW",
-		"tokens": "tokeny"
+		"automaticFetch": "Rozšíření automaticky načítá nejnovější seznam modelů dostupných na <serviceLink>{{serviceName}}</serviceLink>. Pokud si nejste jisti, který model vybrat, Kilo Code funguje nejlépe s <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Můžete také zkusit vyhledat \"free\" pro aktuálně dostupné bezplatné možnosti.",
+		"label": "Model",
+		"searchPlaceholder": "Hledat",
+		"noMatchFound": "Nebyla nalezena žádná shoda",
+		"useCustomModel": "Použít vlastní: {{modelId}}"
 	},
 	"footer": {
-		"version": "Verze: {{version}}",
-		"release_notes": "Poznámky k vydání",
+		"feedback": "Pokud máte nějaké dotazy nebo zpětnou vazbu, neváhejte otevřít problém na <githubLink>github.com/Kilo-Org/kilocode</githubLink> nebo se připojte k <redditLink>reddit.com/r/kilocode</redditLink> nebo <discordLink>kilocode.ai/discord</discordLink>.",
+		"support": "Pro finanční dotazy kontaktujte prosím zákaznickou podporu na <supportLink>hi@kilocode.ai</supportLink>",
 		"telemetry": {
-			"label": "Telemetrie",
-			"description": "Pomáhá vylepšovat Kilo Code odesíláním anonymních dat o používání. <0>Dozvědět se více</0>"
+			"label": "Povolit anonymní hlášení chyb a používání",
+			"description": "Pomozte vylepšit Kilo Code odesíláním anonymních dat o používání a hlášení chyb. Nikdy se neodesílá žádný kód, výzvy ani osobní informace. Další podrobnosti najdete v našich zásadách ochrany osobních údajů."
 		},
 		"settings": {
-			"label": "Nastavení",
-			"import": "Importovat nastavení",
-			"export": "Exportovat nastavení"
+			"import": "Importovat",
+			"export": "Exportovat",
+			"reset": "Resetovat"
 		}
 	},
 	"thinkingBudget": {
-		"label": "Rozpočet на přemýšlení",
-		"description": "Nastavte limit tokenů, které může model použít k „přemýšlení“, než odpoví. Vyšší rozpočet umožňuje složitější uvažování, ale může zvýšit latenci. Poznámka: Ne všechny modely nebo poskytovatelé tuto možnost podporují."
+		"maxTokens": "Maximální počet tokenů",
+		"maxThinkingTokens": "Maximální počet tokenů pro přemýšlení"
 	},
 	"validation": {
-		"port": "Port musí být číslo mezi 1 a 65535",
-		"baseUrl": "Základní URL musí být platné URL",
-		"apiKey": "Je vyžadován klíč API"
+		"apiKey": "Musíte zadat platný klíč API.",
+		"awsRegion": "Musíte vybrat region pro použití s Amazon Bedrock.",
+		"googleCloud": "Musíte zadat platné ID projektu Google Cloud a region.",
+		"modelId": "Musíte zadat platné ID modelu.",
+		"modelSelector": "Musíte zadat platný selektor modelu.",
+		"openAi": "Musíte zadat platnou základní URL, klíč API a ID modelu.",
+		"arn": {
+			"invalidFormat": "Neplatný formát ARN. Zkontrolujte prosím požadavky na formát.",
+			"regionMismatch": "Upozornění: Region ve vašem ARN ({{arnRegion}}) neodpovídá vybranému regionu ({{region}}). To může způsobit problémy s přístupem. Poskytovatel použije region z ARN."
+		},
+		"modelAvailability": "ID modelu ({{modelId}}), které jste zadali, není k dispozici. Vyberte prosím jiný model.",
+		"providerNotAllowed": "Poskytovatel '{{provider}}' není povolen vaší organizací",
+		"modelNotAllowed": "Model '{{model}}' není povolen pro poskytovatele '{{provider}}' vaší organizací",
+		"profileInvalid": "Tento profil obsahuje poskytovatele nebo model, který není povolen vaší organizací"
 	},
 	"placeholders": {
+		"apiKey": "Zadejte klíč API...",
+		"profileName": "Zadejte název profilu",
+		"accessKey": "Zadejte přístupový klíč...",
+		"secretKey": "Zadejte tajný klíč...",
+		"sessionToken": "Zadejte token relace...",
+		"credentialsJson": "Zadejte JSON přihlašovacích údajů...",
+		"keyFilePath": "Zadejte cestu k souboru klíče...",
+		"projectId": "Zadejte ID projektu...",
+		"customArn": "Zadejte ARN (např. arn:aws:bedrock:us-east-1:123456789012:foundation-model/my-model)",
+		"baseUrl": "Zadejte základní URL...",
+		"modelId": {
+			"lmStudio": "např. meta-llama-3.1-8b-instruct",
+			"lmStudioDraft": "např. lmstudio-community/llama-3.2-1b-instruct",
+			"ollama": "např. llama3.1"
+		},
 		"numbers": {
-			"zero": "0",
-			"one": "1",
-			"one_hundred": "100"
+			"maxTokens": "např. 4096",
+			"contextWindow": "např. 128000",
+			"inputPrice": "např. 0.0001",
+			"outputPrice": "např. 0.0002",
+			"cacheWritePrice": "např. 0.00005"
 		}
-	}
+	},
+	"defaults": {
+		"ollamaUrl": "Výchozí: http://localhost:11434",
+		"lmStudioUrl": "Výchozí: http://localhost:1234",
+		"geminiUrl": "Výchozí: https://generativelanguage.googleapis.com"
+	},
+	"labels": {
+		"customArn": "Vlastní ARN",
+		"useCustomArn": "Použít vlastní ARN..."
+	},
+	"includeMaxOutputTokens": "Zahrnout maximální počet výstupních tokenů",
+	"includeMaxOutputTokensDescription": "Odeslat parametr maximálního počtu výstupních tokenů v požadavcích API. Někteří poskytovatelé to nemusí podporovat."
 }

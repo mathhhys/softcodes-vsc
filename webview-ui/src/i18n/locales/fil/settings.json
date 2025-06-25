@@ -497,114 +497,154 @@
 				}
 			},
 			"matchPrecision": {
-				"label": "Tumpak na pagtutugma"
+				"label": "Tumpak na pagtutugma",
+				"description": "Kinokontrol ng slider na ito kung gaano katumpak dapat tumugma ang mga seksyon ng code kapag naglalapat ng mga diff. Ang mas mababang value ay nagbibigay-daan sa mas flexible na pagtutugma ngunit tumataas ang panganib ng maling pagpapalit. Gamitin ang mga value na mas mababa sa 100% nang may labis na pag-iingat."
 			}
 		}
 	},
 	"experimental": {
 		"DIFF_STRATEGY_UNIFIED": {
-			"label": "I-enable ang Unified diff",
-			"description": "Isa pang experimental diff strategy na susubukan naming palitan ng multi-block diff sa hinaharap."
+			"name": "Gumamit ng experimental unified diff strategy",
+			"description": "I-enable ang experimental unified diff strategy. Ang strategy na ito ay maaaring mabawasan ang bilang ng mga retry na dulot ng mga error ng model ngunit maaaring magdulot ng hindi inaasahang pag-uugali o maling pag-edit. I-enable lang kung nauunawaan mo ang mga panganib at handa kang maingat na suriin ang lahat ng pagbabago."
 		},
 		"SEARCH_AND_REPLACE": {
-			"label": "I-enable ang Search and Replace",
-			"description": "Magdagdag ng search_and_replace tool na kayang mag-regex"
+			"name": "Gumamit ng experimental search and replace tool",
+			"description": "I-enable ang experimental search and replace tool, na nagbibigay-daan sa Kilo Code na palitan ang maraming instance ng search term sa isang request."
 		},
 		"INSERT_BLOCK": {
-			"label": "I-enable ang Insert Block",
-			"description": "Magdagdag ng insert_content tool na kayang mag-insert ng mga linya sa isang file"
+			"name": "Gumamit ng experimental insert content tool",
+			"description": "I-enable ang experimental insert content tool, na nagbibigay-daan sa Kilo Code na mag-insert ng content sa mga partikular na line number nang hindi kailangang gumawa ng diff."
 		},
 		"POWER_STEERING": {
-			"label": "I-enable ang Power Steering",
-			"description": "Awtomatikong mag-prompt para sa mga pagwawasto kapag nakita ang mga isyu"
+			"name": "Gumamit ng experimental \"power steering\" mode",
+			"description": "Kapag naka-enable, mas madalas na ipapaalala ng Kilo Code sa model ang mga detalye ng kasalukuyang mode definition nito. Ito ay hahantong sa mas malakas na pagsunod sa mga role definition at custom instruction, ngunit gagamit ng mas maraming token bawat mensahe."
 		},
 		"AUTOCOMPLETE": {
-			"label": "I-enable ang Autocomplete (Alpha)",
-			"description": "Mag-trigger ng mga mungkahi habang nagta-type ka sa editor. Tandaan: Kasalukuyang gumagana lang sa Anthropic models."
+			"name": "Gumamit ng experimental \"autocomplete\" feature",
+			"description": "Kapag naka-enable, magbibigay ang Kilo Code ng mga inline code suggestion habang nagta-type ka. Nangangailangan ng Kilo Code API Provider."
 		},
 		"CONCURRENT_FILE_READS": {
-			"label": "I-enable ang sabay-sabay na pagbasa ng file",
-			"description": "Pabilisin ang pagbasa ng maraming maliliit na file, ngunit nagpapataas ng paggamit ng memory."
+			"name": "I-enable ang sabay-sabay na pagbasa ng file",
+			"description": "Kapag naka-enable, maaaring magbasa ang Kilo Code ng maraming file sa isang request. Kapag naka-disable, dapat magbasa ang Kilo Code ng mga file nang isa-isa. Ang pag-disable nito ay makakatulong kapag gumagamit ng mga hindi gaanong capable na model o kapag gusto mo ng mas maraming kontrol sa file access."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
-			"label": "I-enable ang Maramihang Search And Replace",
-			"description": "Magdagdag ng suporta para sa maraming search/replace operation sa isang tawag ng tool"
+			"name": "Gumamit ng experimental multi block diff tool",
+			"description": "Kapag naka-enable, gagamitin ng Kilo Code ang multi block diff tool. Susubukan nitong mag-update ng maraming code block sa file sa isang request."
 		},
 		"MARKETPLACE": {
-			"label": "I-enable ang Marketplace",
-			"description": "Tuklasin, ibahagi, at i-install ang mga custom na Kilo Code mode at MCP server."
+			"name": "I-enable ang Marketplace",
+			"description": "Kapag naka-enable, maaari kang mag-install ng mga MCP at custom mode mula sa Marketplace."
 		},
 		"MULTI_FILE_APPLY_DIFF": {
-			"label": "I-enable ang Maramihang File Apply Diff (Alpha)",
-			"description": "Tandaan: Ang pag-enable sa feature na ito ay maaaring maging sanhi ng pagkabigo ng AI sa mga advanced na gawain.\n\nNagbibigay-daan sa apply_diff na mag-target ng maraming file sa isang tool call. Nagpapababa ng latency ngunit maaaring makaapekto sa performance."
+			"name": "I-enable ang sabay-sabay na pag-edit ng file",
+			"description": "Kapag naka-enable, maaaring mag-edit ang Kilo Code ng maraming file sa isang request. Kapag naka-disable, dapat mag-edit ang Kilo Code ng mga file nang isa-isa. Ang pag-disable nito ay makakatulong kapag gumagamit ng mga hindi gaanong capable na model o kapag gusto mo ng mas maraming kontrol sa mga pagbabago sa file."
 		}
 	},
 	"promptCaching": {
-		"title": "Prompt Caching",
-		"description": "Ang prompt caching ay nag-iimbak ng mga resulta mula sa mga madalas na ginagamit na prompt, binabawasan ang latency at gastos sa API. Kapag naka-cache ang isang prompt, mabilis na kinukuha ng Kilo Code ang sagot mula sa cache sa halip na magpadala ng bagong request sa API. Pinapabuti nito ang performance para sa mga paulit-ulit na tanong at nakakatipid ng mga token."
+		"label": "I-disable ang prompt caching",
+		"description": "Kapag naka-check, hindi gagamitin ng Kilo Code ang prompt caching para sa model na ito."
 	},
 	"temperature": {
-		"label": "Temperatura",
-		"description": "Kontrolin ang pagiging random: Ang mas mababang value ay mas deterministic; ang mas mataas ay mas malikhain. Tandaan: Hindi lahat ng modelo o provider ay sumusuporta sa parameter na ito.",
-		"high": "Mataas",
-		"low": "Mababa"
+		"useCustom": "Gumamit ng custom temperature",
+		"description": "Kinokontrol ang randomness sa mga tugon ng model.",
+		"rangeDescription": "Ang mas mataas na value ay ginagawang mas random ang output, ang mas mababang value ay ginagawang mas deterministic ito."
 	},
 	"modelInfo": {
-		"context": "Context:",
-		"tokens": "tokens",
-		"imageSupport": "Suporta sa larawan:",
-		"yes": "Oo",
-		"no": "Hindi",
-		"pricing": "Pagpepresyo:",
-		"input": "Input",
-		"output": "Output",
-		"perMillion": "bawat 1M token",
+		"supportsImages": "Sumusuporta sa mga larawan",
+		"noImages": "Hindi sumusuporta sa mga larawan",
+		"supportsComputerUse": "Sumusuporta sa computer use",
+		"noComputerUse": "Hindi sumusuporta sa computer use",
+		"supportsPromptCache": "Sumusuporta sa prompt caching",
+		"noPromptCache": "Hindi sumusuporta sa prompt caching",
+		"maxOutput": "Max output",
+		"inputPrice": "Presyo ng input",
+		"outputPrice": "Presyo ng output",
+		"cacheReadsPrice": "Presyo ng cache reads",
+		"cacheWritesPrice": "Presyo ng cache writes",
+		"enableStreaming": "I-enable ang streaming",
+		"enableR1Format": "I-enable ang R1 model parameters",
+		"enableR1FormatTips": "Dapat naka-enable kapag gumagamit ng R1 models tulad ng QWQ para maiwasan ang 400 errors",
+		"useAzure": "Gumamit ng Azure",
+		"azureApiVersion": "Itakda ang Azure API version",
 		"gemini": {
-			"safety": {
-				"label": "Mga setting ng kaligtasan",
-				"description": "I-configure ang mga setting ng kaligtasan para sa mga model ng Gemini. Ang mas mataas na setting ay hahantong sa mas maraming hinarang na nilalaman.",
-				"sexual": "Sekswal na Hayag",
-				"hate": "Poot",
-				"harassment": "Panliligalig",
-				"dangerous": "Mapanganib"
-			}
+			"freeRequests": "* Libre hanggang {{count}} request bawat minuto. Pagkatapos nito, ang bayad ay depende sa laki ng prompt.",
+			"pricingDetails": "Para sa karagdagang impormasyon, tingnan ang mga detalye ng pagpepresyo.",
+			"billingEstimate": "* Ang bayad ay isang tantya - ang eksaktong gastos ay depende sa laki ng prompt."
 		}
 	},
 	"modelPicker": {
-		"perMillionTokens": "bawat 1M token",
-		"input": "I",
-		"output": "O",
-		"cacheRead": "CR",
-		"cacheWrite": "CW",
-		"tokens": "mga token"
+		"automaticFetch": "Awtomatikong kinukuha ng extension ang pinakabagong listahan ng mga model na available sa <serviceLink>{{serviceName}}</serviceLink>. Kung hindi ka sigurado kung aling model ang pipiliin, pinakamahusay na gumagana ang Kilo Code sa <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Maaari mo ring subukang maghanap ng \"free\" para sa mga walang bayad na opsyon na kasalukuyang available.",
+		"label": "Model",
+		"searchPlaceholder": "Maghanap",
+		"noMatchFound": "Walang nahanap na tugma",
+		"useCustomModel": "Gumamit ng custom: {{modelId}}"
 	},
 	"footer": {
-		"version": "Bersyon: {{version}}",
-		"release_notes": "Mga Tala sa Paglabas",
+		"feedback": "Kung mayroon kang mga tanong o feedback, huwag mag-atubiling mag-open ng issue sa <githubLink>github.com/Kilo-Org/kilocode</githubLink> o sumali sa <redditLink>reddit.com/r/kilocode</redditLink> o <discordLink>kilocode.ai/discord</discordLink>.",
+		"support": "Para sa mga tanong tungkol sa pananalapi, makipag-ugnayan sa Customer Support sa <supportLink>hi@kilocode.ai</supportLink>",
 		"telemetry": {
-			"label": "Telemetry",
-			"description": "Tumutulong na mapabuti ang Kilo Code sa pamamagitan ng pagpapadala ng anonymous na data ng paggamit. <0>Alamin pa</0>"
+			"label": "Payagan ang anonymous na pag-ulat ng error at paggamit",
+			"description": "Tumulong na mapabuti ang Kilo Code sa pamamagitan ng pagpapadala ng anonymous na data ng paggamit at mga ulat ng error. Walang code, prompt, o personal na impormasyon ang kailanman ipinapadala. Tingnan ang aming privacy policy para sa karagdagang detalye."
 		},
 		"settings": {
-			"label": "Mga Setting",
-			"import": "Mag-import ng mga setting",
-			"export": "Mag-export ng mga setting"
+			"import": "Mag-import",
+			"export": "Mag-export",
+			"reset": "I-reset"
 		}
 	},
 	"thinkingBudget": {
-		"label": "Badyet sa pag-iisip",
-		"description": "Magtakda ng limitasyon sa mga token na maaaring gamitin ng modelo para sa 'pag-iisip' bago tumugon. Ang mas mataas na badyet ay nagbibigay-daan para sa mas kumplikadong pangangatwiran ngunit maaaring tumaas ang latency. Tandaan: Hindi lahat ng modelo o provider ay sumusuporta sa opsyon na ito."
+		"maxTokens": "Max Tokens",
+		"maxThinkingTokens": "Max Thinking Tokens"
 	},
 	"validation": {
-		"port": "Ang port ay dapat isang numero sa pagitan ng 1 at 65535",
-		"baseUrl": "Ang Base URL ay dapat isang valid na URL",
-		"apiKey": "Kailangan ng API key"
+		"apiKey": "Dapat kang magbigay ng valid na API key.",
+		"awsRegion": "Dapat kang pumili ng region na gagamitin sa Amazon Bedrock.",
+		"googleCloud": "Dapat kang magbigay ng valid na Google Cloud Project ID at Region.",
+		"modelId": "Dapat kang magbigay ng valid na model ID.",
+		"modelSelector": "Dapat kang magbigay ng valid na model selector.",
+		"openAi": "Dapat kang magbigay ng valid na base URL, API key, at model ID.",
+		"arn": {
+			"invalidFormat": "Invalid na ARN format. Pakitingnan ang mga kinakailangan sa format.",
+			"regionMismatch": "Babala: Ang region sa iyong ARN ({{arnRegion}}) ay hindi tumutugma sa iyong napiling region ({{region}}). Maaari itong magdulot ng mga isyu sa access. Gagamitin ng provider ang region mula sa ARN."
+		},
+		"modelAvailability": "Ang model ID ({{modelId}}) na ibinigay mo ay hindi available. Pumili ng ibang model.",
+		"providerNotAllowed": "Ang provider na '{{provider}}' ay hindi pinapayagan ng iyong organisasyon",
+		"modelNotAllowed": "Ang model na '{{model}}' ay hindi pinapayagan para sa provider na '{{provider}}' ng iyong organisasyon",
+		"profileInvalid": "Ang profile na ito ay naglalaman ng provider o model na hindi pinapayagan ng iyong organisasyon"
 	},
 	"placeholders": {
+		"apiKey": "Ilagay ang API Key...",
+		"profileName": "Ilagay ang pangalan ng profile",
+		"accessKey": "Ilagay ang Access Key...",
+		"secretKey": "Ilagay ang Secret Key...",
+		"sessionToken": "Ilagay ang Session Token...",
+		"credentialsJson": "Ilagay ang Credentials JSON...",
+		"keyFilePath": "Ilagay ang Key File Path...",
+		"projectId": "Ilagay ang Project ID...",
+		"customArn": "Ilagay ang ARN (hal. arn:aws:bedrock:us-east-1:123456789012:foundation-model/my-model)",
+		"baseUrl": "Ilagay ang base URL...",
+		"modelId": {
+			"lmStudio": "hal. meta-llama-3.1-8b-instruct",
+			"lmStudioDraft": "hal. lmstudio-community/llama-3.2-1b-instruct",
+			"ollama": "hal. llama3.1"
+		},
 		"numbers": {
-			"zero": "0",
-			"one": "1",
-			"one_hundred": "100"
+			"maxTokens": "hal. 4096",
+			"contextWindow": "hal. 128000",
+			"inputPrice": "hal. 0.0001",
+			"outputPrice": "hal. 0.0002",
+			"cacheWritePrice": "hal. 0.00005"
 		}
-	}
+	},
+	"defaults": {
+		"ollamaUrl": "Default: http://localhost:11434",
+		"lmStudioUrl": "Default: http://localhost:1234",
+		"geminiUrl": "Default: https://generativelanguage.googleapis.com"
+	},
+	"labels": {
+		"customArn": "Custom ARN",
+		"useCustomArn": "Gumamit ng custom ARN..."
+	},
+	"includeMaxOutputTokens": "Isama ang max output tokens",
+	"includeMaxOutputTokensDescription": "Magpadala ng max output tokens parameter sa mga API request. Maaaring hindi suportado ito ng ilang provider."
 }
