@@ -47,12 +47,12 @@ export type ToolGroup = z.infer<typeof toolGroupsSchema>
 
 export const languages = [
 	"ca",
-	"cs",
+	"cs", // kilocode_change
 	"de",
-	"el",
+	"el", // kilocode_change
 	"en",
 	"es",
-	"fil",
+	"fil", // kilocode_change
 	"fr",
 	"hi",
 	"it",
@@ -62,10 +62,10 @@ export const languages = [
 	"pl",
 	"pt-BR",
 	"ru",
-	"sv",
-	"th",
+	"sv", // kilocode_change
+	"th", // kilocode_change
 	"tr",
-	"uk",
+	"uk", // kilocode_change
 	"vi",
 	"zh-CN",
 	"zh-TW",

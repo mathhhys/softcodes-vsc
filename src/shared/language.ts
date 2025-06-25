@@ -6,12 +6,12 @@ import { type Language, isLanguage } from "@roo-code/types"
 
 export const LANGUAGES: Record<Language, string> = {
 	ca: "Català",
-	cs: "Čeština",
+	cs: "Čeština", // kilocode_change
 	de: "Deutsch",
-	el: "Ελληνικά",
+	el: "Ελληνικά", // kilocode_change
 	en: "English",
 	es: "Español",
-	fil: "Filipino",
+	fil: "Filipino", // kilocode_change
 	fr: "Français",
 	hi: "हिन्दी",
 	id: "Bahasa Indonesia",
@@ -22,10 +22,10 @@ export const LANGUAGES: Record<Language, string> = {
 	pl: "Polski",
 	"pt-BR": "Português",
 	ru: "Русский",
-	sv: "Svenska",
-	th: "ไทย",
+	sv: "Svenska", // kilocode_change
+	th: "ไทย", // kilocode_change
 	tr: "Türkçe",
-	uk: "Українська",
+	uk: "Українська", // kilocode_change
 	vi: "Tiếng Việt",
 	"zh-CN": "简体中文",
 	"zh-TW": "繁體中文",

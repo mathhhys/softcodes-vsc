@@ -118,12 +118,12 @@ type GlobalSettings = {
 	language?:
 		| (
 				| "ca"
-				| "cs"
+				| "cs" // kilocode_change
 				| "de"
-				| "el"
+				| "el" // kilocode_change
 				| "en"
 				| "es"
-				| "fil"
+				| "fil" // kilocode_change
 				| "fr"
 				| "hi"
 				| "id"
@@ -134,10 +134,10 @@ type GlobalSettings = {
 				| "pl"
 				| "pt-BR"
 				| "ru"
-				| "sv"
-				| "th"
+				| "sv" // kilocode_change
+				| "th" // kilocode_change
 				| "tr"
-				| "uk"
+				| "uk" // kilocode_change
 				| "vi"
 				| "zh-CN"
 				| "zh-TW"
@@ -895,12 +895,12 @@ type IpcMessage =
 								language?:
 									| (
 											| "ca"
-											| "cs"
+											| "cs" // kilocode_change
 											| "de"
-											| "el"
+											| "el" // kilocode_change
 											| "en"
 											| "es"
-											| "fil"
+											| "fil" // kilocode_change
 											| "fr"
 											| "hi"
 											| "id"
@@ -911,10 +911,10 @@ type IpcMessage =
 											| "pl"
 											| "pt-BR"
 											| "ru"
-											| "sv"
-											| "th"
+											| "sv" // kilocode_change
+											| "th" // kilocode_change
 											| "tr"
-											| "uk"
+											| "uk" // kilocode_change
 											| "vi"
 											| "zh-CN"
 											| "zh-TW"
@@ -1398,12 +1398,12 @@ type TaskCommand =
 					language?:
 						| (
 								| "ca"
-								| "cs"
+								| "cs" // kilocode_change
 								| "de"
-								| "el"
+								| "el" // kilocode_change
 								| "en"
 								| "es"
-								| "fil"
+								| "fil" // kilocode_change
 								| "fr"
 								| "hi"
 								| "id"
@@ -1414,10 +1414,10 @@ type TaskCommand =
 								| "pl"
 								| "pt-BR"
 								| "ru"
-								| "sv"
-								| "th"
+								| "sv" // kilocode_change
+								| "th" // kilocode_change
 								| "tr"
-								| "uk"
+								| "uk" // kilocode_change
 								| "vi"
 								| "zh-CN"
 								| "zh-TW"
