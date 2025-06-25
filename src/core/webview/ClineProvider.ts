@@ -1304,7 +1304,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			alwaysAllowWriteOutsideWorkspace,
 			alwaysAllowWriteProtected,
 			alwaysAllowExecute,
-			allowedCommands,
+			allowedCommands, // kilocode_change
 			alwaysAllowBrowser,
 			alwaysAllowMcp,
 			alwaysAllowModeSwitch,
@@ -1372,10 +1372,12 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		} = await this.getState()
 
 		const machineId = vscode.env.machineId
+		// kilocode_change start
 		const allowedCommandsState = allowedCommands || []
 		const allowedCommandsWorkspace =
 			vscode.workspace.getConfiguration(Package.name).get<string[]>("allowedCommands") || []
 		const allowedCommandsCombined = [...new Set([...allowedCommandsState, ...allowedCommandsWorkspace])]
+		// kilocode_change end
 
 		const cwd = this.cwd
 
@@ -1424,7 +1426,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			diffEnabled: diffEnabled ?? true,
 			enableCheckpoints: enableCheckpoints ?? true,
 			shouldShowAnnouncement: false,
-			allowedCommands: allowedCommandsCombined,
+			allowedCommands: allowedCommandsCombined, // kilocode_change
 			soundVolume: soundVolume ?? 0.5,
 			browserViewportSize: browserViewportSize ?? "900x600",
 			screenshotQuality: screenshotQuality ?? 75,
