@@ -1,9 +1,13 @@
 {
 	"welcome": {
-		"greeting": "Kilo Code สามารถทำอะไรให้คุณได้บ้าง?",
-		"introText": "ฉันได้รับการฝึกฝนด้วยโมเดล AI ที่เร็วที่สุดที่มีอยู่ และพร้อมที่จะสร้างโค้ดให้คุณด้วยความเร็วแสง!",
-		"ctaButton": "ลองใช้ Kilo Code ฟรี",
-		"manualModeButton": "ใช้ API key ของคุณเอง"
+		"greeting": "ยินดีต้อนรับสู่ Kilo Code!",
+		"introText1": "Kilo Code เป็นเอเจนต์เขียนโค้ด AI แบบฟรีและโอเพ่นซอร์ส",
+		"introText2": "ทำงานร่วมกับโมเดล AI ล่าสุด เช่น Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1 และอีกกว่า 450 โมเดล",
+		"introText3": "สร้างบัญชีฟรีและรับ tokens มูลค่า $20 เพื่อใช้กับโมเดล AI ใดก็ได้",
+		"ctaButton": "สร้างบัญชีฟรี",
+		"manualModeButton": "ใช้ API key ของคุณเอง",
+		"alreadySignedUp": "สมัครแล้ว?",
+		"loginText": "เข้าสู่ระบบที่นี่"
 	},
 	"lowCreditWarning": {
 		"addCredit": "เติมเครดิต",
