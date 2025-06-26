@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# no set -e here; if either command fails we still want to do the rest
+
 # we have our own readme/changelog and github scripting
 git checkout origin/main README.md CHANGELOG.md .github
 
