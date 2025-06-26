@@ -99,7 +99,7 @@ export const TaskActions = ({ item, buttonsDisabled }: TaskActionsProps) => {
 			{item?.task && (
 				<IconButton
 					iconClass={showCopyFeedback ? "codicon-check" : "codicon-copy"}
-					title={t("chat:task.copyPrompt")}
+					title={t("history:copyPrompt")}
 					disabled={buttonsDisabled || !item}
 					onClick={(e) => copyWithFeedback(item.task, e)}
 				/>

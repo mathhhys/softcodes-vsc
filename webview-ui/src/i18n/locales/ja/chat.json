@@ -11,7 +11,6 @@
 		"closeAndStart": "タスクを閉じて新しいタスクを開始",
 		"export": "タスク履歴をエクスポート",
 		"share": "タスクを共有",
-		"copyPrompt": "プロンプトをコピー",
 		"delete": "タスクを削除（Shift + クリックで確認をスキップ）",
 		"condenseContext": "コンテキストをインテリジェントに圧縮",
 		"shareWithOrganization": "組織と共有",

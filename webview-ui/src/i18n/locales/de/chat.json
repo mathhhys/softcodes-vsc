@@ -11,7 +11,6 @@
 		"closeAndStart": "Aufgabe schließen und neue starten",
 		"export": "Aufgabenverlauf exportieren",
 		"share": "Aufgabe teilen",
-		"copyPrompt": "Prompt kopieren",
 		"delete": "Aufgabe löschen (Shift + Klick zum Überspringen der Bestätigung)",
 		"condenseContext": "Kontext intelligent komprimieren",
 		"shareWithOrganization": "Mit Organisation teilen",

@@ -12,7 +12,6 @@
 		"closeAndStart": "Close task and start a new one",
 		"export": "Export task history",
 		"share": "Share task",
-		"copyPrompt": "Copy prompt",
 		"delete": "Delete Task (Shift + Click to skip confirmation)",
 		"shareWithOrganization": "Share with Organization",
 		"shareWithOrganizationDescription": "Only members of your organization can access",

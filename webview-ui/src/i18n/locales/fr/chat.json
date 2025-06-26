@@ -11,7 +11,6 @@
 		"closeAndStart": "Fermer la tâche et en commencer une nouvelle",
 		"export": "Exporter l'historique des tâches",
 		"share": "Partager la tâche",
-		"copyPrompt": "Copier le prompt",
 		"delete": "Supprimer la tâche (Shift + Clic pour ignorer la confirmation)",
 		"condenseContext": "Condenser intelligemment le contexte",
 		"shareWithOrganization": "Partager avec l'organisation",
