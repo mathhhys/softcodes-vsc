@@ -2,4 +2,4 @@
 "kilo-code": patch
 ---
 
-Fixed a crash with the error message "Bad substitution"
+Fixed crashes with the error message "Bad substitution" and "Cannot read properties of undefined (reading 'includes')"
