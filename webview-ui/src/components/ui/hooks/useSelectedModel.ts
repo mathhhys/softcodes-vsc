@@ -218,16 +218,8 @@ function getSelectedModel({
 		}
 		// kilocode_change begin
 		case "kilocode": {
-			const displayModelId = {
-				gemini25: "Gemini 2.5 Pro",
-				gemini25flashpreview: "Gemini 2.5 Flash Preview",
-				claude37: "Claude 3.7 Sonnet",
-				gpt41: "GPT 4.1",
-			}
-			const id = displayModelId[(apiConfiguration?.kilocodeModel as keyof typeof displayModelId) ?? "claude37"]
-
 			// Use the fetched models from routerModels
-			if (routerModels?.["kilocode-openrouter"] && apiConfiguration?.kilocodeModel) {
+			if (routerModels["kilocode-openrouter"] && apiConfiguration.kilocodeModel) {
 				// Find the model in the fetched models
 				const modelEntries = Object.entries(routerModels["kilocode-openrouter"])
 
@@ -244,7 +236,7 @@ function getSelectedModel({
 			}
 
 			// Fallback to anthropic model if no match found
-			return { id, info: anthropicModels["claude-3-7-sonnet-20250219"] }
+			return { id: "Claude 3.7 Sonnet", info: anthropicModels["claude-3-7-sonnet-20250219"] }
 		}
 		// kilocode_change end
 
