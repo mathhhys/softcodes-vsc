@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.43.1
-
-### Patch Changes
+## [v4.43.1]
 
 - [#842](https://github.com/Kilo-Org/kilocode/pull/842) [`32e4c30`](https://github.com/Kilo-Org/kilocode/commit/32e4c304506b4042b76265446a3169206eb243a5) Thanks [@markijbema](https://github.com/markijbema)! - add a button to fix mermaid syntax errors by calling the LLM
 
