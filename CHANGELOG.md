@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.43.0
-
-### Minor Changes
+## [v4.43.0]
 
 - [#871](https://github.com/Kilo-Org/kilocode/pull/871) [`52f216d`](https://github.com/Kilo-Org/kilocode/commit/52f216de21ea5be0366976a9108e3c9edd993620) Thanks [@hassoncs](https://github.com/hassoncs)! - Add a colorful gutter to chat messages corresponding to the Task Timeline
 
