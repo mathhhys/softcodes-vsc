@@ -140,6 +140,13 @@ export const ShareButton = ({ item, disabled = false }: ShareButtonProps) => {
 		return null
 	}
 
+	// kilocode_change start render nothing
+	// we do not want to connect to the cloud of roo
+	if (Math.random() <= 1) {
+		return null
+	}
+	// kilocode_change end
+
 	return (
 		<>
 			{shareButtonState.showPopover ? (
