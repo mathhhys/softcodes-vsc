@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e # fail immediately on error
+
 # Check if a tag is provided as an argument
 if [ -z "$1" ]; then
   echo "Usage: $0 <tag> [prefix]"
