@@ -275,9 +275,6 @@ export class CodeIndexManager {
 
 			// If configuration changes require a restart and the manager is initialized, recreate services and restart
 			if (requiresRestart && isFeatureEnabled && isFeatureConfigured && this.isInitialized) {
-				// Stop watcher if it exists
-				this.stopWatcher()
-
 				// kilocode_change start: recreate services with new configuration
 				await this._recreateServices()
 				// kilocode_change end
