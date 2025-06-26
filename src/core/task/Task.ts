@@ -1509,7 +1509,7 @@ export class Task extends EventEmitter<ClineEvents> {
 				// `pWaitFor` before making the next request. All this is really
 				// doing is presenting the last partial message that we just set
 				// to complete.
-				// kilocode_change strart
+				// kilocode_change start
 				try {
 					await presentAssistantMessage(this)
 				} catch (error) {
