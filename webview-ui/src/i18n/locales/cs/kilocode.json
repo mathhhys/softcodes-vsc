@@ -1,9 +1,13 @@
 {
 	"welcome": {
-		"greeting": "Co pro tebe může Kilo Code udělat?",
-		"introText": "Byl jsem vytrénován na nejrychlejších dostupných AI modelech a jsem připraven generovat kód pro tebe rychlostí blesku!",
-		"ctaButton": "Vyzkoušej Kilo Code zdarma",
-		"manualModeButton": "Použij vlastní API key"
+		"greeting": "Vítej v Kilo Code!",
+		"introText1": "Kilo Code je bezplatný open source AI coding agent.",
+		"introText2": "Funguje s nejnovějšími AI modely jako Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1 a více než 450 dalšími.",
+		"introText3": "Vytvoř si bezplatný účet a získej $20 v tokenech pro použití s jakýmkoli AI modelem.",
+		"ctaButton": "Vytvořit bezplatný účet",
+		"manualModeButton": "Použij vlastní API key",
+		"alreadySignedUp": "Už jsi registrovaný?",
+		"loginText": "Přihlas se zde"
 	},
 	"lowCreditWarning": {
 		"addCredit": "Přidat kredit",
