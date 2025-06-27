@@ -1,9 +1,13 @@
 {
 	"welcome": {
-		"greeting": "Vad kan Kilo Code göra för dig?",
-		"introText": "Jag har tränats på de snabbaste AI-modellerna som finns tillgängliga och är redo att generera kod åt dig i ljusets hastighet!",
-		"ctaButton": "Prova Kilo Code gratis",
-		"manualModeButton": "Använd din egen API-nyckel"
+		"greeting": "Välkommen till Kilo Code!",
+		"introText1": "Kilo Code är en gratis, öppen källkods AI-kodningsagent.",
+		"introText2": "Den fungerar med de senaste AI-modellerna som Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, och över 450 andra.",
+		"introText3": "Skapa ett gratis konto och få tokens värda $20 att använda med vilken AI-modell som helst.",
+		"ctaButton": "Skapa gratis konto",
+		"manualModeButton": "Använd din egen API-nyckel",
+		"alreadySignedUp": "Redan registrerad?",
+		"loginText": "Logga in här"
 	},
 	"lowCreditWarning": {
 		"addCredit": "Lägg till kredit",

@@ -1,9 +1,13 @@
 {
 	"welcome": {
-		"greeting": "Τι μπορεί να κάνει το Kilo Code για σένα;",
-		"introText": "Έχω εκπαιδευτεί στα πιο γρήγορα μοντέλα AI που υπάρχουν και είμαι έτοιμος να δημιουργήσω κώδικα για σένα με ταχύτητα φωτός!",
-		"ctaButton": "Δοκίμασε το Kilo Code δωρεάν",
-		"manualModeButton": "Χρησιμοποίησε το δικό σου API key"
+		"greeting": "Καλώς ήρθες στο Kilo Code!",
+		"introText1": "Το Kilo Code είναι ένας δωρεάν, ανοιχτού κώδικα AI coding agent.",
+		"introText2": "Λειτουργεί με τα πιο πρόσφατα μοντέλα AI όπως Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, και άλλα 450+.",
+		"introText3": "Δημιούργησε έναν δωρεάν λογαριασμό και πάρε $20 σε tokens για χρήση με οποιοδήποτε μοντέλο AI.",
+		"ctaButton": "Δημιουργία δωρεάν λογαριασμού",
+		"manualModeButton": "Χρησιμοποίησε το δικό σου API key",
+		"alreadySignedUp": "Έχεις ήδη εγγραφεί;",
+		"loginText": "Σύνδεση εδώ"
 	},
 	"lowCreditWarning": {
 		"addCredit": "Προσθήκη Credit",

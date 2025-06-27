@@ -1,9 +1,13 @@
 {
 	"welcome": {
-		"greeting": "Ano ang magagawa ng Kilo Code para sa iyo?",
-		"introText": "Nagsanay ako sa pinakamabilis na AI models na available at handa akong gumawa ng code para sa iyo sa bilis ng kidlat!",
-		"ctaButton": "Subukan ang Kilo Code nang libre",
-		"manualModeButton": "Gamitin ang sarili mong API key"
+		"greeting": "Maligayang pagdating sa Kilo Code!",
+		"introText1": "Ang Kilo Code ay isang libreng, open source AI coding agent.",
+		"introText2": "Gumagana ito sa pinakabagong AI models tulad ng Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, at higit 450 pang iba.",
+		"introText3": "Gumawa ng libreng account at makakuha ng $20 na tokens para gamitin sa kahit anong AI model.",
+		"ctaButton": "Gumawa ng libreng account",
+		"manualModeButton": "Gamitin ang sarili mong API key",
+		"alreadySignedUp": "Nag-sign up ka na ba?",
+		"loginText": "Mag-log in dito"
 	},
 	"lowCreditWarning": {
 		"addCredit": "Magdagdag ng Credit",
