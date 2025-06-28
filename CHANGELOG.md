@@ -1,10 +1,10 @@
 # Roo Code Changelog
 
-## 3.22.4
+## [3.22.4] - 2025-06-27
 
-### Patch Changes
-
--   - Fix: resolve E2BIG error by passing large prompts via stdin to Claude CLI (thanks @Fovty!)
+- Fix: resolve E2BIG error by passing large prompts via stdin to Claude CLI (thanks @Fovty!)
+- Add optional mode suggestions to follow-up questions
+- Fix: move StandardTooltip inside PopoverTrigger in ShareButton (thanks @daniel-lxs!)
 
 ## [3.22.3] - 2025-06-27
 
