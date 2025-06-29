@@ -1,0 +1,127 @@
+{
+	"extension": {
+		"name": "Kilo Code",
+		"description": "Open Source AI coding assistant for planning, building, and fixing code."
+	},
+	"number_format": {
+		"thousand_suffix": "k",
+		"million_suffix": "m",
+		"billion_suffix": "b"
+	},
+	"feedback": {
+		"title": "Feedback",
+		"description": "We'd love to hear your feedback or help with any issues you're experiencing.",
+		"githubIssues": "Report an issue on GitHub",
+		"githubDiscussions": "Join GitHub discussions",
+		"discord": "Join our Discord community",
+		"customerSupport": "Customer Support"
+	},
+	"welcome": "Welcome, {{name}}! You have {{count}} notifications.",
+	"items": {
+		"zero": "No items",
+		"one": "One item",
+		"other": "{{count}} items"
+	},
+	"confirmation": {
+		"reset_state": "Are you sure you want to reset all state and secret storage in the extension? This cannot be undone.",
+		"delete_config_profile": "Are you sure you want to delete this configuration profile?",
+		"delete_custom_mode": "Are you sure you want to delete this custom mode?",
+		"delete_message": "What would you like to delete?",
+		"just_this_message": "Just this message",
+		"this_and_subsequent": "This and all subsequent messages"
+	},
+	"errors": {
+		"invalid_data_uri": "Invalid data URI format",
+		"error_copying_image": "Error copying image: {{errorMessage}}",
+		"error_opening_image": "Error opening image: {{error}}",
+		"error_saving_image": "Error saving image: {{errorMessage}}",
+		"could_not_open_file": "Could not open file: {{errorMessage}}",
+		"could_not_open_file_generic": "Could not open file!",
+		"checkpoint_timeout": "Timed out when attempting to restore checkpoint.",
+		"checkpoint_failed": "Failed to restore checkpoint.",
+		"no_workspace": "Please open a project folder first",
+		"update_support_prompt": "Failed to update support prompt",
+		"reset_support_prompt": "Failed to reset support prompt",
+		"enhance_prompt": "Failed to enhance prompt",
+		"get_system_prompt": "Failed to get system prompt",
+		"search_commits": "Failed to search commits",
+		"save_api_config": "Failed to save api configuration",
+		"create_api_config": "Failed to create api configuration",
+		"rename_api_config": "Failed to rename api configuration",
+		"load_api_config": "Failed to load api configuration",
+		"delete_api_config": "Failed to delete api configuration",
+		"list_api_config": "Failed to get list api configuration",
+		"update_server_timeout": "Failed to update server timeout",
+		"hmr_not_running": "Local development server is not running, HMR will not work. Please run 'npm run dev' before launching the extension to enable HMR.",
+		"retrieve_current_mode": "Error: failed to retrieve current mode from state.",
+		"failed_delete_repo": "Failed to delete associated shadow repository or branch: {{error}}",
+		"failed_remove_directory": "Failed to remove task directory: {{error}}",
+		"custom_storage_path_unusable": "Custom storage path \"{{path}}\" is unusable, will use default path",
+		"cannot_access_path": "Cannot access path {{path}}: {{error}}",
+		"settings_import_failed": "Settings import failed: {{error}}.",
+		"mistake_limit_guidance": "This may indicate a failure in the model's thought process or inability to use a tool properly, which can be mitigated with some user guidance (e.g. \"Try breaking down the task into smaller steps\").",
+		"violated_organization_allowlist": "Failed to run task: the current profile violates your organization settings",
+		"condense_failed": "Failed to condense context",
+		"condense_not_enough_messages": "Not enough messages to condense context",
+		"condensed_recently": "Context was condensed recently; skipping this attempt",
+		"condense_handler_invalid": "API handler for condensing context is invalid",
+		"condense_context_grew": "Context size increased during condensing; skipping this attempt",
+		"share_task_failed": "Failed to share task. Please try again.",
+		"share_no_active_task": "No active task to share",
+		"share_auth_required": "Authentication required. Please sign in to share tasks.",
+		"share_not_enabled": "Task sharing is not enabled for this organization.",
+		"share_task_not_found": "Task not found or access denied.",
+		"claudeCode": {
+			"processExited": "Claude Code process exited with code {{exitCode}}.",
+			"errorOutput": "Error output: {{output}}",
+			"processExitedWithError": "Claude Code process exited with code {{exitCode}}. Error output: {{output}}",
+			"stoppedWithReason": "Claude Code stopped with reason: {{reason}}",
+			"apiKeyModelPlanMismatch": "API keys and subscription plans allow different models. Make sure the selected model is included in your plan."
+		}
+	},
+	"warnings": {
+		"no_terminal_content": "No terminal content selected",
+		"missing_task_files": "This task's files are missing. Would you like to remove it from the task list?"
+	},
+	"info": {
+		"no_changes": "No changes found.",
+		"clipboard_copy": "System prompt successfully copied to clipboard",
+		"history_cleanup": "Cleaned up {{count}} task(s) with missing files from history.",
+		"custom_storage_path_set": "Custom storage path set: {{path}}",
+		"default_storage_path": "Reverted to using default storage path",
+		"settings_imported": "Settings imported successfully.",
+		"share_link_copied": "Share link copied to clipboard",
+		"organization_share_link_copied": "Organization share link copied to clipboard!",
+		"public_share_link_copied": "Public share link copied to clipboard!",
+		"image_copied_to_clipboard": "Image data URI copied to clipboard",
+		"image_saved": "Image saved to {{path}}"
+	},
+	"answers": {
+		"yes": "Yes",
+		"no": "No",
+		"cancel": "Cancel",
+		"remove": "Remove",
+		"keep": "Keep"
+	},
+	"tasks": {
+		"canceled": "Task error: It was stopped and canceled by the user.",
+		"deleted": "Task failure: It was stopped and deleted by the user."
+	},
+	"storage": {
+		"prompt_custom_path": "Enter custom conversation history storage path, leave empty to use default location",
+		"path_placeholder": "D:\\KiloCodeStorage",
+		"enter_absolute_path": "Please enter an absolute path (e.g. D:\\KiloCodeStorage or /home/user/storage)",
+		"enter_valid_path": "Please enter a valid path"
+	},
+	"input": {
+		"task_prompt": "What should Kilo Code do?",
+		"task_placeholder": "Build, find, ask something"
+	},
+	"mdm": {
+		"errors": {
+			"cloud_auth_required": "Your organization requires Roo Code Cloud authentication. Please sign in to continue.",
+			"organization_mismatch": "You must be authenticated with your organization's Roo Code Cloud account.",
+			"verification_failed": "Unable to verify organization authentication."
+		}
+	}
+}
