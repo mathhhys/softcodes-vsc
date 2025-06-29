@@ -1,11 +1,8 @@
 # Roo Code Changelog
 
-## 3.22.5
+## [3.22.5] - 2025-06-28
 
-### Patch Changes
-
-- Bump
--   - Remove Gemini CLI provider while we work with Google on a better integration
+- Remove Gemini CLI provider while we work with Google on a better integration
 
 ## [3.22.4] - 2025-06-27
 
