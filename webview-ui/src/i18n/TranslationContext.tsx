@@ -46,7 +46,9 @@ export const TranslationProvider: React.FC<{ children: ReactNode }> = ({ childre
 				t: translate,
 				i18n,
 			}}>
-			{children}
+			<div lang={i18n.language} dir={i18n.dir()}>
+				{children}
+			</div>
 		</TranslationContext.Provider>
 	)
 }
