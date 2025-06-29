@@ -1,106 +1,106 @@
 {
 	"welcome": {
-		"greeting": "Welcome to Kilo Code!",
-		"introText1": "Kilo Code is a free, open source AI coding agent.",
-		"introText2": "It works with the latest AI models like Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, and 450+ more.",
-		"introText3": "Create a free account and get $20 worth of tokens to use across any AI model.",
-		"ctaButton": "Create a free account",
-		"manualModeButton": "Use your own API key",
-		"alreadySignedUp": "Already signed up?",
-		"loginText": "Log in here"
+		"greeting": "مرحبًا بك في Kilo Code!",
+		"introText1": "Kilo Code هو وكيل برمجة بالذكاء الاصطناعي مجاني ومفتوح المصدر.",
+		"introText2": "يعمل مع أحدث نماذج الذكاء الاصطناعي مثل Claude 4 Sonnet وGemini 2.5 Pro وGPT-4.1 وأكثر من 450 نموذج آخر.",
+		"introText3": "أنشئ حسابًا مجانيًا واحصل على tokens بقيمة 20 دولارًا لاستخدامها عبر أي نموذج ذكاء اصطناعي.",
+		"ctaButton": "إنشاء حساب مجاني",
+		"manualModeButton": "استخدم مفتاح API الخاص بك",
+		"alreadySignedUp": "هل سجلت بالفعل؟",
+		"loginText": "تسجيل الدخول هنا"
 	},
 	"lowCreditWarning": {
-		"addCredit": "Add Credit",
-		"lowBalance": "Your Kilo Code balance is low"
+		"addCredit": "إضافة رصيد",
+		"lowBalance": "رصيد Kilo Code الخاص بك منخفض"
 	},
 	"notifications": {
-		"toolRequest": "Tool request waiting for approval",
-		"browserAction": "Browser action waiting for approval",
-		"command": "Command waiting for approval"
+		"toolRequest": "طلب أداة في انتظار الموافقة",
+		"browserAction": "إجراء المتصفح في انتظار الموافقة",
+		"command": "أمر في انتظار الموافقة"
 	},
 	"settings": {
 		"sections": {
-			"mcp": "MCP Servers"
+			"mcp": "خوادم MCP"
 		},
 		"provider": {
-			"apiKey": "Kilo Code API Key",
-			"login": "Log in at Kilo Code",
-			"logout": "Log out from Kilo Code"
+			"apiKey": "مفتاح API لـ Kilo Code",
+			"login": "تسجيل الدخول في Kilo Code",
+			"logout": "تسجيل الخروج من Kilo Code"
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code wants to condense your conversation",
-			"condenseConversation": "Condense Conversation"
+			"wantsToCondense": "يريد Kilo Code تكثيف محادثتك",
+			"condenseConversation": "تكثيف المحادثة"
 		}
 	},
 	"newTaskPreview": {
-		"task": "Task"
+		"task": "المهمة"
 	},
 	"profile": {
-		"title": "Profile",
-		"dashboard": "Dashboard",
-		"logOut": "Log out",
-		"currentBalance": "CURRENT BALANCE",
-		"loading": "Loading...",
+		"title": "الملف الشخصي",
+		"dashboard": "لوحة التحكم",
+		"logOut": "تسجيل الخروج",
+		"currentBalance": "الرصيد الحالي",
+		"loading": "جاري التحميل...",
 		"signUp": {
-			"title": "Sign up with Kilo Code",
-			"description": "Signing up with Kilo Code gives you free credits to get started. Use your credits to explore our features, try out the latest and greatest models, and experience the benefits of Kilo Code without any commitment.",
-			"termsAndPrivacy": "By continuing, you agree to the <termsLink>Terms of Service</termsLink> and <privacyLink>Privacy Policy.</privacyLink>"
+			"title": "التسجيل مع Kilo Code",
+			"description": "يمنحك التسجيل مع Kilo Code أرصدة مجانية للبدء. استخدم أرصدتك لاستكشاف ميزاتنا، وتجربة أحدث وأفضل النماذج، وتجربة فوائد Kilo Code دون أي التزام.",
+			"termsAndPrivacy": "بالمتابعة، فإنك توافق على <termsLink>شروط الخدمة</termsLink> و<privacyLink>سياسة الخصوصية.</privacyLink>"
 		}
 	},
-	"docs": "Docs",
+	"docs": "الوثائق",
 	"rules": {
-		"tooltip": "Manage Kilo Code Rules & Workflows",
-		"ariaLabel": "Kilo Code Rules",
+		"tooltip": "إدارة قواعد وسير عمل Kilo Code",
+		"ariaLabel": "قواعد Kilo Code",
 		"tabs": {
-			"rules": "Rules",
-			"workflows": "Workflows"
+			"rules": "القواعد",
+			"workflows": "سير العمل"
 		},
 		"description": {
-			"rules": "Rules allow you to provide Kilo Code with instructions it should follow in all modes and for all prompts. They are a persistent way to include context and preferences for all conversations in your workspace or globally.",
-			"workflows": "Workflows are a prepared template for a conversation. Workflows can allow you to define prompts you use frequently, and can include a series of steps to guide Kilo Code through repetitive tasks, such as deploying a service or submitting a PR. To invoke a workflow, type",
-			"workflowsInChat": "in the chat."
+			"rules": "تسمح لك القواعد بتزويد Kilo Code بالتعليمات التي يجب أن يتبعها في جميع الأوضاع ولجميع المطالبات. إنها طريقة دائمة لتضمين السياق والتفضيلات لجميع المحادثات في مساحة العمل الخاصة بك أو عالميًا.",
+			"workflows": "سير العمل هي قوالب معدة مسبقًا للمحادثة. يمكن أن تسمح لك سير العمل بتحديد المطالبات التي تستخدمها بشكل متكرر، ويمكن أن تتضمن سلسلة من الخطوات لتوجيه Kilo Code خلال المهام المتكررة، مثل نشر خدمة أو إرسال طلب سحب. لاستدعاء سير عمل، اكتب",
+			"workflowsInChat": "في المحادثة."
 		},
 		"sections": {
-			"globalRules": "Global Rules",
-			"workspaceRules": "Workspace Rules",
-			"globalWorkflows": "Global Workflows",
-			"workspaceWorkflows": "Workspace Workflows"
+			"globalRules": "القواعد العامة",
+			"workspaceRules": "قواعد مساحة العمل",
+			"globalWorkflows": "سير العمل العامة",
+			"workspaceWorkflows": "سير عمل مساحة العمل"
 		},
 		"validation": {
-			"invalidFileExtension": "Only .md, .txt, or no file extension allowed"
+			"invalidFileExtension": "مسموح فقط بامتدادات .md أو .txt أو بدون امتداد"
 		},
 		"placeholders": {
-			"workflowName": "workflow-name (.md, .txt, or no extension)",
-			"ruleName": "rule-name (.md, .txt, or no extension)"
+			"workflowName": "اسم-سير-العمل (.md أو .txt أو بدون امتداد)",
+			"ruleName": "اسم-القاعدة (.md أو .txt أو بدون امتداد)"
 		},
 		"newFile": {
-			"newWorkflowFile": "New workflow file...",
-			"newRuleFile": "New rule file..."
+			"newWorkflowFile": "ملف سير عمل جديد...",
+			"newRuleFile": "ملف قاعدة جديد..."
 		}
 	},
 	"taskTimeline": {
 		"tooltip": {
-			"clickToScroll": "View {{messageType}} (#{{messageNumber}})",
+			"clickToScroll": "عرض {{messageType}} (#{{messageNumber}})",
 			"messageTypes": {
-				"browser_action_launch": "browser launch",
-				"browser_action_result": "browser action result",
-				"browser_action": "browser action",
-				"checkpoint_saved": "checkpoint saved",
-				"command": "command execution",
-				"command_output": "command output",
-				"completion_result": "completion result",
-				"condense_context": "condense context",
-				"error": "error message",
-				"followup": "followup question",
-				"mcp_server_response": "MCP server response",
-				"reasoning": "AI reasoning",
-				"text": "AI response",
-				"tool": "tool usage",
-				"user": "user feedback",
-				"unknown": "unknown message type",
-				"use_mcp_server": "MCP server usage"
+				"browser_action_launch": "تشغيل المتصفح",
+				"browser_action_result": "نتيجة إجراء المتصفح",
+				"browser_action": "إجراء المتصفح",
+				"checkpoint_saved": "تم حفظ نقطة التفتيش",
+				"command": "تنفيذ الأمر",
+				"command_output": "مخرجات الأمر",
+				"completion_result": "نتيجة الإكمال",
+				"condense_context": "تكثيف السياق",
+				"error": "رسالة خطأ",
+				"followup": "سؤال متابعة",
+				"mcp_server_response": "استجابة خادم MCP",
+				"reasoning": "تفكير الذكاء الاصطناعي",
+				"text": "استجابة الذكاء الاصطناعي",
+				"tool": "استخدام الأداة",
+				"user": "ملاحظات المستخدم",
+				"unknown": "نوع رسالة غير معروف",
+				"use_mcp_server": "استخدام خادم MCP"
 			}
 		}
 	}

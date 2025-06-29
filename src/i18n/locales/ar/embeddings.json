@@ -1,23 +1,23 @@
 {
-	"unknownError": "Unknown error",
-	"authenticationFailed": "Failed to create embeddings: Authentication failed. Please check your API key.",
-	"failedWithStatus": "Failed to create embeddings after {{attempts}} attempts: HTTP {{statusCode}} - {{errorMessage}}",
-	"failedWithError": "Failed to create embeddings after {{attempts}} attempts: {{errorMessage}}",
-	"failedMaxAttempts": "Failed to create embeddings after {{attempts}} attempts",
-	"textExceedsTokenLimit": "Text at index {{index}} exceeds maximum token limit ({{itemTokens}} > {{maxTokens}}). Skipping.",
-	"rateLimitRetry": "Rate limit hit, retrying in {{delayMs}}ms (attempt {{attempt}}/{{maxRetries}})",
+	"unknownError": "خطأ غير معروف",
+	"authenticationFailed": "فشل في إنشاء التضمينات: فشلت المصادقة. يرجى التحقق من مفتاح API الخاص بك.",
+	"failedWithStatus": "فشل في إنشاء التضمينات بعد {{attempts}} محاولات: HTTP {{statusCode}} - {{errorMessage}}",
+	"failedWithError": "فشل في إنشاء التضمينات بعد {{attempts}} محاولات: {{errorMessage}}",
+	"failedMaxAttempts": "فشل في إنشاء التضمينات بعد {{attempts}} محاولات",
+	"textExceedsTokenLimit": "النص في الفهرس {{index}} يتجاوز الحد الأقصى للرموز ({{itemTokens}} > {{maxTokens}}). تخطي.",
+	"rateLimitRetry": "تم الوصول إلى حد المعدل، إعادة المحاولة في {{delayMs}} مللي ثانية (محاولة {{attempt}}/{{maxRetries}})",
 	"ollama": {
-		"couldNotReadErrorBody": "Could not read error body",
-		"requestFailed": "Ollama API request failed with status {{status}} {{statusText}}: {{errorBody}}",
-		"invalidResponseStructure": "Invalid response structure from Ollama API: \"embeddings\" array not found or not an array.",
-		"embeddingFailed": "Ollama embedding failed: {{message}}"
+		"couldNotReadErrorBody": "تعذر قراءة نص الخطأ",
+		"requestFailed": "فشل طلب Ollama API بالحالة {{status}} {{statusText}}: {{errorBody}}",
+		"invalidResponseStructure": "بنية استجابة غير صالحة من Ollama API: مصفوفة \"embeddings\" غير موجودة أو ليست مصفوفة.",
+		"embeddingFailed": "فشل تضمين Ollama: {{message}}"
 	},
 	"scanner": {
-		"unknownErrorProcessingFile": "Unknown error processing file {{filePath}}",
-		"unknownErrorDeletingPoints": "Unknown error deleting points for {{filePath}}",
-		"failedToProcessBatchWithError": "Failed to process batch after {{maxRetries}} attempts: {{errorMessage}}"
+		"unknownErrorProcessingFile": "خطأ غير معروف في معالجة الملف {{filePath}}",
+		"unknownErrorDeletingPoints": "خطأ غير معروف في حذف النقاط لـ {{filePath}}",
+		"failedToProcessBatchWithError": "فشل في معالجة الدفعة بعد {{maxRetries}} محاولات: {{errorMessage}}"
 	},
 	"vectorStore": {
-		"qdrantConnectionFailed": "Failed to connect to Qdrant vector database. Please ensure Qdrant is running and accessible at {{qdrantUrl}}. Error: {{errorMessage}}"
+		"qdrantConnectionFailed": "فشل في الاتصال بقاعدة بيانات Qdrant المتجهة. يرجى التأكد من أن Qdrant يعمل ويمكن الوصول إليه على {{qdrantUrl}}. خطأ: {{errorMessage}}"
 	}
 }

@@ -1,13 +1,13 @@
 {
-	"dialogTitle": "Human Relay - Please Help Copy/Paste Information",
-	"dialogDescription": "Please copy the following prompt to the web AI, then paste the AI's response in the input box below.",
-	"copiedToClipboard": "Copied to clipboard",
+	"dialogTitle": "التتابع البشري - يرجى المساعدة في نسخ/لصق المعلومات",
+	"dialogDescription": "يرجى نسخ الموجه التالي إلى الذكاء الاصطناعي على الويب، ثم لصق استجابة الذكاء الاصطناعي في مربع الإدخال أدناه.",
+	"copiedToClipboard": "تم النسخ إلى الحافظة",
 	"aiResponse": {
-		"label": "Please enter AI's response:",
-		"placeholder": "Paste AI's response here..."
+		"label": "يرجى إدخال استجابة الذكاء الاصطناعي:",
+		"placeholder": "الصق استجابة الذكاء الاصطناعي هنا..."
 	},
 	"actions": {
-		"cancel": "Cancel",
-		"submit": "Submit"
+		"cancel": "إلغاء",
+		"submit": "إرسال"
 	}
 }

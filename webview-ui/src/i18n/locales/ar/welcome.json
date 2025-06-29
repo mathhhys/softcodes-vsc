@@ -1,27 +1,27 @@
 {
-	"greeting": "Hi, I'm Kilo Code!",
-	"introduction": "<strong>Kilo Code is the premiere autonomous coding agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Kilo Code requires an API key.",
-	"notice": "To get started, this extension needs an API provider.",
-	"start": "Let's go!",
+	"greeting": "مرحبًا، أنا Kilo Code!",
+	"introduction": "<strong>Kilo Code هو وكيل البرمجة المستقل الرائد.</strong> استعد لتصميم وبرمجة وتصحيح وتعزيز إنتاجيتك بطريقة لم ترها من قبل. للمتابعة، يحتاج Kilo Code إلى مفتاح API.",
+	"notice": "للبدء، يحتاج هذا الملحق إلى مزود API.",
+	"start": "هيا بنا!",
 	"routers": {
 		"requesty": {
-			"description": "Your optimized LLM router",
-			"incentive": "$1 free credit"
+			"description": "موجه LLM المحسّن الخاص بك",
+			"incentive": "رصيد مجاني بقيمة 1 دولار"
 		},
 		"openrouter": {
-			"description": "A unified interface for LLMs"
+			"description": "واجهة موحدة لنماذج اللغة الكبيرة"
 		}
 	},
-	"chooseProvider": "To do its magic, Kilo Code needs an API key.",
-	"startRouter": "We recommend using an LLM Router:",
-	"startCustom": "Or you can bring your provider API key:",
+	"chooseProvider": "للقيام بسحره، يحتاج Kilo Code إلى مفتاح API.",
+	"startRouter": "نوصي باستخدام موجه LLM:",
+	"startCustom": "أو يمكنك إحضار مفتاح API الخاص بمزودك:",
 	"telemetry": {
-		"title": "Help Improve Kilo Code",
-		"anonymousTelemetry": "Send anonymous error and usage data to help us fix bugs and improve the extension. No code, prompts, or personal information is ever sent.",
-		"changeSettings": "You can always change this at the bottom of the <settingsLink>settings</settingsLink>",
-		"settings": "settings",
-		"allow": "Allow",
-		"deny": "Deny"
+		"title": "ساعد في تحسين Kilo Code",
+		"anonymousTelemetry": "أرسل بيانات الأخطاء والاستخدام المجهولة لمساعدتنا في إصلاح الأخطاء وتحسين الملحق. لا يتم إرسال أي كود أو مطالبات أو معلومات شخصية.",
+		"changeSettings": "يمكنك دائمًا تغيير هذا في أسفل <settingsLink>الإعدادات</settingsLink>",
+		"settings": "الإعدادات",
+		"allow": "سماح",
+		"deny": "رفض"
 	},
-	"importSettings": "Import Settings"
+	"importSettings": "استيراد الإعدادات"
 }

@@ -1,16 +1,16 @@
 {
 	"readFile": {
-		"linesRange": " (lines {{start}}-{{end}})",
-		"definitionsOnly": " (definitions only)",
-		"maxLines": " (max {{max}} lines)"
+		"linesRange": " (الأسطر {{start}}-{{end}})",
+		"definitionsOnly": " (التعريفات فقط)",
+		"maxLines": " (الحد الأقصى {{max}} سطر)"
 	},
-	"toolRepetitionLimitReached": "Kilo Code appears to be stuck in a loop, attempting the same action ({{toolName}}) repeatedly. This might indicate a problem with its current strategy. Consider rephrasing the task, providing more specific instructions, or guiding it towards a different approach.",
+	"toolRepetitionLimitReached": "يبدو أن Kilo Code عالق في حلقة، يحاول نفس الإجراء ({{toolName}}) بشكل متكرر. قد يشير هذا إلى مشكلة في استراتيجيته الحالية. فكر في إعادة صياغة المهمة، أو تقديم تعليمات أكثر تحديداً، أو توجيهه نحو نهج مختلف.",
 	"codebaseSearch": {
-		"approval": "Searching for '{{query}}' in codebase..."
+		"approval": "جاري البحث عن '{{query}}' في قاعدة الكود..."
 	},
 	"newTask": {
 		"errors": {
-			"policy_restriction": "Failed to create new task due to policy restrictions."
+			"policy_restriction": "فشل في إنشاء مهمة جديدة بسبب قيود السياسة."
 		}
 	}
 }

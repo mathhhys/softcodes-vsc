@@ -1,131 +1,131 @@
 {
-	"title": "Roo Marketplace",
+	"title": "سوق Roo",
 	"tabs": {
-		"installed": "Installed",
-		"settings": "Settings",
-		"browse": "Browse"
+		"installed": "مثبت",
+		"settings": "الإعدادات",
+		"browse": "تصفح"
 	},
-	"done": "Done",
-	"refresh": "Refresh",
+	"done": "تم",
+	"refresh": "تحديث",
 	"filters": {
 		"search": {
-			"placeholder": "Search marketplace items...",
-			"placeholderMcp": "Search MCPs...",
-			"placeholderMode": "Search Modes..."
+			"placeholder": "البحث في عناصر السوق...",
+			"placeholderMcp": "البحث في خوادم MCP...",
+			"placeholderMode": "البحث في الأوضاع..."
 		},
 		"type": {
-			"label": "Filter by type:",
-			"all": "All types",
-			"mode": "Mode",
-			"mcpServer": "MCP Server"
+			"label": "تصفية حسب النوع:",
+			"all": "جميع الأنواع",
+			"mode": "وضع",
+			"mcpServer": "خادم MCP"
 		},
 		"sort": {
-			"label": "Sort by:",
-			"name": "Name",
-			"author": "Author",
-			"lastUpdated": "Last Updated"
+			"label": "ترتيب حسب:",
+			"name": "الاسم",
+			"author": "المؤلف",
+			"lastUpdated": "آخر تحديث"
 		},
 		"tags": {
-			"label": "Filter by tags:",
-			"clear": "Clear tags",
-			"placeholder": "Type to search and select tags...",
-			"noResults": "No matching tags found",
-			"selected": "Showing items with any of the selected tags",
-			"clickToFilter": "Click tags to filter items"
+			"label": "تصفية حسب العلامات:",
+			"clear": "مسح العلامات",
+			"placeholder": "اكتب للبحث واختيار العلامات...",
+			"noResults": "لم يتم العثور على علامات مطابقة",
+			"selected": "عرض العناصر مع أي من العلامات المحددة",
+			"clickToFilter": "انقر على العلامات لتصفية العناصر"
 		},
-		"none": "None"
+		"none": "لا شيء"
 	},
 	"type-group": {
-		"modes": "Modes",
-		"mcps": "MCP Servers"
+		"modes": "الأوضاع",
+		"mcps": "خوادم MCP"
 	},
 	"items": {
 		"empty": {
-			"noItems": "No marketplace items found",
-			"withFilters": "Try adjusting your filters",
-			"noSources": "Try adding a source in the Sources tab",
-			"adjustFilters": "Try adjusting your filters or search terms",
-			"clearAllFilters": "Clear all filters"
+			"noItems": "لم يتم العثور على عناصر في السوق",
+			"withFilters": "حاول تعديل المرشحات",
+			"noSources": "حاول إضافة مصدر في علامة تبويب المصادر",
+			"adjustFilters": "حاول تعديل المرشحات أو مصطلحات البحث",
+			"clearAllFilters": "مسح جميع المرشحات"
 		},
-		"count": "{{count}} items found",
-		"components": "{{count}} components",
-		"matched": "{{count}} matched",
+		"count": "تم العثور على {{count}} عنصر",
+		"components": "{{count}} مكونات",
+		"matched": "{{count}} مطابق",
 		"refresh": {
-			"button": "Refresh",
-			"refreshing": "Refreshing...",
-			"mayTakeMoment": "This may take a moment."
+			"button": "تحديث",
+			"refreshing": "جاري التحديث...",
+			"mayTakeMoment": "قد يستغرق هذا لحظة."
 		},
 		"card": {
-			"by": "by {{author}}",
-			"from": "from {{source}}",
-			"install": "Install",
-			"installProject": "Install",
-			"installGlobal": "Install (Global)",
-			"remove": "Remove",
-			"removeProject": "Remove",
-			"removeGlobal": "Remove (Global)",
-			"viewSource": "View",
-			"viewOnSource": "View on {{source}}",
-			"noWorkspaceTooltip": "Open a workspace to install marketplace items",
-			"installed": "Installed",
-			"removeProjectTooltip": "Remove from current project",
-			"removeGlobalTooltip": "Remove from global configuration",
-			"actionsMenuLabel": "More actions"
+			"by": "بواسطة {{author}}",
+			"from": "من {{source}}",
+			"install": "تثبيت",
+			"installProject": "تثبيت",
+			"installGlobal": "تثبيت (عام)",
+			"remove": "إزالة",
+			"removeProject": "إزالة",
+			"removeGlobal": "إزالة (عام)",
+			"viewSource": "عرض",
+			"viewOnSource": "عرض على {{source}}",
+			"noWorkspaceTooltip": "افتح مساحة عمل لتثبيت عناصر السوق",
+			"installed": "مثبت",
+			"removeProjectTooltip": "إزالة من المشروع الحالي",
+			"removeGlobalTooltip": "إزالة من التكوين العام",
+			"actionsMenuLabel": "المزيد من الإجراءات"
 		}
 	},
 	"install": {
-		"title": "Install {{name}}",
-		"titleMode": "Install {{name}} Mode",
-		"titleMcp": "Install {{name}} MCP",
-		"scope": "Installation Scope",
-		"project": "Project (current workspace)",
-		"global": "Global (all workspaces)",
-		"method": "Installation Method",
-		"prerequisites": "Prerequisites",
-		"configuration": "Configuration",
-		"configurationDescription": "Configure the parameters required for this MCP server",
-		"button": "Install",
-		"successTitle": "{{name}} Installed",
-		"successDescription": "Installation completed successfully",
-		"installed": "Successfully installed!",
-		"whatNextMcp": "You can now configure and use this MCP server. Click the MCP icon in the sidebar to switch tabs.",
-		"whatNextMode": "You can now use this mode. Click the Modes icon in the sidebar to switch tabs.",
-		"done": "Done",
-		"goToMcp": "Go to MCP Tab",
-		"goToModes": "Go to Modes Tab",
-		"moreInfoMcp": "View {{name}} MCP documentation",
-		"validationRequired": "Please provide a value for {{paramName}}"
+		"title": "تثبيت {{name}}",
+		"titleMode": "تثبيت وضع {{name}}",
+		"titleMcp": "تثبيت MCP {{name}}",
+		"scope": "نطاق التثبيت",
+		"project": "المشروع (مساحة العمل الحالية)",
+		"global": "عام (جميع مساحات العمل)",
+		"method": "طريقة التثبيت",
+		"prerequisites": "المتطلبات الأساسية",
+		"configuration": "التكوين",
+		"configurationDescription": "قم بتكوين المعاملات المطلوبة لخادم MCP هذا",
+		"button": "تثبيت",
+		"successTitle": "تم تثبيت {{name}}",
+		"successDescription": "اكتمل التثبيت بنجاح",
+		"installed": "تم التثبيت بنجاح!",
+		"whatNextMcp": "يمكنك الآن تكوين واستخدام خادم MCP هذا. انقر على أيقونة MCP في الشريط الجانبي لتبديل علامات التبويب.",
+		"whatNextMode": "يمكنك الآن استخدام هذا الوضع. انقر على أيقونة الأوضاع في الشريط الجانبي لتبديل علامات التبويب.",
+		"done": "تم",
+		"goToMcp": "الانتقال إلى علامة تبويب MCP",
+		"goToModes": "الانتقال إلى علامة تبويب الأوضاع",
+		"moreInfoMcp": "عرض وثائق MCP {{name}}",
+		"validationRequired": "يرجى توفير قيمة لـ {{paramName}}"
 	},
 	"sources": {
-		"title": "Configure Marketplace Sources",
-		"description": "Add Git repositories that contain marketplace items. These repositories will be fetched when browsing the marketplace.",
+		"title": "تكوين مصادر السوق",
+		"description": "أضف مستودعات Git التي تحتوي على عناصر السوق. سيتم جلب هذه المستودعات عند تصفح السوق.",
 		"add": {
-			"title": "Add New Source",
-			"urlPlaceholder": "Git repository URL (e.g., https://github.com/username/repo)",
-			"urlFormats": "Supported formats: HTTPS (https://github.com/username/repo), SSH (git@github.com:username/repo.git), or Git protocol (git://github.com/username/repo.git)",
-			"namePlaceholder": "Display name (max 20 chars)",
-			"button": "Add Source"
+			"title": "إضافة مصدر جديد",
+			"urlPlaceholder": "عنوان URL لمستودع Git (مثال: https://github.com/username/repo)",
+			"urlFormats": "التنسيقات المدعومة: HTTPS (https://github.com/username/repo)، SSH (git@github.com:username/repo.git)، أو بروتوكول Git (git://github.com/username/repo.git)",
+			"namePlaceholder": "اسم العرض (20 حرف كحد أقصى)",
+			"button": "إضافة مصدر"
 		},
 		"current": {
-			"title": "Current Sources",
-			"empty": "No sources configured. Add a source to get started.",
-			"refresh": "Refresh this source",
-			"remove": "Remove source"
+			"title": "المصادر الحالية",
+			"empty": "لم يتم تكوين أي مصادر. أضف مصدرًا للبدء.",
+			"refresh": "تحديث هذا المصدر",
+			"remove": "إزالة المصدر"
 		},
 		"errors": {
-			"emptyUrl": "URL cannot be empty",
-			"invalidUrl": "Invalid URL format",
-			"nonVisibleChars": "URL contains non-visible characters other than spaces",
-			"invalidGitUrl": "URL must be a valid Git repository URL (e.g., https://github.com/username/repo)",
-			"duplicateUrl": "This URL is already in the list (case and whitespace insensitive match)",
-			"nameTooLong": "Name must be 20 characters or less",
-			"nonVisibleCharsName": "Name contains non-visible characters other than spaces",
-			"duplicateName": "This name is already in use (case and whitespace insensitive match)",
-			"emojiName": "Emoji characters may cause display issues",
-			"maxSources": "Maximum of {{max}} sources allowed"
+			"emptyUrl": "لا يمكن أن يكون عنوان URL فارغًا",
+			"invalidUrl": "تنسيق URL غير صالح",
+			"nonVisibleChars": "يحتوي عنوان URL على أحرف غير مرئية غير المسافات",
+			"invalidGitUrl": "يجب أن يكون عنوان URL عنوان مستودع Git صالح (مثال: https://github.com/username/repo)",
+			"duplicateUrl": "هذا العنوان موجود بالفعل في القائمة (مطابقة غير حساسة لحالة الأحرف والمسافات)",
+			"nameTooLong": "يجب أن يكون الاسم 20 حرفًا أو أقل",
+			"nonVisibleCharsName": "يحتوي الاسم على أحرف غير مرئية غير المسافات",
+			"duplicateName": "هذا الاسم مستخدم بالفعل (مطابقة غير حساسة لحالة الأحرف والمسافات)",
+			"emojiName": "قد تسبب رموز الإيموجي مشاكل في العرض",
+			"maxSources": "الحد الأقصى {{max}} مصدر مسموح به"
 		}
 	},
 	"footer": {
-		"issueText": "Found a problem with a marketplace item or have suggestions for new ones? <0>Open a GitHub issue</0> to let us know!"
+		"issueText": "وجدت مشكلة في عنصر من السوق أو لديك اقتراحات لعناصر جديدة؟ <0>افتح مشكلة على GitHub</0> لإعلامنا!"
 	}
 }

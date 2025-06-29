@@ -1,8 +1,8 @@
 {
-	"title": "Account",
-	"profilePicture": "Profile picture",
-	"unknownUser": "Unknown User",
-	"logOut": "Log out",
-	"testApiAuthentication": "Test API Authentication",
-	"signIn": "Connect to Roo Code Cloud"
+	"title": "الحساب",
+	"profilePicture": "صورة الملف الشخصي",
+	"unknownUser": "مستخدم غير معروف",
+	"logOut": "تسجيل الخروج",
+	"testApiAuthentication": "اختبار مصادقة API",
+	"signIn": "الاتصال بـ Roo Code Cloud"
 }

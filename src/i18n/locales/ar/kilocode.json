@@ -1,50 +1,50 @@
 {
 	"info": {
-		"settings_imported": "Settings imported successfully."
+		"settings_imported": "تم استيراد الإعدادات بنجاح."
 	},
 	"lowCreditWarning": {
-		"title": "Low Credit Warning!",
-		"message": "Check to see if you can top up with free credits or purchase some more!"
+		"title": "تحذير انخفاض الرصيد!",
+		"message": "تحقق لمعرفة ما إذا كان يمكنك الشحن بأرصدة مجانية أو شراء المزيد!"
 	},
 	"rules": {
 		"actions": {
-			"delete": "Delete",
-			"confirmDelete": "Are you sure you want to delete {{filename}}?",
-			"deleted": "Deleted {{filename}}"
+			"delete": "حذف",
+			"confirmDelete": "هل أنت متأكد من أنك تريد حذف {{filename}}؟",
+			"deleted": "تم حذف {{filename}}"
 		},
 		"errors": {
-			"noWorkspaceFound": "No workspace folder found",
-			"fileAlreadyExists": "File {{filename}} already exists",
-			"failedToCreateRuleFile": "Failed to create rule file.",
-			"failedToDeleteRuleFile": "Failed to delete rule file."
+			"noWorkspaceFound": "لم يتم العثور على مجلد مساحة العمل",
+			"fileAlreadyExists": "الملف {{filename}} موجود بالفعل",
+			"failedToCreateRuleFile": "فشل في إنشاء ملف القاعدة.",
+			"failedToDeleteRuleFile": "فشل في حذف ملف القاعدة."
 		},
 		"templates": {
 			"workflow": {
-				"description": "Workflow description here...",
-				"stepsHeader": "## Steps",
-				"step1": "Step 1",
-				"step2": "Step 2"
+				"description": "وصف سير العمل هنا...",
+				"stepsHeader": "## الخطوات",
+				"step1": "الخطوة 1",
+				"step2": "الخطوة 2"
 			},
 			"rule": {
-				"description": "Rule description here...",
-				"guidelinesHeader": "## Guidelines",
-				"guideline1": "Guideline 1",
-				"guideline2": "Guideline 2"
+				"description": "وصف القاعدة هنا...",
+				"guidelinesHeader": "## الإرشادات",
+				"guideline1": "الإرشاد 1",
+				"guideline2": "الإرشاد 2"
 			}
 		}
 	},
 	"commitMessage": {
-		"activated": "Kilo Code commit message generator activated",
-		"gitNotFound": "⚠️ Git repository not found or git not available",
-		"gitInitError": "⚠️ Git initialization error: {{error}}",
-		"generating": "Kilo: Generating commit message...",
-		"analyzingChanges": "Kilo: Analyzing staged changes...",
-		"noStagedChangesRepo": "Kilo: No staged changes found in git repository",
-		"noStagedChanges": "Kilo: No staged changes found to analyze",
-		"generated": "Kilo: Commit message generated!",
-		"generationFailed": "Kilo: Failed to generate commit message: {{errorMessage}}",
-		"tokenRequired": "Kilo Code token is required for commit message generation",
-		"activationFailed": "Kilo: Failed to activate commit message provider: {{error}}",
-		"providerRegistered": "Kilo: Commit message provider registered"
+		"activated": "تم تفعيل مولد رسائل الالتزام Kilo Code",
+		"gitNotFound": "⚠️ لم يتم العثور على مستودع Git أو Git غير متاح",
+		"gitInitError": "⚠️ خطأ في تهيئة Git: {{error}}",
+		"generating": "Kilo: جاري توليد رسالة الالتزام...",
+		"analyzingChanges": "Kilo: جاري تحليل التغييرات المرحلية...",
+		"noStagedChangesRepo": "Kilo: لم يتم العثور على تغييرات مرحلية في مستودع git",
+		"noStagedChanges": "Kilo: لم يتم العثور على تغييرات مرحلية للتحليل",
+		"generated": "Kilo: تم توليد رسالة الالتزام!",
+		"generationFailed": "Kilo: فشل في توليد رسالة الالتزام: {{errorMessage}}",
+		"tokenRequired": "مطلوب رمز Kilo Code لتوليد رسالة الالتزام",
+		"activationFailed": "Kilo: فشل في تفعيل موفر رسالة الالتزام: {{error}}",
+		"providerRegistered": "Kilo: تم تسجيل موفر رسالة الالتزام"
 	}
 }

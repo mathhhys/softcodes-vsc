@@ -1,163 +1,163 @@
 {
-	"title": "Modes",
-	"done": "Done",
+	"title": "الأوضاع",
+	"done": "تم",
 	"modes": {
-		"title": "Modes",
-		"createNewMode": "Create new mode",
-		"editModesConfig": "Edit modes configuration",
-		"editGlobalModes": "Edit Global Modes",
-		"editProjectModes": "Edit Project Modes (.kilocodemodes)",
-		"createModeHelpText": "Modes are specialized personas that tailor Kilo Code's behavior. <0>Learn about Using Modes</0> or <1>Customizing Modes.</1>",
-		"selectMode": "Search modes"
+		"title": "الأوضاع",
+		"createNewMode": "إنشاء وضع جديد",
+		"editModesConfig": "تحرير تكوين الأوضاع",
+		"editGlobalModes": "تحرير الأوضاع العامة",
+		"editProjectModes": "تحرير أوضاع المشروع (.kilocodemodes)",
+		"createModeHelpText": "الأوضاع هي شخصيات متخصصة تخصص سلوك Kilo Code. <0>تعرف على استخدام الأوضاع</0> أو <1>تخصيص الأوضاع.</1>",
+		"selectMode": "البحث في الأوضاع"
 	},
 	"apiConfiguration": {
-		"title": "API Configuration",
-		"select": "Select which API configuration to use for this mode"
+		"title": "تكوين API",
+		"select": "حدد تكوين API المراد استخدامه لهذا الوضع"
 	},
 	"tools": {
-		"title": "Available Tools",
-		"builtInModesText": "Tools for built-in modes cannot be modified",
-		"editTools": "Edit tools",
-		"doneEditing": "Done editing",
-		"allowedFiles": "Allowed files:",
+		"title": "الأدوات المتاحة",
+		"builtInModesText": "لا يمكن تعديل أدوات الأوضاع المدمجة",
+		"editTools": "تحرير الأدوات",
+		"doneEditing": "انتهى التحرير",
+		"allowedFiles": "الملفات المسموح بها:",
 		"toolNames": {
-			"read": "Read Files",
-			"edit": "Edit Files",
-			"browser": "Use Browser",
-			"command": "Run Commands",
-			"mcp": "Use MCP"
+			"read": "قراءة الملفات",
+			"edit": "تحرير الملفات",
+			"browser": "استخدام المتصفح",
+			"command": "تشغيل الأوامر",
+			"mcp": "استخدام MCP"
 		},
-		"noTools": "None"
+		"noTools": "لا شيء"
 	},
 	"roleDefinition": {
-		"title": "Role Definition",
-		"resetToDefault": "Reset to default",
-		"description": "Define Kilo Code's expertise and personality for this mode. This description shapes how Kilo Code presents itself and approaches tasks."
+		"title": "تعريف الدور",
+		"resetToDefault": "إعادة تعيين إلى الافتراضي",
+		"description": "حدد خبرة وشخصية Kilo Code لهذا الوضع. يشكل هذا الوصف كيفية تقديم Kilo Code لنفسه ومقاربته للمهام."
 	},
 	"whenToUse": {
-		"title": "When to Use (optional)",
-		"description": "Describe when this mode should be used. This helps the Orchestrator choose the right mode for a task.",
-		"resetToDefault": "Reset to default 'When to Use' description"
+		"title": "متى يُستخدم (اختياري)",
+		"description": "صف متى يجب استخدام هذا الوضع. يساعد هذا المنسق في اختيار الوضع المناسب للمهمة.",
+		"resetToDefault": "إعادة تعيين إلى وصف 'متى يُستخدم' الافتراضي"
 	},
 	"customInstructions": {
-		"title": "Mode-specific Custom Instructions (optional)",
-		"resetToDefault": "Reset to default",
-		"description": "Add behavioral guidelines specific to {{modeName}} mode.",
-		"loadFromFile": "Custom instructions specific to {{mode}} mode can also be loaded from the <span>.kilocode/rules/</span> folder in your workspace (.kilocoderules-{{slug}} is deprecated and will stop working soon)."
+		"title": "تعليمات مخصصة خاصة بالوضع (اختياري)",
+		"resetToDefault": "إعادة تعيين إلى الافتراضي",
+		"description": "أضف إرشادات سلوكية خاصة بوضع {{modeName}}.",
+		"loadFromFile": "يمكن أيضًا تحميل التعليمات المخصصة الخاصة بوضع {{mode}} من مجلد <span>.kilocode/rules/</span> في مساحة العمل الخاصة بك (.kilocoderules-{{slug}} مهمل وسيتوقف عن العمل قريبًا)."
 	},
 	"globalCustomInstructions": {
-		"title": "Custom Instructions for All Modes",
-		"description": "These instructions apply to all modes. They provide a base set of behaviors that can be enhanced by mode-specific instructions below. <0>Learn more</0>",
-		"loadFromFile": "Instructions can also be loaded from the <span>.kilocode/rules/</span> folder in your workspace (.kilocoderules is deprecated and will stop working soon)."
+		"title": "تعليمات مخصصة لجميع الأوضاع",
+		"description": "تنطبق هذه التعليمات على جميع الأوضاع. توفر مجموعة أساسية من السلوكيات التي يمكن تحسينها بواسطة التعليمات الخاصة بالوضع أدناه. <0>تعرف على المزيد</0>",
+		"loadFromFile": "يمكن أيضًا تحميل التعليمات من مجلد <span>.kilocode/rules/</span> في مساحة العمل الخاصة بك (.kilocoderules مهمل وسيتوقف عن العمل قريبًا)."
 	},
 	"systemPrompt": {
-		"preview": "Preview System Prompt",
-		"copy": "Copy system prompt to clipboard",
-		"title": "System Prompt ({{modeName}} mode)"
+		"preview": "معاينة موجه النظام",
+		"copy": "نسخ موجه النظام إلى الحافظة",
+		"title": "موجه النظام (وضع {{modeName}})"
 	},
 	"supportPrompts": {
-		"title": "Support Prompts",
-		"resetPrompt": "Reset {{promptType}} prompt to default",
-		"prompt": "Prompt",
+		"title": "موجهات الدعم",
+		"resetPrompt": "إعادة تعيين موجه {{promptType}} إلى الافتراضي",
+		"prompt": "الموجه",
 		"enhance": {
-			"apiConfiguration": "API Configuration",
-			"apiConfigDescription": "You can select an API configuration to always use for enhancing prompts, or just use whatever is currently selected",
-			"useCurrentConfig": "Use currently selected API configuration",
-			"testPromptPlaceholder": "Enter a prompt to test the enhancement",
-			"previewButton": "Preview Prompt Enhancement",
-			"testEnhancement": "Test Enhancement"
+			"apiConfiguration": "تكوين API",
+			"apiConfigDescription": "يمكنك تحديد تكوين API لاستخدامه دائمًا لتحسين المطالبات، أو استخدام ما هو محدد حاليًا",
+			"useCurrentConfig": "استخدام تكوين API المحدد حاليًا",
+			"testPromptPlaceholder": "أدخل موجهًا لاختبار التحسين",
+			"previewButton": "معاينة تحسين الموجه",
+			"testEnhancement": "اختبار التحسين"
 		},
 		"types": {
 			"ENHANCE": {
-				"label": "Enhance Prompt",
-				"description": "Use prompt enhancement to get tailored suggestions or improvements for your inputs. This ensures Kilo Code understands your intent and provides the best possible responses. Available via the ✨ icon in chat."
+				"label": "تحسين الموجه",
+				"description": "استخدم تحسين الموجه للحصول على اقتراحات أو تحسينات مخصصة لمدخلاتك. يضمن هذا أن Kilo Code يفهم نيتك ويوفر أفضل الاستجابات الممكنة. متاح عبر أيقونة ✨ في المحادثة."
 			},
 			"EXPLAIN": {
-				"label": "Explain Code",
-				"description": "Get detailed explanations of code snippets, functions, or entire files. Useful for understanding complex code or learning new patterns. Available in code actions (lightbulb icon in the editor) and the editor context menu (right-click on selected code)."
+				"label": "شرح الكود",
+				"description": "احصل على شروحات مفصلة لمقتطفات الكود أو الدوال أو الملفات الكاملة. مفيد لفهم الكود المعقد أو تعلم أنماط جديدة. متاح في إجراءات الكود (أيقونة المصباح في المحرر) وقائمة سياق المحرر (انقر بزر الماوس الأيمن على الكود المحدد)."
 			},
 			"FIX": {
-				"label": "Fix Issues",
-				"description": "Get help identifying and resolving bugs, errors, or code quality issues. Provides step-by-step guidance for fixing problems. Available in code actions (lightbulb icon in the editor) and the editor context menu (right-click on selected code)."
+				"label": "إصلاح المشكلات",
+				"description": "احصل على مساعدة في تحديد وحل الأخطاء أو مشكلات جودة الكود. يوفر إرشادات خطوة بخطوة لإصلاح المشاكل. متاح في إجراءات الكود (أيقونة المصباح في المحرر) وقائمة سياق المحرر (انقر بزر الماوس الأيمن على الكود المحدد)."
 			},
 			"IMPROVE": {
-				"label": "Improve Code",
-				"description": "Receive suggestions for code optimization, better practices, and architectural improvements while maintaining functionality. Available in code actions (lightbulb icon in the editor) and the editor context menu (right-click on selected code)."
+				"label": "تحسين الكود",
+				"description": "احصل على اقتراحات لتحسين الكود وأفضل الممارسات والتحسينات المعمارية مع الحفاظ على الوظائف. متاح في إجراءات الكود (أيقونة المصباح في المحرر) وقائمة سياق المحرر (انقر بزر الماوس الأيمن على الكود المحدد)."
 			},
 			"ADD_TO_CONTEXT": {
-				"label": "Add to Context",
-				"description": "Add context to your current task or conversation. Useful for providing additional information or clarifications. Available in code actions (lightbulb icon in the editor) and the editor context menu (right-click on selected code)."
+				"label": "إضافة إلى السياق",
+				"description": "أضف سياقًا إلى مهمتك أو محادثتك الحالية. مفيد لتوفير معلومات إضافية أو توضيحات. متاح في إجراءات الكود (أيقونة المصباح في المحرر) وقائمة سياق المحرر (انقر بزر الماوس الأيمن على الكود المحدد)."
 			},
 			"TERMINAL_ADD_TO_CONTEXT": {
-				"label": "Add Terminal Content to Context",
-				"description": "Add terminal output to your current task or conversation. Useful for providing command outputs or logs. Available in the terminal context menu (right-click on selected terminal content)."
+				"label": "إضافة محتوى المحطة الطرفية إلى السياق",
+				"description": "أضف مخرجات المحطة الطرفية إلى مهمتك أو محادثتك الحالية. مفيد لتوفير مخرجات الأوامر أو السجلات. متاح في قائمة سياق المحطة الطرفية (انقر بزر الماوس الأيمن على محتوى المحطة الطرفية المحدد)."
 			},
 			"TERMINAL_FIX": {
-				"label": "Fix Terminal Command",
-				"description": "Get help fixing terminal commands that failed or need improvement. Available in the terminal context menu (right-click on selected terminal content)."
+				"label": "إصلاح أمر المحطة الطرفية",
+				"description": "احصل على مساعدة في إصلاح أوامر المحطة الطرفية التي فشلت أو تحتاج إلى تحسين. متاح في قائمة سياق المحطة الطرفية (انقر بزر الماوس الأيمن على محتوى المحطة الطرفية المحدد)."
 			},
 			"TERMINAL_EXPLAIN": {
-				"label": "Explain Terminal Command",
-				"description": "Get detailed explanations of terminal commands and their outputs. Available in the terminal context menu (right-click on selected terminal content)."
+				"label": "شرح أمر المحطة الطرفية",
+				"description": "احصل على شروحات مفصلة لأوامر المحطة الطرفية ومخرجاتها. متاح في قائمة سياق المحطة الطرفية (انقر بزر الماوس الأيمن على محتوى المحطة الطرفية المحدد)."
 			},
 			"NEW_TASK": {
-				"label": "Start New Task",
-				"description": "Start a new task with user input. Available in the Command Palette."
+				"label": "بدء مهمة جديدة",
+				"description": "ابدأ مهمة جديدة بإدخال المستخدم. متاح في لوحة الأوامر."
 			},
 			"COMMIT_MESSAGE": {
-				"label": "Commit Message Generation",
-				"description": "Generate descriptive commit messages based on your staged git changes. Customize the prompt to generate messages that follow your repository's best practices."
+				"label": "توليد رسالة الالتزام",
+				"description": "قم بتوليد رسائل التزام وصفية بناءً على تغييرات git المرحلية. خصص الموجه لتوليد رسائل تتبع أفضل ممارسات مستودعك."
 			}
 		}
 	},
 	"advancedSystemPrompt": {
-		"title": "Advanced: Override System Prompt",
-		"description": "<2>⚠️ Warning:</2> This advanced feature bypasses safeguards. <1>READ THIS BEFORE USING!</1>Override the default system prompt by creating a file at <span>.kilocode/system-prompt-{{slug}}</span>."
+		"title": "متقدم: تجاوز موجه النظام",
+		"description": "<2>⚠️ تحذير:</2> هذه الميزة المتقدمة تتجاوز الضمانات. <1>اقرأ هذا قبل الاستخدام!</1>تجاوز موجه النظام الافتراضي عن طريق إنشاء ملف في <span>.kilocode/system-prompt-{{slug}}</span>."
 	},
 	"createModeDialog": {
-		"title": "Create New Mode",
-		"close": "Close",
+		"title": "إنشاء وضع جديد",
+		"close": "إغلاق",
 		"name": {
-			"label": "Name",
-			"placeholder": "Enter mode name"
+			"label": "الاسم",
+			"placeholder": "أدخل اسم الوضع"
 		},
 		"slug": {
-			"label": "Slug",
-			"description": "The slug is used in URLs and file names. It should be lowercase and contain only letters, numbers, and hyphens."
+			"label": "المعرف",
+			"description": "يُستخدم المعرف في عناوين URL وأسماء الملفات. يجب أن يكون بأحرف صغيرة ويحتوي فقط على أحرف وأرقام وشرطات."
 		},
 		"saveLocation": {
-			"label": "Save Location",
-			"description": "Choose where to save this mode. Project-specific modes take precedence over global modes.",
+			"label": "موقع الحفظ",
+			"description": "اختر مكان حفظ هذا الوضع. أوضاع المشروع المحددة لها الأولوية على الأوضاع العامة.",
 			"global": {
-				"label": "Global",
-				"description": "Available in all workspaces"
+				"label": "عام",
+				"description": "متاح في جميع مساحات العمل"
 			},
 			"project": {
-				"label": "Project-specific (.kilocodemodes)",
-				"description": "Only available in this workspace, takes precedence over global"
+				"label": "خاص بالمشروع (.kilocodemodes)",
+				"description": "متاح فقط في مساحة العمل هذه، له الأولوية على العام"
 			}
 		},
 		"roleDefinition": {
-			"label": "Role Definition",
-			"description": "Define Kilo Code's expertise and personality for this mode."
+			"label": "تعريف الدور",
+			"description": "حدد خبرة وشخصية Kilo Code لهذا الوضع."
 		},
 		"whenToUse": {
-			"label": "When to Use (optional)",
-			"description": "Provide a clear description of when this mode is most effective and what types of tasks it excels at."
+			"label": "متى يُستخدم (اختياري)",
+			"description": "قدم وصفًا واضحًا لمتى يكون هذا الوضع أكثر فعالية وأنواع المهام التي يتفوق فيها."
 		},
 		"tools": {
-			"label": "Available Tools",
-			"description": "Select which tools this mode can use."
+			"label": "الأدوات المتاحة",
+			"description": "حدد الأدوات التي يمكن لهذا الوضع استخدامها."
 		},
 		"customInstructions": {
-			"label": "Custom Instructions (optional)",
-			"description": "Add behavioral guidelines specific to this mode."
+			"label": "تعليمات مخصصة (اختياري)",
+			"description": "أضف إرشادات سلوكية خاصة بهذا الوضع."
 		},
 		"buttons": {
-			"cancel": "Cancel",
-			"create": "Create Mode"
+			"cancel": "إلغاء",
+			"create": "إنشاء الوضع"
 		},
-		"deleteMode": "Delete mode"
+		"deleteMode": "حذف الوضع"
 	},
-	"allFiles": "all files"
+	"allFiles": "جميع الملفات"
 }

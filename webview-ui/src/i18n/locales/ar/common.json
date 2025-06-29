@@ -1,74 +1,74 @@
 {
 	"answers": {
-		"yes": "Yes",
-		"no": "No",
-		"cancel": "Cancel",
-		"remove": "Remove",
-		"keep": "Keep"
+		"yes": "نعم",
+		"no": "لا",
+		"cancel": "إلغاء",
+		"remove": "إزالة",
+		"keep": "احتفظ"
 	},
 	"number_format": {
-		"thousand_suffix": "k",
-		"million_suffix": "m",
-		"billion_suffix": "b"
+		"thousand_suffix": "ألف",
+		"million_suffix": "مليون",
+		"billion_suffix": "مليار"
 	},
 	"feedback": {
-		"title": "Feedback",
-		"description": "We'd love to hear your feedback or help with any issues you're experiencing.",
-		"githubIssues": "Report an issue on GitHub",
-		"githubDiscussions": "Join GitHub discussions",
-		"discord": "Join our Discord community",
-		"customerSupport": "Customer Support"
+		"title": "التعليقات",
+		"description": "نود سماع تعليقاتك أو مساعدتك في أي مشاكل تواجهها.",
+		"githubIssues": "الإبلاغ عن مشكلة على GitHub",
+		"githubDiscussions": "انضم إلى مناقشات GitHub",
+		"discord": "انضم إلى مجتمع Discord",
+		"customerSupport": "دعم العملاء"
 	},
 	"ui": {
-		"search_placeholder": "Search..."
+		"search_placeholder": "بحث..."
 	},
 	"mermaid": {
-		"loading": "Generating mermaid diagram...",
-		"render_error": "Unable to Render Diagram",
-		"fixing_syntax": "Fixing Mermaid syntax...",
-		"fix_syntax_button": "Fix syntax with AI",
-		"original_code": "Original code:",
+		"loading": "جاري إنشاء مخطط mermaid...",
+		"render_error": "غير قادر على عرض المخطط",
+		"fixing_syntax": "جاري إصلاح صيغة Mermaid...",
+		"fix_syntax_button": "إصلاح الصيغة بالذكاء الاصطناعي",
+		"original_code": "الكود الأصلي:",
 		"errors": {
-			"unknown_syntax": "Unknown syntax error",
-			"fix_timeout": "LLM fix request timed out",
-			"fix_failed": "LLM fix failed",
-			"fix_attempts": "Failed to fix syntax after {{attempts}} attempts. Last error: {{error}}",
-			"no_fix_provided": "LLM failed to provide a fix",
-			"fix_request_failed": "Fix request failed"
+			"unknown_syntax": "خطأ غير معروف في الصيغة",
+			"fix_timeout": "انتهت مهلة طلب إصلاح LLM",
+			"fix_failed": "فشل إصلاح LLM",
+			"fix_attempts": "فشل إصلاح الصيغة بعد {{attempts}} محاولات. آخر خطأ: {{error}}",
+			"no_fix_provided": "فشل LLM في توفير إصلاح",
+			"fix_request_failed": "فشل طلب الإصلاح"
 		},
 		"buttons": {
-			"zoom": "Zoom",
-			"zoomIn": "Zoom In",
-			"zoomOut": "Zoom Out",
-			"copy": "Copy",
-			"save": "Save Image",
-			"viewCode": "View Code",
-			"viewDiagram": "View Diagram",
-			"close": "Close"
+			"zoom": "تكبير/تصغير",
+			"zoomIn": "تكبير",
+			"zoomOut": "تصغير",
+			"copy": "نسخ",
+			"save": "حفظ الصورة",
+			"viewCode": "عرض الكود",
+			"viewDiagram": "عرض المخطط",
+			"close": "إغلاق"
 		},
 		"modal": {
-			"codeTitle": "Mermaid Code"
+			"codeTitle": "كود Mermaid"
 		},
 		"tabs": {
-			"diagram": "Diagram",
-			"code": "Code"
+			"diagram": "المخطط",
+			"code": "الكود"
 		},
 		"feedback": {
-			"imageCopied": "Image copied to clipboard",
-			"copyError": "Error copying image"
+			"imageCopied": "تم نسخ الصورة إلى الحافظة",
+			"copyError": "خطأ في نسخ الصورة"
 		}
 	},
 	"file": {
 		"errors": {
-			"invalidDataUri": "Invalid data URI format",
-			"copyingImage": "Error copying image: {{error}}",
-			"openingImage": "Error opening image: {{error}}",
-			"pathNotExists": "Path does not exist: {{path}}",
-			"couldNotOpen": "Could not open file: {{error}}",
-			"couldNotOpenGeneric": "Could not open file!"
+			"invalidDataUri": "تنسيق URI للبيانات غير صالح",
+			"copyingImage": "خطأ في نسخ الصورة: {{error}}",
+			"openingImage": "خطأ في فتح الصورة: {{error}}",
+			"pathNotExists": "المسار غير موجود: {{path}}",
+			"couldNotOpen": "تعذر فتح الملف: {{error}}",
+			"couldNotOpenGeneric": "تعذر فتح الملف!"
 		},
 		"success": {
-			"imageDataUriCopied": "Image data URI copied to clipboard"
+			"imageDataUriCopied": "تم نسخ URI بيانات الصورة إلى الحافظة"
 		}
 	}
 }
