@@ -119,8 +119,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "องค์กรของคุณต้องการการยืนยันตัวตน Roo Code Cloud กรุณาลงชื่อเข้าใช้เพื่อดำเนินการต่อ",
-			"organization_mismatch": "คุณต้องยืนยันตัวตนด้วยบัญชี Roo Code Cloud ขององค์กรของคุณ",
+			"cloud_auth_required": "องค์กรของคุณต้องการการยืนยันตัวตน Kilo Code Cloud กรุณาลงชื่อเข้าใช้เพื่อดำเนินการต่อ",
+			"organization_mismatch": "คุณต้องยืนยันตัวตนด้วยบัญชี Kilo Code Cloud ขององค์กรของคุณ",
 			"verification_failed": "ไม่สามารถตรวจสอบการยืนยันตัวตนขององค์กร"
 		}
 	}

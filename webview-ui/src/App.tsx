@@ -23,6 +23,8 @@ import BottomControls from "./components/kilocode/BottomControls" // kilocode_ch
 // import { AccountView } from "./components/account/AccountView" // kilocode_change: we have our own profile view
 import { useAddNonInteractiveClickListener } from "./components/ui/hooks/useNonInteractiveClick"
 import { KiloCodeErrorBoundary } from "./kilocode/KiloCodeErrorBoundary"
+import { TooltipProvider } from "./components/ui/tooltip"
+import { STANDARD_TOOLTIP_DELAY } from "./components/ui/standard-tooltip"
 
 type Tab = "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account" | "profile" // kilocode_change: add "profile"
 
@@ -78,6 +80,7 @@ const App = () => {
 			}
 
 			setCurrentSection(undefined)
+			setCurrentMarketplaceTab(undefined)
 
 			if (settingsRef.current?.checkUnsaveChanges) {
 				settingsRef.current.checkUnsaveChanges(() => setTab(newTab))
@@ -89,6 +92,7 @@ const App = () => {
 	)
 
 	const [currentSection, setCurrentSection] = useState<string | undefined>(undefined)
+	const [_currentMarketplaceTab, setCurrentMarketplaceTab] = useState<string | undefined>(undefined)
 
 	const onMessage = useCallback(
 		(e: MessageEvent) => {
@@ -110,14 +114,17 @@ const App = () => {
 					const targetTab = message.tab as Tab
 					switchTab(targetTab)
 					setCurrentSection(undefined)
+					setCurrentMarketplaceTab(undefined)
 				} else {
 					// Handle other actions using the mapping
 					const newTab = tabsByMessageAction[message.action]
 					const section = message.values?.section as string | undefined
+					const marketplaceTab = message.values?.marketplaceTab as string | undefined
 
 					if (newTab) {
 						switchTab(newTab)
 						setCurrentSection(section)
+						setCurrentMarketplaceTab(marketplaceTab)
 					}
 				}
 			}
@@ -217,15 +224,21 @@ const App = () => {
 const queryClient = new QueryClient()
 
 const AppWithProviders = () => (
-	<KiloCodeErrorBoundary>
-		<ExtensionStateContextProvider>
-			<TranslationProvider>
-				<QueryClientProvider client={queryClient}>
+	<ExtensionStateContextProvider>
+		<TranslationProvider>
+			<QueryClientProvider client={queryClient}>
+				<TooltipProvider delayDuration={STANDARD_TOOLTIP_DELAY}>
 					<App />
-				</QueryClientProvider>
-			</TranslationProvider>
-		</ExtensionStateContextProvider>
+				</TooltipProvider>
+			</QueryClientProvider>
+		</TranslationProvider>
+	</ExtensionStateContextProvider>
+)
+
+const AppWithKiloCodeErrorBoundary = () => (
+	<KiloCodeErrorBoundary>
+		<AppWithProviders />
 	</KiloCodeErrorBoundary>
 )
 
-export default AppWithProviders
+export default AppWithKiloCodeErrorBoundary // kilocode_change

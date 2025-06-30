@@ -119,8 +119,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Tvá organizace vyžaduje autentizaci Roo Code Cloud. Prosím přihlas se pro pokračování.",
-			"organization_mismatch": "Musíš být autentizován s účtem Roo Code Cloud tvé organizace.",
+			"cloud_auth_required": "Tvá organizace vyžaduje autentizaci Kilo Code Cloud. Prosím přihlas se pro pokračování.",
+			"organization_mismatch": "Musíš být autentizován s účtem Kilo Code Cloud tvé organizace.",
 			"verification_failed": "Nelze ověřit autentizaci organizace."
 		}
 	}

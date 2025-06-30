@@ -119,8 +119,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Din organisation kräver Roo Code Cloud-autentisering. Logga in för att fortsätta.",
-			"organization_mismatch": "Du måste vara autentiserad med din organisations Roo Code Cloud-konto.",
+			"cloud_auth_required": "Din organisation kräver Kilo Code Cloud-autentisering. Logga in för att fortsätta.",
+			"organization_mismatch": "Du måste vara autentiserad med din organisations Kilo Code Cloud-konto.",
 			"verification_failed": "Kunde inte verifiera organisationsautentisering."
 		}
 	}
