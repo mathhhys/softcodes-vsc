@@ -245,7 +245,6 @@ export const ContextManagementSettings = ({
 						{t("settings:contextManagement.maxReadFile.description")}
 					</div>
 				</div>
-
 				{/*kilocode_change start*/}
 				<div>
 					<VSCodeCheckbox
@@ -261,7 +260,6 @@ export const ContextManagementSettings = ({
 				</div>
 				{/*kilocode_change end*/}
 			</Section>
-
 			<Section className="pt-2">
 				<VSCodeCheckbox
 					checked={autoCondenseContext}
