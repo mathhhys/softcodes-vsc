@@ -103,5 +103,10 @@
 				"user": "kullanıcı geri bildirimi"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "İptal",
+		"send": "Gönder",
+		"restoreAndSend": "Geri Yükle ve Gönder"
 	}
 }

@@ -103,5 +103,10 @@
 				"use_mcp_server": "MCP server usage"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Cancel",
+		"send": "Send",
+		"restoreAndSend": "Restore & Send"
 	}
 }

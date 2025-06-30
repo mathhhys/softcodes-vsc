@@ -53,6 +53,8 @@
 		"list_api_config": "Nie udało się pobrać listy konfiguracji API",
 		"update_server_timeout": "Nie udało się zaktualizować limitu czasu serwera",
 		"hmr_not_running": "Lokalny serwer deweloperski nie jest uruchomiony, HMR nie będzie działać. Uruchom 'npm run dev' przed uruchomieniem rozszerzenia, aby włączyć HMR.",
+		"message_update_failed": "Nie udało się zaktualizować wiadomości",
+		"no_checkpoint_found": "Nie znaleziono punktu kontrolnego przed tą wiadomością",
 		"retrieve_current_mode": "Błąd podczas pobierania bieżącego trybu ze stanu.",
 		"failed_delete_repo": "Nie udało się usunąć powiązanego repozytorium lub gałęzi pomocniczej: {{error}}",
 		"failed_remove_directory": "Nie udało się usunąć katalogu zadania: {{error}}",
@@ -94,7 +96,9 @@
 		"image_copied_to_clipboard": "URI danych obrazu skopiowane do schowka",
 		"image_saved": "Obraz zapisany w {{path}}",
 		"organization_share_link_copied": "Link udostępniania organizacji skopiowany do schowka!",
-		"public_share_link_copied": "Publiczny link udostępniania skopiowany do schowka!"
+		"public_share_link_copied": "Publiczny link udostępniania skopiowany do schowka!",
+		"message_updated_and_reverted": "Wiadomość zaktualizowana i rozmowa pomyślnie przywrócona",
+		"message_updated": "Wiadomość pomyślnie zaktualizowana"
 	},
 	"answers": {
 		"yes": "Tak",

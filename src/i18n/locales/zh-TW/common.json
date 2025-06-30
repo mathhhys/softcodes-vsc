@@ -53,6 +53,8 @@
 		"list_api_config": "取得 API 設定列表失敗",
 		"update_server_timeout": "更新伺服器超時設定失敗",
 		"hmr_not_running": "本機開發伺服器沒有執行，HMR 將不起作用。請在啟動擴充套件前執行'npm run dev'以啟用 HMR。",
+		"message_update_failed": "更新訊息失敗",
+		"no_checkpoint_found": "在此訊息之前未找到檢查點",
 		"retrieve_current_mode": "從狀態中檢索目前模式失敗。",
 		"failed_delete_repo": "刪除關聯的影子倉庫或分支失敗：{{error}}",
 		"failed_remove_directory": "刪除工作目錄失敗：{{error}}",
@@ -94,7 +96,9 @@
 		"image_copied_to_clipboard": "圖片資料 URI 已複製到剪貼簿",
 		"image_saved": "圖片已儲存至 {{path}}",
 		"organization_share_link_copied": "組織分享連結已複製到剪貼簿！",
-		"public_share_link_copied": "公開分享連結已複製到剪貼簿！"
+		"public_share_link_copied": "公開分享連結已複製到剪貼簿！",
+		"message_updated_and_reverted": "訊息已更新並成功恢復對話",
+		"message_updated": "訊息已成功更新"
 	},
 	"answers": {
 		"yes": "是",

@@ -53,6 +53,8 @@
 		"list_api_config": "Ophalen van lijst met API-configuraties mislukt",
 		"update_server_timeout": "Bijwerken van server-timeout mislukt",
 		"hmr_not_running": "Lokale ontwikkelserver draait niet, HMR werkt niet. Voer 'npm run dev' uit voordat je de extensie start om HMR in te schakelen.",
+		"message_update_failed": "Bijwerken van bericht mislukt",
+		"no_checkpoint_found": "Geen checkpoint gevonden voor dit bericht",
 		"retrieve_current_mode": "Fout: ophalen van huidige modus uit status mislukt.",
 		"failed_delete_repo": "Verwijderen van gekoppelde schaduwrepository of branch mislukt: {{error}}",
 		"failed_remove_directory": "Verwijderen van taakmap mislukt: {{error}}",
@@ -94,7 +96,9 @@
 		"image_copied_to_clipboard": "Afbeelding data-URI gekopieerd naar klembord",
 		"image_saved": "Afbeelding opgeslagen naar {{path}}",
 		"organization_share_link_copied": "Organisatie deel-link gekopieerd naar klembord!",
-		"public_share_link_copied": "Openbare deel-link gekopieerd naar klembord!"
+		"public_share_link_copied": "Openbare deel-link gekopieerd naar klembord!",
+		"message_updated_and_reverted": "Bericht bijgewerkt en gesprek succesvol hersteld",
+		"message_updated": "Bericht succesvol bijgewerkt"
 	},
 	"answers": {
 		"yes": "Ja",

@@ -17,17 +17,17 @@ import { findMatchingResourceOrTemplate } from "@src/utils/mcp"
 import { vscode } from "@src/utils/vscode"
 import { removeLeadingNonAlphanumeric } from "@src/utils/removeLeadingNonAlphanumeric"
 import { getLanguageFromPath } from "@src/utils/getLanguageFromPath"
-import { Button } from "@src/components/ui"
+// import { Button } from "@src/components/ui" // kilocode_change
 
 import { ToolUseBlock, ToolUseBlockHeader } from "../common/ToolUseBlock"
 import CodeAccordian from "../common/CodeAccordian"
 import CodeBlock from "../common/CodeBlock"
 import MarkdownBlock from "../common/MarkdownBlock"
 import { ReasoningBlock } from "./ReasoningBlock"
-import Thumbnails from "../common/Thumbnails"
+// import Thumbnails from "../common/Thumbnails" // kilocode_change
 import McpResourceRow from "../mcp/McpResourceRow"
 
-import { Mention } from "./Mention"
+// import { Mention } from "./Mention" // kilocode_change
 import { CheckpointSaved } from "./checkpoints/CheckpointSaved"
 import { FollowUpSuggest } from "./FollowUpSuggest"
 import { LowCreditWarning } from "../kilocode/chat/LowCreditWarning" // kilocode_change
@@ -45,6 +45,7 @@ import { AutoApprovedRequestLimitWarning } from "./AutoApprovedRequestLimitWarni
 import { CondenseContextErrorRow, CondensingContextRow, ContextCondenseRow } from "./ContextCondenseRow"
 import CodebaseSearchResultsDisplay from "./CodebaseSearchResultsDisplay"
 import { cn } from "@/lib/utils"
+import { KiloChatRowUserFeedback } from "../kilocode/chat/KiloChatRowUserFeedback" // kilocode_change
 
 interface ChatRowProps {
 	message: ClineMessage
@@ -997,29 +998,9 @@ export const ChatRowContent = ({
 						</div>
 					)
 				case "user_feedback":
-					return (
-						<div className="bg-vscode-editor-background border rounded-xs p-1 overflow-hidden whitespace-pre-wrap">
-							<div className="flex justify-between">
-								<div className="flex-grow px-2 py-1 wrap-anywhere">
-									<Mention text={message.text} withShadow />
-								</div>
-								<Button
-									variant="ghost"
-									size="icon"
-									className="shrink-0"
-									disabled={isStreaming}
-									onClick={(e) => {
-										e.stopPropagation()
-										vscode.postMessage({ type: "deleteMessage", value: message.ts })
-									}}>
-									<span className="codicon codicon-trash" />
-								</Button>
-							</div>
-							{message.images && message.images.length > 0 && (
-								<Thumbnails images={message.images} style={{ marginTop: "8px" }} />
-							)}
-						</div>
-					)
+					// kilocode_change start
+					return <KiloChatRowUserFeedback message={message} isStreaming={isStreaming} />
+				// kilocode_change end
 				case "user_feedback_diff":
 					const tool = safeJsonParse<ClineSayTool>(message.text)
 					return (

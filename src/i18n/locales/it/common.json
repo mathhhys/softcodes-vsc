@@ -53,6 +53,8 @@
 		"list_api_config": "Errore durante l'ottenimento dell'elenco delle configurazioni API",
 		"update_server_timeout": "Errore durante l'aggiornamento del timeout del server",
 		"hmr_not_running": "Il server di sviluppo locale non è in esecuzione, l'HMR non funzionerà. Esegui 'npm run dev' prima di avviare l'estensione per abilitare l'HMR.",
+		"message_update_failed": "Errore durante l'aggiornamento del messaggio",
+		"no_checkpoint_found": "Nessun checkpoint trovato prima di questo messaggio",
 		"retrieve_current_mode": "Errore durante il recupero della modalità corrente dallo stato.",
 		"failed_delete_repo": "Impossibile eliminare il repository o il ramo associato: {{error}}",
 		"failed_remove_directory": "Impossibile rimuovere la directory delle attività: {{error}}",
@@ -94,7 +96,9 @@
 		"image_copied_to_clipboard": "URI dati dell'immagine copiato negli appunti",
 		"image_saved": "Immagine salvata in {{path}}",
 		"organization_share_link_copied": "Link di condivisione organizzazione copiato negli appunti!",
-		"public_share_link_copied": "Link di condivisione pubblica copiato negli appunti!"
+		"public_share_link_copied": "Link di condivisione pubblica copiato negli appunti!",
+		"message_updated_and_reverted": "Messaggio aggiornato e conversazione ripristinata con successo",
+		"message_updated": "Messaggio aggiornato con successo"
 	},
 	"answers": {
 		"yes": "Sì",

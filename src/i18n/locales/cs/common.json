@@ -53,6 +53,8 @@
 		"list_api_config": "Získání seznamu konfigurace api selhalo",
 		"update_server_timeout": "Aktualizace server timeout selhala",
 		"hmr_not_running": "Lokální vývojový server neběží, HMR nebude fungovat. Prosím spusť 'npm run dev' před spuštěním rozšíření pro aktivaci HMR.",
+		"message_update_failed": "Aktualizace zprávy selhala",
+		"no_checkpoint_found": "Před touto zprávou nebyl nalezen žádný checkpoint",
 		"retrieve_current_mode": "Chyba: nepodařilo se získat aktuální režim ze stavu.",
 		"failed_delete_repo": "Smazání souvisejícího shadow repository nebo větve selhalo: {{error}}",
 		"failed_remove_directory": "Odstranění adresáře úlohy selhalo: {{error}}",
@@ -94,7 +96,9 @@
 		"organization_share_link_copied": "Odkaz pro sdílení organizace zkopírován do schránky!",
 		"public_share_link_copied": "Veřejný odkaz pro sdílení zkopírován do schránky!",
 		"image_copied_to_clipboard": "Image data URI zkopírováno do schránky",
-		"image_saved": "Obrázek uložen do {{path}}"
+		"image_saved": "Obrázek uložen do {{path}}",
+		"message_updated_and_reverted": "Zpráva byla aktualizována a konverzace byla vrácena",
+		"message_updated": "Zpráva byla úspěšně aktualizována"
 	},
 	"answers": {
 		"yes": "Ano",

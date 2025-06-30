@@ -103,5 +103,10 @@
 			},
 			"clickToScroll": "查看{{messageType}} (#{{messageNumber}})"
 		}
+	},
+	"userFeedback": {
+		"editCancel": "取消",
+		"send": "发送",
+		"restoreAndSend": "恢复并发送"
 	}
 }

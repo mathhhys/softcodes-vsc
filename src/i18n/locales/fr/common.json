@@ -53,6 +53,8 @@
 		"list_api_config": "Erreur lors de l'obtention de la liste des configurations API",
 		"update_server_timeout": "Erreur lors de la mise à jour du délai d'attente du serveur",
 		"hmr_not_running": "Le serveur de développement local n'est pas en cours d'exécution, HMR ne fonctionnera pas. Veuillez exécuter 'npm run dev' avant de lancer l'extension pour activer l'HMR.",
+		"message_update_failed": "Échec de la mise à jour du message",
+		"no_checkpoint_found": "Aucun point de contrôle trouvé avant ce message",
 		"retrieve_current_mode": "Erreur lors de la récupération du mode actuel à partir du state.",
 		"failed_delete_repo": "Échec de la suppression du repo fantôme ou de la branche associée : {{error}}",
 		"failed_remove_directory": "Échec de la suppression du répertoire de tâches : {{error}}",
@@ -94,7 +96,9 @@
 		"image_copied_to_clipboard": "URI de données d'image copiée dans le presse-papiers",
 		"image_saved": "Image enregistrée dans {{path}}",
 		"organization_share_link_copied": "Lien de partage d'organisation copié dans le presse-papiers !",
-		"public_share_link_copied": "Lien de partage public copié dans le presse-papiers !"
+		"public_share_link_copied": "Lien de partage public copié dans le presse-papiers !",
+		"message_updated_and_reverted": "Message mis à jour et conversation restaurée avec succès",
+		"message_updated": "Message mis à jour avec succès"
 	},
 	"answers": {
 		"yes": "Oui",

@@ -103,5 +103,10 @@
 				"user": "σχόλια χρηστών"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Ακύρωση",
+		"send": "Αποστολή",
+		"restoreAndSend": "Επαναφορά & Αποστολή"
 	}
 }

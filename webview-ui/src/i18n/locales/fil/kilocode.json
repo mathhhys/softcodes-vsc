@@ -103,5 +103,10 @@
 				"user": "feedback ng user"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Kanselahin",
+		"send": "Ipadala",
+		"restoreAndSend": "Ibalik at Ipadala"
 	}
 }

@@ -53,6 +53,8 @@
 		"list_api_config": "Misslyckades med att hämta lista över api-konfiguration",
 		"update_server_timeout": "Misslyckades med att uppdatera server timeout",
 		"hmr_not_running": "Lokal utvecklingsserver körs inte, HMR kommer inte att fungera. Kör 'npm run dev' innan du startar tillägget för att aktivera HMR.",
+		"message_update_failed": "Misslyckades med att uppdatera meddelande",
+		"no_checkpoint_found": "Ingen checkpoint hittades före detta meddelande",
 		"retrieve_current_mode": "Fel: misslyckades med att hämta aktuellt läge från tillstånd.",
 		"failed_delete_repo": "Misslyckades med att ta bort associerat shadow repository eller gren: {{error}}",
 		"failed_remove_directory": "Misslyckades med att ta bort uppgiftskatalog: {{error}}",
@@ -94,7 +96,9 @@
 		"organization_share_link_copied": "Organisationsdelningslänk kopierad till urklipp!",
 		"public_share_link_copied": "Offentlig delningslänk kopierad till urklipp!",
 		"image_copied_to_clipboard": "Image data URI kopierad till urklipp",
-		"image_saved": "Bild sparad till {{path}}"
+		"image_saved": "Bild sparad till {{path}}",
+		"message_updated_and_reverted": "Meddelande uppdaterat och konversation återställd",
+		"message_updated": "Meddelande uppdaterat"
 	},
 	"answers": {
 		"yes": "Ja",

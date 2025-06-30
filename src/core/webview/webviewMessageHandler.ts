@@ -42,6 +42,13 @@ import { generateSystemPrompt } from "./generateSystemPrompt"
 import { getCommand } from "../../utils/commands"
 import { toggleWorkflow, toggleRule, createRuleFile, deleteRuleFile } from "./kilorules"
 import { mermaidFixPrompt } from "../prompts/utilities/mermaid" // kilocode_change
+// kilocode_change start
+import {
+	deleteMessagesForResend,
+	handleCheckpointAndResend,
+	resendMessageSequence,
+} from "../kilocode/webview/webviewMessageHandlerUtils"
+// kilocode_change end
 
 const ALLOWED_VSCODE_SETTINGS = new Set(["terminal.integrated.inheritEnv"])
 
@@ -1935,5 +1942,104 @@ export const webviewMessageHandler = async (
 			}
 			break
 		}
+		// kilocode_change start
+		case "editMessage": {
+			if (!message.values?.ts || !message.values?.text) {
+				break
+			}
+			const timestamp = message.values.ts
+			const newText = message.values.text
+			const revert = message.values.revert || false
+			const images = message.values.images
+
+			const currentCline = provider.getCurrentCline()
+			if (!currentCline) {
+				provider.log("[Edit Message] Error: No active Cline instance found.")
+				break
+			}
+
+			try {
+				// Find message by timestamp
+				const messageIndex = currentCline.clineMessages.findIndex((msg) => msg.ts && msg.ts === timestamp)
+
+				if (messageIndex === -1) {
+					provider.log(`[Edit Message] Error: Message with timestamp ${timestamp} not found.`)
+					break
+				}
+
+				if (revert) {
+					// Find the most recent checkpoint before this message
+					const checkpointMessage = currentCline.clineMessages
+						.filter((msg) => msg.say === "checkpoint_saved")
+						.filter((msg) => msg.ts && msg.ts <= timestamp)
+						.sort((a, b) => (b.ts || 0) - (a.ts || 0))[0]
+
+					if (checkpointMessage && checkpointMessage.text) {
+						// Restore git shadow
+						await provider.cancelTask()
+						console.log("----- Cancel Task")
+
+						try {
+							await pWaitFor(() => currentCline.isInitialized === true, { timeout: 3_000 })
+						} catch (error) {
+							vscode.window.showErrorMessage(t("common:errors.checkpoint_timeout"))
+						}
+						console.log("----- currentCline.isInitialized")
+
+						try {
+							console.log("----- currentCline.checkpointRestore")
+							await currentCline.checkpointRestore({
+								commitHash: checkpointMessage.text,
+								ts: checkpointMessage.ts,
+								mode: "restore",
+							})
+							console.log("----- currentCline.checkpointRestore end")
+						} catch (error) {
+							vscode.window.showErrorMessage(t("common:errors.checkpoint_failed"))
+						}
+
+						//await currentCline.resumePausedTask(newText)
+
+						// Send a new user feedback message
+						// await provider.getCurrentCline()?.handleWebviewAskResponse("messageResponse", newText, images)
+					} else {
+						// No checkpoint found before this message
+						provider.log(`[Edit Message] No checkpoint found before message timestamp ${timestamp}.`)
+						vscode.window.showErrorMessage(t("common:errors.no_checkpoint_found"))
+					}
+				} else {
+					// Update the message text in the UI
+					const updatedMessages = [...currentCline.clineMessages]
+					updatedMessages[messageIndex] = {
+						...updatedMessages[messageIndex],
+						text: newText,
+					}
+					await currentCline.overwriteClineMessages(updatedMessages)
+
+					// Regular edit without revert - use the resend sequence
+					provider.log(
+						`[Edit Message] Performing regular edit without revert for message at timestamp ${timestamp}.`,
+					)
+					const success = await resendMessageSequence(
+						provider,
+						currentCline.taskId,
+						messageIndex,
+						timestamp,
+						newText,
+						images,
+					)
+
+					if (success) {
+						vscode.window.showInformationMessage(t("common:info.message_updated"))
+					}
+				}
+			} catch (error) {
+				const errorMessage = error instanceof Error ? error.message : String(error)
+				provider.log(`[Edit Message] Error handling editMessage: ${errorMessage}`)
+				vscode.window.showErrorMessage(t("common:errors.message_update_failed"))
+			}
+			break
+		}
+		// kilocode_change end
 	}
 }

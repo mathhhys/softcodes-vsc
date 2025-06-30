@@ -53,6 +53,8 @@
 		"list_api_config": "Error al obtener la lista de configuraciones de API",
 		"update_server_timeout": "Error al actualizar el tiempo de espera del servidor",
 		"hmr_not_running": "El servidor de desarrollo local no está en ejecución, HMR no funcionará. Por favor, ejecuta 'npm run dev' antes de lanzar la extensión para habilitar HMR.",
+		"message_update_failed": "Error al actualizar el mensaje",
+		"no_checkpoint_found": "No se encontró ningún punto de control antes de este mensaje",
 		"retrieve_current_mode": "Error al recuperar el modo actual del estado.",
 		"failed_delete_repo": "Error al eliminar el repositorio o rama asociada: {{error}}",
 		"failed_remove_directory": "Error al eliminar el directorio de tareas: {{error}}",
@@ -94,7 +96,9 @@
 		"image_copied_to_clipboard": "URI de datos de imagen copiada al portapapeles",
 		"image_saved": "Imagen guardada en {{path}}",
 		"organization_share_link_copied": "¡Enlace de compartición de organización copiado al portapapeles!",
-		"public_share_link_copied": "¡Enlace de compartición pública copiado al portapapeles!"
+		"public_share_link_copied": "¡Enlace de compartición pública copiado al portapapeles!",
+		"message_updated_and_reverted": "Mensaje actualizado y conversación revertida con éxito",
+		"message_updated": "Mensaje actualizado con éxito"
 	},
 	"answers": {
 		"yes": "Sí",

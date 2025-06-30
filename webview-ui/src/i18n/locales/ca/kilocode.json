@@ -103,5 +103,10 @@
 			},
 			"clickToScroll": "Veure {{messageType}} (núm. {{messageNumber}})"
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Cancel·lar",
+		"send": "Enviar",
+		"restoreAndSend": "Restaurar i Enviar"
 	}
 }
