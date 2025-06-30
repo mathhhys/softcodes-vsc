@@ -139,7 +139,7 @@ async function executeToolAndProcessResult(
 	let toolResultPretty = "(No response)"
 
 	if (toolResult) {
-		// kilochange_change: await, add api parameter
+		// kilocode_change: await, add api parameter
 		const outputText = await processToolContent(cline.api, toolResult)
 
 		if (outputText) {
