@@ -24,7 +24,7 @@ import { SelectDropdown, DropdownOptionType, Button, StandardTooltip } from "@/c
 import { useVSCodeTheme } from "@/kilocode/hooks/useVSCodeTheme" // kilocode_change
 
 import Thumbnails from "../common/Thumbnails"
-import ModeSelector from "./ModeSelector"
+// import ModeSelector from "./ModeSelector" // kilocode_change: unused
 import { MAX_IMAGES_PER_MESSAGE } from "./ChatView"
 import ContextMenu from "./ContextMenu"
 import { VolumeX, Pin, Check } from "lucide-react"
@@ -90,7 +90,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			currentApiConfigName,
 			listApiConfigMeta,
 			customModes,
-			customModePrompts,
+			// customModePrompts, // kilocode_change: unused
 			cwd,
 			pinnedApiConfigs,
 			togglePinnedApiConfig,
@@ -1242,46 +1242,45 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 					className={cn("flex", "justify-between", "items-center", "mt-auto", "pt-0.5")}>
 					<div className={cn("flex", "items-center", "gap-1", "min-w-0")}>
 						<div className="shrink-0">
-							<ModeSelector
+							{/* kilocode_change: SelectDropdown instead of ModeSelector */}
+							<SelectDropdown
 								value={mode}
 								title={t("chat:selectMode")}
-								// options={[
-								// 	{
-								// 		value: "shortcut",
-								// 		label: modeShortcutText,
-								// 		disabled: true,
-								// 		type: DropdownOptionType.SHORTCUT,
-								// 	},
-								// 	...getAllModes(customModes).map((mode) => ({
-								// 		value: mode.slug,
-								// 		label: mode.name,
-								// 		codicon: mode.iconName, // kilocode_change
-								// 		type: DropdownOptionType.ITEM,
-								// 	})),
-								// 	{
-								// 		value: "sep-1",
-								// 		label: t("chat:separator"),
-								// 		type: DropdownOptionType.SEPARATOR,
-								// 	},
-								// 	{
-								// 		value: "promptsButtonClicked",
-								// 		label: t("chat:edit"),
-								// 		type: DropdownOptionType.ACTION,
-								// 	},
-								// ]}
+								options={[
+									{
+										value: "shortcut",
+										label: modeShortcutText,
+										disabled: true,
+										type: DropdownOptionType.SHORTCUT,
+									},
+									...getAllModes(customModes).map((mode) => ({
+										value: mode.slug,
+										label: mode.name,
+										codicon: mode.iconName, // kilocode_change
+										type: DropdownOptionType.ITEM,
+									})),
+									{
+										value: "sep-1",
+										label: t("chat:separator"),
+										type: DropdownOptionType.SEPARATOR,
+									},
+									{
+										value: "promptsButtonClicked",
+										label: t("chat:edit"),
+										type: DropdownOptionType.ACTION,
+									},
+								]}
 								onChange={(value) => {
-									setMode(value)
+									setMode(value as Mode)
 									vscode.postMessage({ type: "mode", text: value })
 								}}
+								shortcutText={modeShortcutText}
 								triggerClassName={cn("w-full", {
 									"bg-[#1e1e1e] border-[#333333] hover:bg-[#2d2d2d]":
 										currentTheme === "vscode-dark" || currentTheme === "vscode-high-contrast",
 									"bg-[var(--vscode-input-background)] border-[var(--vscode-input-border)] hover:bg-[var(--vscode-input-hoverBackground)]":
 										currentTheme === "vscode-light",
 								})}
-								modeShortcutText={modeShortcutText}
-								customModes={customModes}
-								customModePrompts={customModePrompts}
 							/>
 						</div>
 
