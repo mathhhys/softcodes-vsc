@@ -1,5 +1,9 @@
 # kilo-code
 
+## [v4.47.0]
+
+- [#905](https://github.com/Kilo-Org/kilocode/pull/905) [`4224ba9`](https://github.com/Kilo-Org/kilocode/commit/4224ba978c4ebd5eeee7bc879bc3d860f36a64fb) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Improve MCP marketplace and installed MCP servers views (thanks Roo Code!)
+
 ## [v4.46.0]
 
 - [#921](https://github.com/Kilo-Org/kilocode/pull/921) [`4d0d1ed`](https://github.com/Kilo-Org/kilocode/commit/4d0d1ed6081266a24b3b715f3450a5bd82718dbb) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Enable browser tool for Gemini, GPT and all other models that can read images
