@@ -98,7 +98,7 @@ Example:
 </content>
 <line_count>30</line_count>
 </new_rule>
-Within the context of the parent task, the user provided the following input when they indicated that they wanted to create a new Kilo rule file.
+The user provided the following input when they indicated that they wanted to create a new Kilo rule file.
 <user_input>
 ${userInput}
 </user_input>
@@ -123,7 +123,7 @@ Usage:
 <description>Detailed description of the issue, including steps to reproduce if relevant.</description>
 </report_bug>
 When you call the report_bug tool, the issue will be created at @https://github.com/Kilo-Org/kilocode/issues
-Within the context of the parent task, the user provided the following input when they indicated that they wanted to submit a bug report.
+The user provided the following input when they indicated that they wanted to submit a bug report.
 <user_input>
 ${userInput}
 </user_input>
