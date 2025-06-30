@@ -39,7 +39,10 @@ export async function blockFileReadWhenTooLarge(task: Task, relPath: string, con
 	if (tokenEstimate < tokenLimit) {
 		return undefined
 	}
-	const errorMsg = `File content exceeds token limit (${tokenEstimate} estimated tokens, limit is ${tokenLimit} tokens). Please use line_range to read smaller sections.`
+	const linesRangesAreAllowed = ((await task.providerRef.deref()?.getState())?.maxReadFileLine ?? 0) >= 0
+	const errorMsg =
+		`File content exceeds token limit (${tokenEstimate} estimated tokens, limit is ${tokenLimit} tokens).` +
+		(linesRangesAreAllowed ? ` Please use line_range to read smaller sections.` : ``)
 	return {
 		status: "blocked" as const,
 		error: errorMsg,
