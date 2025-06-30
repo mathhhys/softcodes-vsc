@@ -1141,6 +1141,10 @@ export const webviewMessageHandler = async (
 			await updateGlobalState("showTaskTimeline", message.bool ?? false)
 			await provider.postStateToWebview()
 			break
+		case "blockVeryLargeReads":
+			await updateGlobalState("blockVeryLargeReads", message.bool ?? true)
+			await provider.postStateToWebview()
+			break
 		// kilocode_change end
 		case "maxConcurrentFileReads":
 			const valueToSave = message.value // Capture the value intended for saving

@@ -92,8 +92,8 @@ async function sendExecutionStatus(cline: Task, status: McpExecutionStatus): Pro
 	})
 }
 
-// kilocode_change: make async, add api parameter
-async function processToolContent(api: ApiHandler, toolResult: McpToolCallResponse): Promise<string> {
+// kilocode_change: make async, add task parameter
+async function processToolContent(task: Task, toolResult: McpToolCallResponse): Promise<string> {
 	if (!toolResult?.content || toolResult.content.length === 0) {
 		return ""
 	}
@@ -113,7 +113,7 @@ async function processToolContent(api: ApiHandler, toolResult: McpToolCallRespon
 		.join("\n\n")
 
 	// kilocode_change: summarize
-	return toolResult.isError ? outputText : await summarizeSuccessfulMcpOutputWhenTooLong(api, outputText)
+	return toolResult.isError ? outputText : await summarizeSuccessfulMcpOutputWhenTooLong(task, outputText)
 }
 
 async function executeToolAndProcessResult(
@@ -140,7 +140,7 @@ async function executeToolAndProcessResult(
 
 	if (toolResult) {
 		// kilocode_change: await, add api parameter
-		const outputText = await processToolContent(cline.api, toolResult)
+		const outputText = await processToolContent(cline, toolResult)
 
 		if (outputText) {
 			await sendExecutionStatus(cline, {
