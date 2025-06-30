@@ -26,6 +26,12 @@
 			"apiKey": "Kilo Code API-sleutel",
 			"login": "Inloggen bij Kilo Code",
 			"logout": "Uitloggen bij Kilo Code"
+		},
+		"contextManagement": {
+			"blockVeryLargeReads": {
+				"label": "Blokkeer zeer grote bestandslezingen",
+				"description": "Wanneer ingeschakeld, zal Kilo Code geen zeer grote bestands- of MCP-outputlezingen uitvoeren (>80% van het contextvenster, zelfs nadat regeltellingslimieten zijn toegepast). In plaats daarvan zal het proberen in beter beheersbare blokken te lezen."
+			}
 		}
 	},
 	"chat": {

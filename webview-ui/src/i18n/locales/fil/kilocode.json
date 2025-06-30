@@ -26,6 +26,12 @@
 			"apiKey": "Kilo Code API Key",
 			"login": "Mag-log in sa Kilo Code",
 			"logout": "Mag-log out mula sa Kilo Code"
+		},
+		"contextManagement": {
+			"blockVeryLargeReads": {
+				"label": "I-block ang pagbasa ng napakalaking files",
+				"description": "Kapag naka-enable, hindi magsasagawa ang Kilo Code ng pagbasa ng napakalaking files o MCP outputs (>80% ng context window, kahit na pagkatapos mailapat ang mga limitasyon sa bilang ng linya). Sa halip, susubukan nitong magbasa sa mas madaling pamahalaan na mga bahagi."
+			}
 		}
 	},
 	"chat": {

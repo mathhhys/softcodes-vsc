@@ -26,6 +26,12 @@
 			"apiKey": "Kilo Code API-nyckel",
 			"login": "Logga in på Kilo Code",
 			"logout": "Logga ut från Kilo Code"
+		},
+		"contextManagement": {
+			"blockVeryLargeReads": {
+				"label": "Blockera mycket stora filläsningar",
+				"description": "När aktiverat kommer Kilo Code inte att utföra mycket stora fil- eller MCP-utdataläsningar (>80% av kontextfönstret, även efter att radräkningsbegränsningar har tillämpats). Istället kommer den att försöka läsa i mer hanterbara delar."
+			}
 		}
 	},
 	"chat": {

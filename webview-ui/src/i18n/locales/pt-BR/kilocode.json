@@ -26,6 +26,12 @@
 			"apiKey": "Chave de API do Kilo Code",
 			"login": "Entrar no Kilo Code",
 			"logout": "Sair do Kilo Code"
+		},
+		"contextManagement": {
+			"blockVeryLargeReads": {
+				"label": "Bloquear leituras de arquivos muito grandes",
+				"description": "Quando ativado, o Kilo Code não realizará leituras de arquivos ou saídas MCP muito grandes (>80% da janela de contexto, mesmo após a aplicação de limites de contagem de linhas). Em vez disso, tentará ler em blocos mais gerenciáveis."
+			}
 		}
 	},
 	"chat": {
