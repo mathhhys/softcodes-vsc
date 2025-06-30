@@ -18,7 +18,7 @@ export function filterMessagesForClaudeCode(
 			if (block.type === "image") {
 				// Replace image blocks with text placeholders
 				const sourceType = block.source?.type || "unknown"
-				const mediaType = block.source?.media_type || "unknown"
+				const mediaType = block.source && "media_type" in block.source ? block.source.media_type : "unknown"
 				return {
 					type: "text" as const,
 					text: `[Image (${sourceType}): ${mediaType} not supported by Claude Code]`,

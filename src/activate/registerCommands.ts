@@ -5,8 +5,7 @@ import type { CommandId } from "@roo-code/types"
 
 import { getCommand } from "../utils/commands"
 import { ClineProvider } from "../core/webview/ClineProvider"
-import { t } from "../i18n" // kilocode_change
-import { importSettings, exportSettings } from "../core/config/importExport" // kilocode_change
+import { exportSettings } from "../core/config/importExport" // kilocode_change
 import { ContextProxy } from "../core/config/ContextProxy"
 import { focusPanel } from "../utils/focusPanel"
 

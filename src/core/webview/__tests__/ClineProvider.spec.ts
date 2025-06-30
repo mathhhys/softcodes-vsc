@@ -2161,6 +2161,7 @@ describe.skip("getTelemetryProperties", () => {
 		provider = new ClineProvider(mockContext, mockOutputChannel, "sidebar", new ContextProxy(mockContext))
 
 		defaultTaskOptions = {
+			context: mockContext,
 			provider,
 			apiConfiguration: {
 				apiProvider: "openrouter",
