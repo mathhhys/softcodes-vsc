@@ -58,6 +58,7 @@ interface ChatRowProps {
 	onSuggestionClick?: (answer: string, event?: React.MouseEvent) => void
 	onBatchFileResponse?: (response: { [key: string]: boolean }) => void
 	highlighted?: boolean // kilocode_change: Add highlighted prop
+	onChatReset?: () => void // kilocode_change
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -114,6 +115,7 @@ export const ChatRowContent = ({
 	onToggleExpand,
 	onSuggestionClick,
 	onBatchFileResponse,
+	onChatReset, // kilocode_change
 }: ChatRowContentProps) => {
 	const { t } = useTranslation()
 	const { apiConfiguration, mcpServers, alwaysAllowMcp, currentCheckpoint } = useExtensionState()
@@ -999,7 +1001,13 @@ export const ChatRowContent = ({
 					)
 				case "user_feedback":
 					// kilocode_change start
-					return <KiloChatRowUserFeedback message={message} isStreaming={isStreaming} />
+					return (
+						<KiloChatRowUserFeedback
+							message={message}
+							isStreaming={isStreaming}
+							onChatReset={onChatReset}
+						/>
+					)
 				// kilocode_change end
 				case "user_feedback_diff":
 					const tool = safeJsonParse<ClineSayTool>(message.text)

@@ -9,9 +9,10 @@ import { useTranslation } from "react-i18next"
 interface KiloChatRowUserFeedbackProps {
 	message: ClineMessage
 	isStreaming: boolean
+	onChatReset?: () => void
 }
 
-export const KiloChatRowUserFeedback = ({ message, isStreaming }: KiloChatRowUserFeedbackProps) => {
+export const KiloChatRowUserFeedback = ({ message, isStreaming, onChatReset }: KiloChatRowUserFeedbackProps) => {
 	const { t } = useTranslation()
 	const [isEditing, setIsEditing] = useState(false)
 	const [editedText, setEditedText] = useState(message.text)
@@ -24,11 +25,17 @@ export const KiloChatRowUserFeedback = ({ message, isStreaming }: KiloChatRowUse
 	const handleResend = () => {
 		vscode.postMessage({ type: "editMessage", values: { ts: message.ts, text: editedText } })
 		setIsEditing(false)
+		if (onChatReset) {
+			onChatReset()
+		}
 	}
 
 	const handleRevertAndResend = () => {
 		vscode.postMessage({ type: "editMessage", values: { ts: message.ts, text: editedText, revert: true } })
 		setIsEditing(false)
+		if (onChatReset) {
+			onChatReset()
+		}
 	}
 
 	if (isEditing) {
