@@ -764,7 +764,8 @@ describe("ChatTextArea", () => {
 		})
 	})
 
-	describe("selectApiConfig", () => {
+	// kilocode_change: removed in kilcode
+	describe.skip("selectApiConfig", () => {
 		// Helper function to get the API config dropdown
 		const getApiConfigDropdown = () => {
 			return screen.getByTestId("dropdown-trigger")

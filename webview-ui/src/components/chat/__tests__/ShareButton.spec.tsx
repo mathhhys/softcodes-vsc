@@ -38,7 +38,8 @@ vi.mock("@/utils/TelemetryClient", () => ({
 const mockUseTranslation = vi.mocked(useTranslation)
 const mockVscode = vi.mocked(vscode)
 
-describe("ShareButton", () => {
+describe.skip("ShareButton", () => {
+	// kilocode_change skip
 	const mockT = vi.fn((key: string) => key)
 	const mockItem = {
 		id: "test-task-id",

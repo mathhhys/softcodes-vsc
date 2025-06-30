@@ -85,7 +85,8 @@ describe("TaskActions", () => {
 		} as any)
 	})
 
-	describe("Share Button Visibility", () => {
+	describe.skip("Share Button Visibility", () => {
+		// kilocode_change skip
 		it("renders share button when item has id", () => {
 			render(<TaskActions item={mockItem} buttonsDisabled={false} />)
 
@@ -119,7 +120,8 @@ describe("TaskActions", () => {
 		})
 	})
 
-	describe("Authenticated User Share Flow", () => {
+	// kilocode_change skip
+	describe.skip("Authenticated User Share Flow", () => {
 		it("shows organization and public share options when authenticated and sharing enabled", () => {
 			render(<TaskActions item={mockItem} buttonsDisabled={false} />)
 
@@ -191,7 +193,8 @@ describe("TaskActions", () => {
 		})
 	})
 
-	describe("Unauthenticated User Login Flow", () => {
+	// kilocode_change skip
+	describe.skip("Unauthenticated User Login Flow", () => {
 		beforeEach(() => {
 			mockUseExtensionState.mockReturnValue({
 				sharingEnabled: false,
@@ -244,7 +247,8 @@ describe("TaskActions", () => {
 		})
 	})
 
-	describe("Mixed Authentication States", () => {
+	// kilocode_change skip
+	describe.skip("Mixed Authentication States", () => {
 		it("shows disabled share button when authenticated but sharing not enabled", () => {
 			mockUseExtensionState.mockReturnValue({
 				sharingEnabled: false,
@@ -335,11 +339,12 @@ describe("TaskActions", () => {
 			render(<TaskActions item={mockItem} buttonsDisabled={true} />)
 
 			// Find button by its icon class
-			const buttons = screen.getAllByRole("button")
-			const shareButton = buttons.find((btn) => btn.querySelector(".codicon-link"))
+			// kilocode_change no share button
+			// const buttons = screen.getAllByRole("button")
+			// const shareButton = buttons.find((btn) => btn.querySelector(".codicon-link"))
 			const exportButton = screen.getByLabelText("Export task history")
 
-			expect(shareButton).toBeDisabled()
+			// expect(shareButton).toBeDisabled()
 			expect(exportButton).toBeDisabled()
 		})
 	})
