@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.46.0
-
-### Minor Changes
+## [v4.46.0]
 
 - [#921](https://github.com/Kilo-Org/kilocode/pull/921) [`4d0d1ed`](https://github.com/Kilo-Org/kilocode/commit/4d0d1ed6081266a24b3b715f3450a5bd82718dbb) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Enable browser tool for Gemini, GPT and all other models that can read images
 
