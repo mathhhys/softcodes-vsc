@@ -4,7 +4,6 @@ import { formatResponse } from "../prompts/responses"
 import { ClineAskUseMcpServer } from "../../shared/ExtensionMessage"
 import { McpExecutionStatus } from "@roo-code/types"
 import { t } from "../../i18n"
-import { ApiHandler } from "../../api" // kilocode_change
 import { McpToolCallResponse } from "../../shared/mcp" // kilocode_change
 import { summarizeSuccessfulMcpOutputWhenTooLong } from "./kilocode" // kilocode_change
 
