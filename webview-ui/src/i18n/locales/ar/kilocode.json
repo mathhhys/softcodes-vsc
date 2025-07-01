@@ -26,6 +26,12 @@
 			"apiKey": "مفتاح API لـ Kilo Code",
 			"login": "تسجيل الدخول في Kilo Code",
 			"logout": "تسجيل الخروج من Kilo Code"
+		},
+		"contextManagement": {
+			"allowVeryLargeReads": {
+				"label": "السماح بقراءة الملفات الكبيرة جداً",
+				"description": "عند التفعيل، سيقوم Kilo Code بقراءة الملفات الكبيرة جداً أو مخرجات MCP حتى لو كان هناك احتمال كبير لتجاوز نافذة السياق (حجم المحتوى >80% من نافذة السياق)."
+			}
 		}
 	},
 	"chat": {

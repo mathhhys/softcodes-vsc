@@ -156,6 +156,7 @@ export interface WebviewMessage {
 		| "language"
 		| "maxReadFileLine"
 		| "maxConcurrentFileReads"
+		| "allowVeryLargeReads" // kilocode_change
 		| "searchFiles"
 		| "setHistoryPreviewCollapsed"
 		| "showFeedbackOptions" // kilocode_change
