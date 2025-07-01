@@ -109,5 +109,10 @@
 				"user": "användarfeedback"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Avbryt",
+		"send": "Skicka",
+		"restoreAndSend": "Återställ & Skicka"
 	}
 }

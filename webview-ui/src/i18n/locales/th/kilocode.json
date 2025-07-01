@@ -109,5 +109,10 @@
 				"user": "ความคิดเห็นของผู้ใช้"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "ยกเลิก",
+		"send": "ส่ง",
+		"restoreAndSend": "คืนค่าและส่ง"
 	}
 }

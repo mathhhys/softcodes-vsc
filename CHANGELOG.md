@@ -1,5 +1,44 @@
 # kilo-code
 
+## [v4.48.0]
+
+- [#926](https://github.com/Kilo-Org/kilocode/pull/926) [`75b6c80`](https://github.com/Kilo-Org/kilocode/commit/75b6c80878f61f9f5d2b0c7499bee56eb8f09d06) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Arabic translation added (support for right-to-left languages is experimental)
+
+- [#930](https://github.com/Kilo-Org/kilocode/pull/930) [`047b30e`](https://github.com/Kilo-Org/kilocode/commit/047b30ec1ca8b30c86ad7708dea16bf404ed94f8) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Include changes from Roo Code v3.22.4
+
+    - Fix: resolve E2BIG error by passing large prompts via stdin to Claude CLI (thanks @Fovty!)
+    - Add optional mode suggestions to follow-up questions
+    - Restore JSON backwards compatibility for .roomodes files (thanks @daniel-lxs!)
+    - Fix: eliminate XSS vulnerability in CodeBlock component (thanks @KJ7LNW!)
+    - Fix terminal keyboard shortcut error when adding content to context (thanks @MuriloFP!)
+    - Fix checkpoint popover not opening due to StandardTooltip wrapper conflict (thanks @daniel-lxs!)
+    - Fix(i18n): correct gemini cli error translation paths (thanks @daniel-lxs!)
+    - Code Index (Qdrant) recreate services when change configurations (thanks @catrielmuller!)
+    - Fix undefined mcp command (thanks @qdaxb!)
+    - Use upstream_inference_cost for OpenRouter BYOK cost calculation and show cached token count (thanks @chrarnoldus!)
+    - Update maxTokens value for qwen/qwen3-32b model on Groq (thanks @KanTakahiro!)
+    - Standardize tooltip delays to 300ms
+    - Add support for loading rules from a global .kilocode directory (thanks @samhvw8!)
+    - Modes selector improvements (thanks @brunobergher!)
+    - Use safeWriteJson for all JSON file writes to avoid task history corruption (thanks @KJ7LNW!)
+    - Improve YAML error handling when editing modes
+    - Add default task names for empty tasks (thanks @daniel-lxs!)
+    - Improve translation workflow to avoid unnecessary file reads (thanks @KJ7LNW!)
+    - Allow write_to_file to handle newline-only and empty content (thanks @Githubguy132010!)
+    - Address multiple memory leaks in CodeBlock component (thanks @kiwina!)
+    - Memory cleanup (thanks @xyOz-dev!)
+    - Fix port handling bug in code indexing for HTTPS URLs (thanks @benashby!)
+    - Improve Bedrock error handling for throttling and streaming contexts
+    - Handle long Claude code messages (thanks @daniel-lxs!)
+    - Fixes to Claude Code caching and image upload
+    - Disable reasoning budget UI controls for Claude Code provider
+    - Remove temperature parameter for Azure OpenAI reasoning models (thanks @ExactDoug!)
+    - Add VS Code setting to disable quick fix context actions (thanks @OlegOAndreev!)
+
+### Patch Changes
+
+- [#931](https://github.com/Kilo-Org/kilocode/pull/931) [`351ebde`](https://github.com/Kilo-Org/kilocode/commit/351ebdec10833328ec9069ddacb41ea37660eae8) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - The /newtask command now starts a task more reliably.
+
 ## [v4.47.0]
 
 - [#905](https://github.com/Kilo-Org/kilocode/pull/905) [`4224ba9`](https://github.com/Kilo-Org/kilocode/commit/4224ba978c4ebd5eeee7bc879bc3d860f36a64fb) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Improve MCP marketplace and installed MCP servers views (thanks Roo Code!)

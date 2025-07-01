@@ -109,5 +109,10 @@
 				"user": "gebruikersfeedback"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Annuleren",
+		"send": "Verzenden",
+		"restoreAndSend": "Herstellen & Verzenden"
 	}
 }

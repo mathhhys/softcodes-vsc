@@ -46,5 +46,10 @@
 		"tokenRequired": "Kilo: 提交信息生成需要令牌",
 		"activationFailed": "Kilo: 无法激活提交消息提供者: {{error}}",
 		"providerRegistered": "Kilo: 提交消息提供程序已注册"
+	},
+	"userFeedback": {
+		"message_update_failed": "更新訊息失敗",
+		"no_checkpoint_found": "在此訊息之前未找到檢查點",
+		"message_updated": "訊息已成功更新"
 	}
 }

@@ -41,7 +41,7 @@ export const PROVIDERS = [
 	{ value: "fireworks", label: "Fireworks" }, // kilocode_change
 	{ value: "claude-code", label: "Claude Code" },
 	{ value: "gemini", label: "Google Gemini" },
-	{ value: "gemini-cli", label: "Gemini CLI Provider" },
+	{ value: "gemini-cli", label: "Gemini CLI" },
 	{ value: "deepseek", label: "DeepSeek" },
 	{ value: "openai-native", label: "OpenAI" },
 	{ value: "openai", label: "OpenAI Compatible" },

@@ -123,9 +123,7 @@ export class CodeIndexManager {
 		const needsServiceRecreation = !this._serviceFactory || requiresRestart
 
 		if (needsServiceRecreation) {
-			// kilocode_change start: recreate services with new configuration
 			await this._recreateServices()
-			// kilocode_change end
 		}
 
 		// 5. Handle Indexing Start/Restart
@@ -203,7 +201,6 @@ export class CodeIndexManager {
 		return this._searchService!.searchIndex(query, directoryPrefix)
 	}
 
-	// kilocode_change start
 	/**
 	 * Private helper method to recreate services with current configuration.
 	 * Used by both initialize() and handleExternalSettingsChange().
@@ -258,7 +255,6 @@ export class CodeIndexManager {
 			vectorStore,
 		)
 	}
-	// kilocode_change end
 
 	/**
 	 * Handles external settings changes by reloading configuration.
@@ -275,9 +271,8 @@ export class CodeIndexManager {
 
 			// If configuration changes require a restart and the manager is initialized, recreate services and restart
 			if (requiresRestart && isFeatureEnabled && isFeatureConfigured && this.isInitialized) {
-				// kilocode_change start: recreate services with new configuration
+				// Recreate services with new configuration
 				await this._recreateServices()
-				// kilocode_change end
 
 				// Start indexing with new services
 				await this.startIndexing()
