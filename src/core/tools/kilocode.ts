@@ -2,8 +2,8 @@ import { Task } from "../task/Task"
 
 const SIZE_LIMIT_AS_CONTEXT_WINDOW_FRACTION = 0.8
 
-async function blockVeryLargeReads(task: Task) {
-	return (await task.providerRef.deref()?.getState())?.blockVeryLargeReads ?? true
+async function allowVeryLargeReads(task: Task) {
+	return (await task.providerRef.deref()?.getState())?.allowVeryLargeReads ?? true
 }
 
 async function getTokenEstimate(task: Task, outputText: string) {
@@ -15,7 +15,7 @@ function getTokenLimit(task: Task) {
 }
 
 export async function summarizeSuccessfulMcpOutputWhenTooLong(task: Task, outputText: string) {
-	if (!(await blockVeryLargeReads(task))) {
+	if (await allowVeryLargeReads(task)) {
 		return outputText
 	}
 	const tokenLimit = getTokenLimit(task)
@@ -31,7 +31,7 @@ export async function summarizeSuccessfulMcpOutputWhenTooLong(task: Task, output
 }
 
 export async function blockFileReadWhenTooLarge(task: Task, relPath: string, content: string) {
-	if (!(await blockVeryLargeReads(task))) {
+	if (await allowVeryLargeReads(task)) {
 		return undefined
 	}
 	const tokenLimit = getTokenLimit(task)

@@ -28,7 +28,7 @@
 			"logout": "Cerrar sesión de Kilo Code"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "Bloquear lecturas de archivos muy grandes",
 				"description": "Cuando está activado, Kilo Code no realizará lecturas de archivos o salidas MCP muy grandes (>80% de la ventana de contexto, incluso después de aplicar límites de recuento de líneas). En su lugar, intentará leer en fragmentos más manejables."
 			}

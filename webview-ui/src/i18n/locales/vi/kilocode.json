@@ -23,7 +23,7 @@
 			"mcp": "Máy chủ MCP"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "Chặn đọc tệp rất lớn",
 				"description": "Khi bật, Kilo Code sẽ không thực hiện đọc tệp hoặc đầu ra MCP rất lớn (>80% cửa sổ ngữ cảnh, ngay cả sau khi đã áp dụng giới hạn số dòng). Thay vào đó, nó sẽ cố gắng đọc theo các phần dễ quản lý hơn."
 			}

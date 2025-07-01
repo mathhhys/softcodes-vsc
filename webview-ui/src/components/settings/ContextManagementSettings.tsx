@@ -63,7 +63,7 @@ type ContextManagementSettingsProps = HTMLAttributes<HTMLDivElement> & {
 	showRooIgnoredFiles?: boolean
 	maxReadFileLine?: number
 	maxConcurrentFileReads?: number
-	blockVeryLargeReads?: boolean // kilocode_change
+	allowVeryLargeReads?: boolean // kilocode_change
 	profileThresholds?: Record<string, number>
 	setCachedStateField: SetCachedStateField<
 		| "autoCondenseContext"
@@ -75,7 +75,7 @@ type ContextManagementSettingsProps = HTMLAttributes<HTMLDivElement> & {
 		| "showRooIgnoredFiles"
 		| "maxReadFileLine"
 		| "maxConcurrentFileReads"
-		| "blockVeryLargeReads" // kilocode_change
+		| "allowVeryLargeReads" // kilocode_change
 		| "profileThresholds"
 	>
 }
@@ -92,7 +92,7 @@ export const ContextManagementSettings = ({
 	setCachedStateField,
 	maxReadFileLine,
 	maxConcurrentFileReads,
-	blockVeryLargeReads, // kilocode_change
+	allowVeryLargeReads, // kilocode_change
 	profileThresholds = {},
 	className,
 	...props
@@ -248,14 +248,14 @@ export const ContextManagementSettings = ({
 				{/*kilocode_change start*/}
 				<div>
 					<VSCodeCheckbox
-						checked={blockVeryLargeReads}
-						onChange={(e: any) => setCachedStateField("blockVeryLargeReads", e.target.checked)}>
+						checked={allowVeryLargeReads}
+						onChange={(e: any) => setCachedStateField("allowVeryLargeReads", e.target.checked)}>
 						<label className="block font-medium mb-1">
-							{t("kilocode:settings.contextManagement.blockVeryLargeReads.label")}
+							{t("kilocode:settings.contextManagement.allowVeryLargeReads.label")}
 						</label>
 					</VSCodeCheckbox>
 					<div className="text-vscode-descriptionForeground text-sm mt-1 mb-3">
-						{t("kilocode:settings.contextManagement.blockVeryLargeReads.description")}
+						{t("kilocode:settings.contextManagement.allowVeryLargeReads.description")}
 					</div>
 				</div>
 				{/*kilocode_change end*/}

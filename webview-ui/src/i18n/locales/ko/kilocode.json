@@ -28,7 +28,7 @@
 			"logout": "Kilo Code에서 로그아웃"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "매우 큰 파일 읽기 차단",
 				"description": "활성화되면 Kilo Code는 매우 큰 파일이나 MCP 출력 읽기를 수행하지 않습니다 (컨텍스트 창의 80% 이상, 줄 수 제한이 적용된 후에도). 대신 더 관리하기 쉬운 청크로 읽으려고 시도합니다."
 			}

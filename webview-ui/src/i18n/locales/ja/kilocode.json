@@ -28,7 +28,7 @@
 			"logout": "Kilo Codeからログアウト"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "非常に大きなファイルの読み取りをブロック",
 				"description": "有効にすると、Kilo Codeは非常に大きなファイルやMCP出力の読み取りを実行しません（コンテキストウィンドウの80%以上、行数制限が適用された後でも）。代わりに、より管理しやすいチャンクで読み取ろうとします。"
 			}

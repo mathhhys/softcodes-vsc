@@ -23,7 +23,7 @@
 			"mcp": "MCP Sunucuları"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "Çok büyük dosya okumalarını engelle",
 				"description": "Etkinleştirildiğinde, Kilo Code çok büyük dosya veya MCP çıktı okumalarını (bağlam penceresinin %80'inden fazla, satır sayısı sınırları uygulandıktan sonra bile) gerçekleştirmez. Bunun yerine, daha yönetilebilir parçalar halinde okumaya çalışır."
 			}

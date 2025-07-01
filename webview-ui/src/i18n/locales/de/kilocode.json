@@ -28,7 +28,7 @@
 			"logout": "Von Kilo Code abmelden"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "Sehr große Dateilesevorgänge blockieren",
 				"description": "Wenn aktiviert, führt Kilo Code keine sehr großen Datei- oder MCP-Ausgabelesevorgänge durch (>80% des Kontextfensters, auch nach Anwendung von Zeilenzahlbegrenzungen). Stattdessen versucht es, in besser handhabbaren Blöcken zu lesen."
 			}

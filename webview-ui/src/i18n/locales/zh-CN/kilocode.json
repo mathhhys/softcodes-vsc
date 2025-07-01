@@ -23,7 +23,7 @@
 			"mcp": "MCP 服务器"
 		},
 		"contextManagement": {
-			"blockVeryLargeReads": {
+			"allowVeryLargeReads": {
 				"label": "阻止超大文件读取",
 				"description": "启用后，Kilo Code 将不会执行超大文件或 MCP 输出读取（超过上下文窗口的 80%，即使在应用行数限制后）。相反，它会尝试以更易管理的块进行读取。"
 			}
