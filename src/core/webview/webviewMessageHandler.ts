@@ -1162,7 +1162,7 @@ export const webviewMessageHandler = async (
 			await provider.postStateToWebview()
 			break
 		case "allowVeryLargeReads":
-			await updateGlobalState("allowVeryLargeReads", message.bool ?? true)
+			await updateGlobalState("allowVeryLargeReads", message.bool ?? false)
 			await provider.postStateToWebview()
 			break
 		// kilocode_change end
