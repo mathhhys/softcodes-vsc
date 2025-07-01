@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.48.0
-
-### Minor Changes
+## [v4.48.0]
 
 - [#926](https://github.com/Kilo-Org/kilocode/pull/926) [`75b6c80`](https://github.com/Kilo-Org/kilocode/commit/75b6c80878f61f9f5d2b0c7499bee56eb8f09d06) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Arabic translation added (support for right-to-left languages is experimental)
 
