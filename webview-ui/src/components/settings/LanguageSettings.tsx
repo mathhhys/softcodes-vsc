@@ -37,12 +37,15 @@ export const LanguageSettings = ({ language, setCachedStateField, className, ...
 					</SelectTrigger>
 					<SelectContent>
 						<SelectGroup>
-							{Object.entries(LANGUAGES).map(([code, name]) => (
-								<SelectItem key={code} value={code}>
-									{name}
-									<span className="text-muted-foreground">({code})</span>
-								</SelectItem>
-							))}
+							{/* kilocode_change: sort languages */}
+							{Object.entries(LANGUAGES)
+								.sort()
+								.map(([code, name]) => (
+									<SelectItem key={code} value={code}>
+										{name}
+										<span className="text-muted-foreground">({code})</span>
+									</SelectItem>
+								))}
 						</SelectGroup>
 					</SelectContent>
 				</Select>

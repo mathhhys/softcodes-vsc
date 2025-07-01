@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { kiloLanguages } from "./kiloLanguages.js"
 
 /**
  * CodeAction
@@ -67,14 +68,11 @@ export type CommandId = (typeof commandIds)[number]
  */
 
 export const languages = [
-	"ar", // kilocode_change
+	...kiloLanguages,
 	"ca",
-	"cs", // kilocode_change
 	"de",
-	"el", // kilocode_change
 	"en",
 	"es",
-	"fil", // kilocode_change
 	"fr",
 	"hi",
 	"id",
@@ -85,10 +83,7 @@ export const languages = [
 	"pl",
 	"pt-BR",
 	"ru",
-	"sv", // kilocode_change
-	"th", // kilocode_change
 	"tr",
-	"uk", // kilocode_change
 	"vi",
 	"zh-CN",
 	"zh-TW",
