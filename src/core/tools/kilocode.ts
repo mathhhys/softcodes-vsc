@@ -3,7 +3,7 @@ import { Task } from "../task/Task"
 const SIZE_LIMIT_AS_CONTEXT_WINDOW_FRACTION = 0.8
 
 async function allowVeryLargeReads(task: Task) {
-	return (await task.providerRef.deref()?.getState())?.allowVeryLargeReads ?? true
+	return (await task.providerRef.deref()?.getState())?.allowVeryLargeReads ?? false
 }
 
 async function getTokenEstimate(task: Task, outputText: string) {

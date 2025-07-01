@@ -1547,7 +1547,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			renderContext: this.renderContext,
 			maxReadFileLine: maxReadFileLine ?? -1,
 			maxConcurrentFileReads: maxConcurrentFileReads ?? 5,
-			allowVeryLargeReads: allowVeryLargeReads ?? true, // kilocode_change
+			allowVeryLargeReads: allowVeryLargeReads ?? false, // kilocode_change
 			settingsImportedAt: this.settingsImportedAt,
 			terminalCompressProgressBar: terminalCompressProgressBar ?? true,
 			hasSystemPromptOverride,
@@ -1705,7 +1705,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			showTaskTimeline: stateValues.showTaskTimeline ?? true, // kilocode_change
 			maxReadFileLine: stateValues.maxReadFileLine ?? -1,
 			maxConcurrentFileReads: stateValues.maxConcurrentFileReads ?? 5,
-			allowVeryLargeReads: stateValues.allowVeryLargeReads ?? true, // kilocode_change
+			allowVeryLargeReads: stateValues.allowVeryLargeReads ?? false, // kilocode_change
 			historyPreviewCollapsed: stateValues.historyPreviewCollapsed ?? false,
 			cloudUserInfo,
 			cloudIsAuthenticated,
