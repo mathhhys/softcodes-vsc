@@ -1,0 +1,15 @@
+{
+	"title": "الحساب",
+	"profilePicture": "صورة الملف الشخصي",
+	"unknownUser": "مستخدم غير معروف",
+	"logOut": "تسجيل الخروج",
+	"testApiAuthentication": "اختبار مصادقة API",
+	"signIn": "الاتصال بـ Kilo Code Cloud",
+	"connect": "اتصال",
+	"cloudBenefitsTitle": "الاتصال بـ Kilo Code Cloud",
+	"cloudBenefitsSubtitle": "مزامنة المطالبات والقياسات الخاصة بك لتمكين:",
+	"cloudBenefitHistory": "سجل المهام عبر الإنترنت",
+	"cloudBenefitSharing": "ميزات المشاركة والتعاون",
+	"cloudBenefitMetrics": "مقاييس الاستخدام المستندة إلى المهام والرموز والتكلفة",
+	"visitCloudWebsite": "زيارة Kilo Code Cloud"
+}
