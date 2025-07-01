@@ -2,6 +2,11 @@
 	"info": {
 		"settings_imported": "设置导入成功。"
 	},
+	"userFeedback": {
+		"message_update_failed": "更新消息失败",
+		"no_checkpoint_found": "在此消息之前未找到检查点",
+		"message_updated": "消息已成功更新"
+	},
 	"lowCreditWarning": {
 		"title": "余额不足警告！",
 		"message": "请检查是否可以充值免费额度或购买更多额度！"

@@ -53,8 +53,6 @@
 		"list_api_config": "Không thể lấy danh sách cấu hình API",
 		"update_server_timeout": "Không thể cập nhật thời gian chờ máy chủ",
 		"hmr_not_running": "Máy chủ phát triển cục bộ không chạy, HMR sẽ không hoạt động. Vui lòng chạy 'npm run dev' trước khi khởi chạy tiện ích mở rộng để bật HMR.",
-		"message_update_failed": "Không thể cập nhật tin nhắn",
-		"no_checkpoint_found": "Không tìm thấy điểm kiểm tra trước tin nhắn này",
 		"retrieve_current_mode": "Lỗi không thể truy xuất chế độ hiện tại từ trạng thái.",
 		"failed_delete_repo": "Không thể xóa kho lưu trữ hoặc nhánh liên quan: {{error}}",
 		"failed_remove_directory": "Không thể xóa thư mục nhiệm vụ: {{error}}",
@@ -95,8 +93,6 @@
 		"share_link_copied": "Liên kết chia sẻ đã được sao chép vào clipboard",
 		"image_copied_to_clipboard": "URI dữ liệu hình ảnh đã được sao chép vào clipboard",
 		"image_saved": "Hình ảnh đã được lưu vào {{path}}",
-		"message_updated_and_reverted": "Tin nhắn đã được cập nhật và cuộc hội thoại đã được khôi phục",
-		"message_updated": "Tin nhắn đã được cập nhật",
 		"organization_share_link_copied": "Liên kết chia sẻ tổ chức đã được sao chép vào clipboard!",
 		"public_share_link_copied": "Liên kết chia sẻ công khai đã được sao chép vào clipboard!"
 	},

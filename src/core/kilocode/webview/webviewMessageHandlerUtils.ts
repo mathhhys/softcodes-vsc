@@ -3,9 +3,10 @@ import pWaitFor from "p-wait-for"
 import { ClineProvider } from "../../webview/ClineProvider"
 import { t } from "../../../i18n"
 import { WebviewMessage } from "../../../shared/WebviewMessage"
+import { Task } from "../../task/Task"
 
 // Helper function to delete messages for resending
-const deleteMessagesForResend = async (cline: any, originalMessageIndex: number, originalMessageTs: number) => {
+const deleteMessagesForResend = async (cline: Task, originalMessageIndex: number, originalMessageTs: number) => {
 	// Delete UI messages after the edited message
 	const newClineMessages = cline.clineMessages.slice(0, originalMessageIndex)
 	await cline.overwriteClineMessages(newClineMessages)
@@ -28,13 +29,13 @@ const resendMessageSequence = async (
 	originalMessageIndex: number,
 	originalMessageTimestamp: number,
 	editedText: string,
-	images?: any,
+	images?: string[],
 ): Promise<boolean> => {
 	// 1. Get the current cline instance before deletion
 	const currentCline = provider.getCurrentCline()
 	if (!currentCline || currentCline.taskId !== taskId) {
 		provider.log(`[Edit Message] Error: Could not get current cline instance before deletion for task ${taskId}.`)
-		vscode.window.showErrorMessage(t("common:errors.message_update_failed"))
+		vscode.window.showErrorMessage(t("kilocode:userFeedback.message_update_failed"))
 		return false
 	}
 
@@ -46,7 +47,7 @@ const resendMessageSequence = async (
 	const { historyItem } = await provider.getTaskWithId(taskId)
 	if (!historyItem) {
 		provider.log(`[Edit Message] Error: Failed to retrieve history item for task ${taskId}.`)
-		vscode.window.showErrorMessage(t("common:errors.message_update_failed"))
+		vscode.window.showErrorMessage(t("kilocode:userFeedback.message_update_failed"))
 		return false
 	}
 
@@ -55,7 +56,7 @@ const resendMessageSequence = async (
 		provider.log(
 			`[Edit Message] Error: Failed to re-initialize Cline with updated history item for task ${taskId}.`,
 		)
-		vscode.window.showErrorMessage(t("common:errors.message_update_failed"))
+		vscode.window.showErrorMessage(t("kilocode:userFeedback.message_update_failed"))
 		return false
 	}
 
@@ -122,7 +123,7 @@ export const editMessageHandler = async (provider: ClineProvider, message: Webvi
 			} else {
 				// No checkpoint found before this message
 				provider.log(`[Edit Message] No checkpoint found before message timestamp ${timestamp}.`)
-				vscode.window.showErrorMessage(t("common:errors.no_checkpoint_found"))
+				vscode.window.showErrorMessage(t("kilocode:userFeedback.no_checkpoint_found"))
 			}
 		}
 		// Update the message text in the UI
@@ -145,12 +146,12 @@ export const editMessageHandler = async (provider: ClineProvider, message: Webvi
 		)
 
 		if (success) {
-			vscode.window.showInformationMessage(t("common:info.message_updated"))
+			vscode.window.showInformationMessage(t("kilocode:userFeedback.message_updated"))
 		}
 	} catch (error) {
 		const errorMessage = error instanceof Error ? error.message : String(error)
 		provider.log(`[Edit Message] Error handling editMessage: ${errorMessage}`)
-		vscode.window.showErrorMessage(t("common:errors.message_update_failed"))
+		vscode.window.showErrorMessage(t("kilocode:userFeedback.message_update_failed"))
 	}
 	return
 }

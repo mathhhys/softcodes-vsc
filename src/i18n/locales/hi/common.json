@@ -53,8 +53,6 @@
 		"list_api_config": "API कॉन्फ़िगरेशन की सूची प्राप्त करने में विफल",
 		"update_server_timeout": "सर्वर टाइमआउट अपडेट करने में विफल",
 		"hmr_not_running": "स्थानीय विकास सर्वर चल नहीं रहा है, HMR काम नहीं करेगा। कृपया HMR सक्षम करने के लिए एक्सटेंशन लॉन्च करने से पहले 'npm run dev' चलाएँ।",
-		"message_update_failed": "संदेश अपडेट करने में विफल",
-		"no_checkpoint_found": "इस संदेश से पहले कोई चेकपॉइंट नहीं मिला",
 		"retrieve_current_mode": "स्टेट से वर्तमान मोड प्राप्त करने में त्रुटि।",
 		"failed_delete_repo": "संबंधित शैडो रिपॉजिटरी या ब्रांच हटाने में विफल: {{error}}",
 		"failed_remove_directory": "टास्क डायरेक्टरी हटाने में विफल: {{error}}",
@@ -95,8 +93,6 @@
 		"share_link_copied": "साझा लिंक क्लिपबोर्ड पर कॉपी किया गया",
 		"image_copied_to_clipboard": "छवि डेटा URI क्लिपबोर्ड में कॉपी की गई",
 		"image_saved": "छवि {{path}} में सहेजी गई",
-		"message_updated_and_reverted": "संदेश अपडेट किया गया और वार्तालाप पूर्ववत किया गया",
-		"message_updated": "संदेश सफलतापूर्वक अपडेट किया गया",
 		"organization_share_link_copied": "संगठन साझाकरण लिंक क्लिपबोर्ड में कॉपी किया गया!",
 		"public_share_link_copied": "सार्वजनिक साझाकरण लिंक क्लिपबोर्ड में कॉपी किया गया!"
 	},

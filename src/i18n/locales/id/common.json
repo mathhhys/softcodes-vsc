@@ -53,8 +53,6 @@
 		"list_api_config": "Gagal mendapatkan daftar konfigurasi api",
 		"update_server_timeout": "Gagal memperbarui timeout server",
 		"hmr_not_running": "Server pengembangan lokal tidak berjalan, HMR tidak akan bekerja. Silakan jalankan 'npm run dev' sebelum meluncurkan ekstensi untuk mengaktifkan HMR.",
-		"message_update_failed": "Gagal memperbarui pesan",
-		"no_checkpoint_found": "Tidak ditemukan checkpoint sebelum pesan ini",
 		"retrieve_current_mode": "Error: gagal mengambil mode saat ini dari state.",
 		"failed_delete_repo": "Gagal menghapus shadow repository atau branch yang terkait: {{error}}",
 		"failed_remove_directory": "Gagal menghapus direktori tugas: {{error}}",
@@ -95,8 +93,6 @@
 		"share_link_copied": "Link bagikan disalin ke clipboard",
 		"image_copied_to_clipboard": "Data URI gambar disalin ke clipboard",
 		"image_saved": "Gambar disimpan ke {{path}}",
-		"message_updated_and_reverted": "Pesan diperbarui dan percakapan dikembalikan",
-		"message_updated": "Pesan berhasil diperbarui",
 		"organization_share_link_copied": "Tautan berbagi organisasi disalin ke clipboard!",
 		"public_share_link_copied": "Tautan berbagi publik disalin ke clipboard!"
 	},

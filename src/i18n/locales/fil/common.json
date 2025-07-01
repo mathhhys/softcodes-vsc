@@ -53,8 +53,6 @@
 		"list_api_config": "Nabigo ang pagkuha ng listahan ng api configuration",
 		"update_server_timeout": "Nabigo ang pag-update ng server timeout",
 		"hmr_not_running": "Ang local development server ay hindi tumatakbo, ang HMR ay hindi gagana. Mangyaring patakbuhin ang 'npm run dev' bago ilunsad ang extension upang paganahin ang HMR.",
-		"message_update_failed": "Nabigo ang pag-update ng mensahe",
-		"no_checkpoint_found": "Walang nahanap na checkpoint bago ang mensaheng ito",
 		"retrieve_current_mode": "Error: nabigo ang pagkuha ng kasalukuyang mode mula sa state.",
 		"failed_delete_repo": "Nabigo ang pagtanggal ng kaugnay na shadow repository o branch: {{error}}",
 		"failed_remove_directory": "Nabigo ang pagtanggal ng task directory: {{error}}",
@@ -96,9 +94,7 @@
 		"organization_share_link_copied": "Nakopya ang organization share link sa clipboard!",
 		"public_share_link_copied": "Nakopya ang public share link sa clipboard!",
 		"image_copied_to_clipboard": "Nakopya ang image data URI sa clipboard",
-		"image_saved": "Na-save ang larawan sa {{path}}",
-		"message_updated_and_reverted": "Na-update ang mensahe at ibinalik ang pag-uusap",
-		"message_updated": "Matagumpay na na-update ang mensahe"
+		"image_saved": "Na-save ang larawan sa {{path}}"
 	},
 	"answers": {
 		"yes": "Oo",

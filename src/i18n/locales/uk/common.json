@@ -53,8 +53,6 @@
 		"list_api_config": "Не вдалося отримати список конфігурації api",
 		"update_server_timeout": "Не вдалося оновити server timeout",
 		"hmr_not_running": "Локальний сервер розробки не працює, HMR не працюватиме. Будь ласка, запусти 'npm run dev' перед запуском розширення, щоб увімкнути HMR.",
-		"message_update_failed": "Не вдалося оновити повідомлення",
-		"no_checkpoint_found": "Не знайдено checkpoint перед цим повідомленням",
 		"retrieve_current_mode": "Помилка: не вдалося отримати поточний режим зі стану.",
 		"failed_delete_repo": "Не вдалося видалити пов'язаний shadow repository або гілку: {{error}}",
 		"failed_remove_directory": "Не вдалося видалити каталог завдання: {{error}}",
@@ -96,9 +94,7 @@
 		"organization_share_link_copied": "Посилання для поділу організації скопійовано в буфер обміну!",
 		"public_share_link_copied": "Публічне посилання для поділу скопійовано в буфер обміну!",
 		"image_copied_to_clipboard": "Image data URI скопійовано в буфер обміну",
-		"image_saved": "Зображення збережено в {{path}}",
-		"message_updated_and_reverted": "Повідомлення оновлено та розмову успішно відновлено",
-		"message_updated": "Повідомлення успішно оновлено"
+		"image_saved": "Зображення збережено в {{path}}"
 	},
 	"answers": {
 		"yes": "Так",

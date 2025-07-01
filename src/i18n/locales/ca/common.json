@@ -57,8 +57,6 @@
 		"list_api_config": "Ha fallat l'obtenció de la llista de configuracions de l'API",
 		"update_server_timeout": "Ha fallat l'actualització del temps d'espera del servidor",
 		"hmr_not_running": "El servidor de desenvolupament local no està executant-se, l'HMR no funcionarà. Si us plau, executa 'npm run dev' abans de llançar l'extensió per habilitar l'HMR.",
-		"message_update_failed": "Ha fallat l'actualització del missatge",
-		"no_checkpoint_found": "No s'ha trobat cap punt de control abans d'aquest missatge",
 		"retrieve_current_mode": "Error en recuperar el mode actual de l'estat.",
 		"failed_delete_repo": "Ha fallat l'eliminació del repositori o branca associada: {{error}}",
 		"failed_remove_directory": "Ha fallat l'eliminació del directori de tasques: {{error}}",
@@ -99,8 +97,6 @@
 		"share_link_copied": "Enllaç de compartició copiat al portapapers",
 		"image_copied_to_clipboard": "URI de dades de la imatge copiada al portapapers",
 		"image_saved": "Imatge desada a {{path}}",
-		"message_updated_and_reverted": "S'ha actualitzat el missatge i s'ha revertit la conversa",
-		"message_updated": "S'ha actualitzat el missatge correctament",
 		"organization_share_link_copied": "Enllaç de compartició d'organització copiat al porta-retalls!",
 		"public_share_link_copied": "Enllaç de compartició pública copiat al porta-retalls!"
 	},
