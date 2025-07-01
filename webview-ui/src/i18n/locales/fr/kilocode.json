@@ -29,8 +29,8 @@
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
-				"label": "Bloquer les lectures de fichiers très volumineux",
-				"description": "Lorsque cette option est activée, Kilo Code n'effectuera pas de lectures de fichiers ou de sorties MCP très volumineuses (>80% de la fenêtre de contexte, même après l'application des limites de nombre de lignes). Au lieu de cela, il essaiera de lire par blocs plus gérables."
+				"label": "Autoriser les lectures de fichiers très volumineux",
+				"description": "Lorsque cette option est activée, Kilo Code effectuera des lectures de fichiers ou de sorties MCP très volumineuses même s'il existe une forte probabilité de dépasser la fenêtre de contexte (taille du contenu >80% de la fenêtre de contexte)."
 			}
 		}
 	},

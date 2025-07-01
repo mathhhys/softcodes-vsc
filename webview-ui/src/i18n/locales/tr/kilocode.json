@@ -24,8 +24,8 @@
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
-				"label": "Çok büyük dosya okumalarını engelle",
-				"description": "Etkinleştirildiğinde, Kilo Code çok büyük dosya veya MCP çıktı okumalarını (bağlam penceresinin %80'inden fazla, satır sayısı sınırları uygulandıktan sonra bile) gerçekleştirmez. Bunun yerine, daha yönetilebilir parçalar halinde okumaya çalışır."
+				"label": "Çok büyük dosya okumalarına izin ver",
+				"description": "Etkinleştirildiğinde, Kilo Code bağlam penceresini taşma olasılığı yüksek olsa bile çok büyük dosya veya MCP çıktı okumalarını gerçekleştirir (içerik boyutu bağlam penceresinin %80'inden fazla)."
 			}
 		},
 		"provider": {

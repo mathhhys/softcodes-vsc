@@ -29,8 +29,8 @@
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
-				"label": "Blokkeer zeer grote bestandslezingen",
-				"description": "Wanneer ingeschakeld, zal Kilo Code geen zeer grote bestands- of MCP-outputlezingen uitvoeren (>80% van het contextvenster, zelfs nadat regeltellingslimieten zijn toegepast). In plaats daarvan zal het proberen in beter beheersbare blokken te lezen."
+				"label": "Sta zeer grote bestandslezingen toe",
+				"description": "Wanneer ingeschakeld, zal Kilo Code zeer grote bestands- of MCP-outputlezingen uitvoeren, zelfs als er een grote kans is dat het contextvenster overloopt (inhoudsgrootte >80% van het contextvenster)."
 			}
 		}
 	},

@@ -24,8 +24,8 @@
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
-				"label": "阻止超大檔案讀取",
-				"description": "啟用後，Kilo Code 將不會執行超大檔案或 MCP 輸出讀取（超過上下文視窗的 80%，即使在套用行數限制後）。相反，它會嘗試以更易管理的區塊進行讀取。"
+				"label": "允許超大檔案讀取",
+				"description": "啟用後，Kilo Code 將執行超大檔案或 MCP 輸出讀取，即使存在高機率溢出上下文視窗（內容大小 >80% 的上下文視窗）。"
 			}
 		},
 		"provider": {

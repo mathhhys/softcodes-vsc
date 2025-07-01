@@ -29,8 +29,8 @@
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
-				"label": "Blokir pembacaan file yang sangat besar",
-				"description": "Saat diaktifkan, Kilo Code tidak akan melakukan pembacaan file atau output MCP yang sangat besar (>80% dari jendela konteks, bahkan setelah batas jumlah baris diterapkan). Sebaliknya, akan mencoba membaca dalam bagian yang lebih mudah dikelola."
+				"label": "Izinkan pembacaan file yang sangat besar",
+				"description": "Saat diaktifkan, Kilo Code akan melakukan pembacaan file atau output MCP yang sangat besar meskipun ada kemungkinan tinggi meluapnya jendela konteks (ukuran konten >80% dari jendela konteks)."
 			}
 		}
 	},
