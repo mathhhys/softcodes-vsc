@@ -1,5 +1,5 @@
 export const kiloLanguages = {
-	ar: "العربية",
+	ar: "العربية (تجريبي)",
 	cs: "Čeština",
 	el: "Ελληνικά",
 	fil: "Filipino",
