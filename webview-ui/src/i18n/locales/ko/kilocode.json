@@ -103,5 +103,10 @@
 				"user": "사용자 피드백"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "취소",
+		"send": "보내기",
+		"restoreAndSend": "복원 및 보내기"
 	}
 }

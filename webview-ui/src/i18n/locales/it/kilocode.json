@@ -103,5 +103,10 @@
 			},
 			"clickToScroll": "Visualizza {{messageType}} (#{{messageNumber}})"
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Annulla",
+		"send": "Invia",
+		"restoreAndSend": "Ripristina e Invia"
 	}
 }

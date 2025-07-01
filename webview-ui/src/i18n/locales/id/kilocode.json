@@ -103,5 +103,10 @@
 				"user": "umpan balik pengguna"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Batal",
+		"send": "Kirim",
+		"restoreAndSend": "Pulihkan & Kirim"
 	}
 }

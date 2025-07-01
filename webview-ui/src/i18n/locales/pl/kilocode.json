@@ -103,5 +103,10 @@
 				"user": "opinia użytkownika"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Anuluj",
+		"send": "Wyślij",
+		"restoreAndSend": "Przywróć i Wyślij"
 	}
 }

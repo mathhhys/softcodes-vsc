@@ -209,6 +209,7 @@ export interface WebviewMessage {
 		| "switchTab"
 		| "telemetrySetting"
 		| "profileThresholds"
+		| "editMessage" // kilocode_change
 		| "shareTaskSuccess"
 	text?: string
 	tab?: "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account"

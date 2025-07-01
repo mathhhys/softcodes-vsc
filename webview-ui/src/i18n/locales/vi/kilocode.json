@@ -103,5 +103,10 @@
 			},
 			"clickToScroll": "Xem {{messageType}} (#{{messageNumber}})"
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Hủy",
+		"send": "Gửi",
+		"restoreAndSend": "Khôi phục & Gửi"
 	}
 }

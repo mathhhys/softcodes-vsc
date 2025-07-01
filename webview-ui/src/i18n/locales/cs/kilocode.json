@@ -103,5 +103,10 @@
 				"user": "zpětná vazba uživatele"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Zrušit",
+		"send": "Odeslat",
+		"restoreAndSend": "Obnovit a odeslat"
 	}
 }

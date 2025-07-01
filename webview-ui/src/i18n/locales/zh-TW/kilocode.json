@@ -103,5 +103,10 @@
 				"user": "用户反馈"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "取消",
+		"send": "發送",
+		"restoreAndSend": "恢復並發送"
 	}
 }

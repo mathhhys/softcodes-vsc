@@ -103,5 +103,10 @@
 			},
 			"clickToScroll": "Посмотреть {{messageType}} (#{{messageNumber}})"
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Отмена",
+		"send": "Отправить",
+		"restoreAndSend": "Восстановить и отправить"
 	}
 }

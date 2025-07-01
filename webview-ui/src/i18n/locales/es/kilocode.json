@@ -103,5 +103,10 @@
 				"user": "opinión del usuario"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "Cancelar",
+		"send": "Enviar",
+		"restoreAndSend": "Restaurar y Enviar"
 	}
 }
