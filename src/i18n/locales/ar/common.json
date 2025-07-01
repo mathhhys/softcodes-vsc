@@ -77,6 +77,16 @@
 			"processExitedWithError": "خرجت عملية Claude Code برمز {{exitCode}}. مخرجات الخطأ: {{output}}",
 			"stoppedWithReason": "توقف Claude Code بسبب: {{reason}}",
 			"apiKeyModelPlanMismatch": "مفاتيح API وخطط الاشتراك تسمح بنماذج مختلفة. تأكد من أن النموذج المحدد مدرج في خطتك."
+		},
+		"geminiCli": {
+			"oauthLoadFailed": "فشل تحميل بيانات اعتماد OAuth. يرجى المصادقة أولاً: {{error}}",
+			"tokenRefreshFailed": "فشل تحديث رمز OAuth: {{error}}",
+			"onboardingTimeout": "انتهت مهلة عملية الإعداد بعد 60 ثانية. يرجى المحاولة مرة أخرى لاحقاً.",
+			"projectDiscoveryFailed": "تعذر اكتشاف معرف المشروع. تأكد من أنك مصادق باستخدام 'gemini auth'.",
+			"rateLimitExceeded": "تم تجاوز حد المعدل. تم الوصول إلى حدود الطبقة المجانية.",
+			"badRequest": "طلب غير صالح: {{details}}",
+			"apiError": "خطأ في Gemini CLI API: {{error}}",
+			"completionError": "خطأ في إكمال Gemini CLI: {{error}}"
 		}
 	},
 	"warnings": {
@@ -105,7 +115,9 @@
 	},
 	"tasks": {
 		"canceled": "خطأ في المهمة: تم إيقافها وإلغاؤها من قبل المستخدم.",
-		"deleted": "فشل المهمة: تم إيقافها وحذفها من قبل المستخدم."
+		"deleted": "فشل المهمة: تم إيقافها وحذفها من قبل المستخدم.",
+		"incomplete": "المهمة #{{taskNumber}} (غير مكتملة)",
+		"no_messages": "المهمة #{{taskNumber}} (لا توجد رسائل)"
 	},
 	"storage": {
 		"prompt_custom_path": "أدخل مسار تخزين سجل المحادثة المخصص، اتركه فارغاً لاستخدام الموقع الافتراضي",
@@ -116,6 +128,18 @@
 	"input": {
 		"task_prompt": "ماذا يجب أن يفعل Kilo Code؟",
 		"task_placeholder": "ابني، ابحث، اسأل عن شيء"
+	},
+	"customModes": {
+		"errors": {
+			"yamlParseError": "YAML غير صالح في ملف .roomodes عند السطر {{line}}. يرجى التحقق من:\n• المسافة البادئة الصحيحة (استخدم المسافات، وليس علامات التبويب)\n• تطابق علامات الاقتباس والأقواس\n• صيغة YAML صالحة",
+			"schemaValidationError": "تنسيق الأوضاع المخصصة غير صالح في .roomodes:\n{{issues}}",
+			"invalidFormat": "تنسيق الأوضاع المخصصة غير صالح. يرجى التأكد من أن إعداداتك تتبع تنسيق YAML الصحيح.",
+			"updateFailed": "فشل تحديث الوضع المخصص: {{error}}",
+			"deleteFailed": "فشل حذف الوضع المخصص: {{error}}",
+			"resetFailed": "فشل إعادة تعيين الأوضاع المخصصة: {{error}}",
+			"modeNotFound": "خطأ في الكتابة: الوضع غير موجود",
+			"noWorkspaceForProject": "لم يتم العثور على مجلد مساحة عمل للوضع الخاص بالمشروع"
+		}
 	},
 	"mdm": {
 		"errors": {

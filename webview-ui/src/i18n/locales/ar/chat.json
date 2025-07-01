@@ -16,7 +16,12 @@
 		"shareWithOrganization": "مشاركة مع المؤسسة",
 		"shareWithOrganizationDescription": "يمكن لأعضاء مؤسستك فقط الوصول",
 		"sharePublicly": "مشاركة علنية",
-		"sharePubliclyDescription": "يمكن لأي شخص لديه الرابط الوصول"
+		"sharePubliclyDescription": "يمكن لأي شخص لديه الرابط الوصول",
+		"connectToCloud": "الاتصال بالسحابة",
+		"connectToCloudDescription": "سجل الدخول إلى Kilo Code Cloud لمشاركة المهام",
+		"sharingDisabledByOrganization": "المشاركة معطلة من قبل المؤسسة",
+		"shareSuccessOrganization": "تم نسخ رابط المؤسسة إلى الحافظة",
+		"shareSuccessPublic": "تم نسخ الرابط العام إلى الحافظة"
 	},
 	"history": {
 		"title": "السجل"
@@ -112,6 +117,12 @@
 	"selectMode": "اختر وضع التفاعل",
 	"selectApiConfig": "اختر تكوين API",
 	"enhancePrompt": "تحسين الموجه بسياق إضافي",
+	"modeSelector": {
+		"title": "الأوضاع",
+		"marketplace": "سوق الأوضاع",
+		"settings": "إعدادات الأوضاع",
+		"description": "شخصيات متخصصة تُكيّف سلوك Roo."
+	},
 	"enhancePromptDescription": "زر 'تحسين الموجه' يساعد في تحسين موجهك من خلال توفير سياق إضافي أو توضيح أو إعادة صياغة. جرب كتابة موجه هنا والنقر على الزر مرة أخرى لترى كيف يعمل.",
 	"addImages": "إضافة صور إلى الرسالة",
 	"sendMessage": "إرسال رسالة",
