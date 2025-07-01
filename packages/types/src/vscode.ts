@@ -50,6 +50,7 @@ export const commandIds = [
 	"newTask",
 
 	"setCustomStoragePath",
+	"importSettings",
 
 	// "focusInput", // kilocode_change
 	"acceptInput",
