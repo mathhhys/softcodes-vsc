@@ -103,5 +103,10 @@
 				"use_mcp_server": "استخدام خادم MCP"
 			}
 		}
+	},
+	"userFeedback": {
+		"editCancel": "إلغاء",
+		"send": "إرسال",
+		"restoreAndSend": "استعادة وإرسال"
 	}
 }
