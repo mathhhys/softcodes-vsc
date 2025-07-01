@@ -214,7 +214,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		pinnedApiConfigs: {}, // Empty object for pinned API configs
 		terminalZshOhMy: false, // Default Oh My Zsh integration setting
 		maxConcurrentFileReads: 5, // Default concurrent file reads
-		allowVeryLargeReads: true, // kilocode_change
+		allowVeryLargeReads: false, // kilocode_change
 		terminalZshP10k: false, // Default Powerlevel10k integration setting
 		terminalZdotdir: false, // Default ZDOTDIR handling setting
 		terminalCompressProgressBar: true, // Default to compress progress bar output

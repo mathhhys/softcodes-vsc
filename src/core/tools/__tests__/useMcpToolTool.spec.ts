@@ -43,7 +43,7 @@ describe("useMcpToolTool", () => {
 				}),
 				postMessageToWebview: vi.fn(),
 				getState: vi.fn().mockResolvedValue({
-					allowVeryLargeReads: true,
+					allowVeryLargeReads: false,
 					maxReadFileLine: 1000,
 				}),
 			}),
@@ -209,7 +209,7 @@ describe("useMcpToolTool", () => {
 				}),
 				postMessageToWebview: vi.fn(),
 				getState: vi.fn().mockResolvedValue({
-					allowVeryLargeReads: true,
+					allowVeryLargeReads: false,
 					maxReadFileLine: 1000,
 				}),
 			})
