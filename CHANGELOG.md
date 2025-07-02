@@ -1,5 +1,11 @@
 # kilo-code
 
+## [v4.49.1]
+
+- [#949](https://github.com/Kilo-Org/kilocode/pull/949) [`1043c8b`](https://github.com/Kilo-Org/kilocode/commit/1043c8b3484bfe18baa0a0267f3a967469a84b4c) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Mermaid diagram toolbar is now light in light mode (bugfix)
+
+- [#945](https://github.com/Kilo-Org/kilocode/pull/945) [`e3580b8`](https://github.com/Kilo-Org/kilocode/commit/e3580b83cdf59cec0e2b0ae22975d87cd0218329) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Improved Arabic translation by AL38lAlmdbeR
+
 ## [v4.49.0]
 
 - [#894](https://github.com/Kilo-Org/kilocode/pull/894) [`421d57e`](https://github.com/Kilo-Org/kilocode/commit/421d57e44537b13760551e0a1484aae1e8735bc7) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Kilo Code will no longer process file reads or MCP tool outputs if the estimated size is over 80% of the context window. If this behavior breaks your workflow, it can be re-enabled by checking Settings > Context > Allow very large file reads.
