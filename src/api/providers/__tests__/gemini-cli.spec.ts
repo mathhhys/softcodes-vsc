@@ -1,3 +1,5 @@
+// kilocode_change new file
+
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { GeminiCliHandler } from "../gemini-cli"
 import { geminiCliDefaultModelId, geminiCliModels } from "@roo-code/types"
