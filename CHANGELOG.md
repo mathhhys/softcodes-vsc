@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.49.1
-
-### Patch Changes
+## [v4.49.1]
 
 - [#949](https://github.com/Kilo-Org/kilocode/pull/949) [`1043c8b`](https://github.com/Kilo-Org/kilocode/commit/1043c8b3484bfe18baa0a0267f3a967469a84b4c) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Mermaid diagram toolbar is now light in light mode (bugfix)
 
