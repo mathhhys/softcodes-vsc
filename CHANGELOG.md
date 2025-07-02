@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.22.6
+
+### Patch Changes
+
+-   - Add automatic configuration import on extension startup (thanks @takakoutso!)
+
 ## [3.22.5] - 2025-06-28
 
 - Remove Gemini CLI provider while we work with Google on a better integration
