@@ -1,7 +1,7 @@
 {
-	"title": "سوق Roo",
+	"title": "سوق Kilo Code",
 	"tabs": {
-		"installed": "مثبت",
+		"installed": "المثبتة",
 		"settings": "الإعدادات",
 		"browse": "تصفح"
 	},
@@ -9,51 +9,51 @@
 	"refresh": "تحديث",
 	"filters": {
 		"search": {
-			"placeholder": "البحث في عناصر السوق...",
-			"placeholderMcp": "البحث في خوادم MCP...",
-			"placeholderMode": "البحث في الأوضاع..."
+			"placeholder": "ابحث عن عناصر بالسوق...",
+			"placeholderMcp": "ابحث عن خوادم MCP...",
+			"placeholderMode": "ابحث عن الأنماط..."
 		},
 		"type": {
-			"label": "تصفية حسب النوع:",
-			"all": "جميع الأنواع",
-			"mode": "وضع",
+			"label": "فلتر حسب النوع:",
+			"all": "كل الأنواع",
+			"mode": "نمط",
 			"mcpServer": "خادم MCP"
 		},
 		"sort": {
-			"label": "ترتيب حسب:",
+			"label": "رتّب حسب:",
 			"name": "الاسم",
-			"author": "المؤلف",
+			"author": "الناشر",
 			"lastUpdated": "آخر تحديث"
 		},
 		"tags": {
-			"label": "تصفية حسب العلامات:",
-			"clear": "مسح العلامات",
-			"placeholder": "اكتب للبحث واختيار العلامات...",
-			"noResults": "لم يتم العثور على علامات مطابقة",
-			"selected": "عرض العناصر مع أي من العلامات المحددة",
-			"clickToFilter": "انقر على العلامات لتصفية العناصر"
+			"label": "فلتر حسب الوسوم:",
+			"clear": "مسح الوسوم",
+			"placeholder": "اكتب وابحث عن وسم...",
+			"noResults": "ما فيه وسوم تطابق بحثك",
+			"selected": "عرض العناصر بأي من الوسوم المحددة",
+			"clickToFilter": "اضغط على الوسوم لتفلتر العناصر"
 		},
-		"none": "لا شيء"
+		"none": "بدون"
 	},
 	"type-group": {
-		"modes": "الأوضاع",
+		"modes": "الأنماط",
 		"mcps": "خوادم MCP"
 	},
 	"items": {
 		"empty": {
-			"noItems": "لم يتم العثور على عناصر في السوق",
-			"withFilters": "حاول تعديل المرشحات",
-			"noSources": "حاول إضافة مصدر في علامة تبويب المصادر",
-			"adjustFilters": "حاول تعديل المرشحات أو مصطلحات البحث",
-			"clearAllFilters": "مسح جميع المرشحات"
+			"noItems": "ما فيه عناصر بالسوق",
+			"withFilters": "جرّب تغيّر الفلاتر",
+			"noSources": "أضف مصدر في تبويب المصادر",
+			"adjustFilters": "عدّل الفلاتر أو كلمات البحث",
+			"clearAllFilters": "مسح كل الفلاتر"
 		},
-		"count": "تم العثور على {{count}} عنصر",
-		"components": "{{count}} مكونات",
-		"matched": "{{count}} مطابق",
+		"count": "{{count}} عنصر تم العثور عليه",
+		"components": "{{count}} مكوّن",
+		"matched": "{{count}} تطابق",
 		"refresh": {
 			"button": "تحديث",
 			"refreshing": "جاري التحديث...",
-			"mayTakeMoment": "قد يستغرق هذا لحظة."
+			"mayTakeMoment": "الموضوع ياخذ وقت بسيط."
 		},
 		"card": {
 			"by": "بواسطة {{author}}",
@@ -66,66 +66,66 @@
 			"removeGlobal": "إزالة (عام)",
 			"viewSource": "عرض",
 			"viewOnSource": "عرض على {{source}}",
-			"noWorkspaceTooltip": "افتح مساحة عمل لتثبيت عناصر السوق",
-			"installed": "مثبت",
+			"noWorkspaceTooltip": "افتح مشروع لتقدر تثبّت عناصر من السوق",
+			"installed": "مثبّت",
 			"removeProjectTooltip": "إزالة من المشروع الحالي",
-			"removeGlobalTooltip": "إزالة من التكوين العام",
-			"actionsMenuLabel": "المزيد من الإجراءات"
+			"removeGlobalTooltip": "إزالة من الإعداد العام",
+			"actionsMenuLabel": "خيارات إضافية"
 		}
 	},
 	"install": {
 		"title": "تثبيت {{name}}",
-		"titleMode": "تثبيت وضع {{name}}",
+		"titleMode": "تثبيت النمط {{name}}",
 		"titleMcp": "تثبيت MCP {{name}}",
 		"scope": "نطاق التثبيت",
-		"project": "المشروع (مساحة العمل الحالية)",
-		"global": "عام (جميع مساحات العمل)",
+		"project": "مشروع (مساحة العمل الحالية)",
+		"global": "عام (كل المشاريع)",
 		"method": "طريقة التثبيت",
-		"prerequisites": "المتطلبات الأساسية",
-		"configuration": "التكوين",
-		"configurationDescription": "قم بتكوين المعاملات المطلوبة لخادم MCP هذا",
+		"prerequisites": "المتطلبات",
+		"configuration": "الإعداد",
+		"configurationDescription": "ضبط المعايير اللازمة لهذا الخادم",
 		"button": "تثبيت",
 		"successTitle": "تم تثبيت {{name}}",
 		"successDescription": "اكتمل التثبيت بنجاح",
 		"installed": "تم التثبيت بنجاح!",
-		"whatNextMcp": "يمكنك الآن تكوين واستخدام خادم MCP هذا. انقر على أيقونة MCP في الشريط الجانبي لتبديل علامات التبويب.",
-		"whatNextMode": "يمكنك الآن استخدام هذا الوضع. انقر على أيقونة الأوضاع في الشريط الجانبي لتبديل علامات التبويب.",
+		"whatNextMcp": "تقدر الحين تضبط وتستخدم خادم MCP هذا. اضغط على أيقونة MCP بالجانب لتنتقل له.",
+		"whatNextMode": "تقدر الحين تستخدم هذا النمط. اضغط على أيقونة الأنماط في الشريط الجانبي.",
 		"done": "تم",
-		"goToMcp": "الانتقال إلى علامة تبويب MCP",
-		"goToModes": "الانتقال إلى علامة تبويب الأوضاع",
-		"moreInfoMcp": "عرض وثائق MCP {{name}}",
-		"validationRequired": "يرجى توفير قيمة لـ {{paramName}}"
+		"goToMcp": "اذهب لخانة MCP",
+		"goToModes": "اذهب لإعدادات الأنماط",
+		"moreInfoMcp": "اطلع على توثيق MCP الخاص بـ {{name}}",
+		"validationRequired": "رجاءً عبِّ القيمة لـ {{paramName}}"
 	},
 	"sources": {
-		"title": "تكوين مصادر السوق",
-		"description": "أضف مستودعات Git التي تحتوي على عناصر السوق. سيتم جلب هذه المستودعات عند تصفح السوق.",
+		"title": "ضبط مصادر السوق",
+		"description": "أضف مستودعات Git فيها عناصر للسوق. هالمصادر تُسحب لما تتصفح السوق.",
 		"add": {
-			"title": "إضافة مصدر جديد",
-			"urlPlaceholder": "عنوان URL لمستودع Git (مثال: https://github.com/username/repo)",
-			"urlFormats": "التنسيقات المدعومة: HTTPS (https://github.com/username/repo)، SSH (git@github.com:username/repo.git)، أو بروتوكول Git (git://github.com/username/repo.git)",
-			"namePlaceholder": "اسم العرض (20 حرف كحد أقصى)",
-			"button": "إضافة مصدر"
+			"title": "أضف مصدر جديد",
+			"urlPlaceholder": "رابط مستودع Git (مثلاً: https://github.com/username/repo)",
+			"urlFormats": "الصيغ المدعومة: HTTPS أو SSH أو Git protocol",
+			"namePlaceholder": "اسم العرض (حد أقصى 20 حرف)",
+			"button": "إضافة المصدر"
 		},
 		"current": {
 			"title": "المصادر الحالية",
-			"empty": "لم يتم تكوين أي مصادر. أضف مصدرًا للبدء.",
+			"empty": "ما فيه مصادر حالياً. أضف واحد عشان تبدأ.",
 			"refresh": "تحديث هذا المصدر",
 			"remove": "إزالة المصدر"
 		},
 		"errors": {
-			"emptyUrl": "لا يمكن أن يكون عنوان URL فارغًا",
-			"invalidUrl": "تنسيق URL غير صالح",
-			"nonVisibleChars": "يحتوي عنوان URL على أحرف غير مرئية غير المسافات",
-			"invalidGitUrl": "يجب أن يكون عنوان URL عنوان مستودع Git صالح (مثال: https://github.com/username/repo)",
-			"duplicateUrl": "هذا العنوان موجود بالفعل في القائمة (مطابقة غير حساسة لحالة الأحرف والمسافات)",
-			"nameTooLong": "يجب أن يكون الاسم 20 حرفًا أو أقل",
-			"nonVisibleCharsName": "يحتوي الاسم على أحرف غير مرئية غير المسافات",
-			"duplicateName": "هذا الاسم مستخدم بالفعل (مطابقة غير حساسة لحالة الأحرف والمسافات)",
-			"emojiName": "قد تسبب رموز الإيموجي مشاكل في العرض",
-			"maxSources": "الحد الأقصى {{max}} مصدر مسموح به"
+			"emptyUrl": "الرابط ما يصير فاضي",
+			"invalidUrl": "صيغة الرابط غير صحيحة",
+			"nonVisibleChars": "الرابط فيه حروف غير مرئية غير المسافات",
+			"invalidGitUrl": "الرابط لازم يكون لمستودع Git (مثل https://github.com/username/repo)",
+			"duplicateUrl": "الرابط موجود مسبقًا (حتى لو تغيّر بالحروف الكبيرة/الصغيرة أو المسافات)",
+			"nameTooLong": "الاسم لازم ما يزيد عن 20 حرف",
+			"nonVisibleCharsName": "الاسم فيه حروف غير مرئية غير المسافات",
+			"duplicateName": "الاسم مستخدم مسبقًا (نفس الحالة السابقة)",
+			"emojiName": "الإيموجي ممكن يسبب مشاكل بالعرض",
+			"maxSources": "الحد الأقصى {{max}} من المصادر"
 		}
 	},
 	"footer": {
-		"issueText": "وجدت مشكلة في عنصر من السوق أو لديك اقتراحات لعناصر جديدة؟ <0>افتح مشكلة على GitHub</0> لإعلامنا!"
+		"issueText": "واجهت مشكلة أو عندك اقتراح لسوق العناصر؟ <0>افتح تذكرة على GitHub</0> وعطنا خبر!"
 	}
 }
