@@ -23,7 +23,7 @@ export const MODELS_BY_PROVIDER: Partial<Record<ProviderName, Record<string, Mod
 	bedrock: bedrockModels,
 	deepseek: deepSeekModels,
 	gemini: geminiModels,
-	"gemini-cli": geminiCliModels,
+	"gemini-cli": geminiCliModels, // kilocode_change
 	fireworks: fireworksModels, // kilocode_change
 	mistral: mistralModels,
 	"openai-native": openAiNativeModels,
