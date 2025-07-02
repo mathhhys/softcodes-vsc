@@ -1,63 +1,63 @@
 {
 	"type-group": {
-		"modes": "الأوضاع",
+		"modes": "الأنماط",
 		"mcps": "خوادم MCP",
-		"match": "تطابق"
+		"match": "مطابقة"
 	},
 	"item-card": {
-		"type-mode": "وضع",
+		"type-mode": "نمط",
 		"type-mcp": "خادم MCP",
 		"type-other": "أخرى",
 		"by-author": "بواسطة {{author}}",
-		"authors-profile": "ملف المؤلف",
-		"remove-tag-filter": "إزالة تصفية الوسم: {{tag}}",
-		"filter-by-tag": "تصفية حسب الوسم: {{tag}}",
+		"authors-profile": "ملف الكاتب",
+		"remove-tag-filter": "إزالة فلتر الوسم: {{tag}}",
+		"filter-by-tag": "فرز حسب الوسم: {{tag}}",
 		"component-details": "تفاصيل المكون",
 		"view": "عرض",
 		"source": "المصدر"
 	},
 	"filters": {
 		"search": {
-			"placeholder": "البحث في السوق..."
+			"placeholder": "ابحث في السوق..."
 		},
 		"type": {
 			"label": "النوع",
-			"all": "جميع الأنواع",
-			"mode": "وضع",
+			"all": "كل الأنواع",
+			"mode": "نمط",
 			"mcpServer": "خادم MCP"
 		},
 		"sort": {
-			"label": "ترتيب حسب",
+			"label": "الفرز حسب",
 			"name": "الاسم",
 			"lastUpdated": "آخر تحديث"
 		},
 		"tags": {
 			"label": "الوسوم",
 			"clear": "مسح الوسوم",
-			"placeholder": "البحث في الوسوم...",
-			"noResults": "لم يتم العثور على وسوم.",
-			"selected": "عرض العناصر مع أي من الوسوم المحددة"
+			"placeholder": "ابحث في الوسوم...",
+			"noResults": "ما فيه وسوم مطابقة.",
+			"selected": "يتم عرض العناصر اللي تحتوي أي من الوسوم المحددة"
 		},
 		"title": "السوق"
 	},
 	"done": "تم",
 	"tabs": {
-		"installed": "مثبت",
+		"installed": "المثبتة",
 		"browse": "تصفح",
 		"settings": "الإعدادات"
 	},
 	"items": {
 		"empty": {
-			"noItems": "لم يتم العثور على عناصر في السوق.",
-			"emptyHint": "حاول تعديل المرشحات أو مصطلحات البحث"
+			"noItems": "ما فيه عناصر في السوق.",
+			"emptyHint": "جرّب تغير الفلاتر أو كلمات البحث"
 		}
 	},
 	"installation": {
 		"installing": "جاري تثبيت العنصر: \"{{itemName}}\"",
 		"installSuccess": "تم تثبيت \"{{itemName}}\" بنجاح",
-		"installError": "فشل في تثبيت \"{{itemName}}\": {{errorMessage}}",
+		"installError": "فشل تثبيت \"{{itemName}}\": {{errorMessage}}",
 		"removing": "جاري إزالة العنصر: \"{{itemName}}\"",
 		"removeSuccess": "تمت إزالة \"{{itemName}}\" بنجاح",
-		"removeError": "فشل في إزالة \"{{itemName}}\": {{errorMessage}}"
+		"removeError": "فشل إزالة \"{{itemName}}\": {{errorMessage}}"
 	}
 }
