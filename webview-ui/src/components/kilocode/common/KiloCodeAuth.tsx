@@ -3,7 +3,7 @@ import { ButtonLink } from "./ButtonLink"
 import { ButtonSecondary } from "./ButtonSecondary"
 import Logo from "./Logo"
 import { useAppTranslation } from "@/i18n/TranslationContext"
-import { getKiloCodeBackendAuthUrl } from "../helpers"
+import { getKiloCodeBackendSignInUrl } from "../helpers"
 import { useExtensionState } from "@/context/ExtensionStateContext"
 
 interface KiloCodeAuthProps {
@@ -27,7 +27,7 @@ const KiloCodeAuth: React.FC<KiloCodeAuthProps> = ({ onManualConfigClick, classN
 
 			<div className="w-full flex flex-col gap-5">
 				<ButtonLink
-					href={getKiloCodeBackendAuthUrl(uriScheme, uiKind)}
+					href={getKiloCodeBackendSignInUrl(uriScheme, uiKind)}
 					onClick={() => {
 						if (uiKind === "Web" && onManualConfigClick) {
 							onManualConfigClick()
@@ -45,7 +45,7 @@ const KiloCodeAuth: React.FC<KiloCodeAuthProps> = ({ onManualConfigClick, classN
 				<div className="text-center text-vscode-descriptionForeground">
 					{t("kilocode:welcome.alreadySignedUp")}{" "}
 					<a
-						href={getKiloCodeBackendAuthUrl(uriScheme, uiKind)}
+						href={getKiloCodeBackendSignInUrl(uriScheme, uiKind)}
 						className="underline"
 						style={{ color: "inherit" }}>
 						{t("kilocode:welcome.loginText")}

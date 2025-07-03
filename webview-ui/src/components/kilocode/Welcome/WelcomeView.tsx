@@ -8,7 +8,7 @@ import { ButtonPrimary } from "../common/ButtonPrimary"
 import { ButtonLink } from "../common/ButtonLink"
 import ApiOptions from "../../settings/ApiOptions"
 import KiloCodeAuth from "../common/KiloCodeAuth"
-import { getKiloCodeBackendAuthUrl } from "../helpers"
+import { getKiloCodeBackendSignInUrl } from "../helpers"
 
 const WelcomeView = () => {
 	const { apiConfiguration, currentApiConfigName, setApiConfiguration, uriScheme, uiKind } = useExtensionState()
@@ -48,8 +48,8 @@ const WelcomeView = () => {
 							hideKiloCodeButton
 						/>
 						{isSettingUpKiloCode ? (
-							<ButtonLink href={getKiloCodeBackendAuthUrl(uriScheme, uiKind)}>
-								{t("kilocode:welcome.ctaButton")}
+							<ButtonLink href={getKiloCodeBackendSignInUrl(uriScheme, uiKind)}>
+								{t("kilocode:settings.provider.login")}
 							</ButtonLink>
 						) : (
 							<ButtonPrimary onClick={handleSubmit}>{t("welcome:start")}</ButtonPrimary>
