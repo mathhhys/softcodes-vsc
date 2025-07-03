@@ -37,7 +37,7 @@ function getConflictedFiles() {
 }
 
 // Main function
-async function main() {
+function main() {
 	// Check if we're in a git repository
 	if (!isGitRepository()) {
 		console.error("Error: Not in a git repository")
