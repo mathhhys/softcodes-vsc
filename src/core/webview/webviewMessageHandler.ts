@@ -1240,6 +1240,10 @@ export const webviewMessageHandler = async (
 						supportPrompt.create("ENHANCE", { userInput: message.text }, customSupportPrompts),
 					)
 
+					// Capture telemetry for prompt enhancement.
+					const currentCline = provider.getCurrentCline()
+					TelemetryService.instance.capturePromptEnhanced(currentCline?.taskId)
+
 					await provider.postMessageToWebview({ type: "enhancedPrompt", text: enhancedPrompt })
 				} catch (error) {
 					provider.log(
