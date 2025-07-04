@@ -633,7 +633,7 @@ export const webviewMessageHandler = async (
 					await safeWriteJson(mcpPath, { mcpServers: {} })
 				}
 
-				openFile(mcpPath) // kilocode_change
+				openFile(mcpPath)
 			} catch (error) {
 				vscode.window.showErrorMessage(t("mcp:errors.create_json", { error: `${error}` }))
 			}
