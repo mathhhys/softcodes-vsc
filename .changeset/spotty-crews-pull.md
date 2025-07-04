@@ -2,4 +2,4 @@
 "kilo-code": patch
 ---
 
-Exclude cache files from rules compilation
+Exclude binary and cache files from rules compilation

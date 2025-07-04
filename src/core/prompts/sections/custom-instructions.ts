@@ -143,6 +143,13 @@ async function readTextFilesFromDirectory(dirPath: string): Promise<Array<{ file
 						if (!shouldIncludeRuleFile(file)) {
 							return null
 						}
+
+						// kilocode_change start
+						if (stats.size > 0 && (await (await import("isbinaryfile")).isBinaryFile(file))) {
+							return null
+						}
+						// kilocode_change end
+
 						const content = await safeReadFile(file)
 						return { filename: file, content }
 					}
