@@ -116,6 +116,7 @@
 	},
 	"selectMode": "Välj läge för interaktion",
 	"selectApiConfig": "Välj API-konfiguration",
+	"selectModelConfig": "Välj modell",
 	"enhancePrompt": "Förbättra prompt med ytterligare kontext",
 	"enhancePromptDescription": "Knappen 'Förbättra prompt' hjälper till att förbättra din prompt genom att tillhandahålla ytterligare kontext, förtydligande eller omformulering. Prova att skriva en prompt här och klicka på knappen igen för att se hur det fungerar.",
 	"modeSelector": {
