@@ -133,6 +133,9 @@ async function readTextFilesFromDirectory(dirPath: string): Promise<Array<{ file
 		// Wait for all asynchronous operations (including recursive ones) to complete
 		await Promise.all(initialPromises)
 
+		// kilocode_change, must be imported at submodule level because the module is imported in the webview-ui
+		const { isBinaryFile } = await import("isbinaryfile")
+
 		const fileContents = await Promise.all(
 			filePaths.map(async (file) => {
 				try {
@@ -145,7 +148,7 @@ async function readTextFilesFromDirectory(dirPath: string): Promise<Array<{ file
 						}
 
 						// kilocode_change start
-						if (stats.size > 0 && (await (await import("isbinaryfile")).isBinaryFile(file))) {
+						if (stats.size > 0 && (await isBinaryFile(file))) {
 							return null
 						}
 						// kilocode_change end
