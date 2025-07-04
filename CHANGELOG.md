@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.49.5
-
-### Patch Changes
+## [v4.49.5]
 
 - [#1083](https://github.com/Kilo-Org/kilocode/pull/1083) [`d2f5c4f`](https://github.com/Kilo-Org/kilocode/commit/d2f5c4f3448bcf573663a8bef96a044b1f7f287e) Thanks [@IAmABear](https://github.com/IAmABear)! - Fix project mcp settings button not opening file
 
