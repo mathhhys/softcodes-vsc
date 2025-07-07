@@ -194,6 +194,9 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		codebaseIndexModels,
 		customSupportPrompts,
 		profileThresholds,
+		systemNotificationsEnabled, // kilocode_change
+		alwaysAllowFollowupQuestions,
+		followupAutoApproveTimeoutMs,
 	} = cachedState
 
 	const apiConfiguration = useMemo(() => cachedState.apiConfiguration ?? {}, [cachedState.apiConfiguration])
@@ -351,12 +354,15 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 			vscode.postMessage({ type: "alwaysAllowModeSwitch", bool: alwaysAllowModeSwitch })
 			vscode.postMessage({ type: "alwaysAllowSubtasks", bool: alwaysAllowSubtasks })
 			vscode.postMessage({ type: "showTaskTimeline", bool: showTaskTimeline }) // kilocode_change
+			vscode.postMessage({ type: "alwaysAllowFollowupQuestions", bool: alwaysAllowFollowupQuestions })
+			vscode.postMessage({ type: "followupAutoApproveTimeoutMs", value: followupAutoApproveTimeoutMs })
 			vscode.postMessage({ type: "condensingApiConfigId", text: condensingApiConfigId || "" })
 			vscode.postMessage({ type: "updateCondensingPrompt", text: customCondensingPrompt || "" })
 			vscode.postMessage({ type: "updateSupportPrompt", values: customSupportPrompts || {} })
 			vscode.postMessage({ type: "upsertApiConfiguration", text: currentApiConfigName, apiConfiguration })
 			vscode.postMessage({ type: "codebaseIndexConfig", values: codebaseIndexConfig })
 			vscode.postMessage({ type: "profileThresholds", values: profileThresholds })
+			vscode.postMessage({ type: "systemNotificationsEnabled", bool: systemNotificationsEnabled }) // kilocode_change
 
 			// Update cachedState to match the current state to prevent isChangeDetected from being set back to true
 			setCachedState((prevState) => ({ ...prevState, ...extensionState }))
@@ -674,6 +680,8 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 							alwaysAllowModeSwitch={alwaysAllowModeSwitch}
 							alwaysAllowSubtasks={alwaysAllowSubtasks}
 							alwaysAllowExecute={alwaysAllowExecute}
+							alwaysAllowFollowupQuestions={alwaysAllowFollowupQuestions}
+							followupAutoApproveTimeoutMs={followupAutoApproveTimeoutMs}
 							allowedCommands={allowedCommands}
 							setCachedStateField={setCachedStateField}
 						/>
@@ -715,6 +723,8 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 							ttsSpeed={ttsSpeed}
 							soundEnabled={soundEnabled}
 							soundVolume={soundVolume}
+							systemNotificationsEnabled={systemNotificationsEnabled}
+							areSettingsCommitted={!isChangeDetected}
 							setCachedStateField={setCachedStateField}
 						/>
 					)}

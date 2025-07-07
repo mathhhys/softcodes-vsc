@@ -57,6 +57,10 @@
 		"ollamaUrlLabel": "URL Ollama:",
 		"qdrantUrlLabel": "URL Qdrant",
 		"qdrantKeyLabel": "Klíč Qdrant:",
+		"advancedConfigLabel": "Pokročilá konfigurace",
+		"searchMinScoreLabel": "Prahová hodnota skóre vyhledávání",
+		"searchMinScoreDescription": "Minimální skóre podobnosti (0.0-1.0) požadované pro výsledky vyhledávání. Nižší hodnoty vrátí více výsledků, ale mohou být méně relevantní. Vyšší hodnoty vrátí méně, ale relevantnější výsledky.",
+		"searchMinScoreResetTooltip": "Obnovit na výchozí hodnotu (0.4)",
 		"startIndexingButton": "Spustit indexování",
 		"clearIndexDataButton": "Vymazat data indexu",
 		"unsavedSettingsMessage": "Před spuštěním procesu indexování prosím uložte nastavení.",
@@ -110,6 +114,11 @@
 		"subtasks": {
 			"label": "Podúkoly",
 			"description": "Povolit vytváření a dokončování podúkolů bez nutnosti schválení"
+		},
+		"followupQuestions": {
+			"label": "Otázka",
+			"description": "Automaticky vybrat první navrhovanou odpověď pro následné otázky po uplynutí nastaveného časového limitu",
+			"timeoutLabel": "Doba čekání před automatickým výběrem první odpovědi"
 		},
 		"execute": {
 			"label": "Spustit",
