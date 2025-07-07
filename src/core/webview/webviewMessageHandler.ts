@@ -1326,7 +1326,7 @@ export const webviewMessageHandler = async (
 		case "showFeedbackOptions": {
 			const githubIssuesText = t("common:feedback.githubIssues")
 			const discordText = t("common:feedback.discord")
-			const customerSupport = t("common:feedback.customerSupport") // kilocode_change
+			const customerSupport = t("common:feedback.customerSupport")
 
 			const answer = await vscode.window.showInformationMessage(
 				t("common:feedback.description"),
@@ -1341,7 +1341,7 @@ export const webviewMessageHandler = async (
 			} else if (answer === discordText) {
 				await vscode.env.openExternal(vscode.Uri.parse("https://discord.gg/fxrhCFGhkP"))
 			} else if (answer === customerSupport) {
-				await vscode.env.openExternal(vscode.Uri.parse("mailto:hi@kilocode.ai"))
+				await vscode.env.openExternal(vscode.Uri.parse("https://kilocode.ai/support"))
 			}
 			break
 		}
