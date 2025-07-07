@@ -9,10 +9,12 @@
 		"billion_suffix": "مليار"
 	},
 	"feedback": {
-		"title": "التعليقات",
-		"description": "نود أن نسمع تعليقاتكم أو نساعدكم في حل أي مشاكل تواجهونكم. استخدموا أي من الأزرار أدناه أو تواصلوا مع دعم العملاء على hi@kilocode.ai",
+		"title": "ملاحظاتك",
+		"description": "نود نسمع رأيك أو نساعدك إذا واجهت أي مشكلة.",
 		"githubIssues": "أبلغ عن مشكلة في GitHub",
-		"discord": "انضم إلى مجتمع Discord"
+		"githubDiscussions": "انضم لنقاشات GitHub",
+		"discord": "شارك مجتمعنا في ديسكورد",
+		"customerSupport": "الدعم الفني"
 	},
 	"welcome": "ياهلا، {{name}}! عندك {{count}} تنبيه.",
 	"items": {

@@ -10,9 +10,11 @@
 	},
 	"feedback": {
 		"title": "Feedback",
-		"description": "Gusto naming marinig ang inyong feedback o tumulong sa anumang mga isyu na inyong nararanasan. Gamitin ang alinman sa mga button sa ibaba o makipag-ugnayan sa Customer Support sa hi@kilocode.ai",
+		"description": "Gusto naming marinig ang iyong feedback o tumulong sa anumang mga isyu na iyong nararanasan.",
 		"githubIssues": "Mag-ulat ng isyu sa GitHub",
-		"discord": "Sumali sa aming Discord community"
+		"githubDiscussions": "Sumali sa mga diskusyon sa GitHub",
+		"discord": "Sumali sa aming Discord community",
+		"customerSupport": "Customer Support"
 	},
 	"welcome": "Maligayang pagdating, {{name}}! Mayroon kang {{count}} mga notipikasyon.",
 	"items": {

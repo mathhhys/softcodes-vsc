@@ -9,10 +9,12 @@
 		"billion_suffix": "b"
 	},
 	"feedback": {
-		"title": "Återkoppling",
-		"description": "Vi skulle gärna höra din feedback eller hjälpa till med eventuella problem du upplever. Använd någon av knapparna nedan eller kontakta Kundsupport på hi@kilocode.ai",
+		"title": "Feedback",
+		"description": "Vi skulle gärna höra din feedback eller hjälpa till med eventuella problem du upplever.",
 		"githubIssues": "Rapportera ett problem på GitHub",
-		"discord": "Gå med i vår Discord-community"
+		"githubDiscussions": "Gå med i GitHub-diskussioner",
+		"discord": "Gå med i vår Discord-community",
+		"customerSupport": "Kundsupport"
 	},
 	"welcome": "Välkommen, {{name}}! Du har {{count}} notifikationer.",
 	"items": {

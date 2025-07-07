@@ -10,9 +10,11 @@
 	},
 	"feedback": {
 		"title": "Feedback",
-		"description": "Ci piacerebbe ricevere il tuo feedback o aiutarti con qualsiasi problema che stai riscontrando. Usa uno dei pulsanti qui sotto o contatta il Supporto Clienti all'indirizzo hi@kilocode.ai",
+		"description": "Ci piacerebbe ricevere il tuo feedback o aiutarti con qualsiasi problema che stai riscontrando.",
 		"githubIssues": "Segnala un problema su GitHub",
-		"discord": "Unisciti alla nostra comunità Discord"
+		"githubDiscussions": "Partecipa alle discussioni su GitHub",
+		"discord": "Unisciti alla nostra comunità Discord",
+		"customerSupport": "Supporto Clienti"
 	},
 	"welcome": "Benvenuto, {{name}}! Hai {{count}} notifiche.",
 	"items": {

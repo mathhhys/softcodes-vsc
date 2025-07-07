@@ -10,9 +10,11 @@
 	},
 	"feedback": {
 		"title": "反馈",
-		"description": "我们很乐意听取您的反馈或帮助您解决遇到的任何问题。请使用下方任一按钮或联系客户支持 hi@kilocode.ai",
+		"description": "我们很乐意听取您的反馈或帮助您解决遇到的任何问题。",
 		"githubIssues": "在GitHub上报告问题",
-		"discord": "加入我们的Discord社区"
+		"githubDiscussions": "加入GitHub讨论",
+		"discord": "加入我们的Discord社区",
+		"customerSupport": "客户支持"
 	},
 	"welcome": "欢迎，{{name}}！您有 {{count}} 条通知。",
 	"items": {
