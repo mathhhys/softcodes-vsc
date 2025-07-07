@@ -57,6 +57,10 @@
 		"ollamaUrlLabel": "URL ของ Ollama:",
 		"qdrantUrlLabel": "URL ของ Qdrant",
 		"qdrantKeyLabel": "คีย์ Qdrant:",
+		"advancedConfigLabel": "การกำหนดค่าขั้นสูง",
+		"searchMinScoreLabel": "เกณฑ์คะแนนการค้นหา",
+		"searchMinScoreDescription": "คะแนนความคล้ายคลึงขั้นต่ำ (0.0-1.0) ที่จำเป็นสำหรับผลการค้นหา ค่าที่ต่ำกว่าจะให้ผลลัพธ์มากขึ้นแต่อาจเกี่ยวข้องน้อยลง ค่าที่สูงกว่าจะให้ผลลัพธ์น้อยลงแต่เกี่ยวข้องมากขึ้น",
+		"searchMinScoreResetTooltip": "รีเซ็ตเป็นค่าเริ่มต้น (0.4)",
 		"startIndexingButton": "เริ่มการสร้างดัชนี",
 		"clearIndexDataButton": "ล้างข้อมูลดัชนี",
 		"unsavedSettingsMessage": "โปรดบันทึกการตั้งค่าของคุณก่อนเริ่มกระบวนการสร้างดัชนี",
@@ -110,6 +114,11 @@
 		"subtasks": {
 			"label": "งานย่อย",
 			"description": "อนุญาตให้สร้างและทำงานย่อยให้เสร็จสิ้นโดยไม่ต้องขออนุมัติ"
+		},
+		"followupQuestions": {
+			"label": "คำถาม",
+			"description": "เลือกคำตอบแรกที่แนะนำสำหรับคำถามติดตามโดยอัตโนมัติหลังจากหมดเวลาที่กำหนด",
+			"timeoutLabel": "เวลารอก่อนเลือกคำตอบแรกโดยอัตโนมัติ"
 		},
 		"execute": {
 			"label": "ดำเนินการ",
