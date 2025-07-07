@@ -1,5 +1,9 @@
 # kilo-code
 
+## [v4.51.2]
+
+- [#1164](https://github.com/Kilo-Org/kilocode/pull/1164) [`ceed4e3`](https://github.com/Kilo-Org/kilocode/commit/ceed4e3191557c6ad6adb91e705cc462edb08ea3) Thanks [@philipvas](https://github.com/philipvas)! - Fix browser mode JSON snippets appearing in chat
+
 ## [v4.51.1]
 
 - [#1163](https://github.com/Kilo-Org/kilocode/pull/1163) [`3f0592a`](https://github.com/Kilo-Org/kilocode/commit/3f0592a95282b6f2b6486b31146f322ea3324916) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Context condensing error messages are now more detailed
