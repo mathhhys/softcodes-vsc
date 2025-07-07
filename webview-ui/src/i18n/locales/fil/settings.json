@@ -57,6 +57,10 @@
 		"ollamaUrlLabel": "Ollama URL:",
 		"qdrantUrlLabel": "Qdrant URL",
 		"qdrantKeyLabel": "Qdrant Key:",
+		"advancedConfigLabel": "Advanced na Configuration",
+		"searchMinScoreLabel": "Threshold ng Search Score",
+		"searchMinScoreDescription": "Minimum na similarity score (0.0-1.0) na kinakailangan para sa mga resulta ng paghahanap. Ang mas mababang value ay nagbabalik ng mas maraming resulta ngunit maaaring hindi gaanong relevant. Ang mas mataas na value ay nagbabalik ng mas kaunti ngunit mas relevant na resulta.",
+		"searchMinScoreResetTooltip": "Ibalik sa default na value (0.4)",
 		"startIndexingButton": "Simulan ang Indexing",
 		"clearIndexDataButton": "I-clear ang Index Data",
 		"unsavedSettingsMessage": "Paki-save ang iyong mga setting bago simulan ang proseso ng indexing.",
@@ -110,6 +114,11 @@
 		"subtasks": {
 			"label": "Mga Subtask",
 			"description": "Payagan ang paggawa at pagkumpleto ng mga subtask nang hindi nangangailangan ng pag-apruba"
+		},
+		"followupQuestions": {
+			"label": "Tanong",
+			"description": "Awtomatikong piliin ang unang iminungkahing sagot para sa mga follow-up na tanong pagkatapos ng nakatakdang timeout",
+			"timeoutLabel": "Oras na maghintay bago awtomatikong piliin ang unang sagot"
 		},
 		"execute": {
 			"label": "I-execute",

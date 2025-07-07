@@ -57,6 +57,10 @@
 		"ollamaUrlLabel": "Ollama URL:",
 		"qdrantUrlLabel": "Qdrant URL",
 		"qdrantKeyLabel": "Qdrant-nyckel:",
+		"advancedConfigLabel": "Avancerad konfiguration",
+		"searchMinScoreLabel": "Sökpoängströskel",
+		"searchMinScoreDescription": "Minsta likhetspoäng (0.0-1.0) som krävs för sökresultat. Lägre värden returnerar fler resultat men kan vara mindre relevanta. Högre värden returnerar färre men mer relevanta resultat.",
+		"searchMinScoreResetTooltip": "Återställ till standardvärde (0.4)",
 		"startIndexingButton": "Starta indexering",
 		"clearIndexDataButton": "Rensa indexdata",
 		"unsavedSettingsMessage": "Spara dina inställningar innan du startar indexeringsprocessen.",
@@ -110,6 +114,11 @@
 		"subtasks": {
 			"label": "Deluppgifter",
 			"description": "Tillåt skapande och slutförande av deluppgifter utan att kräva godkännande"
+		},
+		"followupQuestions": {
+			"label": "Fråga",
+			"description": "Välj automatiskt det första föreslagna svaret för uppföljningsfrågor efter den konfigurerade tidsgränsen",
+			"timeoutLabel": "Tid att vänta innan det första svaret väljs automatiskt"
 		},
 		"execute": {
 			"label": "Kör",

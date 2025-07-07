@@ -10,6 +10,7 @@ import type { ClineMessage } from "@roo-code/types"
 import { ClineApiReqInfo, ClineAskUseMcpServer, ClineSayTool } from "@roo/ExtensionMessage"
 import { COMMAND_OUTPUT_STRING } from "@roo/combineCommandSequences"
 import { safeJsonParse } from "@roo/safeJsonParse"
+import { FollowUpData, SuggestionItem } from "@roo-code/types"
 
 import { useCopyToClipboard } from "@src/utils/clipboard"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
@@ -55,10 +56,11 @@ interface ChatRowProps {
 	isStreaming: boolean
 	onToggleExpand: (ts: number) => void
 	onHeightChange: (isTaller: boolean) => void
-	onSuggestionClick?: (answer: string, event?: React.MouseEvent) => void
+	onSuggestionClick?: (suggestion: SuggestionItem, event?: React.MouseEvent) => void
 	onBatchFileResponse?: (response: { [key: string]: boolean }) => void
 	highlighted?: boolean // kilocode_change: Add highlighted prop
 	onChatReset?: () => void // kilocode_change
+	onFollowUpUnmount?: () => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -114,6 +116,7 @@ export const ChatRowContent = ({
 	isStreaming,
 	onToggleExpand,
 	onSuggestionClick,
+	onFollowUpUnmount,
 	onBatchFileResponse,
 	onChatReset, // kilocode_change
 }: ChatRowContentProps) => {
@@ -296,7 +299,7 @@ export const ChatRowContent = ({
 
 	const followUpData = useMemo(() => {
 		if (message.type === "ask" && message.ask === "followup" && !message.partial) {
-			return safeJsonParse<any>(message.text)
+			return safeJsonParse<FollowUpData>(message.text)
 		}
 		return null
 	}, [message.type, message.ask, message.partial, message.text])
@@ -1223,6 +1226,7 @@ export const ChatRowContent = ({
 								suggestions={followUpData?.suggest}
 								onSuggestionClick={onSuggestionClick}
 								ts={message?.ts}
+								onUnmount={onFollowUpUnmount}
 							/>
 						</>
 					)
