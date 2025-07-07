@@ -14,11 +14,9 @@
 	},
 	"feedback": {
 		"title": "Comentaris",
-		"description": "Ens encantaria escoltar els teus comentaris o ajudar-te amb qualsevol problema que estiguis experimentant.",
+		"description": "Ens encantaria escoltar els teus comentaris o ajudar-te amb qualsevol problema que estiguis experimentant. Utilitza qualsevol dels botons de sota o contacta amb l'Atenció al Client a hi@kilocode.ai",
 		"githubIssues": "Informa d'un problema a GitHub",
-		"githubDiscussions": "Uneix-te a les discussions de GitHub",
-		"discord": "Uneix-te a la nostra comunitat de Discord",
-		"customerSupport": "Suport al Client"
+		"discord": "Uneix-te a la nostra comunitat de Discord"
 	},
 	"welcome": "Benvingut/da, {{name}}! Tens {{count}} notificacions.",
 	"items": {

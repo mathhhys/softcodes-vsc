@@ -9,12 +9,10 @@
 		"billion_suffix": "b"
 	},
 	"feedback": {
-		"title": "反饋",
-		"description": "我們很樂意聽取您的反饋或幫助您解決遇到的任何問題。",
-		"githubIssues": "在GitHub上報告問題",
-		"githubDiscussions": "加入GitHub討論",
-		"discord": "加入我們的Discord社區",
-		"customerSupport": "客戶支援"
+		"title": "意見回饋",
+		"description": "我們很樂意聽取您的意見回饋或協助您解決遇到的任何問題。請使用下方任一按鈕或聯絡客戶支援：hi@kilocode.ai",
+		"githubIssues": "在 GitHub 上回報問題",
+		"discord": "加入我們的 Discord 社群"
 	},
 	"welcome": "歡迎，{{name}}！您有 {{count}} 條通知。",
 	"items": {

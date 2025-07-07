@@ -9,12 +9,10 @@
 		"billion_suffix": "m"
 	},
 	"feedback": {
-		"title": "Feedback",
-		"description": "Kami ingin mendengar feedback kamu atau membantu dengan masalah yang kamu alami.",
+		"title": "Umpan Balik",
+		"description": "Kami ingin mendengar umpan balik kamu atau membantu dengan masalah yang kamu alami. Gunakan salah satu tombol di bawah ini atau hubungi Dukungan Pelanggan di hi@kilocode.ai",
 		"githubIssues": "Laporkan masalah di GitHub",
-		"githubDiscussions": "Bergabung dengan diskusi GitHub",
-		"discord": "Bergabung dengan komunitas Discord kami",
-		"customerSupport": "Dukungan Pelanggan"
+		"discord": "Bergabung dengan komunitas Discord kami"
 	},
 	"welcome": "Selamat datang, {{name}}! Kamu punya {{count}} notifikasi.",
 	"items": {

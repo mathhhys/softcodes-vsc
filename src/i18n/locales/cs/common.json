@@ -10,11 +10,9 @@
 	},
 	"feedback": {
 		"title": "Zpětná vazba",
-		"description": "Rádi bychom slyšeli tvou zpětnou vazbu nebo ti pomohli s jakýmikoli problémy, které zažíváš.",
+		"description": "Rádi bychom slyšeli tvou zpětnou vazbu nebo ti pomohli s jakýmikoli problémy, které zažíváš. Použij kterékoli z tlačítek níže nebo kontaktuj Zákaznickou podporu na hi@kilocode.ai",
 		"githubIssues": "Nahlásit problém na GitHubu",
-		"githubDiscussions": "Připojit se k diskuzím na GitHubu",
-		"discord": "Připoj se k naší Discord komunitě",
-		"customerSupport": "Zákaznická podpora"
+		"discord": "Připoj se k naší Discord komunitě"
 	},
 	"welcome": "Vítej, {{name}}! Máš {{count}} oznámení.",
 	"items": {

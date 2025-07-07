@@ -10,11 +10,9 @@
 	},
 	"feedback": {
 		"title": "フィードバック",
-		"description": "あなたのフィードバックをお聞かせいただくか、あなたが経験している問題についてお手伝いします。",
+		"description": "皆様のフィードバックをお聞かせいただくか、問題の解決をお手伝いいたします。下記のボタンをご利用いただくか、hi@kilocode.ai までカスタマーサポートにお問い合わせください。",
 		"githubIssues": "GitHubで問題を報告する",
-		"githubDiscussions": "GitHubのディスカッションに参加する",
-		"discord": "Discordコミュニティに参加する",
-		"customerSupport": "カスタマーサポート"
+		"discord": "Discordコミュニティに参加する"
 	},
 	"welcome": "ようこそ、{{name}}さん！{{count}}件の通知があります。",
 	"items": {
