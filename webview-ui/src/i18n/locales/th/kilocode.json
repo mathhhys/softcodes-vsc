@@ -29,6 +29,7 @@
 			}
 		},
 		"provider": {
+			"account": "บัญชี Kilo Code",
 			"apiKey": "Kilo Code API Key",
 			"login": "เข้าสู่ระบบที่ Kilo Code",
 			"logout": "ออกจากระบบ Kilo Code"

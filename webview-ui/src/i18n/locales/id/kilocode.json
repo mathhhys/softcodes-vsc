@@ -23,6 +23,7 @@
 			"mcp": "Server MCP"
 		},
 		"provider": {
+			"account": "Akun Kilo Code",
 			"apiKey": "API Key Kilo Code",
 			"login": "Masuk ke Kilo Code",
 			"logout": "Keluar dari Kilo Code"

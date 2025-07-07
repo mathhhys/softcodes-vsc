@@ -373,13 +373,11 @@ const ApiOptions = ({
 			{/* kilocode_change start */}
 			{selectedProvider === "kilocode" && (
 				<>
-					<div className="flex justify-between">
-						<div>
-							<label className="block font-medium -mb-2">{t("kilocode:settings.provider.account")}</label>
-						</div>
-						<div style={{ marginTop: "0px" }} className="text-sm text-vscode-descriptionForeground -mt-2">
-							You get $20 for free!
-						</div>
+					<div style={{ marginTop: "0px" }} className="text-sm text-vscode-descriptionForeground -mt-2">
+						You get $20 for free!
+					</div>
+					<div>
+						<label className="block font-medium -mb-2">{t("kilocode:settings.provider.account")}</label>
 					</div>
 					{!hideKiloCodeButton &&
 						(apiConfiguration.kilocodeToken ? (

@@ -23,6 +23,7 @@
 			"mcp": "MCP Серверы"
 		},
 		"provider": {
+			"account": "Аккаунт Kilo Code",
 			"apiKey": "API-ключ Kilo Code",
 			"login": "Войти в Kilo Code",
 			"logout": "Выйти из Kilo Code"

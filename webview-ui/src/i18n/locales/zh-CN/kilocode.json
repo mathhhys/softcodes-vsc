@@ -29,6 +29,7 @@
 			}
 		},
 		"provider": {
+			"account": "Kilo Code 账号",
 			"apiKey": "Kilo Code API 密钥",
 			"login": "登录 Kilo Code",
 			"logout": "退出 Kilo Code"

@@ -23,6 +23,7 @@
 			"mcp": "MCP Servers"
 		},
 		"provider": {
+			"account": "Account sa Kilo Code",
 			"apiKey": "Kilo Code API Key",
 			"login": "Mag-log in sa Kilo Code",
 			"logout": "Mag-log out mula sa Kilo Code"
