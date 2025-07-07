@@ -9,7 +9,7 @@ import { type ModeConfig, type PromptComponent, customModesSettingsSchema, modeC
 
 import { fileExistsAtPath } from "../../utils/fs"
 import { getWorkspacePath } from "../../utils/path"
-import { getGlobalRooDirectory } from "../../services/roo-config"
+import { getGlobalRooDirectory, getProjectRooDirectoryForCwd /*kilocode_change*/ } from "../../services/roo-config"
 import { logger } from "../../utils/logging"
 import { GlobalFileNames } from "../../shared/globalFileNames"
 import { ensureSettingsDirectoryExists } from "../../utils/globalContext"
@@ -575,7 +575,10 @@ export class CustomModesManager {
 			}
 
 			// Check for .roo/rules-{slug}/ directory
-			const modeRulesDir = path.join(workspacePath, ".roo", `rules-${slug}`)
+			const modeRulesDir = path.join(
+				getProjectRooDirectoryForCwd(workspacePath), // kilocode_change
+				`rules-${slug}`,
+			)
 
 			try {
 				const stats = await fs.stat(modeRulesDir)
@@ -670,7 +673,10 @@ export class CustomModesManager {
 			}
 
 			// Check for .roo/rules-{slug}/ directory
-			const modeRulesDir = path.join(workspacePath, ".roo", `rules-${slug}`)
+			const modeRulesDir = path.join(
+				getProjectRooDirectoryForCwd(workspacePath), // kilocode_change
+				`rules-${slug}`,
+			)
 
 			let rulesFiles: RuleFile[] = []
 			try {
@@ -686,7 +692,10 @@ export class CustomModesManager {
 							const content = await fs.readFile(filePath, "utf-8")
 							if (content.trim()) {
 								// Calculate relative path from .roo directory
-								const relativePath = path.relative(path.join(workspacePath, ".roo"), filePath)
+								const relativePath = path.relative(
+									getProjectRooDirectoryForCwd(workspacePath), // kilocode_change
+									filePath,
+								)
 								rulesFiles.push({ relativePath, content: content.trim() })
 							}
 						}
@@ -803,7 +812,10 @@ export class CustomModesManager {
 
 					// Always remove the existing rules folder for this mode if it exists
 					// This ensures that if the imported mode has no rules, the folder is cleaned up
-					const rulesFolderPath = path.join(workspacePath, ".roo", `rules-${importMode.slug}`)
+					const rulesFolderPath = path.join(
+						getProjectRooDirectoryForCwd(workspacePath), // kilocode_change
+						`rules-${importMode.slug}`,
+					)
 					try {
 						await fs.rm(rulesFolderPath, { recursive: true, force: true })
 						logger.info(`Removed existing rules folder for mode ${importMode.slug}`)
@@ -826,9 +838,12 @@ export class CustomModesManager {
 									continue // Skip this file but continue with others
 								}
 
-								const targetPath = path.join(workspacePath, ".roo", normalizedRelativePath)
+								const targetPath = path.join(
+									getProjectRooDirectoryForCwd(workspacePath), // kilocode_change
+									normalizedRelativePath,
+								)
 								const normalizedTargetPath = path.normalize(targetPath)
-								const expectedBasePath = path.normalize(path.join(workspacePath, ".roo"))
+								const expectedBasePath = path.normalize(getProjectRooDirectoryForCwd(workspacePath)) // kilocode_change
 
 								// Ensure the resolved path stays within the .roo directory
 								if (!normalizedTargetPath.startsWith(expectedBasePath)) {
