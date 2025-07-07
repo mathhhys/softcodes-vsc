@@ -54,8 +54,7 @@
 	},
 	"exportMode": {
 		"title": "Ekspor Mode",
-		"description": "Ekspor mode ini ke file YAML dengan semua aturan yang disertakan untuk berbagi dengan mudah dengan orang lain.",
-		"export": "Ekspor Mode",
+		"description": "Ekspor mode ini dengan aturan dari folder .kilocode/rules-{{slug}}/ digabungkan ke dalam file YAML yang dapat dibagikan. File asli tetap tidak berubah.",
 		"exporting": "Mengekspor..."
 	},
 	"importMode": {
@@ -64,11 +63,11 @@
 		"importing": "Mengimpor...",
 		"global": {
 			"label": "Tingkat Global",
-			"description": "Tersedia di semua proyek. Aturan akan digabungkan ke dalam instruksi kustom."
+			"description": "Tersedia di semua proyek. Jika mode yang diekspor berisi file aturan, file tersebut akan dibuat ulang di folder global .kilocode/rules-{slug}/."
 		},
 		"project": {
 			"label": "Tingkat Proyek",
-			"description": "Hanya tersedia di ruang kerja ini. Jika mode yang diekspor berisi file aturan, file tersebut akan dibuat ulang di folder .roo/rules-{slug}/."
+			"description": "Hanya tersedia di ruang kerja ini. Jika mode yang diekspor berisi file aturan, file tersebut akan dibuat ulang di folder .kilocode/rules-{slug}/."
 		}
 	},
 	"advanced": {

@@ -54,7 +54,7 @@
 	},
 	"exportMode": {
 		"title": "Exportera läge",
-		"description": "Exportera detta läge med regler från mappen .roo/rules-{{slug}}/ kombinerade till en delbar YAML-fil. De ursprungliga filerna förblir oförändrade.",
+		"description": "Exportera detta läge med regler från mappen .kilocode/rules-{{slug}}/ kombinerade till en delbar YAML-fil. De ursprungliga filerna förblir oförändrade.",
 		"exporting": "Exporterar..."
 	},
 	"importMode": {
@@ -63,11 +63,11 @@
 		"importing": "Importerar...",
 		"global": {
 			"label": "Global nivå",
-			"description": "Tillgänglig i alla projekt. Om det exporterade läget innehöll regelfiler kommer de att återskapas i den globala mappen .roo/rules-{slug}/."
+			"description": "Tillgänglig i alla projekt. Om det exporterade läget innehöll regelfiler kommer de att återskapas i den globala mappen .kilocode/rules-{slug}/."
 		},
 		"project": {
 			"label": "Projektnivå",
-			"description": "Endast tillgänglig i denna arbetsyta. Om det exporterade läget innehöll regelfiler kommer de att återskapas i mappen .roo/rules-{slug}/."
+			"description": "Endast tillgänglig i denna arbetsyta. Om det exporterade läget innehöll regelfiler kommer de att återskapas i mappen .kilocode/rules-{slug}/."
 		}
 	},
 	"advanced": {

@@ -54,7 +54,7 @@
 	},
 	"exportMode": {
 		"title": "Exportovat režim",
-		"description": "Exportuj tento režim s pravidly ze složky .roo/rules-{{slug}}/ zkombinovanými do sdílitelného YAML souboru. Původní soubory zůstanou nezměněny.",
+		"description": "Exportuj tento režim s pravidly ze složky .kilocode/rules-{{slug}}/ zkombinovanými do sdílitelného YAML souboru. Původní soubory zůstanou nezměněny.",
 		"exporting": "Exportování..."
 	},
 	"importMode": {
@@ -63,11 +63,11 @@
 		"importing": "Importování...",
 		"global": {
 			"label": "Globální úroveň",
-			"description": "Dostupné napříč všemi projekty. Pokud exportovaný režim obsahoval soubory pravidel, budou znovu vytvořeny v globální složce .roo/rules-{slug}/."
+			"description": "Dostupné napříč všemi projekty. Pokud exportovaný režim obsahoval soubory pravidel, budou znovu vytvořeny v globální složce .kilocode/rules-{slug}/."
 		},
 		"project": {
 			"label": "Úroveň projektu",
-			"description": "Dostupné pouze v tomto pracovním prostoru. Pokud exportovaný režim obsahoval soubory pravidel, budou znovu vytvořeny ve složce .roo/rules-{slug}/."
+			"description": "Dostupné pouze v tomto pracovním prostoru. Pokud exportovaný režim obsahoval soubory pravidel, budou znovu vytvořeny ve složce .kilocode/rules-{slug}/."
 		}
 	},
 	"advanced": {

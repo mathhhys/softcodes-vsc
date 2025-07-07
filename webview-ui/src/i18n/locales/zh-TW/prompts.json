@@ -54,8 +54,7 @@
 	},
 	"exportMode": {
 		"title": "匯出模式",
-		"description": "將此模式匯出為包含所有規則的 YAML 檔案，以便與他人輕鬆分享。",
-		"export": "匯出模式",
+		"description": "將此模式與 .kilocode/rules-{{slug}}/ 資料夾中的規則組合匯出為可分享的 YAML 檔案。原始檔案保持不變。",
 		"exporting": "正在匯出..."
 	},
 	"importMode": {
@@ -64,11 +63,11 @@
 		"importing": "匯入中...",
 		"global": {
 			"label": "全域",
-			"description": "適用於所有專案。規則將合併到自訂指令中。"
+			"description": "適用於所有專案。如果匯出的模式包含規則檔案，則將在全域 .kilocode/rules-{slug}/ 資料夾中重新建立這些檔案。"
 		},
 		"project": {
 			"label": "專案級",
-			"description": "僅在此工作區可用。如果匯出的模式包含規則檔案，則將在 .roo/rules-{slug}/ 資料夾中重新建立這些檔案。"
+			"description": "僅在此工作區可用。如果匯出的模式包含規則檔案，則將在 .kilocode/rules-{slug}/ 資料夾中重新建立這些檔案。"
 		}
 	},
 	"globalCustomInstructions": {

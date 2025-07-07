@@ -54,8 +54,7 @@
 	},
 	"exportMode": {
 		"title": "Modu Dışa Aktar",
-		"description": "Bu modu tüm kurallar dahil olarak bir YAML dosyasına dışa aktararak başkalarıyla kolayca paylaşın.",
-		"export": "Modu Dışa Aktar",
+		"description": "Bu modu .kilocode/rules-{{slug}}/ klasöründeki kurallarla birlikte paylaşılabilir bir YAML dosyasına dışa aktar. Orijinal dosyalar değişmeden kalır.",
 		"exporting": "Dışa aktarılıyor..."
 	},
 	"globalCustomInstructions": {
@@ -69,11 +68,11 @@
 		"importing": "İçe aktarılıyor...",
 		"global": {
 			"label": "Genel Seviye",
-			"description": "Tüm projelerde kullanılabilir. Kurallar özel talimatlarla birleştirilecektir."
+			"description": "Tüm projelerde kullanılabilir. Dışa aktarılan mod kural dosyaları içeriyorsa, bunlar genel .kilocode/rules-{slug}/ klasöründe yeniden oluşturulur."
 		},
 		"project": {
 			"label": "Proje Seviyesi",
-			"description": "Yalnızca bu çalışma alanında kullanılabilir. Dışa aktarılan mod kural dosyaları içeriyorsa, bunlar .roo/rules-{slug}/ klasöründe yeniden oluşturulur."
+			"description": "Yalnızca bu çalışma alanında kullanılabilir. Dışa aktarılan mod kural dosyaları içeriyorsa, bunlar .kilocode/rules-{slug}/ klasöründe yeniden oluşturulur."
 		}
 	},
 	"systemPrompt": {

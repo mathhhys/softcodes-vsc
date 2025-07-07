@@ -54,8 +54,7 @@
 	},
 	"exportMode": {
 		"title": "Exportar modo",
-		"description": "Exporta este modo a un archivo YAML con todas las reglas incluidas para compartir fácilmente con otros.",
-		"export": "Exportar modo",
+		"description": "Exporta este modo con las reglas de la carpeta .kilocode/rules-{{slug}}/ combinadas en un archivo YAML compartible. Los archivos originales permanecen sin cambios.",
 		"exporting": "Exportando..."
 	},
 	"importMode": {
@@ -64,11 +63,11 @@
 		"importing": "Importando...",
 		"global": {
 			"label": "Nivel global",
-			"description": "Disponible en todos los proyectos. Si el modo exportado contenía archivos de reglas, se volverán a crear en la carpeta global .roo/rules-{slug}/."
+			"description": "Disponible en todos los proyectos. Si el modo exportado contenía archivos de reglas, se recrearán en la carpeta global .kilocode/rules-{slug}/."
 		},
 		"project": {
 			"label": "Nivel de proyecto",
-			"description": "Solo disponible en este espacio de trabajo. Si el modo exportado contenía archivos de reglas, se volverán a crear en la carpeta .roo/rules-{slug}/."
+			"description": "Solo disponible en este espacio de trabajo. Si el modo exportado contenía archivos de reglas, se recrearán en la carpeta .kilocode/rules-{slug}/."
 		}
 	},
 	"advanced": {

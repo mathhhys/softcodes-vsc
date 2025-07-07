@@ -54,8 +54,7 @@
 	},
 	"exportMode": {
 		"title": "Eksportuj tryb",
-		"description": "Eksportuj ten tryb do pliku YAML ze wszystkimi regułami w celu łatwego udostępniania innym.",
-		"export": "Eksportuj tryb",
+		"description": "Eksportuj ten tryb z regułami z folderu .kilocode/rules-{{slug}}/ połączonymi w udostępnialny plik YAML. Oryginalne pliki pozostają niezmienione.",
 		"exporting": "Eksportowanie..."
 	},
 	"importMode": {
@@ -64,11 +63,11 @@
 		"importing": "Importowanie...",
 		"global": {
 			"label": "Poziom globalny",
-			"description": "Dostępne we wszystkich projektach. Reguły zostaną scalone z niestandardowymi instrukcjami."
+			"description": "Dostępne we wszystkich projektach. Jeśli wyeksportowany tryb zawierał pliki reguł, zostaną one odtworzone w globalnym folderze .kilocode/rules-{slug}/."
 		},
 		"project": {
 			"label": "Poziom projektu",
-			"description": "Dostępne tylko w tym obszarze roboczym. Jeśli wyeksportowany tryb zawierał pliki reguł, zostaną one odtworzone w folderze .roo/rules-{slug}/."
+			"description": "Dostępne tylko w tym obszarze roboczym. Jeśli wyeksportowany tryb zawierał pliki reguł, zostaną one odtworzone w folderze .kilocode/rules-{slug}/."
 		}
 	},
 	"advanced": {
