@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.52.0
-
-### Minor Changes
+## [v4.52.0]
 
 - [#1084](https://github.com/Kilo-Org/kilocode/pull/1084) [`c97d2f5`](https://github.com/Kilo-Org/kilocode/commit/c97d2f59edd28a875881bf29da616361bfce6fad) Thanks [@hassoncs](https://github.com/hassoncs)! - Generate commit messages based on unstaged changes if there's nothing staged
 
