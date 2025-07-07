@@ -1,5 +1,34 @@
 # kilo-code
 
+## [v4.51.0]
+
+- [#841](https://github.com/Kilo-Org/kilocode/pull/841) [`1615ec7`](https://github.com/Kilo-Org/kilocode/commit/1615ec74cec2198d49cf1cd6942d883c0b717f4f) Thanks [@catrielmuller](https://github.com/catrielmuller)! - Quick model selector on the chatbox
+
+- [#1149](https://github.com/Kilo-Org/kilocode/pull/1149) [`62786a8`](https://github.com/Kilo-Org/kilocode/commit/62786a8d09e42f51ac61c15216a168c172e87785) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Include changes from Roo Code v3.22.6
+
+    - Add timer-based auto approve for follow up questions (thanks @liwilliam2021!)
+    - Add import/export modes functionality
+    - Add persistent version indicator on chat screen
+    - Add automatic configuration import on extension startup (thanks @takakoutso!)
+    - Add user-configurable search score threshold slider for semantic search (thanks @hannesrudolph!)
+    - Add default headers and testing for litellm fetcher (thanks @andrewshu2000!)
+    - Fix consistent cancellation error messages for thinking vs streaming phases
+    - Fix AWS Bedrock cross-region inference profile mapping (thanks @KevinZhao!)
+    - Fix URL loading timeout issues in @ mentions (thanks @MuriloFP!)
+    - Fix API retry exponential backoff capped at 10 minutes (thanks @MuriloFP!)
+    - Fix Qdrant URL field auto-filling with default value (thanks @SannidhyaSah!)
+    - Fix profile context condensation threshold (thanks @PaperBoardOfficial!)
+    - Fix apply_diff tool documentation for multi-file capabilities
+    - Fix cache files excluded from rules compilation (thanks @MuriloFP!)
+    - Add streamlined extension installation and documentation (thanks @devxpain!)
+    - Prevent Architect mode from providing time estimates
+    - Remove context size from environment details
+    - Change default mode to architect for new installations
+    - Suppress Mermaid error rendering
+    - Improve Mermaid buttons with light background in light mode (thanks @chrarnoldus!)
+    - Add .vscode/ to write-protected files/directories
+    - Update AWS Bedrock cross-region inference profile mapping (thanks @KevinZhao!)
+
 ## [v4.50.0]
 
 - [#1111](https://github.com/Kilo-Org/kilocode/pull/1111) [`fe40949`](https://github.com/Kilo-Org/kilocode/commit/fe4094938ffc14fdbc19fde874a45d80f0431c6c) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Make MCP server toggles easier accessible with button in the top bar

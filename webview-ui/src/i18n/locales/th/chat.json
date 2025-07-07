@@ -208,7 +208,8 @@
 	"codebaseSearch": {
 		"wantsToSearch": "Kilo Code ต้องการค้นหาในโค้ดเบสสำหรับ <code>{{query}}</code>:",
 		"wantsToSearchWithPath": "Kilo Code ต้องการค้นหาในโค้ดเบสสำหรับ <code>{{query}}</code> ใน <code>{{path}}</code>:",
-		"didSearch": "พบ {{count}} ผลลัพธ์สำหรับ <code>{{query}}</code>:"
+		"didSearch": "พบ {{count}} ผลลัพธ์สำหรับ <code>{{query}}</code>:",
+		"resultTooltip": "คะแนนความคล้ายคลึง: {{score}} (คลิกเพื่อเปิดไฟล์)"
 	},
 	"commandOutput": "ผลลัพธ์คำสั่ง",
 	"response": "การตอบสนอง",
@@ -264,7 +265,9 @@
 		"seconds": "{{count}} วินาที"
 	},
 	"followUpSuggest": {
-		"copyToInput": "คัดลอกไปยังอินพุต (เหมือนกับ shift + คลิก)"
+		"copyToInput": "คัดลอกไปยังอินพุต (เหมือนกับ shift + คลิก)",
+		"autoSelectCountdown": "เลือกอัตโนมัติใน {{count}} วินาที",
+		"countdownDisplay": "{{count}} วินาที"
 	},
 	"browser": {
 		"rooWantsToUse": "Kilo Code ต้องการใช้เบราว์เซอร์:",
@@ -317,5 +320,8 @@
 		"indexed": "สร้างดัชนีแล้ว",
 		"error": "ข้อผิดพลาดดัชนี",
 		"status": "สถานะดัชนี"
+	},
+	"versionIndicator": {
+		"ariaLabel": "เวอร์ชัน {{version}} - คลิกเพื่อดูบันทึกการเปลี่ยนแปลง"
 	}
 }
