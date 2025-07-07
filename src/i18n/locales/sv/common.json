@@ -143,8 +143,8 @@
 	},
 	"customModes": {
 		"errors": {
-			"yamlParseError": "Ogiltig YAML i .roomodes-filen på rad {{line}}. Kontrollera följande:\n• Korrekt indragning (använd mellanslag, inte tabs)\n• Matchande citattecken och klamrar\n• Giltig YAML-syntax",
-			"schemaValidationError": "Ogiltigt format för anpassade lägen i .roomodes:\n{{issues}}",
+			"yamlParseError": "Ogiltig YAML i .kilocodemodes-filen på rad {{line}}. Kontrollera följande:\n• Korrekt indragning (använd mellanslag, inte tabs)\n• Matchande citattecken och klamrar\n• Giltig YAML-syntax",
+			"schemaValidationError": "Ogiltigt format för anpassade lägen i .kilocodemodes:\n{{issues}}",
 			"invalidFormat": "Ogiltigt format för anpassade lägen. Säkerställ att dina inställningar följer korrekt YAML-format.",
 			"updateFailed": "Misslyckades med att uppdatera anpassat läge: {{error}}",
 			"deleteFailed": "Misslyckades med att ta bort anpassat läge: {{error}}",

@@ -320,7 +320,7 @@ export class CustomModesManager {
 					this.clearCache()
 					await this.onUpdate()
 				} catch (error) {
-					console.error(`[CustomModesManager] Error handling .roomodes file change:`, error)
+					console.error(`[CustomModesManager] Error handling .kilocodemodes file change:`, error)
 				}
 			}
 

@@ -143,8 +143,8 @@
 	},
 	"customModes": {
 		"errors": {
-			"yamlParseError": "Hindi valid na YAML sa .roomodes file sa linya {{line}}. Mangyaring tingnan ang:\n• Tamang indentation (gamitin ang mga space, hindi tabs)\n• Nagtutugmang mga quotes at brackets\n• Valid na YAML syntax",
-			"schemaValidationError": "Hindi valid na format ng custom modes sa .roomodes:\n{{issues}}",
+			"yamlParseError": "Hindi valid na YAML sa .kilocodemodes file sa linya {{line}}. Mangyaring tingnan ang:\n• Tamang indentation (gamitin ang mga space, hindi tabs)\n• Nagtutugmang mga quotes at brackets\n• Valid na YAML syntax",
+			"schemaValidationError": "Hindi valid na format ng custom modes sa .kilocodemodes:\n{{issues}}",
 			"invalidFormat": "Hindi valid na format ng custom modes. Mangyaring siguraduhing ang inyong mga setting ay sumusunod sa tamang YAML format.",
 			"updateFailed": "Nabigo ang pag-update ng custom mode: {{error}}",
 			"deleteFailed": "Nabigo ang pag-delete ng custom mode: {{error}}",
