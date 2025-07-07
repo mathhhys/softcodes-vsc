@@ -10,9 +10,11 @@
 	},
 	"feedback": {
 		"title": "Feedback",
-		"description": "We'd love to hear your feedback or help with any issues you're experiencing. Use any of the buttons below or contact Customer Support at hi@kilocode.ai",
+		"description": "We'd love to hear your feedback or help with any issues you're experiencing.",
 		"githubIssues": "Report an issue on GitHub",
-		"discord": "Join our Discord community"
+		"githubDiscussions": "Join GitHub discussions",
+		"discord": "Join our Discord community",
+		"customerSupport": "Customer Support"
 	},
 	"welcome": "Welcome, {{name}}! You have {{count}} notifications.",
 	"items": {
