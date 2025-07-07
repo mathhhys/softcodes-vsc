@@ -105,7 +105,7 @@ export async function summarizeConversation(
 	if (messagesToSummarize.length <= 1) {
 		// kilocode_change start
 		const error =
-			messages.length < N_MESSAGES_TO_KEEP + 1
+			messages.length <= N_MESSAGES_TO_KEEP + 1
 				? t("common:errors.condense_not_enough_messages", {
 						prevContextTokens,
 						messageCount: messages.length,
