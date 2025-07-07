@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.51.0
-
-### Minor Changes
+## [v4.51.0]
 
 - [#841](https://github.com/Kilo-Org/kilocode/pull/841) [`1615ec7`](https://github.com/Kilo-Org/kilocode/commit/1615ec74cec2198d49cf1cd6942d883c0b717f4f) Thanks [@catrielmuller](https://github.com/catrielmuller)! - Quick model selector on the chatbox
 
