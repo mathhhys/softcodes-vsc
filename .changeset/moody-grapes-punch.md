@@ -2,4 +2,4 @@
 "kilo-code": minor
 ---
 
-Support MCP notifications
+Support MCP notifications (feature from Cline)
