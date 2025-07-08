@@ -36,6 +36,7 @@
 			"testMessage": "這是來自 Kilo Code 的測試通知。"
 		},
 		"provider": {
+			"account": "Kilo Code 帳戶",
 			"apiKey": "Kilo Code API 金鑰",
 			"login": "登入 Kilo Code",
 			"logout": "登出 Kilo Code"

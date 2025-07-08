@@ -29,6 +29,7 @@
 			}
 		},
 		"provider": {
+			"account": "Обліковий запис Kilo Code",
 			"apiKey": "Kilo Code API Key",
 			"login": "Увійти в Kilo Code",
 			"logout": "Вийти з Kilo Code"

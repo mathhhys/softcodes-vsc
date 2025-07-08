@@ -23,6 +23,7 @@
 			"mcp": "MCP 서버"
 		},
 		"provider": {
+			"account": "Kilo Code 계정",
 			"apiKey": "Kilo Code API 키",
 			"login": "Kilo Code에 로그인",
 			"logout": "Kilo Code에서 로그아웃"

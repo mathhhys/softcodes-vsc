@@ -23,6 +23,7 @@
 			"mcp": "MCP सर्वर"
 		},
 		"provider": {
+			"account": "Kilo Code खाता",
 			"apiKey": "Kilo Code API कुंजी",
 			"login": "Kilo Code में लॉग इन करें",
 			"logout": "Kilo Code से लॉग आउट करें"
