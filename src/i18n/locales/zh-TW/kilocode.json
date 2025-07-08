@@ -48,5 +48,25 @@
 		"generated": "Kilo：提交信息已生成！",
 		"generationFailed": "Kilo：无法生成提交信息：{{errorMessage}}",
 		"generatingFromUnstaged": "Kilo: 使用未暂存的更改生成消息"
+	},
+	"autocomplete": {
+		"statusBar": {
+			"disabled": "$(circle-slash) 千字节已完成",
+			"enabled": "$(sparkle) 千米完成",
+			"tooltip": {
+				"basic": "千行代码自动补全",
+				"lastCompletion": "上次完成：",
+				"disabled": "Kilo Code 代码自动补全（已禁用）",
+				"sessionTotal": "会话总费用:",
+				"tokenError": "必须设置有效令牌才能使用自动完成功能",
+				"model": "模型："
+			},
+			"warning": "$(warning) 千字节完成",
+			"cost": {
+				"lessThanCent": "<$0.01",
+				"zero": "¥0.00"
+			}
+		},
+		"toggleMessage": "千米完成 {{status}}"
 	}
 }
