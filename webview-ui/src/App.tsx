@@ -44,9 +44,9 @@ const App = () => {
 		didHydrateState,
 		showWelcome,
 		shouldShowAnnouncement,
-		// telemetrySetting, // kilocode_change not used
-		// telemetryKey, // kilocode_change not used
-		// machineId, // kilocode_change not used
+		telemetrySetting,
+		telemetryKey,
+		machineId,
 		// cloudUserInfo, // kilocode_change not used
 		// cloudIsAuthenticated, // kilocode_change not used
 		renderContext,
@@ -150,6 +150,12 @@ const App = () => {
 			vscode.postMessage({ type: "didShowAnnouncement" })
 		}
 	}, [shouldShowAnnouncement])
+
+	useEffect(() => {
+		if (didHydrateState) {
+			telemetryClient.updateTelemetryState(telemetrySetting, telemetryKey, machineId)
+		}
+	}, [telemetrySetting, telemetryKey, machineId, didHydrateState])
 
 	// Tell the extension that we are ready to receive messages.
 	useEffect(() => vscode.postMessage({ type: "webviewDidLaunch" }), [])

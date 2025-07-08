@@ -131,6 +131,13 @@ export const webviewMessageHandler = async (
 					),
 				)
 
+			// If user already opted in to telemetry, enable telemetry service
+			provider.getStateToPostToWebview().then((state) => {
+				const { telemetrySetting } = state
+				const isOptedIn = telemetrySetting === "enabled"
+				TelemetryService.instance.updateTelemetryState(isOptedIn)
+			})
+
 			provider.isViewLaunched = true
 			break
 		case "newTask":

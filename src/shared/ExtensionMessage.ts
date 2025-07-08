@@ -4,6 +4,7 @@ import type {
 	ProviderSettings,
 	HistoryItem,
 	ModeConfig,
+	TelemetrySetting,
 	Experiments,
 	ClineMessage,
 	OrganizationAllowList,
@@ -287,7 +288,10 @@ export type ExtensionState = Pick<
 	toolRequirements?: Record<string, boolean> // Map of tool names to their requirements (e.g. {"apply_diff": true} if diffEnabled)
 
 	cwd?: string // Current working directory
+	telemetrySetting: TelemetrySetting
+	telemetryKey?: string
 	machineId?: string
+
 	renderContext: "sidebar" | "editor"
 	settingsImportedAt?: number
 	historyPreviewCollapsed?: boolean

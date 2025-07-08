@@ -112,7 +112,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	}
 
 	const provider = new ClineProvider(context, outputChannel, "sidebar", contextProxy, codeIndexManager, mdmService)
-	TelemetryService.instance.setProvider(provider) // kilocode_change no telemetry
+	TelemetryService.instance.setProvider(provider)
 
 	if (codeIndexManager) {
 		context.subscriptions.push(codeIndexManager)
@@ -137,6 +137,7 @@ export async function activate(context: vscode.ExtensionContext) {
 				false,
 			)
 
+			// context.globalState.update("telemetrySetting", "enabled")
 			context.globalState.update("firstInstallCompleted", true)
 		} catch (error) {
 			outputChannel.appendLine(`Error during first-time setup: ${error.message}`)
@@ -242,5 +243,6 @@ export async function activate(context: vscode.ExtensionContext) {
 export async function deactivate() {
 	outputChannel.appendLine(`${Package.name} extension deactivated`)
 	await McpServerManager.cleanup(extensionContext)
+	TelemetryService.instance.shutdown()
 	TerminalRegistry.cleanup()
 }

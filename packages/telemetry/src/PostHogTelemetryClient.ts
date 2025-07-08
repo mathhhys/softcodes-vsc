@@ -1,4 +1,4 @@
-// import { PostHog } from "posthog-node" // kilocode_change
+import { PostHog } from "posthog-node"
 import * as vscode from "vscode"
 
 import { TelemetryEventName, type TelemetryEvent } from "@roo-code/types"
@@ -11,7 +11,7 @@ import { BaseTelemetryClient } from "./BaseTelemetryClient"
  * Respects user privacy settings and VSCode's global telemetry configuration.
  */
 export class PostHogTelemetryClient extends BaseTelemetryClient {
-	// private client: PostHog // kilocode_change
+	private client: PostHog
 	private distinctId: string = vscode.env.machineId
 	// Git repository properties that should be filtered out
 	private readonly gitPropertyNames = ["repositoryUrl", "repositoryName", "defaultBranch"]
@@ -25,7 +25,7 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 			debug,
 		)
 
-		// this.client = new PostHog(process.env.POSTHOG_API_KEY || "", { host: "https://us.i.posthog.com" }) // kilocode_change
+		this.client = new PostHog(process.env.POSTHOG_API_KEY || "", { host: "https://us.i.posthog.com" })
 	}
 
 	/**
@@ -54,12 +54,11 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 			console.info(`[PostHogTelemetryClient#capture] ${event.event}`)
 		}
 
-		// kilocode_change
-		// this.client.capture({
-		// 	distinctId: this.distinctId,
-		// 	event: event.event,
-		// 	properties: await this.getEventProperties(event),
-		// })
+		this.client.capture({
+			distinctId: this.distinctId,
+			event: event.event,
+			properties: await this.getEventProperties(event),
+		})
 	}
 
 	/**
@@ -82,13 +81,13 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 
 		// Update PostHog client state based on telemetry preference.
 		if (this.telemetryEnabled) {
-			// this.client.optIn() // kilocode_change
+			this.client.optIn()
 		} else {
-			// this.client.optOut() // kilocode_change
+			this.client.optOut()
 		}
 	}
 
 	public override async shutdown(): Promise<void> {
-		// await this.client.shutdown() // kilocode_change
+		await this.client.shutdown()
 	}
 }
