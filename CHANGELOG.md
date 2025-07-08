@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.53.0
-
-### Minor Changes
+## [v4.53.0]
 
 - [#1118](https://github.com/Kilo-Org/kilocode/pull/1118) [`a9f6464`](https://github.com/Kilo-Org/kilocode/commit/a9f6464a34398256427005354fe7cc85fe58e243) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Support MCP notifications (feature from Cline)
 
