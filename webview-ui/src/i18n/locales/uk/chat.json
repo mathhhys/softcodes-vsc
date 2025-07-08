@@ -208,7 +208,8 @@
 	"codebaseSearch": {
 		"wantsToSearch": "Kilo Code хоче шукати в кодовій базі <code>{{query}}</code>:",
 		"wantsToSearchWithPath": "Kilo Code хоче шукати в кодовій базі <code>{{query}}</code> в <code>{{path}}</code>:",
-		"didSearch": "Знайдено {{count}} результат(ів) для <code>{{query}}</code>:"
+		"didSearch": "Знайдено {{count}} результат(ів) для <code>{{query}}</code>:",
+		"resultTooltip": "Оцінка схожості: {{score}} (клікни для відкриття файлу)"
 	},
 	"commandOutput": "Вивід команди",
 	"response": "Відповідь",
@@ -264,7 +265,9 @@
 		"seconds": "{{count}}с"
 	},
 	"followUpSuggest": {
-		"copyToInput": "Копіювати до вводу (так само як shift + клік)"
+		"copyToInput": "Копіювати до вводу (так само як shift + клік)",
+		"autoSelectCountdown": "Автовибір через {{count}}с",
+		"countdownDisplay": "{{count}}с"
 	},
 	"browser": {
 		"rooWantsToUse": "Kilo Code хоче використати браузер:",
@@ -317,5 +320,8 @@
 		"indexed": "Проіндексовано",
 		"error": "Помилка індексу",
 		"status": "Статус індексу"
+	},
+	"versionIndicator": {
+		"ariaLabel": "Версія {{version}} - Клікни для перегляду приміток до випуску"
 	}
 }
