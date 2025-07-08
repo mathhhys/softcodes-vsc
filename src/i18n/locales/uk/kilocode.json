@@ -48,5 +48,25 @@
 		"generated": "Kilo: Повідомлення коміту згенеровано!",
 		"generationFailed": "Kilo: Не вдалося створити повідомлення коміту: {{errorMessage}}",
 		"generatingFromUnstaged": "Кіло: Створення повідомлення з використанням незафіксованих змін"
+	},
+	"autocomplete": {
+		"statusBar": {
+			"enabled": "$(sparkle) Кіло Виконано",
+			"disabled": "$(circle-slash) Кіло завершено",
+			"tooltip": {
+				"basic": "Автодоповнення Kilo Code",
+				"tokenError": "Для використання автозаповнення необхідно встановити дійсний токен",
+				"disabled": "Kilo Code Автозаповнення (вимкнено)",
+				"lastCompletion": "Останнє завершення:",
+				"model": "Модель:",
+				"sessionTotal": "Загальна вартість сеансу:"
+			},
+			"warning": "$(warning) Кіло виконано",
+			"cost": {
+				"zero": "0,00 ₴",
+				"lessThanCent": "<$0,01"
+			}
+		},
+		"toggleMessage": "Кіло виконано {{status}}"
 	}
 }

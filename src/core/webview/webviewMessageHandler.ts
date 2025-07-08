@@ -1226,6 +1226,10 @@ export const webviewMessageHandler = async (
 			await updateGlobalState("commitMessageApiConfigId", message.text)
 			await provider.postStateToWebview()
 			break
+		case "autocompleteApiConfigId":
+			await updateGlobalState("autocompleteApiConfigId", message.text)
+			await provider.postStateToWebview()
+			break
 		// kilocode_change end
 		case "condensingApiConfigId":
 			await updateGlobalState("condensingApiConfigId", message.text)
