@@ -262,15 +262,6 @@ describe("Cline", () => {
 		// Mock provider methods
 		mockProvider.postMessageToWebview = vi.fn().mockResolvedValue(undefined)
 		mockProvider.postStateToWebview = vi.fn().mockResolvedValue(undefined)
-
-		// kilocode_change start
-		mockProvider.getMcpHub = vi.fn().mockReturnValue({
-			kiloNotificationService: {
-				setNotificationCallback: vi.fn(),
-				clearNotificationCallback: vi.fn(),
-			},
-		})
-		// kilocode_change end
 		mockProvider.getTaskWithId = vi.fn().mockImplementation(async (id) => ({
 			historyItem: {
 				id,
@@ -930,14 +921,6 @@ describe("Cline", () => {
 					postStateToWebview: vi.fn().mockResolvedValue(undefined),
 					postMessageToWebview: vi.fn().mockResolvedValue(undefined),
 					updateTaskHistory: vi.fn().mockResolvedValue(undefined),
-					// kilocode_change start
-					getMcpHub: vi.fn().mockReturnValue({
-						kiloNotificationService: {
-							setNotificationCallback: vi.fn(),
-							clearNotificationCallback: vi.fn(),
-						},
-					}),
-					// kilocode_change end
 				}
 
 				// Get the mocked delay function
@@ -1285,14 +1268,6 @@ describe("Cline", () => {
 						globalStorageUri: { fsPath: "/test/storage" },
 					},
 					getState: vi.fn(),
-					// kilocode_change start
-					getMcpHub: vi.fn().mockReturnValue({
-						kiloNotificationService: {
-							setNotificationCallback: vi.fn(),
-							clearNotificationCallback: vi.fn(),
-						},
-					}),
-					// kilocode_change end
 				}
 			})
 
