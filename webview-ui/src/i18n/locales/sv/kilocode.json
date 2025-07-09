@@ -119,6 +119,7 @@
 		"restoreAndSend": "Återställ & Skicka"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "Ny här?",
 		"suggestionText": "<suggestionButton>Klicka här</suggestionButton> för en cool idé, tryck sedan på <sendIcon /> och titta på mig göra magi!",
 		"ideas": {
 			"idea1": "Skapa en roterande, glödande 3D-sfär som reagerar på musrörelser. Få appen att fungera i webbläsaren.",

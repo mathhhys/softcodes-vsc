@@ -119,6 +119,7 @@
 		"restoreAndSend": "استرجاع وإرسال"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "جديد هنا؟",
 		"suggestionText": "<suggestionButton>اضغط هنا</suggestionButton> للحصول على فكرة رائعة، ثم انقر على <sendIcon /> وشاهدني أعمل السحر!",
 		"ideas": {
 			"idea1": "اصنع كرة ثلاثية الأبعاد دوارة ومتوهجة تتفاعل مع حركات الماوس. اجعل التطبيق يعمل في المتصفح.",

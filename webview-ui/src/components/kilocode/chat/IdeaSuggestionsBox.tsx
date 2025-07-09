@@ -17,6 +17,7 @@ export const IdeaSuggestionsBox = () => {
 
 	return (
 		<div className="mt-4 p-3 bg-vscode-input-background rounded border border-vscode-panel-border">
+			<p className="text-sm text-vscode-descriptionForeground font-bold">{t("ideaSuggestionsBox.newHere")}</p>
 			<p className="text-sm text-vscode-descriptionForeground">
 				<Trans
 					i18nKey="kilocode:ideaSuggestionsBox.suggestionText"

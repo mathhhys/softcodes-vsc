@@ -119,6 +119,7 @@
 		"restoreAndSend": "คืนค่าและส่ง"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "มาใหม่ใช่ไหม?",
 		"suggestionText": "<suggestionButton>คลิกที่นี่</suggestionButton> สำหรับไอเดียเจ๋งๆ จากนั้นแตะ <sendIcon /> และดูฉันทำมายากล!",
 		"ideas": {
 			"idea1": "สร้างทรงกลม 3D ที่หมุนและเรืองแสงที่ตอบสนองต่อการเคลื่อนไหวของเมาส์ ทำให้แอปทำงานในเบราว์เซอร์",

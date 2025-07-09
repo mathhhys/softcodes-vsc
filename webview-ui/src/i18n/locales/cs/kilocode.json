@@ -119,6 +119,7 @@
 		"restoreAndSend": "Obnovit a odeslat"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "Nový tady?",
 		"suggestionText": "<suggestionButton>Klikni sem</suggestionButton> pro skvělý nápad, pak klikni na <sendIcon /> a sleduj mě, jak dělám zázraky!",
 		"ideas": {
 			"idea1": "Vytvoř rotující, zářící 3D kouli, která reaguje na pohyby myši. Udělej aplikaci funkční v prohlížeči.",

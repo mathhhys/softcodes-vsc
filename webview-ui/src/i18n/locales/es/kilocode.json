@@ -119,6 +119,7 @@
 		"restoreAndSend": "Restaurar y Enviar"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "¿Nuevo aquí?",
 		"suggestionText": "<suggestionButton>Haz clic aquí</suggestionButton> para una idea genial, luego toca <sendIcon /> y ¡mira cómo hago magia!",
 		"ideas": {
 			"idea1": "Crea una esfera 3D giratoria y brillante que responda a los movimientos del ratón. Haz que la aplicación funcione en el navegador.",

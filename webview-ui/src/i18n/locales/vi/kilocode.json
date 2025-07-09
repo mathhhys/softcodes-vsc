@@ -119,6 +119,7 @@
 		"restoreAndSend": "Khôi phục & Gửi"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "Mới ở đây?",
 		"suggestionText": "<suggestionButton>Nhấp vào đây</suggestionButton> để có một ý tưởng tuyệt vời, sau đó chạm vào <sendIcon /> và xem tôi làm phép thuật!",
 		"ideas": {
 			"idea1": "Tạo một hình cầu 3D quay và phát sáng phản ứng với chuyển động chuột. Làm cho ứng dụng hoạt động trong trình duyệt.",

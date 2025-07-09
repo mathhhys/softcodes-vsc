@@ -119,6 +119,7 @@
 		"restoreAndSend": "Ibalik at Ipadala"
 	},
 	"ideaSuggestionsBox": {
+		"newHere": "Bago dito?",
 		"suggestionText": "<suggestionButton>I-click dito</suggestionButton> para sa isang magandang ideya, pagkatapos i-tap ang <sendIcon /> at panoorin mo akong gumawa ng mahika!",
 		"ideas": {
 			"idea1": "Gumawa ng umiikot, kumikinang na 3D sphere na tumutuon sa mga galaw ng mouse. Gawing gumagana ang app sa browser.",
