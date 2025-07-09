@@ -17,7 +17,7 @@
 	"startCustom": "Lub możesz użyć własnego klucza API:",
 	"telemetry": {
 		"title": "Pomóż ulepszyć Kilo Code",
-		"anonymousTelemetry": "Wyślij anonimowe dane o błędach i użyciu, aby pomóc nam w naprawianiu błędów i ulepszaniu rozszerzenia. Nigdy nie są wysyłane żadne kody, teksty ani informacje osobiste.",
+		"anonymousTelemetry": "Wyślij dane o błędach i użyciu, aby pomóc nam w naprawianiu błędów i ulepszaniu rozszerzenia. Nigdy nie są wysyłane żadne kody, prompts ani informacje osobiste.",
 		"changeSettings": "Zawsze możesz to zmienić na dole <settingsLink>ustawień</settingsLink>",
 		"settings": "ustawienia",
 		"allow": "Zezwól",

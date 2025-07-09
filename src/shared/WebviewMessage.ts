@@ -281,6 +281,7 @@ export interface WebviewMessage {
 
 // kilocode_change begin
 export type ProfileData = {
+	kilocodeToken: string
 	user: {
 		id: string
 		name: string

@@ -20,6 +20,8 @@ class TelemetryClient {
 				capture_pageleave: false,
 				autocapture: false,
 			})
+
+			posthog.identify(distinctId) // kilocode_change: loaded above only works the first time
 		} else {
 			TelemetryClient.telemetryEnabled = false
 		}

@@ -17,7 +17,7 @@
 	"startCustom": "O pots utilitzar la teva pròpia clau API:",
 	"telemetry": {
 		"title": "Ajuda a millorar Kilo Code",
-		"anonymousTelemetry": "Envia dades d'ús i errors anònims per ajudar-nos a corregir errors i millorar l'extensió. No s'envia mai cap codi, text o informació personal.",
+		"anonymousTelemetry": "Envia dades d'errors i ús per ajudar-nos a corregir errors i millorar l'extensió. No s'envia mai cap codi, prompts o informació personal.",
 		"changeSettings": "Sempre pots canviar això a la part inferior de la <settingsLink>configuració</settingsLink>",
 		"settings": "configuració",
 		"allow": "Permetre",

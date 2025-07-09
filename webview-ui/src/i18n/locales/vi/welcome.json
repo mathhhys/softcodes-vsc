@@ -17,7 +17,7 @@
 	"startCustom": "Hoặc bạn có thể sử dụng khóa API của riêng mình:",
 	"telemetry": {
 		"title": "Giúp cải thiện Kilo Code",
-		"anonymousTelemetry": "Gửi dữ liệu lỗi và sử dụng ẩn danh để giúp chúng tôi sửa lỗi và cải thiện tiện ích mở rộng. Không bao giờ gửi mã, lời nhắc hoặc thông tin cá nhân.",
+		"anonymousTelemetry": "Gửi dữ liệu lỗi và sử dụng để giúp chúng tôi sửa lỗi và cải thiện tiện ích mở rộng. Không bao giờ gửi mã, prompts hoặc thông tin cá nhân.",
 		"changeSettings": "Bạn luôn có thể thay đổi điều này ở cuối phần <settingsLink>cài đặt</settingsLink>",
 		"settings": "cài đặt",
 		"allow": "Cho phép",
