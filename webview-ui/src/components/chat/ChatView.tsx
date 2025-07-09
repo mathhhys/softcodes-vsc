@@ -1588,7 +1588,6 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 						/>
 
 						<RooHero /> */}
-
 						{/* Show the task history preview if expanded and tasks exist */}
 						{taskHistory.length > 0 && isExpanded && <HistoryPreview />}
 						<p className="text-vscode-editor-foreground leading-tight font-vscode-font-family text-center text-balance max-w-[380px] mx-auto">
@@ -1603,7 +1602,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 								}}
 							/>
 						</p>
-						<IdeaSuggestionsBox />
+						{taskHistory.length === 0 && <IdeaSuggestionsBox />} {/* kilocode_change */}
 						{/* <RooTips cycle={false} /> kilocode_change: do not show */}
 					</div>
 				</div>
