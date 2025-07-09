@@ -17,7 +17,7 @@
 	"startCustom": "Atau Anda dapat menggunakan API key Anda sendiri:",
 	"telemetry": {
 		"title": "Bantu Tingkatkan Kilo Code",
-		"anonymousTelemetry": "Kirim data error dan penggunaan anonim untuk membantu kami memperbaiki bug dan meningkatkan ekstensi. Tidak ada kode, prompt, atau informasi pribadi yang pernah dikirim.",
+		"anonymousTelemetry": "Kirim data error dan penggunaan untuk membantu kami memperbaiki bug dan meningkatkan ekstensi. Tidak ada kode, prompts, atau informasi pribadi yang pernah dikirim.",
 		"changeSettings": "Anda selalu dapat mengubah ini di bagian bawah <settingsLink>pengaturan</settingsLink>",
 		"settings": "pengaturan",
 		"allow": "Izinkan",

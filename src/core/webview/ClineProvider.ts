@@ -905,6 +905,8 @@ export class ClineProvider
 				if (task) {
 					task.api = buildApiHandler(providerSettings)
 				}
+
+				await TelemetryService.instance.updateIdentity(providerSettings.kilocodeToken ?? "") // kilocode_change
 			} else {
 				await this.updateGlobalState("listApiConfigMeta", await this.providerSettingsManager.listConfig())
 			}
@@ -968,6 +970,7 @@ export class ClineProvider
 		}
 
 		await this.postStateToWebview()
+		await TelemetryService.instance.updateIdentity(providerSettings.kilocodeToken ?? "") // kilocode_change
 	}
 
 	// Task Management

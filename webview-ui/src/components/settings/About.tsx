@@ -38,8 +38,7 @@ export const About = ({ telemetrySetting, setTelemetrySetting, className, ...pro
 			</SectionHeader>
 
 			<Section>
-				{/* kilocode_change: inactive for now */}
-				<div style={{ display: "none" }}>
+				<div>
 					<VSCodeCheckbox
 						checked={telemetrySetting === "enabled"}
 						onChange={(e: any) => {
