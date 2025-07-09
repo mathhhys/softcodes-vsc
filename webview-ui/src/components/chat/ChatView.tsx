@@ -46,6 +46,7 @@ import SystemPromptWarning from "./SystemPromptWarning"
 import { showSystemNotification } from "@/kilocode/helpers" // kilocode_change
 // import ProfileViolationWarning from "./ProfileViolationWarning" kilocode_change: unused
 import { CheckpointWarning } from "./CheckpointWarning"
+import { IdeaSuggestionsBox } from "../kilocode/chat/IdeaSuggestionsBox" // kilocode_change
 
 export interface ChatViewProps {
 	isHidden: boolean
@@ -1602,6 +1603,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 								}}
 							/>
 						</p>
+						<IdeaSuggestionsBox />
 						{/* <RooTips cycle={false} /> kilocode_change: do not show */}
 					</div>
 				</div>
