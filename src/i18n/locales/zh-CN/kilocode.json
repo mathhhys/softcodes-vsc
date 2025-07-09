@@ -43,16 +43,16 @@
 		"activated": "Kilo: 提交信息生成器已启动",
 		"gitNotFound": "⚠️ Git 仓库未找到或 git 不可用",
 		"gitInitError": "⚠️ Git 初始化错误：{{error}}",
-		"generating": "Kilo：正在生成提交信息...",
-		"noChanges": "Kilo：未发现可分析的更改",
+		"generating": "Kilo: 正在生成提交信息...",
+		"noChanges": "Kilo: 未发现可分析的更改",
 		"generated": "Kilo: 已生成提交信息！",
 		"generationFailed": "Kilo：生成提交信息失败：{{errorMessage}}",
 		"generatingFromUnstaged": "Kilo：使用未暂存的更改生成消息"
 	},
 	"autocomplete": {
 		"statusBar": {
-			"warning": "$(warning) KiloCode自动补全",
-			"enabled": "$(sparkle) KiloCode自动补全",
+			"warning": "$(warning) Kilo自动补全",
+			"enabled": "$(sparkle) Kilo自动补全",
 			"disabled": "$(circle-slash) Kilo自动补全已禁用",
 			"tooltip": {
 				"disabled": "Kilo自动补全（已禁用）",
