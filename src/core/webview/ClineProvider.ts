@@ -1481,7 +1481,7 @@ export class ClineProvider
 			followupAutoApproveTimeoutMs,
 		} = await this.getState()
 
-		const telemetryKey = process.env.POSTHOG_API_KEY
+		const telemetryKey = process.env.KILOCODE_POSTHOG_API_KEY
 		const machineId = vscode.env.machineId
 
 		const mergedAllowedCommands = this.mergeAllowedCommands(allowedCommands)
