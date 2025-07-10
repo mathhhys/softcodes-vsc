@@ -48,5 +48,25 @@
 		"generated": "Kilo: Zpráva byla vygenerována!",
 		"generationFailed": "Kilo: Nepodařilo se vygenerovat zprávu commitu: {{errorMessage}}",
 		"generatingFromUnstaged": "Kilo: Generování zprávy s použitím nenapojených změn"
+	},
+	"autocomplete": {
+		"statusBar": {
+			"enabled": "$(sparkle) Kilo Dokončeno",
+			"disabled": "$(circle-slash) Kilo Dokončeno",
+			"tooltip": {
+				"tokenError": "Pro použití automatického dokončování musí být nastaven platný token",
+				"basic": "Kilo Code Autocomplete",
+				"lastCompletion": "Poslední dokončení:",
+				"model": "Model:",
+				"sessionTotal": "Celkové náklady na relaci:",
+				"disabled": "Kilo Code Autocomplete (deaktivováno)"
+			},
+			"warning": "$(warning) Kilo Hotovo",
+			"cost": {
+				"zero": "0,00 Kč",
+				"lessThanCent": "<0,01 $"
+			}
+		},
+		"toggleMessage": "Kilo hotovo {{status}}"
 	}
 }

@@ -48,5 +48,25 @@
 		"generated": "Kilo: Commitbericht gegenereerd!",
 		"generationFailed": "Kilo: Mislukt bij het genereren van een commit-bericht: {{errorMessage}}",
 		"generatingFromUnstaged": "Kilo: Bericht genereren met niet-gecommitteerde wijzigingen"
+	},
+	"autocomplete": {
+		"statusBar": {
+			"enabled": "$(sparkle) Kilo Voltooid",
+			"warning": "$(warning) Kilo Voltooid",
+			"tooltip": {
+				"basic": "Kilo Code Automatische Aanvulling",
+				"tokenError": "Een geldige token moet ingesteld worden om automatisch aanvullen te gebruiken",
+				"disabled": "Kilo Code Automatisch aanvullen (uitgeschakeld)",
+				"lastCompletion": "Laatste voltooiing:",
+				"sessionTotal": "Totale sessiekosten:",
+				"model": "Model:"
+			},
+			"disabled": "$(circle-slash) Kilo Voltooid",
+			"cost": {
+				"zero": "€ 0,00",
+				"lessThanCent": "<€0,01"
+			}
+		},
+		"toggleMessage": "Kilo Voltooid {{status}}"
 	}
 }

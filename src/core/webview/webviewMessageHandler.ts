@@ -131,6 +131,14 @@ export const webviewMessageHandler = async (
 					),
 				)
 
+			// If user already opted in to telemetry, enable telemetry service
+			provider.getStateToPostToWebview().then(async (/*kilocode_change*/ state) => {
+				const { telemetrySetting } = state
+				const isOptedIn = telemetrySetting === "enabled"
+				TelemetryService.instance.updateTelemetryState(isOptedIn)
+				await TelemetryService.instance.updateIdentity(state.apiConfiguration.kilocodeToken ?? "") // kilocode_change
+			})
+
 			provider.isViewLaunched = true
 			break
 		case "newTask":
@@ -1219,6 +1227,10 @@ export const webviewMessageHandler = async (
 			await updateGlobalState("commitMessageApiConfigId", message.text)
 			await provider.postStateToWebview()
 			break
+		case "autocompleteApiConfigId":
+			await updateGlobalState("autocompleteApiConfigId", message.text)
+			await provider.postStateToWebview()
+			break
 		// kilocode_change end
 		case "condensingApiConfigId":
 			await updateGlobalState("condensingApiConfigId", message.text)
@@ -1830,7 +1842,7 @@ export const webviewMessageHandler = async (
 
 				provider.postMessageToWebview({
 					type: "profileDataResponse", // Assuming this response type is still appropriate for /api/profile
-					payload: { success: true, data: response.data },
+					payload: { success: true, data: { kilocodeToken, ...response.data } },
 				})
 			} catch (error: any) {
 				const errorMessage =

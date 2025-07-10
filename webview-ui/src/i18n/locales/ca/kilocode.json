@@ -23,6 +23,7 @@
 			"mcp": "Servidors MCP"
 		},
 		"provider": {
+			"account": "Compte de Kilo Code",
 			"apiKey": "Clau API de Kilo Code",
 			"login": "Iniciar sessió a Kilo Code",
 			"logout": "Tancar sessió de Kilo Code"

@@ -25,6 +25,7 @@ import { useAddNonInteractiveClickListener } from "./components/ui/hooks/useNonI
 import { KiloCodeErrorBoundary } from "./kilocode/KiloCodeErrorBoundary"
 import { TooltipProvider } from "./components/ui/tooltip"
 import { STANDARD_TOOLTIP_DELAY } from "./components/ui/standard-tooltip"
+import { useKiloIdentity } from "./utils/kilocode/useKiloIdentity"
 
 type Tab = "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account" | "profile" // kilocode_change: add "profile"
 
@@ -44,13 +45,14 @@ const App = () => {
 		didHydrateState,
 		showWelcome,
 		shouldShowAnnouncement,
-		// telemetrySetting, // kilocode_change not used
-		// telemetryKey, // kilocode_change not used
-		// machineId, // kilocode_change not used
+		telemetrySetting,
+		telemetryKey,
+		machineId,
 		// cloudUserInfo, // kilocode_change not used
 		// cloudIsAuthenticated, // kilocode_change not used
 		renderContext,
 		mdmCompliant,
+		apiConfiguration, // kilocode_change
 	} = useExtensionState()
 
 	// Create a persistent state manager
@@ -150,6 +152,15 @@ const App = () => {
 			vscode.postMessage({ type: "didShowAnnouncement" })
 		}
 	}, [shouldShowAnnouncement])
+
+	// kilocode_change start
+	const telemetryDistinctId = useKiloIdentity(apiConfiguration?.kilocodeToken ?? "", machineId ?? "")
+	useEffect(() => {
+		if (didHydrateState) {
+			telemetryClient.updateTelemetryState(telemetrySetting, telemetryKey, telemetryDistinctId)
+		}
+	}, [telemetrySetting, telemetryKey, telemetryDistinctId, didHydrateState])
+	// kilocode_change end
 
 	// Tell the extension that we are ready to receive messages.
 	useEffect(() => vscode.postMessage({ type: "webviewDidLaunch" }), [])

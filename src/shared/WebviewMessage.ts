@@ -137,6 +137,7 @@ export interface WebviewMessage {
 		| "systemPrompt"
 		| "enhancementApiConfigId"
 		| "commitMessageApiConfigId" // kilocode_change
+		| "autocompleteApiConfigId" // kilocode_change
 		| "updateExperimental"
 		| "autoApprovalEnabled"
 		| "updateCustomMode"
@@ -280,6 +281,7 @@ export interface WebviewMessage {
 
 // kilocode_change begin
 export type ProfileData = {
+	kilocodeToken: string
 	user: {
 		id: string
 		name: string

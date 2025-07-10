@@ -3,9 +3,11 @@ import * as vscode from "vscode"
 import { ContextProxy } from "../../core/config/ContextProxy"
 import { ProviderSettingsManager } from "../../core/config/ProviderSettingsManager"
 import { singleCompletionHandler } from "../../utils/single-completion-handler"
-import { GitExtensionService, GitChange } from "./GitExtensionService"
+import { GitExtensionService, GitChange, GitProgressOptions } from "./GitExtensionService"
 import { supportPrompt } from "../../shared/support-prompt"
 import { t } from "../../i18n"
+import { addCustomInstructions } from "../../core/prompts/sections/custom-instructions"
+import { getWorkspacePath } from "../../utils/path"
 import type { ProviderSettings } from "@roo-code/types"
 
 /**
@@ -79,8 +81,25 @@ export class CommitMessageProvider {
 						}
 					}
 
-					const gitContextString = await this.gitService.getCommitContext(changes, { staged })
-					progress.report({ increment: 50, message: t("kilocode:commitMessage.generating") })
+					// Report initial progress after gathering changes (10% of total)
+					progress.report({ increment: 10, message: t("kilocode:commitMessage.generating") })
+
+					// Track progress for diff collection (70% of total progress)
+					let lastReportedProgress = 0
+					const onDiffProgress = (percentage: number) => {
+						const currentProgress = (percentage / 100) * 70
+						const increment = currentProgress - lastReportedProgress
+						if (increment > 0) {
+							progress.report({ increment, message: t("kilocode:commitMessage.generating") })
+							lastReportedProgress = currentProgress
+						}
+					}
+
+					const gitContextString = await this.gitService.getCommitContext(changes, {
+						staged,
+						onProgress: onDiffProgress,
+					})
+					progress.report({ increment: 10, message: t("kilocode:commitMessage.generating") })
 
 					const generatedMessage = await this.callAIForCommitMessage(gitContextString)
 					this.gitService.setCommitMessage(generatedMessage)
@@ -89,8 +108,7 @@ export class CommitMessageProvider {
 					this.previousGitContext = gitContextString
 					this.previousCommitMessage = generatedMessage
 
-					progress.report({ increment: 100, message: "Complete!" })
-					vscode.window.showInformationMessage(t("kilocode:commitMessage.generated"))
+					progress.report({ increment: 10, message: t("kilocode:commitMessage.generated") })
 				} catch (error) {
 					const errorMessage = error instanceof Error ? error.message : "Unknown error occurred"
 					vscode.window.showErrorMessage(t("kilocode:commitMessage.generationFailed", { errorMessage }))
@@ -131,7 +149,7 @@ export class CommitMessageProvider {
 			}
 		}
 
-		const prompt = this.buildCommitMessagePrompt(gitContextString, customSupportPrompts)
+		const prompt = await this.buildCommitMessagePrompt(gitContextString, customSupportPrompts)
 
 		const response = await singleCompletionHandler(configToUse, prompt)
 
@@ -142,7 +160,26 @@ export class CommitMessageProvider {
 	 * Builds the AI prompt for commit message generation.
 	 * Handles logic for generating different messages when requested for the same changes.
 	 */
-	private buildCommitMessagePrompt(gitContextString: string, customSupportPrompts: Record<string, any>): string {
+	private async buildCommitMessagePrompt(
+		gitContextString: string,
+		customSupportPrompts: Record<string, any>,
+	): Promise<string> {
+		// Load custom instructions including rules
+		const workspacePath = getWorkspacePath()
+		const customInstructions = workspacePath
+			? await addCustomInstructions(
+					"", // no mode-specific instructions for commit
+					"", // no global custom instructions
+					workspacePath,
+					"commit", // mode for commit-specific rules
+					{
+						language: vscode.env.language,
+						localRulesToggleState: this.context.workspaceState.get("localRulesToggles"),
+						globalRulesToggleState: this.context.globalState.get("globalRulesToggles"),
+					},
+				)
+			: ""
+
 		// Check if we should generate a different message than the previous one
 		const shouldGenerateDifferentMessage =
 			this.previousGitContext === gitContextString && this.previousCommitMessage !== null
@@ -170,14 +207,24 @@ FINAL REMINDER: Your message MUST be COMPLETELY DIFFERENT from the previous mess
 
 			return supportPrompt.create(
 				"COMMIT_MESSAGE",
-				{ gitContext: gitContextString },
+				{
+					gitContext: gitContextString,
+					customInstructions: customInstructions || "",
+				},
 				{
 					...customSupportPrompts,
 					COMMIT_MESSAGE: modifiedTemplate,
 				},
 			)
 		} else {
-			return supportPrompt.create("COMMIT_MESSAGE", { gitContext: gitContextString }, customSupportPrompts)
+			return supportPrompt.create(
+				"COMMIT_MESSAGE",
+				{
+					gitContext: gitContextString,
+					customInstructions: customInstructions || "",
+				},
+				customSupportPrompts,
+			)
 		}
 	}
 

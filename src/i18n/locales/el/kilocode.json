@@ -48,5 +48,25 @@
 		"generated": "Kilo: Το μήνυμα commit δημιουργήθηκε!",
 		"generationFailed": "Kilo: Αποτυχία δημιουργίας μηνύματος commit: {{errorMessage}}",
 		"generatingFromUnstaged": "Κιλό: Δημιουργία μηνύματος με χρήση μη καταχωρημένων αλλαγών"
+	},
+	"autocomplete": {
+		"statusBar": {
+			"warning": "$(warning) Κίλο Ολοκληρώθηκε",
+			"enabled": "$(sparkle) Κιλό Ολοκληρώθηκε",
+			"tooltip": {
+				"basic": "Αυτόματη Συμπλήρωση Κώδικα Kilo",
+				"tokenError": "Πρέπει να οριστεί ένα έγκυρο διακριτικό για να χρησιμοποιηθεί η αυτόματη συμπλήρωση",
+				"disabled": "Αυτόματη Συμπλήρωση Kilo Code (απενεργοποιημένη)",
+				"sessionTotal": "Συνολικό κόστος συνεδρίας:",
+				"lastCompletion": "Τελευταία ολοκλήρωση:",
+				"model": "Μοντέλο:"
+			},
+			"disabled": "$(circle-slash) Kilo Ολοκληρώθηκε",
+			"cost": {
+				"lessThanCent": "<0,01$",
+				"zero": "0,00 €"
+			}
+		},
+		"toggleMessage": "Κιλό Ολοκληρώθηκε {{status}}"
 	}
 }

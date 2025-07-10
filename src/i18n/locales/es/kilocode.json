@@ -48,5 +48,25 @@
 		"generated": "Kilo: ¡Mensaje de commit generado!",
 		"generationFailed": "Kilo: Error al generar mensaje de confirmación: {{errorMessage}}",
 		"generatingFromUnstaged": "Kilo: Generando mensaje usando cambios no preparados"
+	},
+	"autocomplete": {
+		"statusBar": {
+			"enabled": "$(sparkle) Kilo Completado",
+			"disabled": "$(circle-slash) Kilo Completo",
+			"warning": "$(warning) Kilo Completo",
+			"tooltip": {
+				"disabled": "Autocompletar de Kilo Code (desactivado)",
+				"basic": "Autocompletado de Kilo Code",
+				"sessionTotal": "Costo total de la sesión:",
+				"lastCompletion": "Última finalización:",
+				"tokenError": "Se debe establecer un token válido para usar el autocompletado",
+				"model": "Modelo:"
+			},
+			"cost": {
+				"zero": "$0,00",
+				"lessThanCent": "<$0.01"
+			}
+		},
+		"toggleMessage": "Kilo Completo {{status}}"
 	}
 }

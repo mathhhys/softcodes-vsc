@@ -23,6 +23,7 @@
 			"mcp": "خوادم MCP"
 		},
 		"provider": {
+			"account": "حساب Kilo Code",
 			"apiKey": "مفتاح Kilo Code API",
 			"login": "سجّل دخولك في Kilo Code",
 			"logout": "تسجيل الخروج من Kilo Code"

@@ -2,6 +2,7 @@ import cloneDeep from "clone-deep"
 import { serializeError } from "serialize-error"
 
 import type { ToolName, ClineAsk, ToolProgressStatus } from "@roo-code/types"
+import { TelemetryService } from "@roo-code/telemetry"
 
 import { defaultModeSlug, getModeBySlug } from "../../shared/modes"
 import type { ToolParamName, ToolResponse } from "../../shared/tools"
@@ -355,6 +356,7 @@ export async function presentAssistantMessage(cline: Task) {
 
 			if (!block.partial) {
 				cline.recordToolUsage(block.name)
+				TelemetryService.instance.captureToolUsage(cline.taskId, block.name)
 			}
 
 			// Validate tool use before execution.
@@ -400,6 +402,9 @@ export async function presentAssistantMessage(cline: Task) {
 
 						// Add user feedback to chat.
 						await cline.say("user_feedback", text, images)
+
+						// Track tool repetition in telemetry.
+						TelemetryService.instance.captureConsecutiveMistakeError(cline.taskId)
 					}
 
 					// Return tool result message about the repetition
@@ -585,13 +590,29 @@ export async function presentAssistantMessage(cline: Task) {
 		if (cline.currentStreamingContentIndex < cline.assistantMessageContent.length) {
 			// There are already more content blocks to stream, so we'll call
 			// this function ourselves.
-			presentAssistantMessage(cline)
+			// kilocode_change start
+			try {
+				// Prevent lock the main thread
+				await new Promise((resolve) => setTimeout(resolve, 0))
+				await presentAssistantMessage(cline)
+			} catch (error) {
+				console.error(`Error in recursive presentAssistantMessage call: ${error.message}`)
+			}
+			// kilocode_change end
 			return
 		}
 	}
 
 	// Block is partial, but the read stream may have finished.
 	if (cline.presentAssistantMessageHasPendingUpdates) {
-		presentAssistantMessage(cline)
+		// kilocode_change start
+		try {
+			// Prevent lock the main thread
+			await new Promise((resolve) => setTimeout(resolve, 0))
+			await presentAssistantMessage(cline)
+		} catch (error) {
+			console.error(`Error in pending updates presentAssistantMessage call: ${error.message}`)
+		}
+		// kilocode_change end
 	}
 }
