@@ -95,6 +95,12 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 	}
 
 	// kilocode_change start
+	public override captureException(error: Error, properties?: Record<string | number, unknown>): void {
+		if (this.isTelemetryEnabled()) {
+			this.client.captureException(error, this.distinctId, properties)
+		}
+	}
+
 	private counter = 0
 	private kilocodeToken = ""
 
