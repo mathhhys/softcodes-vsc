@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.55.3
-
-### Patch Changes
+## [v4.55.3]
 
 - [#1238](https://github.com/Kilo-Org/kilocode/pull/1238) [`c0b075c`](https://github.com/Kilo-Org/kilocode/commit/c0b075cd73557f2a3af1a12fcf237f66ece97f34) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Add Grok 4 support (thanks @mrubens!)
 
