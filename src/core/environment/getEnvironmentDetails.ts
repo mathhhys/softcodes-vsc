@@ -233,7 +233,7 @@ export async function getEnvironmentDetails(cline: Task, includeFileDetails: boo
 		language: language ?? formatLanguage(vscode.env.language),
 	})
 
-	const currentMode = modeDetails.slug // kilocode_change: don't try to use non-existent modes
+	const currentMode = modeDetails.slug ?? mode // kilocode_change: don't try to use non-existent modes
 
 	details += `\n\n# Current Mode\n`
 	details += `<slug>${currentMode}</slug>\n`
