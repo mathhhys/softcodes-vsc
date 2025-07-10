@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.55.1
-
-### Patch Changes
+## [v4.55.1]
 
 - [#885](https://github.com/Kilo-Org/kilocode/pull/885) [`02288f5`](https://github.com/Kilo-Org/kilocode/commit/02288f5ca7fde811a0477ba99b6d4c33dc239afb) Thanks [@catrielmuller](https://github.com/catrielmuller)! - Improve UI responsiveness when the user cancel the current operation
 
