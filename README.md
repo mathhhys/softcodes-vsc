@@ -30,7 +30,7 @@
 
 - **Code Generation:** Generate code using natural language.
 - **Task Automation:** Automate repetitive coding tasks.
-- **Automated Refactoring:**: Refactor and improve existing code.
+- **Automated Refactoring:** Refactor and improve existing code.
 - **MCP Server Marketplace**: Easily find, and use MCP servers to extend the agent capabilities.
 - **Multi Mode**: Plan with Architect, Code with Coder, and Debug with Debugger, and make your own custom modes.
 
