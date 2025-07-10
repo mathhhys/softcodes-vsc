@@ -1412,13 +1412,7 @@ export class Task extends EventEmitter<ClineEvents> {
 							}
 
 							// Present content to user.
-							// kilocode_change start
-							try {
-								await presentAssistantMessage(this)
-							} catch (error) {
-								console.error(`Error presenting assistant message: ${error.message}`)
-							}
-							// kilocode_change end
+							presentAssistantMessage(this)
 							break
 						}
 					}
@@ -1535,13 +1529,7 @@ export class Task extends EventEmitter<ClineEvents> {
 				// `pWaitFor` before making the next request. All this is really
 				// doing is presenting the last partial message that we just set
 				// to complete.
-				// kilocode_change start
-				try {
-					await presentAssistantMessage(this)
-				} catch (error) {
-					console.error(`Error presenting assistant message: ${error.message}`)
-				}
-				// kilocode_change end
+				presentAssistantMessage(this)
 			}
 
 			updateApiReqMsg()

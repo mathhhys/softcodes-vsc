@@ -590,29 +590,13 @@ export async function presentAssistantMessage(cline: Task) {
 		if (cline.currentStreamingContentIndex < cline.assistantMessageContent.length) {
 			// There are already more content blocks to stream, so we'll call
 			// this function ourselves.
-			// kilocode_change start
-			try {
-				// Prevent lock the main thread
-				await new Promise((resolve) => setTimeout(resolve, 0))
-				await presentAssistantMessage(cline)
-			} catch (error) {
-				console.error(`Error in recursive presentAssistantMessage call: ${error.message}`)
-			}
-			// kilocode_change end
+			presentAssistantMessage(cline)
 			return
 		}
 	}
 
 	// Block is partial, but the read stream may have finished.
 	if (cline.presentAssistantMessageHasPendingUpdates) {
-		// kilocode_change start
-		try {
-			// Prevent lock the main thread
-			await new Promise((resolve) => setTimeout(resolve, 0))
-			await presentAssistantMessage(cline)
-		} catch (error) {
-			console.error(`Error in pending updates presentAssistantMessage call: ${error.message}`)
-		}
-		// kilocode_change end
+		presentAssistantMessage(cline)
 	}
 }
