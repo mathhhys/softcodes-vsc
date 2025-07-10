@@ -47,6 +47,10 @@ export class TelemetryService {
 	}
 
 	// kilocode_change start
+	public captureException(error: Error, properties?: Record<string | number, unknown>): void {
+		this.clients.forEach((client) => client.captureException(error, properties))
+	}
+
 	public async updateIdentity(kilocodeToken: string) {
 		for (const client of this.clients) {
 			await client.updateIdentity(kilocodeToken)

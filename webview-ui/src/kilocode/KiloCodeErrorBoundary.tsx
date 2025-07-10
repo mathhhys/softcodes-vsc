@@ -22,7 +22,7 @@ export class KiloCodeErrorBoundary extends React.Component<Props, State> {
 	}
 
 	componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-		telemetryClient.captureError(error, { errorInfo })
+		telemetryClient.captureException(error, { context: "react_error_boundary", errorInfo })
 	}
 
 	render() {
