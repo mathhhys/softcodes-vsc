@@ -1,5 +1,9 @@
 # kilo-code
 
+## [v4.55.3]
+
+- [#1238](https://github.com/Kilo-Org/kilocode/pull/1238) [`c0b075c`](https://github.com/Kilo-Org/kilocode/commit/c0b075cd73557f2a3af1a12fcf237f66ece97f34) Thanks [@kevinvandijk](https://github.com/kevinvandijk)! - Add Grok 4 support (thanks @mrubens!)
+
 ## [v4.55.2]
 
 - [#1183](https://github.com/Kilo-Org/kilocode/pull/1183) [`e3ba400`](https://github.com/Kilo-Org/kilocode/commit/e3ba400e17254a53b6be2147f70c4d107bdda576) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - The default mode is now automatically selected if the previous mode doesn't exist anymore (this can happen with custom modes).
