@@ -1,5 +1,11 @@
 # kilo-code
 
+## [v4.55.1]
+
+- [#885](https://github.com/Kilo-Org/kilocode/pull/885) [`02288f5`](https://github.com/Kilo-Org/kilocode/commit/02288f5ca7fde811a0477ba99b6d4c33dc239afb) Thanks [@catrielmuller](https://github.com/catrielmuller)! - Improve UI responsiveness when the user cancel the current operation
+
+- [#1203](https://github.com/Kilo-Org/kilocode/pull/1203) [`5c21b8b`](https://github.com/Kilo-Org/kilocode/commit/5c21b8bcab5d584683c5c643d4075c01cd7265fe) Thanks [@hassoncs](https://github.com/hassoncs)! - Kilocode rules will now be included in the commit message generation prompt
+
 ## [v4.55.0]
 
 - [#1197](https://github.com/Kilo-Org/kilocode/pull/1197) [`2ceb643`](https://github.com/Kilo-Org/kilocode/commit/2ceb643a35f4a4c04680c119b14e0072d273ee13) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Kilo Code now optionally sends error and usage data to help us fix bugs and improve the extension. No code, prompts, or personal information is ever sent. You can always opt-out in the Settings.
