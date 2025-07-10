@@ -1,10 +1,7 @@
 import { cn } from "@/lib/utils"
 
-interface KiloContextWindowProgressTokensUsedProps {
-	highlightNearLimit: boolean
-}
-
-export function KiloContextWindowProgressTokensUsed({ highlightNearLimit }: KiloContextWindowProgressTokensUsedProps) {
+export function KiloContextWindowProgressTokensUsed({ currentPercent }: { currentPercent: number }) {
+	const highlightNearLimit = currentPercent >= 50 // kilocode_change
 	return (
 		<div
 			className={cn(
