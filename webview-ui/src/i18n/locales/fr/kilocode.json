@@ -117,10 +117,5 @@
 		"editCancel": "Annuler",
 		"send": "Envoyer",
 		"restoreAndSend": "Restaurer et Envoyer"
-	},
-	"contextWindow": {
-		"nearLimit": "⚠️ Limite de contexte presque atteinte - {{currentPercent}}% utilisé",
-		"progress": "{{currentPercent}}% du contexte utilisé",
-		"willAutoCondense": "(s'auto-condensera à {{autoCondenseContextPercent}}%)"
 	}
 }
