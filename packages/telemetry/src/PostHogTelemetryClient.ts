@@ -20,7 +20,10 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 		super(
 			{
 				type: "exclude",
-				events: [TelemetryEventName.TASK_MESSAGE, TelemetryEventName.LLM_COMPLETION],
+				events: [
+					TelemetryEventName.TASK_MESSAGE,
+					// TelemetryEventName.LLM_COMPLETION // kilocode_change
+				],
 			},
 			debug,
 		)
