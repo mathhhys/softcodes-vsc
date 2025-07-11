@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.56.2
-
-### Patch Changes
+## [v4.56.2]
 
 - [#1255](https://github.com/Kilo-Org/kilocode/pull/1255) [`acc2aaf`](https://github.com/Kilo-Org/kilocode/commit/acc2aaf4fb56290424db0d6533caee507fedbd5b) Thanks [@catrielmuller](https://github.com/catrielmuller)! - Fix autocomplete init with custom openrouter models
 
