@@ -112,8 +112,6 @@ function runProcess({ systemPrompt, messages, path, modelId }: ClaudeCodeOptions
 
 	const args = [
 		"-p",
-		"--system-prompt",
-		systemPrompt,
 		"--verbose",
 		"--output-format",
 		"stream-json",
@@ -142,16 +140,20 @@ function runProcess({ systemPrompt, messages, path, modelId }: ClaudeCodeOptions
 		timeout: CLAUDE_CODE_TIMEOUT,
 	})
 
-	// Write messages to stdin after process is spawned
-	// This avoids the E2BIG error on Linux when passing large messages as command line arguments
+	// Write system prompt and messages to stdin after process is spawned
+	// This avoids the ENAMETOOLONG error on Windows and E2BIG error on Linux when passing large system prompts as command line arguments
+	// Windows has a command line length limit of ~32,767 characters for CreateProcess API
 	// Linux has a per-argument limit of ~128KiB for execve() system calls
-	const messagesJson = JSON.stringify(messages)
+	const stdinData = JSON.stringify({
+		systemPrompt,
+		messages
+	})
 
 	// Use setImmediate to ensure the process has been spawned before writing to stdin
 	// This prevents potential race conditions where stdin might not be ready
 	setImmediate(() => {
 		try {
-			child.stdin.write(messagesJson, "utf8", (error) => {
+			child.stdin.write(stdinData, "utf8", (error) => {
 				if (error) {
 					console.error("Error writing to Claude Code stdin:", error)
 					child.kill()
