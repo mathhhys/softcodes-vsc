@@ -183,7 +183,18 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 					if (message.requestId === searchRequestId) {
 						setFileSearchResults(message.results || [])
 					}
+					// kilocode_change start
+				} else if (message.type === "insertTextToChatArea") {
+					if (message.text) {
+						setInputValue(message.text)
+						setTimeout(() => {
+							if (textAreaRef.current) {
+								textAreaRef.current.focus()
+							}
+						}, 0)
+					}
 				}
+				// kilocode_change end
 			}
 
 			window.addEventListener("message", messageHandler)
