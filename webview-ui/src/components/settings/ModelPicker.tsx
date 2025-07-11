@@ -78,7 +78,7 @@ export const ModelPicker = ({
 		const restModelIds = []
 		// first add the preferred models
 		for (const [key, model] of Object.entries(models)) {
-			if (model.preferredIndex !== undefined && model.preferredIndex !== null) {
+			if (Number.isInteger(model.preferredIndex)) {
 				preferredModelIds.push(key)
 			}
 		}
@@ -217,10 +217,10 @@ export const ModelPicker = ({
 								<CommandGroup>
 									{/* kilocode_change start */}
 									{modelIds.map((model, i) => {
-										const isPreferred = models?.[model]?.preferredIndex !== null
-										const previousModelWasPreferred =
-											models?.[modelIds[i - 1]]?.preferredIndex !== null
-
+										const isPreferred = Number.isInteger(models?.[model]?.preferredIndex)
+										const previousModelWasPreferred = Number.isInteger(
+											models?.[modelIds[i - 1]]?.preferredIndex,
+										)
 										return (
 											<Fragment key={model}>
 												{!isPreferred && previousModelWasPreferred ? <SelectSeparator /> : null}
