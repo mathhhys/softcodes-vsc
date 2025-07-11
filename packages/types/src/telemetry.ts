@@ -209,7 +209,10 @@ export interface TelemetryClient {
 	setProvider(provider: TelemetryPropertiesProvider): void
 	capture(options: TelemetryEvent): Promise<void>
 	updateTelemetryState(didUserOptIn: boolean): void
-	updateIdentity(kilocodeToken: string): Promise<void> // kilocode_change
+	// kilocode_change start
+	captureException(error: Error, properties?: Record<string | number, unknown>): void
+	updateIdentity(kilocodeToken: string): Promise<void>
+	// kilocode_change end
 	isTelemetryEnabled(): boolean
 	shutdown(): Promise<void>
 }

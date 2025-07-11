@@ -36,7 +36,7 @@ class TelemetryClient {
 	}
 
 	// kilocode_change start
-	public captureError(error: Error, properties?: Record<string, any>) {
+	public captureException(error: Error, properties?: Record<string, any>) {
 		if (TelemetryClient.telemetryEnabled) {
 			try {
 				posthog.captureException(error, properties)

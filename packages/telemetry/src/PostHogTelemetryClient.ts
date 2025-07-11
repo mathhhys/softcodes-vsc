@@ -20,12 +20,15 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 		super(
 			{
 				type: "exclude",
-				events: [TelemetryEventName.TASK_MESSAGE, TelemetryEventName.LLM_COMPLETION],
+				events: [
+					TelemetryEventName.TASK_MESSAGE,
+					// TelemetryEventName.LLM_COMPLETION // kilocode_change
+				],
 			},
 			debug,
 		)
 
-		this.client = new PostHog(process.env.POSTHOG_API_KEY || "", { host: "https://us.i.posthog.com" })
+		this.client = new PostHog(process.env.KILOCODE_POSTHOG_API_KEY || "", { host: "https://us.i.posthog.com" })
 	}
 
 	/**
@@ -92,6 +95,12 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 	}
 
 	// kilocode_change start
+	public override captureException(error: Error, properties?: Record<string | number, unknown>): void {
+		if (this.isTelemetryEnabled()) {
+			this.client.captureException(error, this.distinctId, properties)
+		}
+	}
+
 	private counter = 0
 	private kilocodeToken = ""
 
