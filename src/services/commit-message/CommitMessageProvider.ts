@@ -9,6 +9,7 @@ import { t } from "../../i18n"
 import { addCustomInstructions } from "../../core/prompts/sections/custom-instructions"
 import { getWorkspacePath } from "../../utils/path"
 import type { ProviderSettings } from "@roo-code/types"
+import delay from "delay"
 
 /**
  * Provides AI-powered commit message generation for source control management.
@@ -140,7 +141,14 @@ export class CommitMessageProvider {
 		}, 100)
 
 		try {
-			return await this.callAIForCommitMessage(gitContextString)
+			const message = await this.callAIForCommitMessage(gitContextString)
+
+			// Now, animate the bar to 100% to make it look nicer :)
+			for (let i = 0; i < maxProgress - totalProgressUsed; i++) {
+				progress.report({ increment: 1 })
+				await delay(25)
+			}
+			return message
 		} finally {
 			clearInterval(progressInterval) // Always clear when done
 		}
