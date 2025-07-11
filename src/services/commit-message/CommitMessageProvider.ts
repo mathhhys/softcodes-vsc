@@ -9,6 +9,7 @@ import { t } from "../../i18n"
 import { addCustomInstructions } from "../../core/prompts/sections/custom-instructions"
 import { getWorkspacePath } from "../../utils/path"
 import type { ProviderSettings } from "@roo-code/types"
+import delay from "delay"
 
 /**
  * Provides AI-powered commit message generation for source control management.
@@ -99,16 +100,13 @@ export class CommitMessageProvider {
 						staged,
 						onProgress: onDiffProgress,
 					})
-					progress.report({ increment: 10, message: t("kilocode:commitMessage.generating") })
 
-					const generatedMessage = await this.callAIForCommitMessage(gitContextString)
-					this.gitService.setCommitMessage(generatedMessage)
+					const generatedMessage = await this.callAIForCommitMessageWithProgress(gitContextString, progress)
 
 					// Store the current context and message for future reference
 					this.previousGitContext = gitContextString
 					this.previousCommitMessage = generatedMessage
-
-					progress.report({ increment: 10, message: t("kilocode:commitMessage.generated") })
+					this.gitService.setCommitMessage(generatedMessage)
 				} catch (error) {
 					const errorMessage = error instanceof Error ? error.message : "Unknown error occurred"
 					vscode.window.showErrorMessage(t("kilocode:commitMessage.generationFailed", { errorMessage }))
@@ -116,6 +114,44 @@ export class CommitMessageProvider {
 				}
 			},
 		)
+	}
+
+	private async callAIForCommitMessageWithProgress(
+		gitContextString: string,
+		progress: vscode.Progress<{ increment?: number; message?: string }>,
+	): Promise<string> {
+		let totalProgressUsed = 0
+		const maxProgress = 20 // We have 20% reserved for AI processing
+		const maxIncrement = 1.0 // Start with bigger increments
+		const minIncrement = 0.05 // Minimum increment to keep progress moving
+
+		// Start interval timer to update the progress while we wait for the reponse
+		// Use exponential decay: start with larger increments, decrease as we approach the limit
+		// Formula: increment = remainingProgress^2 * maxIncrement + minIncrement
+		const progressInterval = setInterval(() => {
+			const remainingProgress = (maxProgress - totalProgressUsed) / maxProgress // percentage (0 to 1)
+
+			const incrementLimited = Math.max(
+				remainingProgress * remainingProgress * maxIncrement + minIncrement,
+				minIncrement,
+			)
+			const increment = Math.min(incrementLimited, maxProgress - totalProgressUsed)
+			progress.report({ increment: increment, message: t("kilocode:commitMessage.generating") })
+			totalProgressUsed += increment
+		}, 100)
+
+		try {
+			const message = await this.callAIForCommitMessage(gitContextString)
+
+			// Now, animate the bar to 100% to make it look nicer :)
+			for (let i = 0; i < maxProgress - totalProgressUsed; i++) {
+				progress.report({ increment: 1 })
+				await delay(25)
+			}
+			return message
+		} finally {
+			clearInterval(progressInterval) // Always clear when done
+		}
 	}
 
 	/**
