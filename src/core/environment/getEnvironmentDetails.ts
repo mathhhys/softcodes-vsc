@@ -183,7 +183,11 @@ export async function getEnvironmentDetails(cline: Task, includeFileDetails: boo
 
 	// kilocode_change start
 	const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-	details += `\n\n# Current Time\nCurrent time in ISO 8601 UTC format: ${now.toISOString()}\nUser time zone: ${timeZone}`
+	const timeZoneOffset = -now.getTimezoneOffset() / 60 // Convert to hours and invert sign to match conventional notation
+	const timeZoneOffsetHours = Math.floor(Math.abs(timeZoneOffset))
+	const timeZoneOffsetMinutes = Math.abs(Math.round((Math.abs(timeZoneOffset) - timeZoneOffsetHours) * 60))
+	const timeZoneOffsetStr = `${timeZoneOffset >= 0 ? "+" : "-"}${timeZoneOffsetHours}:${timeZoneOffsetMinutes.toString().padStart(2, "0")}`
+	details += `\n\n# Current Time\nCurrent time in ISO 8601 UTC format: ${now.toISOString()}\nUser time zone: ${timeZone}, UTC${timeZoneOffsetStr}`
 	// kilocode_change end
 
 	// Add context tokens information.
