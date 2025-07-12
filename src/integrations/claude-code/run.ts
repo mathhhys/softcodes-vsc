@@ -3,6 +3,7 @@ import type Anthropic from "@anthropic-ai/sdk"
 import { execa } from "execa"
 import { ClaudeCodeMessage } from "./types"
 import readline from "readline"
+import os from "os" // kilocode_change
 
 const cwd = vscode.workspace.workspaceFolders?.map((folder) => folder.uri.fsPath).at(0)
 
@@ -109,9 +110,11 @@ const CLAUDE_CODE_TIMEOUT = 600000 // 10 minutes
 
 function runProcess({ systemPrompt, messages, path, modelId }: ClaudeCodeOptions) {
 	const claudePath = path || "claude"
+	const isWindows = os.platform() === "win32" // kilocode_change
 
 	const args = [
 		"-p",
+		...(isWindows ? [] : ["--system-prompt", systemPrompt]), // kilocode_change
 		"--verbose",
 		"--output-format",
 		"stream-json",
@@ -140,20 +143,23 @@ function runProcess({ systemPrompt, messages, path, modelId }: ClaudeCodeOptions
 		timeout: CLAUDE_CODE_TIMEOUT,
 	})
 
-	// Write system prompt and messages to stdin after process is spawned
-	// This avoids the ENAMETOOLONG error on Windows and E2BIG error on Linux when passing large system prompts as command line arguments
-	// Windows has a command line length limit of ~32,767 characters for CreateProcess API
+	// Write messages to stdin after process is spawned
+	// This avoids the E2BIG error on Linux when passing large messages as command line arguments
 	// Linux has a per-argument limit of ~128KiB for execve() system calls
-	const stdinData = JSON.stringify({
-		systemPrompt,
-		messages
-	})
+	// kilocode_change start: Windows-specific handling
+	const messagesJson = isWindows
+		? JSON.stringify({
+				systemPrompt,
+				messages,
+			})
+		: JSON.stringify(messages)
+	// kilocode_change end
 
 	// Use setImmediate to ensure the process has been spawned before writing to stdin
 	// This prevents potential race conditions where stdin might not be ready
 	setImmediate(() => {
 		try {
-			child.stdin.write(stdinData, "utf8", (error) => {
+			child.stdin.write(messagesJson, "utf8", (error) => {
 				if (error) {
 					console.error("Error writing to Claude Code stdin:", error)
 					child.kill()
