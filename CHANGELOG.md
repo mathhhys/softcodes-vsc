@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.57.0
-
-### Minor Changes
+## [v4.57.0]
 
 - [#1265](https://github.com/Kilo-Org/kilocode/pull/1265) [`0b89829`](https://github.com/Kilo-Org/kilocode/commit/0b89829af4067acfaf2b7a13c5ee8e061d1ea6d6) Thanks [@hassoncs](https://github.com/hassoncs)! - Add 'max requests' section to the Auto-Approve Settings page
 
