@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeEach, afterEach } from "vitest"
+import { describe, test, expect, vi, beforeEach } from "vitest"
 
 // Mock vscode workspace
 vi.mock("vscode", () => ({
@@ -118,12 +118,11 @@ describe("runClaudeCode", () => {
 		expect(typeof result[Symbol.asyncIterator]).toBe("function")
 	})
 
-	test("should use stdin instead of command line arguments for system prompt and messages", async () => {
+	test("should use stdin instead of command line arguments for messages", async () => {
 		const { runClaudeCode } = await import("../run")
 		const messages = [{ role: "user" as const, content: "Hello world!" }]
-		const systemPrompt = "You are a helpful assistant"
 		const options = {
-			systemPrompt,
+			systemPrompt: "You are a helpful assistant",
 			messages,
 		}
 
@@ -135,11 +134,13 @@ describe("runClaudeCode", () => {
 			results.push(chunk)
 		}
 
-		// Verify execa was called with correct arguments (no system prompt or messages in args)
+		// Verify execa was called with correct arguments (no JSON.stringify(messages) in args)
 		expect(mockExeca).toHaveBeenCalledWith(
 			"claude",
 			expect.arrayContaining([
 				"-p",
+				"--system-prompt",
+				"You are a helpful assistant",
 				"--verbose",
 				"--output-format",
 				"stream-json",
@@ -155,15 +156,12 @@ describe("runClaudeCode", () => {
 			}),
 		)
 
-		// Verify the arguments do NOT contain the system prompt or stringified messages
+		// Verify the arguments do NOT contain the stringified messages
 		const [, args] = mockExeca.mock.calls[0]
-		expect(args).not.toContain("--system-prompt")
-		expect(args).not.toContain(systemPrompt)
 		expect(args).not.toContain(JSON.stringify(messages))
 
-		// Verify system prompt and messages were written to stdin as combined data
-		const expectedStdinData = JSON.stringify({ systemPrompt, messages })
-		expect(mockStdin.write).toHaveBeenCalledWith(expectedStdinData, "utf8", expect.any(Function))
+		// Verify messages were written to stdin with callback
+		expect(mockStdin.write).toHaveBeenCalledWith(JSON.stringify(messages), "utf8", expect.any(Function))
 		expect(mockStdin.end).toHaveBeenCalled()
 
 		// Verify we got the expected mock output
