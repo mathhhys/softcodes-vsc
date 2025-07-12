@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.57.2
-
-### Patch Changes
+## [v4.57.2]
 
 - [#1274](https://github.com/Kilo-Org/kilocode/pull/1274) [`e9fe0da`](https://github.com/Kilo-Org/kilocode/commit/e9fe0daa60f2afdcf4ef2ce9680ca5f47faa26b2) Thanks [@raziel5746](https://github.com/raziel5746)! - ENAMETOOLONG error in Claude Code integration on Windows is resolved
 
