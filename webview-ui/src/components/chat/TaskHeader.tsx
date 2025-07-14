@@ -24,7 +24,7 @@ import { TaskTimeline } from "./TaskTimeline"
 import { mentionRegexGlobal } from "@roo/context-mentions"
 
 import { vscode } from "@/utils/vscode" // kilocode_change: pull slash commands from Cline
-import { Mention } from "./Mention"
+// import { Mention } from "./Mention" // kilocode_change
 import { TodoListDisplay } from "./TodoListDisplay"
 
 export interface TaskHeaderProps {

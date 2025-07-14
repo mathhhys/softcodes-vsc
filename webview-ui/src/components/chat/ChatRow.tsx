@@ -130,8 +130,8 @@ export const ChatRowContent = ({
 	const [reasoningCollapsed, setReasoningCollapsed] = useState(true)
 	const [isDiffErrorExpanded, setIsDiffErrorExpanded] = useState(false)
 	const [showCopySuccess, setShowCopySuccess] = useState(false)
-	const [isEditing, setIsEditing] = useState(false)
-	const [editedContent, setEditedContent] = useState("")
+	// const [isEditing, setIsEditing] = useState(false) // kilocode_change
+	// const [editedContent, setEditedContent] = useState("") // kilocode_change
 	const { copyWithFeedback } = useCopyToClipboard()
 
 	// Memoized callback to prevent re-renders caused by inline arrow functions
@@ -139,6 +139,7 @@ export const ChatRowContent = ({
 		onToggleExpand(message.ts)
 	}, [onToggleExpand, message.ts])
 
+	/* kilocode_change
 	// Handle edit button click
 	const handleEditClick = useCallback(() => {
 		setIsEditing(true)
@@ -163,6 +164,7 @@ export const ChatRowContent = ({
 			editedMessageContent: editedContent,
 		})
 	}, [message.ts, editedContent])
+	*/
 
 	const [cost, apiReqCancelReason, apiReqStreamingFailedMessage] = useMemo(() => {
 		if (message.text !== null && message.text !== undefined && message.say === "api_req_started") {

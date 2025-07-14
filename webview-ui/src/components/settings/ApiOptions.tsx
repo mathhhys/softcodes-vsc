@@ -41,8 +41,9 @@ import {
 	SelectValue,
 	SelectContent,
 	SelectItem,
-	SearchableSelect,
+	// SearchableSelect, // kilocode_change
 	SelectSeparator,
+	Button, // kilocode_change
 } from "@src/components/ui"
 
 import {
