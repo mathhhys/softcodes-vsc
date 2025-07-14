@@ -63,6 +63,7 @@
 		"openaiCompatibleApiKeyLabel": "Ключ API:",
 		"openAiCompatibleApiKeyPlaceholder": "Введіть ваш ключ API",
 		"openAiCompatibleModelDimensionLabel": "Розмірність вбудовування:",
+		"openAiCompatibleModelDimensionPlaceholder": "наприклад, 1536",
 		"modelDimensionLabel": "Розмірність моделі",
 		"openaiCompatibleModelDimensionLabel": "Розмірність вбудовування:",
 		"openaiCompatibleModelDimensionPlaceholder": "наприклад, 1536",

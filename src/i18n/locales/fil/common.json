@@ -169,14 +169,14 @@
 			"cloud_auth_required": "Ang iyong organisasyon ay nangangailangan ng Kilo Code Cloud authentication. Mangyaring mag-sign in upang magpatuloy.",
 			"organization_mismatch": "Dapat kang ma-authenticate gamit ang Kilo Code Cloud account ng iyong organisasyon.",
 			"verification_failed": "Hindi ma-verify ang authentication ng organisasyon."
-		},
-		"prompts": {
-			"deleteMode": {
-				"title": "Tanggalin ang Custom Mode",
-				"description": "Sigurado ka bang gusto mong tanggalin ang {{scope}} mode na ito? Tanggalin din nito ang kaugnay na rules folder sa: {{rulesFolderPath}}",
-				"descriptionNoRules": "Sigurado ka bang gusto mong tanggalin ang custom mode na ito?",
-				"confirm": "Tanggalin"
-			}
+		}
+	},
+	"prompts": {
+		"deleteMode": {
+			"title": "Tanggalin ang Custom Mode",
+			"description": "Sigurado ka bang gusto mong tanggalin ang {{scope}} mode na ito? Tanggalin din nito ang kaugnay na rules folder sa: {{rulesFolderPath}}",
+			"descriptionNoRules": "Sigurado ka bang gusto mong tanggalin ang custom mode na ito?",
+			"confirm": "Tanggalin"
 		}
 	}
 }
