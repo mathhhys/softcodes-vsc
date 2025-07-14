@@ -18,6 +18,10 @@ export type TelemetrySetting = z.infer<typeof telemetrySettingsSchema>
  */
 
 export enum TelemetryEventName {
+	// kilocode_change start
+	COMMIT_MSG_GENERATED = "Commit Message Generated",
+	// kilocode_change end
+
 	TASK_CREATED = "Task Created",
 	TASK_RESTARTED = "Task Reopened",
 	TASK_COMPLETED = "Task Completed",
@@ -37,7 +41,6 @@ export enum TelemetryEventName {
 	CUSTOM_MODE_CREATED = "Custom Mode Created",
 
 	CONTEXT_CONDENSED = "Context Condensed",
-	COMMIT_MSG_GENERATED = "Commit Message Generated",
 	SLIDING_WINDOW_TRUNCATION = "Sliding Window Truncation",
 
 	CODE_ACTION_USED = "Code Action Used",
@@ -123,6 +126,9 @@ export type TelemetryEvent = {
 export const rooCodeTelemetryEventSchema = z.discriminatedUnion("type", [
 	z.object({
 		type: z.enum([
+			// kilocode_change start
+			TelemetryEventName.COMMIT_MSG_GENERATED,
+			// kilocode_change end
 			TelemetryEventName.TASK_CREATED,
 			TelemetryEventName.TASK_RESTARTED,
 			TelemetryEventName.TASK_COMPLETED,
@@ -154,7 +160,6 @@ export const rooCodeTelemetryEventSchema = z.discriminatedUnion("type", [
 			TelemetryEventName.SHELL_INTEGRATION_ERROR,
 			TelemetryEventName.CONSECUTIVE_MISTAKE_ERROR,
 			TelemetryEventName.CONTEXT_CONDENSED,
-			TelemetryEventName.COMMIT_MSG_GENERATED,
 			TelemetryEventName.SLIDING_WINDOW_TRUNCATION,
 			TelemetryEventName.TAB_SHOWN,
 			TelemetryEventName.MODE_SETTINGS_CHANGED,
