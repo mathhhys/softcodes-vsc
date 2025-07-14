@@ -1265,7 +1265,6 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 										pointerEvents: "none",
 									}}>
 									{/* kilocode_change {placeholderBottomText} */}
-									{placeholderBottomText}
 								</div>
 							)}
 						</div>
