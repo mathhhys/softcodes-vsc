@@ -2737,6 +2737,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 		provider = new ClineProvider(mockContext, mockOutputChannel, "sidebar", new ContextProxy(mockContext))
 
 		defaultTaskOptions = {
+			context: mockContext,
 			provider,
 			apiConfiguration: {
 				apiProvider: "openrouter",
