@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.57.4
-
-### Patch Changes
+## [v4.57.4]
 
 - [#1293](https://github.com/Kilo-Org/kilocode/pull/1293) [`2371a08`](https://github.com/Kilo-Org/kilocode/commit/2371a086199503e68bb8b2a7a909c14da60a2532) Thanks [@Autumnlight02](https://github.com/Autumnlight02)! - A few Mistral models (including devstral) were added.
 
