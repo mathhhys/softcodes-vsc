@@ -1676,7 +1676,7 @@ export class ClineProvider
 			alwaysAllowModeSwitch: stateValues.alwaysAllowModeSwitch ?? true,
 			alwaysAllowSubtasks: stateValues.alwaysAllowSubtasks ?? true,
 			alwaysAllowFollowupQuestions: stateValues.alwaysAllowFollowupQuestions ?? false,
-			alwaysAllowUpdateTodoList: stateValues.alwaysAllowUpdateTodoList ?? false,
+			alwaysAllowUpdateTodoList: stateValues.alwaysAllowUpdateTodoList ?? true, // kilocode_change
 			followupAutoApproveTimeoutMs: stateValues.followupAutoApproveTimeoutMs ?? 60000,
 			allowedMaxRequests: stateValues.allowedMaxRequests,
 			autoCondenseContext: stateValues.autoCondenseContext ?? true,
