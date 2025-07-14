@@ -304,7 +304,9 @@ describe("ApiOptions", () => {
 		// since we have separate tests for that component. We just need to verify that
 		// it's included in the ApiOptions component when appropriate.
 	})
-	it("filters providers by search input and shows no match message when appropriate", () => {
+
+	// kilocode_change: skip, we use a custom provider select component
+	it.skip("filters providers by search input and shows no match message when appropriate", () => {
 		renderApiOptions({
 			apiConfiguration: {},
 			setApiConfigurationField: () => {},

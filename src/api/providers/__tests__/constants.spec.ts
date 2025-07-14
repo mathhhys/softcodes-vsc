@@ -12,11 +12,11 @@ describe("DEFAULT_HEADERS", () => {
 	})
 
 	it("should have correct HTTP-Referer value", () => {
-		expect(DEFAULT_HEADERS["HTTP-Referer"]).toBe("https://github.com/RooVetGit/Roo-Cline")
+		expect(DEFAULT_HEADERS["HTTP-Referer"]).toBe("https://kilocode.ai")
 	})
 
 	it("should have correct X-Title value", () => {
-		expect(DEFAULT_HEADERS["X-Title"]).toBe("Roo Code")
+		expect(DEFAULT_HEADERS["X-Title"]).toBe("Kilo Code")
 	})
 
 	it("should have correct User-Agent format", () => {
@@ -55,7 +55,7 @@ describe("DEFAULT_HEADERS", () => {
 
 	it("should have exactly 3 headers", () => {
 		const headerKeys = Object.keys(DEFAULT_HEADERS)
-		expect(headerKeys).toHaveLength(3)
-		expect(headerKeys).toEqual(["HTTP-Referer", "X-Title", "User-Agent"])
+		expect(headerKeys).toHaveLength(4)
+		expect(headerKeys).toEqual(["HTTP-Referer", "X-Title", "X-KiloCode-Version", "User-Agent"])
 	})
 })
