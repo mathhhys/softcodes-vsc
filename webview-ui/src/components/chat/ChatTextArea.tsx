@@ -30,7 +30,15 @@ import Thumbnails from "../common/Thumbnails"
 // import ModeSelector from "./ModeSelector" // kilocode_change: unused
 import { MAX_IMAGES_PER_MESSAGE } from "./ChatView"
 import ContextMenu from "./ContextMenu"
-import { VolumeX, Pin, Check, Image, WandSparkles, SendHorizontal } from "lucide-react"
+import {
+	VolumeX,
+	Pin,
+	Check,
+	// Image, // kilocode_change
+	WandSparkles,
+	SendHorizontal,
+	Paperclip, // kilocode_change
+} from "lucide-react"
 import { IndexingStatusBadge } from "./IndexingStatusBadge"
 import { cn } from "@/lib/utils"
 import { usePromptHistory } from "./hooks/usePromptHistory"
@@ -117,7 +125,6 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 		const [containerWidth, setContainerWidth] = useState<number>(300) // Default to a value larger than our threshold
 
 		const containerRef = useRef<HTMLDivElement>(null)
-		const actionButtonsRef = useRef<HTMLDivElement>(null)
 
 		useEffect(() => {
 			if (!containerRef.current) return
@@ -1232,6 +1239,41 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							</div>
 
 							<div className="absolute bottom-1 right-1 z-30">
+								{/* kilocode_change start */}
+								<IndexingStatusBadge className={cn({ hidden: containerWidth < 235 })} />
+								<StandardTooltip content="Add Context (@)">
+									<button
+										aria-label="Add Context (@)"
+										disabled={showContextMenu}
+										onClick={() => {
+											if (showContextMenu || !textAreaRef.current) return
+
+											textAreaRef.current.focus()
+
+											setInputValue(`${inputValue} @`)
+											setShowContextMenu(true)
+											// Empty search query explicitly to show all options
+											// and set to "File" option by default
+											setSearchQuery("")
+											setSelectedMenuIndex(4)
+										}}
+										className={cn(
+											"relative inline-flex items-center justify-center",
+											"bg-transparent border-none p-1.5",
+											"rounded-md min-w-[28px] min-h-[28px]",
+											"opacity-60 hover:opacity-100 text-vscode-descriptionForeground hover:text-vscode-foreground",
+											"transition-all duration-150",
+											"hover:bg-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.15)]",
+											"focus:outline-none focus-visible:ring-1 focus-visible:ring-vscode-focusBorder",
+											"active:bg-[rgba(255,255,255,0.1)]",
+											!showContextMenu && "cursor-pointer",
+											showContextMenu &&
+												"opacity-40 cursor-not-allowed grayscale-[30%] hover:bg-transparent hover:border-[rgba(255,255,255,0.08)] active:bg-transparent",
+										)}>
+										<Paperclip className={cn("w-4", "h-4", { hidden: containerWidth < 235 })} />
+									</button>
+								</StandardTooltip>
+								{/* kilocode_change end */}
 								<StandardTooltip content={t("chat:sendMessage")}>
 									<button
 										aria-label={t("chat:sendMessage")}
@@ -1454,10 +1496,28 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 						</div>
 					</div>
 
-					{/* kilocode_change: add ref and add hidden on small containerWidth */}
-					<div
-						className={cn("flex", "items-center", "gap-0.5", "shrink-0", { hidden: containerWidth < 235 })}
-						ref={actionButtonsRef}>
+					{/* kilocode_change: hidden on small containerWidth
+					<div className={cn("flex", "items-center", "gap-0.5", "shrink-0")}>
+						{isTtsPlaying && (
+							<StandardTooltip content={t("chat:stopTts")}>
+								<button
+									aria-label={t("chat:stopTts")}
+									onClick={() => vscode.postMessage({ type: "stopTts" })}
+									className={cn(
+										"relative inline-flex items-center justify-center",
+										"bg-transparent border-none p-1.5",
+										"rounded-md min-w-[28px] min-h-[28px]",
+										"text-vscode-foreground opacity-85",
+										"transition-all duration-150",
+										"hover:opacity-100 hover:bg-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.15)]",
+										"focus:outline-none focus-visible:ring-1 focus-visible:ring-vscode-focusBorder",
+										"active:bg-[rgba(255,255,255,0.1)]",
+										"cursor-pointer",
+									)}>
+									<VolumeX className="w-4 h-4" />
+								</button>
+							</StandardTooltip>
+						)}
 						<IndexingStatusBadge />
 						<StandardTooltip content={t("chat:addImages")}>
 							<button
@@ -1482,6 +1542,7 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							</button>
 						</StandardTooltip>
 					</div>
+					*/}
 				</div>
 
 				{selectedImages.length > 0 && (
