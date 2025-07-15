@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.58.1
-
-### Patch Changes
+## [v4.58.1]
 
 - [#1305](https://github.com/Kilo-Org/kilocode/pull/1305) [`34456ee`](https://github.com/Kilo-Org/kilocode/commit/34456eebad9606e5aaee6bff4991a187e8f99573) Thanks [@cobra91](https://github.com/cobra91)! - French localization has been improved
 
