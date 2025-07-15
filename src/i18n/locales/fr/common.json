@@ -5,8 +5,8 @@
 	},
 	"number_format": {
 		"thousand_suffix": "k",
-		"million_suffix": "m",
-		"billion_suffix": "b"
+		"million_suffix": "M",
+		"billion_suffix": "Mrd"
 	},
 	"feedback": {
 		"title": "Retour d'information",
@@ -68,11 +68,11 @@
 		"condensed_recently": "Le contexte a été condensé récemment ; cette tentative est ignorée",
 		"condense_handler_invalid": "Le gestionnaire d'API pour condenser le contexte est invalide",
 		"condense_context_grew": "La taille du contexte a augmenté de {{prevContextTokens}} à {{newContextTokens}} tokens pendant la condensation ; cette tentative est ignorée",
-		"url_timeout": "Le site web a pris trop de temps à charger (timeout). Cela pourrait être dû à une connexion lente, un site web lourd ou temporairement indisponible. Tu peux réessayer plus tard ou vérifier si l'URL est correcte.",
-		"url_not_found": "L'adresse du site web n'a pas pu être trouvée. Vérifie si l'URL est correcte et réessaie.",
-		"no_internet": "Pas de connexion internet. Vérifie ta connexion réseau et réessaie.",
+		"url_timeout": "Le site web a pris trop de temps à charger (timeout). Cela pourrait être dû à une connexion lente, un site web lourd ou temporairement indisponible. Vous pouvez réessayer ultérieurement ou vérifier si l'URL est correcte.",
+		"url_not_found": "L'adresse du site web n'a pas pu être trouvée. Vérifier si l'URL est correcte et réessayer.",
+		"no_internet": "Pas de connexion internet. Verifier votre connexion réseau et réessayer.",
 		"url_forbidden": "L'accès à ce site web est interdit. Le site peut bloquer l'accès automatisé ou nécessiter une authentification.",
-		"url_page_not_found": "La page n'a pas été trouvée. Vérifie si l'URL est correcte.",
+		"url_page_not_found": "La page n'a pas été trouvée. Verifier si l'URL est correcte.",
 		"url_fetch_failed": "Échec de récupération du contenu de l'URL : {{error}}",
 		"url_fetch_error_with_url": "Erreur lors de la récupération du contenu pour {{url}} : {{error}}",
 		"share_task_failed": "Échec du partage de la tâche. Veuillez réessayer.",
@@ -145,7 +145,7 @@
 	},
 	"input": {
 		"task_prompt": "Que doit faire Kilo Code?",
-		"task_placeholder": "Écris ta tâche ici"
+		"task_placeholder": "Écrivez votre tâche ici"
 	},
 	"settings": {
 		"providers": {
@@ -160,9 +160,9 @@
 	},
 	"customModes": {
 		"errors": {
-			"yamlParseError": "YAML invalide dans le fichier .kilocodemodes à la ligne {{line}}. Vérifie :\n• L'indentation correcte (utilise des espaces, pas de tabulations)\n• Les guillemets et crochets correspondants\n• La syntaxe YAML valide",
+			"yamlParseError": "YAML invalide dans le fichier .kilocodemodes à la ligne {{line}}. Vérifier :\n• L'indentation correcte (utilise des espaces, pas de tabulations)\n• Les guillemets et crochets correspondants\n• La syntaxe YAML valide",
 			"schemaValidationError": "Format invalide des modes personnalisés dans .kilocodemodes :\n{{issues}}",
-			"invalidFormat": "Format invalide des modes personnalisés. Assure-toi que tes paramètres suivent le format YAML correct.",
+			"invalidFormat": "Format invalide des modes personnalisés. Assurez-vous que vos paramètres suivent le format YAML correct.",
 			"updateFailed": "Échec de la mise à jour du mode personnalisé : {{error}}",
 			"deleteFailed": "Échec de la suppression du mode personnalisé : {{error}}",
 			"resetFailed": "Échec de la réinitialisation des modes personnalisés : {{error}}",
