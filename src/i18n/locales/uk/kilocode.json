@@ -44,10 +44,10 @@
 		"gitNotFound": "⚠️ Git репозиторій не знайдено або git недоступний",
 		"gitInitError": "⚠️ Помилка ініціалізації Git: {{error}}",
 		"generating": "Kilo: Генерація повідомлення коміту...",
-		"noChanges": "Кіло: Не знайдено змін для аналізу",
+		"noChanges": "Kilo: Не знайдено змін для аналізу",
 		"generated": "Kilo: Повідомлення коміту згенеровано!",
 		"generationFailed": "Kilo: Не вдалося створити повідомлення коміту: {{errorMessage}}",
-		"generatingFromUnstaged": "Кіло: Створення повідомлення з використанням незафіксованих змін"
+		"generatingFromUnstaged": "Kilo: Створення повідомлення з використанням незафіксованих змін"
 	},
 	"autocomplete": {
 		"statusBar": {
