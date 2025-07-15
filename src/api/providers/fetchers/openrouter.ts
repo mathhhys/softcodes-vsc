@@ -108,7 +108,7 @@ export async function getOpenRouterModels(
 		const data = result.success ? result.data.data : response.data.data
 
 		if (!result.success) {
-			console.error("OpenRouter models response is invalid", result.error.format())
+			throw new Error("OpenRouter models response is invalid: " + result.error.format()) // kilocode_change
 		}
 
 		for (const model of data) {
@@ -126,6 +126,7 @@ export async function getOpenRouterModels(
 		console.error(
 			`Error fetching OpenRouter models: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`,
 		)
+		throw error // kilocode_change
 	}
 
 	return models
