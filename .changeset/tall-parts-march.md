@@ -1,0 +1,47 @@
+---
+"kilo-code": minor
+---
+
+Include changes from Roo Code v3.23.6
+
+- Move codebase indexing out of experimental (thanks @daniel-lxs and @MuriloFP!)
+- Add todo list tool (thanks @qdaxb!)
+- Fix code index secret persistence and improve settings UX (thanks @daniel-lxs!)
+- Add Gemini embedding provider for codebase indexing (thanks @SannidhyaSah!)
+- Support full endpoint URLs in OpenAI Compatible provider (thanks @SannidhyaSah!)
+- Add markdown support to codebase indexing (thanks @MuriloFP!)
+- Add Search/Filter Functionality to API Provider Selection in Settings (thanks @GOODBOY008!)
+- Add configurable max search results (thanks @MuriloFP!)
+- Add copy prompt button to task actions (thanks @Juice10 and @vultrnerd!)
+- Fix insertContentTool to create new files with content (thanks @Ruakij!)
+- Fix typescript compiler watch path inconsistency (thanks @bbenshalom!)
+- Use actual max_completion_tokens from OpenRouter API (thanks @shariqriazz!)
+- Prevent completion sound from replaying when reopening completed tasks (thanks @SannidhyaSah!)
+- Fix access_mcp_resource fails to handle images correctly (thanks @s97712!)
+- Prevent chatbox focus loss during automated file editing (thanks @hannesrudolph!)
+- Resolve intermittent hangs and lack of clear error feedback in apply_diff tool (thanks @lhish!)
+- Resolve Go duplicate references in tree-sitter queries (thanks @MuriloFP!)
+- Chat UI consistency and layout shifts (thanks @seedlord!)
+- Chat index UI enhancements (thanks @MuriloFP!)
+- Fix model search being prefilled on dropdown (thanks @kevinvandijk!)
+- Improve chat UI - add camera icon margin and make placeholder non-selectable (thanks @MuriloFP!)
+- Delete .roo/rules-{mode} folder when custom mode is deleted
+- Enforce file restrictions for all edit tools in architect mode
+- Add User-Agent header to API providers
+- Fix auto question timer unmount (thanks @liwilliam2021!)
+- Fix new_task tool streaming issue
+- Optimize file listing when maxWorkspaceFiles is 0 (thanks @daniel-lxs!)
+- Correct export/import of OpenAI Compatible codebase indexing settings (thanks @MuriloFP!)
+- Resolve workspace path inconsistency in code indexing for multi-workspace scenarios
+- Always show the code indexing dot under the chat text area
+- Fix bug where auto-approval was intermittently failing
+- Remove erroneous line from announcement modal
+- Update chat area icons for better discoverability & consistency
+- Fix a bug that allowed list_files to return directory results that should be excluded by .gitignore
+- Add an overflow header menu to make the UI a little tidier (thanks @dlab-anton)
+- Fix a bug the issue where null custom modes configuration files cause a 'Cannot read properties of null' error (thanks @daniel-lxs!)
+- Replace native title attributes with StandardTooltip component for consistency (thanks @daniel-lxs!)
+- Fix: use decodeURIComponent in openFile (thanks @vivekfyi!)
+- Fix(embeddings): Translate error messages before sending to UI (thanks @daniel-lxs!)
+- Make account tab visible
+- Grok 4
