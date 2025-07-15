@@ -1214,7 +1214,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 								</StandardTooltip>
 							)}
 
-							<div className="absolute top-1 right-1 z-30">
+							{/* kilocode_change: position tweaked */}
+							<div className="absolute top-2 right-2 z-30">
 								<StandardTooltip content={t("chat:enhancePrompt")}>
 									<button
 										aria-label={t("chat:enhancePrompt")}
@@ -1238,7 +1239,8 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 								</StandardTooltip>
 							</div>
 
-							<div className="absolute bottom-1 right-1 z-30">
+							{/* kilocode_change: position tweaked */}
+							<div className="absolute bottom-2 right-2 z-30">
 								{/* kilocode_change start */}
 								<IndexingStatusBadge className={cn({ hidden: containerWidth < 235 })} />
 								<StandardTooltip content="Add Context (@)">
@@ -1318,10 +1320,10 @@ const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 				<div
 					// kilocode_change start
 					style={{
-						marginTop: "-44px",
+						marginTop: "-38px",
 						zIndex: 2,
-						paddingLeft: "10px",
-						paddingRight: "10px",
+						paddingLeft: "8px",
+						paddingRight: "8px",
 					}}
 					ref={containerRef}
 					// kilocode_change end
