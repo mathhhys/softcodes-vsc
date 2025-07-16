@@ -113,7 +113,7 @@ export const IndexingStatusBadge: React.FC<IndexingStatusBadgeProps> = ({ classN
 						"relative inline-flex items-center justify-center",
 						"bg-transparent border-none p-1.5",
 						"rounded-md min-w-[28px] min-h-[28px]",
-						"opacity-85 text-vscode-foreground",
+						"opacity-60 text-vscode-foreground", // kilocode_change: opacity to match paperclip
 						"transition-all duration-150",
 						"hover:opacity-100 hover:bg-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.15)]",
 						"focus:outline-none focus-visible:ring-1 focus-visible:ring-vscode-focusBorder",
