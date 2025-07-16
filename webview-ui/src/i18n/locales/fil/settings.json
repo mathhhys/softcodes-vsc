@@ -42,7 +42,7 @@
 		"description": "I-configure ang mga setting ng codebase indexing para ma-enable ang semantic search ng iyong project. <0>Alamin pa</0>",
 		"statusTitle": "Status",
 		"enableLabel": "I-enable ang Codebase Indexing",
-		"enableDescription": "Ang <0>Codebase Indexing</0> ay isang experimental na feature na gumagawa ng semantic search index ng iyong project gamit ang AI embeddings. Ito ay nagbibigay-daan sa Kilo Code na mas maunawaan at ma-navigate ang malalaking codebase sa pamamagitan ng paghahanap ng relevant na code batay sa kahulugan kaysa sa mga keyword lang.",
+		"enableDescription": "I-enable ang code indexing para sa mas mahusay na paghahanap at pag-unawa sa context",
 		"settingsTitle": "Mga Setting ng Indexing",
 		"disabledMessage": "Kasalukuyang naka-disable ang codebase indexing. I-enable ito sa global settings para ma-configure ang mga opsyon ng indexing.",
 		"providerLabel": "Embeddings Provider",

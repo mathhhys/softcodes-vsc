@@ -42,7 +42,7 @@
 		"description": "Konfigurera inställningar för kodbasindexering för att aktivera semantisk sökning av ditt projekt. <0>Läs mer</0>",
 		"statusTitle": "Status",
 		"enableLabel": "Aktivera indexering av kodbas",
-		"enableDescription": "<0>Indexering av kodbas</0> är en experimentell funktion som skapar ett semantiskt sökindex över ditt projekt med hjälp av AI-inbäddningar. Detta gör att Kilo Code bättre kan förstå och navigera i stora kodbaser genom att hitta relevant kod baserat på betydelse snarare än bara nyckelord.",
+		"enableDescription": "Aktivera kodindexering för förbättrad sökning och kontextförståelse",
 		"settingsTitle": "Indexeringsinställningar",
 		"disabledMessage": "Kodbasindexering är för närvarande inaktiverad. Aktivera den i de globala inställningarna för att konfigurera indexeringsalternativ.",
 		"providerLabel": "Leverantör av inbäddningar",
