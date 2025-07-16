@@ -12,6 +12,10 @@ import { TelemetryEventName, type ProviderSettings } from "@roo-code/types"
 import delay from "delay"
 import { TelemetryService } from "@roo-code/telemetry"
 
+export interface GitCommitContext {
+	rootUri: vscode.Uri
+}
+
 /**
  * Provides AI-powered commit message generation for source control management.
  * Integrates with Git repositories to analyze staged changes and generate
@@ -38,20 +42,15 @@ export class CommitMessageProvider {
 		this.outputChannel.appendLine(t("kilocode:commitMessage.activated"))
 
 		try {
-			// Initialize provider settings manager
 			await this.providerSettingsManager.initialize()
-
-			const initialized = await this.gitService.initialize()
-			if (!initialized) {
-				this.outputChannel.appendLine(t("kilocode:commitMessage.gitNotFound"))
-			}
 		} catch (error) {
 			this.outputChannel.appendLine(t("kilocode:commitMessage.gitInitError", { error }))
 		}
 
 		// Register the command
-		const disposable = vscode.commands.registerCommand("kilo-code.generateCommitMessage", () =>
-			this.generateCommitMessage(),
+		const disposable = vscode.commands.registerCommand(
+			"kilo-code.generateCommitMessage",
+			(commitContext?: GitCommitContext) => this.generateCommitMessage(commitContext),
 		)
 		this.context.subscriptions.push(disposable)
 		this.context.subscriptions.push(this.gitService)
@@ -60,7 +59,7 @@ export class CommitMessageProvider {
 	/**
 	 * Generates an AI-powered commit message based on staged changes, or unstaged changes if no staged changes exist.
 	 */
-	public async generateCommitMessage(): Promise<void> {
+	public async generateCommitMessage(commitContext?: GitCommitContext): Promise<void> {
 		await vscode.window.withProgress(
 			{
 				location: vscode.ProgressLocation.SourceControl,
@@ -69,6 +68,8 @@ export class CommitMessageProvider {
 			},
 			async (progress) => {
 				try {
+					this.gitService.configureRepositoryContext(commitContext?.rootUri)
+
 					let staged = true
 					let changes = await this.gitService.gatherChanges({ staged })
 
