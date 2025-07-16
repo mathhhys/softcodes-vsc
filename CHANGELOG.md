@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.58.2
-
-### Patch Changes
+## [v4.58.2]
 
 - [#1340](https://github.com/Kilo-Org/kilocode/pull/1340) [`1a367c9`](https://github.com/Kilo-Org/kilocode/commit/1a367c943cd423f86c3ab25afe7b43f9d489147b) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Add gemini-embedding-001 model to code-index service (thanks @daniel-lxs!)
 
