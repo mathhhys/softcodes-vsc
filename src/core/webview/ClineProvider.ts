@@ -73,6 +73,7 @@ import { getWorkspaceGitInfo } from "../../utils/git"
 
 import { McpDownloadResponse, McpMarketplaceCatalog } from "../../shared/kilocode/mcp" //kilocode_change
 import { McpServer } from "../../shared/mcp" // kilocode_change
+import { OpenRouterHandler } from "../../api/providers" // kilocode_change
 
 /**
  * https://github.com/microsoft/vscode-webview-ui-toolkit-samples/blob/main/default/weather-webview/src/providers/WeatherViewProvider.ts
@@ -1892,6 +1893,22 @@ export class ClineProvider
 		// Get git repository information
 		const gitInfo = await getWorkspaceGitInfo()
 
+		// kilocode_change start
+		async function getModelId() {
+			try {
+				if (task?.api instanceof OpenRouterHandler) {
+					return { modelId: (await task.api.fetchModel()).id }
+				} else {
+					return { modelId: task?.api?.getModel().id }
+				}
+			} catch (error) {
+				return {
+					exception: error instanceof Error ? error.stack || error.message : String(error),
+				}
+			}
+		}
+		// kilocode_change end
+
 		// Return all properties including git info - clients will filter as needed
 		return {
 			appName: packageJSON?.name ?? Package.name,
@@ -1902,7 +1919,7 @@ export class ClineProvider
 			language,
 			mode,
 			apiProvider: apiConfiguration?.apiProvider,
-			modelId: task?.api?.getModel().id,
+			...(await getModelId()), // kilocode_change
 			diffStrategy: task?.diffStrategy?.getName(),
 			isSubtask: task ? !!task.parentTask : undefined,
 			cloudIsAuthenticated,
