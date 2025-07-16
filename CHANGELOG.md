@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.58.3
-
-### Patch Changes
+## [v4.58.3]
 
 - [#1348](https://github.com/Kilo-Org/kilocode/pull/1348) [`f83d1d7`](https://github.com/Kilo-Org/kilocode/commit/f83d1d76fa5c42b11cf9821d6b577d5af3d60a79) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Add enable/disable toggle for code indexing (thanks @daniel-lxs!)
 
