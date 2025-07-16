@@ -42,7 +42,7 @@
 		"description": "Nakonfigurujte nastavení indexování kódové báze pro povolení sémantického vyhledávání vašeho projektu. <0>Dozvědět se více</0>",
 		"statusTitle": "Stav",
 		"enableLabel": "Povolit indexování kódové báze",
-		"enableDescription": "<0>Indexování kódové báze</0> je experimentální funkce, která vytváří sémantický vyhledávací index vašeho projektu pomocí vkládání AI. To umožňuje Kilo Code lépe porozumět a navigovat ve velkých kódových bázích hledáním relevantního kódu na základě významu, nikoli pouze klíčových slov.",
+		"enableDescription": "Povolit indexování kódu pro lepší vyhledávání a porozumění kontextu",
 		"settingsTitle": "Nastavení indexování",
 		"disabledMessage": "Indexování kódové báze je aktuálně zakázáno. Povolte jej v globálních nastaveních pro konfiguraci možností indexování.",
 		"providerLabel": "Poskytovatel vkládání",
