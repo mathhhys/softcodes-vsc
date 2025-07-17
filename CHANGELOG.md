@@ -1,5 +1,11 @@
 # kilo-code
 
+## 4.59.2
+
+### Patch Changes
+
+- [#1370](https://github.com/Kilo-Org/kilocode/pull/1370) [`2462892`](https://github.com/Kilo-Org/kilocode/commit/24628929c1f4ef64a6262040afaa47d637f29486) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Improved some autocomplete-related non-English texts (thanks @NyxJae)
+
 ## [v4.59.1]
 
 - [#1362](https://github.com/Kilo-Org/kilocode/pull/1362) [`08486c4`](https://github.com/Kilo-Org/kilocode/commit/08486c4ac186da2ab7dc02cc8012e77dcae96cce) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Fixed excessive "Kilo Code is having trouble" warnings when the browser tool is scrolling
