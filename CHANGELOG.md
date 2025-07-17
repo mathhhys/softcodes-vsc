@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.59.0
-
-### Minor Changes
+## [v4.59.0]
 
 - [#1244](https://github.com/Kilo-Org/kilocode/pull/1244) [`8b50f8e`](https://github.com/Kilo-Org/kilocode/commit/8b50f8eb558dc7c3a8667086660ff3c2f5f29788) Thanks [@hassoncs](https://github.com/hassoncs)! - New: Inline Assist Commands
 
