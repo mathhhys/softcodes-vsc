@@ -3,7 +3,7 @@ import * as vscode from "vscode"
 import { ContextProxy } from "../../core/config/ContextProxy"
 import { ProviderSettingsManager } from "../../core/config/ProviderSettingsManager"
 import { singleCompletionHandler } from "../../utils/single-completion-handler"
-import { GitExtensionService, GitChange, GitProgressOptions } from "./GitExtensionService"
+import { GitExtensionService, GitChange, GitProgressOptions, GitRepository } from "./GitExtensionService"
 import { supportPrompt } from "../../shared/support-prompt"
 import { t } from "../../i18n"
 import { addCustomInstructions } from "../../core/prompts/sections/custom-instructions"
@@ -11,10 +11,6 @@ import { getWorkspacePath } from "../../utils/path"
 import { TelemetryEventName, type ProviderSettings } from "@roo-code/types"
 import delay from "delay"
 import { TelemetryService } from "@roo-code/telemetry"
-
-export interface GitCommitContext {
-	rootUri: vscode.Uri
-}
 
 /**
  * Provides AI-powered commit message generation for source control management.
@@ -50,7 +46,7 @@ export class CommitMessageProvider {
 		// Register the command
 		const disposable = vscode.commands.registerCommand(
 			"kilo-code.generateCommitMessage",
-			(commitContext?: GitCommitContext) => this.generateCommitMessage(commitContext),
+			(commitContext?: GitRepository) => this.generateCommitMessage(commitContext),
 		)
 		this.context.subscriptions.push(disposable)
 		this.context.subscriptions.push(this.gitService)
@@ -59,7 +55,7 @@ export class CommitMessageProvider {
 	/**
 	 * Generates an AI-powered commit message based on staged changes, or unstaged changes if no staged changes exist.
 	 */
-	public async generateCommitMessage(commitContext?: GitCommitContext): Promise<void> {
+	public async generateCommitMessage(commitContext?: GitRepository): Promise<void> {
 		await vscode.window.withProgress(
 			{
 				location: vscode.ProgressLocation.SourceControl,
