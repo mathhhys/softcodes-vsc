@@ -2,7 +2,7 @@
 
 ## [v4.59.2]
 
-- [#1370](https://github.com/Kilo-Org/kilocode/pull/1370) [`2462892`](https://github.com/Kilo-Org/kilocode/commit/24628929c1f4ef64a6262040afaa47d637f29486) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Improved some autocomplete-related non-English texts (thanks @NyxJae)
+- [#1364](https://github.com/Kilo-Org/kilocode/pull/1364) [`aaef06f`](https://github.com/Kilo-Org/kilocode/commit/aaef06f9923a31bf1054a06f249ea32d97459c7b) Thanks [@NyxJae](https://github.com/NyxJae)! - Improved some autocomplete-related non-English texts
 
 ## [v4.59.1]
 
