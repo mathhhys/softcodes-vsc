@@ -1,5 +1,9 @@
 # kilo-code
 
+## [v4.59.1]
+
+- [#1362](https://github.com/Kilo-Org/kilocode/pull/1362) [`08486c4`](https://github.com/Kilo-Org/kilocode/commit/08486c4ac186da2ab7dc02cc8012e77dcae96cce) Thanks [@chrarnoldus](https://github.com/chrarnoldus)! - Fixed excessive "Kilo Code is having trouble" warnings when the browser tool is scrolling
+
 ## [v4.59.0]
 
 - [#1244](https://github.com/Kilo-Org/kilocode/pull/1244) [`8b50f8e`](https://github.com/Kilo-Org/kilocode/commit/8b50f8eb558dc7c3a8667086660ff3c2f5f29788) Thanks [@hassoncs](https://github.com/hassoncs)! - New: Inline Assist Commands
