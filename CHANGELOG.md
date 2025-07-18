@@ -1,8 +1,6 @@
 # kilo-code
 
-## 4.60.0
-
-### Minor Changes
+## [v4.60.0]
 
 - [#1354](https://github.com/Kilo-Org/kilocode/pull/1354) [`e6d031d`](https://github.com/Kilo-Org/kilocode/commit/e6d031d77621d38769efd612c04e03137db084de) Thanks [@hassoncs](https://github.com/hassoncs)! - Commit message generation now works with multi-root workspaces
 
