@@ -34,7 +34,7 @@
 	"roleDefinition": {
 		"title": "Rolldefinition",
 		"resetToDefault": "Återställ till standard",
-		"description": "Definiera Kilo Codes expertis och personlighet för detta läge. Denna beskrivning formar hur Kilo Code presenterar sig själv och närmar sig uppgifter."
+		"description": "Definiera Kilo Codes expertis och personlighet för detta läge. Denna beskrivning formar hur Softcodes presenterar sig själv och närmar sig uppgifter."
 	},
 	"description": {
 		"title": "Kort beskrivning (för människor)",
@@ -98,7 +98,7 @@
 		"types": {
 			"ENHANCE": {
 				"label": "Förbättra Prompt",
-				"description": "Använd promptförbättring för att få skräddarsydda förslag eller förbättringar för dina inmatningar. Detta säkerställer att Kilo Code förstår din avsikt och ger bästa möjliga svar. Tillgänglig via ✨-ikonen i chatten."
+				"description": "Använd promptförbättring för att få skräddarsydda förslag eller förbättringar för dina inmatningar. Detta säkerställer att Softcodes förstår din avsikt och ger bästa möjliga svar. Tillgänglig via ✨-ikonen i chatten."
 			},
 			"EXPLAIN": {
 				"label": "Förklara kod",

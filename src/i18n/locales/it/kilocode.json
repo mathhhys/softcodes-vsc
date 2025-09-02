@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Generatore di messaggi di commit Kilo Code attivato",
+		"activated": "Generatore di messaggi di commit Softcodes attivato",
 		"gitNotFound": "⚠️ Repository Git non trovato o git non disponibile",
 		"gitInitError": "⚠️ Errore di inizializzazione Git: {{error}}",
 		"generating": "Kilo: Generazione del messaggio di commit in corso...",
@@ -55,12 +55,12 @@
 		"statusBar": {
 			"enabled": "$(sparkle) Kilo Autocompletamento",
 			"tooltip": {
-				"basic": "Completamento Automatico Kilo Code",
+				"basic": "Completamento Automatico Softcodes",
 				"sessionTotal": "Costo totale della sessione:",
 				"lastCompletion": "Ultimo completamento:",
 				"model": "Modello:",
 				"tokenError": "È necessario impostare un token valido per utilizzare l'autocompletamento",
-				"disabled": "Completamento Automatico Kilo Code (disabilitato)"
+				"disabled": "Completamento Automatico Softcodes (disabilitato)"
 			},
 			"disabled": "$(circle-slash) Kilo Autocompletamento",
 			"warning": "$(warning) Kilo Autocompletamento",
@@ -77,26 +77,26 @@
 			"generating": "Generazione di modifiche suggerite...",
 			"showing": "Visualizzazione modifiche suggerite...",
 			"processing": "Elaborazione modifiche suggerite...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Compito Rapido",
+			"title": "Softcodes: Compito Rapido",
 			"placeholder": "ad es., 'ristruttura questa funzione per renderla più efficiente'"
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code: Genera Suggerimenti di Modifica",
+			"generateSuggestions": "Softcodes: Genera Suggerimenti di Modifica",
 			"promptCodeSuggestion": "Compito Veloce",
 			"cancelSuggestions": "Annulla Modifiche Suggerite",
 			"displaySuggestions": "Mostra Modifiche Suggerite",
 			"applyCurrentSuggestion": "Applica Modifica Attualmente Suggerita",
 			"applyAllSuggestions": "Applica Tutte le Modifiche Suggerite",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Modifiche suggerite"
+			"title": "Softcodes: Modifiche suggerite"
 		},
 		"chatParticipant": {
-			"fullName": "Agente Kilo Code",
+			"fullName": "Agente Softcodes",
 			"name": "Agente",
 			"description": "Posso aiutarti con attività veloci e modifiche suggerite."
 		},

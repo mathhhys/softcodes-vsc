@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Gerador de mensagens de commit do Kilo Code ativado",
+		"activated": "Gerador de mensagens de commit do Softcodes ativado",
 		"gitNotFound": "⚠️ Repositório Git não encontrado ou git não disponível",
 		"gitInitError": "⚠️ Erro de inicialização do Git: {{error}}",
 		"generating": "Kilo: Gerando mensagem de commit...",
@@ -56,9 +56,9 @@
 			"enabled": "$(sparkle) Kilo Preenchimento automático",
 			"disabled": "$(circle-slash) Kilo Preenchimento automático",
 			"tooltip": {
-				"disabled": "Preenchimento Automático do Kilo Code (desativado)",
+				"disabled": "Preenchimento Automático do Softcodes (desativado)",
 				"tokenError": "Um token válido deve ser definido para usar o preenchimento automático",
-				"basic": "Kilo Code Preenchimento automático",
+				"basic": "Softcodes Preenchimento automático",
 				"lastCompletion": "Última conclusão:",
 				"sessionTotal": "Custo total da sessão:",
 				"model": "Modelo:"
@@ -77,27 +77,27 @@
 			"processing": "Processando sugestões de edição...",
 			"generating": "Gerando edições sugeridas...",
 			"showing": "Exibindo edições sugeridas…",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Tarefa Rápida",
+			"title": "Softcodes: Tarefa Rápida",
 			"placeholder": "p. ex., 'refatore esta função para ser mais eficiente'"
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code: Gerar Edições Sugeridas",
+			"generateSuggestions": "Softcodes: Gerar Edições Sugeridas",
 			"displaySuggestions": "Exibir Edições Sugeridas",
 			"cancelSuggestions": "Cancelar Edições Sugeridas",
 			"applyAllSuggestions": "Aplicar Todas as Edições Sugeridas",
 			"applyCurrentSuggestion": "Aplicar Edição Sugerida Atual",
 			"promptCodeSuggestion": "Tarefa Rápida",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Edições Sugeridas"
+			"title": "Softcodes: Edições Sugeridas"
 		},
 		"chatParticipant": {
 			"name": "Agente",
-			"fullName": "Kilo Code Agente",
+			"fullName": "Softcodes Agente",
 			"description": "Posso ajudar você com tarefas rápidas e sugestões de edição."
 		},
 		"messages": {

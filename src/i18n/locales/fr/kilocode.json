@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Générateur de message de commit Kilo Code activé",
+		"activated": "Générateur de message de commit Softcodes activé",
 		"gitNotFound": "⚠️ Dépôt Git introuvable ou git non disponible",
 		"gitInitError": "⚠️ Erreur d'initialisation Git : {{error}}",
 		"generating": "Kilo : Génération du message de commit...",
@@ -57,10 +57,10 @@
 			"enabled": "$(sparkle) Kilo Autocomplétion",
 			"warning": "$(warning) Kilo Autocomplétion",
 			"tooltip": {
-				"disabled": "Autocomplétion Kilo Code (désactivée)",
+				"disabled": "Autocomplétion Softcodes (désactivée)",
 				"tokenError": "Un jeton valide doit être défini pour utiliser l'autocomplétion",
 				"sessionTotal": "Coût total de la séance :",
-				"basic": "Autocomplétion Kilo Code",
+				"basic": "Autocomplétion Softcodes",
 				"lastCompletion": "Dernière complétion :",
 				"model": "Modèle :"
 			},
@@ -77,28 +77,28 @@
 			"processing": "Traitement des modifications suggérées...",
 			"analyzing": "Analyse de votre code en cours...",
 			"showing": "Affichage des modifications suggérées...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code : Tâche Rapide",
+			"title": "Softcodes : Tâche Rapide",
 			"placeholder": "par ex., 'refactorisez cette fonction pour la rendre plus efficace'"
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code : Générer des suggestions de modifications",
+			"generateSuggestions": "Softcodes : Générer des suggestions de modifications",
 			"displaySuggestions": "Afficher les modifications suggérées",
 			"applyCurrentSuggestion": "Appliquer la modification suggérée actuelle",
 			"applyAllSuggestions": "Appliquer toutes les modifications suggérées",
 			"cancelSuggestions": "Annuler les modifications suggérées",
 			"promptCodeSuggestion": "Tâche Rapide d'Invite",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"chatParticipant": {
 			"name": "Agent",
-			"fullName": "Agent Kilo Code",
+			"fullName": "Agent Softcodes",
 			"description": "Je peux vous aider avec des tâches rapides et des modifications suggérées."
 		},
 		"codeAction": {
-			"title": "Kilo Code : Modifications suggérées"
+			"title": "Softcodes : Modifications suggérées"
 		},
 		"messages": {
 			"provideCodeSuggestions": "Suggestions de code en cours..."

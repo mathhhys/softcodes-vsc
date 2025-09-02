@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "تنسيق إعدادات MCP غير صحيح: {{errorMessages}}",
 		"create_json": "فشل في إنشاء أو فتح الملف .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "فشل في تحديث خوادم MCP الخاصة بالمشروع",
-		"invalidJsonArgument": "Kilo Code حاول يستخدم {{toolName}} بوسيط JSON غير صحيح. جاري إعادة المحاولة..."
+		"invalidJsonArgument": "Softcodes حاول يستخدم {{toolName}} بوسيط JSON غير صحيح. جاري إعادة المحاولة..."
 	},
 	"info": {
 		"server_restarting": "جاري إعادة تشغيل خادم MCP: {{serverName}}...",

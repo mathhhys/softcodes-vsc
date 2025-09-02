@@ -99,7 +99,7 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 		if (clerkBaseUrl !== PRODUCTION_CLERK_BASE_URL) {
 			this.authCredentialsKey = `clerk-auth-credentials-${clerkBaseUrl}`
 		} else {
-			this.authCredentialsKey = "clerk-auth-credentials"
+			this.authCredentialsKey = `clerk-auth-credentials-${clerkBaseUrl}`
 		}
 
 		this.timer = new RefreshTimer({
@@ -114,20 +114,31 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 	}
 
 	private async handleCredentialsChange(): Promise<void> {
+		this.log("[auth] handleCredentialsChange called.")
 		try {
 			const credentials = await this.loadCredentials()
 
 			if (credentials) {
+				this.log("[auth] handleCredentialsChange: Credentials found.")
 				if (
 					this.credentials === null ||
 					this.credentials.clientToken !== credentials.clientToken ||
 					this.credentials.sessionId !== credentials.sessionId
 				) {
+					this.log(
+						"[auth] handleCredentialsChange: Credentials changed, transitioning to attempting session.",
+					)
 					this.transitionToAttemptingSession(credentials)
+				} else {
+					this.log("[auth] handleCredentialsChange: Credentials unchanged, no state transition.")
 				}
 			} else {
+				this.log("[auth] handleCredentialsChange: No credentials found.")
 				if (this.state !== "logged-out") {
+					this.log("[auth] handleCredentialsChange: Not logged out, transitioning to logged out.")
 					this.transitionToLoggedOut()
+				} else {
+					this.log("[auth] handleCredentialsChange: Already logged out.")
 				}
 			}
 		} catch (error) {
@@ -151,6 +162,7 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 	}
 
 	private transitionToAttemptingSession(credentials: AuthCredentials): void {
+		this.log("[auth] transitionToAttemptingSession called.")
 		this.credentials = credentials
 
 		const previousState = this.state
@@ -244,21 +256,23 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 	 */
 	public async login(): Promise<void> {
 		try {
-			// Generate a cryptographically random state parameter.
+			// Generate a cryptographically random state parameter
 			const state = crypto.randomBytes(16).toString("hex")
 			await this.context.globalState.update(AUTH_STATE_KEY, state)
-			const packageJSON = this.context.extension?.packageJSON
-			const publisher = packageJSON?.publisher ?? "RooVeterinaryInc"
-			const name = packageJSON?.name ?? "roo-cline"
+
 			const params = new URLSearchParams({
 				state,
-				auth_redirect: `${vscode.env.uriScheme}://${publisher}.${name}`,
+				auth_redirect: `${vscode.env.uriScheme}://softcodes.softcodes`,
+				client_type: "vscode_extension",
+				response_type: "code",
+				scope: "openid profile email",
 			})
+
 			const url = `${getRooCodeApiUrl()}/extension/sign-in?${params.toString()}`
 			await vscode.env.openExternal(vscode.Uri.parse(url))
 		} catch (error) {
-			this.log(`[auth] Error initiating Roo Code Cloud auth: ${error}`)
-			throw new Error(`Failed to initiate Roo Code Cloud authentication: ${error}`)
+			this.log(`[auth] Error initiating Softcodes auth: ${error}`)
+			throw new Error(`Failed to initiate Softcodes authentication: ${error}`)
 		}
 	}
 
@@ -297,6 +311,7 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 			credentials.organizationId = organizationId || null
 
 			await this.storeCredentials(credentials)
+			this.log("[auth] Credentials stored after successful callback.")
 
 			vscode.window.showInformationMessage("Successfully authenticated with Roo Code Cloud")
 			this.log("[auth] Successfully authenticated with Roo Code Cloud")
@@ -380,6 +395,7 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 	 * This method refreshes the session token using the client token.
 	 */
 	private async refreshSession(): Promise<void> {
+		this.log("[auth] refreshSession called.")
 		if (!this.credentials) {
 			this.log("[auth] Cannot refresh session: missing credentials")
 			return
@@ -389,11 +405,14 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 			const previousState = this.state
 			this.sessionToken = await this.clerkCreateSessionToken()
 			this.state = "active-session"
+			this.log("[auth] Session token refreshed, state is now active-session.")
 
 			if (previousState !== "active-session") {
-				this.log("[auth] Transitioned to active-session state")
+				this.log("[auth] Emitting active-session event.")
 				this.emit("active-session", { previousState })
 				this.fetchUserInfo()
+			} else {
+				this.log("[auth] Already in active-session state, not re-emitting.")
 			}
 		} catch (error) {
 			if (error instanceof InvalidClientTokenError) {
@@ -435,18 +454,19 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 		return this.credentials?.organizationId || null
 	}
 
-	private async clerkSignIn(ticket: string): Promise<AuthCredentials> {
-		const formData = new URLSearchParams()
-		formData.append("strategy", "ticket")
-		formData.append("ticket", ticket)
-
-		const response = await fetch(`${getClerkBaseUrl()}/v1/client/sign_ins`, {
+	private async clerkSignIn(authCode: string): Promise<AuthCredentials> {
+		// Use new unified authentication endpoint
+		const response = await fetch(`${getRooCodeApiUrl()}/api/extension/auth/callback`, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Type": "application/json",
 				"User-Agent": this.userAgent(),
 			},
-			body: formData.toString(),
+			body: JSON.stringify({
+				code: authCode,
+				grant_type: "authorization_code",
+				redirect_uri: `${vscode.env.uriScheme}://softcodes.softcodes`,
+			}),
 			signal: AbortSignal.timeout(10000),
 		})
 
@@ -454,18 +474,13 @@ export class WebAuthService extends EventEmitter<AuthServiceEvents> implements A
 			throw new Error(`HTTP ${response.status}: ${response.statusText}`)
 		}
 
-		const {
-			response: { created_session_id: sessionId },
-		} = clerkSignInResponseSchema.parse(await response.json())
+		const data = await response.json()
 
-		// 3. Extract the client token from the Authorization header.
-		const clientToken = response.headers.get("authorization")
-
-		if (!clientToken) {
-			throw new Error("No authorization header found in the response")
-		}
-
-		return authCredentialsSchema.parse({ clientToken, sessionId })
+		return authCredentialsSchema.parse({
+			clientToken: data.access_token,
+			sessionId: data.session_id,
+			organizationId: data.organization_id || null,
+		})
 	}
 
 	private async clerkCreateSessionToken(): Promise<string> {

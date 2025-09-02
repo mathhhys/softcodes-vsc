@@ -1,5 +1,5 @@
 {
-	"greeting": "Co pro tebe může Kilo Code udělat?",
+	"greeting": "Co pro tebe může Softcodes udělat?",
 	"task": {
 		"title": "Úkol",
 		"seeMore": "Zobrazit více",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Sdílet veřejně",
 		"sharePubliclyDescription": "Kdokoli s odkazem má přístup",
 		"connectToCloud": "Připojit ke cloudu",
-		"connectToCloudDescription": "Přihlaste se do Kilo Code Cloud pro sdílení úkolů",
+		"connectToCloudDescription": "Přihlaste se do Softcodes Cloud pro sdílení úkolů",
 		"sharingDisabledByOrganization": "Sdílení zakázáno organizací",
 		"shareSuccessOrganization": "Odkaz organizace zkopírován do schránky",
 		"shareSuccessPublic": "Veřejný odkaz zkopírován do schránky"
@@ -163,46 +163,46 @@
 		"tokens": "tokeny"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code chce načíst podrobné instrukce pro pomoc s aktuálním úkolem"
+		"wantsToFetch": "Softcodes chce načíst podrobné instrukce pro pomoc s aktuálním úkolem"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code chce přečíst tento soubor:",
-		"wantsToReadMultiple": "Kilo Code chce přečíst více souborů:",
-		"wantsToReadAndXMore": "Kilo Code chce přečíst tento soubor a {{count}} dalších:",
-		"wantsToReadOutsideWorkspace": "Kilo Code chce přečíst tento soubor mimo pracovní prostor:",
-		"didRead": "Kilo Code přečetl tento soubor:",
-		"wantsToEdit": "Kilo Code chce upravit tento soubor:",
-		"wantsToEditOutsideWorkspace": "Kilo Code chce upravit tento soubor mimo pracovní prostor:",
-		"wantsToEditProtected": "Kilo Code chce upravit chráněný konfigurační soubor:",
-		"wantsToApplyBatchChanges": "Kilo Code chce aplikovat změny na více souborů:",
-		"wantsToCreate": "Kilo Code chce vytvořit nový soubor:",
-		"wantsToSearchReplace": "Kilo Code chce hledat a nahradit v tomto souboru:",
-		"didSearchReplace": "Kilo Code provedl hledání a nahrazení v tomto souboru:",
-		"wantsToInsert": "Kilo Code chce vložit obsah do tohoto souboru:",
-		"wantsToInsertWithLineNumber": "Kilo Code chce vložit obsah do tohoto souboru na řádek {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Kilo Code chce přidat obsah na konec tohoto souboru:"
+		"wantsToRead": "Softcodes chce přečíst tento soubor:",
+		"wantsToReadMultiple": "Softcodes chce přečíst více souborů:",
+		"wantsToReadAndXMore": "Softcodes chce přečíst tento soubor a {{count}} dalších:",
+		"wantsToReadOutsideWorkspace": "Softcodes chce přečíst tento soubor mimo pracovní prostor:",
+		"didRead": "Softcodes přečetl tento soubor:",
+		"wantsToEdit": "Softcodes chce upravit tento soubor:",
+		"wantsToEditOutsideWorkspace": "Softcodes chce upravit tento soubor mimo pracovní prostor:",
+		"wantsToEditProtected": "Softcodes chce upravit chráněný konfigurační soubor:",
+		"wantsToApplyBatchChanges": "Softcodes chce aplikovat změny na více souborů:",
+		"wantsToCreate": "Softcodes chce vytvořit nový soubor:",
+		"wantsToSearchReplace": "Softcodes chce hledat a nahradit v tomto souboru:",
+		"didSearchReplace": "Softcodes provedl hledání a nahrazení v tomto souboru:",
+		"wantsToInsert": "Softcodes chce vložit obsah do tohoto souboru:",
+		"wantsToInsertWithLineNumber": "Softcodes chce vložit obsah do tohoto souboru na řádek {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Softcodes chce přidat obsah na konec tohoto souboru:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code chce zobrazit soubory nejvyšší úrovně v tomto adresáři:",
-		"didViewTopLevel": "Kilo Code zobrazil soubory nejvyšší úrovně v tomto adresáři:",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code chce zobrazit soubory nejvyšší úrovně v tomto adresáři (mimo pracovní prostor):",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code zobrazil soubory nejvyšší úrovně v tomto adresáři (mimo pracovní prostor):",
-		"wantsToViewRecursive": "Kilo Code chce rekurzivně zobrazit všechny soubory v tomto adresáři:",
-		"didViewRecursive": "Kilo Code rekurzivně zobrazil všechny soubory v tomto adresáři:",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code chce rekurzivně zobrazit všechny soubory v tomto adresáři (mimo pracovní prostor):",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code rekurzivně zobrazil všechny soubory v tomto adresáři (mimo pracovní prostor):",
-		"wantsToViewDefinitions": "Kilo Code chce zobrazit názvy definic zdrojového kódu použité v tomto adresáři:",
-		"didViewDefinitions": "Kilo Code zobrazil názvy definic zdrojového kódu použité v tomto adresáři:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code chce zobrazit názvy definic zdrojového kódu použité v tomto adresáři (mimo pracovní prostor):",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code zobrazil názvy definic zdrojového kódu použité v tomto adresáři (mimo pracovní prostor):",
-		"wantsToSearch": "Kilo Code chce hledat v tomto adresáři <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code hledal v tomto adresáři <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Kilo Code chce hledat v tomto adresáři (mimo pracovní prostor) <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Kilo Code hledal v tomto adresáři (mimo pracovní prostor) <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Softcodes chce zobrazit soubory nejvyšší úrovně v tomto adresáři:",
+		"didViewTopLevel": "Softcodes zobrazil soubory nejvyšší úrovně v tomto adresáři:",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes chce zobrazit soubory nejvyšší úrovně v tomto adresáři (mimo pracovní prostor):",
+		"didViewTopLevelOutsideWorkspace": "Softcodes zobrazil soubory nejvyšší úrovně v tomto adresáři (mimo pracovní prostor):",
+		"wantsToViewRecursive": "Softcodes chce rekurzivně zobrazit všechny soubory v tomto adresáři:",
+		"didViewRecursive": "Softcodes rekurzivně zobrazil všechny soubory v tomto adresáři:",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes chce rekurzivně zobrazit všechny soubory v tomto adresáři (mimo pracovní prostor):",
+		"didViewRecursiveOutsideWorkspace": "Softcodes rekurzivně zobrazil všechny soubory v tomto adresáři (mimo pracovní prostor):",
+		"wantsToViewDefinitions": "Softcodes chce zobrazit názvy definic zdrojového kódu použité v tomto adresáři:",
+		"didViewDefinitions": "Softcodes zobrazil názvy definic zdrojového kódu použité v tomto adresáři:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes chce zobrazit názvy definic zdrojového kódu použité v tomto adresáři (mimo pracovní prostor):",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes zobrazil názvy definic zdrojového kódu použité v tomto adresáři (mimo pracovní prostor):",
+		"wantsToSearch": "Softcodes chce hledat v tomto adresáři <code>{{regex}}</code>:",
+		"didSearch": "Softcodes hledal v tomto adresáři <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Softcodes chce hledat v tomto adresáři (mimo pracovní prostor) <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Softcodes hledal v tomto adresáři (mimo pracovní prostor) <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code chce hledat v kódové základně <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Kilo Code chce hledat v kódové základně <code>{{query}}</code> v <code>{{path}}</code>:",
+		"wantsToSearch": "Softcodes chce hledat v kódové základně <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Softcodes chce hledat v kódové základně <code>{{query}}</code> v <code>{{path}}</code>:",
 		"didSearch": "Nalezeno {{count}} výsledků pro <code>{{query}}</code>:",
 		"resultTooltip": "Skóre podobnosti: {{score}} (klikni pro otevření souboru)"
 	},
@@ -210,18 +210,18 @@
 	"response": "Odpověď",
 	"arguments": "Argumenty",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code chce použít nástroj na MCP serveru {{serverName}}:",
-		"wantsToAccessResource": "Kilo Code chce přistupovat k prostředku na MCP serveru {{serverName}}:"
+		"wantsToUseTool": "Softcodes chce použít nástroj na MCP serveru {{serverName}}:",
+		"wantsToAccessResource": "Softcodes chce přistupovat k prostředku na MCP serveru {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code chce přepnout do režimu {{mode}}",
-		"wantsToSwitchWithReason": "Kilo Code chce přepnout do režimu {{mode}}, protože: {{reason}}",
-		"didSwitch": "Kilo Code přepnul do režimu {{mode}}",
-		"didSwitchWithReason": "Kilo Code přepnul do režimu {{mode}}, protože: {{reason}}"
+		"wantsToSwitch": "Softcodes chce přepnout do režimu {{mode}}",
+		"wantsToSwitchWithReason": "Softcodes chce přepnout do režimu {{mode}}, protože: {{reason}}",
+		"didSwitch": "Softcodes přepnul do režimu {{mode}}",
+		"didSwitchWithReason": "Softcodes přepnul do režimu {{mode}}, protože: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code chce vytvořit nový podúkol v režimu {{mode}}:",
-		"wantsToFinish": "Kilo Code chce dokončit tento podúkol",
+		"wantsToCreate": "Softcodes chce vytvořit nový podúkol v režimu {{mode}}:",
+		"wantsToFinish": "Softcodes chce dokončit tento podúkol",
 		"newTaskContent": "Instrukce podúkolu",
 		"completionContent": "Podúkol dokončen",
 		"resultContent": "Výsledky podúkolu",
@@ -229,27 +229,27 @@
 		"completionInstructions": "Podúkol dokončen! Můžeš zkontrolovat výsledky a navrhnout jakékoli opravy nebo další kroky. Pokud vše vypadá dobře, potvrď pro vrácení výsledku do nadřazeného úkolu."
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code má otázku:"
+		"hasQuestion": "Softcodes má otázku:"
 	},
 	"taskCompleted": "Úkol dokončen",
 	"error": "Chyba",
 	"diffError": {
 		"title": "Úprava neúspěšná"
 	},
-	"troubleMessage": "Kilo Code má potíže...",
+	"troubleMessage": "Softcodes má potíže...",
 	"powershell": {
 		"issues": "Zdá se, že máš problémy s Windows PowerShell, prosím podívej se na toto"
 	},
 	"autoApprove": {
 		"title": "Automatické schvalování:",
 		"none": "Žádné",
-		"description": "Automatické schvalování umožňuje Kilo Code provádět akce bez žádání o povolení. Zapni pouze pro akce, kterým plně důvěřuješ. Podrobnější konfigurace je dostupná v <settingsLink>Nastavení</settingsLink>."
+		"description": "Automatické schvalování umožňuje Softcodes provádět akce bez žádání o povolení. Zapni pouze pro akce, kterým plně důvěřuješ. Podrobnější konfigurace je dostupná v <settingsLink>Nastavení</settingsLink>."
 	},
 	"modeSelector": {
 		"title": "Režimy",
 		"marketplace": "Tržiště režimů",
 		"settings": "Nastavení režimů",
-		"description": "Specializované persony které přizpůsobují chování Kilo Code."
+		"description": "Specializované persony které přizpůsobují chování Softcodes."
 	},
 	"announcement": {
 		"title": "🎉 Vydán Roo Code {{version}}",
@@ -271,7 +271,7 @@
 		"countdownDisplay": "{{count}}s"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code chce použít prohlížeč:",
+		"rooWantsToUse": "Softcodes chce použít prohlížeč:",
 		"consoleLogs": "Záznamy konzole",
 		"noNewLogs": "(Žádné nové záznamy)",
 		"screenshot": "Snímek obrazovky prohlížeče",
@@ -305,13 +305,13 @@
 	"profileViolationWarning": "Aktuální profil porušuje nastavení tvé organizace",
 	"shellIntegration": {
 		"title": "Varování provádění příkazu",
-		"description": "Tvůj příkaz se provádí bez integrace shellu terminálu VSCode. Pro potlačení tohoto varování můžeš vypnout integraci shellu v sekci <strong>Terminal</strong> <settingsLink>nastavení Kilo Code</settingsLink> nebo vyřešit integraci terminálu VSCode pomocí odkazu níže.",
+		"description": "Tvůj příkaz se provádí bez integrace shellu terminálu VSCode. Pro potlačení tohoto varování můžeš vypnout integraci shellu v sekci <strong>Terminal</strong> <settingsLink>nastavení Softcodes</settingsLink> nebo vyřešit integraci terminálu VSCode pomocí odkazu níže.",
 		"troubleshooting": "Klikni zde pro dokumentaci integrace shellu."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Dosažen limit automaticky schválených požadavků",
-			"description": "Kilo Code dosáhl automaticky schváleného limitu {{count}} API požadavků. Chceš resetovat počítadlo a pokračovat v úkolu?",
+			"description": "Softcodes dosáhl automaticky schváleného limitu {{count}} API požadavků. Chceš resetovat počítadlo a pokračovat v úkolu?",
 			"button": "Resetovat a pokračovat"
 		}
 	},

@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "Open Source AI coding assistant para sa pagpaplano, pagbuo, at pag-aayos ng code."
 	},
 	"number_format": {
@@ -103,7 +103,7 @@
 	"warnings": {
 		"no_terminal_content": "Walang napiling terminal content",
 		"missing_task_files": "Ang mga file ng task na ito ay nawawala. Gusto mo bang tanggalin ito mula sa listahan ng task?",
-		"auto_import_failed": "Nabigo ang auto-import ng mga setting ng Kilo Code: {{error}}"
+		"auto_import_failed": "Nabigo ang auto-import ng mga setting ng Softcodes: {{error}}"
 	},
 	"info": {
 		"no_changes": "Walang nahanap na mga pagbabago.",
@@ -112,7 +112,7 @@
 		"custom_storage_path_set": "Naitakda ang custom storage path: {{path}}",
 		"default_storage_path": "Bumalik sa paggamit ng default storage path",
 		"settings_imported": "Matagumpay na na-import ang mga setting.",
-		"auto_import_success": "Awtomatikong na-import ang mga setting ng Kilo Code mula sa {{filename}}",
+		"auto_import_success": "Awtomatikong na-import ang mga setting ng Softcodes mula sa {{filename}}",
 		"share_link_copied": "Nakopya ang share link sa clipboard",
 		"organization_share_link_copied": "Nakopya ang organization share link sa clipboard!",
 		"public_share_link_copied": "Nakopya ang public share link sa clipboard!",
@@ -145,7 +145,7 @@
 		"enter_valid_path": "Mangyaring maglagay ng valid na path"
 	},
 	"input": {
-		"task_prompt": "Ano ang dapat gawin ng Kilo Code?",
+		"task_prompt": "Ano ang dapat gawin ng Softcodes?",
 		"task_placeholder": "Bumuo, maghanap, magtanong ng kahit ano"
 	},
 	"customModes": {
@@ -166,8 +166,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Ang iyong organisasyon ay nangangailangan ng Kilo Code Cloud authentication. Mangyaring mag-sign in upang magpatuloy.",
-			"organization_mismatch": "Dapat kang ma-authenticate gamit ang Kilo Code Cloud account ng iyong organisasyon.",
+			"cloud_auth_required": "Ang iyong organisasyon ay nangangailangan ng Softcodes Cloud authentication. Mangyaring mag-sign in upang magpatuloy.",
+			"organization_mismatch": "Dapat kang ma-authenticate gamit ang Softcodes Cloud account ng iyong organisasyon.",
 			"verification_failed": "Hindi ma-verify ang authentication ng organisasyon."
 		}
 	},

@@ -3,12 +3,12 @@
 	"profilePicture": "Foto de perfil",
 	"logOut": "Cerrar sesión",
 	"testApiAuthentication": "Probar autenticación de API",
-	"signIn": "Conectar a Kilo Code Cloud",
+	"signIn": "Conectar a Softcodes Cloud",
 	"connect": "Conectar",
-	"cloudBenefitsTitle": "Conectar a Kilo Code Cloud",
+	"cloudBenefitsTitle": "Conectar a Softcodes Cloud",
 	"cloudBenefitsSubtitle": "Sincroniza tus prompts y telemetría para habilitar:",
 	"cloudBenefitHistory": "Historial de tareas en línea",
 	"cloudBenefitSharing": "Funciones de compartir y colaboración",
 	"cloudBenefitMetrics": "Métricas de uso basadas en tareas, tokens y costos",
-	"visitCloudWebsite": "Visitar Kilo Code Cloud"
+	"visitCloudWebsite": "Visitar Softcodes Cloud"
 }

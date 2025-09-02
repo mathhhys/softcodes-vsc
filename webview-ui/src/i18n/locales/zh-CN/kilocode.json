@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "欢迎使用 Kilo Code！",
-		"introText1": "Kilo Code 是一个免费的开源 AI 编程代理。",
+		"greeting": "欢迎使用 Softcodes！",
+		"introText1": "Softcodes 是一个免费的开源 AI 编程代理。",
 		"introText2": "它适用于最新的 AI 模型，如 Claude 4 Sonnet、Gemini 2.5 Pro、GPT-4.1 以及 450 多个其他模型。",
 		"introText3": "创建免费账户，获得价值 20 美元的 token，可用于任何 AI 模型。",
 		"ctaButton": "创建免费账户",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "添加额度",
-		"lowBalance": "你的 Kilo Code 余额不足"
+		"lowBalance": "你的 Softcodes 余额不足"
 	},
 	"notifications": {
 		"toolRequest": "工具请求等待批准",
@@ -25,26 +25,26 @@
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "允许超大文件读取",
-				"description": "启用后，Kilo Code 将执行超大文件或 MCP 输出读取，即使存在高概率溢出上下文窗口（内容大小 >80% 的上下文窗口）。"
+				"description": "启用后，Softcodes 将执行超大文件或 MCP 输出读取，即使存在高概率溢出上下文窗口（内容大小 >80% 的上下文窗口）。"
 			}
 		},
 		"systemNotifications": {
 			"label": "启用系统通知",
-			"description": "启用后 Kilo Code 将发送系统通知，提醒任务完成或错误等重要事件。",
+			"description": "启用后 Softcodes 将发送系统通知，提醒任务完成或错误等重要事件。",
 			"testButton": "测试通知",
-			"testTitle": "Kilo Code",
-			"testMessage": "这是来自 Kilo Code 的测试通知。"
+			"testTitle": "Softcodes",
+			"testMessage": "这是来自 Softcodes 的测试通知。"
 		},
 		"provider": {
-			"account": "Kilo Code 账号",
-			"apiKey": "Kilo Code API 密钥",
-			"login": "登录 Kilo Code",
-			"logout": "退出 Kilo Code"
+			"account": "Softcodes 账号",
+			"apiKey": "Softcodes API 密钥",
+			"login": "登录 Softcodes",
+			"logout": "退出 Softcodes"
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code 想要压缩你的对话",
+			"wantsToCondense": "Softcodes 想要压缩你的对话",
 			"condenseConversation": "压缩对话"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "文档",
 	"rules": {
-		"tooltip": "管理 Kilo Code 规则和工作流",
-		"ariaLabel": "Kilo Code 规则",
+		"tooltip": "管理 Softcodes 规则和工作流",
+		"ariaLabel": "Softcodes 规则",
 		"tabs": {
 			"rules": "规则",
 			"workflows": "工作流"
 		},
 		"description": {
-			"rules": "规则允许你为 Kilo Code 提供在所有模式和所有提示中都应遵循的指令。它们是在你的工作空间或全局范围内为所有对话包含上下文和偏好的持久方式。",
-			"workflows": "工作流是为对话准备的模板。工作流允许你定义经常使用的提示，并可以包含一系列步骤来指导 Kilo Code 完成重复性任务，如部署服务或提交 PR。要调用工作流，请输入",
+			"rules": "规则允许你为 Softcodes 提供在所有模式和所有提示中都应遵循的指令。它们是在你的工作空间或全局范围内为所有对话包含上下文和偏好的持久方式。",
+			"workflows": "工作流是为对话准备的模板。工作流允许你定义经常使用的提示，并可以包含一系列步骤来指导 Softcodes 完成重复性任务，如部署服务或提交 PR。要调用工作流，请输入",
 			"workflowsInChat": "在聊天中。"
 		},
 		"sections": {

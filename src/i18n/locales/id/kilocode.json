@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Generator pesan commit Kilo Code diaktifkan",
+		"activated": "Generator pesan commit Softcodes diaktifkan",
 		"gitNotFound": "⚠️ Repositori Git tidak ditemukan atau git tidak tersedia",
 		"gitInitError": "⚠️ Kesalahan inisialisasi Git: {{error}}",
 		"generating": "Kilo: Menghasilkan pesan commit...",
@@ -56,8 +56,8 @@
 			"disabled": "$(circle-slash) Kilo Autocomplete",
 			"enabled": "$(sparkle) Kilo Autocomplete",
 			"tooltip": {
-				"basic": "Kilo Code Autocomplete",
-				"disabled": "Kilo Code Autocomplete (dinonaktifkan)",
+				"basic": "Softcodes Autocomplete",
+				"disabled": "Softcodes Autocomplete (dinonaktifkan)",
 				"tokenError": "Token yang valid harus ditetapkan untuk menggunakan autocomplete",
 				"lastCompletion": "Penyelesaian terakhir:",
 				"sessionTotal": "Biaya total sesi:",
@@ -77,26 +77,26 @@
 			"generating": "Membuat saran pengeditan...",
 			"processing": "Memproses saran pengeditan...",
 			"showing": "Menampilkan saran pengeditan...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Tugas Cepat",
+			"title": "Softcodes: Tugas Cepat",
 			"placeholder": "misalnya, 'refaktor fungsi ini agar lebih efisien'"
 		},
 		"commands": {
 			"cancelSuggestions": "Batalkan Saran Pengeditan",
 			"applyCurrentSuggestion": "Terapkan Saran Pengeditan Saat Ini",
-			"generateSuggestions": "Kilo Code: Hasilkan Saran Penyuntingan",
+			"generateSuggestions": "Softcodes: Hasilkan Saran Penyuntingan",
 			"applyAllSuggestions": "Terapkan Semua Suntingan yang Disarankan",
 			"displaySuggestions": "Tampilkan Saran Pengeditan",
 			"promptCodeSuggestion": "Tugas Cepat Prompt",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Saran Penyuntingan"
+			"title": "Softcodes: Saran Penyuntingan"
 		},
 		"chatParticipant": {
-			"fullName": "Kilo Code Agen",
+			"fullName": "Softcodes Agen",
 			"name": "Agen",
 			"description": "Saya dapat membantu Anda dengan tugas cepat dan saran pengeditan."
 		},

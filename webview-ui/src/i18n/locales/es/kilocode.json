@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "¡Bienvenido a Kilo Code!",
-		"introText1": "Kilo Code es un agente de codificación de IA gratuito y de código abierto.",
+		"greeting": "¡Bienvenido a Softcodes!",
+		"introText1": "Softcodes es un agente de codificación de IA gratuito y de código abierto.",
 		"introText2": "Funciona con los modelos de IA más recientes como Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, y más de 450 modelos adicionales.",
 		"introText3": "Crea una cuenta gratuita y obtén $20 en tokens para usar con cualquier modelo de IA.",
 		"ctaButton": "Crear cuenta gratuita",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Añadir Crédito",
-		"lowBalance": "Tu saldo de Kilo Code es bajo"
+		"lowBalance": "Tu saldo de Softcodes es bajo"
 	},
 	"notifications": {
 		"toolRequest": "Solicitud de herramienta pendiente de aprobación",
@@ -23,28 +23,28 @@
 			"mcp": "Servidores MCP"
 		},
 		"provider": {
-			"account": "Cuenta de Kilo Code",
-			"apiKey": "Clave API de Kilo Code",
-			"login": "Iniciar sesión en Kilo Code",
-			"logout": "Cerrar sesión de Kilo Code"
+			"account": "Cuenta de Softcodes",
+			"apiKey": "Clave API de Softcodes",
+			"login": "Iniciar sesión en Softcodes",
+			"logout": "Cerrar sesión de Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Permitir lecturas de archivos muy grandes",
-				"description": "Cuando está activado, Kilo Code realizará lecturas de archivos o salidas MCP muy grandes aunque exista una alta probabilidad de desbordar la ventana de contexto (tamaño del contenido >80% de la ventana de contexto)."
+				"description": "Cuando está activado, Softcodes realizará lecturas de archivos o salidas MCP muy grandes aunque exista una alta probabilidad de desbordar la ventana de contexto (tamaño del contenido >80% de la ventana de contexto)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Activar notificaciones del sistema",
-			"description": "Cuando está activado, Kilo Code enviará notificaciones del sistema para eventos importantes como la finalización de tareas o errores.",
+			"description": "Cuando está activado, Softcodes enviará notificaciones del sistema para eventos importantes como la finalización de tareas o errores.",
 			"testButton": "Probar notificación",
-			"testTitle": "Kilo Code",
-			"testMessage": "Esta es una notificación de prueba de Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Esta es una notificación de prueba de Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code quiere condensar tu conversación",
+			"wantsToCondense": "Softcodes quiere condensar tu conversación",
 			"condenseConversation": "Condensar Conversación"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Documentos",
 	"rules": {
-		"tooltip": "Gestionar Reglas y Flujos de Trabajo de Kilo Code",
-		"ariaLabel": "Reglas de Kilo Code",
+		"tooltip": "Gestionar Reglas y Flujos de Trabajo de Softcodes",
+		"ariaLabel": "Reglas de Softcodes",
 		"tabs": {
 			"rules": "Reglas",
 			"workflows": "Flujos de Trabajo"
 		},
 		"description": {
-			"rules": "Las reglas te permiten proporcionar a Kilo Code instrucciones que debe seguir en todos los modos y para todos los prompts. Son una forma persistente de incluir contexto y preferencias para todas las conversaciones en tu espacio de trabajo o globalmente.",
-			"workflows": "Los flujos de trabajo son una plantilla preparada para una conversación. Los flujos de trabajo te permiten definir prompts que usas frecuentemente, y pueden incluir una serie de pasos para guiar a Kilo Code a través de tareas repetitivas, como desplegar un servicio o enviar una PR. Para invocar un flujo de trabajo, escribe",
+			"rules": "Las reglas te permiten proporcionar a Softcodes instrucciones que debe seguir en todos los modos y para todos los prompts. Son una forma persistente de incluir contexto y preferencias para todas las conversaciones en tu espacio de trabajo o globalmente.",
+			"workflows": "Los flujos de trabajo son una plantilla preparada para una conversación. Los flujos de trabajo te permiten definir prompts que usas frecuentemente, y pueden incluir una serie de pasos para guiar a Softcodes a través de tareas repetitivas, como desplegar un servicio o enviar una PR. Para invocar un flujo de trabajo, escribe",
 			"workflowsInChat": "en el chat."
 		},
 		"sections": {

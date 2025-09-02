@@ -1,6 +1,6 @@
 {
-	"greeting": "Hej, jag är Kilo Code!",
-	"introduction": "<strong>Kilo Code är den främsta autonoma kodningsagenten.</strong> Gör dig redo att arkitektera, koda, felsöka och öka din produktivitet som aldrig förr. För att fortsätta behöver Kilo Code en API-nyckel.",
+	"greeting": "Hej, jag är Softcodes!",
+	"introduction": "<strong>Softcodes är den främsta autonoma kodningsagenten.</strong> Gör dig redo att arkitektera, koda, felsöka och öka din produktivitet som aldrig förr. För att fortsätta behöver Softcodes en API-nyckel.",
 	"notice": "För att komma igång behöver detta tillägg en API-leverantör.",
 	"start": "Kör igång!",
 	"routers": {
@@ -12,11 +12,11 @@
 			"description": "Ett enhetligt gränssnitt för LLM:er"
 		}
 	},
-	"chooseProvider": "För att göra sin magi behöver Kilo Code en API-nyckel.",
+	"chooseProvider": "För att göra sin magi behöver Softcodes en API-nyckel.",
 	"startRouter": "Vi rekommenderar att använda en LLM Router:",
 	"startCustom": "Eller så kan du ta med din egen leverantörs API-nyckel:",
 	"telemetry": {
-		"title": "Hjälp till att Förbättra Kilo Code",
+		"title": "Hjälp till att Förbättra Softcodes",
 		"anonymousTelemetry": "Skicka fel- och användningsdata för att hjälpa oss fixa buggar och förbättra tillägget. Ingen kod, prompts eller personlig information skickas någonsin.",
 		"changeSettings": "Du kan alltid ändra detta längst ner i <settingsLink>inställningarna</settingsLink>",
 		"settings": "inställningar",

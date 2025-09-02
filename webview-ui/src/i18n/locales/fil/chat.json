@@ -1,5 +1,5 @@
 {
-	"greeting": "Ano ang magagawa ng Kilo Code para sa iyo?",
+	"greeting": "Ano ang magagawa ng Softcodes para sa iyo?",
 	"task": {
 		"title": "Gawain",
 		"seeMore": "Tingnan pa",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Ibahagi sa Publiko",
 		"sharePubliclyDescription": "Sinuman na may link ay may access",
 		"connectToCloud": "Kumukonekta sa Cloud",
-		"connectToCloudDescription": "Mag-sign in sa Kilo Code Cloud para magbahagi ng mga task",
+		"connectToCloudDescription": "Mag-sign in sa Softcodes Cloud para magbahagi ng mga task",
 		"sharingDisabledByOrganization": "Pagbabahagi ay na-disable ng organisasyon",
 		"shareSuccessOrganization": "Nakopya ang organisasyon link sa clipboard",
 		"shareSuccessPublic": "Nakopya ang pampublikong link sa clipboard"
@@ -123,7 +123,7 @@
 		"title": "Mga Mode",
 		"marketplace": "Mode Marketplace",
 		"settings": "Mga Setting ng Mode",
-		"description": "Mga espesyal na persona na nag-aayos sa ugali ni Kilo Code."
+		"description": "Mga espesyal na persona na nag-aayos sa ugali ni Softcodes."
 	},
 	"addImages": "Magdagdag ng mga larawan sa mensahe",
 	"sendMessage": "Ipadala ang mensahe",
@@ -169,46 +169,46 @@
 		"tokens": "tokens"
 	},
 	"instructions": {
-		"wantsToFetch": "Nais ng Kilo Code na kumuha ng detalyadong mga tagubilin para tumulong sa kasalukuyang gawain"
+		"wantsToFetch": "Nais ng Softcodes na kumuha ng detalyadong mga tagubilin para tumulong sa kasalukuyang gawain"
 	},
 	"fileOperations": {
-		"wantsToRead": "Nais basahin ng Kilo Code ang file na ito:",
-		"wantsToReadMultiple": "Nais basahin ng Kilo Code ang maraming file:",
-		"wantsToReadAndXMore": "Nais basahin ng Kilo Code ang file na ito at {{count}} pa:",
-		"wantsToReadOutsideWorkspace": "Nais basahin ng Kilo Code ang file na ito sa labas ng workspace:",
-		"didRead": "Nabasa ng Kilo Code ang file na ito:",
-		"wantsToEdit": "Nais i-edit ng Kilo Code ang file na ito:",
-		"wantsToEditOutsideWorkspace": "Nais i-edit ng Kilo Code ang file na ito sa labas ng workspace:",
-		"wantsToEditProtected": "Nais i-edit ng Kilo Code ang protektadong configuration file:",
-		"wantsToApplyBatchChanges": "Nais maglapat ng Kilo Code ng mga pagbabago sa maraming file:",
-		"wantsToCreate": "Nais gumawa ng Kilo Code ng bagong file:",
-		"wantsToSearchReplace": "Nais maghanap at magpalit ng Kilo Code sa file na ito:",
-		"didSearchReplace": "Nagsagawa ng paghahanap at pagpapalit ang Kilo Code sa file na ito:",
-		"wantsToInsert": "Nais magpasok ng Kilo Code ng nilalaman sa file na ito:",
-		"wantsToInsertWithLineNumber": "Nais magpasok ng Kilo Code ng nilalaman sa file na ito sa linya {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Nais magdagdag ng Kilo Code ng nilalaman sa dulo ng file na ito:"
+		"wantsToRead": "Nais basahin ng Softcodes ang file na ito:",
+		"wantsToReadMultiple": "Nais basahin ng Softcodes ang maraming file:",
+		"wantsToReadAndXMore": "Nais basahin ng Softcodes ang file na ito at {{count}} pa:",
+		"wantsToReadOutsideWorkspace": "Nais basahin ng Softcodes ang file na ito sa labas ng workspace:",
+		"didRead": "Nabasa ng Softcodes ang file na ito:",
+		"wantsToEdit": "Nais i-edit ng Softcodes ang file na ito:",
+		"wantsToEditOutsideWorkspace": "Nais i-edit ng Softcodes ang file na ito sa labas ng workspace:",
+		"wantsToEditProtected": "Nais i-edit ng Softcodes ang protektadong configuration file:",
+		"wantsToApplyBatchChanges": "Nais maglapat ng Softcodes ng mga pagbabago sa maraming file:",
+		"wantsToCreate": "Nais gumawa ng Softcodes ng bagong file:",
+		"wantsToSearchReplace": "Nais maghanap at magpalit ng Softcodes sa file na ito:",
+		"didSearchReplace": "Nagsagawa ng paghahanap at pagpapalit ang Softcodes sa file na ito:",
+		"wantsToInsert": "Nais magpasok ng Softcodes ng nilalaman sa file na ito:",
+		"wantsToInsertWithLineNumber": "Nais magpasok ng Softcodes ng nilalaman sa file na ito sa linya {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Nais magdagdag ng Softcodes ng nilalaman sa dulo ng file na ito:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Nais tingnan ng Kilo Code ang mga top level na file sa directory na ito:",
-		"didViewTopLevel": "Tiningnan ng Kilo Code ang mga top level na file sa directory na ito:",
-		"wantsToViewTopLevelOutsideWorkspace": "Nais tingnan ng Kilo Code ang mga top level na file sa directory na ito (sa labas ng workspace):",
-		"didViewTopLevelOutsideWorkspace": "Tiningnan ng Kilo Code ang mga top level na file sa directory na ito (sa labas ng workspace):",
-		"wantsToViewRecursive": "Nais tingnan ng Kilo Code nang recursive ang lahat ng file sa directory na ito:",
-		"didViewRecursive": "Tiningnan ng Kilo Code nang recursive ang lahat ng file sa directory na ito:",
-		"wantsToViewRecursiveOutsideWorkspace": "Nais tingnan ng Kilo Code nang recursive ang lahat ng file sa directory na ito (sa labas ng workspace):",
-		"didViewRecursiveOutsideWorkspace": "Tiningnan ng Kilo Code nang recursive ang lahat ng file sa directory na ito (sa labas ng workspace):",
-		"wantsToViewDefinitions": "Nais tingnan ng Kilo Code ang mga pangalan ng source code definition na ginagamit sa directory na ito:",
-		"didViewDefinitions": "Tiningnan ng Kilo Code ang mga pangalan ng source code definition na ginagamit sa directory na ito:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Nais tingnan ng Kilo Code ang mga pangalan ng source code definition na ginagamit sa directory na ito (sa labas ng workspace):",
-		"didViewDefinitionsOutsideWorkspace": "Tiningnan ng Kilo Code ang mga pangalan ng source code definition na ginagamit sa directory na ito (sa labas ng workspace):",
-		"wantsToSearch": "Nais maghanap ng Kilo Code sa directory na ito para sa <code>{{regex}}</code>:",
-		"didSearch": "Naghanap ang Kilo Code sa directory na ito para sa <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Nais maghanap ng Kilo Code sa directory na ito (sa labas ng workspace) para sa <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Naghanap ang Kilo Code sa directory na ito (sa labas ng workspace) para sa <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Nais tingnan ng Softcodes ang mga top level na file sa directory na ito:",
+		"didViewTopLevel": "Tiningnan ng Softcodes ang mga top level na file sa directory na ito:",
+		"wantsToViewTopLevelOutsideWorkspace": "Nais tingnan ng Softcodes ang mga top level na file sa directory na ito (sa labas ng workspace):",
+		"didViewTopLevelOutsideWorkspace": "Tiningnan ng Softcodes ang mga top level na file sa directory na ito (sa labas ng workspace):",
+		"wantsToViewRecursive": "Nais tingnan ng Softcodes nang recursive ang lahat ng file sa directory na ito:",
+		"didViewRecursive": "Tiningnan ng Softcodes nang recursive ang lahat ng file sa directory na ito:",
+		"wantsToViewRecursiveOutsideWorkspace": "Nais tingnan ng Softcodes nang recursive ang lahat ng file sa directory na ito (sa labas ng workspace):",
+		"didViewRecursiveOutsideWorkspace": "Tiningnan ng Softcodes nang recursive ang lahat ng file sa directory na ito (sa labas ng workspace):",
+		"wantsToViewDefinitions": "Nais tingnan ng Softcodes ang mga pangalan ng source code definition na ginagamit sa directory na ito:",
+		"didViewDefinitions": "Tiningnan ng Softcodes ang mga pangalan ng source code definition na ginagamit sa directory na ito:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Nais tingnan ng Softcodes ang mga pangalan ng source code definition na ginagamit sa directory na ito (sa labas ng workspace):",
+		"didViewDefinitionsOutsideWorkspace": "Tiningnan ng Softcodes ang mga pangalan ng source code definition na ginagamit sa directory na ito (sa labas ng workspace):",
+		"wantsToSearch": "Nais maghanap ng Softcodes sa directory na ito para sa <code>{{regex}}</code>:",
+		"didSearch": "Naghanap ang Softcodes sa directory na ito para sa <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Nais maghanap ng Softcodes sa directory na ito (sa labas ng workspace) para sa <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Naghanap ang Softcodes sa directory na ito (sa labas ng workspace) para sa <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Nais maghanap ng Kilo Code sa codebase para sa <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Nais maghanap ng Kilo Code sa codebase para sa <code>{{query}}</code> sa <code>{{path}}</code>:",
+		"wantsToSearch": "Nais maghanap ng Softcodes sa codebase para sa <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Nais maghanap ng Softcodes sa codebase para sa <code>{{query}}</code> sa <code>{{path}}</code>:",
 		"didSearch": "Nakahanap ng {{count}} resulta para sa <code>{{query}}</code>:",
 		"resultTooltip": "Similarity score: {{score}} (i-click para buksan ang file)"
 	},
@@ -216,18 +216,18 @@
 	"response": "Tugon",
 	"arguments": "Mga Argumento",
 	"mcp": {
-		"wantsToUseTool": "Nais gumamit ng Kilo Code ng tool sa {{serverName}} MCP server:",
-		"wantsToAccessResource": "Nais mag-access ng Kilo Code ng resource sa {{serverName}} MCP server:"
+		"wantsToUseTool": "Nais gumamit ng Softcodes ng tool sa {{serverName}} MCP server:",
+		"wantsToAccessResource": "Nais mag-access ng Softcodes ng resource sa {{serverName}} MCP server:"
 	},
 	"modes": {
-		"wantsToSwitch": "Nais magpalit ng Kilo Code sa {{mode}} mode",
-		"wantsToSwitchWithReason": "Nais magpalit ng Kilo Code sa {{mode}} mode dahil: {{reason}}",
-		"didSwitch": "Lumipat ang Kilo Code sa {{mode}} mode",
-		"didSwitchWithReason": "Lumipat ang Kilo Code sa {{mode}} mode dahil: {{reason}}"
+		"wantsToSwitch": "Nais magpalit ng Softcodes sa {{mode}} mode",
+		"wantsToSwitchWithReason": "Nais magpalit ng Softcodes sa {{mode}} mode dahil: {{reason}}",
+		"didSwitch": "Lumipat ang Softcodes sa {{mode}} mode",
+		"didSwitchWithReason": "Lumipat ang Softcodes sa {{mode}} mode dahil: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Nais gumawa ng Kilo Code ng bagong subtask sa {{mode}} mode:",
-		"wantsToFinish": "Nais tapusin ng Kilo Code ang subtask na ito",
+		"wantsToCreate": "Nais gumawa ng Softcodes ng bagong subtask sa {{mode}} mode:",
+		"wantsToFinish": "Nais tapusin ng Softcodes ang subtask na ito",
 		"newTaskContent": "Mga Tagubilin sa Subtask",
 		"completionContent": "Nakumpleto ang Subtask",
 		"resultContent": "Mga Resulta ng Subtask",
@@ -235,21 +235,21 @@
 		"completionInstructions": "Nakumpleto ang subtask! Maaari mong suriin ang mga resulta at magmungkahi ng anumang pagwawasto o susunod na hakbang. Kung mukhang maayos ang lahat, kumpirmahin para ibalik ang resulta sa parent task."
 	},
 	"questions": {
-		"hasQuestion": "May tanong ang Kilo Code:"
+		"hasQuestion": "May tanong ang Softcodes:"
 	},
 	"taskCompleted": "Nakumpleto ang Gawain",
 	"error": "Error",
 	"diffError": {
 		"title": "Hindi Matagumpay ang Pag-edit"
 	},
-	"troubleMessage": "Nagkakaproblema ang Kilo Code...",
+	"troubleMessage": "Nagkakaproblema ang Softcodes...",
 	"powershell": {
 		"issues": "Mukhang may problema ka sa Windows PowerShell, pakitingnan ito"
 	},
 	"autoApprove": {
 		"title": "Auto-approve:",
 		"none": "Wala",
-		"description": "Ang auto-approve ay nagpapahintulot sa Kilo Code na magsagawa ng mga aksyon nang hindi humihingi ng pahintulot. I-enable lamang para sa mga aksyon na lubos mong pinagkakatiwalaan. Mas detalyadong configuration ay available sa <settingsLink>Settings</settingsLink>."
+		"description": "Ang auto-approve ay nagpapahintulot sa Softcodes na magsagawa ng mga aksyon nang hindi humihingi ng pahintulot. I-enable lamang para sa mga aksyon na lubos mong pinagkakatiwalaan. Mas detalyadong configuration ay available sa <settingsLink>Settings</settingsLink>."
 	},
 	"announcement": {
 		"title": "🎉 Inilabas ang Roo Code {{version}}",
@@ -271,7 +271,7 @@
 		"countdownDisplay": "{{count}}s"
 	},
 	"browser": {
-		"rooWantsToUse": "Nais gamitin ng Kilo Code ang browser:",
+		"rooWantsToUse": "Nais gamitin ng Softcodes ang browser:",
 		"consoleLogs": "Mga Console Log",
 		"noNewLogs": "(Walang bagong log)",
 		"screenshot": "Screenshot ng browser",
@@ -305,13 +305,13 @@
 	"profileViolationWarning": "Ang kasalukuyang profile ay lumalabag sa mga setting ng iyong organisasyon",
 	"shellIntegration": {
 		"title": "Babala sa Command Execution",
-		"description": "Ang iyong command ay pinapatakbo nang walang VSCode terminal shell integration. Para alisin ang babalang ito maaari mong i-disable ang shell integration sa <strong>Terminal</strong> na seksyon ng <settingsLink>Kilo Code settings</settingsLink> o i-troubleshoot ang VSCode terminal integration gamit ang link sa ibaba.",
+		"description": "Ang iyong command ay pinapatakbo nang walang VSCode terminal shell integration. Para alisin ang babalang ito maaari mong i-disable ang shell integration sa <strong>Terminal</strong> na seksyon ng <settingsLink>Softcodes settings</settingsLink> o i-troubleshoot ang VSCode terminal integration gamit ang link sa ibaba.",
 		"troubleshooting": "I-click dito para sa shell integration documentation."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Naabot ang Limitasyon ng Auto-Approved Request",
-			"description": "Naabot ng Kilo Code ang auto-approved na limitasyon ng {{count}} API request. Gusto mo bang i-reset ang bilang at magpatuloy sa gawain?",
+			"description": "Naabot ng Softcodes ang auto-approved na limitasyon ng {{count}} API request. Gusto mo bang i-reset ang bilang at magpatuloy sa gawain?",
 			"button": "I-reset at Magpatuloy"
 		}
 	},

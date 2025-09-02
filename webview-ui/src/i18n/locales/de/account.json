@@ -3,12 +3,12 @@
 	"profilePicture": "Profilbild",
 	"logOut": "Abmelden",
 	"testApiAuthentication": "API-Authentifizierung testen",
-	"signIn": "Mit Kilo Code Cloud verbinden",
+	"signIn": "Mit Softcodes Cloud verbinden",
 	"connect": "Verbinden",
-	"cloudBenefitsTitle": "Mit Kilo Code Cloud verbinden",
+	"cloudBenefitsTitle": "Mit Softcodes Cloud verbinden",
 	"cloudBenefitsSubtitle": "Synchronisiere deine Prompts und Telemetrie, um folgendes zu aktivieren:",
 	"cloudBenefitHistory": "Online-Aufgabenverlauf",
 	"cloudBenefitSharing": "Freigabe- und Kollaborationsfunktionen",
 	"cloudBenefitMetrics": "Aufgaben-, Token- und kostenbasierte Nutzungsmetriken",
-	"visitCloudWebsite": "Kilo Code Cloud besuchen"
+	"visitCloudWebsite": "Softcodes Cloud besuchen"
 }

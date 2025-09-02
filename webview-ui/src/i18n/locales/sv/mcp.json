@@ -1,16 +1,16 @@
 {
 	"title": "MCP-servrar",
 	"done": "Klar",
-	"description": "<0>Model Context Protocol</0> möjliggör kommunikation med lokala MCP-servrar som tillhandahåller ytterligare verktyg och resurser för att utöka Kilo Codes kapacitet. Du kan använda <1>servrar skapade av communityn</1> eller be Kilo Code skapa nya verktyg specifikt för ditt arbetsflöde (t.ex. \"lägg till ett verktyg som hämtar de senaste npm docs\").",
+	"description": "<0>Model Context Protocol</0> möjliggör kommunikation med lokala MCP-servrar som tillhandahåller ytterligare verktyg och resurser för att utöka Kilo Codes kapacitet. Du kan använda <1>servrar skapade av communityn</1> eller be Softcodes skapa nya verktyg specifikt för ditt arbetsflöde (t.ex. \"lägg till ett verktyg som hämtar de senaste npm docs\").",
 	"instructions": "Instruktioner",
 	"enableToggle": {
 		"title": "Aktivera MCP-servrar",
-		"description": "Slå på detta för att låta Kilo Code använda verktyg från anslutna MCP-servrar. Detta ger Kilo Code ytterligare förmågor. Om du inte planerar att använda dessa extra verktyg, stäng av det för att minska API-token-kostnader."
+		"description": "Slå på detta för att låta Softcodes använda verktyg från anslutna MCP-servrar. Detta ger Softcodes ytterligare förmågor. Om du inte planerar att använda dessa extra verktyg, stäng av det för att minska API-token-kostnader."
 	},
 	"enableServerCreation": {
 		"title": "Aktivera skapande av MCP-server",
-		"description": "Aktivera detta för att låta Kilo Code hjälpa dig skapa <1>nya</1> anpassade MCP-servrar. <0>Lär dig mer om att skapa servrar</0>",
-		"hint": "Tips: För att minska API-token-kostnader, stäng av denna inställning när du inte aktivt ber Kilo Code skapa nya MCP-servrar."
+		"description": "Aktivera detta för att låta Softcodes hjälpa dig skapa <1>nya</1> anpassade MCP-servrar. <0>Lär dig mer om att skapa servrar</0>",
+		"hint": "Tips: För att minska API-token-kostnader, stäng av denna inställning när du inte aktivt ber Softcodes skapa nya MCP-servrar."
 	},
 	"editGlobalMCP": "Redigera Global MCP",
 	"editProjectMCP": "Redigera Project MCP",

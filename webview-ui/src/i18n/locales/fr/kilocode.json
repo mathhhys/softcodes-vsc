@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Bienvenue dans Kilo Code !",
-		"introText1": "Kilo Code est un agent de codage IA gratuit et open source.",
+		"greeting": "Bienvenue dans Softcodes !",
+		"introText1": "Softcodes est un agent de codage IA gratuit et open source.",
 		"introText2": "Il fonctionne avec les derniers modèles d'IA comme Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, et plus de 450 autres.",
 		"introText3": "Créez un compte gratuit et obtenez 20 $ en tokens à utiliser avec n'importe quel modèle d'IA.",
 		"ctaButton": "Créer un compte gratuit",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Ajouter du crédit",
-		"lowBalance": "Votre solde Kilo Code est bas"
+		"lowBalance": "Votre solde Softcodes est bas"
 	},
 	"notifications": {
 		"toolRequest": "Demande d'outil en attente d'approbation",
@@ -23,28 +23,28 @@
 			"mcp": "Serveurs MCP"
 		},
 		"provider": {
-			"account": "Compte Kilo Code",
-			"apiKey": "Clé API Kilo Code",
-			"login": "Se connecter à Kilo Code",
-			"logout": "Se déconnecter de Kilo Code"
+			"account": "Compte Softcodes",
+			"apiKey": "Clé API Softcodes",
+			"login": "Se connecter à Softcodes",
+			"logout": "Se déconnecter de Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Autoriser les lectures de fichiers très volumineux",
-				"description": "Lorsque cette option est activée, Kilo Code effectuera des lectures de fichiers ou de sorties MCP très volumineuses même s'il existe une forte probabilité de dépasser la fenêtre de contexte (taille du contenu >80% de la fenêtre de contexte)."
+				"description": "Lorsque cette option est activée, Softcodes effectuera des lectures de fichiers ou de sorties MCP très volumineuses même s'il existe une forte probabilité de dépasser la fenêtre de contexte (taille du contenu >80% de la fenêtre de contexte)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Activer les notifications système",
-			"description": "Lorsque cette option est activée, Kilo Code enverra des notifications système pour les événements importants comme la fin des tâches ou les erreurs.",
+			"description": "Lorsque cette option est activée, Softcodes enverra des notifications système pour les événements importants comme la fin des tâches ou les erreurs.",
 			"testButton": "Tester la notification",
-			"testTitle": "Kilo Code",
-			"testMessage": "Ceci est une notification de test de Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Ceci est une notification de test de Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code souhaite condenser votre conversation",
+			"wantsToCondense": "Softcodes souhaite condenser votre conversation",
 			"condenseConversation": "Condenser la Conversation"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Documentation",
 	"rules": {
-		"tooltip": "Gérer les Règles et Flux de Travail Kilo Code",
-		"ariaLabel": "Règles Kilo Code",
+		"tooltip": "Gérer les Règles et Flux de Travail Softcodes",
+		"ariaLabel": "Règles Softcodes",
 		"tabs": {
 			"rules": "Règles",
 			"workflows": "Flux de Travail"
 		},
 		"description": {
-			"rules": "Les règles vous permettent de fournir à Kilo Code des instructions qu'il doit suivre dans tous les modes et pour tous les prompts. Elles sont un moyen persistant d'inclure du contexte et des préférences pour toutes les conversations dans votre espace de travail ou globalement.",
-			"workflows": "Les flux de travail sont un modèle préparé pour une conversation. Les flux de travail vous permettent de définir des prompts que vous utilisez fréquemment, et peuvent inclure une série d'étapes pour guider Kilo Code à travers des tâches répétitives, comme déployer un service ou soumettre une PR. Pour invoquer un flux de travail, tapez",
+			"rules": "Les règles vous permettent de fournir à Softcodes des instructions qu'il doit suivre dans tous les modes et pour tous les prompts. Elles sont un moyen persistant d'inclure du contexte et des préférences pour toutes les conversations dans votre espace de travail ou globalement.",
+			"workflows": "Les flux de travail sont un modèle préparé pour une conversation. Les flux de travail vous permettent de définir des prompts que vous utilisez fréquemment, et peuvent inclure une série d'étapes pour guider Softcodes à travers des tâches répétitives, comme déployer un service ou soumettre une PR. Pour invoquer un flux de travail, tapez",
 			"workflowsInChat": "dans le chat."
 		},
 		"sections": {

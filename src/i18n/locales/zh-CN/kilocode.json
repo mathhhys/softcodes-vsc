@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Kilo Code: 提交信息生成器已启动",
+		"activated": "Softcodes: 提交信息生成器已启动",
 		"gitNotFound": "⚠️ Git 仓库未找到或 git 不可用",
 		"gitInitError": "⚠️ Git 初始化错误：{{error}}",
 		"generating": "Kilo: 正在生成提交信息...",
@@ -77,7 +77,7 @@
 			"generating": "正在生成建议修改...",
 			"processing": "正在处理建议的编辑...",
 			"showing": "显示建议的编辑...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
 			"title": "Kilo：快速任务",
@@ -90,13 +90,13 @@
 			"cancelSuggestions": "取消建议的编辑",
 			"applyAllSuggestions": "应用所有建议的编辑",
 			"promptCodeSuggestion": "快速任务提示",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code：建议编辑"
+			"title": "Softcodes：建议编辑"
 		},
 		"chatParticipant": {
-			"fullName": "Kilo Code 代理",
+			"fullName": "Softcodes 代理",
 			"description": "我可以帮助你完成快速任务和提供建议的编辑。",
 			"name": "代理"
 		},

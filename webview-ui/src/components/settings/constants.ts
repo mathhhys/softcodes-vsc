@@ -15,7 +15,7 @@ import {
 	chutesModels,
 } from "@roo-code/types"
 
-import { fireworksModels, cerebrasModels } from "@roo/api" // kilocode_change
+import { fireworksModels, cerebrasModels } from "@roo/api"
 
 export const MODELS_BY_PROVIDER: Partial<Record<ProviderName, Record<string, ModelInfo>>> = {
 	anthropic: anthropicModels,
@@ -23,22 +23,21 @@ export const MODELS_BY_PROVIDER: Partial<Record<ProviderName, Record<string, Mod
 	bedrock: bedrockModels,
 	deepseek: deepSeekModels,
 	gemini: geminiModels,
-	"gemini-cli": geminiCliModels, // kilocode_change
-	fireworks: fireworksModels, // kilocode_change
+	"gemini-cli": geminiCliModels,
+	fireworks: fireworksModels,
 	mistral: mistralModels,
 	"openai-native": openAiNativeModels,
 	vertex: vertexModels,
 	xai: xaiModels,
 	groq: groqModels,
 	chutes: chutesModels,
-	cerebras: cerebrasModels, // kilocode_change
+	cerebras: cerebrasModels,
 }
 
 export const PROVIDERS = [
-	{ value: "kilocode", label: "Kilo Code" },
-	{ value: "openrouter", label: "OpenRouter" },
+	{ value: "openrouter", label: "Softcodes" },
 	{ value: "anthropic", label: "Anthropic" },
-	{ value: "fireworks", label: "Fireworks" }, // kilocode_change
+	{ value: "fireworks", label: "Fireworks" },
 	{ value: "claude-code", label: "Claude Code" },
 	{ value: "gemini", label: "Google Gemini" },
 	{ value: "gemini-cli", label: "Gemini CLI" },
@@ -58,6 +57,6 @@ export const PROVIDERS = [
 	{ value: "xai", label: "xAI (Grok)" },
 	{ value: "groq", label: "Groq" },
 	{ value: "chutes", label: "Chutes AI" },
-	{ value: "cerebras", label: "Cerebras" }, // kilocode_change
+	{ value: "cerebras", label: "Cerebras" },
 	{ value: "litellm", label: "LiteLLM" },
-] // .sort((a, b) => a.label.localeCompare(b.label)) // kilocode_change: Sort providers with kilocode first
+] // .sort((a, b) => a.label.localeCompare(b.label))

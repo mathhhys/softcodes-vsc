@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Εργαλείο δημιουργίας μηνυμάτων commit Kilo Code ενεργοποιήθηκε",
+		"activated": "Εργαλείο δημιουργίας μηνυμάτων commit Softcodes ενεργοποιήθηκε",
 		"gitNotFound": "⚠️ Το αποθετήριο Git δεν βρέθηκε ή το git δεν είναι διαθέσιμο",
 		"gitInitError": "⚠️ Σφάλμα αρχικοποίησης του Git: {{error}}",
 		"generating": "Kilo: Δημιουργία μηνύματος commit...",
@@ -56,9 +56,9 @@
 			"warning": "$(warning) Kilo Αυτόματη Συμπλήρωση",
 			"enabled": "$(sparkle) Kilo Αυτόματη Συμπλήρωση",
 			"tooltip": {
-				"basic": "Kilo Code Αυτόματη Συμπλήρωση",
+				"basic": "Softcodes Αυτόματη Συμπλήρωση",
 				"tokenError": "Πρέπει να οριστεί ένα έγκυρο διακριτικό για να χρησιμοποιηθεί η αυτόματη συμπλήρωση",
-				"disabled": "Αυτόματη Συμπλήρωση Kilo Code (απενεργοποιημένη)",
+				"disabled": "Αυτόματη Συμπλήρωση Softcodes (απενεργοποιημένη)",
 				"sessionTotal": "Συνολικό κόστος συνεδρίας:",
 				"lastCompletion": "Τελευταία ολοκλήρωση:",
 				"model": "Μοντέλο:"
@@ -77,27 +77,27 @@
 			"generating": "Δημιουργία προτεινόμενων επεξεργασιών...",
 			"processing": "Επεξεργασία προτεινόμενων αλλαγών...",
 			"showing": "Εμφάνιση προτεινόμενων αλλαγών...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Γρήγορη Εργασία",
+			"title": "Softcodes: Γρήγορη Εργασία",
 			"placeholder": "π.χ., 'αναδιοργάνωσε αυτή τη συνάρτηση ώστε να είναι πιο αποδοτική'"
 		},
 		"commands": {
 			"cancelSuggestions": "Ακύρωση Προτεινόμενων Αλλαγών",
-			"generateSuggestions": "Kilo Code: Δημιουργία Προτεινόμενων Επεξεργασιών",
+			"generateSuggestions": "Softcodes: Δημιουργία Προτεινόμενων Επεξεργασιών",
 			"displaySuggestions": "Προβολή Προτεινόμενων Τροποποιήσεων",
 			"promptCodeSuggestion": "Γρήγορη Εργασία με Prompt",
 			"applyCurrentSuggestion": "Εφαρμογή Τρέχουσας Προτεινόμενης Επεξεργασίας",
-			"category": "Kilo Code",
+			"category": "Softcodes",
 			"applyAllSuggestions": "Εφαρμογή Όλων των Προτεινόμενων Αλλαγών"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Προτεινόμενες Αλλαγές"
+			"title": "Softcodes: Προτεινόμενες Αλλαγές"
 		},
 		"chatParticipant": {
 			"name": "Πράκτορας",
-			"fullName": "Πράκτορας Kilo Code",
+			"fullName": "Πράκτορας Softcodes",
 			"description": "Μπορώ να σας βοηθήσω με γρήγορες εργασίες και προτεινόμενες διορθώσεις."
 		},
 		"messages": {

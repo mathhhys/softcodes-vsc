@@ -1,5 +1,5 @@
 {
-	"greeting": "Selamat datang di Kilo Code",
+	"greeting": "Selamat datang di Softcodes",
 	"task": {
 		"title": "Tugas",
 		"seeMore": "Lihat lebih banyak",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Bagikan secara publik",
 		"sharePubliclyDescription": "Siapa pun dengan tautan dapat mengakses",
 		"connectToCloud": "Hubungkan ke Cloud",
-		"connectToCloudDescription": "Masuk ke Kilo Code Cloud untuk berbagi tugas",
+		"connectToCloudDescription": "Masuk ke Softcodes Cloud untuk berbagi tugas",
 		"sharingDisabledByOrganization": "Berbagi dinonaktifkan oleh organisasi",
 		"shareSuccessOrganization": "Tautan organisasi disalin ke clipboard",
 		"shareSuccessPublic": "Tautan publik disalin ke clipboard"
@@ -123,7 +123,7 @@
 		"title": "Mode",
 		"marketplace": "Marketplace Mode",
 		"settings": "Pengaturan Mode",
-		"description": "Persona khusus yang menyesuaikan perilaku Kilo Code."
+		"description": "Persona khusus yang menyesuaikan perilaku Softcodes."
 	},
 	"addImages": "Tambahkan gambar ke pesan",
 	"sendMessage": "Kirim pesan",
@@ -169,46 +169,46 @@
 		"tokens": "token"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code ingin mengambil instruksi detail untuk membantu tugas saat ini"
+		"wantsToFetch": "Softcodes ingin mengambil instruksi detail untuk membantu tugas saat ini"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code ingin membaca file ini:",
-		"wantsToReadMultiple": "Kilo Code ingin membaca beberapa file:",
-		"wantsToReadAndXMore": "Kilo Code ingin membaca file ini dan {{count}} lainnya:",
-		"wantsToReadOutsideWorkspace": "Kilo Code ingin membaca file ini di luar workspace:",
-		"didRead": "Kilo Code membaca file ini:",
-		"wantsToEdit": "Kilo Code ingin mengedit file ini:",
-		"wantsToEditOutsideWorkspace": "Kilo Code ingin mengedit file ini di luar workspace:",
-		"wantsToEditProtected": "Kilo Code ingin mengedit file konfigurasi yang dilindungi:",
-		"wantsToApplyBatchChanges": "Kilo Code ingin menerapkan perubahan ke beberapa file:",
-		"wantsToCreate": "Kilo Code ingin membuat file baru:",
-		"wantsToSearchReplace": "Kilo Code ingin mencari dan mengganti di file ini:",
-		"didSearchReplace": "Kilo Code melakukan pencarian dan penggantian pada file ini:",
-		"wantsToInsert": "Kilo Code ingin menyisipkan konten ke file ini:",
-		"wantsToInsertWithLineNumber": "Kilo Code ingin menyisipkan konten ke file ini di baris {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Kilo Code ingin menambahkan konten ke akhir file ini:"
+		"wantsToRead": "Softcodes ingin membaca file ini:",
+		"wantsToReadMultiple": "Softcodes ingin membaca beberapa file:",
+		"wantsToReadAndXMore": "Softcodes ingin membaca file ini dan {{count}} lainnya:",
+		"wantsToReadOutsideWorkspace": "Softcodes ingin membaca file ini di luar workspace:",
+		"didRead": "Softcodes membaca file ini:",
+		"wantsToEdit": "Softcodes ingin mengedit file ini:",
+		"wantsToEditOutsideWorkspace": "Softcodes ingin mengedit file ini di luar workspace:",
+		"wantsToEditProtected": "Softcodes ingin mengedit file konfigurasi yang dilindungi:",
+		"wantsToApplyBatchChanges": "Softcodes ingin menerapkan perubahan ke beberapa file:",
+		"wantsToCreate": "Softcodes ingin membuat file baru:",
+		"wantsToSearchReplace": "Softcodes ingin mencari dan mengganti di file ini:",
+		"didSearchReplace": "Softcodes melakukan pencarian dan penggantian pada file ini:",
+		"wantsToInsert": "Softcodes ingin menyisipkan konten ke file ini:",
+		"wantsToInsertWithLineNumber": "Softcodes ingin menyisipkan konten ke file ini di baris {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Softcodes ingin menambahkan konten ke akhir file ini:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code ingin melihat file tingkat atas di direktori ini:",
-		"didViewTopLevel": "Kilo Code melihat file tingkat atas di direktori ini:",
-		"wantsToViewRecursive": "Kilo Code ingin melihat semua file secara rekursif di direktori ini:",
-		"didViewRecursive": "Kilo Code melihat semua file secara rekursif di direktori ini:",
-		"wantsToViewDefinitions": "Kilo Code ingin melihat nama definisi source code yang digunakan di direktori ini:",
-		"didViewDefinitions": "Kilo Code melihat nama definisi source code yang digunakan di direktori ini:",
-		"wantsToSearch": "Kilo Code ingin mencari direktori ini untuk <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code mencari direktori ini untuk <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Kilo Code ingin mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Kilo Code mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code ingin melihat file tingkat atas di direktori ini (di luar workspace):",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code melihat file tingkat atas di direktori ini (di luar workspace):",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code ingin melihat semua file secara rekursif di direktori ini (di luar workspace):",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code melihat semua file secara rekursif di direktori ini (di luar workspace):",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code ingin melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):"
+		"wantsToViewTopLevel": "Softcodes ingin melihat file tingkat atas di direktori ini:",
+		"didViewTopLevel": "Softcodes melihat file tingkat atas di direktori ini:",
+		"wantsToViewRecursive": "Softcodes ingin melihat semua file secara rekursif di direktori ini:",
+		"didViewRecursive": "Softcodes melihat semua file secara rekursif di direktori ini:",
+		"wantsToViewDefinitions": "Softcodes ingin melihat nama definisi source code yang digunakan di direktori ini:",
+		"didViewDefinitions": "Softcodes melihat nama definisi source code yang digunakan di direktori ini:",
+		"wantsToSearch": "Softcodes ingin mencari direktori ini untuk <code>{{regex}}</code>:",
+		"didSearch": "Softcodes mencari direktori ini untuk <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Softcodes ingin mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Softcodes mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>:",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes ingin melihat file tingkat atas di direktori ini (di luar workspace):",
+		"didViewTopLevelOutsideWorkspace": "Softcodes melihat file tingkat atas di direktori ini (di luar workspace):",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes ingin melihat semua file secara rekursif di direktori ini (di luar workspace):",
+		"didViewRecursiveOutsideWorkspace": "Softcodes melihat semua file secara rekursif di direktori ini (di luar workspace):",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes ingin melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes melihat nama definisi source code yang digunakan di direktori ini (di luar workspace):"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code ingin mencari codebase untuk <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Kilo Code ingin mencari codebase untuk <code>{{query}}</code> di <code>{{path}}</code>:",
+		"wantsToSearch": "Softcodes ingin mencari codebase untuk <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Softcodes ingin mencari codebase untuk <code>{{query}}</code> di <code>{{path}}</code>:",
 		"didSearch": "Ditemukan {{count}} hasil untuk <code>{{query}}</code>:",
 		"resultTooltip": "Skor kemiripan: {{score}} (klik untuk membuka file)"
 	},
@@ -216,18 +216,18 @@
 	"response": "Respons",
 	"arguments": "Argumen",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code ingin menggunakan tool di server MCP {{serverName}}:",
-		"wantsToAccessResource": "Kilo Code ingin mengakses resource di server MCP {{serverName}}:"
+		"wantsToUseTool": "Softcodes ingin menggunakan tool di server MCP {{serverName}}:",
+		"wantsToAccessResource": "Softcodes ingin mengakses resource di server MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code ingin beralih ke mode {{mode}}",
-		"wantsToSwitchWithReason": "Kilo Code ingin beralih ke mode {{mode}} karena: {{reason}}",
-		"didSwitch": "Kilo Code beralih ke mode {{mode}}",
-		"didSwitchWithReason": "Kilo Code beralih ke mode {{mode}} karena: {{reason}}"
+		"wantsToSwitch": "Softcodes ingin beralih ke mode {{mode}}",
+		"wantsToSwitchWithReason": "Softcodes ingin beralih ke mode {{mode}} karena: {{reason}}",
+		"didSwitch": "Softcodes beralih ke mode {{mode}}",
+		"didSwitchWithReason": "Softcodes beralih ke mode {{mode}} karena: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code ingin membuat subtugas baru dalam mode {{mode}}:",
-		"wantsToFinish": "Kilo Code ingin menyelesaikan subtugas ini",
+		"wantsToCreate": "Softcodes ingin membuat subtugas baru dalam mode {{mode}}:",
+		"wantsToFinish": "Softcodes ingin menyelesaikan subtugas ini",
 		"newTaskContent": "Instruksi Subtugas",
 		"completionContent": "Subtugas Selesai",
 		"resultContent": "Hasil Subtugas",
@@ -235,21 +235,21 @@
 		"completionInstructions": "Subtugas selesai! Kamu bisa meninjau hasilnya dan menyarankan koreksi atau langkah selanjutnya. Jika semuanya terlihat baik, konfirmasi untuk mengembalikan hasil ke tugas induk."
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code punya pertanyaan:"
+		"hasQuestion": "Softcodes punya pertanyaan:"
 	},
 	"taskCompleted": "Tugas Selesai",
 	"error": "Error",
 	"diffError": {
 		"title": "Edit Tidak Berhasil"
 	},
-	"troubleMessage": "Kilo Code mengalami masalah...",
+	"troubleMessage": "Softcodes mengalami masalah...",
 	"powershell": {
 		"issues": "Sepertinya kamu mengalami masalah Windows PowerShell, silakan lihat ini"
 	},
 	"autoApprove": {
 		"title": "Auto-approve:",
 		"none": "Tidak Ada",
-		"description": "Auto-approve memungkinkan Kilo Code melakukan aksi tanpa meminta izin. Hanya aktifkan untuk aksi yang benar-benar kamu percayai. Konfigurasi lebih detail tersedia di <settingsLink>Pengaturan</settingsLink>."
+		"description": "Auto-approve memungkinkan Softcodes melakukan aksi tanpa meminta izin. Hanya aktifkan untuk aksi yang benar-benar kamu percayai. Konfigurasi lebih detail tersedia di <settingsLink>Pengaturan</settingsLink>."
 	},
 	"announcement": {
 		"title": "🎉 Roo Code {{version}} Dirilis",
@@ -271,7 +271,7 @@
 		"countdownDisplay": "{{count}}dtk"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code ingin menggunakan browser:",
+		"rooWantsToUse": "Softcodes ingin menggunakan browser:",
 		"consoleLogs": "Log Konsol",
 		"noNewLogs": "(Tidak ada log baru)",
 		"screenshot": "Screenshot browser",
@@ -305,13 +305,13 @@
 	"profileViolationWarning": "Profil saat ini melanggar pengaturan organisasi kamu",
 	"shellIntegration": {
 		"title": "Peringatan Eksekusi Perintah",
-		"description": "Perintah kamu dijalankan tanpa integrasi shell terminal VSCode. Untuk menekan peringatan ini kamu bisa menonaktifkan integrasi shell di bagian <strong>Terminal</strong> dari <settingsLink>pengaturan Kilo Code</settingsLink> atau troubleshoot integrasi terminal VSCode menggunakan link di bawah.",
+		"description": "Perintah kamu dijalankan tanpa integrasi shell terminal VSCode. Untuk menekan peringatan ini kamu bisa menonaktifkan integrasi shell di bagian <strong>Terminal</strong> dari <settingsLink>pengaturan Softcodes</settingsLink> atau troubleshoot integrasi terminal VSCode menggunakan link di bawah.",
 		"troubleshooting": "Klik di sini untuk dokumentasi integrasi shell."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Batas Permintaan yang Disetujui Otomatis Tercapai",
-			"description": "Kilo Code telah mencapai batas {{count}} permintaan API yang disetujui otomatis. Apakah kamu ingin mengatur ulang hitungan dan melanjutkan tugas?",
+			"description": "Softcodes telah mencapai batas {{count}} permintaan API yang disetujui otomatis. Apakah kamu ingin mengatur ulang hitungan dan melanjutkan tugas?",
 			"button": "Atur Ulang dan Lanjutkan"
 		}
 	},

@@ -85,8 +85,11 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 				break
 			// kilocode_change start
 			case "kilocode-openrouter":
+				if (!options.kilocodeToken || options.kilocodeToken.trim() === "") {
+					throw new Error("KiloCode token is required for kilocode-openrouter provider")
+				}
 				models = await getOpenRouterModels({
-					openRouterBaseUrl: getKiloBaseUriFromToken(options.kilocodeToken ?? "") + "/api/openrouter",
+					openRouterBaseUrl: getKiloBaseUriFromToken(options.kilocodeToken) + "/api/openrouter",
 					headers: { Authorization: `Bearer ${options.kilocodeToken}` },
 				})
 				break

@@ -32,10 +32,10 @@
 		"prompts": "الموجهات",
 		"experimental": "تجريبي",
 		"language": "اللغة",
-		"about": "عن Kilo Code"
+		"about": "عن Softcodes"
 	},
 	"prompts": {
-		"description": "اضبط الموجهات المساعدة لعمليات مثل تحسين الموجه وشرح الكود وإصلاح المشاكل. هذي الموجهات تساعد Kilo Code يقدّم دعم أفضل للمهام المتكررة."
+		"description": "اضبط الموجهات المساعدة لعمليات مثل تحسين الموجه وشرح الكود وإصلاح المشاكل. هذي الموجهات تساعد Softcodes يقدّم دعم أفضل للمهام المتكررة."
 	},
 	"codeIndex": {
 		"title": "فهرسة قاعدة الكود",
@@ -123,13 +123,13 @@
 		}
 	},
 	"autoApprove": {
-		"description": "خلّ Kilo Code ينفذ العمليات تلقائيًا بدون موافقة. فعّلها فقط إذا كنت واثق من الأمان.",
+		"description": "خلّ Softcodes ينفذ العمليات تلقائيًا بدون موافقة. فعّلها فقط إذا كنت واثق من الأمان.",
 		"readOnly": {
 			"label": "قراءة",
-			"description": "يسمح لـ Kilo Code يعرض المجلدات ويقرأ الملفات تلقائي.",
+			"description": "يسمح لـ Softcodes يعرض المجلدات ويقرأ الملفات تلقائي.",
 			"outsideWorkspace": {
 				"label": "تشمل الملفات خارج المشروع",
-				"description": "اسمح لـ Kilo Code يقرأ ملفات برّا مساحة العمل بدون موافقة."
+				"description": "اسمح لـ Softcodes يقرأ ملفات برّا مساحة العمل بدون موافقة."
 			}
 		},
 		"write": {
@@ -138,11 +138,11 @@
 			"delayLabel": "تأخير بعد الكتابة لفحص المشاكل",
 			"outsideWorkspace": {
 				"label": "تشمل الملفات خارج المشروع",
-				"description": "اسمح لـ Kilo Code يعدل ملفات خارج مساحة العمل بدون موافقة."
+				"description": "اسمح لـ Softcodes يعدل ملفات خارج مساحة العمل بدون موافقة."
 			},
 			"protected": {
 				"label": "تشمل الملفات المحمية",
-				"description": "اسمح لـ Kilo Code يعدل ملفات إعدادات محمية بدون موافقة."
+				"description": "اسمح لـ Softcodes يعدل ملفات إعدادات محمية بدون موافقة."
 			}
 		},
 		"browser": {
@@ -305,7 +305,7 @@
 			"baseUrl": "الرابط الأساسي (اختياري)",
 			"modelId": "معرّف النموذج",
 			"description": "Ollama يشغّل نماذج محليًا. راجع دليلهم.",
-			"warning": "ملاحظة: Kilo Code يعمل أفضل مع Claude. النماذج الضعيفة قد لا تؤدي المطلوب."
+			"warning": "ملاحظة: Softcodes يعمل أفضل مع Claude. النماذج الضعيفة قد لا تؤدي المطلوب."
 		},
 		"unboundApiKey": "مفتاح Unbound",
 		"getUnboundApiKey": "احصل على مفتاح Unbound",
@@ -403,7 +403,7 @@
 	"browser": {
 		"enable": {
 			"label": "تفعيل أداة المتصفح",
-			"description": "إذا تم التفعيل، Kilo Code يقدر يستخدم المتصفح مع النماذج الداعمة. <0>تعرف أكثر</0>"
+			"description": "إذا تم التفعيل، Softcodes يقدر يستخدم المتصفح مع النماذج الداعمة. <0>تعرف أكثر</0>"
 		},
 		"viewport": {
 			"label": "حجم العرض",
@@ -448,7 +448,7 @@
 		},
 		"tts": {
 			"label": "تفعيل النص إلى كلام",
-			"description": "يقرأ ردود Kilo Code بصوت عالٍ.",
+			"description": "يقرأ ردود Softcodes بصوت عالٍ.",
 			"speedLabel": "السرعة"
 		}
 	},
@@ -456,7 +456,7 @@
 		"description": "تحكّم بالمعلومات المُدرجة في سياق الذكاء.",
 		"autoCondenseContextPercent": {
 			"label": "نسبة تشغيل التلخيص الذكي",
-			"description": "عند الوصول لهذه النسبة، يختصر Kilo Code السياق."
+			"description": "عند الوصول لهذه النسبة، يختصر Softcodes السياق."
 		},
 		"condensingApiConfiguration": {
 			"label": "إعداد API للتلخيص",
@@ -623,7 +623,7 @@
 	},
 	"promptCaching": {
 		"label": "تعطيل تخزين الموجهات",
-		"description": "عند التفعيل، ما يستخدم Kilo Code الكاش لهذا النموذج."
+		"description": "عند التفعيل، ما يستخدم Softcodes الكاش لهذا النموذج."
 	},
 	"temperature": {
 		"useCustom": "استخدام درجة حرارة مخصصة",
@@ -654,7 +654,7 @@
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "الإضافة تجيب أحدث النماذج من <serviceLink>{{serviceName}}</serviceLink>. إذا متردد، Kilo Code يعمل أفضل مع <defaultModelLink>{{defaultModelId}}</defaultModelLink>. جرّب كلمة \"free\" للخيارات المجانية.",
+		"automaticFetch": "الإضافة تجيب أحدث النماذج من <serviceLink>{{serviceName}}</serviceLink>. إذا متردد، Softcodes يعمل أفضل مع <defaultModelLink>{{defaultModelId}}</defaultModelLink>. جرّب كلمة \"free\" للخيارات المجانية.",
 		"label": "النموذج",
 		"searchPlaceholder": "بحث",
 		"noMatchFound": "ما فيه تطابق",
@@ -665,7 +665,7 @@
 		"support": "للاستفسارات المالية: <supportLink>https://kilocode.ai/support</supportLink>",
 		"telemetry": {
 			"label": "السماح بتقارير الأخطاء والاستخدام",
-			"description": "ساعد في تحسين Kilo Code بإرسال بيانات الاستخدام وتقارير الأخطاء. لا يتم إرسال أي كود أو مطالبات أو معلومات شخصية أبداً. راجع سياسة الخصوصية لمزيد من التفاصيل."
+			"description": "ساعد في تحسين Softcodes بإرسال بيانات الاستخدام وتقارير الأخطاء. لا يتم إرسال أي كود أو مطالبات أو معلومات شخصية أبداً. راجع سياسة الخصوصية لمزيد من التفاصيل."
 		},
 		"settings": {
 			"import": "استيراد",

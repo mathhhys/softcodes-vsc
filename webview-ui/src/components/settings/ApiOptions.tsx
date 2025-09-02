@@ -344,7 +344,7 @@ const ApiOptions = ({
 			<div className="flex flex-col gap-1 relative">
 				<div className="flex justify-between items-center">
 					<label className="block font-medium mb-1">{t("settings:providers.apiProvider")}</label>
-					{docs && (
+					{docs && selectedProvider !== "kilocode" && (
 						<div className="text-xs text-vscode-descriptionForeground">
 							<VSCodeLink href={docs.url} className="hover:text-vscode-foreground" target="_blank">
 								{t("settings:providers.providerDocumentation", { provider: docs.name })}
@@ -401,7 +401,7 @@ const ApiOptions = ({
 								</Button>
 							</div>
 						) : (
-							<VSCodeButtonLink variant="secondary" href={getKiloCodeBackendSignInUrl(uriScheme, uiKind)}>
+							<VSCodeButtonLink variant="secondary" href={getKiloCodeBackendSignInUrl()}>
 								{t("kilocode:settings.provider.login")}
 							</VSCodeButtonLink>
 						))}
@@ -411,7 +411,8 @@ const ApiOptions = ({
 						type="password"
 						onInput={handleInputChange("kilocodeToken")}
 						placeholder={t("kilocode:settings.provider.apiKey")}
-						className="w-full">
+						className="w-full"
+						readOnly>
 						<div className="flex justify-between items-center mb-1">
 							<label className="block font-medium">{t("kilocode:settings.provider.apiKey")}</label>
 						</div>
@@ -423,7 +424,7 @@ const ApiOptions = ({
 						defaultModelId="claude37"
 						models={routerModels?.["kilocode-openrouter"] ?? {}}
 						modelIdKey="kilocodeModel"
-						serviceName="Kilo Code"
+						serviceName="Softcodes"
 						serviceUrl="https://kilocode.ai"
 						organizationAllowList={organizationAllowList}
 					/>

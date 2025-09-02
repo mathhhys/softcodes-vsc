@@ -1,5 +1,5 @@
 {
-	"greeting": "Vad kan Kilo Code göra för dig?",
+	"greeting": "Vad kan Softcodes göra för dig?",
 	"task": {
 		"title": "Uppgift",
 		"seeMore": "Se mer",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Dela offentligt",
 		"sharePubliclyDescription": "Alla med länken har åtkomst",
 		"connectToCloud": "Anslut till Cloud",
-		"connectToCloudDescription": "Logga in på Kilo Code Cloud för att dela uppgifter",
+		"connectToCloudDescription": "Logga in på Softcodes Cloud för att dela uppgifter",
 		"sharingDisabledByOrganization": "Delning inaktiverad av organisationen",
 		"shareSuccessOrganization": "Organisationslänk kopierad till urklipp",
 		"shareSuccessPublic": "Offentlig länk kopierad till urklipp"
@@ -169,46 +169,46 @@
 		"tokens": "tokens"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code vill hämta detaljerade instruktioner för att hjälpa till med den aktuella uppgiften"
+		"wantsToFetch": "Softcodes vill hämta detaljerade instruktioner för att hjälpa till med den aktuella uppgiften"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code vill läsa denna fil:",
-		"wantsToReadMultiple": "Kilo Code vill läsa flera filer:",
-		"wantsToReadAndXMore": "Kilo Code vill läsa denna fil och {{count}} till:",
-		"wantsToReadOutsideWorkspace": "Kilo Code vill läsa denna fil utanför arbetsytan:",
-		"didRead": "Kilo Code läste denna fil:",
-		"wantsToEdit": "Kilo Code vill redigera denna fil:",
-		"wantsToEditOutsideWorkspace": "Kilo Code vill redigera denna fil utanför arbetsytan:",
-		"wantsToEditProtected": "Kilo Code vill redigera en skyddad konfigurationsfil:",
-		"wantsToApplyBatchChanges": "Kilo Code vill tillämpa ändringar på flera filer:",
-		"wantsToCreate": "Kilo Code vill skapa en ny fil:",
-		"wantsToSearchReplace": "Kilo Code vill söka och ersätta i denna fil:",
-		"didSearchReplace": "Kilo Code utförde sökning och ersättning i denna fil:",
-		"wantsToInsert": "Kilo Code vill infoga innehåll i denna fil:",
-		"wantsToInsertWithLineNumber": "Kilo Code vill infoga innehåll i denna fil på rad {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Kilo Code vill lägga till innehåll i slutet av denna fil:"
+		"wantsToRead": "Softcodes vill läsa denna fil:",
+		"wantsToReadMultiple": "Softcodes vill läsa flera filer:",
+		"wantsToReadAndXMore": "Softcodes vill läsa denna fil och {{count}} till:",
+		"wantsToReadOutsideWorkspace": "Softcodes vill läsa denna fil utanför arbetsytan:",
+		"didRead": "Softcodes läste denna fil:",
+		"wantsToEdit": "Softcodes vill redigera denna fil:",
+		"wantsToEditOutsideWorkspace": "Softcodes vill redigera denna fil utanför arbetsytan:",
+		"wantsToEditProtected": "Softcodes vill redigera en skyddad konfigurationsfil:",
+		"wantsToApplyBatchChanges": "Softcodes vill tillämpa ändringar på flera filer:",
+		"wantsToCreate": "Softcodes vill skapa en ny fil:",
+		"wantsToSearchReplace": "Softcodes vill söka och ersätta i denna fil:",
+		"didSearchReplace": "Softcodes utförde sökning och ersättning i denna fil:",
+		"wantsToInsert": "Softcodes vill infoga innehåll i denna fil:",
+		"wantsToInsertWithLineNumber": "Softcodes vill infoga innehåll i denna fil på rad {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Softcodes vill lägga till innehåll i slutet av denna fil:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code vill visa toppnivåfiler i denna katalog:",
-		"didViewTopLevel": "Kilo Code visade toppnivåfiler i denna katalog:",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code vill visa toppnivåfiler i denna katalog (utanför arbetsytan):",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code visade toppnivåfiler i denna katalog (utanför arbetsytan):",
-		"wantsToViewRecursive": "Kilo Code vill rekursivt visa alla filer i denna katalog:",
-		"didViewRecursive": "Kilo Code visade rekursivt alla filer i denna katalog:",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code vill rekursivt visa alla filer i denna katalog (utanför arbetsytan):",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code visade rekursivt alla filer i denna katalog (utanför arbetsytan):",
-		"wantsToViewDefinitions": "Kilo Code vill visa källkodsdefinitionsnamn som används i denna katalog:",
-		"didViewDefinitions": "Kilo Code visade källkodsdefinitionsnamn som används i denna katalog:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code vill visa källkodsdefinitionsnamn som används i denna katalog (utanför arbetsytan):",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code visade källkodsdefinitionsnamn som används i denna katalog (utanför arbetsytan):",
-		"wantsToSearch": "Kilo Code vill söka i denna katalog efter <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code sökte i denna katalog efter <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Kilo Code vill söka i denna katalog (utanför arbetsytan) efter <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Kilo Code sökte i denna katalog (utanför arbetsytan) efter <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Softcodes vill visa toppnivåfiler i denna katalog:",
+		"didViewTopLevel": "Softcodes visade toppnivåfiler i denna katalog:",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes vill visa toppnivåfiler i denna katalog (utanför arbetsytan):",
+		"didViewTopLevelOutsideWorkspace": "Softcodes visade toppnivåfiler i denna katalog (utanför arbetsytan):",
+		"wantsToViewRecursive": "Softcodes vill rekursivt visa alla filer i denna katalog:",
+		"didViewRecursive": "Softcodes visade rekursivt alla filer i denna katalog:",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes vill rekursivt visa alla filer i denna katalog (utanför arbetsytan):",
+		"didViewRecursiveOutsideWorkspace": "Softcodes visade rekursivt alla filer i denna katalog (utanför arbetsytan):",
+		"wantsToViewDefinitions": "Softcodes vill visa källkodsdefinitionsnamn som används i denna katalog:",
+		"didViewDefinitions": "Softcodes visade källkodsdefinitionsnamn som används i denna katalog:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes vill visa källkodsdefinitionsnamn som används i denna katalog (utanför arbetsytan):",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes visade källkodsdefinitionsnamn som används i denna katalog (utanför arbetsytan):",
+		"wantsToSearch": "Softcodes vill söka i denna katalog efter <code>{{regex}}</code>:",
+		"didSearch": "Softcodes sökte i denna katalog efter <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Softcodes vill söka i denna katalog (utanför arbetsytan) efter <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Softcodes sökte i denna katalog (utanför arbetsytan) efter <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code vill söka i kodbasen efter <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Kilo Code vill söka i kodbasen efter <code>{{query}}</code> i <code>{{path}}</code>:",
+		"wantsToSearch": "Softcodes vill söka i kodbasen efter <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Softcodes vill söka i kodbasen efter <code>{{query}}</code> i <code>{{path}}</code>:",
 		"didSearch": "Hittade {{count}} resultat för <code>{{query}}</code>:",
 		"resultTooltip": "Likhetspoäng: {{score}} (klicka för att öppna fil)"
 	},
@@ -216,18 +216,18 @@
 	"response": "Svar",
 	"arguments": "Argument",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code vill använda ett verktyg på {{serverName}} MCP-servern:",
-		"wantsToAccessResource": "Kilo Code vill komma åt en resurs på {{serverName}} MCP-servern:"
+		"wantsToUseTool": "Softcodes vill använda ett verktyg på {{serverName}} MCP-servern:",
+		"wantsToAccessResource": "Softcodes vill komma åt en resurs på {{serverName}} MCP-servern:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code vill byta till {{mode}}-läge",
-		"wantsToSwitchWithReason": "Kilo Code vill byta till {{mode}}-läge eftersom: {{reason}}",
-		"didSwitch": "Kilo Code bytte till {{mode}}-läge",
-		"didSwitchWithReason": "Kilo Code bytte till {{mode}}-läge eftersom: {{reason}}"
+		"wantsToSwitch": "Softcodes vill byta till {{mode}}-läge",
+		"wantsToSwitchWithReason": "Softcodes vill byta till {{mode}}-läge eftersom: {{reason}}",
+		"didSwitch": "Softcodes bytte till {{mode}}-läge",
+		"didSwitchWithReason": "Softcodes bytte till {{mode}}-läge eftersom: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code vill skapa en ny deluppgift i {{mode}}-läge:",
-		"wantsToFinish": "Kilo Code vill slutföra denna deluppgift",
+		"wantsToCreate": "Softcodes vill skapa en ny deluppgift i {{mode}}-läge:",
+		"wantsToFinish": "Softcodes vill slutföra denna deluppgift",
 		"newTaskContent": "Deluppgiftsinstruktioner",
 		"completionContent": "Deluppgift slutförd",
 		"resultContent": "Deluppgiftsresultat",
@@ -235,21 +235,21 @@
 		"completionInstructions": "Deluppgift slutförd! Du kan granska resultaten och föreslå eventuella korrigeringar eller nästa steg. Om allt ser bra ut, bekräfta för att returnera resultatet till huvuduppgiften."
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code har en fråga:"
+		"hasQuestion": "Softcodes har en fråga:"
 	},
 	"taskCompleted": "Uppgift slutförd",
 	"error": "Fel",
 	"diffError": {
 		"title": "Redigering misslyckades"
 	},
-	"troubleMessage": "Kilo Code har problem...",
+	"troubleMessage": "Softcodes har problem...",
 	"powershell": {
 		"issues": "Det verkar som att du har problem med Windows PowerShell, vänligen se detta"
 	},
 	"autoApprove": {
 		"title": "Auto-godkänn:",
 		"none": "Ingen",
-		"description": "Auto-godkännande låter Kilo Code utföra åtgärder utan att be om tillåtelse. Aktivera endast för åtgärder du helt litar på. Mer detaljerad konfiguration finns i <settingsLink>Inställningar</settingsLink>."
+		"description": "Auto-godkännande låter Softcodes utföra åtgärder utan att be om tillåtelse. Aktivera endast för åtgärder du helt litar på. Mer detaljerad konfiguration finns i <settingsLink>Inställningar</settingsLink>."
 	},
 	"announcement": {
 		"title": "🎉 Roo Code {{version}} släppt",
@@ -271,7 +271,7 @@
 		"countdownDisplay": "{{count}}s"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code vill använda webbläsaren:",
+		"rooWantsToUse": "Softcodes vill använda webbläsaren:",
 		"consoleLogs": "Konsolloggar",
 		"noNewLogs": "(Inga nya loggar)",
 		"screenshot": "Webbläsarskärmdump",
@@ -305,13 +305,13 @@
 	"profileViolationWarning": "Den aktuella profilen bryter mot din organisations inställningar",
 	"shellIntegration": {
 		"title": "Varning för kommandokörning",
-		"description": "Ditt kommando körs utan VSCode terminal shell-integration. För att undertrycka denna varning kan du inaktivera shell-integration i <strong>Terminal</strong>-sektionen av <settingsLink>Kilo Code-inställningar</settingsLink> eller felsöka VSCode terminal-integration med länken nedan.",
+		"description": "Ditt kommando körs utan VSCode terminal shell-integration. För att undertrycka denna varning kan du inaktivera shell-integration i <strong>Terminal</strong>-sektionen av <settingsLink>Softcodes-inställningar</settingsLink> eller felsöka VSCode terminal-integration med länken nedan.",
 		"troubleshooting": "Klicka här för shell-integrationsdokumentation."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Auto-godkänd förfrågningsgräns nådd",
-			"description": "Kilo Code har nått den auto-godkända gränsen på {{count}} API-förfrågan(ar). Vill du återställa räknaren och fortsätta med uppgiften?",
+			"description": "Softcodes har nått den auto-godkända gränsen på {{count}} API-förfrågan(ar). Vill du återställa räknaren och fortsätta med uppgiften?",
 			"button": "Återställ och fortsätt"
 		}
 	},

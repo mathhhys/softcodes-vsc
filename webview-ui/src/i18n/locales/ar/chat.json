@@ -1,5 +1,5 @@
 {
-	"greeting": "وش يقدر Kilo Code يسوّي لك؟",
+	"greeting": "وش يقدر Softcodes يسوّي لك؟",
 	"task": {
 		"title": "المهمة",
 		"seeMore": "عرض المزيد",
@@ -18,7 +18,7 @@
 		"sharePublicly": "مشاركة للجميع",
 		"sharePubliclyDescription": "أي أحد عنده الرابط يقدر يشوف",
 		"connectToCloud": "اتصل بالسحابة",
-		"connectToCloudDescription": "سجّل دخولك لـ Kilo Code Cloud لمشاركة المهام",
+		"connectToCloudDescription": "سجّل دخولك لـ Softcodes Cloud لمشاركة المهام",
 		"sharingDisabledByOrganization": "المشاركة معطّلة من قِبَل المنظمة",
 		"shareSuccessOrganization": "تم نسخ رابط المنظمة للحافظة",
 		"shareSuccessPublic": "تم نسخ الرابط العام للحافظة"
@@ -169,46 +169,46 @@
 		"tokens": "توكينات"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code يريد جلب تعليمات تفصيلية للمهمة الحالية"
+		"wantsToFetch": "Softcodes يريد جلب تعليمات تفصيلية للمهمة الحالية"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code يريد قراءة هذا الملف:",
-		"wantsToReadMultiple": "Kilo Code يريد قراءة عدة ملفات:",
-		"wantsToReadAndXMore": "Kilo Code يريد قراءة هذا الملف و{{count}} غيره:",
-		"wantsToReadOutsideWorkspace": "Kilo Code يريد قراءة ملف خارج مساحة العمل:",
-		"didRead": "Kilo Code قرأ هذا الملف:",
-		"wantsToEdit": "Kilo Code يريد تعديل هذا الملف:",
-		"wantsToEditOutsideWorkspace": "Kilo Code يريد تعديل ملف خارج مساحة العمل:",
-		"wantsToEditProtected": "Kilo Code يريد تعديل ملف إعدادات محمي:",
-		"wantsToApplyBatchChanges": "Kilo Code يريد تطبيق تغييرات على عدة ملفات:",
-		"wantsToCreate": "Kilo Code يريد إنشاء ملف جديد:",
-		"wantsToSearchReplace": "Kilo Code يريد البحث والاستبدال في هذا الملف:",
-		"didSearchReplace": "Kilo Code أجرى بحثًا واستبدالًا في هذا الملف:",
-		"wantsToInsert": "Kilo Code يريد إدراج محتوى في هذا الملف:",
-		"wantsToInsertWithLineNumber": "Kilo Code يريد إدراج محتوى في هذا الملف عند السطر {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Kilo Code يريد إضافة محتوى في نهاية هذا الملف:"
+		"wantsToRead": "Softcodes يريد قراءة هذا الملف:",
+		"wantsToReadMultiple": "Softcodes يريد قراءة عدة ملفات:",
+		"wantsToReadAndXMore": "Softcodes يريد قراءة هذا الملف و{{count}} غيره:",
+		"wantsToReadOutsideWorkspace": "Softcodes يريد قراءة ملف خارج مساحة العمل:",
+		"didRead": "Softcodes قرأ هذا الملف:",
+		"wantsToEdit": "Softcodes يريد تعديل هذا الملف:",
+		"wantsToEditOutsideWorkspace": "Softcodes يريد تعديل ملف خارج مساحة العمل:",
+		"wantsToEditProtected": "Softcodes يريد تعديل ملف إعدادات محمي:",
+		"wantsToApplyBatchChanges": "Softcodes يريد تطبيق تغييرات على عدة ملفات:",
+		"wantsToCreate": "Softcodes يريد إنشاء ملف جديد:",
+		"wantsToSearchReplace": "Softcodes يريد البحث والاستبدال في هذا الملف:",
+		"didSearchReplace": "Softcodes أجرى بحثًا واستبدالًا في هذا الملف:",
+		"wantsToInsert": "Softcodes يريد إدراج محتوى في هذا الملف:",
+		"wantsToInsertWithLineNumber": "Softcodes يريد إدراج محتوى في هذا الملف عند السطر {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Softcodes يريد إضافة محتوى في نهاية هذا الملف:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code يريد عرض الملفات العلوية في هذا المجلد:",
-		"didViewTopLevel": "Kilo Code عرض الملفات العلوية في هذا المجلد:",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code يريد عرض الملفات العلوية في هذا المجلد (خارج مساحة العمل):",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code عرض الملفات العلوية في هذا المجلد (خارج مساحة العمل):",
-		"wantsToViewRecursive": "Kilo Code يريد استعراض كل الملفات في هذا المجلد بشكل متعمق:",
-		"didViewRecursive": "Kilo Code استعرض كل الملفات في هذا المجلد:",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code يريد استعراض كل الملفات في هذا المجلد (خارج مساحة العمل):",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code استعرض كل الملفات في هذا المجلد (خارج مساحة العمل):",
-		"wantsToViewDefinitions": "Kilo Code يريد عرض أسماء التعريفات البرمجية المستخدمة في هذا المجلد:",
-		"didViewDefinitions": "Kilo Code عرض أسماء التعريفات البرمجية المستخدمة في هذا المجلد:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code يريد عرض أسماء التعريفات في هذا المجلد (خارج مساحة العمل):",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code عرض أسماء التعريفات في هذا المجلد (خارج مساحة العمل):",
-		"wantsToSearch": "Kilo Code يريد البحث في هذا المجلد عن <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code بحث في هذا المجلد عن <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Kilo Code يريد البحث في هذا المجلد (خارج مساحة العمل) عن <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Kilo Code بحث في هذا المجلد (خارج مساحة العمل) عن <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Softcodes يريد عرض الملفات العلوية في هذا المجلد:",
+		"didViewTopLevel": "Softcodes عرض الملفات العلوية في هذا المجلد:",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes يريد عرض الملفات العلوية في هذا المجلد (خارج مساحة العمل):",
+		"didViewTopLevelOutsideWorkspace": "Softcodes عرض الملفات العلوية في هذا المجلد (خارج مساحة العمل):",
+		"wantsToViewRecursive": "Softcodes يريد استعراض كل الملفات في هذا المجلد بشكل متعمق:",
+		"didViewRecursive": "Softcodes استعرض كل الملفات في هذا المجلد:",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes يريد استعراض كل الملفات في هذا المجلد (خارج مساحة العمل):",
+		"didViewRecursiveOutsideWorkspace": "Softcodes استعرض كل الملفات في هذا المجلد (خارج مساحة العمل):",
+		"wantsToViewDefinitions": "Softcodes يريد عرض أسماء التعريفات البرمجية المستخدمة في هذا المجلد:",
+		"didViewDefinitions": "Softcodes عرض أسماء التعريفات البرمجية المستخدمة في هذا المجلد:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes يريد عرض أسماء التعريفات في هذا المجلد (خارج مساحة العمل):",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes عرض أسماء التعريفات في هذا المجلد (خارج مساحة العمل):",
+		"wantsToSearch": "Softcodes يريد البحث في هذا المجلد عن <code>{{regex}}</code>:",
+		"didSearch": "Softcodes بحث في هذا المجلد عن <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Softcodes يريد البحث في هذا المجلد (خارج مساحة العمل) عن <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Softcodes بحث في هذا المجلد (خارج مساحة العمل) عن <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code يريد البحث في الكود عن <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Kilo Code يريد البحث في الكود عن <code>{{query}}</code> في <code>{{path}}</code>:",
+		"wantsToSearch": "Softcodes يريد البحث في الكود عن <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Softcodes يريد البحث في الكود عن <code>{{query}}</code> في <code>{{path}}</code>:",
 		"didSearch": "تم العثور على {{count}} نتيجة لـ <code>{{query}}</code>:",
 		"resultTooltip": "درجة التشابه: {{score}} (انقر لفتح الملف)"
 	},
@@ -216,18 +216,18 @@
 	"response": "الاستجابة",
 	"arguments": "المعطيات",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code يريد استخدام أداة على خادم MCP {{serverName}}:",
-		"wantsToAccessResource": "Kilo Code يريد الوصول إلى مورد على خادم MCP {{serverName}}:"
+		"wantsToUseTool": "Softcodes يريد استخدام أداة على خادم MCP {{serverName}}:",
+		"wantsToAccessResource": "Softcodes يريد الوصول إلى مورد على خادم MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code يريد التبديل إلى النمط {{mode}}",
-		"wantsToSwitchWithReason": "Kilo Code يريد التبديل إلى النمط {{mode}} لأن: {{reason}}",
-		"didSwitch": "Kilo Code انتقل إلى النمط {{mode}}",
-		"didSwitchWithReason": "Kilo Code انتقل إلى النمط {{mode}} لأن: {{reason}}"
+		"wantsToSwitch": "Softcodes يريد التبديل إلى النمط {{mode}}",
+		"wantsToSwitchWithReason": "Softcodes يريد التبديل إلى النمط {{mode}} لأن: {{reason}}",
+		"didSwitch": "Softcodes انتقل إلى النمط {{mode}}",
+		"didSwitchWithReason": "Softcodes انتقل إلى النمط {{mode}} لأن: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code يريد إنشاء مهمة فرعية جديدة في النمط {{mode}}:",
-		"wantsToFinish": "Kilo Code يريد إنهاء هذه المهمة الفرعية",
+		"wantsToCreate": "Softcodes يريد إنشاء مهمة فرعية جديدة في النمط {{mode}}:",
+		"wantsToFinish": "Softcodes يريد إنهاء هذه المهمة الفرعية",
 		"newTaskContent": "تعليمات المهمة الفرعية",
 		"completionContent": "المهمة الفرعية انتهت",
 		"resultContent": "نتائج المهمة الفرعية",
@@ -235,21 +235,21 @@
 		"completionInstructions": "تمت المهمة الفرعية! راجع النتائج واقترح تصحيحات أو خطوات لاحقة. إذا كل شي تمام، أكّد للرجوع للمهمة الأم."
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code عنده سؤال:"
+		"hasQuestion": "Softcodes عنده سؤال:"
 	},
 	"taskCompleted": "المهمة انتهت",
 	"error": "خطأ",
 	"diffError": {
 		"title": "التعديل لم ينجح"
 	},
-	"troubleMessage": "Kilo Code يواجه مشكلة...",
+	"troubleMessage": "Softcodes يواجه مشكلة...",
 	"powershell": {
 		"issues": "يبدو أنك تواجه مشاكل مع Windows PowerShell، اطلع هنا"
 	},
 	"autoApprove": {
 		"title": "الموافقة التلقائية:",
 		"none": "لا شيء",
-		"description": "الموافقة التلقائية تسمح لـ Kilo Code بتنفيذ إجراءات دون طلب إذن. فعّلها فقط للإجراءات اللي تثق فيها تماماً. إعدادات تفصيلية أكثر متوفرة في <settingsLink>الإعدادات</settingsLink>."
+		"description": "الموافقة التلقائية تسمح لـ Softcodes بتنفيذ إجراءات دون طلب إذن. فعّلها فقط للإجراءات اللي تثق فيها تماماً. إعدادات تفصيلية أكثر متوفرة في <settingsLink>الإعدادات</settingsLink>."
 	},
 	"announcement": {
 		"title": "🎉 Roo Code {{version}} تم إطلاقه",
@@ -271,7 +271,7 @@
 		"countdownDisplay": "{{count}}ث"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code يريد استخدام المتصفح:",
+		"rooWantsToUse": "Softcodes يريد استخدام المتصفح:",
 		"consoleLogs": "سجلات الكونسول",
 		"noNewLogs": "(لا توجد سجلات جديدة)",
 		"screenshot": "لقطة شاشة للمتصفح",
@@ -305,13 +305,13 @@
 	"profileViolationWarning": "الملف الحالي يخالف إعدادات منظمتك",
 	"shellIntegration": {
 		"title": "تحذير تنفيذ الأوامر",
-		"description": "يتم تنفيذ الأمر خارج تكامل الشل في VS Code. لإيقاف هذا التحذير عطّل تكامل الشل من قسم <strong>Terminal</strong> في <settingsLink>إعدادات Kilo Code</settingsLink> أو اطّلع على الدليل أدناه.",
+		"description": "يتم تنفيذ الأمر خارج تكامل الشل في VS Code. لإيقاف هذا التحذير عطّل تكامل الشل من قسم <strong>Terminal</strong> في <settingsLink>إعدادات Softcodes</settingsLink> أو اطّلع على الدليل أدناه.",
 		"troubleshooting": "اضغط هنا لدليل تكامل الشل."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "تم بلوغ حد الطلبات الموافق عليها تلقائياً",
-			"description": "Kilo Code وصل لحد {{count}} طلب API موافَق عليه تلقائيًا. تبي تعيد العداد وتكمل المهمة؟",
+			"description": "Softcodes وصل لحد {{count}} طلب API موافَق عليه تلقائيًا. تبي تعيد العداد وتكمل المهمة؟",
 			"button": "إعادة الضبط والمتابعة"
 		}
 	},

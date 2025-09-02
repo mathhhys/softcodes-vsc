@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Kilo Code commit bericht generator geactiveerd",
+		"activated": "Softcodes commit bericht generator geactiveerd",
 		"gitNotFound": "⚠️ Git repository niet gevonden of git niet beschikbaar",
 		"gitInitError": "⚠️ Git-initialisatiefout: {{error}}",
 		"generating": "Kilo: Commitbericht genereren...",
@@ -56,9 +56,9 @@
 			"enabled": "$(sparkle) Kilo Automatisch aanvullen",
 			"warning": "$(warning) Kilo Automatisch aanvullen",
 			"tooltip": {
-				"basic": "Kilo Code Automatisch aanvullen",
+				"basic": "Softcodes Automatisch aanvullen",
 				"tokenError": "Een geldige token moet ingesteld worden om automatisch aanvullen te gebruiken",
-				"disabled": "Kilo Code Automatisch aanvullen (uitgeschakeld)",
+				"disabled": "Softcodes Automatisch aanvullen (uitgeschakeld)",
 				"lastCompletion": "Laatste voltooiing:",
 				"sessionTotal": "Totale sessiekosten:",
 				"model": "Model:"
@@ -77,27 +77,27 @@
 			"generating": "Suggesties voor bewerkingen genereren...",
 			"showing": "Suggesties voor bewerkingen worden weergegeven...",
 			"processing": "Suggesties voor bewerkingen verwerken...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Snelle Taak",
+			"title": "Softcodes: Snelle Taak",
 			"placeholder": "bijv. 'herstructureer deze functie om efficiënter te zijn'"
 		},
 		"commands": {
 			"displaySuggestions": "Toon voorgestelde aanpassingen",
-			"generateSuggestions": "Kilo Code: Genereer Voorgestelde Aanpassingen",
+			"generateSuggestions": "Softcodes: Genereer Voorgestelde Aanpassingen",
 			"cancelSuggestions": "Voorgestelde bewerkingen annuleren",
-			"category": "Kilo Code",
+			"category": "Softcodes",
 			"applyAllSuggestions": "Pas alle voorgestelde wijzigingen toe",
 			"applyCurrentSuggestion": "Huidige Voorgestelde Bewerking Toepassen",
 			"promptCodeSuggestion": "Prompte Snelle Taak"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Voorgestelde Bewerkingen"
+			"title": "Softcodes: Voorgestelde Bewerkingen"
 		},
 		"chatParticipant": {
 			"name": "Agent",
-			"fullName": "Kilo Code Agent",
+			"fullName": "Softcodes Agent",
 			"description": "Ik kan je helpen met snelle taken en voorgestelde bewerkingen."
 		},
 		"messages": {

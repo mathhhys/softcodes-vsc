@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Selamat datang di Kilo Code!",
-		"introText1": "Kilo Code adalah agen coding AI gratis dan open source.",
+		"greeting": "Selamat datang di Softcodes!",
+		"introText1": "Softcodes adalah agen coding AI gratis dan open source.",
 		"introText2": "Bekerja dengan model AI terbaru seperti Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, dan lebih dari 450 model lainnya.",
 		"introText3": "Buat akun gratis dan dapatkan $20 token untuk digunakan dengan model AI apapun.",
 		"ctaButton": "Buat akun gratis",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Tambah Kredit",
-		"lowBalance": "Saldo Kilo Code kamu rendah"
+		"lowBalance": "Saldo Softcodes kamu rendah"
 	},
 	"notifications": {
 		"toolRequest": "Permintaan tool menunggu persetujuan",
@@ -23,28 +23,28 @@
 			"mcp": "Server MCP"
 		},
 		"provider": {
-			"account": "Akun Kilo Code",
-			"apiKey": "API Key Kilo Code",
-			"login": "Masuk ke Kilo Code",
-			"logout": "Keluar dari Kilo Code"
+			"account": "Akun Softcodes",
+			"apiKey": "API Key Softcodes",
+			"login": "Masuk ke Softcodes",
+			"logout": "Keluar dari Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Izinkan pembacaan file yang sangat besar",
-				"description": "Saat diaktifkan, Kilo Code akan melakukan pembacaan file atau output MCP yang sangat besar meskipun ada kemungkinan tinggi meluapnya jendela konteks (ukuran konten >80% dari jendela konteks)."
+				"description": "Saat diaktifkan, Softcodes akan melakukan pembacaan file atau output MCP yang sangat besar meskipun ada kemungkinan tinggi meluapnya jendela konteks (ukuran konten >80% dari jendela konteks)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Aktifkan Notifikasi Sistem",
-			"description": "Saat diaktifkan, Kilo Code akan mengirim notifikasi sistem untuk kejadian penting seperti penyelesaian tugas atau kesalahan.",
+			"description": "Saat diaktifkan, Softcodes akan mengirim notifikasi sistem untuk kejadian penting seperti penyelesaian tugas atau kesalahan.",
 			"testButton": "Uji Notifikasi",
-			"testTitle": "Kilo Code",
-			"testMessage": "Ini adalah notifikasi uji dari Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Ini adalah notifikasi uji dari Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code ingin mengondensasi percakapan kamu",
+			"wantsToCondense": "Softcodes ingin mengondensasi percakapan kamu",
 			"condenseConversation": "Kondensasi Percakapan"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Dokumentasi",
 	"rules": {
-		"tooltip": "Kelola Aturan & Alur Kerja Kilo Code",
-		"ariaLabel": "Aturan Kilo Code",
+		"tooltip": "Kelola Aturan & Alur Kerja Softcodes",
+		"ariaLabel": "Aturan Softcodes",
 		"tabs": {
 			"rules": "Aturan",
 			"workflows": "Alur Kerja"
 		},
 		"description": {
-			"rules": "Aturan memungkinkan kamu memberikan instruksi kepada Kilo Code yang harus diikuti di semua mode dan untuk semua prompt. Mereka adalah cara persisten untuk menyertakan konteks dan preferensi untuk semua percakapan di workspace kamu atau secara global.",
-			"workflows": "Alur kerja adalah template yang disiapkan untuk percakapan. Alur kerja memungkinkan kamu menentukan prompt yang sering kamu gunakan, dan dapat mencakup serangkaian langkah untuk memandu Kilo Code melalui tugas-tugas berulang, seperti menerapkan layanan atau mengirim PR. Untuk memanggil alur kerja, ketik",
+			"rules": "Aturan memungkinkan kamu memberikan instruksi kepada Softcodes yang harus diikuti di semua mode dan untuk semua prompt. Mereka adalah cara persisten untuk menyertakan konteks dan preferensi untuk semua percakapan di workspace kamu atau secara global.",
+			"workflows": "Alur kerja adalah template yang disiapkan untuk percakapan. Alur kerja memungkinkan kamu menentukan prompt yang sering kamu gunakan, dan dapat mencakup serangkaian langkah untuk memandu Softcodes melalui tugas-tugas berulang, seperti menerapkan layanan atau mengirim PR. Untuk memanggil alur kerja, ketik",
 			"workflowsInChat": "di chat."
 		},
 		"sections": {

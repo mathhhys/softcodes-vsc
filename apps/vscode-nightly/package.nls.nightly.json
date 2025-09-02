@@ -1,7 +1,7 @@
 {
-	"extension.displayName": "Kilo Code Nightly",
-	"views.contextMenu.label": "Kilo Code Nightly",
-	"views.terminalMenu.label": "Kilo Code Nightly",
-	"views.activitybar.title": "Kilo Code Nightly",
-	"configuration.title": "Kilo Code Nightly"
+	"extension.displayName": "Softcodes Nightly",
+	"views.contextMenu.label": "Softcodes Nightly",
+	"views.terminalMenu.label": "Softcodes Nightly",
+	"views.activitybar.title": "Softcodes Nightly",
+	"configuration.title": "Softcodes Nightly"
 }

@@ -14,44 +14,44 @@ export const registerGhostProvider = (context: vscode.ExtensionContext) => {
 
 	// Register GhostProvider Commands
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.codeActionQuickFix", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.codeActionQuickFix", async () => {
 			return
 		}),
 	)
 
 	// Register GhostProvider Commands
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.generateSuggestions", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.generateSuggestions", async () => {
 			ghost.codeSuggestion()
 		}),
 	)
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.cancelSuggestions", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.cancelSuggestions", async () => {
 			ghost.cancelSuggestions()
 		}),
 	)
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.applyAllSuggestions", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.applyAllSuggestions", async () => {
 			ghost.applyAllSuggestions()
 		}),
 	)
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.applyCurrentSuggestions", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.applyCurrentSuggestions", async () => {
 			ghost.applySelectedSuggestions()
 		}),
 	)
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.promptCodeSuggestion", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.promptCodeSuggestion", async () => {
 			await ghost.promptCodeSuggestion()
 		}),
 	)
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.goToNextSuggestion", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.goToNextSuggestion", async () => {
 			await ghost.selectNextSuggestion()
 		}),
 	)
 	context.subscriptions.push(
-		vscode.commands.registerCommand("kilo-code.ghost.goToPreviousSuggestion", async () => {
+		vscode.commands.registerCommand("softcodes.ghost.goToPreviousSuggestion", async () => {
 			await ghost.selectPreviousSuggestion()
 		}),
 	)

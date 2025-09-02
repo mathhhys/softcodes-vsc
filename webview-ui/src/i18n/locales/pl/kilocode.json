@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Witaj w Kilo Code!",
-		"introText1": "Kilo Code to darmowy, otwartoźródłowy agent kodowania AI.",
+		"greeting": "Witaj w Softcodes!",
+		"introText1": "Softcodes to darmowy, otwartoźródłowy agent kodowania AI.",
 		"introText2": "Współpracuje z najnowszymi modelami AI, takimi jak Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1 i ponad 450 innymi.",
 		"introText3": "Stwórz darmowe konto i otrzymaj tokeny o wartości $20 do wykorzystania z dowolnym modelem AI.",
 		"ctaButton": "Stwórz darmowe konto",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Dodaj kredyt",
-		"lowBalance": "Twój stan konta Kilo Code jest niski"
+		"lowBalance": "Twój stan konta Softcodes jest niski"
 	},
 	"notifications": {
 		"toolRequest": "Żądanie narzędzia oczekuje na zatwierdzenie",
@@ -23,28 +23,28 @@
 			"mcp": "Serwery MCP"
 		},
 		"provider": {
-			"account": "Konto Kilo Code",
-			"apiKey": "Klucz API Kilo Code",
-			"login": "Zaloguj się do Kilo Code",
-			"logout": "Wyloguj się z Kilo Code"
+			"account": "Konto Softcodes",
+			"apiKey": "Klucz API Softcodes",
+			"login": "Zaloguj się do Softcodes",
+			"logout": "Wyloguj się z Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Zezwól na odczyt bardzo dużych plików",
-				"description": "Gdy włączone, Kilo Code będzie wykonywać odczyty bardzo dużych plików lub wyjść MCP, nawet jeśli istnieje duże prawdopodobieństwo przepełnienia okna kontekstu (rozmiar zawartości >80% okna kontekstu)."
+				"description": "Gdy włączone, Softcodes będzie wykonywać odczyty bardzo dużych plików lub wyjść MCP, nawet jeśli istnieje duże prawdopodobieństwo przepełnienia okna kontekstu (rozmiar zawartości >80% okna kontekstu)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Włącz powiadomienia systemowe",
-			"description": "Gdy włączone, Kilo Code będzie wysyłać powiadomienia systemowe o ważnych wydarzeniach, takich jak zakończenie zadania lub błędy.",
+			"description": "Gdy włączone, Softcodes będzie wysyłać powiadomienia systemowe o ważnych wydarzeniach, takich jak zakończenie zadania lub błędy.",
 			"testButton": "Testuj powiadomienie",
-			"testTitle": "Kilo Code",
-			"testMessage": "To jest testowe powiadomienie z Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "To jest testowe powiadomienie z Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code chce skondensować Twoją rozmowę",
+			"wantsToCondense": "Softcodes chce skondensować Twoją rozmowę",
 			"condenseConversation": "Skondensuj Rozmowę"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Dokumentacja",
 	"rules": {
-		"tooltip": "Zarządzaj Regułami i Przepływami Pracy Kilo Code",
-		"ariaLabel": "Reguły Kilo Code",
+		"tooltip": "Zarządzaj Regułami i Przepływami Pracy Softcodes",
+		"ariaLabel": "Reguły Softcodes",
 		"tabs": {
 			"rules": "Reguły",
 			"workflows": "Przepływy Pracy"
 		},
 		"description": {
-			"rules": "Reguły pozwalają dostarczyć Kilo Code instrukcje, których powinien przestrzegać we wszystkich trybach i dla wszystkich promptów. To trwały sposób dołączania kontekstu i preferencji dla wszystkich rozmów w twoim obszarze roboczym lub globalnie.",
-			"workflows": "Przepływy pracy to przygotowany szablon dla rozmowy. Przepływy pracy pozwalają zdefiniować prompty, których często używasz, i mogą zawierać serię kroków, aby poprowadzić Kilo Code przez powtarzalne zadania, takie jak wdrażanie usługi lub przesyłanie PR. Aby wywołać przepływ pracy, wpisz",
+			"rules": "Reguły pozwalają dostarczyć Softcodes instrukcje, których powinien przestrzegać we wszystkich trybach i dla wszystkich promptów. To trwały sposób dołączania kontekstu i preferencji dla wszystkich rozmów w twoim obszarze roboczym lub globalnie.",
+			"workflows": "Przepływy pracy to przygotowany szablon dla rozmowy. Przepływy pracy pozwalają zdefiniować prompty, których często używasz, i mogą zawierać serię kroków, aby poprowadzić Softcodes przez powtarzalne zadania, takie jak wdrażanie usługi lub przesyłanie PR. Aby wywołać przepływ pracy, wpisz",
 			"workflowsInChat": "w czacie."
 		},
 		"sections": {

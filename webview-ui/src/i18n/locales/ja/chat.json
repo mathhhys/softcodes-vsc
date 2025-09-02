@@ -1,5 +1,5 @@
 {
-	"greeting": "Kilo Code は何をお手伝いできますか？",
+	"greeting": "Softcodes は何をお手伝いできますか？",
 	"task": {
 		"title": "タスク",
 		"seeMore": "もっと見る",
@@ -175,7 +175,7 @@
 		"wantsToInsert": "Kilo Codeはこのファイルにコンテンツを挿入したい:",
 		"wantsToInsertWithLineNumber": "Kilo Codeはこのファイルの{{lineNumber}}行目にコンテンツを挿入したい:",
 		"wantsToInsertAtEnd": "Kilo Codeはこのファイルの末尾にコンテンツを追加したい:",
-		"wantsToReadAndXMore": "Kilo Code はこのファイルと他に {{count}} 個のファイルを読み込もうとしています:",
+		"wantsToReadAndXMore": "Softcodes はこのファイルと他に {{count}} 個のファイルを読み込もうとしています:",
 		"wantsToReadMultiple": "Kilo Codeは複数のファイルを読み取ろうとしています：",
 		"wantsToApplyBatchChanges": "Kilo Codeは複数のファイルに変更を適用したい:"
 	},
@@ -211,7 +211,7 @@
 		"didSwitchWithReason": "Kilo Codeは次の理由で<code>{{mode}}</code>モードに切り替えました: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code<code>{{mode}}</code>モードで新しいサブタスクを作成したい:",
+		"wantsToCreate": "Softcodes<code>{{mode}}</code>モードで新しいサブタスクを作成したい:",
 		"wantsToFinish": "Kilo Codeはこのサブタスクを終了したい",
 		"newTaskContent": "サブタスク指示",
 		"completionContent": "サブタスク完了",

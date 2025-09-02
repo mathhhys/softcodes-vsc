@@ -4,7 +4,7 @@
 		"definitionsOnly": " (nur Definitionen)",
 		"maxLines": " (maximal {{max}} Zeilen)"
 	},
-	"toolRepetitionLimitReached": "Kilo Code scheint in einer Schleife festzustecken und versucht wiederholt dieselbe Aktion ({{toolName}}). Dies könnte auf ein Problem mit der aktuellen Strategie hindeuten. Überlege dir, die Aufgabe umzuformulieren, genauere Anweisungen zu geben oder Kilo Code zu einem anderen Ansatz zu führen.",
+	"toolRepetitionLimitReached": "Softcodes scheint in einer Schleife festzustecken und versucht wiederholt dieselbe Aktion ({{toolName}}). Dies könnte auf ein Problem mit der aktuellen Strategie hindeuten. Überlege dir, die Aufgabe umzuformulieren, genauere Anweisungen zu geben oder Softcodes zu einem anderen Ansatz zu führen.",
 	"codebaseSearch": {
 		"approval": "Suche nach '{{query}}' im Codebase..."
 	},

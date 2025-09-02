@@ -58,7 +58,7 @@ export class KilocodeOpenrouterHandler extends OpenRouterHandler {
 		}
 
 		if (Object.keys(this.models).length === 0) {
-			throw new Error("Failed to load Kilo Code provider model list.")
+			throw new Error("Failed to load Softcodes provider model list.")
 		} else if (this.models[id]) {
 			info = this.models[id]
 		} else {
@@ -79,7 +79,11 @@ export class KilocodeOpenrouterHandler extends OpenRouterHandler {
 	}
 
 	public override async fetchModel() {
-		if (!this.options.kilocodeToken || !this.options.openRouterBaseUrl) {
+		if (
+			!this.options.kilocodeToken ||
+			this.options.kilocodeToken.trim() === "" ||
+			!this.options.openRouterBaseUrl
+		) {
 			throw new Error("KiloCode token + baseUrl is required to fetch models")
 		}
 		this.models = await getModels({
@@ -91,5 +95,9 @@ export class KilocodeOpenrouterHandler extends OpenRouterHandler {
 }
 
 function getKiloBaseUri(options: ApiHandlerOptions) {
-	return getKiloBaseUriFromToken(options.kilocodeToken ?? "")
+	const token = options.kilocodeToken ?? ""
+	if (!token || token.trim() === "") {
+		throw new Error("KiloCode token is required for kilocode-openrouter provider")
+	}
+	return getKiloBaseUriFromToken(token)
 }

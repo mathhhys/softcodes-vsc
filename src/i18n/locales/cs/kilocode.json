@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Generátor zpráv pro commit Kilo Code aktivován",
+		"activated": "Generátor zpráv pro commit Softcodes aktivován",
 		"gitNotFound": "⚠️ Git repozitář nebyl nalezen nebo git není dostupný",
 		"gitInitError": "⚠️ Chyba inicializace Gitu: {{error}}",
 		"generating": "Kilo: Generuji zprávu commitu...",
@@ -57,11 +57,11 @@
 			"disabled": "$(circle-slash) Kilo Automatické dokončování",
 			"tooltip": {
 				"tokenError": "Pro použití automatického dokončování musí být nastaven platný token",
-				"basic": "Kilo Code Automatické dokončování",
+				"basic": "Softcodes Automatické dokončování",
 				"lastCompletion": "Poslední dokončení:",
 				"model": "Model:",
 				"sessionTotal": "Celkové náklady na relaci:",
-				"disabled": "Kilo Code Automatické dokončování (deaktivováno)"
+				"disabled": "Softcodes Automatické dokončování (deaktivováno)"
 			},
 			"warning": "$(warning) Kilo Automatické dokončování",
 			"cost": {
@@ -77,27 +77,27 @@
 			"analyzing": "Analyzuji váš kód...",
 			"processing": "Zpracování navržených úprav...",
 			"showing": "Zobrazuji navrhované úpravy...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Rychlý úkol",
+			"title": "Softcodes: Rychlý úkol",
 			"placeholder": "např. \"přepracovat tuto funkci, aby byla efektivnější\""
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code: Generování navrhovaných úprav",
+			"generateSuggestions": "Softcodes: Generování navrhovaných úprav",
 			"applyCurrentSuggestion": "Použít aktuální navrhovanou úpravu",
 			"displaySuggestions": "Zobrazit navrhované úpravy",
 			"cancelSuggestions": "Zrušit navrhované úpravy",
 			"applyAllSuggestions": "Použít všechny navrhované úpravy",
 			"promptCodeSuggestion": "Rychlý úkol",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Navrhované úpravy"
+			"title": "Softcodes: Navrhované úpravy"
 		},
 		"chatParticipant": {
 			"name": "Agent",
-			"fullName": "Kilo Code Agent",
+			"fullName": "Softcodes Agent",
 			"description": "Mohu vám pomoci s rychlými úkoly a navrženými úpravami."
 		},
 		"messages": {

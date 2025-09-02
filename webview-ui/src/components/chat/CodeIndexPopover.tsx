@@ -539,7 +539,11 @@ export const CodeIndexPopover: React.FC<CodeIndexPopoverProps> = ({
 										"bg-red-500": indexingStatus.systemStatus === "Error",
 									})}
 								/>
-								{t(`settings:codeIndex.indexingStatuses.${indexingStatus.systemStatus.toLowerCase()}`)}
+								{t(
+									`settings:codeIndex.indexingStatuses.${
+										indexingStatus.systemStatus?.toLowerCase() ?? ""
+									}`,
+								)}
 								{indexingStatus.message ? ` - ${indexingStatus.message}` : ""}
 							</div>
 

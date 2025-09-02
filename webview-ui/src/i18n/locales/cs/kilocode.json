@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Vítej v Kilo Code!",
-		"introText1": "Kilo Code je bezplatný open source AI coding agent.",
+		"greeting": "Vítej v Softcodes!",
+		"introText1": "Softcodes je bezplatný open source AI coding agent.",
 		"introText2": "Funguje s nejnovějšími AI modely jako Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1 a více než 450 dalšími.",
 		"introText3": "Vytvoř si bezplatný účet a získej $20 v tokenech pro použití s jakýmkoli AI modelem.",
 		"ctaButton": "Vytvořit bezplatný účet",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Přidat kredit",
-		"lowBalance": "Tvůj Kilo Code zůstatek je nízký"
+		"lowBalance": "Tvůj Softcodes zůstatek je nízký"
 	},
 	"notifications": {
 		"toolRequest": "Požadavek na nástroj čeká na schválení",
@@ -23,28 +23,28 @@
 			"mcp": "MCP servery"
 		},
 		"provider": {
-			"account": "Účet Kilo Code",
-			"apiKey": "Kilo Code API Key",
-			"login": "Přihlásit se do Kilo Code",
-			"logout": "Odhlásit se z Kilo Code"
+			"account": "Účet Softcodes",
+			"apiKey": "Softcodes API Key",
+			"login": "Přihlásit se do Softcodes",
+			"logout": "Odhlásit se z Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Povolit čtení velmi velkých souborů",
-				"description": "Když je povoleno, Kilo Code provede čtení velmi velkých souborů nebo výstupů MCP i když existuje vysoká pravděpodobnost přetečení kontextového okna (velikost obsahu >80% kontextového okna)."
+				"description": "Když je povoleno, Softcodes provede čtení velmi velkých souborů nebo výstupů MCP i když existuje vysoká pravděpodobnost přetečení kontextového okna (velikost obsahu >80% kontextového okna)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Povolit systémová oznámení",
-			"description": "Když je povoleno, Kilo Code bude odesílat systémová oznámení pro důležité události jako dokončení úkolu nebo chyby.",
+			"description": "Když je povoleno, Softcodes bude odesílat systémová oznámení pro důležité události jako dokončení úkolu nebo chyby.",
 			"testButton": "Otestovat oznámení",
-			"testTitle": "Kilo Code",
-			"testMessage": "Toto je testovací oznámení z Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Toto je testovací oznámení z Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code chce zkrátit tvou konverzaci",
+			"wantsToCondense": "Softcodes chce zkrátit tvou konverzaci",
 			"condenseConversation": "Zkrátit konverzaci"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Dokumentace",
 	"rules": {
-		"tooltip": "Spravovat Kilo Code Rules a Workflows",
-		"ariaLabel": "Kilo Code Rules",
+		"tooltip": "Spravovat Softcodes Rules a Workflows",
+		"ariaLabel": "Softcodes Rules",
 		"tabs": {
 			"rules": "Pravidla",
 			"workflows": "Pracovní postupy"
 		},
 		"description": {
-			"rules": "Pravidla ti umožňují poskytnout Kilo Code pokyny, které by měl dodržovat ve všech režimech a pro všechny prompty. Je to trvalý způsob, jak zahrnout kontext a preference pro všechny konverzace ve tvém pracovním prostoru nebo globálně.",
-			"workflows": "Pracovní postupy jsou připravená šablona pro konverzaci. Pracovní postupy ti mohou umožnit definovat prompty, které často používáš, a mohou zahrnovat řadu kroků k vedení Kilo Code přes opakující se úkoly, jako je nasazení služby nebo odeslání PR. Pro vyvolání pracovního postupu napiš",
+			"rules": "Pravidla ti umožňují poskytnout Softcodes pokyny, které by měl dodržovat ve všech režimech a pro všechny prompty. Je to trvalý způsob, jak zahrnout kontext a preference pro všechny konverzace ve tvém pracovním prostoru nebo globálně.",
+			"workflows": "Pracovní postupy jsou připravená šablona pro konverzaci. Pracovní postupy ti mohou umožnit definovat prompty, které často používáš, a mohou zahrnovat řadu kroků k vedení Softcodes přes opakující se úkoly, jako je nasazení služby nebo odeslání PR. Pro vyvolání pracovního postupu napiš",
 			"workflowsInChat": "v chatu."
 		},
 		"sections": {

@@ -4,7 +4,7 @@
 		"definitionsOnly": " (mga kahulugan lamang)",
 		"maxLines": " (max {{max}} na linya)"
 	},
-	"toolRepetitionLimitReached": "Mukhang naka-stuck ang Kilo Code sa isang loop, paulit-ulit na sinusubukan ang parehong aksyon ({{toolName}}). Maaaring may problema ito sa kasalukuyang estratehiya nito. Subukang i-rephrase ang gawain, magbigay ng mas tiyak na mga tagubilin, o gabayan ito sa ibang diskarte.",
+	"toolRepetitionLimitReached": "Mukhang naka-stuck ang Softcodes sa isang loop, paulit-ulit na sinusubukan ang parehong aksyon ({{toolName}}). Maaaring may problema ito sa kasalukuyang estratehiya nito. Subukang i-rephrase ang gawain, magbigay ng mas tiyak na mga tagubilin, o gabayan ito sa ibang diskarte.",
 	"codebaseSearch": {
 		"approval": "Naghahanap ng '{{query}}' sa codebase..."
 	},

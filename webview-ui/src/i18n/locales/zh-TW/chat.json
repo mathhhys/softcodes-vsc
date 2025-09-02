@@ -1,5 +1,5 @@
 {
-	"greeting": "Kilo Code 能為您做什麼？",
+	"greeting": "Softcodes 能為您做什麼？",
 	"task": {
 		"title": "工作",
 		"seeMore": "顯示更多",
@@ -18,7 +18,7 @@
 		"sharePublicly": "公開分享",
 		"sharePubliclyDescription": "任何擁有連結的人都可存取",
 		"connectToCloud": "連接到雲端",
-		"connectToCloudDescription": "登入 Kilo Code Cloud 以分享工作",
+		"connectToCloudDescription": "登入 Softcodes Cloud 以分享工作",
 		"sharingDisabledByOrganization": "組織已停用分享功能",
 		"shareSuccessOrganization": "組織連結已複製到剪貼簿",
 		"shareSuccessPublic": "公開連結已複製到剪貼簿"
@@ -87,7 +87,7 @@
 	},
 	"scrollToBottom": "捲動至對話框底部",
 	"about": "透過 AI 輔助產生、重構和偵錯程式碼。查看我們的 <DocsLink>說明文件</DocsLink> 以瞭解更多資訊。",
-	"onboarding": "<strong>您在此工作區中的工作清單是空的。</strong> 請在下方輸入工作以開始。 不確定如何開始？ 在 <DocsLink>說明文件</DocsLink> 中閱讀更多關於 Kilo Code 能為您做什麼的資訊。",
+	"onboarding": "<strong>您在此工作區中的工作清單是空的。</strong> 請在下方輸入工作以開始。 不確定如何開始？ 在 <DocsLink>說明文件</DocsLink> 中閱讀更多關於 Softcodes 能為您做什麼的資訊。",
 	"rooTips": {
 		"boomerangTasks": {
 			"title": "任務編排",
@@ -134,7 +134,7 @@
 	"diffError": {
 		"title": "編輯失敗"
 	},
-	"troubleMessage": "Kilo Code 遇到問題...",
+	"troubleMessage": "Softcodes 遇到問題...",
 	"apiRequest": {
 		"title": "API 請求",
 		"failed": "API 請求失敗",
@@ -160,59 +160,59 @@
 		"current": "目前"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code 想要取得詳細指示以協助目前任務"
+		"wantsToFetch": "Softcodes 想要取得詳細指示以協助目前任務"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code 想要讀取此檔案：",
-		"wantsToReadOutsideWorkspace": "Kilo Code 想要讀取此工作區外的檔案：",
-		"didRead": "Kilo Code 已讀取此檔案：",
-		"wantsToEdit": "Kilo Code 想要編輯此檔案：",
-		"wantsToEditOutsideWorkspace": "Kilo Code 想要編輯此工作區外的檔案：",
-		"wantsToEditProtected": "Kilo Code 想要編輯受保護的設定檔案：",
-		"wantsToCreate": "Kilo Code 想要建立新檔案：",
-		"wantsToSearchReplace": "Kilo Code 想要在此檔案中搜尋和取代：",
-		"didSearchReplace": "Kilo Code 已在此檔案執行搜尋和取代：",
-		"wantsToInsert": "Kilo Code 想要在此檔案中插入內容：",
-		"wantsToInsertWithLineNumber": "Kilo Code 想要在此檔案第 {{lineNumber}} 行插入內容：",
-		"wantsToInsertAtEnd": "Kilo Code 想要在此檔案末尾新增內容：",
-		"wantsToReadAndXMore": "Kilo Code 想要讀取此檔案以及另外 {{count}} 個檔案：",
-		"wantsToReadMultiple": "Kilo Code 想要讀取多個檔案：",
-		"wantsToApplyBatchChanges": "Kilo Code 想要對多個檔案套用變更："
+		"wantsToRead": "Softcodes 想要讀取此檔案：",
+		"wantsToReadOutsideWorkspace": "Softcodes 想要讀取此工作區外的檔案：",
+		"didRead": "Softcodes 已讀取此檔案：",
+		"wantsToEdit": "Softcodes 想要編輯此檔案：",
+		"wantsToEditOutsideWorkspace": "Softcodes 想要編輯此工作區外的檔案：",
+		"wantsToEditProtected": "Softcodes 想要編輯受保護的設定檔案：",
+		"wantsToCreate": "Softcodes 想要建立新檔案：",
+		"wantsToSearchReplace": "Softcodes 想要在此檔案中搜尋和取代：",
+		"didSearchReplace": "Softcodes 已在此檔案執行搜尋和取代：",
+		"wantsToInsert": "Softcodes 想要在此檔案中插入內容：",
+		"wantsToInsertWithLineNumber": "Softcodes 想要在此檔案第 {{lineNumber}} 行插入內容：",
+		"wantsToInsertAtEnd": "Softcodes 想要在此檔案末尾新增內容：",
+		"wantsToReadAndXMore": "Softcodes 想要讀取此檔案以及另外 {{count}} 個檔案：",
+		"wantsToReadMultiple": "Softcodes 想要讀取多個檔案：",
+		"wantsToApplyBatchChanges": "Softcodes 想要對多個檔案套用變更："
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code 想要檢視此目錄中最上層的檔案：",
-		"didViewTopLevel": "Kilo Code 已檢視此目錄中最上層的檔案：",
-		"wantsToViewRecursive": "Kilo Code 想要遞迴檢視此目錄中的所有檔案：",
-		"didViewRecursive": "Kilo Code 已遞迴檢視此目錄中的所有檔案：",
-		"wantsToViewDefinitions": "Kilo Code 想要檢視此目錄中使用的原始碼定義名稱：",
-		"didViewDefinitions": "Kilo Code 已檢視此目錄中使用的原始碼定義名稱：",
-		"wantsToSearch": "Kilo Code 想要在此目錄中搜尋 <code>{{regex}}</code>：",
-		"didSearch": "Kilo Code 已在此目錄中搜尋 <code>{{regex}}</code>：",
-		"wantsToSearchOutsideWorkspace": "Kilo Code 想要在此目錄（工作區外）中搜尋 <code>{{regex}}</code>：",
-		"didSearchOutsideWorkspace": "Kilo Code 已在此目錄（工作區外）中搜尋 <code>{{regex}}</code>：",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code 想要檢視此目錄（工作區外）中最上層的檔案：",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code 已檢視此目錄（工作區外）中最上層的檔案：",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code 想要遞迴檢視此目錄（工作區外）中的所有檔案：",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code 已遞迴檢視此目錄（工作區外）中的所有檔案：",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code 想要檢視此目錄（工作區外）中使用的原始碼定義名稱：",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code 已檢視此目錄（工作區外）中使用的原始碼定義名稱："
+		"wantsToViewTopLevel": "Softcodes 想要檢視此目錄中最上層的檔案：",
+		"didViewTopLevel": "Softcodes 已檢視此目錄中最上層的檔案：",
+		"wantsToViewRecursive": "Softcodes 想要遞迴檢視此目錄中的所有檔案：",
+		"didViewRecursive": "Softcodes 已遞迴檢視此目錄中的所有檔案：",
+		"wantsToViewDefinitions": "Softcodes 想要檢視此目錄中使用的原始碼定義名稱：",
+		"didViewDefinitions": "Softcodes 已檢視此目錄中使用的原始碼定義名稱：",
+		"wantsToSearch": "Softcodes 想要在此目錄中搜尋 <code>{{regex}}</code>：",
+		"didSearch": "Softcodes 已在此目錄中搜尋 <code>{{regex}}</code>：",
+		"wantsToSearchOutsideWorkspace": "Softcodes 想要在此目錄（工作區外）中搜尋 <code>{{regex}}</code>：",
+		"didSearchOutsideWorkspace": "Softcodes 已在此目錄（工作區外）中搜尋 <code>{{regex}}</code>：",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes 想要檢視此目錄（工作區外）中最上層的檔案：",
+		"didViewTopLevelOutsideWorkspace": "Softcodes 已檢視此目錄（工作區外）中最上層的檔案：",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes 想要遞迴檢視此目錄（工作區外）中的所有檔案：",
+		"didViewRecursiveOutsideWorkspace": "Softcodes 已遞迴檢視此目錄（工作區外）中的所有檔案：",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes 想要檢視此目錄（工作區外）中使用的原始碼定義名稱：",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes 已檢視此目錄（工作區外）中使用的原始碼定義名稱："
 	},
 	"commandOutput": "命令輸出",
 	"response": "回應",
 	"arguments": "參數",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code 想要在 {{serverName}} MCP 伺服器上使用工具：",
-		"wantsToAccessResource": "Kilo Code 想要存取 {{serverName}} MCP 伺服器上的資源："
+		"wantsToUseTool": "Softcodes 想要在 {{serverName}} MCP 伺服器上使用工具：",
+		"wantsToAccessResource": "Softcodes 想要存取 {{serverName}} MCP 伺服器上的資源："
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code 想要切換至 <code>{{mode}}</code> 模式",
-		"wantsToSwitchWithReason": "Kilo Code 想要切換至 <code>{{mode}}</code> 模式，原因：{{reason}}",
-		"didSwitch": "Kilo Code 已切換至 <code>{{mode}}</code> 模式",
-		"didSwitchWithReason": "Kilo Code 已切換至 <code>{{mode}}</code> 模式，原因：{{reason}}"
+		"wantsToSwitch": "Softcodes 想要切換至 <code>{{mode}}</code> 模式",
+		"wantsToSwitchWithReason": "Softcodes 想要切換至 <code>{{mode}}</code> 模式，原因：{{reason}}",
+		"didSwitch": "Softcodes 已切換至 <code>{{mode}}</code> 模式",
+		"didSwitchWithReason": "Softcodes 已切換至 <code>{{mode}}</code> 模式，原因：{{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code 想要在 <code>{{mode}}</code> 模式下建立新的子工作：",
-		"wantsToFinish": "Kilo Code 想要完成此子工作",
+		"wantsToCreate": "Softcodes 想要在 <code>{{mode}}</code> 模式下建立新的子工作：",
+		"wantsToFinish": "Softcodes 想要完成此子工作",
 		"newTaskContent": "子工作指示",
 		"completionContent": "子工作已完成",
 		"resultContent": "子工作結果",
@@ -220,7 +220,7 @@
 		"completionInstructions": "子工作已完成！您可以檢閱結果並提出修正或下一步建議。如果一切看起來良好，請確認以將結果傳回主工作。"
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code 有一個問題："
+		"hasQuestion": "Softcodes 有一個問題："
 	},
 	"taskCompleted": "工作完成",
 	"powershell": {
@@ -229,7 +229,7 @@
 	"autoApprove": {
 		"title": "自動核准：",
 		"none": "無",
-		"description": "自動核准讓 Kilo Code 可以在無需徵求您同意的情況下執行動作。請僅對您完全信任的動作啟用此功能。您可以在<settingsLink>設定</settingsLink>中進行更詳細的調整。"
+		"description": "自動核准讓 Softcodes 可以在無需徵求您同意的情況下執行動作。請僅對您完全信任的動作啟用此功能。您可以在<settingsLink>設定</settingsLink>中進行更詳細的調整。"
 	},
 	"reasoning": {
 		"thinking": "思考中",
@@ -257,7 +257,7 @@
 		"detailsDiscussLinks": "在 <discordLink>Discord</discordLink> 和 <redditLink>Reddit</redditLink> 取得更多詳細資訊並參與討論 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code 想要使用瀏覽器：",
+		"rooWantsToUse": "Softcodes 想要使用瀏覽器：",
 		"consoleLogs": "主控台記錄",
 		"noNewLogs": "（沒有新記錄）",
 		"screenshot": "瀏覽器螢幕擷圖",
@@ -291,19 +291,19 @@
 	"profileViolationWarning": "目前設定檔違反了您的組織設定",
 	"shellIntegration": {
 		"title": "命令執行警告",
-		"description": "您的命令正在沒有 VSCode 終端機 shell 整合的情況下執行。要隱藏此警告，您可以在 <settingsLink>Kilo Code 設定</settingsLink>的 <strong>Terminal</strong> 部分停用 shell 整合，或使用下方連結排查 VSCode 終端機整合問題。",
+		"description": "您的命令正在沒有 VSCode 終端機 shell 整合的情況下執行。要隱藏此警告，您可以在 <settingsLink>Softcodes 設定</settingsLink>的 <strong>Terminal</strong> 部分停用 shell 整合，或使用下方連結排查 VSCode 終端機整合問題。",
 		"troubleshooting": "點擊此處查看 shell 整合文件。"
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "已達自動核准請求限制",
-			"description": "Kilo Code 已達到 {{count}} 次 API 請求的自動核准限制。您想要重設計數並繼續工作嗎？",
+			"description": "Softcodes 已達到 {{count}} 次 API 請求的自動核准限制。您想要重設計數並繼續工作嗎？",
 			"button": "重設並繼續"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code 想要搜尋程式碼庫：<code>{{query}}</code>",
-		"wantsToSearchWithPath": "Kilo Code 想要在 <code>{{path}}</code> 中搜尋：<code>{{query}}</code>",
+		"wantsToSearch": "Softcodes 想要搜尋程式碼庫：<code>{{query}}</code>",
+		"wantsToSearchWithPath": "Softcodes 想要在 <code>{{path}}</code> 中搜尋：<code>{{query}}</code>",
 		"didSearch": "找到 {{count}} 個結果：<code>{{query}}</code>",
 		"resultTooltip": "相似度評分：{{score}} (點擊開啟檔案)"
 	},

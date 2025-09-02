@@ -32,10 +32,10 @@
 		"prompts": "Mga Prompt",
 		"experimental": "Experimental",
 		"language": "Wika",
-		"about": "Tungkol sa Kilo Code"
+		"about": "Tungkol sa Softcodes"
 	},
 	"prompts": {
-		"description": "I-configure ang mga support prompt na ginagamit para sa mga mabilis na aksyon tulad ng pagpapahusay ng mga prompt, pagpapaliwanag ng code, at pag-aayos ng mga isyu. Ang mga prompt na ito ay tumutulong sa Kilo Code na magbigay ng mas mahusay na tulong para sa mga karaniwang gawain sa development."
+		"description": "I-configure ang mga support prompt na ginagamit para sa mga mabilis na aksyon tulad ng pagpapahusay ng mga prompt, pagpapaliwanag ng code, at pag-aayos ng mga isyu. Ang mga prompt na ito ay tumutulong sa Softcodes na magbigay ng mas mahusay na tulong para sa mga karaniwang gawain sa development."
 	},
 	"codeIndex": {
 		"title": "Codebase Indexing",
@@ -128,13 +128,13 @@
 		}
 	},
 	"autoApprove": {
-		"description": "Payagan ang Kilo Code na awtomatikong magsagawa ng mga operasyon nang hindi nangangailangan ng pag-apruba. I-enable lang ang mga setting na ito kung lubos mong pinagkakatiwalaan ang AI at nauunawaan ang mga kaugnay na panganib sa seguridad.",
+		"description": "Payagan ang Softcodes na awtomatikong magsagawa ng mga operasyon nang hindi nangangailangan ng pag-apruba. I-enable lang ang mga setting na ito kung lubos mong pinagkakatiwalaan ang AI at nauunawaan ang mga kaugnay na panganib sa seguridad.",
 		"readOnly": {
 			"label": "Magbasa",
-			"description": "Kapag naka-enable, awtomatikong titingnan ng Kilo Code ang mga nilalaman ng directory at magbabasa ng mga file nang hindi mo kailangang i-click ang button na Aprubahan.",
+			"description": "Kapag naka-enable, awtomatikong titingnan ng Softcodes ang mga nilalaman ng directory at magbabasa ng mga file nang hindi mo kailangang i-click ang button na Aprubahan.",
 			"outsideWorkspace": {
 				"label": "Isama ang mga file sa labas ng workspace",
-				"description": "Payagan ang Kilo Code na magbasa ng mga file sa labas ng kasalukuyang workspace nang hindi nangangailangan ng pag-apruba."
+				"description": "Payagan ang Softcodes na magbasa ng mga file sa labas ng kasalukuyang workspace nang hindi nangangailangan ng pag-apruba."
 			}
 		},
 		"write": {
@@ -143,11 +143,11 @@
 			"delayLabel": "Pagkaantala pagkatapos magsulat upang payagan ang diagnostics na makita ang mga potensyal na problema",
 			"outsideWorkspace": {
 				"label": "Isama ang mga file sa labas ng workspace",
-				"description": "Payagan ang Kilo Code na gumawa at mag-edit ng mga file sa labas ng kasalukuyang workspace nang hindi nangangailangan ng pag-apruba."
+				"description": "Payagan ang Softcodes na gumawa at mag-edit ng mga file sa labas ng kasalukuyang workspace nang hindi nangangailangan ng pag-apruba."
 			},
 			"protected": {
 				"label": "Isama ang mga protektadong file",
-				"description": "Payagan ang Kilo Code na gumawa at mag-edit ng mga protektadong file (tulad ng .kilocodeignore at .kilocode/ configuration files) nang hindi nangangailangan ng pag-apruba."
+				"description": "Payagan ang Softcodes na gumawa at mag-edit ng mga protektadong file (tulad ng .kilocodeignore at .kilocode/ configuration files) nang hindi nangangailangan ng pag-apruba."
 			}
 		},
 		"browser": {
@@ -304,13 +304,13 @@
 			"draftModelDesc": "Ang draft model ay dapat mula sa parehong model family para gumana nang tama ang speculative decoding.",
 			"selectDraftModel": "Piliin ang Draft Model",
 			"noModelsFound": "Walang nahanap na draft model. Pakisiguro na tumatakbo ang LM Studio na may naka-enable na Server Mode.",
-			"description": "Ang LM Studio ay nagbibigay-daan sa iyo na magpatakbo ng mga model nang lokal sa iyong computer. Para sa mga tagubilin kung paano magsimula, tingnan ang kanilang <a>quickstart guide</a>. Kakailanganin mo ring simulan ang <b>local server</b> feature ng LM Studio para magamit ito sa extension na ito. <span>Tandaan:</span> Ang Kilo Code ay gumagamit ng mga komplikadong prompt at pinakamahusay na gumagana sa mga Claude model. Ang mga hindi gaanong capable na model ay maaaring hindi gumana ayon sa inaasahan."
+			"description": "Ang LM Studio ay nagbibigay-daan sa iyo na magpatakbo ng mga model nang lokal sa iyong computer. Para sa mga tagubilin kung paano magsimula, tingnan ang kanilang <a>quickstart guide</a>. Kakailanganin mo ring simulan ang <b>local server</b> feature ng LM Studio para magamit ito sa extension na ito. <span>Tandaan:</span> Ang Softcodes ay gumagamit ng mga komplikadong prompt at pinakamahusay na gumagana sa mga Claude model. Ang mga hindi gaanong capable na model ay maaaring hindi gumana ayon sa inaasahan."
 		},
 		"ollama": {
 			"baseUrl": "Base URL (opsyonal)",
 			"modelId": "Model ID",
 			"description": "Ang Ollama ay nagbibigay-daan sa iyo na magpatakbo ng mga model nang lokal sa iyong computer. Para sa mga tagubilin kung paano magsimula, tingnan ang kanilang quickstart guide.",
-			"warning": "Tandaan: Ang Kilo Code ay gumagamit ng mga komplikadong prompt at pinakamahusay na gumagana sa mga Claude model. Ang mga hindi gaanong capable na model ay maaaring hindi gumana ayon sa inaasahan."
+			"warning": "Tandaan: Ang Softcodes ay gumagamit ng mga komplikadong prompt at pinakamahusay na gumagana sa mga Claude model. Ang mga hindi gaanong capable na model ay maaaring hindi gumana ayon sa inaasahan."
 		},
 		"unboundApiKey": "Unbound API Key",
 		"getUnboundApiKey": "Kumuha ng Unbound API Key",
@@ -332,7 +332,7 @@
 			"getApiKey": "Kumuha ng Cerebras API Key"
 		},
 		"customModel": {
-			"capabilities": "I-configure ang mga kakayahan at presyo para sa iyong custom OpenAI-compatible model. Mag-ingat kapag tinutukoy ang mga kakayahan ng model, dahil maaari nitong maapektuhan kung paano gumaganap ang Kilo Code.",
+			"capabilities": "I-configure ang mga kakayahan at presyo para sa iyong custom OpenAI-compatible model. Mag-ingat kapag tinutukoy ang mga kakayahan ng model, dahil maaari nitong maapektuhan kung paano gumaganap ang Softcodes.",
 			"maxTokens": {
 				"label": "Max Output Tokens",
 				"description": "Maximum na bilang ng token na maaaring i-generate ng model sa isang tugon. (Magtukoy ng -1 para payagan ang server na itakda ang max tokens.)"
@@ -408,7 +408,7 @@
 	"browser": {
 		"enable": {
 			"label": "I-enable ang browser tool",
-			"description": "Kapag naka-enable, maaaring gumamit ang Kilo Code ng browser para makipag-ugnayan sa mga website kapag gumagamit ng mga model na sumusuporta sa computer use. <0>Alamin pa</0>"
+			"description": "Kapag naka-enable, maaaring gumamit ang Softcodes ng browser para makipag-ugnayan sa mga website kapag gumagamit ng mga model na sumusuporta sa computer use. <0>Alamin pa</0>"
 		},
 		"viewport": {
 			"label": "Laki ng viewport",
@@ -436,7 +436,7 @@
 	"checkpoints": {
 		"enable": {
 			"label": "I-enable ang mga awtomatikong checkpoint",
-			"description": "Kapag naka-enable, awtomatikong gagawa ang Kilo Code ng mga checkpoint sa panahon ng pagpapatupad ng gawain, na ginagawang madaling suriin ang mga pagbabago o bumalik sa mga naunang estado. <0>Alamin pa</0>"
+			"description": "Kapag naka-enable, awtomatikong gagawa ang Softcodes ng mga checkpoint sa panahon ng pagpapatupad ng gawain, na ginagawang madaling suriin ang mga pagbabago o bumalik sa mga naunang estado. <0>Alamin pa</0>"
 		}
 	},
 	"display": {
@@ -448,12 +448,12 @@
 	"notifications": {
 		"sound": {
 			"label": "I-enable ang mga sound effect",
-			"description": "Kapag naka-enable, magpe-play ang Kilo Code ng mga sound effect para sa mga notipikasyon at kaganapan.",
+			"description": "Kapag naka-enable, magpe-play ang Softcodes ng mga sound effect para sa mga notipikasyon at kaganapan.",
 			"volumeLabel": "Volume"
 		},
 		"tts": {
 			"label": "I-enable ang text-to-speech",
-			"description": "Kapag naka-enable, babasahin ng Kilo Code nang malakas ang mga tugon nito gamit ang text-to-speech.",
+			"description": "Kapag naka-enable, babasahin ng Softcodes nang malakas ang mga tugon nito gamit ang text-to-speech.",
 			"speedLabel": "Bilis"
 		}
 	},
@@ -461,7 +461,7 @@
 		"description": "Kontrolin kung anong impormasyon ang kasama sa context window ng AI, na nakakaapekto sa paggamit ng token at kalidad ng tugon",
 		"autoCondenseContextPercent": {
 			"label": "Threshold para mag-trigger ng intelligent context condensing",
-			"description": "Kapag naabot ng context window ang threshold na ito, awtomatikong ico-condense ito ng Kilo Code."
+			"description": "Kapag naabot ng context window ang threshold na ito, awtomatikong ico-condense ito ng Softcodes."
 		},
 		"condensingApiConfiguration": {
 			"label": "API Configuration para sa Context Condensing",
@@ -477,7 +477,7 @@
 		},
 		"autoCondenseContext": {
 			"name": "Awtomatikong mag-trigger ng intelligent context condensing",
-			"description": "Kapag naka-enable, awtomatikong ico-condense ng Kilo Code ang context kapag naabot ang threshold. Kapag naka-disable, maaari mo pa ring manu-manong i-trigger ang context condensing."
+			"description": "Kapag naka-enable, awtomatikong ico-condense ng Softcodes ang context kapag naabot ang threshold. Kapag naka-disable, maaari mo pa ring manu-manong i-trigger ang context condensing."
 		},
 		"openTabs": {
 			"label": "Limitasyon ng context ng mga bukas na tab",
@@ -497,7 +497,7 @@
 		},
 		"maxReadFile": {
 			"label": "File read auto-truncate threshold",
-			"description": "Binabasa ng Kilo Code ang ganitong bilang ng mga linya kapag inalis ng model ang mga start/end value. Kung ang bilang na ito ay mas mababa sa kabuuan ng file, gumagawa ang Kilo Code ng line number index ng mga code definition. Mga espesyal na kaso: -1 ay nag-uutos sa Kilo Code na basahin ang buong file (nang walang pag-index), at 0 ay nag-uutos dito na huwag magbasa ng mga linya at nagbibigay lamang ng mga line index para sa minimal na context. Ang mas mababang value ay nagpapababa ng paunang paggamit ng context, na nagbibigay-daan sa tumpak na kasunod na pagbasa ng line-range. Ang mga tahasang start/end request ay hindi limitado ng setting na ito.",
+			"description": "Binabasa ng Softcodes ang ganitong bilang ng mga linya kapag inalis ng model ang mga start/end value. Kung ang bilang na ito ay mas mababa sa kabuuan ng file, gumagawa ang Softcodes ng line number index ng mga code definition. Mga espesyal na kaso: -1 ay nag-uutos sa Softcodes na basahin ang buong file (nang walang pag-index), at 0 ay nag-uutos dito na huwag magbasa ng mga linya at nagbibigay lamang ng mga line index para sa minimal na context. Ang mas mababang value ay nagpapababa ng paunang paggamit ng context, na nagbibigay-daan sa tumpak na kasunod na pagbasa ng line-range. Ang mga tahasang start/end request ay hindi limitado ng setting na ito.",
 			"lines": "mga linya",
 			"always_full_read": "Laging basahin ang buong file"
 		},
@@ -568,7 +568,7 @@
 	"advanced": {
 		"diff": {
 			"label": "I-enable ang pag-e-edit sa pamamagitan ng mga diff",
-			"description": "Kapag naka-enable, mas mabilis na makakapag-edit ng mga file ang Kilo Code at awtomatikong tatanggihan ang mga truncated full-file write. Pinakamahusay na gumagana sa pinakabagong Claude 4 Sonnet model.",
+			"description": "Kapag naka-enable, mas mabilis na makakapag-edit ng mga file ang Softcodes at awtomatikong tatanggihan ang mga truncated full-file write. Pinakamahusay na gumagana sa pinakabagong Claude 4 Sonnet model.",
 			"strategy": {
 				"label": "Diff strategy",
 				"options": {
@@ -595,27 +595,27 @@
 		},
 		"SEARCH_AND_REPLACE": {
 			"name": "Gumamit ng experimental search and replace tool",
-			"description": "I-enable ang experimental search and replace tool, na nagbibigay-daan sa Kilo Code na palitan ang maraming instance ng search term sa isang request."
+			"description": "I-enable ang experimental search and replace tool, na nagbibigay-daan sa Softcodes na palitan ang maraming instance ng search term sa isang request."
 		},
 		"INSERT_BLOCK": {
 			"name": "Gumamit ng experimental insert content tool",
-			"description": "I-enable ang experimental insert content tool, na nagbibigay-daan sa Kilo Code na mag-insert ng content sa mga partikular na line number nang hindi kailangang gumawa ng diff."
+			"description": "I-enable ang experimental insert content tool, na nagbibigay-daan sa Softcodes na mag-insert ng content sa mga partikular na line number nang hindi kailangang gumawa ng diff."
 		},
 		"POWER_STEERING": {
 			"name": "Gumamit ng experimental \"power steering\" mode",
-			"description": "Kapag naka-enable, mas madalas na ipapaalala ng Kilo Code sa model ang mga detalye ng kasalukuyang mode definition nito. Ito ay hahantong sa mas malakas na pagsunod sa mga role definition at custom instruction, ngunit gagamit ng mas maraming token bawat mensahe."
+			"description": "Kapag naka-enable, mas madalas na ipapaalala ng Softcodes sa model ang mga detalye ng kasalukuyang mode definition nito. Ito ay hahantong sa mas malakas na pagsunod sa mga role definition at custom instruction, ngunit gagamit ng mas maraming token bawat mensahe."
 		},
 		"AUTOCOMPLETE": {
 			"name": "Gumamit ng experimental \"autocomplete\" feature",
-			"description": "Kapag naka-enable, magbibigay ang Kilo Code ng mga inline code suggestion habang nagta-type ka. Nangangailangan ng Kilo Code API Provider."
+			"description": "Kapag naka-enable, magbibigay ang Softcodes ng mga inline code suggestion habang nagta-type ka. Nangangailangan ng Softcodes API Provider."
 		},
 		"CONCURRENT_FILE_READS": {
 			"name": "I-enable ang sabay-sabay na pagbasa ng file",
-			"description": "Kapag naka-enable, maaaring magbasa ang Kilo Code ng maraming file sa isang request. Kapag naka-disable, dapat magbasa ang Kilo Code ng mga file nang isa-isa. Ang pag-disable nito ay makakatulong kapag gumagamit ng mga hindi gaanong capable na model o kapag gusto mo ng mas maraming kontrol sa file access."
+			"description": "Kapag naka-enable, maaaring magbasa ang Softcodes ng maraming file sa isang request. Kapag naka-disable, dapat magbasa ang Softcodes ng mga file nang isa-isa. Ang pag-disable nito ay makakatulong kapag gumagamit ng mga hindi gaanong capable na model o kapag gusto mo ng mas maraming kontrol sa file access."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "Gumamit ng experimental multi block diff tool",
-			"description": "Kapag naka-enable, gagamitin ng Kilo Code ang multi block diff tool. Susubukan nitong mag-update ng maraming code block sa file sa isang request."
+			"description": "Kapag naka-enable, gagamitin ng Softcodes ang multi block diff tool. Susubukan nitong mag-update ng maraming code block sa file sa isang request."
 		},
 		"MARKETPLACE": {
 			"name": "I-enable ang Marketplace",
@@ -623,12 +623,12 @@
 		},
 		"MULTI_FILE_APPLY_DIFF": {
 			"name": "I-enable ang sabay-sabay na pag-edit ng file",
-			"description": "Kapag naka-enable, maaaring mag-edit ang Kilo Code ng maraming file sa isang request. Kapag naka-disable, dapat mag-edit ang Kilo Code ng mga file nang isa-isa. Ang pag-disable nito ay makakatulong kapag gumagamit ng mga hindi gaanong capable na model o kapag gusto mo ng mas maraming kontrol sa mga pagbabago sa file."
+			"description": "Kapag naka-enable, maaaring mag-edit ang Softcodes ng maraming file sa isang request. Kapag naka-disable, dapat mag-edit ang Softcodes ng mga file nang isa-isa. Ang pag-disable nito ay makakatulong kapag gumagamit ng mga hindi gaanong capable na model o kapag gusto mo ng mas maraming kontrol sa mga pagbabago sa file."
 		}
 	},
 	"promptCaching": {
 		"label": "I-disable ang prompt caching",
-		"description": "Kapag naka-check, hindi gagamitin ng Kilo Code ang prompt caching para sa model na ito."
+		"description": "Kapag naka-check, hindi gagamitin ng Softcodes ang prompt caching para sa model na ito."
 	},
 	"temperature": {
 		"useCustom": "Gumamit ng custom temperature",
@@ -659,7 +659,7 @@
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "Awtomatikong kinukuha ng extension ang pinakabagong listahan ng mga model na available sa <serviceLink>{{serviceName}}</serviceLink>. Kung hindi ka sigurado kung aling model ang pipiliin, pinakamahusay na gumagana ang Kilo Code sa <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Maaari mo ring subukang maghanap ng \"free\" para sa mga walang bayad na opsyon na kasalukuyang available.",
+		"automaticFetch": "Awtomatikong kinukuha ng extension ang pinakabagong listahan ng mga model na available sa <serviceLink>{{serviceName}}</serviceLink>. Kung hindi ka sigurado kung aling model ang pipiliin, pinakamahusay na gumagana ang Softcodes sa <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Maaari mo ring subukang maghanap ng \"free\" para sa mga walang bayad na opsyon na kasalukuyang available.",
 		"label": "Model",
 		"searchPlaceholder": "Maghanap",
 		"noMatchFound": "Walang nahanap na tugma",
@@ -670,7 +670,7 @@
 		"support": "Para sa mga tanong tungkol sa pananalapi, makipag-ugnayan sa Customer Support sa <supportLink>https://kilocode.ai/support</supportLink>",
 		"telemetry": {
 			"label": "Payagan ang pag-ulat ng error at paggamit",
-			"description": "Tumulong na mapabuti ang Kilo Code sa pamamagitan ng pagpapadala ng data ng paggamit at mga ulat ng error. Walang code, prompt, o personal na impormasyon ang kailanman ipinapadala. Tingnan ang aming privacy policy para sa karagdagang detalye."
+			"description": "Tumulong na mapabuti ang Softcodes sa pamamagitan ng pagpapadala ng data ng paggamit at mga ulat ng error. Walang code, prompt, o personal na impormasyon ang kailanman ipinapadala. Tingnan ang aming privacy policy para sa karagdagang detalye."
 		},
 		"settings": {
 			"import": "Mag-import",

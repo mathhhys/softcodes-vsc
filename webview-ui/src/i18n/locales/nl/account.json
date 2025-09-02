@@ -3,12 +3,12 @@
 	"profilePicture": "Profielfoto",
 	"logOut": "Uitloggen",
 	"testApiAuthentication": "API-authenticatie testen",
-	"signIn": "Verbind met Kilo Code Cloud",
+	"signIn": "Verbind met Softcodes Cloud",
 	"connect": "Verbinden",
-	"cloudBenefitsTitle": "Verbind met Kilo Code Cloud",
+	"cloudBenefitsTitle": "Verbind met Softcodes Cloud",
 	"cloudBenefitsSubtitle": "Synchroniseer je prompts en telemetrie om het volgende in te schakelen:",
 	"cloudBenefitHistory": "Online taakgeschiedenis",
 	"cloudBenefitSharing": "Deel- en samenwerkingsfuncties",
 	"cloudBenefitMetrics": "Taak-, token- en kostengebaseerde gebruiksstatistieken",
-	"visitCloudWebsite": "Bezoek Kilo Code Cloud"
+	"visitCloudWebsite": "Bezoek Softcodes Cloud"
 }

@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "تم تفعيل منشئ رسائل التزام Kilo Code",
+		"activated": "تم تفعيل منشئ رسائل التزام Softcodes",
 		"gitNotFound": "⚠️ مستودع Git غير موجود أو Git غير متاح",
 		"gitInitError": "⚠️ خطأ في تهيئة Git: {{error}}",
 		"generating": "Kilo: جارٍ إنشاء رسالة الالتزام...",
@@ -51,15 +51,15 @@
 		"analyzingChanges": "Kilo: جاري تحليل التعديلات الجاهزة...",
 		"noStagedChangesRepo": "Kilo: ما فيه تعديلات مضافة في مستودع git",
 		"noStagedChanges": "Kilo: ما فيه تعديلات مضافة لتحليلها",
-		"tokenRequired": "يتطلب توليد الرسالة رمز Kilo Code",
+		"tokenRequired": "يتطلب توليد الرسالة رمز Softcodes",
 		"activationFailed": "Kilo: فشل تفعيل مولّد الرسائل: {{error}}",
 		"providerRegistered": "Kilo: تم تسجيل موفر رسائل الاعتماد"
 	},
 	"autocomplete": {
 		"statusBar": {
 			"tooltip": {
-				"basic": "Kilo Code الإكمال التلقائي",
-				"disabled": "إكمال تلقائي لـ Kilo Code (معطل)",
+				"basic": "Softcodes الإكمال التلقائي",
+				"disabled": "إكمال تلقائي لـ Softcodes (معطل)",
 				"sessionTotal": "التكلفة الإجمالية للجلسة:",
 				"tokenError": "يجب تعيين رمز صالح لاستخدام الإكمال التلقائي",
 				"lastCompletion": "الإكمال الأخير:",
@@ -81,26 +81,26 @@
 			"showing": "عرض التعديلات المقترحة...",
 			"generating": "جاري توليد التعديلات المقترحة...",
 			"processing": "جارِ معالجة التعديلات المقترحة...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: مهمة سريعة",
+			"title": "Softcodes: مهمة سريعة",
 			"placeholder": "مثلاً، 'أعد هيكلة هذه الدالة لتكون أكثر كفاءة'"
 		},
 		"commands": {
 			"displaySuggestions": "عرض التعديلات المقترحة",
-			"generateSuggestions": "Kilo Code: توليد تعديلات مقترحة",
+			"generateSuggestions": "Softcodes: توليد تعديلات مقترحة",
 			"applyCurrentSuggestion": "تطبيق التعديل المُقترح الحالي",
 			"cancelSuggestions": "إلغاء التعديلات المقترحة",
 			"promptCodeSuggestion": "مهمة سريعة",
 			"applyAllSuggestions": "تطبيق كافة التعديلات المقترحة",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: التعديلات المقترحة"
+			"title": "Softcodes: التعديلات المقترحة"
 		},
 		"chatParticipant": {
-			"fullName": "Kilo Code وكيل",
+			"fullName": "Softcodes وكيل",
 			"description": "يمكنني مساعدتك بالمهام السريعة والتعديلات المقترحة.",
 			"name": "وكيل"
 		},

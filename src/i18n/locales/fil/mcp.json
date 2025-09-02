@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Invalid na format ng MCP settings: {{errorMessages}}",
 		"create_json": "Nabigo ang paggawa o pagbukas ng .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "Nabigo ang pag-update ng mga MCP server ng project",
-		"invalidJsonArgument": "Sinubukan ng Kilo Code na gamitin ang {{toolName}} na may invalid na JSON argument. Sinusubukan muli..."
+		"invalidJsonArgument": "Sinubukan ng Softcodes na gamitin ang {{toolName}} na may invalid na JSON argument. Sinusubukan muli..."
 	},
 	"info": {
 		"server_restarting": "Nire-restart ang {{serverName}} MCP server...",

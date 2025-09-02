@@ -1,6 +1,6 @@
 {
-	"greeting": "مرحبًا، أنا Kilo Code!",
-	"introduction": "<strong>Kilo Code هو وكيل البرمجة الذاتي الأفضل على الإطلاق.</strong> استعد للتصميم والبرمجة وتصحيح الأخطاء وزيادة إنتاجيتك بشكل غير مسبوق. للمتابعة، يحتاج Kilo Code إلى مفتاح API.",
+	"greeting": "مرحبًا، أنا Softcodes!",
+	"introduction": "<strong>Softcodes هو وكيل البرمجة الذاتي الأفضل على الإطلاق.</strong> استعد للتصميم والبرمجة وتصحيح الأخطاء وزيادة إنتاجيتك بشكل غير مسبوق. للمتابعة، يحتاج Softcodes إلى مفتاح API.",
 	"notice": "عشان تبدأ، هذي الإضافة تحتاج مزوّد API.",
 	"start": "يلا نبدأ!",
 	"routers": {
@@ -12,11 +12,11 @@
 			"description": "واجهة موحّدة لنماذج LLM"
 		}
 	},
-	"chooseProvider": "عشان يشتغل سحر Kilo Code، يلزم مفتاح API.",
+	"chooseProvider": "عشان يشتغل سحر Softcodes، يلزم مفتاح API.",
 	"startRouter": "نوصي باستخدام موجّه LLM:",
 	"startCustom": "أو تقدر تستخدم مفتاح مزوّدك الخاص:",
 	"telemetry": {
-		"title": "ساهم في تحسين Kilo Code",
+		"title": "ساهم في تحسين Softcodes",
 		"anonymousTelemetry": "أرسل بيانات الأخطاء والاستخدام لمساعدتنا في إصلاح الأخطاء وتحسين الإضافة. لا يتم إرسال أي كود أو prompts أو معلومات شخصية أبداً.",
 		"changeSettings": "تقدر تغيّر هالخيارات دايمًا من أسفل <settingsLink>الإعدادات</settingsLink>",
 		"settings": "الإعدادات",

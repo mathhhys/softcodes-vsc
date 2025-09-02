@@ -1,6 +1,6 @@
 {
-	"greeting": "Ciao, sono Kilo Code!",
-	"introduction": "<strong>Kilo Code è il principale agente di codifica autonomo.</strong> Preparati ad architettare, codificare, debuggare e aumentare la tua produttività come mai prima d'ora. Per continuare, Kilo Code richiede una chiave API.",
+	"greeting": "Ciao, sono Softcodes!",
+	"introduction": "<strong>Softcodes è il principale agente di codifica autonomo.</strong> Preparati ad architettare, codificare, debuggare e aumentare la tua produttività come mai prima d'ora. Per continuare, Softcodes richiede una chiave API.",
 	"notice": "Per iniziare, questa estensione necessita di un fornitore di API.",
 	"start": "Andiamo!",
 	"routers": {
@@ -12,11 +12,11 @@
 			"description": "Un'interfaccia unificata per LLMs"
 		}
 	},
-	"chooseProvider": "Per fare la sua magia, Kilo Code ha bisogno di una chiave API.",
+	"chooseProvider": "Per fare la sua magia, Softcodes ha bisogno di una chiave API.",
 	"startRouter": "Consigliamo di utilizzare un router LLM:",
 	"startCustom": "Oppure puoi utilizzare la tua chiave API:",
 	"telemetry": {
-		"title": "Aiuta a migliorare Kilo Code",
+		"title": "Aiuta a migliorare Softcodes",
 		"anonymousTelemetry": "Invia dati di errori e utilizzo per aiutarci a correggere bug e migliorare l'estensione. Non viene mai inviato codice, prompts o informazioni personali.",
 		"changeSettings": "Puoi sempre cambiare questo in fondo alle <settingsLink>impostazioni</settingsLink>",
 		"settings": "impostazioni",

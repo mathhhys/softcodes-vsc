@@ -1,11 +1,14 @@
-export function getKiloCodeBackendSignInUrl(uriScheme: string = "vscode", uiKind: string = "Desktop") {
-	const baseUrl = "https://kilocode.ai"
-	const source = uiKind === "Web" ? "web" : uriScheme
-	return `${baseUrl}/sign-in-to-editor?source=${source}`
+export function getKiloCodeBackendSignInUrl() {
+	const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://softcodes.ai"
+	return `${baseUrl}/extension/sign-in`
 }
 
-export function getKiloCodeBackendSignUpUrl(uriScheme: string = "vscode", uiKind: string = "Desktop") {
-	const baseUrl = "https://kilocode.ai"
-	const source = uiKind === "Web" ? "web" : uriScheme
-	return `${baseUrl}/users/sign_up?source=${source}`
+export function getKiloCodeBackendSignUpUrl() {
+	const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://softcodes.ai"
+	return `${baseUrl}/extension/sign-up`
+}
+
+export function getKiloCodeBackendAuthCallbackUrl() {
+	const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://softcodes.ai"
+	return `${baseUrl}/api/extension/auth/callback`
 }

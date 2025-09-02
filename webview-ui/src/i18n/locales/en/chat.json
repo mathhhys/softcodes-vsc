@@ -1,5 +1,5 @@
 {
-	"greeting": "What can Kilo Code do for you?",
+	"greeting": "What can Softcodes do for you?",
 	"task": {
 		"title": "Task",
 		"seeMore": "See more",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Share Publicly",
 		"sharePubliclyDescription": "Anyone with the link can access",
 		"connectToCloud": "Connect to Cloud",
-		"connectToCloudDescription": "Sign in to Kilo Code Cloud to share tasks",
+		"connectToCloudDescription": "Sign in to Softcodes Cloud to share tasks",
 		"sharingDisabledByOrganization": "Sharing disabled by organization",
 		"shareSuccessOrganization": "Organization link copied to clipboard",
 		"shareSuccessPublic": "Public link copied to clipboard"
@@ -122,7 +122,7 @@
 		"title": "Modes",
 		"marketplace": "Mode Marketplace",
 		"settings": "Mode Settings",
-		"description": "Specialized personas that tailor Kilo Code's behavior."
+		"description": "Specialized personas that tailor Softcodes's behavior."
 	},
 	"enhancePromptDescription": "The 'Enhance Prompt' button helps improve your prompt by providing additional context, clarification, or rephrasing. Try typing a prompt in here and clicking the button again to see how it works.",
 	"addImages": "Add images to message",
@@ -169,46 +169,46 @@
 		"tokens": "tokens"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code wants to fetch detailed instructions to assist with the current task"
+		"wantsToFetch": "Softcodes wants to fetch detailed instructions to assist with the current task"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code wants to read this file:",
-		"wantsToReadMultiple": "Kilo Code wants to read multiple files:",
-		"wantsToReadAndXMore": "Kilo Code wants to read this file and {{count}} more:",
-		"wantsToReadOutsideWorkspace": "Kilo Code wants to read this file outside of the workspace:",
-		"didRead": "Kilo Code read this file:",
-		"wantsToEdit": "Kilo Code wants to edit this file:",
-		"wantsToEditOutsideWorkspace": "Kilo Code wants to edit this file outside of the workspace:",
-		"wantsToEditProtected": "Kilo Code wants to edit a protected configuration file:",
-		"wantsToApplyBatchChanges": "Kilo Code wants to apply changes to multiple files:",
-		"wantsToCreate": "Kilo Code wants to create a new file:",
-		"wantsToSearchReplace": "Kilo Code wants to search and replace in this file:",
-		"didSearchReplace": "Kilo Code performed search and replace on this file:",
-		"wantsToInsert": "Kilo Code wants to insert content into this file:",
-		"wantsToInsertWithLineNumber": "Kilo Code wants to insert content into this file at line {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Kilo Code wants to append content to the end of this file:"
+		"wantsToRead": "Softcodes wants to read this file:",
+		"wantsToReadMultiple": "Softcodes wants to read multiple files:",
+		"wantsToReadAndXMore": "Softcodes wants to read this file and {{count}} more:",
+		"wantsToReadOutsideWorkspace": "Softcodes wants to read this file outside of the workspace:",
+		"didRead": "Softcodes read this file:",
+		"wantsToEdit": "Softcodes wants to edit this file:",
+		"wantsToEditOutsideWorkspace": "Softcodes wants to edit this file outside of the workspace:",
+		"wantsToEditProtected": "Softcodes wants to edit a protected configuration file:",
+		"wantsToApplyBatchChanges": "Softcodes wants to apply changes to multiple files:",
+		"wantsToCreate": "Softcodes wants to create a new file:",
+		"wantsToSearchReplace": "Softcodes wants to search and replace in this file:",
+		"didSearchReplace": "Softcodes performed search and replace on this file:",
+		"wantsToInsert": "Softcodes wants to insert content into this file:",
+		"wantsToInsertWithLineNumber": "Softcodes wants to insert content into this file at line {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Softcodes wants to append content to the end of this file:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code wants to view the top level files in this directory:",
-		"didViewTopLevel": "Kilo Code viewed the top level files in this directory:",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code wants to view the top level files in this directory (outside workspace):",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code viewed the top level files in this directory (outside workspace):",
-		"wantsToViewRecursive": "Kilo Code wants to recursively view all files in this directory:",
-		"didViewRecursive": "Kilo Code recursively viewed all files in this directory:",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code wants to recursively view all files in this directory (outside workspace):",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code recursively viewed all files in this directory (outside workspace):",
-		"wantsToViewDefinitions": "Kilo Code wants to view source code definition names used in this directory:",
-		"didViewDefinitions": "Kilo Code viewed source code definition names used in this directory:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code wants to view source code definition names used in this directory (outside workspace):",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code viewed source code definition names used in this directory (outside workspace):",
-		"wantsToSearch": "Kilo Code wants to search this directory for <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code searched this directory for <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Kilo Code wants to search this directory (outside workspace) for <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Kilo Code searched this directory (outside workspace) for <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Softcodes wants to view the top level files in this directory:",
+		"didViewTopLevel": "Softcodes viewed the top level files in this directory:",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes wants to view the top level files in this directory (outside workspace):",
+		"didViewTopLevelOutsideWorkspace": "Softcodes viewed the top level files in this directory (outside workspace):",
+		"wantsToViewRecursive": "Softcodes wants to recursively view all files in this directory:",
+		"didViewRecursive": "Softcodes recursively viewed all files in this directory:",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes wants to recursively view all files in this directory (outside workspace):",
+		"didViewRecursiveOutsideWorkspace": "Softcodes recursively viewed all files in this directory (outside workspace):",
+		"wantsToViewDefinitions": "Softcodes wants to view source code definition names used in this directory:",
+		"didViewDefinitions": "Softcodes viewed source code definition names used in this directory:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes wants to view source code definition names used in this directory (outside workspace):",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes viewed source code definition names used in this directory (outside workspace):",
+		"wantsToSearch": "Softcodes wants to search this directory for <code>{{regex}}</code>:",
+		"didSearch": "Softcodes searched this directory for <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Softcodes wants to search this directory (outside workspace) for <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Softcodes searched this directory (outside workspace) for <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code wants to search the codebase for <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Kilo Code wants to search the codebase for <code>{{query}}</code> in <code>{{path}}</code>:",
+		"wantsToSearch": "Softcodes wants to search the codebase for <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Softcodes wants to search the codebase for <code>{{query}}</code> in <code>{{path}}</code>:",
 		"didSearch": "Found {{count}} result(s) for <code>{{query}}</code>:",
 		"resultTooltip": "Similarity score: {{score}} (click to open file)"
 	},
@@ -216,18 +216,18 @@
 	"response": "Response",
 	"arguments": "Arguments",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code wants to use a tool on the {{serverName}} MCP server:",
-		"wantsToAccessResource": "Kilo Code wants to access a resource on the {{serverName}} MCP server:"
+		"wantsToUseTool": "Softcodes wants to use a tool on the {{serverName}} MCP server:",
+		"wantsToAccessResource": "Softcodes wants to access a resource on the {{serverName}} MCP server:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code wants to switch to {{mode}} mode",
-		"wantsToSwitchWithReason": "Kilo Code wants to switch to {{mode}} mode because: {{reason}}",
-		"didSwitch": "Kilo Code switched to {{mode}} mode",
-		"didSwitchWithReason": "Kilo Code switched to {{mode}} mode because: {{reason}}"
+		"wantsToSwitch": "Softcodes wants to switch to {{mode}} mode",
+		"wantsToSwitchWithReason": "Softcodes wants to switch to {{mode}} mode because: {{reason}}",
+		"didSwitch": "Softcodes switched to {{mode}} mode",
+		"didSwitchWithReason": "Softcodes switched to {{mode}} mode because: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code wants to create a new subtask in {{mode}} mode:",
-		"wantsToFinish": "Kilo Code wants to finish this subtask",
+		"wantsToCreate": "Softcodes wants to create a new subtask in {{mode}} mode:",
+		"wantsToFinish": "Softcodes wants to finish this subtask",
 		"newTaskContent": "Subtask Instructions",
 		"completionContent": "Subtask Completed",
 		"resultContent": "Subtask Results",
@@ -235,21 +235,21 @@
 		"completionInstructions": "Subtask completed! You can review the results and suggest any corrections or next steps. If everything looks good, confirm to return the result to the parent task."
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code has a question:"
+		"hasQuestion": "Softcodes has a question:"
 	},
 	"taskCompleted": "Task Completed",
 	"error": "Error",
 	"diffError": {
 		"title": "Edit Unsuccessful"
 	},
-	"troubleMessage": "Kilo Code is having trouble...",
+	"troubleMessage": "Softcodes is having trouble...",
 	"powershell": {
 		"issues": "It seems like you're having Windows PowerShell issues, please see this"
 	},
 	"autoApprove": {
 		"title": "Auto-approve:",
 		"none": "None",
-		"description": "Auto-approve allows Kilo Code to perform actions without asking for permission. Only enable for actions you fully trust. More detailed configuration available in <settingsLink>Settings</settingsLink>."
+		"description": "Auto-approve allows Softcodes to perform actions without asking for permission. Only enable for actions you fully trust. More detailed configuration available in <settingsLink>Settings</settingsLink>."
 	},
 	"announcement": {
 		"title": "🎉 Roo Code {{version}} Released",
@@ -270,7 +270,7 @@
 		"countdownDisplay": "{{count}}s"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code wants to use the browser:",
+		"rooWantsToUse": "Softcodes wants to use the browser:",
 		"consoleLogs": "Console Logs",
 		"noNewLogs": "(No new logs)",
 		"screenshot": "Browser screenshot",
@@ -304,13 +304,13 @@
 	"profileViolationWarning": "The current profile violates your organization's settings",
 	"shellIntegration": {
 		"title": "Command Execution Warning",
-		"description": "Your command is being executed without VSCode terminal shell integration. To suppress this warning you can disable shell integration in the <strong>Terminal</strong> section of the <settingsLink>Kilo Code settings</settingsLink> or troubleshoot VSCode terminal integration using the link below.",
+		"description": "Your command is being executed without VSCode terminal shell integration. To suppress this warning you can disable shell integration in the <strong>Terminal</strong> section of the <settingsLink>Softcodes settings</settingsLink> or troubleshoot VSCode terminal integration using the link below.",
 		"troubleshooting": "Click here for shell integration documentation."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Auto-Approved Request Limit Reached",
-			"description": "Kilo Code has reached the auto-approved limit of {{count}} API request(s). Would you like to reset the count and proceed with the task?",
+			"description": "Softcodes has reached the auto-approved limit of {{count}} API request(s). Would you like to reset the count and proceed with the task?",
 			"button": "Reset and Continue"
 		}
 	},

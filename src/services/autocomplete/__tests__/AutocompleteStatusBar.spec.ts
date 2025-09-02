@@ -6,8 +6,8 @@ vi.mock("../../../i18n", () => ({
 			"kilocode:autocomplete.statusBar.enabled": "$(sparkle) Kilo Complete",
 			"kilocode:autocomplete.statusBar.disabled": "$(circle-slash) Kilo Complete",
 			"kilocode:autocomplete.statusBar.warning": "$(warning) Kilo Complete",
-			"kilocode:autocomplete.statusBar.tooltip.basic": "Kilo Code Autocomplete",
-			"kilocode:autocomplete.statusBar.tooltip.disabled": "Kilo Code Autocomplete (disabled)",
+			"kilocode:autocomplete.statusBar.tooltip.basic": "Softcodes Autocomplete",
+			"kilocode:autocomplete.statusBar.tooltip.disabled": "Softcodes Autocomplete (disabled)",
 			"kilocode:autocomplete.statusBar.tooltip.tokenError": "A valid token must be set to use autocomplete",
 			"kilocode:autocomplete.statusBar.tooltip.lastCompletion": "Last completion:",
 			"kilocode:autocomplete.statusBar.tooltip.sessionTotal": "Session total cost:",
@@ -61,7 +61,7 @@ describe("AutocompleteStatusBar", () => {
 		// Should be disabled and render correctly
 		expect(statusBar.enabled).toBe(false)
 		expect(statusBar.statusBar.text).toBe("$(circle-slash) Kilo Complete")
-		expect(statusBar.statusBar.tooltip).toBe("Kilo Code Autocomplete (disabled)")
+		expect(statusBar.statusBar.tooltip).toBe("Softcodes Autocomplete (disabled)")
 	})
 
 	it("should update enabled state to true and render correctly", () => {
