@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "مرحبًا بك في Kilo Code!",
-		"introText1": "Kilo Code وكيل برمجة مدعوم بالذكاء ومفتوح المصدر ومجاني.",
+		"greeting": "مرحبًا بك في Softcodes!",
+		"introText1": "Softcodes وكيل برمجة مدعوم بالذكاء ومفتوح المصدر ومجاني.",
 		"introText2": "يشتغل مع أحدث نماذج الذكاء مثل Claude 4 Sonnet، Gemini 2.5 Pro، GPT-4.1 وأكثر من 450 نموذج آخر.",
 		"introText3": "أنشئ حساب مجاني وخذ رصيد بقيمة 20 دولار تقدر تستخدمه على أي نموذج.",
 		"ctaButton": "أنشئ حساب مجاني",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "شحن الرصيد",
-		"lowBalance": "رصيدك في Kilo Code منخفض"
+		"lowBalance": "رصيدك في Softcodes منخفض"
 	},
 	"notifications": {
 		"toolRequest": "طلب أداة بانتظار الموافقة",
@@ -23,28 +23,28 @@
 			"mcp": "خوادم MCP"
 		},
 		"provider": {
-			"account": "حساب Kilo Code",
-			"apiKey": "مفتاح Kilo Code API",
-			"login": "سجّل دخولك في Kilo Code",
-			"logout": "تسجيل الخروج من Kilo Code"
+			"account": "حساب Softcodes",
+			"apiKey": "مفتاح Softcodes API",
+			"login": "سجّل دخولك في Softcodes",
+			"logout": "تسجيل الخروج من Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "السماح بقراءة ملفات ضخمة",
-				"description": "إذا تم تفعيله، Kilo Code يقدر يقرأ ملفات ضخمة أو مخرجات MCP حتى لو فيه احتمال يتجاوز حجم السياق (إذا المحتوى تجاوز 80% من حجم السياق)."
+				"description": "إذا تم تفعيله، Softcodes يقدر يقرأ ملفات ضخمة أو مخرجات MCP حتى لو فيه احتمال يتجاوز حجم السياق (إذا المحتوى تجاوز 80% من حجم السياق)."
 			}
 		},
 		"systemNotifications": {
 			"label": "تفعيل إشعارات النظام",
-			"description": "عند التفعيل، سيرسل Kilo Code إشعارات النظام للأحداث المهمة مثل إكمال المهام أو الأخطاء.",
+			"description": "عند التفعيل، سيرسل Softcodes إشعارات النظام للأحداث المهمة مثل إكمال المهام أو الأخطاء.",
 			"testButton": "اختبار الإشعار",
-			"testTitle": "Kilo Code",
-			"testMessage": "هذا إشعار اختباري من Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "هذا إشعار اختباري من Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code يقترح تلخيص المحادثة",
+			"wantsToCondense": "Softcodes يقترح تلخيص المحادثة",
 			"condenseConversation": "تلخيص المحادثة"
 		}
 	},
@@ -60,14 +60,14 @@
 	},
 	"docs": "التوثيق",
 	"rules": {
-		"tooltip": "إدارة قواعد وسير العمل في Kilo Code",
-		"ariaLabel": "قواعد Kilo Code",
+		"tooltip": "إدارة قواعد وسير العمل في Softcodes",
+		"ariaLabel": "قواعد Softcodes",
 		"tabs": {
 			"rules": "القواعد",
 			"workflows": "سير العمل"
 		},
 		"description": {
-			"rules": "القواعد تتيح لك تحديد تعليمات يلتزم بها Kilo Code في جميع الأنماط والموجهات. وسيلة ثابتة لإضافة تفضيلاتك وسياقك للمحادثات.",
+			"rules": "القواعد تتيح لك تحديد تعليمات يلتزم بها Softcodes في جميع الأنماط والموجهات. وسيلة ثابتة لإضافة تفضيلاتك وسياقك للمحادثات.",
 			"workflows": "سير العمل هو قالب محادثة جاهز. تقدر تستخدمه لتكرار أوامر أو خطوات مثل رفع خدمة أو تقديم PR. لتشغيل سير عمل، اكتب",
 			"workflowsInChat": "في المحادثة."
 		},

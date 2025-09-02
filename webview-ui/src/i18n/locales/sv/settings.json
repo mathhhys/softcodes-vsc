@@ -32,10 +32,10 @@
 		"prompts": "Prompter",
 		"experimental": "Experimentell",
 		"language": "Språk",
-		"about": "Om Kilo Code"
+		"about": "Om Softcodes"
 	},
 	"prompts": {
-		"description": "Konfigurera supportprompter som används för snabba åtgärder som att förbättra prompter, förklara kod och åtgärda problem. Dessa prompter hjälper Kilo Code att ge bättre hjälp för vanliga utvecklingsuppgifter."
+		"description": "Konfigurera supportprompter som används för snabba åtgärder som att förbättra prompter, förklara kod och åtgärda problem. Dessa prompter hjälper Softcodes att ge bättre hjälp för vanliga utvecklingsuppgifter."
 	},
 	"codeIndex": {
 		"title": "Indexering av kodbas",
@@ -129,13 +129,13 @@
 		}
 	},
 	"autoApprove": {
-		"description": "Tillåt Kilo Code att automatiskt utföra åtgärder utan att kräva godkännande. Aktivera dessa inställningar endast om du litar fullt ut på AI:n och förstår de tillhörande säkerhetsriskerna.",
+		"description": "Tillåt Softcodes att automatiskt utföra åtgärder utan att kräva godkännande. Aktivera dessa inställningar endast om du litar fullt ut på AI:n och förstår de tillhörande säkerhetsriskerna.",
 		"readOnly": {
 			"label": "Läs",
-			"description": "När den är aktiverad kommer Kilo Code automatiskt att visa kataloginnehåll och läsa filer utan att du behöver klicka på knappen Godkänn.",
+			"description": "När den är aktiverad kommer Softcodes automatiskt att visa kataloginnehåll och läsa filer utan att du behöver klicka på knappen Godkänn.",
 			"outsideWorkspace": {
 				"label": "Inkludera filer utanför arbetsytan",
-				"description": "Tillåt Kilo Code att läsa filer utanför den aktuella arbetsytan utan att kräva godkännande."
+				"description": "Tillåt Softcodes att läsa filer utanför den aktuella arbetsytan utan att kräva godkännande."
 			}
 		},
 		"write": {
@@ -144,11 +144,11 @@
 			"delayLabel": "Fördröjning efter skrivningar för att tillåta diagnostik att upptäcka potentiella problem",
 			"outsideWorkspace": {
 				"label": "Inkludera filer utanför arbetsytan",
-				"description": "Tillåt Kilo Code att skapa och redigera filer utanför den aktuella arbetsytan utan att kräva godkännande."
+				"description": "Tillåt Softcodes att skapa och redigera filer utanför den aktuella arbetsytan utan att kräva godkännande."
 			},
 			"protected": {
 				"label": "Inkludera skyddade filer",
-				"description": "Tillåt Kilo Code att skapa och redigera skyddade filer (som .kilocodeignore och konfigurationsfiler i .kilocode/) utan att kräva godkännande."
+				"description": "Tillåt Softcodes att skapa och redigera skyddade filer (som .kilocodeignore och konfigurationsfiler i .kilocode/) utan att kräva godkännande."
 			}
 		},
 		"browser": {
@@ -305,13 +305,13 @@
 			"draftModelDesc": "Utkastmodellen måste komma från samma modellfamilj för att spekulativ avkodning ska fungera korrekt.",
 			"selectDraftModel": "Välj utkastmodell",
 			"noModelsFound": "Inga utkastmodeller hittades. Se till att LM Studio körs med serverläget aktiverat.",
-			"description": "LM Studio låter dig köra modeller lokalt på din dator. För instruktioner om hur du kommer igång, se deras <a>snabbstartsguide</a>. Du måste också starta LM Studios <b>lokala server</b>-funktion för att använda den med det här tillägget. <span>Obs:</span> Kilo Code använder komplexa prompter och fungerar bäst med Claude-modeller. Mindre kapabla modeller kanske inte fungerar som förväntat."
+			"description": "LM Studio låter dig köra modeller lokalt på din dator. För instruktioner om hur du kommer igång, se deras <a>snabbstartsguide</a>. Du måste också starta LM Studios <b>lokala server</b>-funktion för att använda den med det här tillägget. <span>Obs:</span> Softcodes använder komplexa prompter och fungerar bäst med Claude-modeller. Mindre kapabla modeller kanske inte fungerar som förväntat."
 		},
 		"ollama": {
 			"baseUrl": "Bas-URL (valfritt)",
 			"modelId": "Modell-ID",
 			"description": "Ollama låter dig köra modeller lokalt på din dator. För instruktioner om hur du kommer igång, se deras snabbstartsguide.",
-			"warning": "Obs: Kilo Code använder komplexa prompter och fungerar bäst med Claude-modeller. Mindre kapabla modeller kanske inte fungerar som förväntat."
+			"warning": "Obs: Softcodes använder komplexa prompter och fungerar bäst med Claude-modeller. Mindre kapabla modeller kanske inte fungerar som förväntat."
 		},
 		"unboundApiKey": "Unbound API-nyckel",
 		"getUnboundApiKey": "Hämta Unbound API-nyckel",
@@ -333,7 +333,7 @@
 			"getApiKey": "Hämta Cerebras API-nyckel"
 		},
 		"customModel": {
-			"capabilities": "Konfigurera funktionerna och prissättningen för din anpassade OpenAI-kompatibla modell. Var försiktig när du anger modellens funktioner, eftersom de kan påverka hur Kilo Code presterar.",
+			"capabilities": "Konfigurera funktionerna och prissättningen för din anpassade OpenAI-kompatibla modell. Var försiktig när du anger modellens funktioner, eftersom de kan påverka hur Softcodes presterar.",
 			"maxTokens": {
 				"label": "Max antal utdatatoken",
 				"description": "Maximalt antal token som modellen kan generera i ett svar. (Ange -1 för att låta servern ställa in max antal token.)"
@@ -409,7 +409,7 @@
 	"browser": {
 		"enable": {
 			"label": "Aktivera webbläsarverktyg",
-			"description": "När den är aktiverad kan Kilo Code använda en webbläsare för att interagera med webbplatser när du använder modeller som stöder datoranvändning. <0>Läs mer</0>"
+			"description": "När den är aktiverad kan Softcodes använda en webbläsare för att interagera med webbplatser när du använder modeller som stöder datoranvändning. <0>Läs mer</0>"
 		},
 		"viewport": {
 			"label": "Visningsområdets storlek",
@@ -437,7 +437,7 @@
 	"checkpoints": {
 		"enable": {
 			"label": "Aktivera automatiska kontrollpunkter",
-			"description": "När den är aktiverad kommer Kilo Code automatiskt att skapa kontrollpunkter under uppgiftskörning, vilket gör det enkelt att granska ändringar eller återgå till tidigare tillstånd. <0>Läs mer</0>"
+			"description": "När den är aktiverad kommer Softcodes automatiskt att skapa kontrollpunkter under uppgiftskörning, vilket gör det enkelt att granska ändringar eller återgå till tidigare tillstånd. <0>Läs mer</0>"
 		}
 	},
 	"display": {
@@ -449,12 +449,12 @@
 	"notifications": {
 		"sound": {
 			"label": "Aktivera ljudeffekter",
-			"description": "När den är aktiverad kommer Kilo Code att spela upp ljudeffekter för meddelanden och händelser.",
+			"description": "När den är aktiverad kommer Softcodes att spela upp ljudeffekter för meddelanden och händelser.",
 			"volumeLabel": "Volym"
 		},
 		"tts": {
 			"label": "Aktivera text-till-tal",
-			"description": "När den är aktiverad kommer Kilo Code att läsa upp sina svar med text-till-tal.",
+			"description": "När den är aktiverad kommer Softcodes att läsa upp sina svar med text-till-tal.",
 			"speedLabel": "Hastighet"
 		}
 	},
@@ -462,7 +462,7 @@
 		"description": "Kontrollera vilken information som inkluderas i AI:ns kontextfönster, vilket påverkar tokenanvändning och svarskvalitet",
 		"autoCondenseContextPercent": {
 			"label": "Tröskel för att utlösa intelligent kontextkondensering",
-			"description": "När kontextfönstret når denna tröskel kommer Kilo Code automatiskt att kondensera det."
+			"description": "När kontextfönstret når denna tröskel kommer Softcodes automatiskt att kondensera det."
 		},
 		"condensingApiConfiguration": {
 			"label": "API-konfiguration för kontextkondensering",
@@ -478,7 +478,7 @@
 		},
 		"autoCondenseContext": {
 			"name": "Utlös automatiskt intelligent kontextkondensering",
-			"description": "När den är aktiverad kommer Kilo Code automatiskt att kondensera kontexten när tröskeln uppnås. När den är inaktiverad kan du fortfarande manuellt utlösa kontextkondensering."
+			"description": "När den är aktiverad kommer Softcodes automatiskt att kondensera kontexten när tröskeln uppnås. När den är inaktiverad kan du fortfarande manuellt utlösa kontextkondensering."
 		},
 		"openTabs": {
 			"label": "Kontextgräns för öppna flikar",
@@ -498,7 +498,7 @@
 		},
 		"maxReadFile": {
 			"label": "Tröskel för automatisk avkortning av filläsning",
-			"description": "Kilo Code läser detta antal rader när modellen utelämnar start-/slutvärden. Om detta antal är mindre än filens totala antal, genererar Kilo Code ett radnummerindex över koddefinitioner. Specialfall: -1 instruerar Kilo Code att läsa hela filen (utan indexering), och 0 instruerar den att inte läsa några rader och ger endast radindex för minimal kontext. Lägre värden minimerar den initiala kontextanvändningen, vilket möjliggör exakta efterföljande läsningar av radintervall. Explicita start-/slutförfrågningar begränsas inte av denna inställning.",
+			"description": "Softcodes läser detta antal rader när modellen utelämnar start-/slutvärden. Om detta antal är mindre än filens totala antal, genererar Softcodes ett radnummerindex över koddefinitioner. Specialfall: -1 instruerar Softcodes att läsa hela filen (utan indexering), och 0 instruerar den att inte läsa några rader och ger endast radindex för minimal kontext. Lägre värden minimerar den initiala kontextanvändningen, vilket möjliggör exakta efterföljande läsningar av radintervall. Explicita start-/slutförfrågningar begränsas inte av denna inställning.",
 			"lines": "rader",
 			"always_full_read": "Läs alltid hela filen"
 		},
@@ -569,7 +569,7 @@
 	"advanced": {
 		"diff": {
 			"label": "Aktivera redigering via diffar",
-			"description": "När den är aktiverad kommer Kilo Code att kunna redigera filer snabbare och kommer automatiskt att avvisa trunkerade helfilsskrivningar. Fungerar bäst med den senaste Claude 4 Sonnet-modellen.",
+			"description": "När den är aktiverad kommer Softcodes att kunna redigera filer snabbare och kommer automatiskt att avvisa trunkerade helfilsskrivningar. Fungerar bäst med den senaste Claude 4 Sonnet-modellen.",
 			"strategy": {
 				"label": "Diff-strategi",
 				"options": {
@@ -596,27 +596,27 @@
 		},
 		"SEARCH_AND_REPLACE": {
 			"name": "Använd experimentellt sök och ersätt-verktyg",
-			"description": "Aktivera det experimentella sök och ersätt-verktyget, vilket låter Kilo Code ersätta flera instanser av en sökterm i en förfrågan."
+			"description": "Aktivera det experimentella sök och ersätt-verktyget, vilket låter Softcodes ersätta flera instanser av en sökterm i en förfrågan."
 		},
 		"INSERT_BLOCK": {
 			"name": "Använd experimentellt infoga innehåll-verktyg",
-			"description": "Aktivera det experimentella infoga innehåll-verktyget, vilket låter Kilo Code infoga innehåll på specifika radnummer utan att behöva skapa en diff."
+			"description": "Aktivera det experimentella infoga innehåll-verktyget, vilket låter Softcodes infoga innehåll på specifika radnummer utan att behöva skapa en diff."
 		},
 		"POWER_STEERING": {
 			"name": "Använd experimentellt \"servostyrnings\"-läge",
-			"description": "När det är aktiverat kommer Kilo Code att påminna modellen om detaljerna i dess nuvarande lägedefinition oftare. Detta leder till starkare efterlevnad av rolldefinitioner och anpassade instruktioner, men kommer att använda fler token per meddelande."
+			"description": "När det är aktiverat kommer Softcodes att påminna modellen om detaljerna i dess nuvarande lägedefinition oftare. Detta leder till starkare efterlevnad av rolldefinitioner och anpassade instruktioner, men kommer att använda fler token per meddelande."
 		},
 		"AUTOCOMPLETE": {
 			"name": "Använd experimentell \"autokomplettering\"-funktion",
-			"description": "När den är aktiverad kommer Kilo Code att ge inline-kodförslag när du skriver. Kräver Kilo Code API-leverantör."
+			"description": "När den är aktiverad kommer Softcodes att ge inline-kodförslag när du skriver. Kräver Softcodes API-leverantör."
 		},
 		"CONCURRENT_FILE_READS": {
 			"name": "Aktivera samtidiga filläsningar",
-			"description": "När den är aktiverad kan Kilo Code läsa flera filer i en enda förfrågan. När den är inaktiverad måste Kilo Code läsa filer en i taget. Att inaktivera detta kan hjälpa när du arbetar med mindre kapabla modeller eller när du vill ha mer kontroll över filåtkomst."
+			"description": "När den är aktiverad kan Softcodes läsa flera filer i en enda förfrågan. När den är inaktiverad måste Softcodes läsa filer en i taget. Att inaktivera detta kan hjälpa när du arbetar med mindre kapabla modeller eller när du vill ha mer kontroll över filåtkomst."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "Använd experimentellt flerblocks diff-verktyg",
-			"description": "När det är aktiverat kommer Kilo Code att använda flerblocks diff-verktyget. Detta kommer att försöka uppdatera flera kodblock i filen i en förfrågan."
+			"description": "När det är aktiverat kommer Softcodes att använda flerblocks diff-verktyget. Detta kommer att försöka uppdatera flera kodblock i filen i en förfrågan."
 		},
 		"MARKETPLACE": {
 			"name": "Aktivera marknadsplats",
@@ -624,12 +624,12 @@
 		},
 		"MULTI_FILE_APPLY_DIFF": {
 			"name": "Aktivera samtidiga filredigeringar",
-			"description": "När den är aktiverad kan Kilo Code redigera flera filer i en enda förfrågan. När den är inaktiverad måste Kilo Code redigera filer en i taget. Att inaktivera detta kan hjälpa när du arbetar med mindre kapabla modeller eller när du vill ha mer kontroll över filmodifieringar."
+			"description": "När den är aktiverad kan Softcodes redigera flera filer i en enda förfrågan. När den är inaktiverad måste Softcodes redigera filer en i taget. Att inaktivera detta kan hjälpa när du arbetar med mindre kapabla modeller eller när du vill ha mer kontroll över filmodifieringar."
 		}
 	},
 	"promptCaching": {
 		"label": "Inaktivera prompt-cachelagring",
-		"description": "När den är markerad kommer Kilo Code inte att använda prompt-cachelagring för den här modellen."
+		"description": "När den är markerad kommer Softcodes inte att använda prompt-cachelagring för den här modellen."
 	},
 	"temperature": {
 		"useCustom": "Använd anpassad temperatur",
@@ -660,7 +660,7 @@
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "Tillägget hämtar automatiskt den senaste listan över modeller som är tillgängliga på <serviceLink>{{serviceName}}</serviceLink>. Om du är osäker på vilken modell du ska välja fungerar Kilo Code bäst med <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Du kan också prova att söka \"free\" för kostnadsfria alternativ som för närvarande är tillgängliga.",
+		"automaticFetch": "Tillägget hämtar automatiskt den senaste listan över modeller som är tillgängliga på <serviceLink>{{serviceName}}</serviceLink>. Om du är osäker på vilken modell du ska välja fungerar Softcodes bäst med <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Du kan också prova att söka \"free\" för kostnadsfria alternativ som för närvarande är tillgängliga.",
 		"label": "Modell",
 		"searchPlaceholder": "Sök",
 		"noMatchFound": "Ingen matchning hittades",
@@ -671,7 +671,7 @@
 		"support": "För ekonomiska frågor, kontakta kundsupport på <supportLink>https://kilocode.ai/support</supportLink>",
 		"telemetry": {
 			"label": "Tillåt anonym fel- och användningsrapportering",
-			"description": "Hjälp till att förbättra Kilo Code genom att skicka anonym användningsdata och felrapporter. Ingen kod, prompter eller personlig information skickas någonsin. Se vår integritetspolicy för mer information."
+			"description": "Hjälp till att förbättra Softcodes genom att skicka anonym användningsdata och felrapporter. Ingen kod, prompter eller personlig information skickas någonsin. Se vår integritetspolicy för mer information."
 		},
 		"settings": {
 			"import": "Importera",

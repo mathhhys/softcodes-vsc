@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Μη έγκυρη μορφή ρυθμίσεων MCP: {{errorMessages}}",
 		"create_json": "Αποτυχία δημιουργίας ή ανοίγματος του .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "Αποτυχία ενημέρωσης των διακομιστών MCP του έργου",
-		"invalidJsonArgument": "Το Kilo Code προσπάθησε να χρησιμοποιήσει το {{toolName}} με μη έγκυρο όρισμα JSON. Επανάληψη..."
+		"invalidJsonArgument": "Το Softcodes προσπάθησε να χρησιμοποιήσει το {{toolName}} με μη έγκυρο όρισμα JSON. Επανάληψη..."
 	},
 	"info": {
 		"server_restarting": "Επανεκκίνηση του διακομιστή MCP {{serverName}}...",

@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "크레딧 추가",
-		"lowBalance": "Kilo Code 잔액이 부족합니다"
+		"lowBalance": "Softcodes 잔액이 부족합니다"
 	},
 	"notifications": {
 		"toolRequest": "도구 요청 승인 대기 중",
@@ -23,8 +23,8 @@
 			"mcp": "MCP 서버"
 		},
 		"provider": {
-			"account": "Kilo Code 계정",
-			"apiKey": "Kilo Code API 키",
+			"account": "Softcodes 계정",
+			"apiKey": "Softcodes API 키",
 			"login": "Kilo Code에 로그인",
 			"logout": "Kilo Code에서 로그아웃"
 		},
@@ -38,7 +38,7 @@
 			"label": "시스템 알림 활성화",
 			"description": "활성화되면 Kilo Code는 작업 완료나 오류와 같은 중요한 이벤트에 대한 시스템 알림을 보냅니다.",
 			"testButton": "알림 테스트",
-			"testTitle": "Kilo Code",
+			"testTitle": "Softcodes",
 			"testMessage": "이것은 Kilo Code의 테스트 알림입니다."
 		}
 	},
@@ -60,8 +60,8 @@
 	},
 	"docs": "문서",
 	"rules": {
-		"tooltip": "Kilo Code 규칙 및 워크플로우 관리",
-		"ariaLabel": "Kilo Code 규칙",
+		"tooltip": "Softcodes 규칙 및 워크플로우 관리",
+		"ariaLabel": "Softcodes 규칙",
 		"tabs": {
 			"rules": "규칙",
 			"workflows": "워크플로우"

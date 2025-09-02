@@ -1,5 +1,5 @@
 {
-	"greeting": "Τι μπορεί να κάνει το Kilo Code για σένα;",
+	"greeting": "Τι μπορεί να κάνει το Softcodes για σένα;",
 	"task": {
 		"title": "Εργασία",
 		"seeMore": "Δες περισσότερα",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Δημόσια Κοινοποίηση",
 		"sharePubliclyDescription": "Οποιοσδήποτε με τον σύνδεσμο έχει πρόσβαση",
 		"connectToCloud": "Σύνδεση στο Cloud",
-		"connectToCloudDescription": "Συνδέσου στο Kilo Code Cloud για να μοιραστείς εργασίες",
+		"connectToCloudDescription": "Συνδέσου στο Softcodes Cloud για να μοιραστείς εργασίες",
 		"sharingDisabledByOrganization": "Η κοινοποίηση απενεργοποιήθηκε από τον οργανισμό",
 		"shareSuccessOrganization": "Ο σύνδεσμος οργανισμού αντιγράφηκε στο πρόχειρο",
 		"shareSuccessPublic": "Ο δημόσιος σύνδεσμος αντιγράφηκε στο πρόχειρο"
@@ -163,46 +163,46 @@
 		"tokens": "tokens"
 	},
 	"instructions": {
-		"wantsToFetch": "Το Kilo Code θέλει να ανακτήσει λεπτομερείς οδηγίες για να βοηθήσει με την τρέχουσα εργασία"
+		"wantsToFetch": "Το Softcodes θέλει να ανακτήσει λεπτομερείς οδηγίες για να βοηθήσει με την τρέχουσα εργασία"
 	},
 	"fileOperations": {
-		"wantsToRead": "Το Kilo Code θέλει να διαβάσει αυτό το αρχείο:",
-		"wantsToReadMultiple": "Το Kilo Code θέλει να διαβάσει πολλαπλά αρχεία:",
-		"wantsToReadAndXMore": "Το Kilo Code θέλει να διαβάσει αυτό το αρχείο και {{count}} ακόμα:",
-		"wantsToReadOutsideWorkspace": "Το Kilo Code θέλει να διαβάσει αυτό το αρχείο εκτός του χώρου εργασίας:",
-		"didRead": "Το Kilo Code διάβασε αυτό το αρχείο:",
-		"wantsToEdit": "Το Kilo Code θέλει να επεξεργαστεί αυτό το αρχείο:",
-		"wantsToEditOutsideWorkspace": "Το Kilo Code θέλει να επεξεργαστεί αυτό το αρχείο εκτός του χώρου εργασίας:",
-		"wantsToEditProtected": "Το Kilo Code θέλει να επεξεργαστεί ένα προστατευμένο αρχείο διαμόρφωσης:",
-		"wantsToApplyBatchChanges": "Το Kilo Code θέλει να εφαρμόσει αλλαγές σε πολλαπλά αρχεία:",
-		"wantsToCreate": "Το Kilo Code θέλει να δημιουργήσει ένα νέο αρχείο:",
-		"wantsToSearchReplace": "Το Kilo Code θέλει να αναζητήσει και να αντικαταστήσει σε αυτό το αρχείο:",
-		"didSearchReplace": "Το Kilo Code εκτέλεσε αναζήτηση και αντικατάσταση σε αυτό το αρχείο:",
-		"wantsToInsert": "Το Kilo Code θέλει να εισάγει περιεχόμενο σε αυτό το αρχείο:",
-		"wantsToInsertWithLineNumber": "Το Kilo Code θέλει να εισάγει περιεχόμενο σε αυτό το αρχείο στη γραμμή {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Το Kilo Code θέλει να προσθέσει περιεχόμενο στο τέλος αυτού του αρχείου:"
+		"wantsToRead": "Το Softcodes θέλει να διαβάσει αυτό το αρχείο:",
+		"wantsToReadMultiple": "Το Softcodes θέλει να διαβάσει πολλαπλά αρχεία:",
+		"wantsToReadAndXMore": "Το Softcodes θέλει να διαβάσει αυτό το αρχείο και {{count}} ακόμα:",
+		"wantsToReadOutsideWorkspace": "Το Softcodes θέλει να διαβάσει αυτό το αρχείο εκτός του χώρου εργασίας:",
+		"didRead": "Το Softcodes διάβασε αυτό το αρχείο:",
+		"wantsToEdit": "Το Softcodes θέλει να επεξεργαστεί αυτό το αρχείο:",
+		"wantsToEditOutsideWorkspace": "Το Softcodes θέλει να επεξεργαστεί αυτό το αρχείο εκτός του χώρου εργασίας:",
+		"wantsToEditProtected": "Το Softcodes θέλει να επεξεργαστεί ένα προστατευμένο αρχείο διαμόρφωσης:",
+		"wantsToApplyBatchChanges": "Το Softcodes θέλει να εφαρμόσει αλλαγές σε πολλαπλά αρχεία:",
+		"wantsToCreate": "Το Softcodes θέλει να δημιουργήσει ένα νέο αρχείο:",
+		"wantsToSearchReplace": "Το Softcodes θέλει να αναζητήσει και να αντικαταστήσει σε αυτό το αρχείο:",
+		"didSearchReplace": "Το Softcodes εκτέλεσε αναζήτηση και αντικατάσταση σε αυτό το αρχείο:",
+		"wantsToInsert": "Το Softcodes θέλει να εισάγει περιεχόμενο σε αυτό το αρχείο:",
+		"wantsToInsertWithLineNumber": "Το Softcodes θέλει να εισάγει περιεχόμενο σε αυτό το αρχείο στη γραμμή {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Το Softcodes θέλει να προσθέσει περιεχόμενο στο τέλος αυτού του αρχείου:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Το Kilo Code θέλει να δει τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο:",
-		"didViewTopLevel": "Το Kilo Code είδε τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο:",
-		"wantsToViewTopLevelOutsideWorkspace": "Το Kilo Code θέλει να δει τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
-		"didViewTopLevelOutsideWorkspace": "Το Kilo Code είδε τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
-		"wantsToViewRecursive": "Το Kilo Code θέλει να δει αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο:",
-		"didViewRecursive": "Το Kilo Code είδε αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο:",
-		"wantsToViewRecursiveOutsideWorkspace": "Το Kilo Code θέλει να δει αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
-		"didViewRecursiveOutsideWorkspace": "Το Kilo Code είδε αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
-		"wantsToViewDefinitions": "Το Kilo Code θέλει να δει τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο:",
-		"didViewDefinitions": "Το Kilo Code είδε τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο:",
-		"wantsToViewDefinitionsOutsideWorkspace": "Το Kilo Code θέλει να δει τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
-		"didViewDefinitionsOutsideWorkspace": "Το Kilo Code είδε τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
-		"wantsToSearch": "Το Kilo Code θέλει να αναζητήσει σε αυτόν τον κατάλογο για <code>{{regex}}</code>:",
-		"didSearch": "Το Kilo Code αναζήτησε σε αυτόν τον κατάλογο για <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Το Kilo Code θέλει να αναζητήσει σε αυτόν τον κατάλογο (εκτός χώρου εργασίας) για <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Το Kilo Code αναζήτησε σε αυτόν τον κατάλογο (εκτός χώρου εργασίας) για <code>{{regex}}</code>:"
+		"wantsToViewTopLevel": "Το Softcodes θέλει να δει τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο:",
+		"didViewTopLevel": "Το Softcodes είδε τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο:",
+		"wantsToViewTopLevelOutsideWorkspace": "Το Softcodes θέλει να δει τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
+		"didViewTopLevelOutsideWorkspace": "Το Softcodes είδε τα αρχεία ανώτατου επιπέδου σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
+		"wantsToViewRecursive": "Το Softcodes θέλει να δει αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο:",
+		"didViewRecursive": "Το Softcodes είδε αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο:",
+		"wantsToViewRecursiveOutsideWorkspace": "Το Softcodes θέλει να δει αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
+		"didViewRecursiveOutsideWorkspace": "Το Softcodes είδε αναδρομικά όλα τα αρχεία σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
+		"wantsToViewDefinitions": "Το Softcodes θέλει να δει τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο:",
+		"didViewDefinitions": "Το Softcodes είδε τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο:",
+		"wantsToViewDefinitionsOutsideWorkspace": "Το Softcodes θέλει να δει τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
+		"didViewDefinitionsOutsideWorkspace": "Το Softcodes είδε τα ονόματα ορισμών πηγαίου κώδικα που χρησιμοποιούνται σε αυτόν τον κατάλογο (εκτός χώρου εργασίας):",
+		"wantsToSearch": "Το Softcodes θέλει να αναζητήσει σε αυτόν τον κατάλογο για <code>{{regex}}</code>:",
+		"didSearch": "Το Softcodes αναζήτησε σε αυτόν τον κατάλογο για <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Το Softcodes θέλει να αναζητήσει σε αυτόν τον κατάλογο (εκτός χώρου εργασίας) για <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Το Softcodes αναζήτησε σε αυτόν τον κατάλογο (εκτός χώρου εργασίας) για <code>{{regex}}</code>:"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Το Kilo Code θέλει να αναζητήσει στη βάση κώδικα για <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Το Kilo Code θέλει να αναζητήσει στη βάση κώδικα για <code>{{query}}</code> στο <code>{{path}}</code>:",
+		"wantsToSearch": "Το Softcodes θέλει να αναζητήσει στη βάση κώδικα για <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Το Softcodes θέλει να αναζητήσει στη βάση κώδικα για <code>{{query}}</code> στο <code>{{path}}</code>:",
 		"didSearch": "Βρέθηκαν {{count}} αποτέλεσμα(τα) για <code>{{query}}</code>:",
 		"resultTooltip": "Βαθμολογία ομοιότητας: {{score}} (κάνε κλικ για άνοιγμα αρχείου)"
 	},
@@ -210,18 +210,18 @@
 	"response": "Απάντηση",
 	"arguments": "Ορίσματα",
 	"mcp": {
-		"wantsToUseTool": "Το Kilo Code θέλει να χρησιμοποιήσει ένα εργαλείο στον διακομιστή MCP {{serverName}}:",
-		"wantsToAccessResource": "Το Kilo Code θέλει να αποκτήσει πρόσβαση σε έναν πόρο στον διακομιστή MCP {{serverName}}:"
+		"wantsToUseTool": "Το Softcodes θέλει να χρησιμοποιήσει ένα εργαλείο στον διακομιστή MCP {{serverName}}:",
+		"wantsToAccessResource": "Το Softcodes θέλει να αποκτήσει πρόσβαση σε έναν πόρο στον διακομιστή MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Το Kilo Code θέλει να αλλάξει σε λειτουργία {{mode}}",
-		"wantsToSwitchWithReason": "Το Kilo Code θέλει να αλλάξει σε λειτουργία {{mode}} επειδή: {{reason}}",
-		"didSwitch": "Το Kilo Code άλλαξε σε λειτουργία {{mode}}",
-		"didSwitchWithReason": "Το Kilo Code άλλαξε σε λειτουργία {{mode}} επειδή: {{reason}}"
+		"wantsToSwitch": "Το Softcodes θέλει να αλλάξει σε λειτουργία {{mode}}",
+		"wantsToSwitchWithReason": "Το Softcodes θέλει να αλλάξει σε λειτουργία {{mode}} επειδή: {{reason}}",
+		"didSwitch": "Το Softcodes άλλαξε σε λειτουργία {{mode}}",
+		"didSwitchWithReason": "Το Softcodes άλλαξε σε λειτουργία {{mode}} επειδή: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Το Kilo Code θέλει να δημιουργήσει μια νέα υποεργασία σε λειτουργία {{mode}}:",
-		"wantsToFinish": "Το Kilo Code θέλει να ολοκληρώσει αυτή την υποεργασία",
+		"wantsToCreate": "Το Softcodes θέλει να δημιουργήσει μια νέα υποεργασία σε λειτουργία {{mode}}:",
+		"wantsToFinish": "Το Softcodes θέλει να ολοκληρώσει αυτή την υποεργασία",
 		"newTaskContent": "Οδηγίες Υποεργασίας",
 		"completionContent": "Η Υποεργασία Ολοκληρώθηκε",
 		"resultContent": "Αποτελέσματα Υποεργασίας",
@@ -229,27 +229,27 @@
 		"completionInstructions": "Η υποεργασία ολοκληρώθηκε! Μπορείς να ελέγξεις τα αποτελέσματα και να προτείνεις τυχόν διορθώσεις ή επόμενα βήματα. Αν όλα φαίνονται καλά, επιβεβαίωσε για να επιστρέψεις το αποτέλεσμα στην κύρια εργασία."
 	},
 	"questions": {
-		"hasQuestion": "Το Kilo Code έχει μια ερώτηση:"
+		"hasQuestion": "Το Softcodes έχει μια ερώτηση:"
 	},
 	"taskCompleted": "Η Εργασία Ολοκληρώθηκε",
 	"error": "Σφάλμα",
 	"diffError": {
 		"title": "Η Επεξεργασία Απέτυχε"
 	},
-	"troubleMessage": "Το Kilo Code αντιμετωπίζει δυσκολίες...",
+	"troubleMessage": "Το Softcodes αντιμετωπίζει δυσκολίες...",
 	"powershell": {
 		"issues": "Φαίνεται ότι έχεις προβλήματα με το Windows PowerShell, παρακαλώ δες αυτό"
 	},
 	"autoApprove": {
 		"title": "Αυτόματη έγκριση:",
 		"none": "Καμία",
-		"description": "Η αυτόματη έγκριση επιτρέπει στο Kilo Code να εκτελεί ενέργειες χωρίς να ζητά άδεια. Ενεργοποίησε μόνο για ενέργειες που εμπιστεύεσαι πλήρως. Πιο λεπτομερής διαμόρφωση διαθέσιμη στις <settingsLink>Ρυθμίσεις</settingsLink>."
+		"description": "Η αυτόματη έγκριση επιτρέπει στο Softcodes να εκτελεί ενέργειες χωρίς να ζητά άδεια. Ενεργοποίησε μόνο για ενέργειες που εμπιστεύεσαι πλήρως. Πιο λεπτομερής διαμόρφωση διαθέσιμη στις <settingsLink>Ρυθμίσεις</settingsLink>."
 	},
 	"modeSelector": {
 		"title": "Λειτουργίες",
 		"marketplace": "Marketplace Λειτουργιών",
 		"settings": "Ρυθμίσεις Λειτουργιών",
-		"description": "Εξειδικευμένες προσωπικότητες που προσαρμόζουν τη συμπεριφορά του Kilo Code."
+		"description": "Εξειδικευμένες προσωπικότητες που προσαρμόζουν τη συμπεριφορά του Softcodes."
 	},
 	"announcement": {
 		"title": "🎉 Κυκλοφόρησε το Roo Code {{version}}",
@@ -271,7 +271,7 @@
 		"countdownDisplay": "{{count}}δ"
 	},
 	"browser": {
-		"rooWantsToUse": "Το Kilo Code θέλει να χρησιμοποιήσει τον περιηγητή:",
+		"rooWantsToUse": "Το Softcodes θέλει να χρησιμοποιήσει τον περιηγητή:",
 		"consoleLogs": "Αρχεία Καταγραφής Κονσόλας",
 		"noNewLogs": "(Χωρίς νέα αρχεία καταγραφής)",
 		"screenshot": "Στιγμιότυπο οθόνης περιηγητή",
@@ -305,13 +305,13 @@
 	"profileViolationWarning": "Το τρέχον προφίλ παραβιάζει τις ρυθμίσεις του οργανισμού σου",
 	"shellIntegration": {
 		"title": "Προειδοποίηση Εκτέλεσης Εντολής",
-		"description": "Η εντολή σου εκτελείται χωρίς ενσωμάτωση κελύφους τερματικού VSCode. Για να καταργήσεις αυτή την προειδοποίηση μπορείς να απενεργοποιήσεις την ενσωμάτωση κελύφους στην ενότητα <strong>Terminal</strong> των <settingsLink>ρυθμίσεων Kilo Code</settingsLink> ή να αντιμετωπίσεις την ενσωμάτωση τερματικού VSCode χρησιμοποιώντας τον παρακάτω σύνδεσμο.",
+		"description": "Η εντολή σου εκτελείται χωρίς ενσωμάτωση κελύφους τερματικού VSCode. Για να καταργήσεις αυτή την προειδοποίηση μπορείς να απενεργοποιήσεις την ενσωμάτωση κελύφους στην ενότητα <strong>Terminal</strong> των <settingsLink>ρυθμίσεων Softcodes</settingsLink> ή να αντιμετωπίσεις την ενσωμάτωση τερματικού VSCode χρησιμοποιώντας τον παρακάτω σύνδεσμο.",
 		"troubleshooting": "Κάνε κλικ εδώ για την τεκμηρίωση ενσωμάτωσης κελύφους."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Επιτεύχθηκε το Όριο Αυτόματα Εγκεκριμένων Αιτημάτων",
-			"description": "Το Kilo Code έφτασε το αυτόματα εγκεκριμένο όριο των {{count}} αιτημάτων API. Θέλεις να μηδενίσεις τον μετρητή και να συνεχίσεις με την εργασία;",
+			"description": "Το Softcodes έφτασε το αυτόματα εγκεκριμένο όριο των {{count}} αιτημάτων API. Θέλεις να μηδενίσεις τον μετρητή και να συνεχίσεις με την εργασία;",
 			"button": "Μηδενισμός και Συνέχεια"
 		}
 	},

@@ -3,7 +3,7 @@ import * as assert from "assert"
 import { waitUntilCompleted } from "./utils"
 import { setDefaultSuiteTimeout } from "./test-utils"
 
-suite("Kilo Code Modes", function () {
+suite("Softcodes Modes", function () {
 	setDefaultSuiteTimeout(this)
 
 	test("Should handle switching modes correctly", async () => {

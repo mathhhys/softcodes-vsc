@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "Βοηθός κωδικοποίησης AI ανοιχτού κώδικα για σχεδιασμό, δημιουργία και διόρθωση κώδικα."
 	},
 	"number_format": {
@@ -104,7 +104,7 @@
 	"warnings": {
 		"no_terminal_content": "Δεν έχει επιλεγεί περιεχόμενο τερματικού",
 		"missing_task_files": "Τα αρχεία αυτής της εργασίας λείπουν. Θα ήθελες να την αφαιρέσεις από τη λίστα εργασιών;",
-		"auto_import_failed": "Αποτυχία αυτόματης εισαγωγής ρυθμίσεων Kilo Code: {{error}}"
+		"auto_import_failed": "Αποτυχία αυτόματης εισαγωγής ρυθμίσεων Softcodes: {{error}}"
 	},
 	"info": {
 		"no_changes": "Δεν βρέθηκαν αλλαγές.",
@@ -118,7 +118,7 @@
 		"public_share_link_copied": "Ο δημόσιος σύνδεσμος κοινοποίησης αντιγράφηκε στο πρόχειρο!",
 		"image_copied_to_clipboard": "Το image data URI αντιγράφηκε στο πρόχειρο",
 		"image_saved": "Η εικόνα αποθηκεύτηκε στο {{path}}",
-		"auto_import_success": "Οι ρυθμίσεις Kilo Code εισήχθησαν αυτόματα από το {{filename}}",
+		"auto_import_success": "Οι ρυθμίσεις Softcodes εισήχθησαν αυτόματα από το {{filename}}",
 		"mode_exported": "Η λειτουργία '{{mode}}' εξήχθη επιτυχώς",
 		"mode_imported": "Η λειτουργία εισήχθη επιτυχώς"
 	},
@@ -146,7 +146,7 @@
 		"enter_valid_path": "Παρακαλώ εισήγαγε μια έγκυρη διαδρομή"
 	},
 	"input": {
-		"task_prompt": "Τι πρέπει να κάνει το Kilo Code;",
+		"task_prompt": "Τι πρέπει να κάνει το Softcodes;",
 		"task_placeholder": "Δημιούργησε, βρες, ρώτα κάτι"
 	},
 	"customModes": {
@@ -167,8 +167,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Ο οργανισμός σου απαιτεί έλεγχο ταυτότητας Kilo Code Cloud. Παρακαλώ συνδέσου για να συνεχίσεις.",
-			"organization_mismatch": "Πρέπει να πιστοποιηθείς με τον λογαριασμό Kilo Code Cloud του οργανισμού σου.",
+			"cloud_auth_required": "Ο οργανισμός σου απαιτεί έλεγχο ταυτότητας Softcodes Cloud. Παρακαλώ συνδέσου για να συνεχίσεις.",
+			"organization_mismatch": "Πρέπει να πιστοποιηθείς με τον λογαριασμό Softcodes Cloud του οργανισμού σου.",
 			"verification_failed": "Αδυναμία επαλήθευσης του ελέγχου ταυτότητας οργανισμού."
 		}
 	},

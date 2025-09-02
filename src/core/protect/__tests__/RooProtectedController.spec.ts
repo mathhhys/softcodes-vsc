@@ -114,7 +114,7 @@ describe("RooProtectedController", () => {
 	describe("getProtectionMessage", () => {
 		it("should return appropriate protection message", () => {
 			const message = controller.getProtectionMessage()
-			expect(message).toBe("This is a Kilo Code configuration file and requires approval for modifications")
+			expect(message).toBe("This is a Softcodes configuration file and requires approval for modifications")
 		})
 	})
 

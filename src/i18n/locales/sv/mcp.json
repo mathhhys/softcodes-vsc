@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Ogiltigt format för MCP-inställningar: {{errorMessages}}",
 		"create_json": "Kunde inte skapa eller öppna .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "Kunde inte uppdatera projektets MCP-servrar",
-		"invalidJsonArgument": "Kilo Code försökte använda {{toolName}} med ett ogiltigt JSON-argument. Försöker igen..."
+		"invalidJsonArgument": "Softcodes försökte använda {{toolName}} med ett ogiltigt JSON-argument. Försöker igen..."
 	},
 	"info": {
 		"server_restarting": "Startar om MCP-server {{serverName}}...",

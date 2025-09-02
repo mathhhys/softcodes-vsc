@@ -3,12 +3,12 @@
 	"profilePicture": "Εικόνα προφίλ",
 	"logOut": "Αποσύνδεση",
 	"testApiAuthentication": "Δοκιμή Ταυτοποίησης API",
-	"signIn": "Σύνδεση στο Kilo Code Cloud",
+	"signIn": "Σύνδεση στο Softcodes Cloud",
 	"connect": "Σύνδεση",
-	"cloudBenefitsTitle": "Σύνδεση στο Kilo Code Cloud",
+	"cloudBenefitsTitle": "Σύνδεση στο Softcodes Cloud",
 	"cloudBenefitsSubtitle": "Συγχρονίστε τα prompts και την τηλεμετρία σας για να ενεργοποιήσετε:",
 	"cloudBenefitHistory": "Online ιστορικό εργασιών",
 	"cloudBenefitSharing": "Λειτουργίες κοινής χρήσης και συνεργασίας",
 	"cloudBenefitMetrics": "Μετρήσεις χρήσης βασισμένες σε εργασίες, tokens και κόστη",
-	"visitCloudWebsite": "Επισκεφτείτε το Kilo Code Cloud"
+	"visitCloudWebsite": "Επισκεφτείτε το Softcodes Cloud"
 }

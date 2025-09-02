@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "コードの計画、構築、修正のためのオープンソース AI コーディング アシスタント。"
 	},
 	"number_format": {
@@ -176,8 +176,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "あなたの組織では Kilo Code Cloud 認証が必要です。続行するにはサインインしてください。",
-			"organization_mismatch": "組織の Kilo Code Cloud アカウントで認証する必要があります。",
+			"cloud_auth_required": "あなたの組織では Softcodes Cloud 認証が必要です。続行するにはサインインしてください。",
+			"organization_mismatch": "組織の Softcodes Cloud アカウントで認証する必要があります。",
 			"verification_failed": "組織認証の確認ができませんでした。"
 		}
 	},

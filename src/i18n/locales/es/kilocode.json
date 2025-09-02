@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Generador de mensajes de commit de Kilo Code activado",
+		"activated": "Generador de mensajes de commit de Softcodes activado",
 		"gitNotFound": "⚠️ Repositorio Git no encontrado o git no disponible",
 		"gitInitError": "⚠️ Error de inicialización de Git: {{error}}",
 		"generating": "Kilo: Generando mensaje de confirmación...",
@@ -57,8 +57,8 @@
 			"disabled": "$(circle-slash) Kilo Autocompletado",
 			"warning": "$(warning) Kilo Autocompletado",
 			"tooltip": {
-				"disabled": "Kilo Code Autocompletado (desactivado)",
-				"basic": "Kilo Code Autocompletado",
+				"disabled": "Softcodes Autocompletado (desactivado)",
+				"basic": "Softcodes Autocompletado",
 				"sessionTotal": "Costo total de la sesión:",
 				"lastCompletion": "Última finalización:",
 				"tokenError": "Se debe establecer un token válido para usar el autocompletado",
@@ -77,28 +77,28 @@
 			"processing": "Procesando ediciones sugeridas...",
 			"generating": "Generando sugerencias de edición...",
 			"showing": "Mostrando ediciones sugeridas...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Tarea Rápida",
+			"title": "Softcodes: Tarea Rápida",
 			"placeholder": "p. ej., 'refactorizar esta función para que sea más eficiente'"
 		},
 		"commands": {
 			"displaySuggestions": "Mostrar Ediciones Sugeridas",
 			"cancelSuggestions": "Cancelar Ediciones Sugeridas",
-			"generateSuggestions": "Kilo Code: Generar Ediciones Sugeridas",
+			"generateSuggestions": "Softcodes: Generar Ediciones Sugeridas",
 			"applyCurrentSuggestion": "Aplicar edición sugerida actual",
 			"promptCodeSuggestion": "Tarea Rápida de Prompt",
-			"category": "Kilo Code",
+			"category": "Softcodes",
 			"applyAllSuggestions": "Aplicar todas las ediciones sugeridas"
 		},
 		"chatParticipant": {
-			"fullName": "Kilo Code Agente",
+			"fullName": "Softcodes Agente",
 			"description": "Puedo ayudarte con tareas rápidas y ediciones sugeridas.",
 			"name": "Agente"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Ediciones sugeridas"
+			"title": "Softcodes: Ediciones sugeridas"
 		},
 		"messages": {
 			"provideCodeSuggestions": "Proporcionando sugerencias de código..."

@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Kilo Code कमिट मैसेज जनरेटर सक्रिय",
+		"activated": "Softcodes कमिट मैसेज जनरेटर सक्रिय",
 		"gitNotFound": "⚠️ Git रिपॉजिटरी नहीं मिली या git उपलब्ध नहीं है",
 		"gitInitError": "⚠️ गिट इनिशियलाइज़ेशन त्रुटि: {{error}}",
 		"generating": "Kilo: कमिट संदेश उत्पन्न कर रहा है...",
@@ -48,7 +48,7 @@
 		"generated": "Kilo: कमिट मैसेज जनरेट हो गया!",
 		"generationFailed": "Kilo: प्रतिबद्धता संदेश उत्पन्न करने में विफल: {{errorMessage}}",
 		"generatingFromUnstaged": "Kilo: अपरिवर्तित परिवर्तनों का उपयोग करके संदेश उत्पन्न कर रहा है",
-    "activationFailed": "Kilo: संदेश जनरेटर सक्रिय करने में विफल: {{error}}",
+		"activationFailed": "Kilo: संदेश जनरेटर सक्रिय करने में विफल: {{error}}",
 		"providerRegistered": "किलो: कमिट संदेश प्रदाता पंजीकृत"
 	},
 	"autocomplete": {
@@ -57,12 +57,12 @@
 			"warning": "$(warning) Kilo ऑटोकम्प्लीट",
 			"enabled": "$(sparkle) Kilo ऑटोकम्प्लीट",
 			"tooltip": {
-				"basic": "Kilo Code ऑटोकम्प्लीट",
+				"basic": "Softcodes ऑटोकम्प्लीट",
 				"tokenError": "स्वतः पूर्ण का उपयोग करने के लिए एक वैध टोकन सेट किया जाना चाहिए",
 				"model": "मॉडल:",
 				"sessionTotal": "सत्र की कुल लागत:",
 				"lastCompletion": "अंतिम पूर्णता:",
-				"disabled": "Kilo Code स्वतः पूर्ण (अक्षम)"
+				"disabled": "Softcodes स्वतः पूर्ण (अक्षम)"
 			},
 			"cost": {
 				"zero": "₹0.00",
@@ -77,28 +77,28 @@
 			"analyzing": "आपके कोड का विश्लेषण किया जा रहा है...",
 			"generating": "सुझाएँ गए संपादन उत्पन्न हो रहे हैं...",
 			"showing": "सुझाए गए संपादन प्रदर्शित किए जा रहे हैं...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
 			"placeholder": "उदाहरण के लिए, 'इस फंक्शन को अधिक कुशल होने के लिए रीफैक्टर करें'",
-			"title": "Kilo Code: त्वरित कार्य"
+			"title": "Softcodes: त्वरित कार्य"
 		},
 		"commands": {
 			"cancelSuggestions": "सुझाए गए संपादनों को रद्द करें",
 			"displaySuggestions": "सुझाए गए संपादन दिखाएं",
-			"generateSuggestions": "Kilo Code: सुझाये गए संपादन उत्पन्न करें",
+			"generateSuggestions": "Softcodes: सुझाये गए संपादन उत्पन्न करें",
 			"applyCurrentSuggestion": "वर्तमान सुझाए गए संपादन को लागू करें",
-			"category": "Kilo Code",
+			"category": "Softcodes",
 			"applyAllSuggestions": "सभी सुझाए गए संपादन लागू करें",
 			"promptCodeSuggestion": "त्वरित कार्य संकेत"
 		},
 		"chatParticipant": {
-			"fullName": "Kilo Code एजेंट",
+			"fullName": "Softcodes एजेंट",
 			"name": "एजेंट",
 			"description": "मैं आपकी त्वरित कार्यों और सुझाए गए संपादनों में मदद कर सकता हूँ।"
 		},
 		"codeAction": {
-			"title": "Kilo Code: सुझाए गए संपादन"
+			"title": "Softcodes: सुझाए गए संपादन"
 		},
 		"messages": {
 			"provideCodeSuggestions": "कोड सुझाव प्रदान किए जा रहे हैं..."

@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Välkommen till Kilo Code!",
-		"introText1": "Kilo Code är en gratis, öppen källkods AI-kodningsagent.",
+		"greeting": "Välkommen till Softcodes!",
+		"introText1": "Softcodes är en gratis, öppen källkods AI-kodningsagent.",
 		"introText2": "Den fungerar med de senaste AI-modellerna som Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, och över 450 andra.",
 		"introText3": "Skapa ett gratis konto och få tokens värda $20 att använda med vilken AI-modell som helst.",
 		"ctaButton": "Skapa gratis konto",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Lägg till kredit",
-		"lowBalance": "Ditt Kilo Code-saldo är lågt"
+		"lowBalance": "Ditt Softcodes-saldo är lågt"
 	},
 	"notifications": {
 		"toolRequest": "Verktygsbegäran väntar på godkännande",
@@ -23,28 +23,28 @@
 			"mcp": "MCP-servrar"
 		},
 		"provider": {
-			"account": "Kilo Code-konto",
-			"apiKey": "Kilo Code API-nyckel",
-			"login": "Logga in på Kilo Code",
-			"logout": "Logga ut från Kilo Code"
+			"account": "Softcodes-konto",
+			"apiKey": "Softcodes API-nyckel",
+			"login": "Logga in på Softcodes",
+			"logout": "Logga ut från Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Tillåt mycket stora filläsningar",
-				"description": "När aktiverat kommer Kilo Code att utföra mycket stora fil- eller MCP-utdataläsningar även om det finns en hög sannolikhet att överskrida kontextfönstret (innehållsstorlek >80% av kontextfönstret)."
+				"description": "När aktiverat kommer Softcodes att utföra mycket stora fil- eller MCP-utdataläsningar även om det finns en hög sannolikhet att överskrida kontextfönstret (innehållsstorlek >80% av kontextfönstret)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Aktivera systemnotifikationer",
-			"description": "När aktiverat kommer Kilo Code att skicka systemnotifikationer för viktiga händelser som slutförda uppgifter eller fel.",
+			"description": "När aktiverat kommer Softcodes att skicka systemnotifikationer för viktiga händelser som slutförda uppgifter eller fel.",
 			"testButton": "Testa notifikation",
-			"testTitle": "Kilo Code",
-			"testMessage": "Detta är en testnotifikation från Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Detta är en testnotifikation från Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code vill komprimera din konversation",
+			"wantsToCondense": "Softcodes vill komprimera din konversation",
 			"condenseConversation": "Komprimera konversation"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Dokumentation",
 	"rules": {
-		"tooltip": "Hantera Kilo Code Rules och Workflows",
-		"ariaLabel": "Kilo Code Rules",
+		"tooltip": "Hantera Softcodes Rules och Workflows",
+		"ariaLabel": "Softcodes Rules",
 		"tabs": {
 			"rules": "Regler",
 			"workflows": "Arbetsflöden"
 		},
 		"description": {
-			"rules": "Regler låter dig ge Kilo Code instruktioner som den ska följa i alla lägen och för alla prompts. Det är ett beständigt sätt att inkludera kontext och preferenser för alla konversationer i din arbetsyta eller globalt.",
-			"workflows": "Arbetsflöden är en förberedd mall för en konversation. Arbetsflöden kan låta dig definiera prompts du använder ofta, och kan inkludera en serie steg för att guida Kilo Code genom repetitiva uppgifter, som att distribuera en tjänst eller skicka in en PR. För att anropa ett arbetsflöde, skriv",
+			"rules": "Regler låter dig ge Softcodes instruktioner som den ska följa i alla lägen och för alla prompts. Det är ett beständigt sätt att inkludera kontext och preferenser för alla konversationer i din arbetsyta eller globalt.",
+			"workflows": "Arbetsflöden är en förberedd mall för en konversation. Arbetsflöden kan låta dig definiera prompts du använder ofta, och kan inkludera en serie steg för att guida Softcodes genom repetitiva uppgifter, som att distribuera en tjänst eller skicka in en PR. För att anropa ett arbetsflöde, skriv",
 			"workflowsInChat": "i chatten."
 		},
 		"sections": {

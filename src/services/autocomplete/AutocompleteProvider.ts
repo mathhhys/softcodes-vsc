@@ -260,7 +260,7 @@ function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable 
 	// Register provider and commands
 	const providerDisposable = vscode.languages.registerInlineCompletionItemProvider({ pattern: "**" }, provider)
 
-	const toggleCommand = vscode.commands.registerCommand("kilo-code.toggleAutocomplete", () => {
+	const toggleCommand = vscode.commands.registerCommand("softcodes.toggleAutocomplete", () => {
 		enabled = !enabled
 		updateStatusBar()
 		vscode.window.showInformationMessage(
@@ -269,7 +269,7 @@ function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable 
 	})
 
 	// Command to track when a suggestion is accepted
-	const trackAcceptedSuggestionCommand = vscode.commands.registerCommand("kilo-code.trackAcceptedSuggestion", () => {
+	const trackAcceptedSuggestionCommand = vscode.commands.registerCommand("softcodes.trackAcceptedSuggestion", () => {
 		justAcceptedSuggestion = true
 	})
 

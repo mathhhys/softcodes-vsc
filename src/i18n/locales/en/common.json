@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "Open Source AI coding assistant for planning, building, and fixing code."
 	},
 	"number_format": {
@@ -103,7 +103,7 @@
 	"warnings": {
 		"no_terminal_content": "No terminal content selected",
 		"missing_task_files": "This task's files are missing. Would you like to remove it from the task list?",
-		"auto_import_failed": "Failed to auto-import Kilo Code settings: {{error}}"
+		"auto_import_failed": "Failed to auto-import Softcodes settings: {{error}}"
 	},
 	"info": {
 		"no_changes": "No changes found.",
@@ -112,7 +112,7 @@
 		"custom_storage_path_set": "Custom storage path set: {{path}}",
 		"default_storage_path": "Reverted to using default storage path",
 		"settings_imported": "Settings imported successfully.",
-		"auto_import_success": "Kilo Code settings automatically imported from {{filename}}",
+		"auto_import_success": "Softcodes settings automatically imported from {{filename}}",
 		"share_link_copied": "Share link copied to clipboard",
 		"organization_share_link_copied": "Organization share link copied to clipboard!",
 		"public_share_link_copied": "Public share link copied to clipboard!",
@@ -144,7 +144,7 @@
 		"enter_valid_path": "Please enter a valid path"
 	},
 	"input": {
-		"task_prompt": "What should Kilo Code do?",
+		"task_prompt": "What should Softcodes do?",
 		"task_placeholder": "Build, find, ask something"
 	},
 	"customModes": {
@@ -165,8 +165,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Your organization requires Kilo Code Cloud authentication. Please sign in to continue.",
-			"organization_mismatch": "You must be authenticated with your organization's Kilo Code Cloud account.",
+			"cloud_auth_required": "Your organization requires Softcodes Cloud authentication. Please sign in to continue.",
+			"organization_mismatch": "You must be authenticated with your organization's Softcodes Cloud account.",
 			"verification_failed": "Unable to verify organization authentication."
 		}
 	},

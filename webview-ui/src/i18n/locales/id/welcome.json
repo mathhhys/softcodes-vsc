@@ -1,6 +1,6 @@
 {
-	"greeting": "Hai, saya Kilo Code!",
-	"introduction": "<strong>Kilo Code adalah agen coding otonom terdepan.</strong> Bersiaplah untuk merancang, coding, debug, dan meningkatkan produktivitas seperti yang belum pernah Anda lihat sebelumnya. Untuk melanjutkan, Kilo Code memerlukan API key.",
+	"greeting": "Hai, saya Softcodes!",
+	"introduction": "<strong>Softcodes adalah agen coding otonom terdepan.</strong> Bersiaplah untuk merancang, coding, debug, dan meningkatkan produktivitas seperti yang belum pernah Anda lihat sebelumnya. Untuk melanjutkan, Softcodes memerlukan API key.",
 	"notice": "Untuk memulai, ekstensi ini memerlukan provider API.",
 	"start": "Ayo mulai!",
 	"routers": {
@@ -12,11 +12,11 @@
 			"description": "Interface terpadu untuk LLM"
 		}
 	},
-	"chooseProvider": "Untuk melakukan keajaibannya, Kilo Code membutuhkan API key.",
+	"chooseProvider": "Untuk melakukan keajaibannya, Softcodes membutuhkan API key.",
 	"startRouter": "Kami merekomendasikan menggunakan Router LLM:",
 	"startCustom": "Atau Anda dapat menggunakan API key Anda sendiri:",
 	"telemetry": {
-		"title": "Bantu Tingkatkan Kilo Code",
+		"title": "Bantu Tingkatkan Softcodes",
 		"anonymousTelemetry": "Kirim data error dan penggunaan untuk membantu kami memperbaiki bug dan meningkatkan ekstensi. Tidak ada kode, prompts, atau informasi pribadi yang pernah dikirim.",
 		"changeSettings": "Anda selalu dapat mengubah ini di bagian bawah <settingsLink>pengaturan</settingsLink>",
 		"settings": "pengaturan",

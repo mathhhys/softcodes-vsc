@@ -3,12 +3,12 @@
 	"profilePicture": "Zdjęcie profilowe",
 	"logOut": "Wyloguj",
 	"testApiAuthentication": "Testuj uwierzytelnianie API",
-	"signIn": "Połącz z Kilo Code Cloud",
+	"signIn": "Połącz z Softcodes Cloud",
 	"connect": "Połącz",
-	"cloudBenefitsTitle": "Połącz z Kilo Code Cloud",
+	"cloudBenefitsTitle": "Połącz z Softcodes Cloud",
 	"cloudBenefitsSubtitle": "Synchronizuj swoje prompty i telemetrię, aby włączyć:",
 	"cloudBenefitHistory": "Historia zadań online",
 	"cloudBenefitSharing": "Funkcje udostępniania i współpracy",
 	"cloudBenefitMetrics": "Metryki użycia oparte na zadaniach, tokenach i kosztach",
-	"visitCloudWebsite": "Odwiedź Kilo Code Cloud"
+	"visitCloudWebsite": "Odwiedź Softcodes Cloud"
 }

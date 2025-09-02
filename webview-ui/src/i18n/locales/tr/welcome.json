@@ -1,6 +1,6 @@
 {
-	"greeting": "Merhaba, ben Kilo Code!",
-	"introduction": "<strong>Kilo Code, önde gelen otonom kodlama aracıdır.</strong> Daha önce hiç görmediğin şekilde mimari tasarım yapmaya, kod yazmaya, hata ayıklamaya ve üretkenliğini artırmaya hazırlan. Devam etmek için Kilo Code'un bir API anahtarına ihtiyacı var.",
+	"greeting": "Merhaba, ben Softcodes!",
+	"introduction": "<strong>Softcodes, önde gelen otonom kodlama aracıdır.</strong> Daha önce hiç görmediğin şekilde mimari tasarım yapmaya, kod yazmaya, hata ayıklamaya ve üretkenliğini artırmaya hazırlan. Devam etmek için Softcodes'un bir API anahtarına ihtiyacı var.",
 	"notice": "Başlamak için bu eklentinin bir API sağlayıcısına ihtiyacı var.",
 	"start": "Hadi başlayalım!",
 	"routers": {
@@ -12,11 +12,11 @@
 			"description": "LLM'ler için birleşik bir arayüz"
 		}
 	},
-	"chooseProvider": "Sihirini yapabilmesi için Kilo Code'nun bir API anahtarına ihtiyacı var.",
+	"chooseProvider": "Sihirini yapabilmesi için Softcodes'nun bir API anahtarına ihtiyacı var.",
 	"startRouter": "Bir LLM yönlendiricisi kullanmanı öneririz:",
 	"startCustom": "Veya kendi API anahtarını kullanabilirsin:",
 	"telemetry": {
-		"title": "Kilo Code'u Geliştirmeye Yardım Et",
+		"title": "Softcodes'u Geliştirmeye Yardım Et",
 		"anonymousTelemetry": "Hataları düzeltmemize ve eklentiyi geliştirmemize yardımcı olmak için hata ve kullanım verileri gönder. Hiçbir zaman kod, prompts veya kişisel bilgi gönderilmez.",
 		"changeSettings": "Bunu her zaman <settingsLink>ayarlar</settingsLink>ın altından değiştirebilirsin",
 		"settings": "ayarlar",

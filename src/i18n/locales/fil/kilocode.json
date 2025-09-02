@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Ang tagalikha ng mensahe ng Kilo Code commit ay aktibo na",
+		"activated": "Ang tagalikha ng mensahe ng Softcodes commit ay aktibo na",
 		"gitNotFound": "⚠️ Hindi nahanap ang Git repository o hindi magagamit ang git",
 		"gitInitError": "⚠️ Error sa pagsisimula ng Git: {{error}}",
 		"generating": "Kilo: Gumagawa ng mensahe ng commit...",
@@ -57,8 +57,8 @@
 			"enabled": "$(sparkle) Kilo Autocomplete",
 			"warning": "$(warning) Kilo Autocomplete",
 			"tooltip": {
-				"basic": "Kilo Code Autocomplete",
-				"disabled": "Kilo Code Autocomplete (naka-disable)",
+				"basic": "Softcodes Autocomplete",
+				"disabled": "Softcodes Autocomplete (naka-disable)",
 				"tokenError": "Dapat may nakatakdang wastong token para magamit ang autocomplete",
 				"lastCompletion": "Huling pagkumpleto:",
 				"sessionTotal": "Kabuuang gastos ng session:",
@@ -77,28 +77,28 @@
 			"generating": "Lumilikha ng mga iminumungkahing pagbabago...",
 			"showing": "Nagpapakita ng mga iminumungkahing pag-edit...",
 			"processing": "Pinoproseso ang mga iminumungkahing mga pagbabago...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
 			"placeholder": "halimbawa, 'i-refactor ang function na ito para maging mas efficient'",
-			"title": "Kilo Code: Mabilisang Gawain"
+			"title": "Softcodes: Mabilisang Gawain"
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code: Gumawa ng Mga Iminumungkahing Pag-edit",
+			"generateSuggestions": "Softcodes: Gumawa ng Mga Iminumungkahing Pag-edit",
 			"displaySuggestions": "Ipakita ang mga Iminumungkahing Pag-edit",
-			"category": "Kilo Code",
+			"category": "Softcodes",
 			"cancelSuggestions": "Kanselahin ang mga Iminumungkahing Pagbabago",
 			"applyCurrentSuggestion": "I-apply ang Kasalukuyang Iminumungkahing Pag-edit",
 			"promptCodeSuggestion": "Mabilisang Gawain sa Prompt",
 			"applyAllSuggestions": "I-apply ang Lahat ng Iminumungkahing Pag-edit"
 		},
 		"chatParticipant": {
-			"fullName": "Ahente ng Kilo Code",
+			"fullName": "Ahente ng Softcodes",
 			"name": "Ahente",
 			"description": "Matutulungan kita sa mabibilis na gawain at iminumungkahing mga pag-edit."
 		},
 		"codeAction": {
-			"title": "Kilo Code: Mga Iminumungkahing Pagbabago"
+			"title": "Softcodes: Mga Iminumungkahing Pagbabago"
 		},
 		"messages": {
 			"provideCodeSuggestions": "Nagbibigay ng mga iminumungkahing code..."

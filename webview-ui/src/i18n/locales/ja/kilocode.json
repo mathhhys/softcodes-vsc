@@ -23,8 +23,8 @@
 			"mcp": "MCPサーバー"
 		},
 		"provider": {
-			"account": "Kilo Code アカウント",
-			"apiKey": "Kilo Code APIキー",
+			"account": "Softcodes アカウント",
+			"apiKey": "Softcodes APIキー",
 			"login": "Kilo Codeにログイン",
 			"logout": "Kilo Codeからログアウト"
 		},
@@ -38,7 +38,7 @@
 			"label": "システム通知を有効にする",
 			"description": "有効にすると、Kilo Codeはタスクの完了やエラーなどの重要なイベントについてシステム通知を送信します。",
 			"testButton": "通知をテスト",
-			"testTitle": "Kilo Code",
+			"testTitle": "Softcodes",
 			"testMessage": "これはKilo Codeからのテスト通知です。"
 		}
 	},

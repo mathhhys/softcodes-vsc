@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Генератор сообщений о коммитах Kilo Code активирован",
+		"activated": "Генератор сообщений о коммитах Softcodes активирован",
 		"gitNotFound": "⚠️ Git репозиторий не найден или git недоступен",
 		"gitInitError": "⚠️ Ошибка инициализации Git: {{error}}",
 		"generating": "Kilo: Генерируется сообщение коммита...",
@@ -58,11 +58,11 @@
 			"disabled": "$(circle-slash) Kilo Автодополнение",
 			"tooltip": {
 				"sessionTotal": "Общая стоимость сессии:",
-				"disabled": "Автодополнение Kilo Code (отключено)",
+				"disabled": "Автодополнение Softcodes (отключено)",
 				"model": "Модель:",
 				"tokenError": "Для использования автозаполнения должен быть установлен действительный токен",
 				"lastCompletion": "Последнее завершение:",
-				"basic": "Автодополнение Kilo Code"
+				"basic": "Автодополнение Softcodes"
 			},
 			"cost": {
 				"lessThanCent": "<$0,01",
@@ -77,27 +77,27 @@
 			"generating": "Создание предлагаемых правок...",
 			"processing": "Обработка предлагаемых правок...",
 			"showing": "Отображение предложенных правок...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Быстрая Задача",
+			"title": "Softcodes: Быстрая Задача",
 			"placeholder": "напр., 'переработать эту функцию, чтобы сделать её более эффективной'"
 		},
 		"commands": {
 			"displaySuggestions": "Показать предлагаемые правки",
-			"generateSuggestions": "Kilo Code: Создать Предлагаемые Изменения",
+			"generateSuggestions": "Softcodes: Создать Предлагаемые Изменения",
 			"cancelSuggestions": "Отменить предложенные правки",
 			"applyCurrentSuggestion": "Применить текущее предложенное изменение",
-			"category": "Kilo Code",
+			"category": "Softcodes",
 			"applyAllSuggestions": "Применить все предложенные правки",
 			"promptCodeSuggestion": "Быстрое задание"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Предлагаемые правки"
+			"title": "Softcodes: Предлагаемые правки"
 		},
 		"chatParticipant": {
 			"description": "Я могу помочь вам с быстрыми задачами и предложенными изменениями.",
-			"fullName": "Kilo Code Агент",
+			"fullName": "Softcodes Агент",
 			"name": "Агент"
 		},
 		"messages": {

@@ -8,7 +8,7 @@
 		"editModesConfig": "I-edit ang configuration ng mga mode",
 		"editGlobalModes": "I-edit ang Global Modes",
 		"editProjectModes": "I-edit ang Project Modes (.kilocodemodes)",
-		"createModeHelpText": "Ang mga mode ay mga espesyalisadong persona na nag-aayos ng ugali ng Kilo Code. <0>Alamin ang tungkol sa Paggamit ng mga Mode</0> o <1>Pag-customize ng mga Mode.</1>",
+		"createModeHelpText": "Ang mga mode ay mga espesyalisadong persona na nag-aayos ng ugali ng Softcodes. <0>Alamin ang tungkol sa Paggamit ng mga Mode</0> o <1>Pag-customize ng mga Mode.</1>",
 		"selectMode": "Maghanap ng mga mode",
 		"noMatchFound": "Walang nahanap na mga mode"
 	},
@@ -34,7 +34,7 @@
 	"roleDefinition": {
 		"title": "Kahulugan ng Role",
 		"resetToDefault": "Ibalik sa default",
-		"description": "Tukuyin ang kadalubhasaan at personalidad ng Kilo Code para sa mode na ito. Ang paglalarawan na ito ay humuhubog kung paano nagpapakita ang Kilo Code at paano nito nilalapitan ang mga gawain."
+		"description": "Tukuyin ang kadalubhasaan at personalidad ng Softcodes para sa mode na ito. Ang paglalarawan na ito ay humuhubog kung paano nagpapakita ang Softcodes at paano nito nilalapitan ang mga gawain."
 	},
 	"description": {
 		"title": "Maikling paglalarawan (para sa mga tao)",
@@ -98,7 +98,7 @@
 		"types": {
 			"ENHANCE": {
 				"label": "Pahusayin ang Prompt",
-				"description": "Gamitin ang pagpapahusay ng prompt para makakuha ng mga suhestiyon o pagpapabuti na angkop sa iyong mga input. Tinitiyak nito na nauunawaan ng Kilo Code ang iyong layunin at nagbibigay ng pinakamahusay na mga tugon. Available sa pamamagitan ng ✨ icon sa chat."
+				"description": "Gamitin ang pagpapahusay ng prompt para makakuha ng mga suhestiyon o pagpapabuti na angkop sa iyong mga input. Tinitiyak nito na nauunawaan ng Softcodes ang iyong layunin at nagbibigay ng pinakamahusay na mga tugon. Available sa pamamagitan ng ✨ icon sa chat."
 			},
 			"EXPLAIN": {
 				"label": "Ipaliwanag ang Code",
@@ -167,7 +167,7 @@
 		},
 		"roleDefinition": {
 			"label": "Kahulugan ng Role",
-			"description": "Tukuyin ang kadalubhasaan at personalidad ng Kilo Code para sa mode na ito."
+			"description": "Tukuyin ang kadalubhasaan at personalidad ng Softcodes para sa mode na ito."
 		},
 		"description": {
 			"label": "Maikling paglalarawan (para sa mga tao)",

@@ -100,12 +100,12 @@ describe("WebAuthService", () => {
 		const MockedRefreshTimer = vi.mocked(RefreshTimer)
 		MockedRefreshTimer.mockImplementation(() => mockTimer as unknown as RefreshTimer)
 
-		// Setup config mocks - use production URL by default to maintain existing test behavior
-		vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.roocode.com")
-		vi.mocked(Config.getRooCodeApiUrl).mockReturnValue("https://api.test.com")
+		// Setup config mocks - use softcodes URLs for testing
+		vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.softcodes.ai")
+		vi.mocked(Config.getRooCodeApiUrl).mockReturnValue("https://www.softcodes.ai")
 
 		// Setup utils mock
-		vi.mocked(utils.getUserAgent).mockReturnValue("Roo-Code 1.0.0")
+		vi.mocked(utils.getUserAgent).mockReturnValue("Softcodes 1.0.0")
 
 		// Setup crypto mock
 		vi.mocked(crypto.randomBytes).mockReturnValue(Buffer.from("test-random-bytes") as never)
@@ -217,7 +217,7 @@ describe("WebAuthService", () => {
 			const attemptingSessionSpy = vi.fn()
 			authService.on("attempting-session", attemptingSessionSpy)
 
-			onDidChangeCallback!({ key: "clerk-auth-credentials" })
+			onDidChangeCallback!({ key: "clerk-auth-credentials-https://rested-mouse-99.clerk.accounts.dev" })
 			await new Promise((resolve) => setTimeout(resolve, 0)) // Wait for async handling
 
 			expect(attemptingSessionSpy).toHaveBeenCalled()
@@ -256,12 +256,7 @@ describe("WebAuthService", () => {
 			await authService.login()
 
 			const expectedUrl =
-				"https://api.test.com/extension/sign-in?state=746573742d72616e646f6d2d6279746573&auth_redirect=vscode%3A%2F%2FRooVeterinaryInc.roo-cline"
-			expect(mockOpenExternal).toHaveBeenCalledWith(
-				expect.objectContaining({
-					toString: expect.any(Function),
-				}),
-			)
+				"https://softcodes.ai/extension/sign-in?state=746573742d72616e646f6d2d6279746573&auth_redirect=vscode%3A%2F%2Fsoftcodes.softcodes&client_type=vscode_extension&response_type=code&scope=openid+profile+email"
 
 			// Verify the actual URL
 			const calledUri = mockOpenExternal.mock.calls[0][0]
@@ -328,7 +323,7 @@ describe("WebAuthService", () => {
 			await authService.handleCallback("auth-code", storedState)
 
 			expect(mockContext.secrets.store).toHaveBeenCalledWith(
-				"clerk-auth-credentials",
+				"clerk-auth-credentials-https://rested-mouse-99.clerk.accounts.dev",
 				JSON.stringify({ clientToken: "Bearer token-123", sessionId: "session-123", organizationId: null }),
 			)
 			expect(mockShowInfo).toHaveBeenCalledWith("Successfully authenticated with Roo Code Cloud")
@@ -375,10 +370,12 @@ describe("WebAuthService", () => {
 
 			await authService.logout()
 
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith("clerk-auth-credentials")
+			expect(mockContext.secrets.delete).toHaveBeenCalledWith(
+				"clerk-auth-credentials-https://rested-mouse-99.clerk.accounts.dev",
+			)
 			expect(mockContext.globalState.update).toHaveBeenCalledWith("clerk-auth-state", undefined)
 			expect(mockFetch).toHaveBeenCalledWith(
-				"https://clerk.roocode.com/v1/client/sessions/test-session/remove",
+				"https://rested-mouse-99.clerk.accounts.dev/v1/client/sessions/test-session/remove",
 				expect.objectContaining({
 					method: "POST",
 					headers: expect.objectContaining({
@@ -539,7 +536,9 @@ describe("WebAuthService", () => {
 			const timerCallback = vi.mocked(RefreshTimer).mock.calls[0][0].callback
 
 			await expect(timerCallback()).rejects.toThrow()
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith("clerk-auth-credentials")
+			expect(mockContext.secrets.delete).toHaveBeenCalledWith(
+				"clerk-auth-credentials-https://rested-mouse-99.clerk.accounts.dev",
+			)
 			expect(mockLog).toHaveBeenCalledWith("[auth] Invalid/Expired client token: clearing credentials")
 		})
 
@@ -617,7 +616,9 @@ describe("WebAuthService", () => {
 			await expect(timerCallback()).rejects.toThrow()
 
 			// Should clear credentials (not just transition to inactive-session)
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith("clerk-auth-credentials")
+			expect(mockContext.secrets.delete).toHaveBeenCalledWith(
+				"clerk-auth-credentials-https://rested-mouse-99.clerk.accounts.dev",
+			)
 			expect(mockLog).toHaveBeenCalledWith("[auth] Invalid/Expired client token: clearing credentials")
 
 			// Simulate credentials cleared event
@@ -959,7 +960,7 @@ describe("WebAuthService", () => {
 	describe("auth credentials key scoping", () => {
 		it("should use default key when getClerkBaseUrl returns production URL", async () => {
 			// Mock getClerkBaseUrl to return production URL
-			vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://clerk.roocode.com")
+			vi.mocked(Config.getClerkBaseUrl).mockReturnValue("https://rested-mouse-99.clerk.accounts.dev")
 
 			const service = new WebAuthService(mockContext as unknown as vscode.ExtensionContext, mockLog)
 			const credentials = { clientToken: "test-token", sessionId: "test-session" }
@@ -968,7 +969,7 @@ describe("WebAuthService", () => {
 			await service["storeCredentials"](credentials)
 
 			expect(mockContext.secrets.store).toHaveBeenCalledWith(
-				"clerk-auth-credentials",
+				"clerk-auth-credentials-https://rested-mouse-99.clerk.accounts.dev",
 				JSON.stringify(credentials),
 			)
 		})

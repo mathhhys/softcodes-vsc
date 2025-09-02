@@ -3,12 +3,12 @@
 	"profilePicture": "Imatge de perfil",
 	"logOut": "Tancar sessió",
 	"testApiAuthentication": "Provar autenticació d'API",
-	"signIn": "Connecta't a Kilo Code Cloud",
+	"signIn": "Connecta't a Softcodes Cloud",
 	"connect": "Connecta",
-	"cloudBenefitsTitle": "Connecta't a Kilo Code Cloud",
+	"cloudBenefitsTitle": "Connecta't a Softcodes Cloud",
 	"cloudBenefitsSubtitle": "Sincronitza els teus prompts i telemetria per habilitar:",
 	"cloudBenefitHistory": "Historial de tasques en línia",
 	"cloudBenefitSharing": "Funcions de compartició i col·laboració",
 	"cloudBenefitMetrics": "Mètriques d'ús basades en tasques, tokens i costos",
-	"visitCloudWebsite": "Visita Kilo Code Cloud"
+	"visitCloudWebsite": "Visita Softcodes Cloud"
 }

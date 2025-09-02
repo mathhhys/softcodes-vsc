@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Maligayang pagdating sa Kilo Code!",
-		"introText1": "Ang Kilo Code ay isang libreng, open source AI coding agent.",
+		"greeting": "Maligayang pagdating sa Softcodes!",
+		"introText1": "Ang Softcodes ay isang libreng, open source AI coding agent.",
 		"introText2": "Gumagana ito sa pinakabagong AI models tulad ng Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, at higit 450 pang iba.",
 		"introText3": "Gumawa ng libreng account at makakuha ng $20 na tokens para gamitin sa kahit anong AI model.",
 		"ctaButton": "Gumawa ng libreng account",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Magdagdag ng Credit",
-		"lowBalance": "Mababa na ang iyong Kilo Code balance"
+		"lowBalance": "Mababa na ang iyong Softcodes balance"
 	},
 	"notifications": {
 		"toolRequest": "Naghihintay ng pag-apruba ang tool request",
@@ -23,28 +23,28 @@
 			"mcp": "MCP Servers"
 		},
 		"provider": {
-			"account": "Account sa Kilo Code",
-			"apiKey": "Kilo Code API Key",
-			"login": "Mag-log in sa Kilo Code",
-			"logout": "Mag-log out mula sa Kilo Code"
+			"account": "Account sa Softcodes",
+			"apiKey": "Softcodes API Key",
+			"login": "Mag-log in sa Softcodes",
+			"logout": "Mag-log out mula sa Softcodes"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Payagan ang pagbasa ng napakalaking files",
-				"description": "Kapag naka-enable, magsasagawa ang Kilo Code ng pagbasa ng napakalaking files o MCP outputs kahit na may mataas na posibilidad na mag-overflow ang context window (laki ng content >80% ng context window)."
+				"description": "Kapag naka-enable, magsasagawa ang Softcodes ng pagbasa ng napakalaking files o MCP outputs kahit na may mataas na posibilidad na mag-overflow ang context window (laki ng content >80% ng context window)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Paganahin ang mga System Notification",
-			"description": "Kapag naka-enable, magpapadala ang Kilo Code ng mga system notification para sa mahahalagang pangyayari tulad ng pagkumpleto ng gawain o mga error.",
+			"description": "Kapag naka-enable, magpapadala ang Softcodes ng mga system notification para sa mahahalagang pangyayari tulad ng pagkumpleto ng gawain o mga error.",
 			"testButton": "Subukan ang Notification",
-			"testTitle": "Kilo Code",
-			"testMessage": "Ito ay isang test notification mula sa Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Ito ay isang test notification mula sa Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Gusto ng Kilo Code na paikliin ang iyong pag-uusap",
+			"wantsToCondense": "Gusto ng Softcodes na paikliin ang iyong pag-uusap",
 			"condenseConversation": "Paikliin ang Pag-uusap"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Docs",
 	"rules": {
-		"tooltip": "Pamahalaan ang Kilo Code Rules at Workflows",
-		"ariaLabel": "Kilo Code Rules",
+		"tooltip": "Pamahalaan ang Softcodes Rules at Workflows",
+		"ariaLabel": "Softcodes Rules",
 		"tabs": {
 			"rules": "Rules",
 			"workflows": "Workflows"
 		},
 		"description": {
-			"rules": "Ang Rules ay nagbibigay-daan sa iyo na magbigay sa Kilo Code ng mga tagubilin na dapat nitong sundin sa lahat ng modes at para sa lahat ng prompts. Ito ay isang patuloy na paraan upang isama ang konteksto at mga kagustuhan para sa lahat ng pag-uusap sa iyong workspace o globally.",
-			"workflows": "Ang Workflows ay isang nakahandang template para sa isang pag-uusap. Ang Workflows ay maaaring magbigay-daan sa iyo na tukuyin ang mga prompts na madalas mong ginagamit, at maaaring magsama ng serye ng mga hakbang upang gabayan ang Kilo Code sa mga paulit-ulit na gawain, tulad ng pag-deploy ng service o pag-submit ng PR. Para gamitin ang workflow, i-type",
+			"rules": "Ang Rules ay nagbibigay-daan sa iyo na magbigay sa Softcodes ng mga tagubilin na dapat nitong sundin sa lahat ng modes at para sa lahat ng prompts. Ito ay isang patuloy na paraan upang isama ang konteksto at mga kagustuhan para sa lahat ng pag-uusap sa iyong workspace o globally.",
+			"workflows": "Ang Workflows ay isang nakahandang template para sa isang pag-uusap. Ang Workflows ay maaaring magbigay-daan sa iyo na tukuyin ang mga prompts na madalas mong ginagamit, at maaaring magsama ng serye ng mga hakbang upang gabayan ang Softcodes sa mga paulit-ulit na gawain, tulad ng pag-deploy ng service o pag-submit ng PR. Para gamitin ang workflow, i-type",
 			"workflowsInChat": "sa chat."
 		},
 		"sections": {

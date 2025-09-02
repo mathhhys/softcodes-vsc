@@ -3,12 +3,12 @@
 	"profilePicture": "Profile picture",
 	"logOut": "Log out",
 	"testApiAuthentication": "Test API Authentication",
-	"signIn": "Connect to Kilo Code Cloud",
+	"signIn": "Connect to Softcodes Cloud",
 	"connect": "Connect",
-	"cloudBenefitsTitle": "Connect to Kilo Code Cloud",
-	"cloudBenefitsSubtitle": "Sync your prompts and telemetry to enable:",
-	"cloudBenefitHistory": "Online task history",
-	"cloudBenefitSharing": "Sharing and collaboration features",
-	"cloudBenefitMetrics": "Task, token, and cost-based usage metrics",
-	"visitCloudWebsite": "Visit Kilo Code Cloud"
+	"cloudBenefitsTitle": "Welcome to Softcodes!",
+	"cloudBenefitsSubtitle": "Softcodes is your new AI coding agent.",
+	"cloudBenefitHistory": "It works with the latest AI models like Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, and 450+ more.",
+	"cloudBenefitSharing": "Create your account and get free requests to use across any AI model.",
+	"cloudBenefitMetrics": "Already signed up? Log in here",
+	"visitCloudWebsite": "Visit Softcodes Cloud"
 }

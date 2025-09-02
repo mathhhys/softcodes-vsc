@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Chào mừng bạn đến với Kilo Code!",
-		"introText1": "Kilo Code là một agent lập trình AI miễn phí và mã nguồn mở.",
+		"greeting": "Chào mừng bạn đến với Softcodes!",
+		"introText1": "Softcodes là một agent lập trình AI miễn phí và mã nguồn mở.",
 		"introText2": "Hoạt động với các mô hình AI mới nhất như Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1, và hơn 450 mô hình khác.",
 		"introText3": "Tạo tài khoản miễn phí và nhận token trị giá $20 để sử dụng với bất kỳ mô hình AI nào.",
 		"ctaButton": "Tạo tài khoản miễn phí",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Thêm tín dụng",
-		"lowBalance": "Số dư Kilo Code của bạn thấp"
+		"lowBalance": "Số dư Softcodes của bạn thấp"
 	},
 	"notifications": {
 		"toolRequest": "Yêu cầu công cụ đang chờ phê duyệt",
@@ -25,26 +25,26 @@
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Cho phép đọc tệp rất lớn",
-				"description": "Khi bật, Kilo Code sẽ thực hiện đọc tệp hoặc đầu ra MCP rất lớn ngay cả khi có khả năng cao làm tràn cửa sổ ngữ cảnh (kích thước nội dung >80% cửa sổ ngữ cảnh)."
+				"description": "Khi bật, Softcodes sẽ thực hiện đọc tệp hoặc đầu ra MCP rất lớn ngay cả khi có khả năng cao làm tràn cửa sổ ngữ cảnh (kích thước nội dung >80% cửa sổ ngữ cảnh)."
 			}
 		},
 		"provider": {
-			"account": "Tài khoản Kilo Code",
-			"apiKey": "Khóa API Kilo Code",
-			"login": "Đăng nhập vào Kilo Code",
-			"logout": "Đăng xuất khỏi Kilo Code"
+			"account": "Tài khoản Softcodes",
+			"apiKey": "Khóa API Softcodes",
+			"login": "Đăng nhập vào Softcodes",
+			"logout": "Đăng xuất khỏi Softcodes"
 		},
 		"systemNotifications": {
 			"label": "Bật thông báo hệ thống",
-			"description": "Khi bật, Kilo Code sẽ gửi thông báo hệ thống cho các sự kiện quan trọng như hoàn thành nhiệm vụ hoặc lỗi.",
+			"description": "Khi bật, Softcodes sẽ gửi thông báo hệ thống cho các sự kiện quan trọng như hoàn thành nhiệm vụ hoặc lỗi.",
 			"testButton": "Kiểm tra thông báo",
-			"testTitle": "Kilo Code",
-			"testMessage": "Đây là thông báo kiểm tra từ Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Đây là thông báo kiểm tra từ Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code muốn tóm tắt cuộc trò chuyện của bạn",
+			"wantsToCondense": "Softcodes muốn tóm tắt cuộc trò chuyện của bạn",
 			"condenseConversation": "Tóm tắt cuộc trò chuyện"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Tài liệu",
 	"rules": {
-		"tooltip": "Quản lý Quy tắc & Quy trình làm việc Kilo Code",
-		"ariaLabel": "Quy tắc Kilo Code",
+		"tooltip": "Quản lý Quy tắc & Quy trình làm việc Softcodes",
+		"ariaLabel": "Quy tắc Softcodes",
 		"tabs": {
 			"rules": "Quy tắc",
 			"workflows": "Quy trình làm việc"
 		},
 		"description": {
-			"rules": "Quy tắc cho phép bạn cung cấp hướng dẫn cho Kilo Code mà nó phải tuân theo trong tất cả các chế độ và cho tất cả các prompt. Chúng là một cách bền vững để bao gồm ngữ cảnh và tùy chọn cho tất cả các cuộc trò chuyện trong workspace của bạn hoặc toàn cầu.",
-			"workflows": "Quy trình làm việc là một mẫu được chuẩn bị cho một cuộc trò chuyện. Quy trình làm việc cho phép bạn xác định các prompt mà bạn sử dụng thường xuyên, và có thể bao gồm một loạt các bước để hướng dẫn Kilo Code thông qua các tác vụ lặp đi lặp lại, chẳng hạn như triển khai dịch vụ hoặc gửi PR. Để gọi quy trình làm việc, hãy nhập",
+			"rules": "Quy tắc cho phép bạn cung cấp hướng dẫn cho Softcodes mà nó phải tuân theo trong tất cả các chế độ và cho tất cả các prompt. Chúng là một cách bền vững để bao gồm ngữ cảnh và tùy chọn cho tất cả các cuộc trò chuyện trong workspace của bạn hoặc toàn cầu.",
+			"workflows": "Quy trình làm việc là một mẫu được chuẩn bị cho một cuộc trò chuyện. Quy trình làm việc cho phép bạn xác định các prompt mà bạn sử dụng thường xuyên, và có thể bao gồm một loạt các bước để hướng dẫn Softcodes thông qua các tác vụ lặp đi lặp lại, chẳng hạn như triển khai dịch vụ hoặc gửi PR. Để gọi quy trình làm việc, hãy nhập",
 			"workflowsInChat": "trong chat."
 		},
 		"sections": {

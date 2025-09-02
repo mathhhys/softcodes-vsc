@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Trình tạo thông điệp commit Kilo Code đã được kích hoạt",
+		"activated": "Trình tạo thông điệp commit Softcodes đã được kích hoạt",
 		"gitNotFound": "⚠️ Không tìm thấy kho lưu trữ Git hoặc git không khả dụng",
 		"gitInitError": "⚠️ Lỗi khởi tạo Git: {{error}}",
 		"generating": "Kilo: Đang tạo tin nhắn commit...",
@@ -57,8 +57,8 @@
 			"disabled": "$(circle-slash) Kilo Tự động hoàn thành",
 			"warning": "$(warning) Kilo Tự động hoàn thành",
 			"tooltip": {
-				"disabled": "Tự động hoàn thành Kilo Code (đã tắt)",
-				"basic": "Tự động hoàn thiện Kilo Code",
+				"disabled": "Tự động hoàn thành Softcodes (đã tắt)",
+				"basic": "Tự động hoàn thiện Softcodes",
 				"tokenError": "Phải thiết lập một token hợp lệ để sử dụng tính năng tự động hoàn thành",
 				"lastCompletion": "Lượt hoàn thành cuối cùng:",
 				"model": "Mô hình:",
@@ -77,27 +77,27 @@
 			"processing": "Đang xử lý các đề xuất chỉnh sửa...",
 			"analyzing": "Đang phân tích mã của bạn...",
 			"showing": "Đang hiển thị các sửa đổi được đề xuất...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Nhiệm Vụ Nhanh",
+			"title": "Softcodes: Nhiệm Vụ Nhanh",
 			"placeholder": "ví dụ, 'cấu trúc lại hàm này để hiệu quả hơn'"
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code: Tạo Gợi Ý Chỉnh Sửa",
+			"generateSuggestions": "Softcodes: Tạo Gợi Ý Chỉnh Sửa",
 			"displaySuggestions": "Hiển thị đề xuất chỉnh sửa",
 			"cancelSuggestions": "Hủy Đề Xuất Chỉnh Sửa",
 			"applyCurrentSuggestion": "Áp dụng chỉnh sửa đề xuất hiện tại",
 			"promptCodeSuggestion": "Công việc Nhanh từ Lời nhắc",
 			"applyAllSuggestions": "Áp dụng Tất cả Chỉnh sửa Được Đề xuất",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Gợi ý chỉnh sửa"
+			"title": "Softcodes: Gợi ý chỉnh sửa"
 		},
 		"chatParticipant": {
 			"description": "Tôi có thể giúp bạn với các tác vụ nhanh và các chỉnh sửa được đề xuất.",
-			"fullName": "Kilo Code Đại lý",
+			"fullName": "Softcodes Đại lý",
 			"name": "Đại lý"
 		},
 		"messages": {

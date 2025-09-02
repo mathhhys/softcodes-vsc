@@ -40,7 +40,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Generator komunikatów dla commitów Kilo Code aktywowany",
+		"activated": "Generator komunikatów dla commitów Softcodes aktywowany",
 		"gitNotFound": "⚠️ Repozytorium Git nie zostało znalezione lub git jest niedostępny",
 		"gitInitError": "⚠️ Błąd inicjalizacji Git: {{error}}",
 		"generating": "Kilo: Generowanie komunikatu zatwierdzenia...",
@@ -57,8 +57,8 @@
 			"enabled": "$(sparkle) Kilo Autouzupełnianie",
 			"tooltip": {
 				"lastCompletion": "Ostatnie zakończenie:",
-				"disabled": "Kilo Code automatyczne uzupełnianie (wyłączone)",
-				"basic": "Kilo Code Autouzupełnianie",
+				"disabled": "Softcodes automatyczne uzupełnianie (wyłączone)",
+				"basic": "Softcodes Autouzupełnianie",
 				"tokenError": "Aby korzystać z autouzupełniania, należy ustawić prawidłowy token",
 				"sessionTotal": "Całkowity koszt sesji:",
 				"model": "Model:"
@@ -77,10 +77,10 @@
 			"processing": "Przetwarzanie sugerowanych zmian...",
 			"generating": "Generowanie sugerowanych zmian...",
 			"showing": "Wyświetlanie sugerowanych poprawek...",
-			"title": "Kilo Code"
+			"title": "Softcodes"
 		},
 		"input": {
-			"title": "Kilo Code: Szybkie Zadanie",
+			"title": "Softcodes: Szybkie Zadanie",
 			"placeholder": "np. „zrefaktoruj tę funkcję, aby była bardziej wydajna\""
 		},
 		"commands": {
@@ -88,16 +88,16 @@
 			"cancelSuggestions": "Anuluj sugerowane zmiany",
 			"applyCurrentSuggestion": "Zastosuj bieżącą sugerowaną edycję",
 			"applyAllSuggestions": "Zastosuj wszystkie sugerowane poprawki",
-			"generateSuggestions": "Kilo Code: Generowanie Sugerowanych Poprawek",
+			"generateSuggestions": "Softcodes: Generowanie Sugerowanych Poprawek",
 			"promptCodeSuggestion": "Szybkie zadanie",
-			"category": "Kilo Code"
+			"category": "Softcodes"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Sugerowane edycje"
+			"title": "Softcodes: Sugerowane edycje"
 		},
 		"chatParticipant": {
 			"name": "Agent",
-			"fullName": "Agent Kilo Code",
+			"fullName": "Agent Softcodes",
 			"description": "Mogę pomóc Ci w szybkich zadaniach i zasugerować poprawki."
 		},
 		"messages": {

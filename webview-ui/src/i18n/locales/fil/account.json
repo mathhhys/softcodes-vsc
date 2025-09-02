@@ -3,12 +3,12 @@
 	"profilePicture": "Larawan ng profile",
 	"logOut": "Mag-log out",
 	"testApiAuthentication": "Subukan ang API Authentication",
-	"signIn": "Kumonekta sa Kilo Code Cloud",
+	"signIn": "Kumonekta sa Softcodes Cloud",
 	"connect": "Kumonekta",
-	"cloudBenefitsTitle": "Kumonekta sa Kilo Code Cloud",
+	"cloudBenefitsTitle": "Kumonekta sa Softcodes Cloud",
 	"cloudBenefitsSubtitle": "I-sync ang inyong mga prompt at telemetry para ma-enable:",
 	"cloudBenefitHistory": "Online na kasaysayan ng mga gawain",
 	"cloudBenefitSharing": "Mga feature para sa pagbabahagi at pakikipagtulungan",
 	"cloudBenefitMetrics": "Mga sukatan ng paggamit batay sa mga gawain, token, at gastos",
-	"visitCloudWebsite": "Bisitahin ang Kilo Code Cloud"
+	"visitCloudWebsite": "Bisitahin ang Softcodes Cloud"
 }

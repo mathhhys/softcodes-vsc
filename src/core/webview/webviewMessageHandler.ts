@@ -4,7 +4,7 @@ import * as os from "os"
 import * as fs from "fs/promises"
 import pWaitFor from "p-wait-for"
 import * as vscode from "vscode"
-import axios from "axios" // kilocode_change
+import axios from "axios"
 import * as yaml from "yaml"
 
 import {
@@ -36,7 +36,7 @@ import { discoverChromeHostUrl, tryChromeHostUrl } from "../../services/browser/
 import { searchWorkspaceFiles } from "../../services/search/file-search"
 import { fileExistsAtPath } from "../../utils/fs"
 import { playTts, setTtsEnabled, setTtsSpeed, stopTts } from "../../utils/tts"
-import { showSystemNotification } from "../../integrations/notifications" // kilocode_change
+import { showSystemNotification } from "../../integrations/notifications"
 import { singleCompletionHandler } from "../../utils/single-completion-handler"
 import { searchCommits } from "../../utils/git"
 import { exportSettings, importSettingsWithFeedback } from "../config/importExport"
@@ -52,8 +52,8 @@ import { GetModelsOptions } from "../../shared/api"
 import { generateSystemPrompt } from "./generateSystemPrompt"
 import { getCommand } from "../../utils/commands"
 import { toggleWorkflow, toggleRule, createRuleFile, deleteRuleFile } from "./kilorules"
-import { mermaidFixPrompt } from "../prompts/utilities/mermaid" // kilocode_change
-import { editMessageHandler } from "../kilocode/webview/webviewMessageHandlerUtils" // kilocode_change
+import { mermaidFixPrompt } from "../prompts/utilities/mermaid"
+import { editMessageHandler } from "../kilocode/webview/webviewMessageHandlerUtils"
 
 const ALLOWED_VSCODE_SETTINGS = new Set(["terminal.integrated.inheritEnv"])
 
@@ -293,7 +293,7 @@ export const webviewMessageHandler = async (
 
 							await provider.providerSettingsManager.saveConfig(
 								listApiConfig[0].name ?? "default",
-								apiConfiguration,
+								apiConfiguration as ProviderSettings,
 							)
 
 							listApiConfig[0].apiProvider = apiConfiguration.apiProvider
@@ -602,11 +602,15 @@ export const webviewMessageHandler = async (
 				{ key: "requesty", options: { provider: "requesty", apiKey: apiConfiguration.requestyApiKey } },
 				{ key: "glama", options: { provider: "glama" } },
 				{ key: "unbound", options: { provider: "unbound", apiKey: apiConfiguration.unboundApiKey } },
-				{
+			]
+			// kilocode_change end
+
+			if (apiConfiguration.kilocodeToken) {
+				modelFetchPromises.push({
 					key: "kilocode-openrouter",
 					options: { provider: "kilocode-openrouter", kilocodeToken: apiConfiguration.kilocodeToken },
-				},
-			]
+				})
+			}
 			// kilocode_change end
 
 			// Don't fetch Ollama and LM Studio models by default anymore
@@ -1372,7 +1376,7 @@ export const webviewMessageHandler = async (
 							id: enhancementApiConfigId,
 						})
 
-						if (providerSettings.apiProvider) {
+						if ((providerSettings as any).apiProvider) {
 							configToUse = providerSettings
 						}
 					}
@@ -1520,7 +1524,10 @@ export const webviewMessageHandler = async (
 		case "saveApiConfiguration":
 			if (message.text && message.apiConfiguration) {
 				try {
-					await provider.providerSettingsManager.saveConfig(message.text, message.apiConfiguration)
+					await provider.providerSettingsManager.saveConfig(
+						message.text,
+						message.apiConfiguration as ProviderSettings,
+					)
 					const listApiConfig = await provider.providerSettingsManager.listConfig()
 					await updateGlobalState("listApiConfigMeta", listApiConfig)
 				} catch (error) {
@@ -1549,7 +1556,10 @@ export const webviewMessageHandler = async (
 					const { id } = await provider.providerSettingsManager.getProfile({ name: oldName })
 
 					// Create a new configuration with the new name and old ID.
-					await provider.providerSettingsManager.saveConfig(newName, { ...message.apiConfiguration, id })
+					await provider.providerSettingsManager.saveConfig(newName, {
+						...message.apiConfiguration,
+						id,
+					} as ProviderSettings)
 
 					// Delete the old configuration.
 					await provider.providerSettingsManager.deleteConfig(oldName)
@@ -1991,7 +2001,7 @@ export const webviewMessageHandler = async (
 				const { apiConfiguration } = await provider.getState()
 				const kilocodeToken = apiConfiguration?.kilocodeToken
 
-				if (!kilocodeToken) {
+				if (!kilocodeToken || kilocodeToken.trim() === "") {
 					provider.log("KiloCode token not found in extension state.")
 					provider.postMessageToWebview({
 						type: "profileDataResponse",
@@ -2029,7 +2039,7 @@ export const webviewMessageHandler = async (
 				const { apiConfiguration } = await provider.getState()
 				const kilocodeToken = apiConfiguration?.kilocodeToken
 
-				if (!kilocodeToken) {
+				if (!kilocodeToken || kilocodeToken.trim() === "") {
 					provider.log("KiloCode token not found in extension state for balance data.")
 					provider.postMessageToWebview({
 						type: "balanceDataResponse", // New response type
@@ -2257,7 +2267,12 @@ export const webviewMessageHandler = async (
 							// Send validation error to webview
 							await provider.postMessageToWebview({
 								type: "indexingStatusUpdate",
-								values: provider.codeIndexManager.getCurrentStatus(),
+								values: provider.codeIndexManager?.getCurrentStatus() || {
+									status: "error",
+									message: "Code index manager not initialized.",
+									progress: 0,
+									total: 0,
+								},
 							})
 							// Exit early - don't try to start indexing with invalid configuration
 							break
@@ -2290,7 +2305,12 @@ export const webviewMessageHandler = async (
 								// Send error status to webview
 								await provider.postMessageToWebview({
 									type: "indexingStatusUpdate",
-									values: provider.codeIndexManager.getCurrentStatus(),
+									values: provider.codeIndexManager?.getCurrentStatus() || {
+										status: "error",
+										message: "Code index manager not initialized.",
+										progress: 0,
+										total: 0,
+									},
 								})
 							}
 						}
@@ -2308,10 +2328,15 @@ export const webviewMessageHandler = async (
 		}
 
 		case "requestIndexingStatus": {
-			const status = provider.codeIndexManager!.getCurrentStatus()
+			const status = provider.codeIndexManager?.getCurrentStatus()
 			provider.postMessageToWebview({
 				type: "indexingStatusUpdate",
-				values: status,
+				values: status || {
+					status: "error",
+					message: "Code index manager not initialized.",
+					progress: 0,
+					total: 0,
+				},
 			})
 			break
 		}

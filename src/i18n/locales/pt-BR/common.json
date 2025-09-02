@@ -1,10 +1,10 @@
 {
 	"input": {
-		"task_prompt": "O que você quer que o Kilo Code faça?",
+		"task_prompt": "O que você quer que o Softcodes faça?",
 		"task_placeholder": "Construir, encontrar, perguntar algo"
 	},
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "Assistente de codificação de IA de código aberto para planejamento, construção e correção de código."
 	},
 	"number_format": {
@@ -107,7 +107,7 @@
 	"warnings": {
 		"no_terminal_content": "Nenhum conteúdo do terminal selecionado",
 		"missing_task_files": "Os arquivos desta tarefa estão faltando. Deseja removê-la da lista de tarefas?",
-		"auto_import_failed": "Falha ao importar automaticamente as configurações do Kilo Code: {{error}}"
+		"auto_import_failed": "Falha ao importar automaticamente as configurações do Softcodes: {{error}}"
 	},
 	"info": {
 		"no_changes": "Nenhuma alteração encontrada.",
@@ -116,7 +116,7 @@
 		"custom_storage_path_set": "Caminho de armazenamento personalizado definido: {{path}}",
 		"default_storage_path": "Retornado ao caminho de armazenamento padrão",
 		"settings_imported": "Configurações importadas com sucesso.",
-		"auto_import_success": "Configurações do Kilo Code importadas automaticamente de {{filename}}",
+		"auto_import_success": "Configurações do Softcodes importadas automaticamente de {{filename}}",
 		"share_link_copied": "Link de compartilhamento copiado para a área de transferência",
 		"image_copied_to_clipboard": "URI de dados da imagem copiada para a área de transferência",
 		"image_saved": "Imagem salva em {{path}}",
@@ -176,8 +176,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Sua organização requer autenticação do Kilo Code Cloud. Faça login para continuar.",
-			"organization_mismatch": "Você deve estar autenticado com a conta Kilo Code Cloud da sua organização.",
+			"cloud_auth_required": "Sua organização requer autenticação do Softcodes Cloud. Faça login para continuar.",
+			"organization_mismatch": "Você deve estar autenticado com a conta Softcodes Cloud da sua organização.",
 			"verification_failed": "Não foi possível verificar a autenticação da organização."
 		}
 	},

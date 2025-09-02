@@ -19,7 +19,7 @@ export const AccountView = ({ userInfo, isAuthenticated, cloudApiUrl, onDone }: 
 	const { t } = useAppTranslation()
 	const wasAuthenticatedRef = useRef(false)
 
-	const rooLogoUri = (window as any).IMAGES_BASE_URI + "/roo-logo.svg"
+	const rooLogoUri = (window as any).IMAGES_BASE_URI + "/../icons/softcodes-logo.svg"
 
 	// Track authentication state changes to detect successful logout
 	useEffect(() => {
@@ -47,7 +47,7 @@ export const AccountView = ({ userInfo, isAuthenticated, cloudApiUrl, onDone }: 
 	const handleVisitCloudWebsite = () => {
 		// Send telemetry for cloud website visit
 		telemetryClient.capture(TelemetryEventName.ACCOUNT_CONNECT_CLICKED)
-		const cloudUrl = cloudApiUrl || "https://app.roocode.com"
+		const cloudUrl = cloudApiUrl || "https://www.softcodes.ai"
 		vscode.postMessage({ type: "openExternal", url: cloudUrl })
 	}
 
@@ -107,10 +107,10 @@ export const AccountView = ({ userInfo, isAuthenticated, cloudApiUrl, onDone }: 
 				</>
 			) : (
 				<>
-					<div className="flex flex-col items-center mb-1 text-center">
-						<div className="w-16 h-16 mb-1 flex items-center justify-center">
+					<div className="flex flex-col items-center mb-4 text-center">
+						<div className="w-24 h-24 mb-4 flex items-center justify-center">
 							<div
-								className="w-12 h-12 bg-vscode-foreground"
+								className="w-24 h-24 bg-vscode-foreground"
 								style={{
 									WebkitMaskImage: `url('${rooLogoUri}')`,
 									WebkitMaskRepeat: "no-repeat",
@@ -119,7 +119,7 @@ export const AccountView = ({ userInfo, isAuthenticated, cloudApiUrl, onDone }: 
 									maskRepeat: "no-repeat",
 									maskSize: "contain",
 								}}>
-								<img src={rooLogoUri} alt="Roo logo" className="w-12 h-12 opacity-0" />
+								<img src={rooLogoUri} alt="Softcodes logo" className="w-24 h-24 opacity-0" />
 							</div>
 						</div>
 					</div>
@@ -131,26 +131,21 @@ export const AccountView = ({ userInfo, isAuthenticated, cloudApiUrl, onDone }: 
 						<p className="text-md text-vscode-descriptionForeground mb-4">
 							{t("account:cloudBenefitsSubtitle")}
 						</p>
-						<ul className="text-sm text-vscode-descriptionForeground space-y-2 max-w-xs mx-auto">
-							<li className="flex items-start">
-								<span className="mr-2 text-vscode-foreground">•</span>
-								{t("account:cloudBenefitHistory")}
-							</li>
-							<li className="flex items-start">
-								<span className="mr-2 text-vscode-foreground">•</span>
-								{t("account:cloudBenefitSharing")}
-							</li>
-							<li className="flex items-start">
-								<span className="mr-2 text-vscode-foreground">•</span>
-								{t("account:cloudBenefitMetrics")}
-							</li>
-						</ul>
+						<p className="text-sm text-vscode-descriptionForeground mb-2">
+							{t("account:cloudBenefitHistory")}
+						</p>
+						<p className="text-sm text-vscode-descriptionForeground mb-4">
+							{t("account:cloudBenefitSharing")}
+						</p>
 					</div>
 
 					<div className="flex flex-col gap-4">
 						<VSCodeButton appearance="primary" onClick={handleConnectClick} className="w-full">
-							{t("account:connect")}
+							Create your account
 						</VSCodeButton>
+						<p className="text-sm text-vscode-descriptionForeground text-center">
+							{t("account:cloudBenefitMetrics")}
+						</p>
 					</div>
 				</>
 			)}

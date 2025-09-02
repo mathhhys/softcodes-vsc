@@ -31,7 +31,7 @@ vi.mock("vscode", () => ({
 	commands: {
 		executeCommand: vi.fn(),
 		registerCommand: vi.fn().mockImplementation((_, handler) => {
-			if (_ === "kilo-code.acceptAutocompletePreview") {
+			if (_ === "softcodes.acceptAutocompletePreview") {
 				;(global as any).acceptHandler = handler
 			}
 			return { dispose: vi.fn() }

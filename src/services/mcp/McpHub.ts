@@ -575,7 +575,7 @@ export class McpHub {
 		try {
 			const client = new Client(
 				{
-					name: "Kilo Code",
+					name: "Softcodes",
 					version: this.providerRef.deref()?.context.extension?.packageJSON?.version ?? "1.0.0",
 				},
 				{
@@ -620,7 +620,7 @@ export class McpHub {
 				})
 
 				// Set up stdio specific error handling
-				transport.onerror = async (error) => {
+				transport.onerror = async (error: unknown) => {
 					console.error(`Transport error for "${name}":`, error)
 					const connection = this.findConnection(name, source)
 					if (connection) {
@@ -675,7 +675,7 @@ export class McpHub {
 				})
 
 				// Set up Streamable HTTP specific error handling
-				transport.onerror = async (error) => {
+				transport.onerror = async (error: unknown) => {
 					console.error(`Transport error for "${name}" (streamable-http):`, error)
 					const connection = this.findConnection(name, source)
 					if (connection) {
@@ -718,7 +718,7 @@ export class McpHub {
 				})
 
 				// Set up SSE specific error handling
-				transport.onerror = async (error) => {
+				transport.onerror = async (error: unknown) => {
 					console.error(`Transport error for "${name}":`, error)
 					const connection = this.findConnection(name, source)
 					if (connection) {
@@ -879,7 +879,7 @@ export class McpHub {
 			}
 
 			// Mark tools as always allowed and enabled for prompt based on settings
-			const tools = (response?.tools || []).map((tool) => ({
+			const tools = (response?.tools || []).map((tool: McpTool) => ({
 				...tool,
 				alwaysAllow: alwaysAllowConfig.includes(tool.name),
 				enabledForPrompt: !disabledToolsList.includes(tool.name),
@@ -1496,7 +1496,7 @@ export class McpHub {
 			timeout = 60 * 1000
 		}
 
-		return await connection.client.request(
+		const result = await connection.client.request(
 			{
 				method: "tools/call",
 				params: {
@@ -1509,6 +1509,32 @@ export class McpHub {
 				timeout,
 			},
 		)
+
+		// Transform the result to match McpToolCallResponse type
+		return {
+			_meta: result._meta,
+			content: result.content.map((item: any) => {
+				if (item.type === "text") {
+					return { type: "text", text: item.text }
+				} else if (item.type === "image") {
+					return { type: "image", data: item.data, mimeType: item.mimeType }
+				} else if (item.type === "audio") {
+					return { type: "audio", data: item.data, mimeType: item.mimeType }
+				} else if (item.type === "resource") {
+					return {
+						type: "resource",
+						resource: {
+							uri: item.resource?.uri || item.uri,
+							mimeType: item.resource?.mimeType || item.mimeType,
+							text: item.resource?.text || item.text,
+							blob: item.resource?.blob || item.blob,
+						},
+					}
+				}
+				return item
+			}),
+			isError: result.isError,
+		} as McpToolCallResponse
 	}
 
 	/**

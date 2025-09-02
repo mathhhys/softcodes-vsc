@@ -54,14 +54,28 @@ import { registerGhostProvider } from "./services/ghost" // kilocode_change
 
 let outputChannel: vscode.OutputChannel
 let extensionContext: vscode.ExtensionContext
+let commandsRegistered = false // New flag to track command registration
+let commitMessageProvider: vscode.Disposable | undefined
 
 // This method is called when your extension is activated.
 // Your extension is activated the very first time the command is executed.
 export async function activate(context: vscode.ExtensionContext) {
 	extensionContext = context
 	outputChannel = vscode.window.createOutputChannel("Kilo-Code")
-	context.subscriptions.push(outputChannel)
-	outputChannel.appendLine(`${Package.name} extension activated - ${JSON.stringify(Package)}`)
+	// Removed: context.subscriptions.push(outputChannel) - managing manually
+
+	if (outputChannel) outputChannel.appendLine(`[Activate] Called. commandsRegistered: ${commandsRegistered}`)
+	if (commandsRegistered) {
+		if (outputChannel) outputChannel.appendLine("[Activate] Commands already registered, skipping re-registration.")
+		return
+	}
+
+	// Clear existing subscriptions to prevent duplicate command registration on hot-reload
+	context.subscriptions.forEach((disposable) => disposable.dispose())
+	context.subscriptions.length = 0
+	if (outputChannel) outputChannel.appendLine("[Activate] Cleared context.subscriptions.")
+
+	if (outputChannel) outputChannel.appendLine(`${Package.name} extension activated - ${JSON.stringify(Package)}`)
 
 	// Migrate old settings to new
 	await migrateSettings(context, outputChannel)
@@ -127,11 +141,11 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	// kilocode_change start
 	if (!context.globalState.get("firstInstallCompleted")) {
-		outputChannel.appendLine("First installation detected, opening Kilo Code sidebar!")
+		outputChannel.appendLine("First installation detected, opening Softcodes sidebar!")
 		try {
 			await vscode.commands.executeCommand("kilo-code.SidebarProvider.focus")
 
-			outputChannel.appendLine("Opening Kilo Code walkthrough")
+			outputChannel.appendLine("Opening Softcodes walkthrough")
 			await vscode.commands.executeCommand(
 				"workbench.action.openWalkthrough",
 				"kilocode.kilo-code#kiloCodeWalkthrough",
@@ -198,11 +212,14 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	registerAutocomplete(context) // kilocode_change
 	registerGhostProvider(context) // kilocode_change
-	registerCommitMessageProvider(context, outputChannel) // kilocode_change
 	registerCodeActions(context)
 	registerTerminalActions(context)
 
-	// Allows other extensions to activate once Kilo Code is ready.
+	if (!commitMessageProvider) {
+		commitMessageProvider = registerCommitMessageProvider(context, outputChannel)
+	}
+
+	// Allows other extensions to activate once Softcodes is ready.
 	vscode.commands.executeCommand(`${Package.name}.activationCompleted`)
 
 	// Implements the `RooCodeAPI` interface.
@@ -243,8 +260,21 @@ export async function activate(context: vscode.ExtensionContext) {
 
 // This method is called when your extension is deactivated.
 export async function deactivate() {
-	outputChannel.appendLine(`${Package.name} extension deactivated`)
+	if (outputChannel) outputChannel.appendLine(`[Deactivate] Called. commandsRegistered: ${commandsRegistered}`)
 	await McpServerManager.cleanup(extensionContext)
 	TelemetryService.instance.shutdown()
 	TerminalRegistry.cleanup()
+	commandsRegistered = false
+	if (commitMessageProvider) {
+		commitMessageProvider.dispose()
+		commitMessageProvider = undefined
+	}
+	if (outputChannel) outputChannel.appendLine("[Deactivate] commandsRegistered set to false.")
+	if (outputChannel) outputChannel.appendLine(`${Package.name} extension deactivated`)
+
+	// Explicitly dispose of the output channel
+	if (outputChannel) {
+		outputChannel.dispose()
+		outputChannel = undefined as any // Set to undefined to prevent further use
+	}
 }

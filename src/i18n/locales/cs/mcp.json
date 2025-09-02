@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Neplatný formát nastavení MCP: {{errorMessages}}",
 		"create_json": "Nepodařilo se vytvořit nebo otevřít .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "Nepodařilo se aktualizovat servery MCP projektu",
-		"invalidJsonArgument": "Kilo Code se pokusil použít {{toolName}} s neplatným argumentem JSON. Zkouším znovu..."
+		"invalidJsonArgument": "Softcodes se pokusil použít {{toolName}} s neplatným argumentem JSON. Zkouším znovu..."
 	},
 	"info": {
 		"server_restarting": "Restartování serveru MCP {{serverName}}...",

@@ -38,6 +38,7 @@ export const commandIds = [
 	"marketplaceButtonClicked",
 	"popoutButtonClicked",
 	"accountButtonClicked",
+	"profileButtonClicked",
 	"settingsButtonClicked",
 
 	"openInNewTab",
@@ -54,7 +55,6 @@ export const commandIds = [
 
 	// "focusInput", // kilocode_change
 	"acceptInput",
-	"profileButtonClicked", // kilocode_change
 	"helpButtonClicked", // kilocode_change
 	"focusChatInput", // kilocode_change
 	"importSettings", // kilocode_change

@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Format de configuració MCP no vàlid: {{errorMessages}}",
 		"create_json": "Ha fallat la creació o obertura de .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "Ha fallat l'actualització dels servidors MCP del projecte",
-		"invalidJsonArgument": "Kilo Code ha intentat utilitzar {{toolName}} amb un argument JSON no vàlid. Tornant a intentar..."
+		"invalidJsonArgument": "Softcodes ha intentat utilitzar {{toolName}} amb un argument JSON no vàlid. Tornant a intentar..."
 	},
 	"info": {
 		"server_restarting": "Reiniciant el servidor MCP {{serverName}}...",

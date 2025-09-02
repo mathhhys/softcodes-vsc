@@ -31,7 +31,7 @@
 		"prompts": "프롬프트",
 		"experimental": "실험적",
 		"language": "언어",
-		"about": "Kilo Code 정보",
+		"about": "Softcodes 정보",
 		"display": "디스플레이"
 	},
 	"prompts": {
@@ -659,7 +659,7 @@
 		"support": "재무 관련 문의는 <supportLink>https://kilocode.ai/support</supportLink>로 고객 지원팀에 문의하세요",
 		"telemetry": {
 			"label": "오류 및 사용 보고 허용",
-			"description": "사용 데이터 및 오류 보고서를 보내 Kilo Code 개선에 도움을 주세요. 코드, 프롬프트 또는 개인 정보는 절대 전송되지 않습니다. 자세한 내용은 개인정보 보호정책을 참조하세요."
+			"description": "사용 데이터 및 오류 보고서를 보내 Softcodes 개선에 도움을 주세요. 코드, 프롬프트 또는 개인 정보는 절대 전송되지 않습니다. 자세한 내용은 개인정보 보호정책을 참조하세요."
 		},
 		"settings": {
 			"import": "가져오기",

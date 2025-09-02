@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "Open-Source-KI-Codierungsassistent zum Planen, Erstellen und Korrigieren von Code."
 	},
 	"number_format": {
@@ -103,7 +103,7 @@
 	"warnings": {
 		"no_terminal_content": "Kein Terminal-Inhalt ausgewählt",
 		"missing_task_files": "Die Dateien dieser Aufgabe fehlen. Möchtest du sie aus der Aufgabenliste entfernen?",
-		"auto_import_failed": "Fehler beim automatischen Import der Kilo Code-Einstellungen: {{error}}"
+		"auto_import_failed": "Fehler beim automatischen Import der Softcodes-Einstellungen: {{error}}"
 	},
 	"info": {
 		"no_changes": "Keine Änderungen gefunden.",
@@ -112,7 +112,7 @@
 		"custom_storage_path_set": "Benutzerdefinierter Speicherpfad festgelegt: {{path}}",
 		"default_storage_path": "Auf Standardspeicherpfad zurückgesetzt",
 		"settings_imported": "Einstellungen erfolgreich importiert.",
-		"auto_import_success": "Kilo Code-Einstellungen automatisch importiert aus {{filename}}",
+		"auto_import_success": "Softcodes-Einstellungen automatisch importiert aus {{filename}}",
 		"share_link_copied": "Share-Link in die Zwischenablage kopiert",
 		"image_copied_to_clipboard": "Bild-Daten-URI in die Zwischenablage kopiert",
 		"image_saved": "Bild gespeichert unter {{path}}",
@@ -144,7 +144,7 @@
 		"enter_valid_path": "Bitte gib einen gültigen Pfad ein"
 	},
 	"input": {
-		"task_prompt": "Was soll Kilo Code tun?",
+		"task_prompt": "Was soll Softcodes tun?",
 		"task_placeholder": "Gib deine Aufgabe hier ein"
 	},
 	"settings": {
@@ -176,8 +176,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Deine Organisation erfordert eine Kilo Code Cloud-Authentifizierung. Bitte melde dich an, um fortzufahren.",
-			"organization_mismatch": "Du musst mit dem Kilo Code Cloud-Konto deiner Organisation authentifiziert sein.",
+			"cloud_auth_required": "Deine Organisation erfordert eine Softcodes Cloud-Authentifizierung. Bitte melde dich an, um fortzufahren.",
+			"organization_mismatch": "Du musst mit dem Softcodes Cloud-Konto deiner Organisation authentifiziert sein.",
 			"verification_failed": "Die Organisationsauthentifizierung konnte nicht verifiziert werden."
 		}
 	},

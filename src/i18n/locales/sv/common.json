@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Kilo Code",
+		"name": "Softcodes",
 		"description": "Open Source AI-kodningsassistent för planering, byggande och fixande av kod."
 	},
 	"number_format": {
@@ -104,7 +104,7 @@
 	"warnings": {
 		"no_terminal_content": "Inget terminalinnehåll valt",
 		"missing_task_files": "Denna uppgifts filer saknas. Vill du ta bort den från uppgiftslistan?",
-		"auto_import_failed": "Misslyckades med att automatiskt importera Kilo Code-inställningar: {{error}}"
+		"auto_import_failed": "Misslyckades med att automatiskt importera Softcodes-inställningar: {{error}}"
 	},
 	"info": {
 		"no_changes": "Inga ändringar hittades.",
@@ -113,7 +113,7 @@
 		"custom_storage_path_set": "Anpassad lagringssökväg inställd: {{path}}",
 		"default_storage_path": "Återgick till att använda standardlagringssökväg",
 		"settings_imported": "Inställningar importerades framgångsrikt.",
-		"auto_import_success": "Kilo Code-inställningar importerades automatiskt från {{filename}}",
+		"auto_import_success": "Softcodes-inställningar importerades automatiskt från {{filename}}",
 		"share_link_copied": "Delningslänk kopierad till urklipp",
 		"organization_share_link_copied": "Organisationsdelningslänk kopierad till urklipp!",
 		"public_share_link_copied": "Offentlig delningslänk kopierad till urklipp!",
@@ -146,7 +146,7 @@
 		"enter_valid_path": "Ange en giltig sökväg"
 	},
 	"input": {
-		"task_prompt": "Vad ska Kilo Code göra?",
+		"task_prompt": "Vad ska Softcodes göra?",
 		"task_placeholder": "Bygg, hitta, fråga något"
 	},
 	"customModes": {
@@ -167,8 +167,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Din organisation kräver Kilo Code Cloud-autentisering. Logga in för att fortsätta.",
-			"organization_mismatch": "Du måste vara autentiserad med din organisations Kilo Code Cloud-konto.",
+			"cloud_auth_required": "Din organisation kräver Softcodes Cloud-autentisering. Logga in för att fortsätta.",
+			"organization_mismatch": "Du måste vara autentiserad med din organisations Softcodes Cloud-konto.",
 			"verification_failed": "Kunde inte verifiera organisationsautentisering."
 		}
 	},

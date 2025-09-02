@@ -7,7 +7,7 @@
   <a href="https://www.reddit.com/r/kilocode/"><img src="https://img.shields.io/reddit/subreddit-subscribers/kilocode?style=flat&logo=reddit&logoColor=white" alt="Reddit"></a>
 </p>
 
-# 🚀 Kilo Code
+# 🚀 Softcodes
 
 > Open-source VS Code AI agent. Merged features from [Roo Code](https://github.com/RooVetGit/Roo-Code) and [Cline](https://github.com/cline/cline).
 
@@ -34,9 +34,9 @@
 - **MCP Server Marketplace**: Easily find, and use MCP servers to extend the agent capabilities.
 - **Multi Mode**: Plan with Architect, Code with Coder, and Debug with Debugger, and make your own custom modes.
 
-## How to get started with Kilo Code
+## How to get started with Softcodes
 
-1.  Install the Kilo Code extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code).
+1.  Install the Softcodes extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code).
 2.  Log in with your Google Account to get $20 in free Claude 4 Sonnet & Opus credits.
 3.  Start using the extension. Here's a video to help you get started (just click on the image below and you'll be redirected to YouTube):
 
@@ -44,11 +44,11 @@
 
 ## Difference between Roo Code and Cline
 
-We're doing our best to combine the best of both worlds. Kilo Code combines all features of Cline, Roo, and adds a few of our own additions. It has the best features of both, and we're working on making it even better!
+We're doing our best to combine the best of both worlds. Softcodes combines all features of Cline, Roo, and adds a few of our own additions. It has the best features of both, and we're working on making it even better!
 
-No need to fiddle with API keys, Kilo Code ships with the latest AI models plugged in, including Claude 4 Sonnet and Opus and Gemini 2.5 Pro.
+No need to fiddle with API keys, Softcodes ships with the latest AI models plugged in, including Claude 4 Sonnet and Opus and Gemini 2.5 Pro.
 
-Kilo Code is a direct fork from Roo Code, but also includes the following features from Cline (and more):
+Softcodes is a direct fork from Roo Code, but also includes the following features from Cline (and more):
 
 - MCP Server Marketplace: Easily find, and use MCP servers to extend the agent capabilities.
 - System notifications: Get notified when the agent is done with a task.

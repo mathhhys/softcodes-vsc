@@ -1,7 +1,7 @@
 {
 	"welcome": {
-		"greeting": "Willkommen bei Kilo Code!",
-		"introText1": "Kilo Code ist ein kostenloser Open-Source-KI-Coding-Agent.",
+		"greeting": "Willkommen bei Softcodes!",
+		"introText1": "Softcodes ist ein kostenloser Open-Source-KI-Coding-Agent.",
 		"introText2": "Er funktioniert mit den neuesten KI-Modellen wie Claude 4 Sonnet, Gemini 2.5 Pro, GPT-4.1 und über 450 weiteren.",
 		"introText3": "Erstelle ein kostenloses Konto und erhalte $20 an Tokens zur Nutzung mit jedem KI-Modell.",
 		"ctaButton": "Kostenloses Konto erstellen",
@@ -11,7 +11,7 @@
 	},
 	"lowCreditWarning": {
 		"addCredit": "Guthaben hinzufügen",
-		"lowBalance": "Ihr Kilo Code Guthaben ist niedrig"
+		"lowBalance": "Ihr Softcodes Guthaben ist niedrig"
 	},
 	"notifications": {
 		"toolRequest": "Werkzeuganfrage wartet auf Genehmigung",
@@ -23,28 +23,28 @@
 			"mcp": "MCP-Server"
 		},
 		"provider": {
-			"account": "Kilo Code Konto",
-			"apiKey": "Kilo Code API-Schlüssel",
-			"login": "Bei Kilo Code anmelden",
-			"logout": "Von Kilo Code abmelden"
+			"account": "Softcodes Konto",
+			"apiKey": "Softcodes API-Schlüssel",
+			"login": "Bei Softcodes anmelden",
+			"logout": "Von Softcodes abmelden"
 		},
 		"contextManagement": {
 			"allowVeryLargeReads": {
 				"label": "Sehr große Dateilesevorgänge erlauben",
-				"description": "Wenn aktiviert, führt Kilo Code sehr große Datei- oder MCP-Ausgabelesevorgänge durch, auch wenn eine hohe Wahrscheinlichkeit besteht, das Kontextfenster zu überschreiten (Inhaltsgröße >80% des Kontextfensters)."
+				"description": "Wenn aktiviert, führt Softcodes sehr große Datei- oder MCP-Ausgabelesevorgänge durch, auch wenn eine hohe Wahrscheinlichkeit besteht, das Kontextfenster zu überschreiten (Inhaltsgröße >80% des Kontextfensters)."
 			}
 		},
 		"systemNotifications": {
 			"label": "Systembenachrichtigungen aktivieren",
-			"description": "Wenn aktiviert, sendet Kilo Code Systembenachrichtigungen für wichtige Ereignisse wie Aufgabenabschluss oder Fehler.",
+			"description": "Wenn aktiviert, sendet Softcodes Systembenachrichtigungen für wichtige Ereignisse wie Aufgabenabschluss oder Fehler.",
 			"testButton": "Benachrichtigung testen",
-			"testTitle": "Kilo Code",
-			"testMessage": "Dies ist eine Testbenachrichtigung von Kilo Code."
+			"testTitle": "Softcodes",
+			"testMessage": "Dies ist eine Testbenachrichtigung von Softcodes."
 		}
 	},
 	"chat": {
 		"condense": {
-			"wantsToCondense": "Kilo Code möchte deine Unterhaltung zusammenfassen",
+			"wantsToCondense": "Softcodes möchte deine Unterhaltung zusammenfassen",
 			"condenseConversation": "Unterhaltung zusammenfassen"
 		}
 	},
@@ -60,15 +60,15 @@
 	},
 	"docs": "Dokumentation",
 	"rules": {
-		"tooltip": "Kilo Code Regeln & Workflows verwalten",
-		"ariaLabel": "Kilo Code Regeln",
+		"tooltip": "Softcodes Regeln & Workflows verwalten",
+		"ariaLabel": "Softcodes Regeln",
 		"tabs": {
 			"rules": "Regeln",
 			"workflows": "Workflows"
 		},
 		"description": {
-			"rules": "Regeln ermöglichen es dir, Kilo Code Anweisungen zu geben, die es in allen Modi und für alle Prompts befolgen soll. Sie sind eine dauerhafte Möglichkeit, Kontext und Präferenzen für alle Unterhaltungen in deinem Arbeitsbereich oder global einzubeziehen.",
-			"workflows": "Workflows sind eine vorbereitete Vorlage für eine Unterhaltung. Workflows ermöglichen es dir, Prompts zu definieren, die du häufig verwendest, und können eine Reihe von Schritten enthalten, um Kilo Code durch sich wiederholende Aufgaben zu führen, wie das Bereitstellen eines Dienstes oder das Einreichen einer PR. Um einen Workflow aufzurufen, tippe",
+			"rules": "Regeln ermöglichen es dir, Softcodes Anweisungen zu geben, die es in allen Modi und für alle Prompts befolgen soll. Sie sind eine dauerhafte Möglichkeit, Kontext und Präferenzen für alle Unterhaltungen in deinem Arbeitsbereich oder global einzubeziehen.",
+			"workflows": "Workflows sind eine vorbereitete Vorlage für eine Unterhaltung. Workflows ermöglichen es dir, Prompts zu definieren, die du häufig verwendest, und können eine Reihe von Schritten enthalten, um Softcodes durch sich wiederholende Aufgaben zu führen, wie das Bereitstellen eines Dienstes oder das Einreichen einer PR. Um einen Workflow aufzurufen, tippe",
 			"workflowsInChat": "im Chat."
 		},
 		"sections": {

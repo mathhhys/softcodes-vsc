@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "รูปแบบการตั้งค่า MCP ไม่ถูกต้อง: {{errorMessages}}",
 		"create_json": "ล้มเหลวในการสร้างหรือเปิด .kilocode/mcp.json: {{error}}",
 		"failed_update_project": "ล้มเหลวในการอัปเดตเซิร์ฟเวอร์ MCP ของโปรเจ็กต์",
-		"invalidJsonArgument": "Kilo Code พยายามใช้ {{toolName}} ด้วยอาร์กิวเมนต์ JSON ที่ไม่ถูกต้อง กำลังลองใหม่..."
+		"invalidJsonArgument": "Softcodes พยายามใช้ {{toolName}} ด้วยอาร์กิวเมนต์ JSON ที่ไม่ถูกต้อง กำลังลองใหม่..."
 	},
 	"info": {
 		"server_restarting": "กำลังรีสตาร์ทเซิร์ฟเวอร์ MCP {{serverName}}...",

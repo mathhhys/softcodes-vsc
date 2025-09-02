@@ -1,5 +1,5 @@
 {
-	"greeting": "Co Kilo Code może dla Ciebie zrobić?",
+	"greeting": "Co Softcodes może dla Ciebie zrobić?",
 	"task": {
 		"title": "Zadanie",
 		"seeMore": "Zobacz więcej",
@@ -18,7 +18,7 @@
 		"sharePublicly": "Udostępnij publicznie",
 		"sharePubliclyDescription": "Każdy z linkiem może uzyskać dostęp",
 		"connectToCloud": "Połącz z chmurą",
-		"connectToCloudDescription": "Zaloguj się do Kilo Code Cloud, aby udostępniać zadania",
+		"connectToCloudDescription": "Zaloguj się do Softcodes Cloud, aby udostępniać zadania",
 		"sharingDisabledByOrganization": "Udostępnianie wyłączone przez organizację",
 		"shareSuccessOrganization": "Link organizacji skopiowany do schowka",
 		"shareSuccessPublic": "Link publiczny skopiowany do schowka"
@@ -87,7 +87,7 @@
 	},
 	"scrollToBottom": "Przewiń do dołu czatu",
 	"about": "Generuj, refaktoryzuj i debuguj kod z pomocą sztucznej inteligencji. Sprawdź naszą <DocsLink>dokumentację</DocsLink>, aby dowiedzieć się więcej.",
-	"onboarding": "<strong>Twoja lista zadań w tym obszarze roboczym jest pusta.</strong> Zacznij od wpisania zadania poniżej. Nie wiesz, jak zacząć? Przeczytaj więcej o tym, co Kilo Code może dla Ciebie zrobić w <DocsLink>dokumentacji</DocsLink>.",
+	"onboarding": "<strong>Twoja lista zadań w tym obszarze roboczym jest pusta.</strong> Zacznij od wpisania zadania poniżej. Nie wiesz, jak zacząć? Przeczytaj więcej o tym, co Softcodes może dla Ciebie zrobić w <DocsLink>dokumentacji</DocsLink>.",
 	"rooTips": {
 		"boomerangTasks": {
 			"title": "Orkiestracja Zadań",
@@ -123,7 +123,7 @@
 		"title": "Tryby",
 		"marketplace": "Marketplace Trybów",
 		"settings": "Ustawienia Trybów",
-		"description": "Wyspecjalizowane persony, które dostosowują zachowanie Kilo Code."
+		"description": "Wyspecjalizowane persony, które dostosowują zachowanie Softcodes."
 	},
 	"errorReadingFile": "Błąd odczytu pliku:",
 	"noValidImages": "Nie przetworzono żadnych prawidłowych obrazów",
@@ -134,7 +134,7 @@
 	"diffError": {
 		"title": "Edycja nieudana"
 	},
-	"troubleMessage": "Kilo Code ma problemy...",
+	"troubleMessage": "Softcodes ma problemy...",
 	"apiRequest": {
 		"title": "Zapytanie API",
 		"failed": "Zapytanie API nie powiodło się",
@@ -160,59 +160,59 @@
 		"current": "Bieżący"
 	},
 	"instructions": {
-		"wantsToFetch": "Kilo Code chce pobrać szczegółowe instrukcje, aby pomóc w bieżącym zadaniu"
+		"wantsToFetch": "Softcodes chce pobrać szczegółowe instrukcje, aby pomóc w bieżącym zadaniu"
 	},
 	"fileOperations": {
-		"wantsToRead": "Kilo Code chce przeczytać ten plik:",
-		"wantsToReadOutsideWorkspace": "Kilo Code chce przeczytać ten plik poza obszarem roboczym:",
-		"didRead": "Kilo Code przeczytał ten plik:",
-		"wantsToEdit": "Kilo Code chce edytować ten plik:",
-		"wantsToEditOutsideWorkspace": "Kilo Code chce edytować ten plik poza obszarem roboczym:",
-		"wantsToEditProtected": "Kilo Code chce edytować chroniony plik konfiguracyjny:",
-		"wantsToCreate": "Kilo Code chce utworzyć nowy plik:",
-		"wantsToSearchReplace": "Kilo Code chce wykonać wyszukiwanie i zamianę w tym pliku:",
-		"didSearchReplace": "Kilo Code wykonał wyszukiwanie i zamianę w tym pliku:",
-		"wantsToInsert": "Kilo Code chce wstawić zawartość do tego pliku:",
-		"wantsToInsertWithLineNumber": "Kilo Code chce wstawić zawartość do tego pliku w linii {{lineNumber}}:",
-		"wantsToInsertAtEnd": "Kilo Code chce dodać zawartość na końcu tego pliku:",
-		"wantsToReadAndXMore": "Kilo Code chce przeczytać ten plik i {{count}} więcej:",
-		"wantsToReadMultiple": "Kilo Code chce odczytać wiele plików:",
-		"wantsToApplyBatchChanges": "Kilo Code chce zastosować zmiany do wielu plików:"
+		"wantsToRead": "Softcodes chce przeczytać ten plik:",
+		"wantsToReadOutsideWorkspace": "Softcodes chce przeczytać ten plik poza obszarem roboczym:",
+		"didRead": "Softcodes przeczytał ten plik:",
+		"wantsToEdit": "Softcodes chce edytować ten plik:",
+		"wantsToEditOutsideWorkspace": "Softcodes chce edytować ten plik poza obszarem roboczym:",
+		"wantsToEditProtected": "Softcodes chce edytować chroniony plik konfiguracyjny:",
+		"wantsToCreate": "Softcodes chce utworzyć nowy plik:",
+		"wantsToSearchReplace": "Softcodes chce wykonać wyszukiwanie i zamianę w tym pliku:",
+		"didSearchReplace": "Softcodes wykonał wyszukiwanie i zamianę w tym pliku:",
+		"wantsToInsert": "Softcodes chce wstawić zawartość do tego pliku:",
+		"wantsToInsertWithLineNumber": "Softcodes chce wstawić zawartość do tego pliku w linii {{lineNumber}}:",
+		"wantsToInsertAtEnd": "Softcodes chce dodać zawartość na końcu tego pliku:",
+		"wantsToReadAndXMore": "Softcodes chce przeczytać ten plik i {{count}} więcej:",
+		"wantsToReadMultiple": "Softcodes chce odczytać wiele plików:",
+		"wantsToApplyBatchChanges": "Softcodes chce zastosować zmiany do wielu plików:"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Kilo Code chce zobaczyć pliki najwyższego poziomu w tym katalogu:",
-		"didViewTopLevel": "Kilo Code zobaczył pliki najwyższego poziomu w tym katalogu:",
-		"wantsToViewRecursive": "Kilo Code chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu:",
-		"didViewRecursive": "Kilo Code rekurencyjnie zobaczył wszystkie pliki w tym katalogu:",
-		"wantsToViewDefinitions": "Kilo Code chce zobaczyć nazwy definicji kodu źródłowego używane w tym katalogu:",
-		"didViewDefinitions": "Kilo Code zobaczył nazwy definicji kodu źródłowego używane w tym katalogu:",
-		"wantsToSearch": "Kilo Code chce przeszukać ten katalog w poszukiwaniu <code>{{regex}}</code>:",
-		"didSearch": "Kilo Code przeszukał ten katalog w poszukiwaniu <code>{{regex}}</code>:",
-		"wantsToSearchOutsideWorkspace": "Kilo Code chce przeszukać ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>:",
-		"didSearchOutsideWorkspace": "Kilo Code przeszukał ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>:",
-		"wantsToViewTopLevelOutsideWorkspace": "Kilo Code chce zobaczyć pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym):",
-		"didViewTopLevelOutsideWorkspace": "Kilo Code zobaczył pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym):",
-		"wantsToViewRecursiveOutsideWorkspace": "Kilo Code chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu (poza obszarem roboczym):",
-		"didViewRecursiveOutsideWorkspace": "Kilo Code rekurencyjnie zobaczył wszystkie pliki w tym katalogu (poza obszarem roboczym):",
-		"wantsToViewDefinitionsOutsideWorkspace": "Kilo Code chce zobaczyć nazwy definicji kodu źródłowego używane w tym katalogu (poza obszarem roboczym):",
-		"didViewDefinitionsOutsideWorkspace": "Kilo Code zobaczył nazwy definicji kodu źródłowego używane w tym katalogu (poza obszarem roboczym):"
+		"wantsToViewTopLevel": "Softcodes chce zobaczyć pliki najwyższego poziomu w tym katalogu:",
+		"didViewTopLevel": "Softcodes zobaczył pliki najwyższego poziomu w tym katalogu:",
+		"wantsToViewRecursive": "Softcodes chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu:",
+		"didViewRecursive": "Softcodes rekurencyjnie zobaczył wszystkie pliki w tym katalogu:",
+		"wantsToViewDefinitions": "Softcodes chce zobaczyć nazwy definicji kodu źródłowego używane w tym katalogu:",
+		"didViewDefinitions": "Softcodes zobaczył nazwy definicji kodu źródłowego używane w tym katalogu:",
+		"wantsToSearch": "Softcodes chce przeszukać ten katalog w poszukiwaniu <code>{{regex}}</code>:",
+		"didSearch": "Softcodes przeszukał ten katalog w poszukiwaniu <code>{{regex}}</code>:",
+		"wantsToSearchOutsideWorkspace": "Softcodes chce przeszukać ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>:",
+		"didSearchOutsideWorkspace": "Softcodes przeszukał ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>:",
+		"wantsToViewTopLevelOutsideWorkspace": "Softcodes chce zobaczyć pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym):",
+		"didViewTopLevelOutsideWorkspace": "Softcodes zobaczył pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym):",
+		"wantsToViewRecursiveOutsideWorkspace": "Softcodes chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu (poza obszarem roboczym):",
+		"didViewRecursiveOutsideWorkspace": "Softcodes rekurencyjnie zobaczył wszystkie pliki w tym katalogu (poza obszarem roboczym):",
+		"wantsToViewDefinitionsOutsideWorkspace": "Softcodes chce zobaczyć nazwy definicji kodu źródłowego używane w tym katalogu (poza obszarem roboczym):",
+		"didViewDefinitionsOutsideWorkspace": "Softcodes zobaczył nazwy definicji kodu źródłowego używane w tym katalogu (poza obszarem roboczym):"
 	},
 	"commandOutput": "Wyjście polecenia",
 	"response": "Odpowiedź",
 	"arguments": "Argumenty",
 	"mcp": {
-		"wantsToUseTool": "Kilo Code chce użyć narzędzia na serwerze MCP {{serverName}}:",
-		"wantsToAccessResource": "Kilo Code chce uzyskać dostęp do zasobu na serwerze MCP {{serverName}}:"
+		"wantsToUseTool": "Softcodes chce użyć narzędzia na serwerze MCP {{serverName}}:",
+		"wantsToAccessResource": "Softcodes chce uzyskać dostęp do zasobu na serwerze MCP {{serverName}}:"
 	},
 	"modes": {
-		"wantsToSwitch": "Kilo Code chce przełączyć się na tryb <code>{{mode}}</code>",
-		"wantsToSwitchWithReason": "Kilo Code chce przełączyć się na tryb <code>{{mode}}</code> ponieważ: {{reason}}",
-		"didSwitch": "Kilo Code przełączył się na tryb <code>{{mode}}</code>",
-		"didSwitchWithReason": "Kilo Code przełączył się na tryb <code>{{mode}}</code> ponieważ: {{reason}}"
+		"wantsToSwitch": "Softcodes chce przełączyć się na tryb <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Softcodes chce przełączyć się na tryb <code>{{mode}}</code> ponieważ: {{reason}}",
+		"didSwitch": "Softcodes przełączył się na tryb <code>{{mode}}</code>",
+		"didSwitchWithReason": "Softcodes przełączył się na tryb <code>{{mode}}</code> ponieważ: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Kilo Code chce utworzyć nowe podzadanie w trybie <code>{{mode}}</code>:",
-		"wantsToFinish": "Kilo Code chce zakończyć to podzadanie",
+		"wantsToCreate": "Softcodes chce utworzyć nowe podzadanie w trybie <code>{{mode}}</code>:",
+		"wantsToFinish": "Softcodes chce zakończyć to podzadanie",
 		"newTaskContent": "Instrukcje podzadania",
 		"completionContent": "Podzadanie zakończone",
 		"resultContent": "Wyniki podzadania",
@@ -220,7 +220,7 @@
 		"completionInstructions": "Podzadanie zakończone! Możesz przejrzeć wyniki i zasugerować poprawki lub następne kroki. Jeśli wszystko wygląda dobrze, potwierdź, aby zwrócić wynik do zadania nadrzędnego."
 	},
 	"questions": {
-		"hasQuestion": "Kilo Code ma pytanie:"
+		"hasQuestion": "Softcodes ma pytanie:"
 	},
 	"taskCompleted": "Zadanie zakończone",
 	"powershell": {
@@ -229,7 +229,7 @@
 	"autoApprove": {
 		"title": "Automatyczne zatwierdzanie:",
 		"none": "Brak",
-		"description": "Automatyczne zatwierdzanie pozwala Kilo Code wykonywać działania bez pytania o pozwolenie. Włącz tylko dla działań, którym w pełni ufasz. Bardziej szczegółowa konfiguracja dostępna w <settingsLink>Ustawieniach</settingsLink>."
+		"description": "Automatyczne zatwierdzanie pozwala Softcodes wykonywać działania bez pytania o pozwolenie. Włącz tylko dla działań, którym w pełni ufasz. Bardziej szczegółowa konfiguracja dostępna w <settingsLink>Ustawieniach</settingsLink>."
 	},
 	"reasoning": {
 		"thinking": "Myślenie",
@@ -257,7 +257,7 @@
 		"detailsDiscussLinks": "Uzyskaj więcej szczegółów i dołącz do dyskusji na <discordLink>Discord</discordLink> i <redditLink>Reddit</redditLink> 🚀"
 	},
 	"browser": {
-		"rooWantsToUse": "Kilo Code chce użyć przeglądarki:",
+		"rooWantsToUse": "Softcodes chce użyć przeglądarki:",
 		"consoleLogs": "Logi konsoli",
 		"noNewLogs": "(Brak nowych logów)",
 		"screenshot": "Zrzut ekranu przeglądarki",
@@ -291,19 +291,19 @@
 	"profileViolationWarning": "Bieżący profil narusza ustawienia Twojej organizacji",
 	"shellIntegration": {
 		"title": "Ostrzeżenie wykonania polecenia",
-		"description": "Twoje polecenie jest wykonywane bez integracji powłoki terminala VSCode. Aby ukryć to ostrzeżenie, możesz wyłączyć integrację powłoki w sekcji <strong>Terminal</strong> w <settingsLink>ustawieniach Kilo Code</settingsLink> lub rozwiązać problemy z integracją terminala VSCode korzystając z poniższego linku.",
+		"description": "Twoje polecenie jest wykonywane bez integracji powłoki terminala VSCode. Aby ukryć to ostrzeżenie, możesz wyłączyć integrację powłoki w sekcji <strong>Terminal</strong> w <settingsLink>ustawieniach Softcodes</settingsLink> lub rozwiązać problemy z integracją terminala VSCode korzystając z poniższego linku.",
 		"troubleshooting": "Kliknij tutaj, aby zobaczyć dokumentację integracji powłoki."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Osiągnięto limit automatycznie zatwierdzonych żądań",
-			"description": "Kilo Code osiągnął automatycznie zatwierdzony limit {{count}} żądania/żądań API. Czy chcesz zresetować licznik i kontynuować zadanie?",
+			"description": "Softcodes osiągnął automatycznie zatwierdzony limit {{count}} żądania/żądań API. Czy chcesz zresetować licznik i kontynuować zadanie?",
 			"button": "Zresetuj i kontynuuj"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Kilo Code chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code>:",
-		"wantsToSearchWithPath": "Kilo Code chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code> w <code>{{path}}</code>:",
+		"wantsToSearch": "Softcodes chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code>:",
+		"wantsToSearchWithPath": "Softcodes chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code> w <code>{{path}}</code>:",
 		"didSearch": "Znaleziono {{count}} wynik(ów) dla <code>{{query}}</code>:",
 		"resultTooltip": "Wynik podobieństwa: {{score}} (kliknij, aby otworzyć plik)"
 	},
