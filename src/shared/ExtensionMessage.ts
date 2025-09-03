@@ -118,6 +118,7 @@ export interface ExtensionMessage {
 		| "shareTaskSuccess"
 		| "codeIndexSettingsSaved"
 		| "codeIndexSecretStatus"
+		| "authStateChanged"
 	text?: string
 	payload?: ProfileDataResponsePayload | BalanceDataResponsePayload // kilocode_change: Add payload for profile and balance data
 	action?:
@@ -174,6 +175,14 @@ export interface ExtensionMessage {
 	items?: MarketplaceItem[]
 	userInfo?: CloudUserInfo
 	organizationAllowList?: OrganizationAllowList
+	isAuthenticated?: boolean
+	softcodesUserInfo?: {
+		email: string
+		firstName?: string
+		lastName?: string
+		organizationName?: string
+		organizationId?: string
+	}
 	tab?: string
 	// kilocode_change: Rules data
 	globalRules?: ClineRulesToggles
