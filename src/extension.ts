@@ -14,6 +14,7 @@ try {
 
 import { CloudService } from "@roo-code/cloud"
 import { TelemetryService, PostHogTelemetryClient } from "@roo-code/telemetry"
+import { UnifiedAuthService } from "./auth/unifiedAuthService"
 
 import "./utils/path" // Necessary to have access to String.prototype.toPosix.
 import { createOutputChannelLogger, createDualLogger } from "./utils/outputChannelLogger"
@@ -56,6 +57,7 @@ let outputChannel: vscode.OutputChannel
 let extensionContext: vscode.ExtensionContext
 let commandsRegistered = false // New flag to track command registration
 let commitMessageProvider: vscode.Disposable | undefined
+let authService: UnifiedAuthService | undefined
 
 // This method is called when your extension is activated.
 // Your extension is activated the very first time the command is executed.
@@ -201,7 +203,57 @@ export async function activate(context: vscode.ExtensionContext) {
 		vscode.workspace.registerTextDocumentContentProvider(DIFF_VIEW_URI_SCHEME, diffContentProvider),
 	)
 
-	context.subscriptions.push(vscode.window.registerUriHandler({ handleUri }))
+	// Initialize unified authentication service
+	authService = UnifiedAuthService.getInstance(context);
+
+	// Register URI handler for OAuth callbacks
+	const uriHandler = vscode.window.registerUriHandler({
+		handleUri(uri: vscode.Uri) {
+			if (uri.path === '/auth/callback') {
+				authService!.handleCallback(uri);
+			} else {
+				// Handle other URIs with original handler
+				handleUri(uri);
+			}
+		}
+	});
+	context.subscriptions.push(uriHandler);
+
+	// Register authentication commands
+	context.subscriptions.push(
+		vscode.commands.registerCommand('softcodes.authenticate', () => {
+			authService!.authenticate();
+		})
+	);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand('softcodes.signOut', () => {
+			authService!.signOut();
+		})
+	);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand('softcodes.onAuthenticated', () => {
+			// Refresh UI, enable features, etc.
+			vscode.window.showInformationMessage('Softcodes features are now available!');
+			// Notify provider about authentication status change
+			provider.postStateToWebview();
+		})
+	);
+
+	// Check authentication status on activation
+	authService.isAuthenticated().then((isAuth: boolean) => {
+		if (!isAuth) {
+			vscode.window.showInformationMessage(
+				'Sign in to Softcodes to enable AI features',
+				'Sign In'
+			).then(selection => {
+				if (selection === 'Sign In') {
+					vscode.commands.executeCommand('softcodes.authenticate');
+				}
+			});
+		}
+	});
 
 	// Register code actions provider.
 	context.subscriptions.push(
