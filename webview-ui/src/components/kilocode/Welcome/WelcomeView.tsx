@@ -48,7 +48,7 @@ const WelcomeView = () => {
 							hideKiloCodeButton
 						/>
 						{isSettingUpKiloCode ? (
-							<ButtonLink href={getKiloCodeBackendSignInUrl(uriScheme, uiKind)}>
+							<ButtonLink href={getKiloCodeBackendSignInUrl()}>
 								{t("kilocode:settings.provider.login")}
 							</ButtonLink>
 						) : (

@@ -204,56 +204,62 @@ export async function activate(context: vscode.ExtensionContext) {
 	)
 
 	// Initialize unified authentication service
-	authService = UnifiedAuthService.getInstance(context);
+	authService = UnifiedAuthService.getInstance(context)
 
 	// Register URI handler for OAuth callbacks
 	const uriHandler = vscode.window.registerUriHandler({
 		handleUri(uri: vscode.Uri) {
-			if (uri.path === '/auth/callback') {
-				authService!.handleCallback(uri);
+			if (uri.path === "/auth/callback") {
+				authService!.handleCallback(uri)
 			} else {
 				// Handle other URIs with original handler
-				handleUri(uri);
+				handleUri(uri)
 			}
-		}
-	});
-	context.subscriptions.push(uriHandler);
+		},
+	})
+	context.subscriptions.push(uriHandler)
 
 	// Register authentication commands
 	context.subscriptions.push(
-		vscode.commands.registerCommand('softcodes.authenticate', () => {
-			authService!.authenticate();
-		})
-	);
+		vscode.commands.registerCommand("softcodes.authenticate", () => {
+			authService!.authenticate()
+		}),
+	)
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('softcodes.signOut', () => {
-			authService!.signOut();
-		})
-	);
+		vscode.commands.registerCommand("softcodes.signOut", () => {
+			authService!.signOut()
+		}),
+	)
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('softcodes.onAuthenticated', () => {
+		vscode.commands.registerCommand("softcodes.onAuthenticated", () => {
 			// Refresh UI, enable features, etc.
-			vscode.window.showInformationMessage('Softcodes features are now available!');
+			vscode.window.showInformationMessage("Softcodes features are now available!")
 			// Notify provider about authentication status change
-			provider.postStateToWebview();
-		})
-	);
+			provider.postStateToWebview()
+		}),
+	)
+
+	// Register sign in with token command
+	context.subscriptions.push(
+		vscode.commands.registerCommand("softcodes.signinWithToken", () => {
+			authService!.signinWithToken()
+		}),
+	)
 
 	// Check authentication status on activation
 	authService.isAuthenticated().then((isAuth: boolean) => {
 		if (!isAuth) {
-			vscode.window.showInformationMessage(
-				'Sign in to Softcodes to enable AI features',
-				'Sign In'
-			).then(selection => {
-				if (selection === 'Sign In') {
-					vscode.commands.executeCommand('softcodes.authenticate');
-				}
-			});
+			vscode.window
+				.showInformationMessage("Sign in to Softcodes to enable AI features", "Sign In")
+				.then((selection) => {
+					if (selection === "Sign In") {
+						vscode.commands.executeCommand("softcodes.authenticate")
+					}
+				})
 		}
-	});
+	})
 
 	// Register code actions provider.
 	context.subscriptions.push(

@@ -2536,35 +2536,35 @@ export const webviewMessageHandler = async (
 		case "insertTextToChatArea":
 			provider.postMessageToWebview({ type: "insertTextToChatArea", text: message.text })
 			break
-		
+
 		// Unified Softcodes Authentication Handlers
 		case "checkSoftcodesAuth": {
 			try {
 				const authService = UnifiedAuthService.getInstance(provider.context)
 				const isAuthenticated = await authService.isAuthenticated()
-				
+
 				if (isAuthenticated) {
 					// Get user info from unified service
 					const softcodesUserInfo = await authService.getUserInfo()
-					
+
 					provider.postMessageToWebview({
 						type: "authStateChanged",
 						isAuthenticated: true,
-						softcodesUserInfo
+						softcodesUserInfo,
 					})
 				} else {
 					provider.postMessageToWebview({
 						type: "authStateChanged",
 						isAuthenticated: false,
-						softcodesUserInfo: undefined
+						softcodesUserInfo: undefined,
 					})
 				}
 			} catch (error) {
-				console.error('Error checking Softcodes auth status:', error)
+				console.error("Error checking Softcodes auth status:", error)
 				provider.postMessageToWebview({
 					type: "authStateChanged",
 					isAuthenticated: false,
-					softcodesUserInfo: undefined
+					softcodesUserInfo: undefined,
 				})
 			}
 			break
@@ -2574,18 +2574,20 @@ export const webviewMessageHandler = async (
 			try {
 				const authService = UnifiedAuthService.getInstance(provider.context)
 				await authService.authenticate()
-				
+
 				// The authentication result will be handled by the callback
 				// and will trigger the onAuthenticated command
 			} catch (error) {
-				console.error('Error during Softcodes sign in:', error)
-				vscode.window.showErrorMessage(`Sign in failed: ${error instanceof Error ? error.message : String(error)}`)
-				
+				console.error("Error during Softcodes sign in:", error)
+				vscode.window.showErrorMessage(
+					`Sign in failed: ${error instanceof Error ? error.message : String(error)}`,
+				)
+
 				// Notify webview of sign in failure
 				provider.postMessageToWebview({
 					type: "authStateChanged",
 					isAuthenticated: false,
-					softcodesUserInfo: undefined
+					softcodesUserInfo: undefined,
 				})
 			}
 			break
@@ -2595,19 +2597,72 @@ export const webviewMessageHandler = async (
 			try {
 				const authService = UnifiedAuthService.getInstance(provider.context)
 				await authService.signOut()
-				
+
 				// Notify webview immediately
 				provider.postMessageToWebview({
 					type: "authStateChanged",
 					isAuthenticated: false,
-					softcodesUserInfo: undefined
+					softcodesUserInfo: undefined,
 				})
-				
+
 				// Update provider state
 				await provider.postStateToWebview()
 			} catch (error) {
-				console.error('Error during Softcodes sign out:', error)
-				vscode.window.showErrorMessage(`Sign out failed: ${error instanceof Error ? error.message : String(error)}`)
+				console.error("Error during Softcodes sign out:", error)
+				vscode.window.showErrorMessage(
+					`Sign out failed: ${error instanceof Error ? error.message : String(error)}`,
+				)
+			}
+			break
+		}
+
+		case "softcodesSignInWithToken": {
+			try {
+				const authService = UnifiedAuthService.getInstance(provider.context)
+				await authService.signinWithToken()
+
+				// Check authentication status after sign in attempt
+				const isAuthenticated = await authService.isAuthenticated()
+				if (isAuthenticated) {
+					const softcodesUserInfo = await authService.getUserInfo()
+
+					provider.postMessageToWebview({
+						type: "authStateChanged",
+						isAuthenticated: true,
+						softcodesUserInfo,
+					})
+
+					// Update provider state
+					await provider.postStateToWebview()
+				}
+			} catch (error) {
+				console.error("Error during Softcodes sign in with token:", error)
+				vscode.window.showErrorMessage(
+					`Sign in with token failed: ${error instanceof Error ? error.message : String(error)}`,
+				)
+
+				// Notify webview of sign in failure
+				provider.postMessageToWebview({
+					type: "authStateChanged",
+					isAuthenticated: false,
+					softcodesUserInfo: undefined,
+				})
+			}
+			break
+		}
+
+		case "executeVSCodeCommand": {
+			if (message.command) {
+				try {
+					provider.log(`Executing VS Code command: ${message.command}`)
+					await vscode.commands.executeCommand(message.command)
+				} catch (error) {
+					const errorMessage = error instanceof Error ? error.message : String(error)
+					provider.log(`Failed to execute VS Code command ${message.command}: ${errorMessage}`)
+					vscode.window.showErrorMessage(`Failed to execute command: ${errorMessage}`)
+				}
+			} else {
+				provider.log("Received 'executeVSCodeCommand' message without a command specified.")
 			}
 			break
 		}

@@ -60,6 +60,7 @@ export const commandIds = [
 	"importSettings", // kilocode_change
 	"exportSettings", // kilocode_change
 	"focusPanel",
+	"signin", // Manual token authentication
 ] as const
 
 export type CommandId = (typeof commandIds)[number]

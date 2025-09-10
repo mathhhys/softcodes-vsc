@@ -21,12 +21,6 @@ type AuthCredentials = z.infer<typeof authCredentialsSchema>
 
 const AUTH_STATE_KEY = "clerk-auth-state"
 
-const clerkSignInResponseSchema = z.object({
-	response: z.object({
-		created_session_id: z.string(),
-	}),
-})
-
 const clerkCreateSessionTokenResponseSchema = z.object({
 	jwt: z.string(),
 })

@@ -251,6 +251,12 @@ const getCommandsMap = ({ context, outputChannel }: RegisterCommandOptions): Rec
 			contextProxy: visibleProvider.contextProxy,
 		})
 	},
+	signin: async () => {
+		// Import the auth service and call signinWithToken
+		const { UnifiedAuthService } = await import("../auth/unifiedAuthService")
+		const authService = UnifiedAuthService.getInstance(context)
+		await authService.signinWithToken()
+	},
 	// kilocode_change end
 })
 

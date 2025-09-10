@@ -236,8 +236,11 @@ export interface WebviewMessage {
 		| "checkSoftcodesAuth"
 		| "softcodesSignIn"
 		| "softcodesSignOut"
+		| "softcodesSignInWithToken"
 		| "authStateChanged"
+		| "executeVSCodeCommand" // kilocode_change: Added for executing VS Code commands
 	text?: string
+	command?: string // kilocode_change: Added for executeVSCodeCommand type
 	editedMessageContent?: string
 	tab?: "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account"
 	disabled?: boolean

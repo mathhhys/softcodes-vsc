@@ -5,6 +5,7 @@ import Logo from "./Logo"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { getKiloCodeBackendSignInUrl, getKiloCodeBackendSignUpUrl } from "../helpers"
 import { useExtensionState } from "@/context/ExtensionStateContext"
+import { vscode } from "@/utils/vscode"
 
 interface KiloCodeAuthProps {
 	onManualConfigClick?: () => void
@@ -27,7 +28,7 @@ const KiloCodeAuth: React.FC<KiloCodeAuthProps> = ({ onManualConfigClick, classN
 
 			<div className="w-full flex flex-col gap-5">
 				<ButtonLink
-					href={getKiloCodeBackendSignUpUrl(uriScheme, uiKind)}
+					href="https://softcodes.ai"
 					onClick={() => {
 						if (uiKind === "Web" && onManualConfigClick) {
 							onManualConfigClick()
@@ -44,12 +45,14 @@ const KiloCodeAuth: React.FC<KiloCodeAuthProps> = ({ onManualConfigClick, classN
 
 				<div className="text-center text-vscode-descriptionForeground">
 					{t("kilocode:welcome.alreadySignedUp")}{" "}
-					<a
-						href={getKiloCodeBackendSignInUrl(uriScheme, uiKind)}
-						className="underline"
+					<button
+						onClick={() =>
+							vscode.postMessage({ type: "executeVSCodeCommand", command: "softcodes.signin" })
+						}
+						className="underline cursor-pointer bg-transparent border-none p-0"
 						style={{ color: "inherit" }}>
 						{t("kilocode:welcome.loginText")}
-					</a>
+					</button>
 				</div>
 			</div>
 		</div>
