@@ -98,7 +98,7 @@ export interface ApiOptionsProps {
 
 const ApiOptions = ({
 	uriScheme,
-	uiKind, // kilocode_change
+	uiKind: _uiKind, // kilocode_change
 	apiConfiguration,
 	setApiConfigurationField,
 	fromWelcomeView,

@@ -3,7 +3,10 @@ import { ButtonLink } from "./ButtonLink"
 import { ButtonSecondary } from "./ButtonSecondary"
 import Logo from "./Logo"
 import { useAppTranslation } from "@/i18n/TranslationContext"
-import { getKiloCodeBackendSignInUrl, getKiloCodeBackendSignUpUrl } from "../helpers"
+import {
+	getKiloCodeBackendSignInUrl as _getKiloCodeBackendSignInUrl,
+	getKiloCodeBackendSignUpUrl as _getKiloCodeBackendSignUpUrl,
+} from "../helpers"
 import { useExtensionState } from "@/context/ExtensionStateContext"
 import { vscode } from "@/utils/vscode"
 
@@ -13,7 +16,7 @@ interface KiloCodeAuthProps {
 }
 
 const KiloCodeAuth: React.FC<KiloCodeAuthProps> = ({ onManualConfigClick, className = "" }) => {
-	const { uriScheme, uiKind } = useExtensionState()
+	const { uriScheme: _uriScheme, uiKind } = useExtensionState()
 
 	const { t } = useAppTranslation()
 

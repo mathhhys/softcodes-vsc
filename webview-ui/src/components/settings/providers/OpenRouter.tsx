@@ -9,18 +9,18 @@ import { type ProviderSettings, type OrganizationAllowList, openRouterDefaultMod
 import type { RouterModels } from "@roo/api"
 
 import { useAppTranslation } from "@src/i18n/TranslationContext"
-import { getOpenRouterAuthUrl } from "@src/oauth/urls"
+import { getOpenRouterAuthUrl as _getOpenRouterAuthUrl } from "@src/oauth/urls"
 import {
 	useOpenRouterModelProviders,
 	OPENROUTER_DEFAULT_PROVIDER_NAME,
 } from "@src/components/ui/hooks/useOpenRouterModelProviders"
-import { VSCodeButtonLink } from "@src/components/common/VSCodeButtonLink"
+import { VSCodeButtonLink as _VSCodeButtonLink } from "@src/components/common/VSCodeButtonLink"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@src/components/ui"
 
 import { inputEventTransform, noTransform } from "../transforms"
 
 import { ModelPicker } from "../ModelPicker"
-import { OpenRouterBalanceDisplay } from "./OpenRouterBalanceDisplay"
+import { OpenRouterBalanceDisplay as _OpenRouterBalanceDisplay } from "./OpenRouterBalanceDisplay"
 
 type OpenRouterProps = {
 	apiConfiguration: ProviderSettings
@@ -38,7 +38,7 @@ export const OpenRouter = ({
 	setApiConfigurationField,
 	routerModels,
 	selectedModelId,
-	uriScheme,
+	uriScheme: _uriScheme,
 	fromWelcomeView,
 	organizationAllowList,
 	modelValidationError,

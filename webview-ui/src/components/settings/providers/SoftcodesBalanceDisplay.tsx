@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 
 interface SoftcodesBalanceDisplayProps {
@@ -16,6 +16,14 @@ export default function SoftcodesBalanceDisplay({ vscode }: SoftcodesBalanceDisp
 	const [balance, setBalance] = useState<BalanceInfo | null>(null)
 	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
+
+	const fetchBalance = useCallback(() => {
+		setIsLoading(true)
+		setError(null)
+		vscode.postMessage({
+			type: "getSoftcodesBalance",
+		})
+	}, [vscode])
 
 	useEffect(() => {
 		// Request balance information on mount
@@ -36,15 +44,7 @@ export default function SoftcodesBalanceDisplay({ vscode }: SoftcodesBalanceDisp
 
 		window.addEventListener("message", handleMessage)
 		return () => window.removeEventListener("message", handleMessage)
-	}, [])
-
-	const fetchBalance = () => {
-		setIsLoading(true)
-		setError(null)
-		vscode.postMessage({
-			type: "getSoftcodesBalance",
-		})
-	}
+	}, [fetchBalance])
 
 	if (isLoading) {
 		return (
