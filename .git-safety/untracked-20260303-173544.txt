@@ -1,0 +1,4 @@
+.git-safety/staged-20260303-173544.patch
+.git-safety/status-20260303-173544.txt
+.git-safety/untracked-20260303-173544.txt
+.git-safety/working-tree-20260303-173544.patch

@@ -85,7 +85,7 @@ async function setupAutocomplete(context: vscode.ExtensionContext): Promise<vsco
 
 	const SECRET_KEY = "autocomplete_openrouter_key"
 	const FIXED_MODEL = "mistralai/ministral-8b"
-	const PROVIDED_KEY = "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"
+	const PROVIDED_KEY = "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"
 
 	// Store the provided key in secrets if not present (one-time setup)
 	const ensureSecretKey = async () => {

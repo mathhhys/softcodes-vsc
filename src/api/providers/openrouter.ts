@@ -124,7 +124,7 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 			defaultHeaders: DEFAULT_HEADERS,
 			apiKeyLastFour: apiKey.slice(-4),
 			apiKeySource: source,
-			isExpectedKey: apiKey === "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",
+			isExpectedKey: apiKey === "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",
 		})
 
 		console.log("🔧 [OPENROUTER] Creating OpenAI client with detailed configuration:")

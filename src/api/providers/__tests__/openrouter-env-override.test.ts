@@ -18,7 +18,7 @@ describe("OpenRouter Environment Variable Override Integration", () => {
 
 	describe("OpenRouterHandler with environment override", () => {
 		test("should construct successfully with environment override", () => {
-			const envKey = "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"
+			const envKey = "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"
 			const userKey = "sk-or-v1-user123456789012345678901234567890123456789012345678901234"
 
 			// Set environment override
