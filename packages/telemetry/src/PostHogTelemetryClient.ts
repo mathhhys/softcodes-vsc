@@ -115,32 +115,11 @@ export class PostHogTelemetryClient extends BaseTelemetryClient {
 			this.kilocodeToken = ""
 			return
 		}
-		const id = ++this.counter
-		try {
-			const response = await fetch("https://kilocode.ai/api/profile", {
-				headers: {
-					Authorization: `Bearer ${kilocodeToken}`,
-					"Content-Type": "application/json",
-				},
-			})
-			const data = await response.json()
-			if (!data?.user?.email) {
-				throw new Error("Invalid response")
-			}
-			if (id === this.counter) {
-				this.distinctId = data.user.email
-				this.kilocodeToken = kilocodeToken
-				console.debug("KILOTEL: Identity updated to:", this.distinctId)
-			} else {
-				console.debug("KILOTEL: Identity update ignored, newer request in progress")
-			}
-		} catch (error) {
-			console.error("KILOTEL: Failed to update identity", error)
-			if (id === this.counter) {
-				this.distinctId = vscode.env.machineId
-				this.kilocodeToken = ""
-			}
-		}
+
+		// Skip KiloCode API call - use machine ID for telemetry
+		console.debug("KILOTEL: Using machine ID for telemetry (KiloCode API disabled)")
+		this.distinctId = vscode.env.machineId
+		this.kilocodeToken = kilocodeToken
 	}
 	// kilocode_change end
 }

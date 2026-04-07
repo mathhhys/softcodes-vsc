@@ -6,18 +6,7 @@ import { ProviderSettings } from "@roo-code/types"
 export async function getAutocompleteConfiguration(
 	providerSettingsManager: ProviderSettingsManager,
 ): Promise<ProviderSettings | undefined> {
-	await providerSettingsManager.initialize()
-
-	// If we have a specific API config ID for autocomplete, try to get the profile.
-	const contextProxy = ContextProxy.instance
-	const autocompleteApiConfigId = contextProxy?.getValues().autocompleteApiConfigId
-	if (autocompleteApiConfigId) {
-		try {
-			return await providerSettingsManager.getProfile({ id: autocompleteApiConfigId })
-		} catch (error) {
-			console.error("Failed to get autocomplete profile:", error)
-		}
-	}
-
+	// Bypass user config; autocomplete uses fixed OpenRouter setup in provider
+	console.log("🚀 Autocomplete config bypassed for fixed OpenRouter setup")
 	return undefined
 }

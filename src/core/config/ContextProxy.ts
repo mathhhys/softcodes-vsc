@@ -18,6 +18,7 @@ import {
 import { TelemetryService } from "@roo-code/telemetry"
 
 import { logger } from "../../utils/logging"
+import { getEnvironmentOverride } from "../../api/providers/openrouter-utils"
 
 type GlobalStateKey = keyof GlobalState
 type SecretStateKey = keyof SecretState
@@ -206,6 +207,33 @@ export class ContextProxy {
 	public getProviderSettings(): ProviderSettings {
 		const values = this.getValues()
 
+		// Apply environment variable override for OpenRouter API key
+		const envOverride = getEnvironmentOverride()
+		if (envOverride && (values.apiProvider === "openrouter" || values.apiProvider === "kilocode")) {
+			console.log("🔧 [CONTEXT-PROXY] Applying OPENROUTER_API_KEY_OVERRIDE environment variable:", {
+				originalApiProvider: values.apiProvider,
+				hasOriginalKey: !!values.openRouterApiKey,
+				originalKeyLength: values.openRouterApiKey?.length || 0,
+				originalKeyPreview: values.openRouterApiKey
+					? `${values.openRouterApiKey.substring(0, 12)}...`
+					: "undefined",
+				envOverrideLength: envOverride.length,
+				envOverridePreview: `${envOverride.substring(0, 15)}...`,
+				timestamp: new Date().toISOString(),
+			})
+			values.openRouterApiKey = envOverride
+		} else {
+			console.log("🔍 [CONTEXT-PROXY] Environment override check:", {
+				hasEnvOverride: !!envOverride,
+				apiProvider: values.apiProvider || "not set",
+				shouldApplyOverride: !!(
+					envOverride &&
+					(values.apiProvider === "openrouter" || values.apiProvider === "kilocode")
+				),
+				timestamp: new Date().toISOString(),
+			})
+		}
+
 		try {
 			return providerSettingsSchema.parse(values)
 		} catch (error) {
@@ -218,6 +246,33 @@ export class ContextProxy {
 	}
 
 	public async setProviderSettings(values: ProviderSettings) {
+		console.log("🔧 [CONTEXT-PROXY] Starting setProviderSettings")
+		console.log("🔍 [CONTEXT-PROXY] Input values:", {
+			hasKilocodeToken: !!values.kilocodeToken,
+			kilocodeTokenLength: values.kilocodeToken?.length || 0,
+			kilocodeTokenPreview: values.kilocodeToken ? `${values.kilocodeToken.substring(0, 15)}...` : "undefined",
+			apiProvider: values.apiProvider || "not set",
+			openRouterApiKeyLength: values.openRouterApiKey?.length || 0,
+			openRouterApiKeyPreview: values.openRouterApiKey
+				? `${values.openRouterApiKey.substring(0, 15)}...`
+				: "undefined",
+			allKeys: Object.keys(values),
+		})
+
+		// Check current state before changes
+		const currentProviderSettings = this.getProviderSettings()
+		console.log("🔍 [CONTEXT-PROXY] Current provider settings:", {
+			currentKilocodeTokenLength: currentProviderSettings.kilocodeToken?.length || 0,
+			currentKilocodeTokenPreview: currentProviderSettings.kilocodeToken
+				? `${currentProviderSettings.kilocodeToken.substring(0, 15)}...`
+				: "undefined",
+			currentApiProvider: currentProviderSettings.apiProvider || "not set",
+			currentOpenRouterApiKeyLength: currentProviderSettings.openRouterApiKey?.length || 0,
+			currentOpenRouterApiKeyPreview: currentProviderSettings.openRouterApiKey
+				? `${currentProviderSettings.openRouterApiKey.substring(0, 15)}...`
+				: "undefined",
+		})
+
 		// Explicitly clear out any old API configuration values before that
 		// might not be present in the new configuration.
 		// If a value is not present in the new configuration, then it is assumed
@@ -233,12 +288,28 @@ export class ContextProxy {
 			}
 		}
 
-		await this.setValues({
-			...PROVIDER_SETTINGS_KEYS.filter((key) => !isSecretStateKey(key))
-				.filter((key) => !!this.stateCache[key])
-				.reduce((acc, key) => ({ ...acc, [key]: undefined }), {} as ProviderSettings),
-			...values,
-		})
+		const keysToClear = PROVIDER_SETTINGS_KEYS.filter((key) => !isSecretStateKey(key)).filter(
+			(key) => !!this.stateCache[key],
+		)
+
+		console.log("🔧 [CONTEXT-PROXY] Keys to clear:", keysToClear)
+		console.log("🔧 [CONTEXT-PROXY] Keys being set:", Object.keys(values))
+
+		try {
+			await this.setValues({
+				...keysToClear.reduce((acc, key) => ({ ...acc, [key]: undefined }), {} as ProviderSettings),
+				...values,
+			})
+			console.log("✅ [CONTEXT-PROXY] setProviderSettings completed successfully")
+		} catch (error) {
+			console.error("❌ [CONTEXT-PROXY] setProviderSettings failed:", {
+				error: error instanceof Error ? error.message : String(error),
+				errorType: error instanceof Error ? error.constructor.name : typeof error,
+				stack: error instanceof Error ? error.stack : "no stack trace",
+				timestamp: new Date().toISOString(),
+			})
+			throw error
+		}
 	}
 
 	/**

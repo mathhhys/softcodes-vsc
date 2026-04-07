@@ -6,6 +6,7 @@ import pWaitFor from "p-wait-for"
 import * as vscode from "vscode"
 import axios from "axios"
 import * as yaml from "yaml"
+import { API_CONFIG } from "../../config/constants"
 
 import {
 	type Language,
@@ -18,6 +19,7 @@ import { CloudService } from "@roo-code/cloud"
 import { TelemetryService } from "@roo-code/telemetry"
 import { type ApiMessage } from "../task-persistence/apiMessages"
 import { UnifiedAuthService } from "../../auth/unifiedAuthService"
+import { ApiClient } from "../../api/client"
 
 import { ClineProvider } from "./ClineProvider"
 import { changeLanguage, t } from "../../i18n"
@@ -39,6 +41,8 @@ import { fileExistsAtPath } from "../../utils/fs"
 import { playTts, setTtsEnabled, setTtsSpeed, stopTts } from "../../utils/tts"
 import { showSystemNotification } from "../../integrations/notifications"
 import { singleCompletionHandler } from "../../utils/single-completion-handler"
+import { verifyJWTUserInSupabase } from "../../auth/supabaseUserVerification"
+import { parseJWTUnsafe } from "../../auth/jwtUtils"
 import { searchCommits } from "../../utils/git"
 import { exportSettings, importSettingsWithFeedback } from "../config/importExport"
 import { getOpenAiModels } from "../../api/providers/openai"
@@ -60,11 +64,13 @@ const ALLOWED_VSCODE_SETTINGS = new Set(["terminal.integrated.inheritEnv"])
 
 import { MarketplaceManager, MarketplaceItemType } from "../../services/marketplace"
 import { setPendingTodoList } from "../tools/updateTodoListTool"
+import { creditManager } from "../../services/creditManager"
 
 export const webviewMessageHandler = async (
 	provider: ClineProvider,
 	message: WebviewMessage,
 	marketplaceManager?: MarketplaceManager,
+	apiClient?: ApiClient,
 ) => {
 	// Utility functions provided for concise get/update of global state via contextProxy API.
 	const getGlobalState = <K extends keyof GlobalState>(key: K) => provider.contextProxy.getValue(key)
@@ -219,11 +225,16 @@ export const webviewMessageHandler = async (
 
 					// Process the edited message as a regular user message
 					// This will add it to the conversation and trigger an AI response
-					webviewMessageHandler(provider, {
-						type: "askResponse",
-						askResponse: "messageResponse",
-						text: editedContent,
-					})
+					webviewMessageHandler(
+						provider,
+						{
+							type: "askResponse",
+							askResponse: "messageResponse",
+							text: editedContent,
+						},
+						undefined,
+						apiClient,
+					)
 
 					// Don't initialize with history item for edit operations
 					// The webviewMessageHandler will handle the conversation state
@@ -835,7 +846,7 @@ export const webviewMessageHandler = async (
 			}
 
 			const workspaceFolder = vscode.workspace.workspaceFolders[0]
-			const rooDir = path.join(workspaceFolder.uri.fsPath, ".kilocode")
+			const rooDir = path.join(workspaceFolder.uri.fsPath, ".softcodes")
 			const mcpPath = path.join(rooDir, "mcp.json")
 
 			try {
@@ -935,6 +946,7 @@ export const webviewMessageHandler = async (
 		case "mcpEnabled":
 			const mcpEnabled = message.bool ?? true
 			await updateGlobalState("mcpEnabled", mcpEnabled)
+			await provider.getMcpHub()?.handleMcpEnabledChange(mcpEnabled)
 			await provider.postStateToWebview()
 			break
 		case "enableMcpServerCreation":
@@ -1999,75 +2011,284 @@ export const webviewMessageHandler = async (
 		// kilocode_change_start
 		case "fetchProfileDataRequest":
 			try {
-				const { apiConfiguration } = await provider.getState()
-				const kilocodeToken = apiConfiguration?.kilocodeToken
+				const authService = UnifiedAuthService.getInstance(provider.context)
 
-				if (!kilocodeToken || kilocodeToken.trim() === "") {
-					provider.log("KiloCode token not found in extension state.")
+				// First check authentication state before attempting token retrieval
+				const authState = await authService.getAuthenticationState()
+				console.log("🔍 [DEBUG] fetchProfileDataRequest - auth state check:", {
+					isAuthenticated: authState.isAuthenticated,
+					isConnected: authState.isConnected,
+					signedOut: authState.signedOut,
+					hasError: !!authState.error,
+					clerkId: authState.clerkId,
+					supabaseVerified: authState.supabaseVerified,
+				})
+
+				// ENHANCED GUARD: Block if not authenticated, signed out, or has any error
+				if (!authState.isAuthenticated || authState.signedOut || authState.error) {
+					const blockReason = authState.signedOut
+						? "user signed out"
+						: authState.error
+							? "authentication error"
+							: "not authenticated"
+
+					console.log(`🚫 [DEBUG] fetchProfileDataRequest blocked - ${blockReason}`, {
+						isAuthenticated: authState.isAuthenticated,
+						signedOut: authState.signedOut,
+						error: authState.error,
+					})
+
 					provider.postMessageToWebview({
 						type: "profileDataResponse",
-						payload: { success: false, error: "KiloCode API token not configured." },
+						payload: {
+							success: false,
+							error: authState.error || "User is not authenticated. Please sign in.",
+							isSignedOut: !!authState.signedOut,
+						},
+					})
+					return // Exit early - no token usage
+				}
+
+				// Additional guard: Check if we can get a valid token immediately
+				const token = await authService.ensureValidAccessToken()
+				if (!token) {
+					console.log("🚫 [DEBUG] fetchProfileDataRequest blocked - ensureValidAccessToken returned no token")
+					provider.postMessageToWebview({
+						type: "profileDataResponse",
+						payload: {
+							success: false,
+							error: "No valid authentication token available. Please sign in.",
+						},
+					})
+					return
+				}
+
+				console.log("🔍 [DEBUG] fetchProfileDataRequest - token available, proceeding with profile fetch")
+
+				console.log("🌐 [DEBUG] Fetching profile data using Supabase client with JWT")
+
+				try {
+					// Parse JWT to extract sub (clerk_id)
+					const parseResult = parseJWTUnsafe(token)
+					if (!parseResult.success || !parseResult.parts?.payload.sub) {
+						throw new Error("Invalid JWT - missing sub claim")
+					}
+					const payload = parseResult.parts.payload
+					const sub = payload.sub
+					console.log("🔍 [DEBUG] Extracted sub from JWT:", sub)
+
+					// Use existing Supabase verification function
+					const supabaseResult = await verifyJWTUserInSupabase(token)
+
+					let profileData
+
+					if (supabaseResult.success && supabaseResult.userExistsInSupabase && supabaseResult.userDetails) {
+						// User found in Supabase
+						const data = supabaseResult.userDetails
+						profileData = {
+							user: {
+								id: data.user_id || data.id,
+								email:
+									data.email ||
+									(payload?.org_slug
+										? `${payload.org_slug}@organization.softcodes.ai`
+										: data.email || payload?.email || "unknown@softcodes.ai"),
+								name:
+									data.first_name || data.last_name
+										? `${data.first_name || ""} ${data.last_name || ""}`.trim()
+										: data.email || "Authenticated User",
+								image: data.avatar_url || "",
+							},
+							planType: data.plan_type,
+							credits: data.credits,
+						}
+						console.log("✅ [DEBUG] Supabase user found:", {
+							userId: data.id,
+							email: data.email,
+							planType: data.plan_type,
+							credits: data.credits,
+						})
+					} else {
+						// Fallback to Clerk data from JWT payload
+						profileData = {
+							user: {
+								id: payload.sub,
+								email:
+									payload.email ||
+									(payload.org_slug
+										? `${payload.org_slug}@organization.softcodes.ai`
+										: payload.sub || "unknown@softcodes.ai"),
+								name:
+									payload.name ||
+									`${payload.first_name || ""} ${payload.last_name || ""}`.trim() ||
+									payload.email,
+								image: payload.picture || "",
+							},
+							planType: undefined,
+							credits: undefined,
+						}
+						console.log("⚠️ [DEBUG] No Supabase user found, using Clerk fallback data:", {
+							userId: payload.sub,
+							email: payload.email,
+							hasName: !!payload.name,
+						})
+					}
+
+					provider.postMessageToWebview({
+						type: "profileDataResponse",
+						payload: {
+							success: true,
+							data: profileData,
+						},
+					})
+				} catch (error) {
+					console.error("❌ [DEBUG] Profile data fetch failed:", error)
+
+					// Fallback to basic mock data
+					const mockProfileData = {
+						user: {
+							id: "fallback-user-id",
+							email: "unknown@softcodes.ai",
+							name: "Authenticated User",
+							image: "",
+						},
+						kilocodeToken: token,
+						planType: "free",
+						credits: 1000,
+					}
+
+					console.log("🔄 [DEBUG] Using fallback mock profile data to update UI")
+
+					provider.postMessageToWebview({
+						type: "profileDataResponse",
+						payload: {
+							success: true,
+							data: mockProfileData,
+						},
+					})
+				}
+			} catch (error: any) {
+				let errorMessage = "Failed to fetch profile data from backend."
+				if (error instanceof Error) {
+					errorMessage = error.message
+				} else if (typeof error === "string") {
+					errorMessage = error
+				}
+
+				if (errorMessage.includes("401")) {
+					errorMessage = "Authentication failed. Please check your token and sign in again."
+				} else if (errorMessage.includes("Network")) {
+					errorMessage = "Network error. Please check your internet connection and try again."
+				}
+
+				console.error("❌ [DEBUG] Profile data fetch error:", errorMessage)
+				provider.log(`Error fetching profile data: ${errorMessage}`)
+
+				provider.postMessageToWebview({
+					type: "profileDataResponse",
+					payload: {
+						success: false,
+						error: errorMessage,
+					},
+				})
+			}
+			break
+		case "fetchBalanceDataRequest": // Modified to use OpenRouter API
+			try {
+				const { apiConfiguration } = await provider.getState()
+
+				// Add detailed logging for debugging
+				console.log("🔍 [DEBUG] fetchBalanceDataRequest received")
+				console.log("🔍 [DEBUG] API configuration check:", {
+					hasOpenRouterApiKey: !!apiConfiguration.openRouterApiKey,
+					openRouterApiKeyLength: apiConfiguration.openRouterApiKey?.length || 0,
+					openRouterApiKeyPreview: apiConfiguration.openRouterApiKey?.substring(0, 10) + "..." || "no key",
+				})
+
+				if (!apiConfiguration.openRouterApiKey) {
+					provider.log("OpenRouter API key not available for balance data request.")
+					console.log("❌ [DEBUG] No OpenRouter API key configured")
+					provider.postMessageToWebview({
+						type: "balanceDataResponse",
+						payload: { success: false, error: "OpenRouter API key not configured." },
 					})
 					break
 				}
 
-				// Changed to /api/profile
-				const response = await axios.get("https://kilocode.ai/api/profile", {
+				console.log("🌐 [DEBUG] Making OpenRouter API request for balance data")
+				// Use OpenRouter API to get balance data
+				const response = await fetch(`${API_CONFIG.OPENROUTER.BASE_URL}/auth/key`, {
+					method: "GET",
 					headers: {
-						Authorization: `Bearer ${kilocodeToken}`,
+						Authorization: `Bearer ${apiConfiguration.openRouterApiKey}`,
 						"Content-Type": "application/json",
 					},
 				})
 
+				console.log("📡 [DEBUG] OpenRouter API response received:", {
+					status: response.status,
+					statusText: response.statusText,
+					headers: Object.fromEntries(response.headers.entries()),
+				})
+
+				if (!response.ok) {
+					const errorData = await response.json().catch(() => ({ error: "Failed to fetch balance" }))
+					throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`)
+				}
+
+				const balanceData = await response.json()
+
 				provider.postMessageToWebview({
-					type: "profileDataResponse", // Assuming this response type is still appropriate for /api/profile
-					payload: { success: true, data: { kilocodeToken, ...response.data } },
+					type: "balanceDataResponse",
+					payload: { success: true, data: balanceData },
 				})
 			} catch (error: any) {
-				const errorMessage =
-					error.response?.data?.message ||
-					error.message ||
-					"Failed to fetch general profile data from backend."
-				provider.log(`Error fetching general profile data: ${errorMessage}`)
+				let errorMessage = "Failed to fetch balance data from OpenRouter."
+				if (error instanceof Error) {
+					errorMessage = error.message
+				} else if (typeof error === "string") {
+					errorMessage = error
+				}
+
+				if (errorMessage.includes("401")) {
+					errorMessage = "Authentication failed. Please check your OpenRouter API key."
+				}
+
+				provider.log(`Error fetching balance data: ${errorMessage}`)
 				provider.postMessageToWebview({
-					type: "profileDataResponse",
+					type: "balanceDataResponse",
 					payload: { success: false, error: errorMessage },
 				})
 			}
 			break
-		case "fetchBalanceDataRequest": // New handler
-			try {
-				const { apiConfiguration } = await provider.getState()
-				const kilocodeToken = apiConfiguration?.kilocodeToken
 
-				if (!kilocodeToken || kilocodeToken.trim() === "") {
-					provider.log("KiloCode token not found in extension state for balance data.")
-					provider.postMessageToWebview({
-						type: "balanceDataResponse", // New response type
-						payload: { success: false, error: "KiloCode API token not configured." },
-					})
+		case "fetchSoftcodesBalanceRequest":
+			try {
+				const authService = UnifiedAuthService.getInstance(provider.context)
+				const token = await authService.ensureValidAccessToken()
+
+				if (!token) {
+					console.log("❌ [DEBUG] fetchSoftcodesBalanceRequest - No valid token available")
 					break
 				}
 
-				const response = await axios.get("https://kilocode.ai/api/profile/balance", {
-					// Original path for balance
-					headers: {
-						Authorization: `Bearer ${kilocodeToken}`,
-						"Content-Type": "application/json",
-					},
-				})
-				provider.postMessageToWebview({
-					type: "balanceDataResponse", // New response type
-					payload: { success: true, data: response.data },
-				})
-			} catch (error: any) {
-				const errorMessage =
-					error.response?.data?.message || error.message || "Failed to fetch balance data from backend."
-				provider.log(`Error fetching balance data: ${errorMessage}`)
-				provider.postMessageToWebview({
-					type: "balanceDataResponse", // New response type
-					payload: { success: false, error: errorMessage },
-				})
+				console.log("🔍 [DEBUG] fetchSoftcodesBalanceRequest - Fetching balance from creditManager")
+				const userCredits = await creditManager.getUserCreditBalance(token)
+
+				if (userCredits) {
+					console.log(
+						"✅ [DEBUG] fetchSoftcodesBalanceRequest - Balance fetched:",
+						userCredits.currentCredits,
+					)
+					provider.postMessageToWebview({
+						type: "softcodesBalanceUpdate",
+						credits: userCredits.currentCredits,
+					})
+				} else {
+					console.warn("⚠️ [DEBUG] fetchSoftcodesBalanceRequest - Failed to fetch user credits")
+				}
+			} catch (error) {
+				console.error("❌ [DEBUG] fetchSoftcodesBalanceRequest - Error:", error)
 			}
 			break
 
@@ -2541,22 +2762,35 @@ export const webviewMessageHandler = async (
 		case "checkSoftcodesAuth": {
 			try {
 				const authService = UnifiedAuthService.getInstance(provider.context)
+				const authState = await authService.getAuthenticationState()
 				const isAuthenticated = await authService.isAuthenticated()
 
 				if (isAuthenticated) {
-					// Get user info from unified service
-					const softcodesUserInfo = await authService.getUserInfo()
+					// Get extended user info with Supabase data if connected
+					let softcodesUserInfo
+					if (authState.isConnected) {
+						softcodesUserInfo = await authService.getExtendedUserInfo()
+					} else {
+						// Fallback to basic user info
+						softcodesUserInfo = await authService.getUserInfo()
+					}
 
 					provider.postMessageToWebview({
 						type: "authStateChanged",
 						isAuthenticated: true,
+						isConnected: authState.isConnected,
 						softcodesUserInfo,
+						authenticationState: authState,
+						supabaseVerified: authState.supabaseVerified,
 					})
 				} else {
 					provider.postMessageToWebview({
 						type: "authStateChanged",
 						isAuthenticated: false,
+						isConnected: false,
 						softcodesUserInfo: undefined,
+						authenticationState: authState,
+						supabaseVerified: false,
 					})
 				}
 			} catch (error) {
@@ -2564,7 +2798,9 @@ export const webviewMessageHandler = async (
 				provider.postMessageToWebview({
 					type: "authStateChanged",
 					isAuthenticated: false,
+					isConnected: false,
 					softcodesUserInfo: undefined,
+					supabaseVerified: false,
 				})
 			}
 			break
@@ -2594,21 +2830,63 @@ export const webviewMessageHandler = async (
 		}
 
 		case "softcodesSignOut": {
+			console.log("🚀 [SOFTCODES-SIGNOUT] Starting logout process...")
+			console.log("🔍 [SOFTCODES-SIGNOUT] Getting current auth state before logout...")
 			try {
 				const authService = UnifiedAuthService.getInstance(provider.context)
-				await authService.signOut()
+				const currentAuthState = await authService.getAuthenticationState()
+				console.log("🔍 [SOFTCODES-SIGNOUT] Current auth state before logout:", {
+					isAuthenticated: currentAuthState.isAuthenticated,
+					isConnected: currentAuthState.isConnected,
+					signedOut: currentAuthState.signedOut,
+					hasError: !!currentAuthState.error,
+					hasClerkId: !!currentAuthState.clerkId,
+					supabaseVerified: currentAuthState.supabaseVerified,
+				})
 
-				// Notify webview immediately
+				console.log("🔧 [SOFTCODES-SIGNOUT] Calling authService.signOut()...")
+				await authService.signOut()
+				console.log("✅ [SOFTCODES-SIGNOUT] authService.signOut() completed successfully")
+
+				// Verify auth state was cleared
+				const postLogoutAuthState = await authService.getAuthenticationState()
+				console.log("🔍 [SOFTCODES-SIGNOUT] Auth state after signOut():", {
+					isAuthenticated: postLogoutAuthState.isAuthenticated,
+					isConnected: postLogoutAuthState.isConnected,
+					signedOut: postLogoutAuthState.signedOut,
+					hasError: !!postLogoutAuthState.error,
+				})
+
+				// Notify webview immediately with enhanced state including signedOut flag
+				console.log("📡 [SOFTCODES-SIGNOUT] Sending authStateChanged message to webview...")
 				provider.postMessageToWebview({
 					type: "authStateChanged",
 					isAuthenticated: false,
+					isConnected: false,
 					softcodesUserInfo: undefined,
+					supabaseVerified: false,
+					signedOut: true,
 				})
 
-				// Update provider state
+				// Send forceLogout message to clear webview caches and stop polling
+				console.log("📡 [SOFTCODES-SIGNOUT] Sending forceLogout message to webview...")
+				provider.postMessageToWebview({
+					type: "forceLogout",
+				})
+
+				// Send connection status change
+				console.log("📡 [SOFTCODES-SIGNOUT] Sending connectionStatusChanged message to webview...")
+				provider.postMessageToWebview({
+					type: "connectionStatusChanged",
+					isConnected: false,
+				})
+
+				// Update provider state to ensure global auth state is cleared
+				console.log("🔄 [SOFTCODES-SIGNOUT] Updating provider state...")
 				await provider.postStateToWebview()
+				console.log("✅ [SOFTCODES-SIGNOUT] Logout process completed successfully")
 			} catch (error) {
-				console.error("Error during Softcodes sign out:", error)
+				console.error("❌ [SOFTCODES-SIGNOUT] Error during Softcodes sign out:", error)
 				vscode.window.showErrorMessage(
 					`Sign out failed: ${error instanceof Error ? error.message : String(error)}`,
 				)
@@ -2621,19 +2899,57 @@ export const webviewMessageHandler = async (
 				const authService = UnifiedAuthService.getInstance(provider.context)
 				await authService.signinWithToken()
 
-				// Check authentication status after sign in attempt
+				// Always check and broadcast authentication status after sign in attempt
+				// This ensures ProfileView receives state updates regardless of authentication outcome
+				const authState = await authService.getAuthenticationState()
 				const isAuthenticated = await authService.isAuthenticated()
-				if (isAuthenticated) {
-					const softcodesUserInfo = await authService.getUserInfo()
 
+				console.log("🔄 [AUTH-HANDLER] Broadcasting auth state after token sign in:", {
+					isAuthenticated,
+					isConnected: authState.isConnected,
+					supabaseVerified: authState.supabaseVerified,
+					hasError: !!authState.error,
+				})
+
+				if (isAuthenticated) {
+					// Get extended user info with Supabase data if connected
+					let softcodesUserInfo
+					if (authState.isConnected) {
+						softcodesUserInfo = await authService.getExtendedUserInfo()
+
+						// Send connection-specific success message
+						provider.postMessageToWebview({
+							type: "connectionStatusChanged",
+							isConnected: true,
+							authenticationState: authState,
+						})
+					} else {
+						// Fallback to basic user info for authenticated but not connected users
+						softcodesUserInfo = await authService.getUserInfo()
+					}
+
+					// Always broadcast auth state change for successful authentication
 					provider.postMessageToWebview({
 						type: "authStateChanged",
 						isAuthenticated: true,
+						isConnected: authState.isConnected,
 						softcodesUserInfo,
+						authenticationState: authState,
+						supabaseVerified: authState.supabaseVerified,
 					})
 
 					// Update provider state
 					await provider.postStateToWebview()
+				} else {
+					// Authentication failed - still broadcast the state
+					provider.postMessageToWebview({
+						type: "authStateChanged",
+						isAuthenticated: false,
+						isConnected: false,
+						softcodesUserInfo: undefined,
+						authenticationState: authState,
+						supabaseVerified: false,
+					})
 				}
 			} catch (error) {
 				console.error("Error during Softcodes sign in with token:", error)
@@ -2641,11 +2957,17 @@ export const webviewMessageHandler = async (
 					`Sign in with token failed: ${error instanceof Error ? error.message : String(error)}`,
 				)
 
-				// Notify webview of sign in failure
+				// Always broadcast auth state even on error to ensure UI stays in sync
+				const authService = UnifiedAuthService.getInstance(provider.context)
+				const authState = await authService.getAuthenticationState()
+
 				provider.postMessageToWebview({
 					type: "authStateChanged",
 					isAuthenticated: false,
+					isConnected: false,
 					softcodesUserInfo: undefined,
+					authenticationState: authState,
+					supabaseVerified: false,
 				})
 			}
 			break
@@ -2663,6 +2985,130 @@ export const webviewMessageHandler = async (
 				}
 			} else {
 				provider.log("Received 'executeVSCodeCommand' message without a command specified.")
+			}
+			break
+		}
+
+		// Blue Byte Booster Authentication Handlers
+		case "blueByteBoosterLogin": {
+			try {
+				await CloudService.instance.softcodesLogin()
+			} catch (error) {
+				console.error("Blue Byte Booster login error:", error)
+				vscode.window.showErrorMessage(
+					`Failed to initiate login: ${error instanceof Error ? error.message : "Unknown error"}`,
+				)
+			}
+			break
+		}
+
+		case "blueByteBoosterLogout": {
+			try {
+				await CloudService.instance.softcodesLogout()
+				await provider.postStateToWebview()
+			} catch (error) {
+				console.error("Blue Byte Booster logout error:", error)
+				vscode.window.showErrorMessage(
+					`Failed to logout: ${error instanceof Error ? error.message : "Unknown error"}`,
+				)
+			}
+			break
+		}
+
+		case "refreshBlueByteBoosterAuth": {
+			try {
+				await provider.postStateToWebview()
+			} catch (error) {
+				console.error("Failed to refresh Blue Byte Booster auth state:", error)
+			}
+			break
+		}
+
+		case "testAnalytics": {
+			try {
+				provider.log("🧪 [TEST ANALYTICS] Starting analytics test...")
+
+				const authService = UnifiedAuthService.getInstance(provider.context)
+				const token = await authService.ensureValidAccessToken()
+
+				if (!token) {
+					provider.log("❌ [TEST ANALYTICS] No valid token available")
+					provider.postMessageToWebview({
+						type: "testAnalyticsResponse",
+						testAnalyticsResult: {
+							success: false,
+							clerkId: "",
+							dateRange: { start: "", end: "" },
+							error: "No valid authentication token available",
+						},
+					})
+					break
+				}
+
+				// Parse JWT to get user info
+				const parseResult = parseJWTUnsafe(token)
+				if (!parseResult.success || !parseResult.parts?.payload.sub) {
+					throw new Error("Invalid JWT - missing sub claim")
+				}
+				const clerkId = parseResult.parts.payload.sub
+				provider.log(`🔍 [TEST ANALYTICS] Clerk ID from token: ${clerkId}`)
+
+				// Import analytics services
+				const { userAnalyticsService } = await import("../../services/userAnalyticsService")
+				const { orgAnalyticsService } = await import("../../services/orgAnalyticsService")
+
+				// Test user analytics (last 30 days)
+				const endDate = new Date()
+				const startDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+
+				provider.log(`📊 [TEST ANALYTICS] Fetching user analytics for clerkId: ${clerkId}`)
+				provider.log(`📊 [TEST ANALYTICS] Date range: ${startDate.toISOString()} to ${endDate.toISOString()}`)
+
+				const userResult = await userAnalyticsService.getUserAnalyticsSummary(clerkId, startDate, endDate)
+
+				provider.log("✅ [TEST ANALYTICS] User analytics result:")
+				provider.log(JSON.stringify(userResult, null, 2))
+
+				// Test org analytics if user has org
+				let orgResult = null
+				const supabaseResult = await verifyJWTUserInSupabase(token)
+
+				if (supabaseResult.success && supabaseResult.userDetails?.organization_id) {
+					const orgId = supabaseResult.userDetails.organization_id
+					provider.log(`📊 [TEST ANALYTICS] Fetching org analytics for orgId: ${orgId}`)
+
+					orgResult = await orgAnalyticsService.getOrgAnalyticsSummary(orgId, startDate, endDate)
+
+					provider.log("✅ [TEST ANALYTICS] Org analytics result:")
+					provider.log(JSON.stringify(orgResult, null, 2))
+				} else {
+					provider.log("ℹ️ [TEST ANALYTICS] No organization found for user")
+				}
+
+				// Send results to webview
+				provider.postMessageToWebview({
+					type: "testAnalyticsResponse",
+					testAnalyticsResult: {
+						success: true,
+						clerkId,
+						dateRange: { start: startDate.toISOString(), end: endDate.toISOString() },
+						userResult,
+						orgResult,
+					},
+				})
+
+				provider.log("✅ [TEST ANALYTICS] Test completed successfully")
+			} catch (error) {
+				provider.log(`❌ [TEST ANALYTICS] Error: ${error instanceof Error ? error.message : String(error)}`)
+				provider.postMessageToWebview({
+					type: "testAnalyticsResponse",
+					testAnalyticsResult: {
+						success: false,
+						clerkId: "",
+						dateRange: { start: "", end: "" },
+						error: error instanceof Error ? error.message : String(error),
+					},
+				})
 			}
 			break
 		}

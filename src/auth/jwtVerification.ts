@@ -360,7 +360,7 @@ export class JWTVerificationService {
 	/**
 	 * Extract user information from verified JWT payload
 	 */
-	private extractUserInfo(payload: ClerkJWTPayload): UserInfoFromJWT {
+	public extractUserInfo(payload: ClerkJWTPayload): UserInfoFromJWT {
 		return {
 			userId: payload.sub,
 			email: payload.email,
@@ -511,11 +511,27 @@ export async function verifyClerkJWT(token: string): Promise<JWTVerificationResu
  * Quick user info extraction from JWT
  */
 export async function extractUserFromJWT(token: string): Promise<UserInfoFromJWT | null> {
+	if (!token || typeof token !== "string") {
+		console.error("[JWT-VERIFICATION] extractUserFromJWT called with empty or invalid token")
+		return null
+	}
+
 	try {
 		const result = await verifyClerkJWT(token)
-		return result.valid ? result.userInfo || null : null
+
+		if (!result.valid) {
+			console.warn("[JWT-VERIFICATION] JWT verification failed (will try fallback)", result.error)
+			return null
+		}
+
+		if (!result.userInfo || !result.userInfo.userId) {
+			console.error("[JWT-VERIFICATION] JWT decoded but user info missing essential fields", result.payload)
+			return null
+		}
+
+		return result.userInfo
 	} catch (error) {
-		console.error("Failed to extract user from JWT:", error)
+		console.error("[JWT-VERIFICATION] Failed to extract user from JWT:", error)
 		return null
 	}
 }

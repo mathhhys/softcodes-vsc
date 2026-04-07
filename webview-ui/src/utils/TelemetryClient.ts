@@ -9,19 +9,8 @@ class TelemetryClient {
 	public updateTelemetryState(telemetrySetting: TelemetrySetting, apiKey?: string, distinctId?: string) {
 		posthog.reset()
 
-		if (telemetrySetting === "enabled" && apiKey && distinctId) {
-			TelemetryClient.telemetryEnabled = true
-
-			posthog.init(apiKey, {
-				api_host: "https://us.i.posthog.com",
-				persistence: "localStorage",
-				loaded: () => posthog.identify(distinctId),
-				capture_pageview: false,
-				capture_pageleave: false,
-				autocapture: false,
-			})
-
-			posthog.identify(distinctId) // kilocode_change: loaded above only works the first time
+		if (false) {
+			// Posthog disabled to prevent network errors with placeholder key
 		} else {
 			TelemetryClient.telemetryEnabled = false
 		}

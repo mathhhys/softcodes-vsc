@@ -1,13 +1,25 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { VSCodeBadge } from "@vscode/webview-ui-toolkit/react"
+import { formatCreditsBadge } from "@/utils/creditConverter"
+import { formatPrice } from "../../../../src/services/priceFormatter"
 
 import type { ContextCondense } from "@roo-code/types"
 
 import { Markdown } from "./Markdown"
 import { ProgressIndicator } from "./ProgressIndicator"
 
-export const ContextCondenseRow = ({ cost, prevContextTokens, newContextTokens, summary }: ContextCondense) => {
+export interface ContextCondenseRowProps extends ContextCondense {
+	providerId?: string
+}
+
+export const ContextCondenseRow = ({
+	cost,
+	prevContextTokens,
+	newContextTokens,
+	summary,
+	providerId,
+}: ContextCondenseRowProps) => {
 	const { t } = useTranslation()
 	const [isExpanded, setIsExpanded] = useState(false)
 
@@ -35,7 +47,9 @@ export const ContextCondenseRow = ({ cost, prevContextTokens, newContextTokens, 
 					<span className="text-vscode-descriptionForeground text-sm">
 						{prevContextTokens.toLocaleString()} → {newContextTokens.toLocaleString()} {t("tokens")}
 					</span>
-					<VSCodeBadge className={cost > 0 ? "opacity-100" : "opacity-0"}>${cost.toFixed(2)}</VSCodeBadge>
+					<VSCodeBadge className={cost > 0 ? "opacity-100" : "opacity-0"}>
+						{formatPrice(providerId || "openai", cost)}
+					</VSCodeBadge>
 				</div>
 				<span className={`codicon codicon-chevron-${isExpanded ? "up" : "down"}`}></span>
 			</div>

@@ -26,7 +26,16 @@ import fsSync from "fs" // kilocode_change
  */
 export function getGlobalRooDirectory(): string {
 	const homeDir = os.homedir()
-	return path.join(homeDir, ".kilocode") // kilocode_change
+	const softcodesDir = path.join(homeDir, ".softcodes")
+	const kiloDir = path.join(homeDir, ".kilocode")
+
+	if (fsSync.existsSync(softcodesDir)) {
+		return softcodesDir
+	}
+	if (fsSync.existsSync(kiloDir)) {
+		return kiloDir
+	}
+	return softcodesDir
 }
 
 /**
@@ -59,14 +68,20 @@ export function getGlobalRooDirectory(): string {
  * ```
  */
 export function getProjectRooDirectoryForCwd(cwd: string): string {
-	// kilocode_change start
+	const softcodesDir = path.join(cwd, ".softcodes")
 	const kiloDir = path.join(cwd, ".kilocode")
 	const rooDir = path.join(cwd, ".roo")
-	if (fsSync.existsSync(rooDir) && !fsSync.existsSync(kiloDir)) {
+
+	if (fsSync.existsSync(softcodesDir)) {
+		return softcodesDir
+	}
+	if (fsSync.existsSync(kiloDir)) {
+		return kiloDir
+	}
+	if (fsSync.existsSync(rooDir)) {
 		return rooDir
 	}
-	return kiloDir
-	// kilocode_change end
+	return softcodesDir
 }
 
 /**

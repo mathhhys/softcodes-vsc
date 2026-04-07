@@ -31,7 +31,7 @@
 	"settings.vsCodeLmModelSelector.description": "Налаштування для VSCode Language Model API",
 	"settings.vsCodeLmModelSelector.vendor.description": "Постачальник мовної моделі (наприклад, copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "Сімейство мовної моделі (наприклад, gpt-4)",
-	"settings.customStoragePath.description": "Власний шлях зберігання. Залиште порожнім, щоб використовувати розташування за замовчуванням. Підтримує абсолютні шляхи (наприклад, 'D:\\KiloCodeStorage')",
+	"settings.customStoragePath.description": "Власний шлях зберігання. Залиште порожнім, щоб використовувати розташування за замовчуванням. Підтримує абсолютні шляхи (наприклад, 'D:\\SoftcodesStorage')",
 	"command.importSettings.title": "Імпортувати налаштування",
 	"settings.enableCodeActions.description": "Увімкнути швидкі виправлення Softcodes.",
 	"settings.autoImportSettingsPath.description": "Шлях до файлу конфігурації Softcodes для автоматичного імпорту під час запуску розширення. Підтримує абсолютні шляхи та шляхи відносно домашнього каталогу (наприклад, '~/Documents/kilo-code-settings.json'). Залиште порожнім, щоб вимкнути автоматичний імпорт.",

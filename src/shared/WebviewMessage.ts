@@ -186,7 +186,9 @@ export interface WebviewMessage {
 		| "fetchProfileDataRequest" // kilocode_change
 		| "profileDataResponse" // kilocode_change
 		| "fetchBalanceDataRequest" // kilocode_change
+		| "fetchSoftcodesBalanceRequest" // kilocode_change: Added for fetching Softcodes balance
 		| "balanceDataResponse" // kilocode_change
+		| "softcodesBalanceUpdate" // kilocode_change: Added for balance updates
 		| "condense" // kilocode_change
 		| "toggleWorkflow" // kilocode_change
 		| "refreshRules" // kilocode_change
@@ -238,9 +240,18 @@ export interface WebviewMessage {
 		| "softcodesSignOut"
 		| "softcodesSignInWithToken"
 		| "authStateChanged"
+		| "connectionStatusChanged" // NEW: For connection status updates
+		| "supabaseAuthStateChanged" // NEW: For Supabase-specific auth state changes
 		| "executeVSCodeCommand" // kilocode_change: Added for executing VS Code commands
+		| "blueByteBoosterLogin" // Blue Byte Booster authentication
+		| "blueByteBoosterLogout" // Blue Byte Booster logout
+		| "refreshBlueByteBoosterAuth" // Refresh Blue Byte Booster auth state
+		| "forceLogout" // kilocode_change: Force clear auth state in webview
+		| "testAnalytics" // kilocode_change: Test analytics data retrieval
+		| "testAnalyticsResponse" // kilocode_change: Test analytics response
 	text?: string
 	command?: string // kilocode_change: Added for executeVSCodeCommand type
+	signedOut?: boolean // kilocode_change: For auth state with signedOut flag
 	editedMessageContent?: string
 	tab?: "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account"
 	disabled?: boolean
@@ -297,6 +308,34 @@ export interface WebviewMessage {
 	visibility?: ShareVisibility // For share visibility
 	hasContent?: boolean // For checkRulesDirectoryResult
 	checkOnly?: boolean // For deleteCustomMode check
+	// NEW: Enhanced authentication properties
+	isAuthenticated?: boolean
+	isConnected?: boolean // JWT valid AND user exists in Supabase
+	supabaseVerified?: boolean
+	authenticationState?: {
+		isAuthenticated: boolean
+		isConnected: boolean
+		clerkId?: string
+		supabaseVerified?: boolean
+		supabaseUserData?: any
+		error?: string
+	}
+	softcodesUserInfo?: {
+		email: string
+		firstName?: string
+		lastName?: string
+		organizationName?: string
+		organizationId?: string
+		isOrganization?: boolean
+		orgId?: string
+		clerkId?: string
+		planType?: string
+		credits?: number
+		stripeCustomerId?: string
+		createdAt?: string
+		updatedAt?: string
+		avatarUrl?: string
+	}
 	codeIndexSettings?: {
 		// Global state settings
 		codebaseIndexEnabled: boolean
@@ -315,6 +354,7 @@ export interface WebviewMessage {
 		codebaseIndexOpenAiCompatibleApiKey?: string
 		codebaseIndexGeminiApiKey?: string
 	}
+	credits?: number // kilocode_change: Added for softcodesBalanceUpdate
 }
 
 // kilocode_change begin
@@ -326,12 +366,17 @@ export type ProfileData = {
 		email: string
 		image: string
 	}
+	planType?: string
+	credits?: number
+	isOrganization?: boolean
+	orgId?: string
 }
 
 export interface ProfileDataResponsePayload {
 	success: boolean
 	data?: ProfileData
 	error?: string
+	isSignedOut?: boolean
 }
 
 export interface BalanceDataResponsePayload {

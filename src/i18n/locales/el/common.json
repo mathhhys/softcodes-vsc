@@ -141,8 +141,8 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Εισήγαγε προσαρμοσμένη διαδρομή αποθήκευσης ιστορικού συνομιλίας, άφησε κενό για να χρησιμοποιήσεις την προεπιλεγμένη τοποθεσία",
-		"path_placeholder": "D:\\KiloCodeStorage",
-		"enter_absolute_path": "Παρακαλώ εισήγαγε μια απόλυτη διαδρομή (π.χ. D:\\KiloCodeStorage ή /home/user/storage)",
+		"path_placeholder": "D:\\SoftcodesStorage",
+		"enter_absolute_path": "Παρακαλώ εισήγαγε μια απόλυτη διαδρομή (π.χ. D:\\SoftcodesStorage ή /home/user/storage)",
 		"enter_valid_path": "Παρακαλώ εισήγαγε μια έγκυρη διαδρομή"
 	},
 	"input": {
@@ -151,8 +151,8 @@
 	},
 	"customModes": {
 		"errors": {
-			"yamlParseError": "Μη έγκυρο YAML στο αρχείο .kilocodemodes στη γραμμή {{line}}. Παρακαλώ ελέγξτε για:\n• Σωστή εσοχή (χρησιμοποιήστε κενά, όχι tabs)\n• Αντίστοιχα εισαγωγικά και αγκύλες\n• Έγκυρη YAML σύνταξη",
-			"schemaValidationError": "Μη έγκυρος μορφότυπος προσαρμοσμένων λειτουργιών στο .kilocodemodes:\n{{issues}}",
+			"yamlParseError": "Μη έγκυρο YAML στο αρχείο .softcodesmodes στη γραμμή {{line}}. Παρακαλώ ελέγξτε για:\n• Σωστή εσοχή (χρησιμοποιήστε κενά, όχι tabs)\n• Αντίστοιχα εισαγωγικά και αγκύλες\n• Έγκυρη YAML σύνταξη",
+			"schemaValidationError": "Μη έγκυρος μορφότυπος προσαρμοσμένων λειτουργιών στο .softcodesmodes:\n{{issues}}",
 			"invalidFormat": "Μη έγκυρος μορφότυπος προσαρμοσμένων λειτουργιών. Παρακαλώ βεβαιωθείτε ότι οι ρυθμίσεις σας ακολουθούν τη σωστή μορφή YAML.",
 			"updateFailed": "Αποτυχία ενημέρωσης προσαρμοσμένης λειτουργίας: {{error}}",
 			"deleteFailed": "Αποτυχία διαγραφής προσαρμοσμένης λειτουργίας: {{error}}",

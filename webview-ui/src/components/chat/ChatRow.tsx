@@ -4,6 +4,7 @@ import { useSize } from "react-use"
 import { useTranslation, Trans } from "react-i18next"
 import deepEqual from "fast-deep-equal"
 import { VSCodeBadge, VSCodeButton } from "@vscode/webview-ui-toolkit/react"
+import { formatPrice } from "../../../../src/services/priceFormatter"
 
 import type { ClineMessage } from "@roo-code/types"
 
@@ -1003,7 +1004,13 @@ export const ChatRowContent = ({
 											style={{
 												opacity: cost !== null && cost !== undefined && cost > 0 ? 1 : 0,
 											}}>
-											${Number(cost || 0)?.toFixed(4)}
+											{formatPrice(
+												(message as any)?.providerId ??
+													(apiConfiguration?.apiProvider === "openrouter"
+														? "softcodes/openrouter"
+														: "openai"),
+												Number(cost || 0),
+											)}
 										</VSCodeBadge>
 									)}
 								</div>
@@ -1113,7 +1120,15 @@ export const ChatRowContent = ({
 					if (message.partial) {
 						return <CondensingContextRow />
 					}
-					return message.contextCondense ? <ContextCondenseRow {...message.contextCondense} /> : null
+					return message.contextCondense ? (
+						<ContextCondenseRow
+							{...message.contextCondense}
+							providerId={
+								(message as any).providerId ||
+								(apiConfiguration?.apiProvider === "openrouter" ? "softcodes/openrouter" : "openai")
+							}
+						/>
+					) : null
 				case "condense_context_error":
 					return <CondenseContextErrorRow errorText={message.text} />
 				case "codebase_search_result":

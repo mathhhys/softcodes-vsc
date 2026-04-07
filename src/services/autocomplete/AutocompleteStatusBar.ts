@@ -29,8 +29,8 @@ export class AutocompleteStatusBar {
 	}
 
 	private init() {
-		this.statusBar.text = t("kilocode:autocomplete.statusBar.enabled")
-		this.statusBar.tooltip = t("kilocode:autocomplete.statusBar.tooltip.basic")
+		this.statusBar.text = t("softcodes:autocomplete.statusBar.enabled")
+		this.statusBar.tooltip = t("softcodes:autocomplete.statusBar.tooltip.basic")
 		this.statusBar.command = "softcodes.toggleAutocomplete"
 		this.show()
 	}
@@ -48,8 +48,8 @@ export class AutocompleteStatusBar {
 	}
 
 	private humanFormatCost(cost: number): string {
-		if (cost === 0) return t("kilocode:autocomplete.statusBar.cost.zero")
-		if (cost > 0 && cost < 0.01) return t("kilocode:autocomplete.statusBar.cost.lessThanCent") // Less than one cent
+		if (cost === 0) return t("softcodes:autocomplete.statusBar.cost.zero")
+		if (cost > 0 && cost < 0.01) return t("softcodes:autocomplete.statusBar.cost.lessThanCent") // Less than one cent
 		return `$${cost.toFixed(2)}`
 	}
 
@@ -64,24 +64,24 @@ export class AutocompleteStatusBar {
 	}
 
 	private renderDisabled() {
-		this.statusBar.text = t("kilocode:autocomplete.statusBar.disabled")
-		this.statusBar.tooltip = t("kilocode:autocomplete.statusBar.tooltip.disabled")
+		this.statusBar.text = t("softcodes:autocomplete.statusBar.disabled")
+		this.statusBar.tooltip = t("softcodes:autocomplete.statusBar.tooltip.disabled")
 	}
 
 	private renderTokenError() {
-		this.statusBar.text = t("kilocode:autocomplete.statusBar.warning")
-		this.statusBar.tooltip = t("kilocode:autocomplete.statusBar.tooltip.tokenError")
+		this.statusBar.text = t("softcodes:autocomplete.statusBar.warning")
+		this.statusBar.tooltip = t("softcodes:autocomplete.statusBar.tooltip.tokenError")
 	}
 
 	private renderDefault() {
 		const totalCostFormatted = this.humanFormatCost(this.totalSessionCost || 0)
 		const lastCompletionCostFormatted = this.lastCompletionCost?.toFixed(5) || 0
-		this.statusBar.text = `${t("kilocode:autocomplete.statusBar.enabled")} (${totalCostFormatted})`
+		this.statusBar.text = `${t("softcodes:autocomplete.statusBar.enabled")} (${totalCostFormatted})`
 		this.statusBar.tooltip = `\
-${t("kilocode:autocomplete.statusBar.tooltip.basic")}
-• ${t("kilocode:autocomplete.statusBar.tooltip.lastCompletion")} $${lastCompletionCostFormatted}
-• ${t("kilocode:autocomplete.statusBar.tooltip.sessionTotal")} ${totalCostFormatted}
-• ${t("kilocode:autocomplete.statusBar.tooltip.model")} ${this.model}\
+${t("softcodes:autocomplete.statusBar.tooltip.basic")}
+• ${t("softcodes:autocomplete.statusBar.tooltip.lastCompletion")} $${lastCompletionCostFormatted}
+• ${t("softcodes:autocomplete.statusBar.tooltip.sessionTotal")} ${totalCostFormatted}
+• ${t("softcodes:autocomplete.statusBar.tooltip.model")} ${this.model}\
 `
 	}
 

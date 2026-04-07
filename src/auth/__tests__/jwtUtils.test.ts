@@ -188,7 +188,8 @@ describe("JWT Utils", () => {
 		})
 
 		test("should validate required claims", () => {
-			// Valid payload with all required claims
+			// For the vscode-session template, only `sub` is required.
+			// Other fields (email, session_id, etc.) are optional and should not fail validation.
 			const validPayload: ClerkJWTPayload = {
 				iss: "test",
 				sub: "user_123",
@@ -203,21 +204,27 @@ describe("JWT Utils", () => {
 			const validResult = validateRequiredClaims(validPayload)
 			expect(validResult.valid).toBe(true)
 
-			// Missing email
+			// Missing email should still be valid
 			const noEmailPayload = { ...validPayload }
 			delete (noEmailPayload as any).email
 
 			const noEmailResult = validateRequiredClaims(noEmailPayload)
-			expect(noEmailResult.valid).toBe(false)
-			expect(noEmailResult.missingClaims).toContain("email")
+			expect(noEmailResult.valid).toBe(true)
 
-			// Missing session_id
+			// Missing session_id should still be valid
 			const noSessionPayload = { ...validPayload }
 			delete (noSessionPayload as any).session_id
 
 			const noSessionResult = validateRequiredClaims(noSessionPayload)
-			expect(noSessionResult.valid).toBe(false)
-			expect(noSessionResult.missingClaims).toContain("session_id")
+			expect(noSessionResult.valid).toBe(true)
+
+			// Missing sub should be invalid
+			const noSubPayload = { ...validPayload }
+			delete (noSubPayload as any).sub
+
+			const noSubResult = validateRequiredClaims(noSubPayload)
+			expect(noSubResult.valid).toBe(false)
+			expect(noSubResult.missingClaims).toContain("sub")
 		})
 
 		test("should get token expiration info", () => {

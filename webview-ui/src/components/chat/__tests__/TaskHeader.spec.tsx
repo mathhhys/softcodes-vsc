@@ -40,7 +40,7 @@ vi.mock("@src/context/ExtensionStateContext", () => ({
 			apiKey: "test-api-key", // Add relevant fields
 			apiModelId: "claude-3-opus-20240229", // Add relevant fields
 		} as ProviderSettings, // Optional: Add type assertion if ProviderSettings is imported
-		currentTaskItem: { id: "test-task-id" },
+		currentTaskItem: { id: "test-task-id", providerId: "openai" },
 	}),
 }))
 
@@ -74,7 +74,7 @@ describe("TaskHeader", () => {
 
 	it("should not display cost when totalCost is 0", () => {
 		renderTaskHeader({ totalCost: 0 })
-		expect(screen.queryByText("$0.0000")).not.toBeInTheDocument()
+		expect(screen.queryByText("0 credits")).not.toBeInTheDocument()
 	})
 
 	it("should not display cost when totalCost is null", () => {

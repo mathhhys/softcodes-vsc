@@ -1144,7 +1144,7 @@ describe("ChatView - Focus Grabbing Tests", () => {
 	})
 })
 
-describe.skip("ChatView - Version Indicator Tests", () => {
+describe("ChatView - Version Indicator Tests", () => {
 	beforeEach(() => vi.clearAllMocks())
 
 	// Helper function to create a mock VersionIndicator implementation

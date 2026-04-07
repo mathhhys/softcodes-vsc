@@ -56,7 +56,7 @@
 		"dashboard": "Dashboard",
 		"logOut": "Log out",
 		"currentBalance": "CURRENT BALANCE",
-		"loading": "Loading..."
+		"loading": "|"
 	},
 	"docs": "Docs",
 	"rules": {

@@ -20,6 +20,11 @@ export type TelemetrySetting = z.infer<typeof telemetrySettingsSchema>
 export enum TelemetryEventName {
 	// kilocode_change start
 	COMMIT_MSG_GENERATED = "Commit Message Generated",
+	INLINE_ASSIST_QUICK_TASK = "Inline Assist Quick Task",
+	INLINE_ASSIST_AUTO_TASK = "Inline Assist Auto Task",
+	INLINE_ASSIST_ACCEPT_SUGGESTION = "Inline Assist Accept Suggestion",
+	INLINE_ASSIST_REJECT_SUGGESTION = "Inline Assist Reject Suggestion",
+	CHECKPOINT_FAILURE = "Checkpoint Failure",
 	// kilocode_change end
 
 	TASK_CREATED = "Task Created",
@@ -93,6 +98,14 @@ export const taskPropertiesSchema = z.object({
 	modelId: z.string().optional(),
 	diffStrategy: z.string().optional(),
 	isSubtask: z.boolean().optional(),
+	todos: z
+		.object({
+			total: z.number(),
+			completed: z.number(),
+			inProgress: z.number(),
+			pending: z.number(),
+		})
+		.optional(),
 })
 
 export const gitPropertiesSchema = z.object({
@@ -129,6 +142,10 @@ export const rooCodeTelemetryEventSchema = z.discriminatedUnion("type", [
 		type: z.enum([
 			// kilocode_change start
 			TelemetryEventName.COMMIT_MSG_GENERATED,
+			TelemetryEventName.INLINE_ASSIST_QUICK_TASK,
+			TelemetryEventName.INLINE_ASSIST_AUTO_TASK,
+			TelemetryEventName.INLINE_ASSIST_ACCEPT_SUGGESTION,
+			TelemetryEventName.INLINE_ASSIST_REJECT_SUGGESTION,
 			// kilocode_change end
 			TelemetryEventName.TASK_CREATED,
 			TelemetryEventName.TASK_RESTARTED,
@@ -160,6 +177,7 @@ export const rooCodeTelemetryEventSchema = z.discriminatedUnion("type", [
 			TelemetryEventName.DIFF_APPLICATION_ERROR,
 			TelemetryEventName.SHELL_INTEGRATION_ERROR,
 			TelemetryEventName.CONSECUTIVE_MISTAKE_ERROR,
+			TelemetryEventName.CODE_INDEX_ERROR,
 			TelemetryEventName.CONTEXT_CONDENSED,
 			TelemetryEventName.SLIDING_WINDOW_TRUNCATION,
 			TelemetryEventName.TAB_SHOWN,

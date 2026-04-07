@@ -97,7 +97,7 @@ export default function SoftcodesBalanceDisplay({ vscode }: SoftcodesBalanceDisp
 						</p>
 					) : (
 						<p className="text-sm text-vscode-descriptionForeground">
-							{t("settings.providers.softcodes.credits")}: {balance.credits.toLocaleString()}
+							Balance: {balance.credits.toFixed(2)} credits
 						</p>
 					)}
 				</div>

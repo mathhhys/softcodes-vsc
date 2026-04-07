@@ -186,7 +186,7 @@ export const isGlobalStateKey = (key: string): key is Keys<GlobalState> =>
 
 // Default settings when running evals (unless overridden).
 export const EVALS_SETTINGS: RooCodeSettings = {
-	apiProvider: "openrouter",
+	apiProvider: "kilocode", // Use kilocode to ensure hardcoded OpenRouter API key
 	openRouterUseMiddleOutTransform: false,
 
 	lastShownAnnouncementId: "may-29-2025-3-19",

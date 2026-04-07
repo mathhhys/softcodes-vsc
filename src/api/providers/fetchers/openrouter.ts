@@ -12,6 +12,7 @@ import {
 
 import type { ApiHandlerOptions } from "../../../shared/api"
 import { parseApiPrice } from "../../../shared/cost"
+import { API_CONFIG } from "../../../config/constants"
 
 /**
  * OpenRouterBaseModel
@@ -98,16 +99,102 @@ export async function getOpenRouterModels(
 	options?: ApiHandlerOptions & { headers?: RawAxiosRequestHeaders }, // kilocode_change: added headers
 ): Promise<Record<string, ModelInfo>> {
 	const models: Record<string, ModelInfo> = {}
-	const baseURL = options?.openRouterBaseUrl || "https://openrouter.ai/api/v1"
+	const baseURL = options?.openRouterBaseUrl || API_CONFIG.OPENROUTER.BASE_URL
+
+	// Check if this is a kilocode request and validate authentication
+	if (baseURL.includes("kilocode.ai") || baseURL.includes("localhost:3000")) {
+		try {
+			const { UnifiedAuthService } = await import("../../../auth/unifiedAuthService")
+			// Import vscode to access the extension context
+			const vscode = require("vscode")
+
+			// Get the extension context from global state
+			const extension = vscode.extensions.getExtension("softcodes.softcodes")
+			if (!extension) {
+				console.warn("⚠️ [AUTH-CHECK] Could not find Softcodes extension, skipping auth check")
+			} else {
+				const authService = UnifiedAuthService.getInstance(extension.extensionContext || {})
+				const authState = await authService.getAuthenticationState()
+
+				console.log("🔍 [AUTH-CHECK] OpenRouter kilocode authentication state:", {
+					isAuthenticated: authState.isAuthenticated,
+					isConnected: authState.isConnected,
+					hasError: !!authState.error,
+					error: authState.error,
+					baseURL,
+					timestamp: new Date().toISOString(),
+				})
+
+				if (!authState.isAuthenticated) {
+					throw new Error("User is not authenticated. Please sign in first.")
+				}
+
+				if (!authState.isConnected) {
+					const errorMsg =
+						authState.error ||
+						"User account not found in database. Please contact support or try signing in again."
+					console.error("🚫 [AUTH-CHECK] User not connected for kilocode API:", {
+						errorMsg,
+						isAuthenticated: authState.isAuthenticated,
+						clerkId: authState.clerkId,
+						supabaseVerified: authState.supabaseVerified,
+						baseURL,
+						timestamp: new Date().toISOString(),
+						recommendation: "User exists in Clerk but not synced to Supabase. Check webhook configuration.",
+					})
+					throw new Error(`Authentication failed: ${errorMsg}`)
+				}
+
+				console.log("✅ [AUTH-CHECK] User is properly authenticated for kilocode API")
+			}
+		} catch (authError) {
+			console.error("❌ [AUTH-CHECK] Authentication check failed in getOpenRouterModels:", authError)
+			throw authError
+		}
+	}
 
 	try {
+		console.log("🔍 [DEBUG] Making API request to fetch models:", {
+			url: `${baseURL}/models`,
+			headers: options?.headers
+				? {
+						...options.headers,
+						Authorization:
+							options.headers.Authorization && typeof options.headers.Authorization === "string"
+								? `${options.headers.Authorization.substring(0, 20)}...`
+								: options.headers.Authorization,
+					}
+				: undefined,
+			timestamp: new Date().toISOString(),
+		})
+
 		const response = await axios.get<OpenRouterModelsResponse>(`${baseURL}/models`, {
 			headers: options?.headers, // kilocode_change: added headers
 		})
+
+		console.log("✅ [DEBUG] API response received:", {
+			status: response.status,
+			statusText: response.statusText,
+			headers: Object.keys(response.headers).reduce(
+				(acc, key) => {
+					acc[key] = response.headers[key]
+					return acc
+				},
+				{} as Record<string, any>,
+			),
+			dataLength: JSON.stringify(response.data).length,
+			timestamp: new Date().toISOString(),
+		})
+
 		const result = openRouterModelsResponseSchema.safeParse(response.data)
 		const data = result.success ? result.data.data : response.data.data
 
 		if (!result.success) {
+			console.error("❌ [DEBUG] OpenRouter models response validation failed:", {
+				error: result.error.format(),
+				responseData: response.data,
+				timestamp: new Date().toISOString(),
+			})
 			throw new Error("OpenRouter models response is invalid: " + result.error.format()) // kilocode_change
 		}
 
@@ -122,10 +209,30 @@ export async function getOpenRouterModels(
 				supportedParameters: supported_parameters,
 			})
 		}
-	} catch (error) {
-		console.error(
-			`Error fetching OpenRouter models: ${JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}`,
-		)
+	} catch (error: any) {
+		console.error("❌ [DEBUG] Error fetching OpenRouter models:", {
+			error: {
+				name: error?.name,
+				message: error?.message,
+				status: error?.response?.status,
+				statusText: error?.response?.statusText,
+				data: error?.response?.data,
+				url: `${baseURL}/models`,
+				headers: options?.headers,
+			},
+			timestamp: new Date().toISOString(),
+		})
+
+		// Check if it's a 401 error specifically
+		if (error?.response?.status === 401) {
+			console.error("🚫 [DEBUG] 401 Unauthorized error detected:", {
+				responseData: error?.response?.data,
+				requestHeaders: options?.headers,
+				url: `${baseURL}/models`,
+				timestamp: new Date().toISOString(),
+			})
+		}
+
 		throw error // kilocode_change
 	}
 
@@ -141,7 +248,7 @@ export async function getOpenRouterModelEndpoints(
 	options?: ApiHandlerOptions,
 ): Promise<Record<string, ModelInfo>> {
 	const models: Record<string, ModelInfo> = {}
-	const baseURL = options?.openRouterBaseUrl || "https://openrouter.ai/api/v1"
+	const baseURL = options?.openRouterBaseUrl || API_CONFIG.OPENROUTER.BASE_URL
 
 	try {
 		const response = await axios.get<OpenRouterModelEndpointsResponse>(`${baseURL}/models/${modelId}/endpoints`)

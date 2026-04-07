@@ -17,6 +17,8 @@ import { CloudSettingsService } from "./CloudSettingsService"
 import { StaticSettingsService } from "./StaticSettingsService"
 import { TelemetryClient } from "./TelemetryClient"
 import { ShareService, TaskNotFoundError } from "./ShareService"
+import { SoftcodesAuthService } from "./auth/SoftcodesAuthService"
+import type { UserInfo } from "./auth/types"
 
 export class CloudService {
 	private static _instance: CloudService | null = null
@@ -25,6 +27,8 @@ export class CloudService {
 	private callbacks: CloudServiceCallbacks
 	private authListener: () => void
 	private authService: AuthService | null = null
+	private softcodesAuthService: SoftcodesAuthService | null = null
+	private outputChannel: vscode.OutputChannel | null = null
 	private settingsService: SettingsService | null = null
 	private telemetryClient: TelemetryClient | null = null
 	private shareService: ShareService | null = null
@@ -60,6 +64,10 @@ export class CloudService {
 			this.authService.on("active-session", this.authListener)
 			this.authService.on("logged-out", this.authListener)
 			this.authService.on("user-info", this.authListener)
+
+			// Initialize Softcodes authentication service
+			this.outputChannel = vscode.window.createOutputChannel("Softcodes Authentication")
+			this.softcodesAuthService = new SoftcodesAuthService(this.context, this.outputChannel)
 
 			// Check for static settings environment variable
 			const staticOrgSettings = process.env.ROO_CODE_CLOUD_ORG_SETTINGS
@@ -164,7 +172,72 @@ export class CloudService {
 		organizationId?: string | null,
 	): Promise<void> {
 		this.ensureInitialized()
+
+		// Try Softcodes auth first if it has stored PKCE params
+		if (this.softcodesAuthService) {
+			const pkceParams = await this.softcodesAuthService.getUserInfo()
+			if (pkceParams) {
+				const success = await this.softcodesAuthService.handleCallback(code, state, organizationId)
+				if (success) {
+					this.callbacks.stateChanged?.()
+					return
+				}
+			}
+		}
+
+		// Fall back to Roo Code auth
 		return this.authService!.handleCallback(code, state, organizationId)
+	}
+
+	// Softcodes Authentication Methods
+
+	public async softcodesLogin(): Promise<void> {
+		this.ensureInitialized()
+		if (!this.softcodesAuthService) {
+			throw new Error("Softcodes authentication service not available")
+		}
+		return this.softcodesAuthService.login()
+	}
+
+	public async softcodesLogout(): Promise<void> {
+		this.ensureInitialized()
+		if (!this.softcodesAuthService) {
+			throw new Error("Softcodes authentication service not available")
+		}
+		await this.softcodesAuthService.logout()
+		this.callbacks.stateChanged?.()
+	}
+
+	public async softcodesIsAuthenticated(): Promise<boolean> {
+		this.ensureInitialized()
+		if (!this.softcodesAuthService) {
+			return false
+		}
+		return this.softcodesAuthService.isAuthenticated()
+	}
+
+	public async softcodesGetUserInfo(): Promise<UserInfo | null> {
+		this.ensureInitialized()
+		if (!this.softcodesAuthService) {
+			return null
+		}
+		return this.softcodesAuthService.getUserInfo()
+	}
+
+	public async softcodesGetAccessToken(): Promise<string | null> {
+		this.ensureInitialized()
+		if (!this.softcodesAuthService) {
+			return null
+		}
+		return this.softcodesAuthService.getAccessToken()
+	}
+
+	public async softcodesMakeAuthenticatedRequest<T>(endpoint: string, options?: RequestInit): Promise<T> {
+		this.ensureInitialized()
+		if (!this.softcodesAuthService) {
+			throw new Error("Softcodes authentication service not available")
+		}
+		return this.softcodesAuthService.makeAuthenticatedRequest<T>(endpoint, options)
 	}
 
 	// SettingsService
@@ -219,6 +292,9 @@ export class CloudService {
 		}
 		if (this.settingsService) {
 			this.settingsService.dispose()
+		}
+		if (this.outputChannel) {
+			this.outputChannel.dispose()
 		}
 
 		this.isInitialized = false

@@ -484,3 +484,55 @@ input[cmdk-input]:focus {
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
 }
+
+/* Profile View Card Styles */
+.profile-card {
+	background: var(--vscode-editor-background);
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease-in-out;
+}
+
+.profile-card:hover {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.connection-status-connected {
+	background: linear-gradient(
+		135deg,
+		rgba(var(--vscode-charts-green), 0.1) 0%,
+		rgba(var(--vscode-charts-green), 0.05) 100%
+	);
+	border-color: var(--vscode-charts-green);
+}
+
+.connection-status-partial {
+	background: linear-gradient(
+		135deg,
+		rgba(var(--vscode-charts-yellow), 0.1) 0%,
+		rgba(var(--vscode-charts-yellow), 0.05) 100%
+	);
+	border-color: var(--vscode-charts-yellow);
+}
+
+.credits-display {
+	background: linear-gradient(
+		135deg,
+		var(--vscode-button-background) 0%,
+		rgba(var(--vscode-button-background), 0.8) 100%
+	);
+	border: 1px solid var(--vscode-button-background);
+}
+
+.profile-avatar-ring {
+	background: linear-gradient(135deg, var(--vscode-charts-green) 0%, var(--vscode-charts-blue) 100%);
+	padding: 2px;
+	border-radius: 50%;
+}
+
+.profile-avatar-ring-inner {
+	background: var(--vscode-editor-background);
+	border-radius: 50%;
+	padding: 2px;
+}

@@ -9,11 +9,13 @@ export const OpenRouterBalanceDisplay = ({ apiKey, baseUrl }: { apiKey: string; 
 		return null
 	}
 
-	const formattedBalance = (keyInfo.limit - keyInfo.usage).toFixed(2)
+	const remainingDollars = keyInfo.limit - keyInfo.usage
+	const remainingCredits = remainingDollars / 0.014
+	const formattedCredits = remainingCredits.toFixed(2)
 
 	return (
 		<VSCodeLink href="https://openrouter.ai/settings/keys" className="text-vscode-foreground hover:underline">
-			${formattedBalance}
+			{formattedCredits} credits
 		</VSCodeLink>
 	)
 }

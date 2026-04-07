@@ -3,15 +3,15 @@
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
 	"publisher": "softcodes",
-	"version": "4.60.1",
+	"version": "4.61.6",
 	"icon": "assets/icons/logo.png",
 	"galleryBanner": {
 		"color": "#FFFFFF",
 		"theme": "light"
 	},
 	"engines": {
-		"vscode": "^1.84.0",
-		"node": "20.19.2"
+		"vscode": "^1.93.0",
+		"node": "^20.19.4"
 	},
 	"repository": {
 		"type": "git",
@@ -286,8 +286,42 @@
 			},
 			{
 				"command": "softcodes.signin",
-				"title": "Sign In with Token",
-				"category": "%configuration.title%"
+				"title": "Sign in to Softcodes.ai",
+				"category": "Softcodes"
+			},
+			{
+				"command": "softcodes.creditBadge.showDetails",
+				"title": "Show Credit Details",
+				"category": "Credit Badge",
+				"icon": "$(coin)"
+			},
+			{
+				"command": "softcodes.creditBadge.resetSession",
+				"title": "Reset Credit Session",
+				"category": "Credit Badge",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "softcodes.creditBadge.showHistory",
+				"title": "Show Credit History",
+				"category": "Credit Badge",
+				"icon": "$(history)"
+			},
+			{
+				"command": "softcodes.creditBadge.setUsageLimit",
+				"title": "Set Credit Usage Limit",
+				"category": "Credit Badge",
+				"icon": "$(settings-gear)"
+			},
+			{
+				"command": "softcodes.authenticate",
+				"title": "Softcodes: Authenticate",
+				"category": "Softcodes"
+			},
+			{
+				"command": "softcodes.reauthenticate",
+				"title": "Softcodes: Re-authenticate (Clear Token)",
+				"category": "Softcodes"
 			}
 		],
 		"keybindings": [
@@ -519,8 +553,65 @@
 					"type": "string",
 					"default": "",
 					"description": "%settings.autoImportSettingsPath.description%"
+				},
+				"softcodes.creditBadge.displayMode": {
+					"type": "string",
+					"enum": [
+						"session",
+						"remaining",
+						"total",
+						"rate"
+					],
+					"default": "session",
+					"description": "What to display in the credit badge"
+				},
+				"softcodes.creditBadge.dollarToCreditRate": {
+					"type": "number",
+					"default": 0.014,
+					"description": "Dollar to credit conversion rate"
+				},
+				"softcodes.creditBadge.roundingMode": {
+					"type": "string",
+					"enum": [
+						"ceil",
+						"floor",
+						"round"
+					],
+					"default": "ceil",
+					"description": "Rounding method for fractional credits"
+				},
+				"softcodes.creditBadge.notificationThreshold": {
+					"type": "number",
+					"default": 10,
+					"description": "Show notification when credits used exceed this threshold"
+				},
+				"softcodes.creditBadge.enableNotifications": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable credit usage notifications"
+				},
+				"softcodes.creditBadge.showProgressAnimation": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show animations for credit consumption"
+				},
+				"softcodes.gemini.clientId": {
+					"type": "string",
+					"default": "681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com",
+					"description": "Google OAuth Client ID for Gemini CLI integration. This value is public and can be overridden if you have your own client ID."
+				},
+				"softcodes.apiBaseUrl": {
+					"type": "string",
+					"default": "https://www.softcodes.ai/api",
+					"description": "API base URL for Softcodes authentication and services"
 				}
 			}
+		},
+		"softcodes.clerkToken": {
+			"type": "string",
+			"default": "",
+			"description": "Clerk authentication token for Softcodes.ai API access. Generate from dashboard.",
+			"scope": "application"
 		},
 		"codeActions": [
 			{
@@ -531,6 +622,9 @@
 					"vscode.CodeActionKind.QuickFix"
 				]
 			}
+		],
+		"uriSchemes": [
+			"vscode-bluebytebooster"
 		]
 	},
 	"scripts": {
@@ -564,6 +658,7 @@
 		"@roo-code/ipc": "workspace:^",
 		"@roo-code/telemetry": "workspace:^",
 		"@roo-code/types": "workspace:^",
+		"@supabase/supabase-js": "^2.57.4",
 		"@types/lodash.debounce": "^4.0.9",
 		"@vscode/codicons": "^0.0.36",
 		"async-mutex": "^0.5.0",
@@ -571,6 +666,7 @@
 		"cheerio": "^1.0.0",
 		"chokidar": "^4.0.1",
 		"clone-deep": "^4.0.1",
+		"decimal.js": "^10.6.0",
 		"default-shell": "^2.2.0",
 		"delay": "^6.0.0",
 		"diff": "^5.2.0",
@@ -586,6 +682,7 @@
 		"i18next": "^25.0.0",
 		"ignore": "^7.0.3",
 		"isbinaryfile": "^5.0.2",
+		"jsonwebtoken": "^9.0.2",
 		"lodash.debounce": "^4.0.8",
 		"lru-cache": "^11.1.0",
 		"mammoth": "^1.8.0",
@@ -609,6 +706,7 @@
 		"serialize-error": "^12.0.0",
 		"simple-git": "^3.27.0",
 		"sound-play": "^1.1.0",
+		"sqlite3": "^5.1.7",
 		"stream-json": "^1.8.0",
 		"string-similarity": "^4.0.4",
 		"strip-ansi": "^7.1.0",
@@ -634,6 +732,7 @@
 		"@types/diff": "^5.2.1",
 		"@types/diff-match-patch": "^1.0.36",
 		"@types/glob": "^8.1.0",
+		"@types/jsonwebtoken": "^9.0.6",
 		"@types/mocha": "^10.0.10",
 		"@types/node": "20.x",
 		"@types/node-cache": "^4.1.3",
@@ -644,7 +743,7 @@
 		"@types/string-similarity": "^4.0.2",
 		"@types/tmp": "^0.2.6",
 		"@types/turndown": "^5.0.5",
-		"@types/vscode": "^1.84.0",
+		"@types/vscode": "^1.93.0",
 		"@vscode/test-electron": "^2.5.2",
 		"@vscode/vsce": "3.3.2",
 		"esbuild": "^0.25.0",

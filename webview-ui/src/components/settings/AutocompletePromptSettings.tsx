@@ -8,6 +8,10 @@ const AutocompletePromptSettings = () => {
 	const { t } = useAppTranslation()
 	const { listApiConfigMeta, autocompleteApiConfigId, setAutocompleteApiConfigId } = useExtensionState()
 
+	// DEBUG: Log the data being used to render the dropdown
+	console.log("[DEBUG] AutocompletePromptSettings - listApiConfigMeta:", JSON.stringify(listApiConfigMeta, null, 2))
+	console.log("[DEBUG] AutocompletePromptSettings - autocompleteApiConfigId:", autocompleteApiConfigId)
+
 	return (
 		<div className="mb-4 flex flex-col gap-3 pl-3">
 			<div>

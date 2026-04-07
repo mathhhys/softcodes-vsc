@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { VSCodeBadge } from "@vscode/webview-ui-toolkit/react"
 import { CloudUpload, CloudDownload, FoldVertical } from "lucide-react"
 import { validateSlashCommand } from "@/utils/slash-commands"
+import { formatPrice } from "../../../../src/services/priceFormatter"
 
 import type { ClineMessage } from "@roo-code/types"
 
@@ -26,6 +27,92 @@ import { mentionRegexGlobal } from "@roo/context-mentions"
 import { vscode } from "@/utils/vscode" // kilocode_change: pull slash commands from Cline
 // import { Mention } from "./Mention" // kilocode_change
 import { TodoListDisplay } from "./TodoListDisplay"
+
+/**
+ * Highlights slash-command in this text if it exists
+ */
+const highlightSlashCommands = (text: string, withShadow = true, customModes?: any[]) => {
+	const match = text.match(/^\s*\/([a-zA-Z0-9_-]+)(\s*|$)/)
+	if (!match) {
+		return text
+	}
+
+	const commandName = match[1]
+	const validationResult = validateSlashCommand(commandName, customModes)
+
+	if (!validationResult || validationResult !== "full") {
+		return text
+	}
+
+	const commandEndIndex = match[0].length
+	const beforeCommand = text.substring(0, text.indexOf("/"))
+	const afterCommand = match[2] + text.substring(commandEndIndex)
+
+	return [
+		beforeCommand,
+		<span
+			key="slashCommand"
+			className={withShadow ? "mention-context-highlight-with-shadow" : "mention-context-highlight"}>
+			/{commandName}
+		</span>,
+		afterCommand,
+	]
+}
+
+/**
+ * Highlights & formats all mentions inside this text
+ */
+export const highlightMentions = (text: string, withShadow = true) => {
+	const parts = text.split(mentionRegexGlobal)
+
+	return parts.map((part, index) => {
+		if (index % 2 === 0) {
+			// This is regular text
+			return part
+		} else {
+			// This is a mention
+			return (
+				<span
+					key={index}
+					className={withShadow ? "mention-context-highlight-with-shadow" : "mention-context-highlight"}
+					style={{ cursor: "pointer" }}
+					onClick={() => vscode.postMessage({ type: "openMention", text: part })}>
+					@{part}
+				</span>
+			)
+		}
+	})
+}
+
+/**
+ * Handles parsing both mentions and slash-commands
+ */
+export const highlightText = (text?: string, withShadow = true, customModes?: any[]) => {
+	if (!text) {
+		return text
+	}
+
+	const resultWithSlashHighlighting = highlightSlashCommands(text, withShadow, customModes)
+
+	if (resultWithSlashHighlighting === text) {
+		// no highlighting done
+		return highlightMentions(resultWithSlashHighlighting, withShadow)
+	}
+
+	if (Array.isArray(resultWithSlashHighlighting) && resultWithSlashHighlighting.length === 3) {
+		const [beforeCommand, commandElement, afterCommand] = resultWithSlashHighlighting as [
+			string,
+			JSX.Element,
+			string,
+		]
+
+		return [beforeCommand, commandElement, ...highlightMentions(afterCommand, withShadow)]
+	}
+
+	return [text]
+}
+
+// kilocode_change start: pull slash commands from Cline
 
 export interface TaskHeaderProps {
 	task: ClineMessage
@@ -123,10 +210,10 @@ const TaskHeader = ({
 						</Button>
 					</StandardTooltip>
 				</div>
-				{/* Collapsed state: Track context and cost if we have any */}
+				{/* Collapsed state: Track context and cost if we have any */}(
 				{!isTaskExpanded && contextWindow > 0 && (
-					// kilocode_change start
 					<div className={`w-full flex flex-col gap-1 h-auto`}>
+						{/* kilocode_change start */}
 						{showTaskTimeline && (
 							<TaskTimeline
 								groupedMessages={groupedMessages}
@@ -148,11 +235,21 @@ const TaskHeader = ({
 							/>
 							{condenseButton}
 							<ShareButton item={currentTaskItem} disabled={buttonsDisabled} />
-							{!!totalCost && <VSCodeBadge>${totalCost.toFixed(2)}</VSCodeBadge>}
+							{!!totalCost && currentTaskItem && (
+								<VSCodeBadge>
+									{formatPrice(
+										(currentTaskItem as any).providerId ??
+											(apiConfiguration?.apiProvider === "openrouter"
+												? "softcodes/openrouter"
+												: "openai"),
+										totalCost,
+									)}
+								</VSCodeBadge>
+							)}
 						</div>
 					</div>
 				)}
-				{/* Expanded state: Show task text and images */}
+				){/* Expanded state: Show task text and images */}
 				{isTaskExpanded && (
 					<>
 						<div
@@ -170,6 +267,7 @@ const TaskHeader = ({
 								{highlightText(task.text, false, customModes)}
 							</div>
 						</div>
+						{/* Removed legacy formatCreditsWithIcon usage */}
 						{task.images && task.images.length > 0 && <Thumbnails images={task.images} />}
 
 						{/* kilocode_change start */}
@@ -249,7 +347,15 @@ const TaskHeader = ({
 								<div className="flex justify-between items-center h-[20px]">
 									<div className="flex items-center gap-1">
 										<span className="font-bold">{t("chat:task.apiCost")}</span>
-										<span>${totalCost?.toFixed(2)}</span>
+										<span>
+											{formatPrice(
+												currentTaskItem?.providerId ??
+													(apiConfiguration?.apiProvider === "openrouter"
+														? "softcodes/openrouter"
+														: "openai"),
+												totalCost,
+											)}
+										</span>
 									</div>
 									<TaskActions item={currentTaskItem} buttonsDisabled={buttonsDisabled} />
 								</div>
@@ -262,93 +368,5 @@ const TaskHeader = ({
 		</div>
 	)
 }
-
-// kilocode_change start: pull slash commands from Cline
-
-/**
- * Highlights slash-command in this text if it exists
- */
-const highlightSlashCommands = (text: string, withShadow = true, customModes?: any[]) => {
-	const match = text.match(/^\s*\/([a-zA-Z0-9_-]+)(\s*|$)/)
-	if (!match) {
-		return text
-	}
-
-	const commandName = match[1]
-	const validationResult = validateSlashCommand(commandName, customModes)
-
-	if (!validationResult || validationResult !== "full") {
-		return text
-	}
-
-	const commandEndIndex = match[0].length
-	const beforeCommand = text.substring(0, text.indexOf("/"))
-	const afterCommand = match[2] + text.substring(commandEndIndex)
-
-	return [
-		beforeCommand,
-		<span
-			key="slashCommand"
-			className={withShadow ? "mention-context-highlight-with-shadow" : "mention-context-highlight"}>
-			/{commandName}
-		</span>,
-		afterCommand,
-	]
-}
-
-/**
- * Highlights & formats all mentions inside this text
- */
-export const highlightMentions = (text: string, withShadow = true) => {
-	const parts = text.split(mentionRegexGlobal)
-
-	return parts.map((part, index) => {
-		if (index % 2 === 0) {
-			// This is regular text
-			return part
-		} else {
-			// This is a mention
-			return (
-				<span
-					key={index}
-					className={withShadow ? "mention-context-highlight-with-shadow" : "mention-context-highlight"}
-					style={{ cursor: "pointer" }}
-					onClick={() => vscode.postMessage({ type: "openMention", text: part })}>
-					@{part}
-				</span>
-			)
-		}
-	})
-}
-
-/**
- * Handles parsing both mentions and slash-commands
- */
-export const highlightText = (text?: string, withShadow = true, customModes?: any[]) => {
-	if (!text) {
-		return text
-	}
-
-	const resultWithSlashHighlighting = highlightSlashCommands(text, withShadow, customModes)
-
-	if (resultWithSlashHighlighting === text) {
-		// no highlighting done
-		return highlightMentions(resultWithSlashHighlighting, withShadow)
-	}
-
-	if (Array.isArray(resultWithSlashHighlighting) && resultWithSlashHighlighting.length === 3) {
-		const [beforeCommand, commandElement, afterCommand] = resultWithSlashHighlighting as [
-			string,
-			JSX.Element,
-			string,
-		]
-
-		return [beforeCommand, commandElement, ...highlightMentions(afterCommand, withShadow)]
-	}
-
-	return [text]
-}
-
-// kilocode_change start: pull slash commands from Cline
 
 export default memo(TaskHeader)

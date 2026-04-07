@@ -8,6 +8,7 @@ import { ContextProxy } from "../../../core/config/ContextProxy"
 import { getCacheDirectoryPath } from "../../../utils/storage"
 import { RouterName, ModelRecord, cerebrasModels } from "../../../shared/api"
 import { fileExistsAtPath } from "../../../utils/fs"
+import { API_CONFIG } from "../../../config/constants"
 
 import { getOpenRouterModels } from "./openrouter"
 import { getRequestyModels } from "./requesty"
@@ -15,7 +16,6 @@ import { getGlamaModels } from "./glama"
 import { getUnboundModels } from "./unbound"
 import { getLiteLLMModels } from "./litellm"
 import { GetModelsOptions } from "../../../shared/api"
-import { getKiloBaseUriFromToken } from "../../../utils/kilocode-token"
 import { getOllamaModels } from "./ollama"
 import { getLMStudioModels } from "./lmstudio"
 
@@ -88,8 +88,12 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 				if (!options.kilocodeToken || options.kilocodeToken.trim() === "") {
 					throw new Error("KiloCode token is required for kilocode-openrouter provider")
 				}
+
+				// Skip authentication check - use OpenRouter directly
+				console.log("🔄 [MODEL-CACHE] Using OpenRouter directly without KiloCode authentication")
+
 				models = await getOpenRouterModels({
-					openRouterBaseUrl: getKiloBaseUriFromToken(options.kilocodeToken) + "/api/openrouter",
+					openRouterBaseUrl: API_CONFIG.OPENROUTER.BASE_URL,
 					headers: { Authorization: `Bearer ${options.kilocodeToken}` },
 				})
 				break

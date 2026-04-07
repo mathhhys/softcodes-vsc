@@ -95,6 +95,21 @@ import { parseKiloSlashCommands } from "../slash-commands/kilo" // kilocode_chan
 import { GlobalFileNames } from "../../shared/globalFileNames" // kilocode_change
 import { ensureLocalKilorulesDirExists } from "../context/instructions/kilo-rules" // kilocode_change
 import { restoreTodoListForTask } from "../tools/updateTodoListTool"
+import { creditManager } from "../../services/creditManager"
+import { getEnhancedCreditSystem } from "../../services/enhancedCreditSystem"
+import { API_COSTS } from "../../services/creditIntegration"
+import { UnifiedAuthService } from "../../auth/unifiedAuthService"
+import { CreditConverter } from "../../services/creditBadge/CreditConverter"
+import { AuthenticationGate, type AuthGateValidationResult } from "../billing/AuthenticationGate"
+import {
+	BillingError,
+	AuthenticationRequiredError,
+	InsufficientCreditsError,
+	ApiKeyRequiredError,
+	isBillingError,
+	getBillingErrorInfo,
+} from "../billing/BillingError"
+import { BillingModel } from "../billing/BillingStrategy"
 
 // Constants
 const MAX_EXPONENTIAL_BACKOFF_SECONDS = 600 // 10 minutes
@@ -162,6 +177,11 @@ export class Task extends EventEmitter<ClineEvents> {
 	api: ApiHandler
 	private static lastGlobalApiRequestTime?: number
 	private consecutiveAutoApprovedRequestsCount: number = 0
+
+	// Authentication and Billing
+	private authGate: AuthenticationGate
+	private accessToken?: string
+	private preCheckBalance = 0
 
 	/**
 	 * Reset the global API request timestamp. This should only be used for testing.
@@ -265,6 +285,9 @@ export class Task extends EventEmitter<ClineEvents> {
 
 		this.apiConfiguration = apiConfiguration
 		this.api = buildApiHandler(apiConfiguration)
+
+		// Initialize authentication gate
+		this.authGate = AuthenticationGate.getInstance(this.context)
 
 		this.urlContentFetcher = new UrlContentFetcher(provider.context)
 		this.browserSession = new BrowserSession(provider.context)
@@ -1378,6 +1401,7 @@ export class Task extends EventEmitter<ClineEvents> {
 			// Yields only if the first chunk is successful, otherwise will
 			// allow the user to retry the request (most likely due to rate
 			// limit error, which gets thrown on the first chunk).
+			const requestId = crypto.randomUUID()
 			const stream = this.attemptApiRequest()
 			let assistantMessage = ""
 			let reasoningMessage = ""
@@ -1402,6 +1426,8 @@ export class Task extends EventEmitter<ClineEvents> {
 							cacheWriteTokens += chunk.cacheWriteTokens ?? 0
 							cacheReadTokens += chunk.cacheReadTokens ?? 0
 							totalCost = chunk.totalCost
+
+							// No pre-stream deduction - handled post-call
 							break
 						case "text": {
 							assistantMessage += chunk.text
@@ -1486,6 +1512,62 @@ export class Task extends EventEmitter<ClineEvents> {
 				}
 			} finally {
 				this.isStreaming = false
+			}
+
+			// Post-call billing: Deduct actual cost after stream completes (only once)
+			if (totalCost && totalCost > 0 && this.accessToken) {
+				try {
+					const deductionResult = await creditManager.deductFromActual(
+						this.accessToken,
+						totalCost,
+						`Actual API usage in task ${this.taskId}`,
+						{
+							operationType: "api_actual_usage",
+							requestId,
+							modelId: this.api.getModel().id,
+							apiProvider: this.apiConfiguration.apiProvider,
+							inputTokens,
+							outputTokens,
+							cacheWriteTokens,
+							cacheReadTokens,
+							totalTokens: inputTokens + outputTokens,
+							preCheckBalance: this.preCheckBalance,
+							actualCost: totalCost,
+						},
+						this.apiConfiguration.apiProvider,
+					)
+
+					if (deductionResult.success) {
+						console.log(
+							`[BILLING-POST-CALL] Deducted $${totalCost} (${deductionResult.creditsDeducted?.toFixed(2)} credits) from pre-check balance ${this.preCheckBalance}, new balance: ${deductionResult.balanceAfter} (requestId: ${requestId})`,
+						)
+					} else {
+						console.error(
+							`[BILLING-POST-CALL] Deduction failed (pre-check: ${this.preCheckBalance}, attempted: $${totalCost}, requestId: ${requestId}):`,
+							deductionResult.error,
+						)
+						// Don't throw - API call succeeded, just log for monitoring
+					}
+
+					// Emit realtime update
+					const { realtimeCreditService } = await import("../../services/realtimeCreditUpdates")
+					realtimeCreditService.emit("creditUpdate", {
+						userId: deductionResult.userId || "unknown",
+						clerkId: "unknown",
+						previousBalance: deductionResult.balanceBefore || this.preCheckBalance,
+						newBalance: deductionResult.balanceAfter || this.preCheckBalance,
+						creditsChanged: -(deductionResult.creditsDeducted || 0),
+						usdAmount: totalCost,
+						operation: "deduction",
+						timestamp: new Date(),
+					})
+				} catch (error) {
+					console.error(
+						`[BILLING-POST-CALL] Error deducting credits (pre-check: ${this.preCheckBalance}, cost: $${totalCost}):`,
+						error,
+					)
+					// Continue - task completed, credit sync can retry later
+				}
 			}
 
 			if (inputTokens > 0 || outputTokens > 0 || cacheWriteTokens > 0 || cacheReadTokens > 0) {
@@ -1763,6 +1845,58 @@ export class Task extends EventEmitter<ClineEvents> {
 	}
 
 	public async *attemptApiRequest(retryAttempt: number = 0): ApiStream {
+		// AUTHENTICATION GATE: Validate before any API request with simple check for credit providers
+		try {
+			const authService = UnifiedAuthService.getInstance(this.context)
+			this.accessToken = await authService.getAccessToken()
+
+			if (!this.accessToken) {
+				throw new AuthenticationRequiredError("No valid access token available")
+			}
+
+			const isCreditBased = this.authGate.isCreditBasedProvider(this.apiConfiguration.apiProvider!)
+			const simpleCheck = isCreditBased // Use simple balance > 1 check for credit providers to avoid overestimation
+
+			const billingValidation = await this.authGate.validateRequest(
+				this.apiConfiguration,
+				undefined, // No estimated tokens for simple check
+				simpleCheck,
+			)
+
+			if (!billingValidation.canProceed) {
+				console.log("[AUTH-GATE] Request blocked by billing validation:", billingValidation.error?.type)
+
+				// Handle billing errors with user-friendly messages
+				if (billingValidation.error) {
+					await this.handleBillingError(billingValidation.error)
+				}
+
+				throw new Error(`Request blocked: ${billingValidation.error?.message || "Billing validation failed"}`)
+			}
+
+			// For credit-based, store pre-check balance for post-call logging
+			if (isCreditBased && billingValidation.userInfo) {
+				this.preCheckBalance = billingValidation.userInfo.currentCredits
+			}
+
+			console.log("[AUTH-GATE] Request approved:", {
+				provider: this.apiConfiguration.apiProvider,
+				billingModel: billingValidation.billingModel,
+				simpleCheck,
+				canProceed: billingValidation.canProceed,
+				preCheckBalance: this.preCheckBalance,
+			})
+		} catch (error) {
+			if (isBillingError(error)) {
+				// Re-throw billing errors to be handled by the error handling above
+				throw error
+			}
+			console.error("[AUTH-GATE] Unexpected validation error:", error)
+			throw new Error(
+				`Authentication validation failed: ${error instanceof Error ? error.message : String(error)}`,
+			)
+		}
+
 		const state = await this.providerRef.deref()?.getState()
 		const {
 			apiConfiguration,
@@ -1899,6 +2033,38 @@ export class Task extends EventEmitter<ClineEvents> {
 			taskId: this.taskId,
 		}
 
+		// Simple pre-call billing check: only verify balance > 0
+		let preCheckBalance = 0
+		try {
+			const authService = UnifiedAuthService.getInstance(this.context)
+			const accessToken = await authService.getAccessToken()
+
+			if (!accessToken) {
+				throw new AuthenticationRequiredError("No valid access token available")
+			}
+
+			const userCredits = await creditManager.getUserCreditBalance(accessToken)
+			preCheckBalance = userCredits?.currentCredits || 0
+			if (preCheckBalance <= 0) {
+				throw new InsufficientCreditsError(
+					"No credits available",
+					preCheckBalance,
+					1,
+					this.apiConfiguration.apiProvider,
+				)
+			}
+
+			console.log(`[BILLING-PRE-CHECK] Approved: Balance ${preCheckBalance} credits (sufficient: >0)`)
+		} catch (error) {
+			if (isBillingError(error)) {
+				await this.handleBillingError(error)
+				throw error // Re-throw to block the API call
+			}
+			console.error("[BILLING-PRE-CHECK] Unexpected error:", error)
+			throw new Error(`Pre-check failed: ${error instanceof Error ? error.message : String(error)}`)
+		}
+
+		// Proceed with API call
 		const stream = this.api.createMessage(systemPrompt, cleanConversationHistory, metadata)
 		const iterator = stream[Symbol.asyncIterator]()
 
@@ -2064,6 +2230,114 @@ export class Task extends EventEmitter<ClineEvents> {
 		if (error) {
 			this.emit("taskToolFailed", this.taskId, toolName, error)
 		}
+	}
+
+	// Authentication and Billing Methods
+
+	/**
+	 * Handle billing-related errors with appropriate user interaction
+	 */
+	private async handleBillingError(error: BillingError): Promise<void> {
+		const errorInfo = getBillingErrorInfo(error)
+
+		try {
+			switch (error.type) {
+				case "authentication_required":
+					await this.handleAuthenticationRequiredError(error as AuthenticationRequiredError, errorInfo)
+					break
+				case "insufficient_credits":
+					await this.handleInsufficientCreditsError(error as InsufficientCreditsError, errorInfo)
+					break
+				case "api_key_required":
+					await this.handleApiKeyRequiredError(error as ApiKeyRequiredError, errorInfo)
+					break
+				default:
+					await this.handleGenericBillingError(error, errorInfo)
+					break
+			}
+		} catch (handlingError) {
+			console.error("[TASK] Error handling billing error:", handlingError)
+			// Fallback to generic error message
+			await this.say("error", `Billing validation failed: ${error.message}`)
+		}
+	}
+
+	private async handleAuthenticationRequiredError(
+		error: AuthenticationRequiredError,
+		errorInfo: ReturnType<typeof getBillingErrorInfo>,
+	): Promise<void> {
+		const { response } = await this.ask(
+			"api_req_failed",
+			`${errorInfo.title}: ${errorInfo.message}\n\n` +
+				`This request requires Softcodes authentication. Please sign in to continue.`,
+		)
+
+		if (response === "yesButtonClicked") {
+			// Trigger authentication flow
+			vscode.commands.executeCommand("softcodes.authenticate")
+
+			// Show retry option after auth attempt
+			await this.say("text", "Please retry your request after completing authentication.")
+		}
+	}
+
+	private async handleInsufficientCreditsError(
+		error: InsufficientCreditsError,
+		errorInfo: ReturnType<typeof getBillingErrorInfo>,
+	): Promise<void> {
+		// For simple checks, show generic low balance message without specific requirements
+		let message = `${errorInfo.title}: ${errorInfo.message}`
+		if (error.requiredCredits === 0) {
+			// Simple check flag
+			message = `Low credit balance. Please add credits to continue using this provider.`
+		} else {
+			message += `\n\nAvailable: ${error.availableCredits} credits\nRequired: ${error.requiredCredits} credits`
+		}
+
+		message += `\n\nThis provider (${error.provider}) uses Softcodes credits. You can purchase more credits or switch to a different provider.`
+
+		const { response } = await this.ask("api_req_failed", message)
+
+		if (response === "yesButtonClicked") {
+			// Open credits purchase page
+			if (errorInfo.actionUrl) {
+				vscode.env.openExternal(vscode.Uri.parse(errorInfo.actionUrl))
+			}
+		}
+	}
+
+	private async handleApiKeyRequiredError(
+		error: ApiKeyRequiredError,
+		errorInfo: ReturnType<typeof getBillingErrorInfo>,
+	): Promise<void> {
+		const missingKeys =
+			error.missingKeys.length > 0 ? `\n\nMissing configuration: ${error.missingKeys.join(", ")}` : ""
+
+		const { response } = await this.ask(
+			"api_req_failed",
+			`${errorInfo.title}: ${errorInfo.message}${missingKeys}\n\n` +
+				`This provider (${error.provider}) requires API key configuration and bills you directly through their service. ` +
+				`Credits do not apply to this provider.`,
+		)
+
+		if (response === "yesButtonClicked") {
+			// Open provider settings
+			vscode.commands.executeCommand("softcodes.openSettings", {
+				focusProvider: error.provider,
+			})
+		}
+	}
+
+	private async handleGenericBillingError(
+		error: BillingError,
+		errorInfo: ReturnType<typeof getBillingErrorInfo>,
+	): Promise<void> {
+		await this.ask(
+			"api_req_failed",
+			`${errorInfo.title}: ${errorInfo.message}\n\n` +
+				`Provider: ${error.provider || "unknown"}\n` +
+				`Error type: ${error.type}`,
+		)
 	}
 
 	// Getters

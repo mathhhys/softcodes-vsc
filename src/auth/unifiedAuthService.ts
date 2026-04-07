@@ -11,6 +11,10 @@ import {
 	buildAuthUrl,
 	isValidRedirectUri,
 	JWT_CONFIG,
+	validateSupabaseConfig,
+	validateAuthConfig,
+	validateAndEncodeURI,
+	encodeWorkspacePath,
 } from "./config"
 import { JWTVerificationService } from "./jwtVerification"
 import { JWTErrorType, UserInfoFromJWT, ClerkJWTPayload } from "./jwtTypes"
@@ -19,6 +23,8 @@ import { ClerkBackendService } from "./clerkBackendService"
 import { UserVerificationService, MemoryCache } from "./userVerificationService"
 import { GracefulDegradationManager } from "./fallbackHandler"
 import { UserVerificationErrorType } from "./userVerificationTypes"
+import { verifyJWTUserInSupabase, SupabaseVerificationResult } from "./supabaseUserVerification"
+import { ContextProxy } from "../core/config/ContextProxy"
 
 // JWT System Version Marker
 const JWT_SYSTEM_VERSION = "V2-INTEGRATED-BASE64URL-DECODER"
@@ -46,6 +52,35 @@ export interface UserInfo {
 }
 
 /**
+ * Enhanced authentication state
+ */
+export interface AuthenticationState {
+	isAuthenticated: boolean
+	isConnected: boolean // JWT valid AND user exists in Supabase
+	signedOut?: boolean
+	clerkId?: string
+	supabaseVerified?: boolean
+	supabaseUserData?: any
+	clerkFallbackData?: any // Fallback Clerk data when Supabase fails
+	error?: string
+}
+
+/**
+ * Extended user information with Supabase data
+ */
+export interface ExtendedUserInfo extends UserInfo {
+	clerkId: string
+	planType?: string
+	credits?: number
+	isOrganization?: boolean
+	orgId?: string
+	stripeCustomerId?: string
+	createdAt?: string
+	updatedAt?: string
+	avatarUrl?: string
+}
+
+/**
  * Unified Authentication Service that bridges VSCode extension with Clerk-based website authentication
  * This service maintains compatibility with both authentication systems while providing a unified interface
  */
@@ -55,6 +90,15 @@ export class UnifiedAuthService {
 	private pendingAuth: Map<string, { codeVerifier: string; state: string }> = new Map()
 	private userVerificationService?: UserVerificationService
 	private fallbackManager?: GracefulDegradationManager
+	private authenticationState: AuthenticationState = {
+		isAuthenticated: false,
+		isConnected: false,
+		signedOut: false,
+	}
+	private signedOut = false
+	private tokenRefreshPromise: Promise<string | undefined> | null = null
+	private tokenRefreshInProgress = false
+	private stateChangeCallback?: (authState: AuthenticationState) => void
 
 	constructor(context: vscode.ExtensionContext) {
 		this.context = context
@@ -66,7 +110,44 @@ export class UnifiedAuthService {
 	 */
 	private async initializeBackendVerification(): Promise<void> {
 		try {
-			// Validate Clerk configuration
+			// Feature gate: allow disabling Clerk backend verification to avoid 401 spam when Supabase is authoritative
+			const cfg = vscode.workspace.getConfiguration("softcodes")
+			const enableClerkBackend = cfg.get<boolean>("auth.enableClerkBackend", false)
+			if (!enableClerkBackend) {
+				console.log(
+					"[Auth] Clerk backend verification disabled by configuration (softcodes.auth.enableClerkBackend=false)",
+				)
+				return
+			}
+
+			// Validate complete authentication configuration (Clerk + Supabase)
+			const authValidation = validateAuthConfig()
+
+			if (!authValidation.valid) {
+				console.warn("[Auth] Authentication configuration incomplete:", {
+					clerkValid: authValidation.clerkConfig.valid,
+					supabaseValid: authValidation.supabaseConfig.valid,
+					errors: authValidation.overallErrors,
+					warnings: authValidation.overallWarnings,
+				})
+
+				// Continue with limited functionality if only some services are available
+				if (!authValidation.clerkConfig.valid) {
+					console.warn("[Auth] Clerk configuration missing - OAuth flows disabled")
+				}
+				if (!authValidation.supabaseConfig.valid) {
+					console.warn("[Auth] Supabase configuration missing - user verification limited")
+				}
+			} else {
+				console.log("[Auth] Complete authentication configuration validated successfully")
+			}
+
+			// Show warnings to user if there are configuration issues
+			if (authValidation.overallWarnings.length > 0) {
+				console.warn("[Auth] Configuration warnings:", authValidation.overallWarnings)
+			}
+
+			// Validate Clerk configuration for backend services
 			const validation = this.validateClerkConfiguration()
 			if (!validation.valid) {
 				console.warn("[Auth] Clerk configuration incomplete - backend verification disabled", {
@@ -164,18 +245,24 @@ export class UnifiedAuthService {
 			this.pendingAuth.set(state, { codeVerifier, state })
 			await this.context.secrets.store(`${TOKEN_KEYS.PKCE_PREFIX}${state}`, codeVerifier)
 
-			// Build redirect URI - using unified scheme
+			// Build redirect URI - using unified scheme with proper validation
 			const redirectUri = OAUTH_CONFIG.VSCODE.REDIRECT_URI
 
-			// Validate redirect URI for security
-			if (!isValidRedirectUri(redirectUri)) {
-				throw new Error("Invalid redirect URI configuration")
+			// Validate and encode redirect URI for security
+			const uriValidation = validateAndEncodeURI(redirectUri)
+			if (!uriValidation.isValid) {
+				throw new Error(`Invalid redirect URI configuration: ${uriValidation.error}`)
 			}
 
-			// Call unified backend initiation endpoint
+			const validatedRedirectUri = uriValidation.encodedUri || redirectUri
+			if (!isValidRedirectUri(validatedRedirectUri)) {
+				throw new Error("Redirect URI failed security validation")
+			}
+
+			// Call unified backend initiation endpoint with proper encoding
 			const backendUrl = await this.getBackendUrl()
 			const authUrl = buildAuthUrl(backendUrl, {
-				redirect_uri: redirectUri,
+				redirect_uri: validatedRedirectUri,
 				code_challenge: codeChallenge,
 				state: state,
 			})
@@ -215,8 +302,11 @@ export class UnifiedAuthService {
 	 * Sign in with a manually entered auth token
 	 * Enhanced with JWT verification first, then API fallback
 	 */
-	async signinWithToken(): Promise<void> {
+	async signinWithToken(): Promise<boolean> {
 		try {
+			// FIRST: Clear any expired tokens before prompting for new one
+			await this.clearExpiredTokens()
+
 			// Prompt user for auth token
 			const token = await vscode.window.showInputBox({
 				prompt: "Enter your Softcodes authentication token (JWT)",
@@ -234,16 +324,49 @@ export class UnifiedAuthService {
 					if (!this.isBasicJWTFormat(value.trim())) {
 						return "Token must be a valid JWT format (xxx.yyy.zzz)"
 					}
+					// Check if token is expired before proceeding
+					try {
+						const parseResult = parseJWTUnsafe(value.trim())
+						if (parseResult.success && parseResult.parts?.payload.exp) {
+							const expirationTime = parseResult.parts.payload.exp * 1000
+							const currentTime = Date.now()
+							if (expirationTime <= currentTime) {
+								return "This token has already expired. Please generate a new token."
+							}
+						}
+					} catch (error) {
+						// If we can't parse the token, let the main validation handle it
+					}
 					return null
 				},
 			})
 
 			if (!token) {
 				// User cancelled the input
-				return
+				return false
 			}
 
 			const trimmedToken = token.trim()
+
+			// SECOND: Before processing, clear any existing tokens to prevent conflicts
+			console.log("🧹 [AUTH-SERVICE] Clearing existing tokens before storing new one...")
+			await this.clearStoredTokens()
+
+			// LOGGING: Track signedOut state before reset
+			console.log("🔍 [AUTH-LOG] signedOut state before explicit reset:", this.signedOut)
+
+			// FIX: Explicitly reset signedOut flag after clearing tokens to ensure fresh authentication state
+			console.log("🔄 [AUTH-FIX] Explicitly resetting signedOut flag to false for new authentication attempt")
+			this.signedOut = false
+			// Immediately persist the reset state
+			await this.updateAuthenticationState({
+				isAuthenticated: false,
+				isConnected: false,
+				signedOut: false,
+			})
+
+			// LOGGING: Track signedOut state after reset
+			console.log("🔍 [AUTH-LOG] signedOut state after explicit reset:", this.signedOut)
 
 			console.log(`🔧 [AUTH-SERVICE] Using JWT System: ${JWT_SYSTEM_VERSION}`)
 			console.log("🔧 [AUTH-SERVICE] Import verification - parseJWTUnsafe:", typeof parseJWTUnsafe)
@@ -254,22 +377,28 @@ export class UnifiedAuthService {
 
 			// Step 1: Try JWT verification first
 			console.log("🔍 [DEBUG] Attempting JWT verification with signature check...")
+			console.log("🔍 [AUTH-LOG] signedOut state before JWT verification:", this.signedOut)
 			const jwtResult = await this.verifyJWTToken(trimmedToken)
 
 			if (jwtResult.success) {
 				console.log("✅ [DEBUG] JWT verification successful, storing token and user data")
+				console.log("🔍 [AUTH-LOG] signedOut state before handleSuccessfulJWTVerification:", this.signedOut)
 				await this.handleSuccessfulJWTVerification(trimmedToken, jwtResult.userInfo!, jwtResult.payload!)
-				return
+				console.log("🔍 [AUTH-LOG] signedOut state after handleSuccessfulJWTVerification:", this.signedOut)
+				return true
 			}
 
 			// Step 1.5: If JWT verification fails, try structure-only validation
 			console.log("❌ [DEBUG] JWT signature verification failed, testing token structure...")
+			console.log("🔍 [AUTH-LOG] signedOut state before structure validation:", this.signedOut)
 			const structureResult = await this.testTokenStructure(trimmedToken)
 
 			if (structureResult.valid) {
 				console.log("✅ [DEBUG] Token structure is valid, proceeding with fallback token storage...")
+				console.log("🔍 [AUTH-LOG] signedOut state before handleFallbackTokenStorage:", this.signedOut)
 				await this.handleFallbackTokenStorage(trimmedToken)
-				return
+				console.log("🔍 [AUTH-LOG] signedOut state after handleFallbackTokenStorage:", this.signedOut)
+				return true
 			}
 
 			// Step 2: Check if we're in development mode first
@@ -278,18 +407,23 @@ export class UnifiedAuthService {
 
 			if (skipAPIValidation) {
 				console.log("⚡ [DEBUG] Development mode enabled, using fallback authentication")
+				console.log("🔍 [AUTH-LOG] signedOut state before dev mode fallback:", this.signedOut)
 				await this.handleFallbackTokenStorage(trimmedToken)
-				return
+				console.log("🔍 [AUTH-LOG] signedOut state after dev mode fallback:", this.signedOut)
+				return true
 			}
 
 			// Step 3: Attempt API validation
 			console.log("JWT verification failed, attempting API validation...")
+			console.log("🔍 [AUTH-LOG] signedOut state before API validation:", this.signedOut)
 			const apiResult = await this.validateTokenWithAPI(trimmedToken)
 
 			if (apiResult.success) {
 				console.log("API validation successful, storing token")
+				console.log("🔍 [AUTH-LOG] signedOut state before handleSuccessfulAPIValidation:", this.signedOut)
 				await this.handleSuccessfulAPIValidation(trimmedToken, apiResult.userInfo)
-				return
+				console.log("🔍 [AUTH-LOG] signedOut state after handleSuccessfulAPIValidation:", this.signedOut)
+				return true
 			}
 
 			// Step 4: If API fails, check if it's a backend issue and offer immediate bypass
@@ -313,25 +447,31 @@ export class UnifiedAuthService {
 				)
 
 				if (bypassChoice?.title === "✅ Use Token Now") {
+					console.log("🔍 [AUTH-LOG] signedOut state before bypass fallback:", this.signedOut)
 					await this.handleFallbackTokenStorage(trimmedToken)
-					return
+					console.log("🔍 [AUTH-LOG] signedOut state after bypass fallback:", this.signedOut)
+					return true
 				} else if (bypassChoice?.title === "⚙️ Enable Offline Mode") {
 					await this.enableDevelopmentMode()
+					console.log("🔍 [AUTH-LOG] signedOut state before offline fallback:", this.signedOut)
 					await this.handleFallbackTokenStorage(trimmedToken)
-					return
+					console.log("🔍 [AUTH-LOG] signedOut state after offline fallback:", this.signedOut)
+					return true
 				} else {
 					vscode.window.showInformationMessage("Authentication cancelled. You can try again anytime!")
-					return
+					return false
 				}
 			}
 
 			// Both methods failed for other reasons - provide helpful guidance
 			await this.handleAuthenticationFailure(jwtResult.error, apiResult.error)
+			return false
 		} catch (error) {
 			console.error("Manual token authentication failed:", error)
 			vscode.window.showErrorMessage(
 				`Authentication failed: ${error instanceof Error ? error.message : String(error)}`,
 			)
+			return false
 		}
 	}
 
@@ -423,10 +563,140 @@ export class UnifiedAuthService {
 	}
 
 	/**
+	 * Verify user in Supabase database using clerk_id from JWT
+	 */
+	private async verifyUserInSupabase(token: string): Promise<AuthenticationState> {
+		console.log("🔍 [SUPABASE-AUTH] Starting Supabase user verification...")
+
+		try {
+			// First, extract Clerk/JWT data as fallback
+			const parseResult = parseJWTUnsafe(token)
+			let clerkData: any = null
+			if (parseResult.success && parseResult.parts?.payload) {
+				const payload = parseResult.parts.payload
+				clerkData = {
+					clerkId: payload.sub,
+					email: payload.email,
+					firstName: payload.first_name,
+					lastName: payload.last_name,
+					avatarUrl: payload.picture || payload.avatar_url,
+					name: payload.name,
+				}
+				console.log("📊 [SUPABASE-AUTH] Extracted Clerk fallback data:", {
+					clerkId: clerkData.clerkId,
+					email: clerkData.email,
+					hasName: !!clerkData.name,
+					hasAvatar: !!clerkData.avatarUrl,
+				})
+			}
+
+			// Verify JWT user exists in Supabase
+			const supabaseResult = await verifyJWTUserInSupabase(token)
+
+			console.log("📊 [SUPABASE-AUTH] Supabase verification result:", {
+				success: supabaseResult.success,
+				userExists: supabaseResult.userExistsInSupabase,
+				hasUserDetails: !!supabaseResult.userDetails,
+				userIdExtracted: !!supabaseResult.userIdExtracted,
+				error: supabaseResult.error,
+			})
+
+			if (supabaseResult.success && supabaseResult.userExistsInSupabase && supabaseResult.userDetails) {
+				// User exists in Supabase - full verification successful
+				console.log("✅ [SUPABASE-AUTH] User verified in Supabase database", {
+					userId: supabaseResult.userIdExtracted,
+					email: supabaseResult.userDetails.email,
+					planType: supabaseResult.userDetails.plan_type,
+					credits: supabaseResult.userDetails.credits,
+					created_at: supabaseResult.userDetails.created_at,
+				})
+
+				return {
+					isAuthenticated: true,
+					isConnected: true,
+					signedOut: false, // FIX: Explicitly set signedOut to false for successful verification
+					clerkId: supabaseResult.userIdExtracted,
+					supabaseVerified: true,
+					supabaseUserData: supabaseResult.userDetails,
+				}
+			} else if (supabaseResult.success && !supabaseResult.userExistsInSupabase) {
+				// JWT is valid but user doesn't exist in Supabase - fallback to Clerk data
+				console.warn(
+					"⚠️ [SUPABASE-AUTH] Valid JWT but user not found in Supabase database - using Clerk fallback",
+					{
+						userId: supabaseResult.userIdExtracted,
+						clerkId: clerkData?.clerkId,
+						timestamp: new Date().toISOString(),
+						recommendation: "Check if Clerk webhook has synced user to Supabase",
+					},
+				)
+
+				return {
+					isAuthenticated: true,
+					isConnected: false,
+					signedOut: false, // FIX: Explicitly set signedOut to false for authenticated fallback
+					clerkId: clerkData?.clerkId || supabaseResult.userIdExtracted,
+					supabaseVerified: false,
+					supabaseUserData: null,
+					error: "User not found in Supabase database - using Clerk data",
+					clerkFallbackData: clerkData,
+				}
+			} else {
+				// Supabase verification failed - fallback to Clerk data
+				console.warn("⚠️ [SUPABASE-AUTH] Supabase verification failed - falling back to Clerk JWT data", {
+					userId: supabaseResult.userIdExtracted,
+					error: supabaseResult.error,
+					clerkId: clerkData?.clerkId,
+					timestamp: new Date().toISOString(),
+				})
+
+				return {
+					isAuthenticated: true,
+					isConnected: false,
+					signedOut: false, // FIX: Explicitly set signedOut to false for authenticated fallback
+					clerkId: clerkData?.clerkId || supabaseResult.userIdExtracted,
+					supabaseVerified: false,
+					supabaseUserData: null,
+					error: `Supabase verification failed: ${supabaseResult.error || "Unknown error"} - using Clerk fallback data`,
+					clerkFallbackData: clerkData,
+				}
+			}
+		} catch (error) {
+			console.error("❌ [SUPABASE-AUTH] Supabase verification exception - falling back to Clerk JWT data", error)
+
+			// Extract Clerk data as fallback even on exception
+			const parseResult = parseJWTUnsafe(token)
+			const clerkData =
+				parseResult.success && parseResult.parts?.payload
+					? {
+							clerkId: parseResult.parts.payload.sub,
+							email: parseResult.parts.payload.email,
+							firstName: parseResult.parts.payload.first_name,
+							lastName: parseResult.parts.payload.last_name,
+							avatarUrl: parseResult.parts.payload.picture || parseResult.parts.payload.avatar_url,
+							name: parseResult.parts.payload.name,
+						}
+					: null
+
+			return {
+				isAuthenticated: true,
+				isConnected: false,
+				signedOut: false, // FIX: Explicitly set signedOut to false even on exception fallback
+				clerkId: clerkData?.clerkId,
+				supabaseVerified: false,
+				supabaseUserData: null,
+				error: `Supabase verification exception: ${error instanceof Error ? error.message : String(error)} - using Clerk fallback data`,
+				clerkFallbackData: clerkData,
+			}
+		}
+	}
+
+	/**
 	 * Fallback token storage when both JWT and API validation fail
+	 * Now enhanced with Supabase verification
 	 */
 	private async handleFallbackTokenStorage(token: string): Promise<void> {
-		console.log("🔄 [DEBUG] Using fallback token storage mode")
+		console.log("🔄 [DEBUG] Using fallback token storage mode with Supabase verification")
 
 		try {
 			// Attempt to extract basic info from JWT if possible
@@ -465,22 +735,60 @@ export class UnifiedAuthService {
 				}
 			}
 
+			// NEW: Perform Supabase verification
+			console.log("🔍 [FALLBACK-MODE] Performing Supabase user verification...")
+			const authState = await this.verifyUserInSupabase(token)
+
 			// Store the token and any extracted info
+			console.log("🔐 [FALLBACK-STORAGE] Storing access token...")
 			await this.context.secrets.store(TOKEN_KEYS.ACCESS_TOKEN, token)
+			console.log("✅ [FALLBACK-STORAGE] Access token stored")
+
+			console.log("🔐 [FALLBACK-STORAGE] Storing session ID...")
 			await this.context.secrets.store(TOKEN_KEYS.SESSION_ID, userInfo?.sessionId || "fallback-session")
+			console.log("✅ [FALLBACK-STORAGE] Session ID stored")
 
 			if (userInfo?.organizationId) {
+				console.log("🔐 [FALLBACK-STORAGE] Storing organization ID...")
 				await this.context.secrets.store(TOKEN_KEYS.ORGANIZATION_ID, userInfo.organizationId)
+				console.log("✅ [FALLBACK-STORAGE] Organization ID stored")
 			}
 
-			console.log("✅ [DEBUG] Token stored in fallback mode with extracted info")
+			// Sync JWT token to legacy kilocodeToken field for ProfileView compatibility
+			try {
+				const contextProxy = ContextProxy.instance
+				await contextProxy.setProviderSettings({
+					...contextProxy.getProviderSettings(),
+					kilocodeToken: token,
+				})
+				console.log("✅ [FALLBACK-MODE] JWT token synced to kilocodeToken field")
+			} catch (error) {
+				console.warn("⚠️ [FALLBACK-MODE] Failed to sync JWT to kilocodeToken:", error)
+			}
 
-			// Show success message with user's name if available
-			const welcomeName = userInfo?.firstName || userInfo?.email || "User"
-			vscode.window.showInformationMessage(AUTH_SUCCESS.AUTHENTICATED)
+			// Update and persist authentication state
+			await this.updateAuthenticationState(authState)
+
+			console.log("✅ [DEBUG] Token stored in fallback mode with Supabase verification")
+
+			// Show appropriate success message based on connection status
+			if (authState.isConnected) {
+				const welcomeName =
+					authState.supabaseUserData?.first_name || userInfo?.firstName || userInfo?.email || "User"
+				vscode.window.showInformationMessage(`Welcome back, ${welcomeName}! You are now connected.`)
+			} else if (authState.isAuthenticated) {
+				vscode.window.showWarningMessage(
+					"Authentication successful, but your account needs to be set up in our system. Some features may be limited.",
+				)
+			}
 
 			// Trigger any post-auth actions
 			vscode.commands.executeCommand("softcodes.onAuthenticated")
+
+			// Force immediate webview state refresh after successful authentication
+			setTimeout(() => {
+				vscode.commands.executeCommand("softcodes.refreshAuthState")
+			}, 100)
 		} catch (error) {
 			console.error("Failed to store fallback token:", error)
 			vscode.window.showErrorMessage("Failed to store authentication token. Please try again.")
@@ -713,7 +1021,26 @@ export class UnifiedAuthService {
 
 		try {
 			const backendUrl = await this.getBackendUrl()
-			requestUrl = `${backendUrl}${AUTH_ENDPOINTS.VALIDATE_SESSION}`
+
+			// Properly encode the URL components
+			const encodedBackendUrl = encodeURI(backendUrl)
+			requestUrl = `${encodedBackendUrl}${AUTH_ENDPOINTS.VALIDATE_SESSION}`
+
+			// Get workspace path for context (properly encoded)
+			let workspaceInfo = {}
+			try {
+				const vscode = require("vscode")
+				if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
+					const workspacePath = vscode.workspace.workspaceFolders[0].uri.fsPath
+					workspaceInfo = {
+						workspace_path: encodeWorkspacePath(workspacePath),
+						workspace_name: encodeURIComponent(vscode.workspace.workspaceFolders[0].name || "unknown"),
+					}
+				}
+			} catch (error) {
+				console.warn("Could not get workspace info:", error)
+			}
+
 			requestHeaders = {
 				Authorization: `Bearer ${token.substring(0, 20)}...`, // Only log first 20 chars for security
 				"Content-Type": "application/json",
@@ -721,6 +1048,7 @@ export class UnifiedAuthService {
 			}
 			requestBody = JSON.stringify({
 				client_type: "vscode",
+				...workspaceInfo,
 			})
 
 			console.log("🔍 [DEBUG] API Validation Request:", {
@@ -737,7 +1065,7 @@ export class UnifiedAuthService {
 			const response = await fetch(requestUrl, {
 				method: "POST",
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${token.substring(0, 20)}...`, // Only log first 20 chars for security
 					"Content-Type": "application/json",
 					"User-Agent": generateUserAgent(),
 				},
@@ -784,7 +1112,7 @@ export class UnifiedAuthService {
 				const userInfoResponse = await fetch(`${backendUrl}${AUTH_ENDPOINTS.USER_INFO}`, {
 					method: "GET",
 					headers: {
-						Authorization: `Bearer ${token}`,
+						Authorization: `Bearer ${token.substring(0, 20)}...`, // Only log first 20 chars for security
 						"Content-Type": "application/json",
 						"User-Agent": generateUserAgent(),
 					},
@@ -895,22 +1223,34 @@ export class UnifiedAuthService {
 	}
 
 	/**
-	 * Handle successful JWT verification with backend user verification
+	 * Handle successful JWT verification with Supabase user verification
 	 */
 	private async handleSuccessfulJWTVerification(
 		token: string,
 		userInfo: UserInfoFromJWT,
 		payload: ClerkJWTPayload,
 	): Promise<void> {
+		console.log("🔐 [JWT-VERIFICATION] Starting token storage after successful JWT verification...")
+		console.log("🔐 [JWT-VERIFICATION] Token length:", token.length)
+		console.log("🔐 [JWT-VERIFICATION] User info:", {
+			email: userInfo.email,
+			userId: userInfo.userId,
+			hasSessionId: !!userInfo.sessionId,
+			hasOrgId: !!userInfo.organizationId,
+		})
+
 		// Store the token as access token
 		await this.context.secrets.store(TOKEN_KEYS.ACCESS_TOKEN, token)
+		console.log("✅ [JWT-VERIFICATION] Access token stored")
 
 		// Store extracted user information
 		if (userInfo.sessionId) {
 			await this.context.secrets.store(TOKEN_KEYS.SESSION_ID, userInfo.sessionId)
+			console.log("✅ [JWT-VERIFICATION] Session ID stored")
 		}
 		if (userInfo.organizationId) {
 			await this.context.secrets.store(TOKEN_KEYS.ORGANIZATION_ID, userInfo.organizationId)
+			console.log("✅ [JWT-VERIFICATION] Organization ID stored")
 		}
 
 		console.log("JWT verification successful:", {
@@ -920,20 +1260,75 @@ export class UnifiedAuthService {
 			sessionId: userInfo.sessionId,
 		})
 
-		// NEW: Backend user verification
-		if (this.userVerificationService && this.fallbackManager) {
-			try {
-				console.log(`[Auth] Performing backend verification for user: ${userInfo.userId}`)
+		// NEW: Supabase user verification
+		console.log(`[Auth] Performing Supabase verification for user: ${userInfo.userId}`)
+		const authState = await this.verifyUserInSupabase(token)
 
-				const verificationResult = await this.fallbackManager.verifyUserWithFallback(userInfo.userId, () =>
-					this.userVerificationService!.verifyUser(userInfo.userId, {
+		// Sync JWT token to legacy kilocodeToken field for ProfileView compatibility
+		try {
+			const contextProxy = ContextProxy.instance
+			await contextProxy.setProviderSettings({
+				...contextProxy.getProviderSettings(),
+				kilocodeToken: token,
+			})
+			console.log("✅ [AUTH-SERVICE] JWT token synced to kilocodeToken field")
+		} catch (error) {
+			console.warn("⚠️ [AUTH-SERVICE] Failed to sync JWT to kilocodeToken:", error)
+		}
+
+		// Update and persist authentication state
+		await this.updateAuthenticationState(authState)
+
+		// Handle verification results
+		if (authState.isConnected) {
+			console.log("✅ [Auth] User is fully connected (JWT + Supabase verified)")
+
+			const userData = authState.supabaseUserData
+			const welcomeName = userData?.first_name || userInfo.firstName || userInfo.email || "User"
+
+			vscode.window.showInformationMessage(`You are connected to Softcodes !`)
+
+			// Important: Skip any Clerk backend verification when Supabase connection is established
+			console.log("[Auth] Skipping Clerk backend verification because Supabase connection is established")
+			return
+		} else if (authState.isAuthenticated && !authState.supabaseVerified) {
+			console.warn("⚠️ [Auth] JWT valid but user not found in Supabase")
+
+			// Handle user not found in Supabase scenario
+			await this.handleUserNotFoundInSupabase(userInfo.userId, userInfo.email)
+			return
+		} else {
+			console.error("❌ [Auth] Authentication verification failed")
+			vscode.window.showErrorMessage(`Authentication verification failed: ${authState.error}`)
+			return
+		}
+
+		// Legacy: Backend user verification for additional checks
+		// Only perform Clerk backend verification if explicitly forced OR Supabase connection not established.
+		const forceBackendVerification = vscode.workspace
+			.getConfiguration("softcodes")
+			.get("auth.forceBackendVerification", false)
+
+		if (
+			this.userVerificationService &&
+			this.fallbackManager &&
+			(forceBackendVerification || !authState.isConnected)
+		) {
+			try {
+				console.log(`[Auth] Performing additional backend verification for user: ${userInfo.userId}`)
+
+				// Narrow possibly undefined properties to local non-null vars for TypeScript
+				const fm = this.fallbackManager as GracefulDegradationManager
+				const uvs = this.userVerificationService as UserVerificationService
+
+				const verificationResult = await fm.verifyUserWithFallback(userInfo.userId, () =>
+					uvs.verifyUser(userInfo.userId, {
 						includeOrganizations: true,
 					}),
 				)
 
 				if (!verificationResult.valid) {
-					await this.handleVerificationFailure(verificationResult, userInfo.userId)
-					return
+					console.warn("[Auth] Backend verification failed, but Supabase verification succeeded")
 				}
 
 				// Check for critical user status issues
@@ -946,39 +1341,267 @@ export class UnifiedAuthService {
 					await this.handleLockedUser(userInfo.userId)
 					return
 				}
-
-				// Log successful verification
-				console.log("[Auth] Backend verification successful:", {
-					userId: userInfo.userId,
-					email: verificationResult.user?.email,
-					fallbackMode: verificationResult.fallbackMode,
-					cacheHit: verificationResult.cacheHit,
-				})
-
-				// Show fallback mode warning if applicable
-				if (verificationResult.fallbackMode) {
-					vscode.window.showWarningMessage(
-						`Authentication completed in limited mode: ${verificationResult.fallbackReason}`,
-						"Continue",
-					)
-				}
 			} catch (error) {
-				console.warn("[Auth] Backend verification failed, continuing with JWT-only auth:", error)
-
-				// Show warning but don't block authentication
-				vscode.window.showWarningMessage(
-					"Unable to verify account status. Some features may be limited.",
-					"Continue Anyway",
-				)
+				console.warn("[Auth] Backend verification failed, continuing with Supabase verification:", error)
 			}
 		} else {
-			console.log("[Auth] Backend verification not available - using JWT-only authentication")
+			console.log(
+				"[Auth] Skipping Clerk backend verification (either Supabase connected or not forced by configuration)",
+			)
 		}
-
-		vscode.window.showInformationMessage(AUTH_SUCCESS.AUTHENTICATED)
 
 		// Trigger any post-auth actions
 		vscode.commands.executeCommand("softcodes.onAuthenticated")
+
+		// Force immediate webview state refresh after successful authentication
+		setTimeout(() => {
+			vscode.commands.executeCommand("softcodes.refreshAuthState")
+		}, 100)
+	}
+
+	/**
+	 * Handle user not found in Supabase scenario
+	 */
+	private async handleUserNotFoundInSupabase(clerkId: string, email: string): Promise<void> {
+		console.warn(`[Auth] User ${clerkId} (${email}) not found in Supabase database`)
+
+		const choice = await vscode.window.showWarningMessage(
+			"Your account is not set up in our system yet. Would you like to complete your registration?",
+			"Complete Setup",
+			"Continue Limited",
+			"Contact Support",
+		)
+
+		switch (choice) {
+			case "Complete Setup":
+				// Open registration/setup URL
+				vscode.env.openExternal(vscode.Uri.parse("https://softcodes.ai/setup"))
+				break
+			case "Continue Limited":
+				// Allow limited access
+				const limitedState = {
+					isAuthenticated: true,
+					isConnected: false,
+					clerkId,
+					supabaseVerified: false,
+					error: "User not found in Supabase - limited access",
+				}
+				await this.updateAuthenticationState(limitedState)
+				vscode.window.showInformationMessage(
+					"Continuing with limited access. Some features may not be available.",
+				)
+				vscode.commands.executeCommand("softcodes.onAuthenticated")
+				break
+			case "Contact Support":
+				vscode.env.openExternal(
+					vscode.Uri.parse(
+						"mailto:support@softcodes.ai?subject=Account Setup Issue&body=My account is not found in the system.",
+					),
+				)
+				break
+			default:
+				// User dismissed the dialog
+				await this.signOut()
+				break
+		}
+	}
+
+	/**
+	 * Get current authentication state
+	 * IMPORTANT: This method should NOT trigger token refresh or change state.
+	 * It should only return the current stored state.
+	 */
+	async getAuthenticationState(): Promise<AuthenticationState> {
+		try {
+			console.log("🔍 [DEBUG] getAuthenticationState called - checking stored state...")
+
+			// Try to get stored state first
+			const storedStateStr = await this.context.secrets.get("auth_state")
+			let baseState: Partial<AuthenticationState> = {
+				isAuthenticated: false,
+				isConnected: false,
+			}
+
+			if (storedStateStr) {
+				try {
+					const storedState = JSON.parse(storedStateStr)
+					console.log("🔍 [DEBUG] getAuthenticationState - loaded stored state:", {
+						isAuthenticated: storedState.isAuthenticated,
+						isConnected: storedState.isConnected,
+						signedOut: storedState.signedOut,
+						hasError: !!storedState.error,
+					})
+					baseState = storedState
+				} catch (parseError) {
+					console.warn(
+						"⚠️ [DEBUG] getAuthenticationState - failed to parse stored state, using defaults:",
+						parseError,
+					)
+				}
+			} else {
+				console.log("🔍 [DEBUG] getAuthenticationState - no stored auth_state found")
+			}
+
+			// Check if we have any tokens at all (for legacy compatibility)
+			const accessToken = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+			if (accessToken && baseState.isAuthenticated === undefined) {
+				console.log(
+					"🔍 [DEBUG] getAuthenticationState - found access token but no stored state, setting basic authenticated",
+				)
+				baseState.isAuthenticated = true
+				baseState.isConnected = false // We don't know the connection status without verification
+			}
+
+			// CRITICAL: Always include the instance's signedOut flag to handle race conditions
+			const finalState: AuthenticationState = {
+				isAuthenticated: baseState.isAuthenticated ?? false,
+				isConnected: baseState.isConnected ?? false,
+				signedOut: this.signedOut, // Always use instance's signedOut flag
+				clerkId: baseState.clerkId,
+				supabaseVerified: baseState.supabaseVerified,
+				supabaseUserData: baseState.supabaseUserData,
+				clerkFallbackData: baseState.clerkFallbackData,
+				error: baseState.error,
+			}
+
+			console.log("🔍 [DEBUG] getAuthenticationState - final state after merging signedOut:", {
+				isAuthenticated: finalState.isAuthenticated,
+				isConnected: finalState.isConnected,
+				signedOut: finalState.signedOut,
+				hasError: !!finalState.error,
+				instanceSignedOut: this.signedOut,
+			})
+
+			// Update local cache but DON'T store it here - let updateAuthenticationState handle persistence
+			this.authenticationState = finalState
+
+			return finalState
+		} catch (error) {
+			console.error("❌ [DEBUG] getAuthenticationState - error retrieving state:", error)
+			return {
+				isAuthenticated: false,
+				isConnected: false,
+				signedOut: this.signedOut, // Still include signedOut even on error
+				error: "Failed to retrieve authentication state",
+			}
+		}
+	}
+
+	/**
+	 * Update and persist authentication state
+	 * This should be called whenever the authentication state changes
+	 */
+	private async updateAuthenticationState(state: AuthenticationState): Promise<void> {
+		// LOGGING: Track incoming state and instance signedOut before update
+		console.log("🔍 [AUTH-LOG] updateAuthenticationState called with state:", {
+			isAuthenticated: state.isAuthenticated,
+			isConnected: state.isConnected,
+			signedOut: state.signedOut,
+			instanceSignedOutBefore: this.signedOut,
+		})
+
+		// FIX: Always ensure signedOut is false when authenticating successfully, regardless of previous state
+		if (state.isAuthenticated && state.signedOut !== false) {
+			console.log("🔄 [AUTH-STATE-FIX] Forcing signedOut to false for successful authentication")
+			state.signedOut = false
+		}
+
+		if (state.signedOut !== undefined) {
+			this.signedOut = state.signedOut
+		} else if (state.isAuthenticated) {
+			this.signedOut = false
+		}
+
+		const updatedState = {
+			...state,
+			signedOut: this.signedOut,
+		}
+
+		this.authenticationState = updatedState
+		try {
+			await this.context.secrets.store("auth_state", JSON.stringify(updatedState))
+			console.log("🔄 [AUTH-STATE] Updated authentication state:", {
+				isAuthenticated: updatedState.isAuthenticated,
+				isConnected: updatedState.isConnected,
+				signedOut: updatedState.signedOut,
+				hasClerkId: !!updatedState.clerkId,
+				hasError: !!updatedState.error,
+				timestamp: new Date().toISOString(),
+				instanceSignedOutAfter: this.signedOut,
+			})
+
+			// Trigger callback to notify webview of state changes
+			if (this.stateChangeCallback) {
+				console.log("📡 [AUTH-STATE] Triggering state change callback")
+				this.stateChangeCallback(updatedState)
+			}
+		} catch (error) {
+			console.error("Failed to persist authentication state:", error)
+		}
+	}
+
+	/**
+	 * Set callback for authentication state changes
+	 * This allows the webview to be notified immediately when auth state changes
+	 */
+	setStateChangeCallback(callback: (authState: AuthenticationState) => void): void {
+		this.stateChangeCallback = callback
+		console.log("📡 [AUTH-STATE] State change callback registered")
+	}
+
+	/**
+	 * Get extended user information with Supabase data
+	 */
+	async getExtendedUserInfo(): Promise<ExtendedUserInfo | undefined> {
+		try {
+			const authState = await this.getAuthenticationState()
+
+			// If connected to Supabase, return full data
+			if (authState.isConnected && authState.supabaseUserData) {
+				const userData = authState.supabaseUserData
+				return {
+					email: userData.email,
+					firstName: userData.first_name,
+					lastName: userData.last_name,
+					organizationName: userData.organization_name || userData.organizationName,
+					organizationId: userData.organization_id || userData.organizationId,
+					clerkId: userData.clerk_id || authState.clerkId,
+					planType: userData.plan_type,
+					credits: userData.credits,
+					isOrganization: userData.is_organization,
+					orgId: userData.org_id,
+					stripeCustomerId: userData.stripe_customer_id,
+					createdAt: userData.created_at,
+					updatedAt: userData.updated_at,
+					avatarUrl: userData.avatar_url,
+				}
+			}
+
+			// Fallback: if not connected but have Clerk data, return basic info
+			if (authState.isAuthenticated && authState.clerkFallbackData) {
+				const clerkData = authState.clerkFallbackData
+				console.warn("⚠️ [EXTENDED-INFO] Returning Clerk fallback data (no Supabase connection)")
+				return {
+					email: clerkData.email,
+					firstName: clerkData.firstName,
+					lastName: clerkData.lastName,
+					clerkId: clerkData.clerkId,
+					planType: undefined, // No plan without Supabase
+					credits: undefined, // No credits without Supabase
+					avatarUrl: clerkData.avatarUrl,
+					organizationName: undefined,
+					organizationId: undefined,
+					stripeCustomerId: undefined,
+					createdAt: undefined,
+					updatedAt: undefined,
+				}
+			}
+
+			return undefined
+		} catch (error) {
+			console.error("Failed to get extended user info:", error)
+			return undefined
+		}
 	}
 
 	/**
@@ -1081,12 +1704,37 @@ export class UnifiedAuthService {
 			}
 		}
 
+		// Sync JWT token to legacy kilocodeToken field for ProfileView compatibility
+		try {
+			const contextProxy = ContextProxy.instance
+			await contextProxy.setProviderSettings({
+				...contextProxy.getProviderSettings(),
+				kilocodeToken: token,
+			})
+			console.log("✅ [API-VALIDATION] JWT token synced to kilocodeToken field")
+		} catch (error) {
+			console.warn("⚠️ [API-VALIDATION] Failed to sync JWT to kilocodeToken:", error)
+		}
+
 		console.log("API validation successful")
+
+		// Update authentication state for API-based authentication
+		const apiAuthState = {
+			isAuthenticated: true,
+			isConnected: true, // API validation means we're connected
+			supabaseVerified: false, // API validation doesn't include Supabase verification
+		}
+		await this.updateAuthenticationState(apiAuthState)
 
 		vscode.window.showInformationMessage(AUTH_SUCCESS.AUTHENTICATED)
 
 		// Trigger any post-auth actions
 		vscode.commands.executeCommand("softcodes.onAuthenticated")
+
+		// Force immediate webview state refresh after successful authentication
+		setTimeout(() => {
+			vscode.commands.executeCommand("softcodes.refreshAuthState")
+		}, 100)
 	}
 
 	/**
@@ -1145,20 +1793,28 @@ export class UnifiedAuthService {
 				throw new Error(AUTH_ERRORS.INVALID_STATE)
 			}
 
-			// Exchange code for tokens using unified callback endpoint
-			const backendUrl = await this.getBackendUrl()
-			const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.EXTENSION_CALLBACK}`, {
+			// Exchange code for tokens using unified callback endpoint with proper URI encoding
+			const apiBaseUrl = vscode.workspace
+				.getConfiguration("softcodes")
+				.get<string>("apiBaseUrl", "https://yourapp.com")
+			const redirectUri = OAUTH_CONFIG.VSCODE.REDIRECT_URI // Use consistent scheme
+
+			// Validate and encode the API URL
+			const urlValidation = validateAndEncodeURI(`${apiBaseUrl}/api/auth/complete-vscode-auth`)
+			if (!urlValidation.isValid) {
+				throw new Error(`Invalid API URL: ${urlValidation.error}`)
+			}
+
+			const response = await fetch(urlValidation.encodedUri!, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"User-Agent": generateUserAgent(),
 				},
 				body: JSON.stringify({
 					code,
 					code_verifier: codeVerifier,
 					state,
-					redirect_uri: OAUTH_CONFIG.VSCODE.REDIRECT_URI,
-					grant_type: OAUTH_CONFIG.VSCODE.GRANT_TYPE,
+					redirect_uri: redirectUri,
 				}),
 			})
 
@@ -1167,19 +1823,29 @@ export class UnifiedAuthService {
 				throw new Error(error.error || AUTH_ERRORS.TOKEN_EXCHANGE_FAILED)
 			}
 
-			const tokens: AuthTokens = await response.json()
+			const data = await response.json()
+			if (data.success) {
+				const tokens: AuthTokens = {
+					access_token: data.access_token,
+					refresh_token: data.refresh_token,
+				}
+				await this.storeTokens(tokens)
+				// Store expiry
+				this.context.globalState.update("token_expiry", Date.now() + data.expires_in * 1000)
+				this.context.globalState.update("auth_in_progress", false)
 
-			// Store tokens securely in VSCode secrets
-			await this.storeTokens(tokens)
+				// Clean up PKCE data
+				await this.context.secrets.delete("auth_state")
+				await this.context.secrets.delete("code_verifier")
+				this.pendingAuth.delete(state)
 
-			// Clean up PKCE data
-			await this.context.secrets.delete(`${TOKEN_KEYS.PKCE_PREFIX}${state}`)
-			this.pendingAuth.delete(state)
+				vscode.window.showInformationMessage("Authentication successful!")
 
-			vscode.window.showInformationMessage(AUTH_SUCCESS.AUTHENTICATED)
-
-			// Trigger any post-auth actions
-			vscode.commands.executeCommand("softcodes.onAuthenticated")
+				// Trigger any post-auth actions
+				vscode.commands.executeCommand("softcodes.onAuthenticated")
+			} else {
+				throw new Error("Token exchange failed")
+			}
 		} catch (error) {
 			console.error("Authentication callback failed:", error)
 			vscode.window.showErrorMessage(
@@ -1189,53 +1855,349 @@ export class UnifiedAuthService {
 	}
 
 	/**
-	 * Get access token, refreshing if necessary
+	 * Get stored access token without refreshing
+	 * IMPORTANT: This method should NOT trigger token refresh.
+	 * Use ensureValidAccessToken() when you need a guaranteed valid token.
 	 */
 	async getAccessToken(): Promise<string | undefined> {
-		let accessToken = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+		console.log("🔍 [GET-ACCESS-TOKEN] Starting getAccessToken...")
+		console.log("🔍 [GET-ACCESS-TOKEN] Attempting to retrieve token from secrets store...")
 
-		// If no access token, try to refresh using refresh token
-		if (!accessToken) {
+		const token = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+		console.log("🔍 [GET-ACCESS-TOKEN] Retrieved token from secrets:", token ? "token present" : "undefined")
+
+		if (token) {
+			console.log("🔍 [GET-ACCESS-TOKEN] Token details:", {
+				length: token.length,
+				isJWT: token.includes("."),
+				startsWith: token.substring(0, 15),
+				endsWith: token.substring(token.length - 15),
+				hasValidStructure: token.split(".").length === 3,
+			})
+		} else {
+			console.log("🔍 [GET-ACCESS-TOKEN] No token found in secrets store")
+			console.log("🔍 [GET-ACCESS-TOKEN] Checking other stored authentication data...")
+
+			// Check if we have other auth-related data
 			const refreshToken = await this.context.secrets.get(TOKEN_KEYS.REFRESH_TOKEN)
-			if (refreshToken) {
-				accessToken = await this.refreshAccessToken(refreshToken)
+			const sessionId = await this.context.secrets.get(TOKEN_KEYS.SESSION_ID)
+			const orgId = await this.context.secrets.get(TOKEN_KEYS.ORGANIZATION_ID)
+
+			console.log("🔍 [GET-ACCESS-TOKEN] Other auth data status:", {
+				hasRefreshToken: !!refreshToken,
+				hasSessionId: !!sessionId,
+				hasOrgId: !!orgId,
+			})
+		}
+
+		// If we have a token, check if it's expired and clear it automatically
+		if (token) {
+			try {
+				console.log("🔍 [GET-ACCESS-TOKEN] Token found, checking expiration...")
+				const parseResult = parseJWTUnsafe(token)
+				console.log("🔍 [GET-ACCESS-TOKEN] Parse result:", {
+					success: parseResult.success,
+					hasPayload: !!parseResult.parts?.payload,
+					hasExp: !!parseResult.parts?.payload.exp,
+				})
+
+				if (parseResult.success && parseResult.parts?.payload.exp) {
+					const expirationTime = parseResult.parts.payload.exp * 1000
+					const currentTime = Date.now()
+					const timeUntilExpiration = expirationTime - currentTime
+
+					console.log("🔍 [GET-ACCESS-TOKEN] Expiration analysis:", {
+						expirationTime: new Date(expirationTime).toISOString(),
+						currentTime: new Date(currentTime).toISOString(),
+						timeUntilExpiration: Math.floor(timeUntilExpiration / 1000) + "s",
+						isExpired: expirationTime <= currentTime,
+					})
+
+					if (expirationTime <= currentTime) {
+						console.log("⚠️ [TOKEN-STATUS] Found expired token in getAccessToken")
+						console.log("⚠️ [TOKEN-STATUS] Token expired at:", new Date(expirationTime).toISOString())
+						console.log("⚠️ [TOKEN-STATUS] Current time:", new Date(currentTime).toISOString())
+						// Strict policy: do not return expired tokens to callers
+						// Let higher-level ensureValidAccessToken handle refresh via refresh_token
+						const hasRefreshToken = !!(await this.context.secrets.get(TOKEN_KEYS.REFRESH_TOKEN))
+						if (hasRefreshToken) {
+							console.log(
+								"⏳ [TOKEN-STATUS] Expired token detected; refresh token is available. Returning undefined to trigger refresh flow.",
+							)
+						} else {
+							console.log(
+								"🚪 [TOKEN-STATUS] Expired token and no refresh token available. Returning undefined to prompt re-auth.",
+							)
+						}
+						return undefined
+					} else {
+						console.log("✅ [GET-ACCESS-TOKEN] Token is still valid")
+					}
+				} else {
+					console.warn("⚠️ [GET-ACCESS-TOKEN] Could not parse token for expiration check")
+				}
+			} catch (error) {
+				console.warn("⚠️ [TOKEN-CLEANUP] Error checking token expiration in getAccessToken:", error)
 			}
+		} else {
+			console.log("🔍 [GET-ACCESS-TOKEN] No token stored in secrets")
+		}
+
+		console.log("🔍 [GET-ACCESS-TOKEN] Returning token:", token ? "token present" : "undefined")
+		return token
+	}
+
+	/**
+	 * Ensure we have a valid access token, refreshing if necessary
+	 * Enhanced with more resilient refresh logic and longer validity windows
+	 */
+	async ensureValidAccessToken(): Promise<string | undefined> {
+		// Immediate check for signed out state
+		if (this.signedOut) {
+			console.log("🚫 [ENSURE-VALID-TOKEN] Signed out flag detected - returning undefined immediately")
+			return undefined
+		}
+
+		const sessionId = Date.now().toString(36)
+		console.log(`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] Starting enhanced token validation...`)
+		console.log(`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] Current timestamp:`, new Date().toISOString())
+		console.log(`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] Signed out flag:`, this.signedOut)
+
+		let accessToken = await this.getAccessToken()
+		console.log(
+			`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] getAccessToken returned:`,
+			accessToken ? "token present" : "undefined",
+		)
+
+		if (accessToken) {
+			console.log(`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] Token details:`, {
+				length: accessToken.length,
+				isJWT: accessToken.includes("."),
+				startsWith: accessToken.substring(0, 10),
+				endsWith: accessToken.substring(accessToken.length - 10),
+			})
+
+			// Add token expiration analysis with session tracking
+			try {
+				const parseResult = parseJWTUnsafe(accessToken)
+				if (parseResult.success && parseResult.parts?.payload.exp) {
+					const expirationTime = parseResult.parts.payload.exp * 1000
+					const currentTime = Date.now()
+					const timeUntilExpiration = expirationTime - currentTime
+					const hoursUntilExpiration = timeUntilExpiration / (1000 * 60 * 60)
+
+					console.log(`🔍 [TOKEN-LIFECYCLE] [${sessionId}] Token expiration analysis:`, {
+						expirationTime: new Date(expirationTime).toISOString(),
+						currentTime: new Date(currentTime).toISOString(),
+						timeUntilExpirationMinutes: Math.floor(timeUntilExpiration / (1000 * 60)),
+						timeUntilExpirationHours: hoursUntilExpiration.toFixed(2),
+						isExpired: expirationTime <= currentTime,
+						willExpireSoon: timeUntilExpiration < 5 * 60 * 1000,
+						originalLifespanHours: parseResult.parts.payload.iat
+							? ((parseResult.parts.payload.exp - parseResult.parts.payload.iat) / 3600).toFixed(2)
+							: "unknown",
+					})
+				}
+			} catch (error) {
+				console.warn(`⚠️ [TOKEN-LIFECYCLE] [${sessionId}] Could not analyze token expiration:`, error)
+			}
+		}
+
+		// If no access token, try to refresh using refresh token (with race condition protection)
+		if (!accessToken) {
+			console.log(`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] No access token found, checking for refresh token...`)
+			const refreshToken = await this.context.secrets.get(TOKEN_KEYS.REFRESH_TOKEN)
+			console.log(`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] Refresh token found:`, refreshToken ? "yes" : "no")
+			if (refreshToken) {
+				accessToken = await this.performTokenRefreshWithLocking(sessionId, refreshToken)
+			} else {
+				console.log(
+					`❌ [ENSURE-VALID-TOKEN] [${sessionId}] No refresh token available - user needs to re-authenticate`,
+				)
+			}
+		}
+
+		// Enhanced token expiration handling with configured threshold and strict expiry policy
+		if (accessToken) {
+			try {
+				const parseResult = parseJWTUnsafe(accessToken)
+				if (parseResult.success && parseResult.parts?.payload.exp) {
+					const expirationTime = parseResult.parts.payload.exp * 1000
+					const currentTime = Date.now()
+					const timeUntilExpiration = expirationTime - currentTime
+					const thresholdMs = (JWT_CONFIG.TOKEN_REFRESH_THRESHOLD ?? 300) * 1000
+
+					console.log("🔍 [ENSURE-VALID-TOKEN] Token expiration check:", {
+						expirationTime: new Date(expirationTime).toISOString(),
+						currentTime: new Date(currentTime).toISOString(),
+						timeUntilExpiration: Math.floor(timeUntilExpiration / 1000) + "s",
+						thresholdSeconds: thresholdMs / 1000,
+					})
+
+					if (timeUntilExpiration <= 0) {
+						console.log(
+							`⛔ [TOKEN-REFRESH] [${sessionId}] Token already expired. Attempting immediate refresh...`,
+						)
+						const refreshToken = await this.context.secrets.get(TOKEN_KEYS.REFRESH_TOKEN)
+						if (refreshToken) {
+							const refreshed = await this.performTokenRefreshWithLocking(sessionId, refreshToken)
+							if (refreshed) {
+								accessToken = refreshed
+							} else {
+								console.log(`❌ [TOKEN-REFRESH] [${sessionId}] Refresh failed for expired token`)
+								accessToken = undefined
+							}
+						} else {
+							console.log(
+								`❌ [TOKEN-REFRESH] [${sessionId}] No refresh token available for expired access token`,
+							)
+							accessToken = undefined
+						}
+					} else if (timeUntilExpiration < thresholdMs) {
+						console.log(
+							`⏰ [TOKEN-REFRESH] [${sessionId}] Token expires within configured threshold (${thresholdMs / 1000}s), attempting proactive refresh...`,
+						)
+						const refreshToken = await this.context.secrets.get(TOKEN_KEYS.REFRESH_TOKEN)
+						if (refreshToken) {
+							const refreshedToken = await this.performTokenRefreshWithLocking(sessionId, refreshToken)
+							if (refreshedToken) {
+								accessToken = refreshedToken
+							} else {
+								console.log(
+									`⚠️ [TOKEN-REFRESH] [${sessionId}] Proactive refresh failed, continuing with existing token`,
+								)
+							}
+						} else {
+							console.log(
+								`⚠️ [TOKEN-REFRESH] [${sessionId}] No refresh token available for proactive refresh`,
+							)
+						}
+					} else {
+						console.log(
+							`✅ [TOKEN-LIFECYCLE] [${sessionId}] Token healthy - ${Math.floor(timeUntilExpiration / (1000 * 60))} minutes until expiration`,
+						)
+					}
+				} else {
+					console.warn("⚠️ [ENSURE-VALID-TOKEN] Could not parse token for expiration check")
+				}
+			} catch (error) {
+				console.warn("⚠️ [TOKEN-REFRESH] Error checking token expiration:", error)
+				// Continue with existing token if expiration check fails
+			}
+		}
+
+		console.log(
+			`🔍 [ENSURE-VALID-TOKEN] [${sessionId}] Final result:`,
+			accessToken ? "returning token" : "returning undefined",
+		)
+
+		// Final token health summary
+		if (accessToken) {
+			try {
+				const parseResult = parseJWTUnsafe(accessToken)
+				if (parseResult.success && parseResult.parts?.payload.exp) {
+					const expirationTime = parseResult.parts.payload.exp * 1000
+					const timeUntilExpiration = expirationTime - Date.now()
+					console.log(`📊 [TOKEN-LIFECYCLE] [${sessionId}] Final token status:`, {
+						hasToken: true,
+						minutesUntilExpiration: Math.floor(timeUntilExpiration / (1000 * 60)),
+						tokenAge: parseResult.parts.payload.iat
+							? Math.floor((Date.now() - parseResult.parts.payload.iat * 1000) / (1000 * 60)) + " minutes"
+							: "unknown",
+					})
+				}
+			} catch (error) {
+				console.log(`📊 [TOKEN-LIFECYCLE] [${sessionId}] Final token status: has token but cannot parse`)
+			}
+		} else {
+			console.log(`📊 [TOKEN-LIFECYCLE] [${sessionId}] Final token status: no token available`)
 		}
 
 		return accessToken
 	}
 
 	/**
-	 * Get user information from stored session
+	 * Get user information from stored session or JWT token
 	 */
 	async getUserInfo(): Promise<UserInfo | undefined> {
 		try {
-			const sessionId = await this.context.secrets.get(TOKEN_KEYS.SESSION_ID)
-			const accessToken = await this.getAccessToken()
+			const accessToken = await this.ensureValidAccessToken()
 
-			if (!accessToken || !sessionId) {
+			if (!accessToken) {
+				console.log("❌ [USER-INFO] No access token available")
 				return undefined
 			}
 
-			// Fetch user info from unified API
+			// First try to get user info from backend API
 			const backendUrl = await this.getBackendUrl()
-			const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.USER_INFO}`, {
-				method: "GET",
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-					"Content-Type": "application/json",
-					"User-Agent": generateUserAgent(),
-				},
-			})
+			const sessionId = await this.context.secrets.get(TOKEN_KEYS.SESSION_ID)
 
-			if (!response.ok) {
-				console.warn("Failed to fetch user info:", response.statusText)
-				return undefined
+			if (sessionId) {
+				try {
+					console.log("🔍 [USER-INFO] Attempting to fetch user info from backend API...")
+					const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.USER_INFO}`, {
+						method: "GET",
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+							"Content-Type": "application/json",
+							"User-Agent": generateUserAgent(),
+						},
+					})
+
+					if (response.ok) {
+						const userInfo = await response.json()
+						console.log("✅ [USER-INFO] Successfully fetched user info from backend API")
+						return userInfo
+					}
+
+					// If backend returns 404, fall back to JWT extraction
+					if (response.status === 404) {
+						console.log(
+							"⚠️ [USER-INFO] Backend user info endpoint not available, falling back to JWT extraction",
+						)
+					} else {
+						console.warn(
+							"⚠️ [USER-INFO] Backend user info request failed, falling back to JWT extraction:",
+							response.statusText,
+						)
+					}
+				} catch (error) {
+					console.warn(
+						"⚠️ [USER-INFO] Backend user info request error, falling back to JWT extraction:",
+						error,
+					)
+				}
 			}
 
-			return await response.json()
+			// Fallback: Extract user info from JWT token
+			console.log("🔍 [USER-INFO] Extracting user info from JWT token...")
+			try {
+				const parseResult = parseJWTUnsafe(accessToken)
+				if (parseResult.success && parseResult.parts?.payload) {
+					const payload = parseResult.parts.payload
+					const userInfo: UserInfo = {
+						email:
+							payload.email ||
+							(payload.org_slug
+								? `${payload.org_slug}@organization.softcodes.ai`
+								: payload.sub || "unknown@softcodes.ai"),
+						firstName: payload.first_name || "User",
+						lastName: payload.last_name || "",
+						organizationName: payload.org_slug || undefined, // Use org_slug as organization name
+						organizationId: payload.org_id || undefined,
+					}
+					console.log("✅ [USER-INFO] Successfully extracted user info from JWT token")
+					return userInfo
+				} else {
+					console.warn("❌ [USER-INFO] Failed to parse JWT token for user info")
+					return undefined
+				}
+			} catch (error) {
+				console.error("❌ [USER-INFO] Error extracting user info from JWT:", error)
+				return undefined
+			}
 		} catch (error) {
-			console.error("Error fetching user info:", error)
+			console.error("❌ [USER-INFO] Error fetching user info:", error)
 			return undefined
 		}
 	}
@@ -1248,41 +2210,204 @@ export class UnifiedAuthService {
 	}
 
 	/**
-	 * Refresh access token using unified refresh endpoint
+	 * Perform token refresh with locking to prevent race conditions
 	 */
-	async refreshAccessToken(refreshToken: string): Promise<string | undefined> {
+	private async performTokenRefreshWithLocking(sessionId: string, refreshToken: string): Promise<string | undefined> {
+		// Check if refresh is already in progress
+		if (this.tokenRefreshInProgress) {
+			console.log(`🔒 [TOKEN-REFRESH] [${sessionId}] Refresh already in progress, waiting for completion...`)
+
+			// Wait for existing refresh to complete
+			if (this.tokenRefreshPromise) {
+				try {
+					const result = await this.tokenRefreshPromise
+					console.log(`✅ [TOKEN-REFRESH] [${sessionId}] Existing refresh completed, using result`)
+					return result
+				} catch (error) {
+					console.warn(`⚠️ [TOKEN-REFRESH] [${sessionId}] Existing refresh failed:`, error)
+				}
+			}
+
+			// If existing refresh failed, continue with our own attempt
+		}
+
+		// Set lock and start refresh
+		this.tokenRefreshInProgress = true
+		console.log(`🔒 [TOKEN-REFRESH] [${sessionId}] Starting locked token refresh`)
+
+		const refreshStartTime = Date.now()
+		this.tokenRefreshPromise = this.refreshAccessTokenResilient(refreshToken)
+
+		try {
+			const result = await this.tokenRefreshPromise
+			const refreshDuration = Date.now() - refreshStartTime
+
+			if (result) {
+				console.log(`✅ [TOKEN-REFRESH] [${sessionId}] Locked refresh successful in ${refreshDuration}ms`)
+			} else {
+				console.log(`❌ [TOKEN-REFRESH] [${sessionId}] Locked refresh failed after ${refreshDuration}ms`)
+			}
+
+			return result
+		} finally {
+			// Always clear the lock
+			this.tokenRefreshInProgress = false
+			this.tokenRefreshPromise = null
+			console.log(`🔓 [TOKEN-REFRESH] [${sessionId}] Refresh lock released`)
+		}
+	}
+
+	/**
+	 * Enhanced resilient token refresh with fallback strategies
+	 */
+	async refreshAccessTokenResilient(refreshToken: string): Promise<string | undefined> {
 		try {
 			const backendUrl = await this.getBackendUrl()
-			const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.REFRESH_TOKEN}`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					"User-Agent": generateUserAgent(),
-				},
-				body: JSON.stringify({
-					refresh_token: refreshToken,
-					client_type: "vscode",
-				}),
-			})
 
-			if (!response.ok) {
-				// Refresh failed, need to re-authenticate
-				console.warn("Token refresh failed, clearing stored tokens")
-				await this.signOut()
+			// First check if refresh endpoint exists with timeout
+			console.log("🔍 [TOKEN-REFRESH] Checking refresh endpoint availability...")
+
+			const checkResponse = await Promise.race([
+				fetch(`${backendUrl}${AUTH_ENDPOINTS.REFRESH_TOKEN}`, {
+					method: "HEAD",
+				}),
+				new Promise<Response>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 5000)),
+			]).catch(() => null)
+
+			// If endpoint doesn't exist, use fallback strategy
+			if (!checkResponse || !checkResponse.ok) {
+				console.log("⚠️ [TOKEN-REFRESH] Refresh endpoint not available, using fallback token extension")
+				return await this.extendTokenLifetime(refreshToken)
+			}
+
+			// Attempt normal refresh with retry logic
+			console.log("🔄 [TOKEN-REFRESH] Attempting token refresh with retry logic...")
+
+			for (let attempt = 1; attempt <= 3; attempt++) {
+				try {
+					const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.REFRESH_TOKEN}`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"User-Agent": generateUserAgent(),
+						},
+						body: JSON.stringify({
+							refresh_token: refreshToken,
+							client_type: "vscode",
+						}),
+						signal: AbortSignal.timeout(10000), // 10 second timeout
+					})
+
+					if (response.ok) {
+						const tokens: AuthTokens = await response.json()
+						await this.storeTokens(tokens)
+
+						// Update authentication state
+						const currentState = await this.getAuthenticationState()
+						if (currentState.isAuthenticated) {
+							await this.updateAuthenticationState({
+								...currentState,
+								isConnected: true, // Successful refresh means we're connected
+							})
+						}
+
+						console.log(`✅ [TOKEN-REFRESH] Token refresh successful on attempt ${attempt}`)
+						return tokens.access_token
+					} else {
+						console.warn(`⚠️ [TOKEN-REFRESH] Refresh failed on attempt ${attempt}: ${response.status}`)
+
+						if (attempt === 3) {
+							// On final attempt failure, try fallback extension
+							return await this.extendTokenLifetime(refreshToken)
+						}
+
+						// Wait before retry (exponential backoff)
+						await new Promise((resolve) => setTimeout(resolve, 1000 * attempt))
+					}
+				} catch (error) {
+					console.warn(`⚠️ [TOKEN-REFRESH] Refresh attempt ${attempt} failed:`, error)
+
+					if (attempt === 3) {
+						// On final attempt failure, try fallback extension
+						return await this.extendTokenLifetime(refreshToken)
+					}
+
+					// Wait before retry
+					await new Promise((resolve) => setTimeout(resolve, 1000 * attempt))
+				}
+			}
+
+			// If all retries failed, use fallback
+			return await this.extendTokenLifetime(refreshToken)
+		} catch (error) {
+			console.warn("⚠️ [TOKEN-REFRESH] Token refresh error, using fallback:", error)
+			return await this.extendTokenLifetime(refreshToken)
+		}
+	}
+
+	/**
+	 * Fallback token lifetime extension when refresh is not available
+	 */
+	private async extendTokenLifetime(refreshToken: string): Promise<string | undefined> {
+		try {
+			// Only allow fallback token extension in development or when explicitly enabled
+			const devBypass =
+				vscode.workspace.getConfiguration("softcodes").get("auth.skipAPIValidation", false) ||
+				process.env.NODE_ENV === "development"
+
+			if (!devBypass) {
+				console.log(
+					"🛑 [TOKEN-EXTEND] Fallback token lifetime extension is disabled in production. Prompting re-auth.",
+				)
 				return undefined
 			}
 
-			const tokens: AuthTokens = await response.json()
+			console.log("🔄 [TOKEN-EXTEND] Using fallback token lifetime extension (development mode)...")
 
-			// Store new tokens
-			await this.storeTokens(tokens)
+			// Get token directly from storage, bypassing getAccessToken() to access expired tokens
+			const currentToken = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+			if (!currentToken) {
+				console.log("❌ [TOKEN-EXTEND] No current token to extend")
+				return undefined
+			}
 
-			return tokens.access_token
+			// Parse current token to check if it's still usable
+			const parseResult = parseJWTUnsafe(currentToken)
+			if (parseResult.success && parseResult.parts?.payload.exp) {
+				const expirationTime = parseResult.parts.payload.exp * 1000
+				const currentTime = Date.now()
+				const timeUntilExpiration = expirationTime - currentTime
+				const thresholdMs = (JWT_CONFIG.TOKEN_REFRESH_THRESHOLD ?? 300) * 1000
+
+				// If token has more than configured threshold left, continue using it
+				if (timeUntilExpiration > thresholdMs) {
+					console.log("✅ [TOKEN-EXTEND] Current token still has sufficient time, continuing to use it")
+					return currentToken
+				}
+
+				// Extended tolerance (development only): If token has expired but by less than 30 minutes, allow temporary use
+				if (timeUntilExpiration > -30 * 60 * 1000) {
+					console.log(
+						"⚠️ [TOKEN-EXTEND] Token recently expired, attempting to use with extended clock tolerance (development only)",
+					)
+					return currentToken
+				}
+			}
+
+			// Token is too old or can't be parsed - user needs to re-authenticate
+			console.log("❌ [TOKEN-EXTEND] Token is too old, user needs to re-authenticate")
+			return undefined
 		} catch (error) {
-			console.error("Token refresh failed:", error)
-			await this.signOut() // Clear invalid tokens
+			console.error("❌ [TOKEN-EXTEND] Token extension failed:", error)
 			return undefined
 		}
+	}
+
+	/**
+	 * Legacy refresh method for backward compatibility
+	 */
+	async refreshAccessToken(refreshToken: string): Promise<string | undefined> {
+		return this.refreshAccessTokenResilient(refreshToken)
 	}
 
 	/**
@@ -1299,16 +2424,198 @@ export class UnifiedAuthService {
 	/**
 	 * Store authentication tokens securely
 	 */
-	private async storeTokens(tokens: AuthTokens): Promise<void> {
-		await this.context.secrets.store(TOKEN_KEYS.ACCESS_TOKEN, tokens.access_token)
-		await this.context.secrets.store(TOKEN_KEYS.REFRESH_TOKEN, tokens.refresh_token)
+	public async storeTokens(tokens: AuthTokens): Promise<void> {
+		console.log("🔐 [STORE-TOKENS] Starting token storage process...")
+		console.log("🔐 [STORE-TOKENS] Access token length:", tokens.access_token.length)
+		console.log("🔐 [STORE-TOKENS] Has refresh token:", !!tokens.refresh_token)
+		console.log("🔐 [STORE-TOKENS] Has session ID:", !!tokens.session_id)
+		console.log("🔐 [STORE-TOKENS] Has organization ID:", !!tokens.organization_id)
 
-		if (tokens.session_id) {
-			await this.context.secrets.store(TOKEN_KEYS.SESSION_ID, tokens.session_id)
+		try {
+			// Always prefer storing the custom 24h JWT as access token
+			await this.context.secrets.store(TOKEN_KEYS.ACCESS_TOKEN, tokens.access_token)
+			console.log("✅ [STORE-TOKENS] Access token stored successfully (24h JWT)")
+
+			await this.context.secrets.store(TOKEN_KEYS.REFRESH_TOKEN, tokens.refresh_token)
+			console.log("✅ [STORE-TOKENS] Refresh token stored successfully (30d lifetime)")
+
+			if (tokens.session_id) {
+				await this.context.secrets.store(TOKEN_KEYS.SESSION_ID, tokens.session_id)
+				console.log("✅ [STORE-TOKENS] Session ID stored successfully")
+			}
+
+			if (tokens.organization_id) {
+				await this.context.secrets.store(TOKEN_KEYS.ORGANIZATION_ID, tokens.organization_id)
+				console.log("✅ [STORE-TOKENS] Organization ID stored successfully")
+			}
+
+			// Decode JWT to log expiration details
+			try {
+				const parseResult = parseJWTUnsafe(tokens.access_token)
+				if (parseResult.success && parseResult.parts?.payload.exp) {
+					const expirationTime = parseResult.parts.payload.exp * 1000
+					const issueTime = parseResult.parts.payload.iat ? parseResult.parts.payload.iat * 1000 : undefined
+					console.log("📊 [STORE-TOKENS] Token expiration info:", {
+						expirationTime: new Date(expirationTime).toISOString(),
+						issueTime: issueTime ? new Date(issueTime).toISOString() : "unknown",
+						lifetimeHours: issueTime ? ((expirationTime - issueTime) / 3600000).toFixed(2) : "unknown",
+						timeUntilExpirationMinutes: Math.floor((expirationTime - Date.now()) / (1000 * 60)),
+					})
+				}
+			} catch (e) {
+				console.warn("⚠️ [STORE-TOKENS] Could not parse token for expiration logging:", e)
+			}
+
+			// Immediately verify storage worked
+			console.log("🔍 [STORE-TOKENS] Verifying storage...")
+			const storedToken = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+			console.log("🔍 [STORE-TOKENS] Verification result:", storedToken ? "token found" : "token NOT found")
+
+			if (storedToken) {
+				console.log("🔍 [STORE-TOKENS] Stored token matches input:", storedToken === tokens.access_token)
+			}
+
+			console.log("✅ [STORE-TOKENS] Token storage process completed")
+		} catch (error) {
+			console.error("❌ [STORE-TOKENS] Error during token storage:", error)
+			throw error
 		}
+	}
 
-		if (tokens.organization_id) {
-			await this.context.secrets.store(TOKEN_KEYS.ORGANIZATION_ID, tokens.organization_id)
+	/**
+	 * Exchange authorization code for tokens (static for URI handler)
+	 */
+	static async exchangeToken(
+		code: string,
+		verifier: string,
+		state: string,
+		redirectUri: string,
+		context: vscode.ExtensionContext,
+	) {
+		const apiBaseUrl = vscode.workspace
+			.getConfiguration("softcodes")
+			.get<string>("apiBaseUrl", "https://yourapp.com")
+		try {
+			const response = await fetch(`${apiBaseUrl}/api/auth/complete-vscode-auth`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ code, code_verifier: verifier, state, redirect_uri: redirectUri }),
+			})
+			if (!response.ok) {
+				const errorData = await response.json()
+				throw new Error(errorData.error || "Exchange failed")
+			}
+			const data = await response.json()
+			if (data.success) {
+				const instance = UnifiedAuthService.getInstance(context)
+				const tokens: AuthTokens = {
+					access_token: data.access_token,
+					refresh_token: data.refresh_token,
+				}
+				await instance.storeTokens(tokens)
+				// Store expiry
+				context.globalState.update("token_expiry", Date.now() + data.expires_in * 1000)
+				context.globalState.update("auth_in_progress", false)
+				return data
+			}
+		} catch (error) {
+			console.error("Token exchange error:", error)
+			vscode.window.showErrorMessage(`Authentication failed: ${error}`)
+			context.globalState.update("auth_in_progress", false)
+		}
+	}
+
+	/**
+	 * Start expiry monitor for proactive token refresh (class method)
+	 */
+	startExpiryMonitor(context: vscode.ExtensionContext) {
+		const interval = setInterval(async () => {
+			if (await this.isAuthenticated()) {
+				const expiry = context.globalState.get("token_expiry") as number
+				if (Date.now() > expiry - 600000) {
+					// 10min early
+					try {
+						await this.refreshCurrentAccessToken()
+					} catch (e) {
+						console.log("Pro-active refresh failed, will handle on next call")
+					}
+				}
+			}
+		}, 300000) // 5min
+		context.subscriptions.push({ dispose: () => clearInterval(interval) })
+	}
+
+	/**
+	 * Clear expired tokens from storage
+	 */
+	private async clearExpiredTokens(): Promise<void> {
+		try {
+			const accessToken = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+
+			if (accessToken) {
+				// Check if the current token is expired
+				const parseResult = parseJWTUnsafe(accessToken)
+				if (parseResult.success && parseResult.parts?.payload.exp) {
+					const expirationTime = parseResult.parts.payload.exp * 1000
+					const currentTime = Date.now()
+
+					if (expirationTime <= currentTime) {
+						console.log("🧹 [TOKEN-CLEANUP] Found expired token, clearing it...")
+						await this.clearStoredTokens()
+
+						// Also clear the legacy kilocodeToken field
+						try {
+							const contextProxy = ContextProxy.instance
+							await contextProxy.setProviderSettings({
+								...contextProxy.getProviderSettings(),
+								kilocodeToken: undefined,
+							})
+							console.log("✅ [TOKEN-CLEANUP] Cleared expired kilocodeToken field")
+						} catch (error) {
+							console.warn("⚠️ [TOKEN-CLEANUP] Failed to clear kilocodeToken:", error)
+						}
+
+						console.log("✅ [TOKEN-CLEANUP] Expired token cleared successfully")
+					} else {
+						console.log("✅ [TOKEN-CLEANUP] Current token is still valid")
+					}
+				}
+			}
+		} catch (error) {
+			console.warn("⚠️ [TOKEN-CLEANUP] Error checking for expired tokens:", error)
+		}
+	}
+
+	/**
+	 * Clear all stored tokens and authentication data
+	 */
+	private async clearStoredTokens(): Promise<void> {
+		// LOGGING: Track signedOut state before clearing
+		console.log("🔍 [AUTH-LOG] signedOut state before clearStoredTokens:", this.signedOut)
+
+		try {
+			await Promise.all([
+				this.context.secrets.delete(TOKEN_KEYS.ACCESS_TOKEN),
+				this.context.secrets.delete(TOKEN_KEYS.REFRESH_TOKEN),
+				this.context.secrets.delete(TOKEN_KEYS.SESSION_ID),
+				this.context.secrets.delete(TOKEN_KEYS.ORGANIZATION_ID),
+				this.context.secrets.delete("auth_state"),
+			])
+
+			// Reset authentication state - explicitly set signedOut to false for fresh start, but mark as not authenticated
+			await this.updateAuthenticationState({
+				isAuthenticated: false,
+				isConnected: false,
+				signedOut: false, // FIX: Reset signedOut to false during token clearing for new auth attempts
+			})
+
+			console.log("✅ [TOKEN-CLEANUP] All stored tokens cleared with signedOut reset to false")
+
+			// LOGGING: Track signedOut state after clearing
+			console.log("🔍 [AUTH-LOG] signedOut state after clearStoredTokens:", this.signedOut)
+		} catch (error) {
+			console.error("❌ [TOKEN-CLEANUP] Failed to clear stored tokens:", error)
+			throw error
 		}
 	}
 
@@ -1317,18 +2624,41 @@ export class UnifiedAuthService {
 	 */
 	async signOut(): Promise<void> {
 		try {
-			// Clear all stored authentication data
-			await Promise.all([
-				this.context.secrets.delete(TOKEN_KEYS.ACCESS_TOKEN),
-				this.context.secrets.delete(TOKEN_KEYS.REFRESH_TOKEN),
-				this.context.secrets.delete(TOKEN_KEYS.SESSION_ID),
-				this.context.secrets.delete(TOKEN_KEYS.ORGANIZATION_ID),
-			])
+			console.log("🔓 [SIGN-OUT] Starting enhanced sign out process...")
+
+			// Set signedOut flag immediately to block any concurrent token operations
+			this.signedOut = true
+			console.log("🚫 [SIGN-OUT] Signed out flag set to true")
+
+			// Clear all stored authentication data using the centralized method
+			await this.clearStoredTokens()
+			console.log("✅ [SIGN-OUT] All stored tokens cleared")
+
+			// Clear legacy kilocodeToken field for ProfileView compatibility
+			try {
+				const contextProxy = ContextProxy.instance
+				await contextProxy.setProviderSettings({
+					...contextProxy.getProviderSettings(),
+					kilocodeToken: undefined,
+				})
+				console.log("✅ [SIGN-OUT] Cleared kilocodeToken field")
+			} catch (error) {
+				console.warn("⚠️ [SIGN-OUT] Failed to clear kilocodeToken:", error)
+			}
 
 			// Clear any pending auth states
 			this.pendingAuth.clear()
+			console.log("✅ [SIGN-OUT] Pending auth states cleared")
 
-			// Notify backend about sign out (optional)
+			// Update authentication state with signedOut flag
+			await this.updateAuthenticationState({
+				isAuthenticated: false,
+				isConnected: false,
+				signedOut: true,
+			})
+			console.log("📡 [SIGN-OUT] Authentication state updated with signedOut: true")
+
+			// Notify backend about sign out (optional, but do it after state update)
 			try {
 				const backendUrl = await this.getBackendUrl()
 				const sessionId = await this.context.secrets.get(TOKEN_KEYS.SESSION_ID)
@@ -1342,56 +2672,127 @@ export class UnifiedAuthService {
 						},
 						body: JSON.stringify({ session_id: sessionId }),
 					})
+					console.log("✅ [SIGN-OUT] Backend notified of sign out")
 				}
 			} catch (error) {
 				// Non-critical error - user is still signed out locally
-				console.warn("Failed to notify backend of sign out:", error)
+				console.warn("⚠️ [SIGN-OUT] Failed to notify backend of sign out:", error)
 			}
 
+			// Step 6: FORCE IMMEDIATE WEBVIEW NOTIFICATION - Critical for stopping polling
+			console.log("📡 [SIGN-OUT] Triggering immediate auth state refresh command...")
+			try {
+				await vscode.commands.executeCommand("softcodes.refreshAuthState")
+				console.log("✅ [SIGN-OUT] softcodes.refreshAuthState command executed successfully")
+			} catch (commandError) {
+				console.warn("⚠️ [SIGN-OUT] Failed to execute refreshAuthState command:", commandError)
+				// Fallback: Trigger onAuthenticated which might also refresh state
+				try {
+					await vscode.commands.executeCommand("softcodes.onAuthenticated")
+					console.log("✅ [SIGN-OUT] Fallback onAuthenticated command executed")
+				} catch (fallbackError) {
+					console.error("❌ [SIGN-OUT] Both refresh commands failed:", fallbackError)
+				}
+			}
+
+			// Show success message
 			vscode.window.showInformationMessage(AUTH_SUCCESS.SIGNED_OUT)
+			console.log("✅ [SIGN-OUT] Sign out process completed successfully - forced webview refresh added")
 		} catch (error) {
-			console.error("Sign out failed:", error)
+			console.error("❌ [SIGN-OUT] Sign out failed:", error)
+			// Even on error, ensure signedOut flag is set
+			this.signedOut = true
 			vscode.window.showErrorMessage(`Sign out failed: ${error instanceof Error ? error.message : String(error)}`)
 		}
 	}
 
 	/**
 	 * Check if user is authenticated
+	 * IMPORTANT: This method should NOT trigger token refresh.
+	 * It should only check for the existence of stored tokens.
 	 */
 	async isAuthenticated(): Promise<boolean> {
-		const token = await this.getAccessToken()
-		return !!token
+		const token = await this.context.secrets.get(TOKEN_KEYS.ACCESS_TOKEN)
+		if (!token) return false
+
+		// Check expiry
+		const expiry = this.context.globalState.get("token_expiry") as number | undefined
+		if (!expiry || Date.now() >= expiry) {
+			return false
+		}
+
+		return true
 	}
 
 	/**
-	 * Validate current session with backend
+	 * Validate current session with backend or fallback to JWT validation
 	 */
 	async validateSession(): Promise<boolean> {
 		try {
-			const accessToken = await this.getAccessToken()
-			const sessionId = await this.context.secrets.get(TOKEN_KEYS.SESSION_ID)
+			const accessToken = await this.ensureValidAccessToken()
 
-			if (!accessToken || !sessionId) {
+			if (!accessToken) {
+				console.log("❌ [SESSION-VALIDATION] No access token available")
 				return false
 			}
 
+			// First try backend validation if available
 			const backendUrl = await this.getBackendUrl()
-			const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.VALIDATE_SESSION}`, {
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-					"Content-Type": "application/json",
-					"User-Agent": generateUserAgent(),
-				},
-				body: JSON.stringify({
-					session_id: sessionId,
-					client_type: "vscode",
-				}),
-			})
+			const sessionId = await this.context.secrets.get(TOKEN_KEYS.SESSION_ID)
 
-			return response.ok
+			if (sessionId) {
+				try {
+					console.log("🔍 [SESSION-VALIDATION] Attempting backend session validation...")
+					const response = await fetch(`${backendUrl}${AUTH_ENDPOINTS.VALIDATE_SESSION}`, {
+						method: "POST",
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+							"Content-Type": "application/json",
+							"User-Agent": generateUserAgent(),
+						},
+						body: JSON.stringify({
+							session_id: sessionId,
+							client_type: "vscode",
+						}),
+					})
+
+					if (response.ok) {
+						console.log("✅ [SESSION-VALIDATION] Backend session validation successful")
+						return true
+					}
+
+					// If backend validation fails with 404, fall back to JWT validation
+					if (response.status === 404) {
+						console.log(
+							"⚠️ [SESSION-VALIDATION] Backend validation not available, falling back to JWT validation",
+						)
+					} else {
+						console.warn(
+							"⚠️ [SESSION-VALIDATION] Backend validation failed, falling back to JWT validation",
+						)
+					}
+				} catch (error) {
+					console.warn(
+						"⚠️ [SESSION-VALIDATION] Backend validation error, falling back to JWT validation:",
+						error,
+					)
+				}
+			}
+
+			// Fallback: Validate JWT token directly
+			console.log("🔍 [SESSION-VALIDATION] Performing JWT-based session validation...")
+			const jwtService = JWTVerificationService.getInstance()
+			const jwtResult = await jwtService.verifyJWT(accessToken)
+
+			if (jwtResult.valid) {
+				console.log("✅ [SESSION-VALIDATION] JWT-based session validation successful")
+				return true
+			} else {
+				console.log("❌ [SESSION-VALIDATION] JWT-based session validation failed:", jwtResult.error?.message)
+				return false
+			}
 		} catch (error) {
-			console.error("Session validation failed:", error)
+			console.error("❌ [SESSION-VALIDATION] Session validation failed:", error)
 			return false
 		}
 	}

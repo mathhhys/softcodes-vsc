@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect } from "react"
 import { VSCodeButton, VSCodeTextField } from "@vscode/webview-ui-toolkit/react"
 import { useTranslation } from "react-i18next"
+import { useExtensionState } from "@/context/ExtensionStateContext"
 import SoftcodesBalanceDisplay from "./SoftcodesBalanceDisplay"
 
 interface SoftcodesProviderProps {
@@ -11,82 +12,87 @@ interface SoftcodesProviderProps {
 
 export default function SoftcodesProvider({ apiConfiguration, setApiConfiguration, vscode }: SoftcodesProviderProps) {
 	const { t } = useTranslation()
-	const [isAuthenticated, setIsAuthenticated] = useState(false)
-	const [userInfo, setUserInfo] = useState<{
-		email: string
-		firstName?: string
-		lastName?: string
-		organizationName?: string
-		organizationId?: string
-	} | null>(null)
+	const { blueByteBoosterAuth } = useExtensionState()
 	const [isLoading, setIsLoading] = useState(false)
 
-	const checkAuthStatus = useCallback(async () => {
-		vscode.postMessage({
-			type: "checkSoftcodesAuth",
-		})
-	}, [vscode])
-
-	useEffect(() => {
-		// Check authentication status on mount
-		checkAuthStatus()
-
-		// Listen for authentication state changes
-		const handleMessage = (event: MessageEvent) => {
-			const message = event.data
-			if (message.type === "authStateChanged") {
-				setIsAuthenticated(message.isAuthenticated)
-				setUserInfo(message.softcodesUserInfo || null)
-			}
-		}
-
-		window.addEventListener("message", handleMessage)
-		return () => window.removeEventListener("message", handleMessage)
-	}, [checkAuthStatus])
-
-	const handleSignIn = () => {
+	const handleLogin = () => {
 		setIsLoading(true)
 		vscode.postMessage({
-			type: "softcodesSignIn",
+			type: "blueByteBoosterLogin",
 		})
-		// Loading state will be cleared when we receive authStateChanged message
-		setTimeout(() => setIsLoading(false), 5000) // Timeout fallback
+		// Reset loading state after timeout
+		setTimeout(() => setIsLoading(false), 3000)
 	}
 
-	const handleSignOut = () => {
+	const handleLogout = () => {
+		if (confirm(t("settings.providers.softcodes.confirmLogout") || "Are you sure you want to logout?")) {
+			vscode.postMessage({
+				type: "blueByteBoosterLogout",
+			})
+		}
+	}
+
+	const handleRefresh = () => {
 		vscode.postMessage({
-			type: "softcodesSignOut",
+			type: "refreshBlueByteBoosterAuth",
 		})
-		setIsAuthenticated(false)
-		setUserInfo(null)
 	}
 
-	if (!isAuthenticated) {
+	const handleManageAccount = () => {
+		vscode.postMessage({
+			type: "openExternal",
+			url: "https://softcodes.ai/dashboard",
+		})
+	}
+
+	// If no auth state available, show nothing
+	if (!blueByteBoosterAuth) {
+		return null
+	}
+
+	// Not authenticated - show login UI
+	if (!blueByteBoosterAuth.isAuthenticated || !blueByteBoosterAuth.user) {
 		return (
 			<div className="space-y-4">
-				<div className="text-sm text-vscode-descriptionForeground">
-					{t("settings.providers.softcodes.description")}
+				<div className="text-sm text-vscode-descriptionForeground mb-3">
+					Sign in to Softcodes to access your credits and premium features.
 				</div>
 
-				<div className="flex flex-col gap-2">
-					<p className="text-sm">{t("settings.providers.softcodes.signInRequired")}</p>
-					<VSCodeButton onClick={handleSignIn} disabled={isLoading} className="max-w-xs">
-						{isLoading ? t("common.loading") : t("settings.providers.softcodes.signIn")}
-					</VSCodeButton>
-				</div>
+				<VSCodeButton onClick={handleLogin} disabled={isLoading} className="w-full">
+					{isLoading ? "Opening browser..." : "Sign In with Softcodes"}
+				</VSCodeButton>
 
-				<div className="text-xs text-vscode-descriptionForeground mt-4">
-					<p>{t("settings.providers.softcodes.benefits.title")}</p>
-					<ul className="list-disc list-inside mt-2 space-y-1">
-						<li>{t("settings.providers.softcodes.benefits.1")}</li>
-						<li>{t("settings.providers.softcodes.benefits.2")}</li>
-						<li>{t("settings.providers.softcodes.benefits.3")}</li>
-						<li>{t("settings.providers.softcodes.benefits.4")}</li>
+				<p className="text-xs text-vscode-descriptionForeground text-center">
+					Don't have an account?{" "}
+					<a
+						href="#"
+						onClick={(e) => {
+							e.preventDefault()
+							vscode.postMessage({
+								type: "openExternal",
+								url: "https://softcodes.ai/sign-up",
+							})
+						}}
+						className="text-vscode-textLink-foreground hover:underline">
+						Sign up for free
+					</a>
+				</p>
+
+				<div className="text-xs text-vscode-descriptionForeground mt-4 p-3 bg-vscode-textBlockQuote-background rounded">
+					<p className="font-medium mb-2">✨ Benefits:</p>
+					<ul className="list-disc list-inside space-y-1">
+						<li>Access to premium AI models</li>
+						<li>Credit-based billing system</li>
+						<li>Team collaboration features</li>
+						<li>Priority support</li>
 					</ul>
 				</div>
 			</div>
 		)
 	}
+
+	// Authenticated - show user info and credits
+	const { user } = blueByteBoosterAuth
 
 	return (
 		<div className="space-y-4">
@@ -94,28 +100,46 @@ export default function SoftcodesProvider({ apiConfiguration, setApiConfiguratio
 				{t("settings.providers.softcodes.description")}
 			</div>
 
-			{userInfo && (
+			{/* User Info Card */}
+			<div className="bg-vscode-editor-background p-3 rounded border border-vscode-panel-border">
+				<div className="flex items-center justify-between mb-2">
+					<span className="text-sm text-vscode-descriptionForeground">Signed in as</span>
+					<VSCodeButton appearance="icon" onClick={handleRefresh} title="Refresh auth status">
+						↻
+					</VSCodeButton>
+				</div>
+
+				<div className="space-y-1 mb-3">
+					<p className="font-medium">{user.username || user.email}</p>
+					<p className="text-sm text-vscode-descriptionForeground">{user.email}</p>
+				</div>
+
+				{/* Credits and Plan Display */}
 				<div className="bg-vscode-editor-background p-3 rounded border border-vscode-panel-border">
-					<div className="flex justify-between items-center">
+					<div className="flex items-center justify-between">
 						<div>
-							<p className="text-sm font-medium">{userInfo.email}</p>
-							{userInfo.firstName && userInfo.lastName && (
-								<p className="text-xs text-vscode-descriptionForeground mt-1">
-									{userInfo.firstName} {userInfo.lastName}
-								</p>
-							)}
-							{userInfo.organizationName && (
-								<p className="text-xs text-vscode-descriptionForeground mt-1">
-									{t("settings.providers.softcodes.organization")}: {userInfo.organizationName}
-								</p>
-							)}
+							<p className="text-sm text-vscode-descriptionForeground mb-1">Available Credits</p>
+							<p className="text-2xl font-bold text-vscode-textLink-activeForeground">
+								{user.credits.toLocaleString()}
+							</p>
 						</div>
-						<VSCodeButton appearance="secondary" onClick={handleSignOut}>
-							{t("settings.providers.softcodes.signOut")}
-						</VSCodeButton>
+						<div className="text-right">
+							<p className="text-sm text-vscode-descriptionForeground mb-1">Plan</p>
+							<p className="text-sm font-semibold capitalize">{user.plan_type}</p>
+						</div>
 					</div>
 				</div>
-			)}
+
+				{/* Actions */}
+				<div className="flex gap-2 mt-3">
+					<VSCodeButton className="flex-1" onClick={handleManageAccount}>
+						Manage Account
+					</VSCodeButton>
+					<VSCodeButton appearance="secondary" onClick={handleLogout}>
+						Logout
+					</VSCodeButton>
+				</div>
+			</div>
 
 			<SoftcodesBalanceDisplay vscode={vscode} />
 

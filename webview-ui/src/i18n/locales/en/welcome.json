@@ -3,6 +3,28 @@
 	"introduction": "<strong>Softcodes is the premiere autonomous coding agent.</strong> Get ready to architect, code, debug, and boost your productivity like you've never seen before. To continue, Softcodes requires an API key.",
 	"notice": "To get started, this extension needs an API provider.",
 	"start": "Let's go!",
+	"productivityFeatures": {
+		"sectionTitle": "Made for how your team actually works.",
+		"sectionSubtitle": "From fast-moving startups to structured enterprises, Softcodes adapts to your team’s real-world workflows — not the other way around.",
+		"cards": {
+			"organize": {
+				"title": "Stay organized, effortlessly.",
+				"body": "Easily track tasks, assignees, and statuses in one place."
+			},
+			"collaborate": {
+				"title": "Built for fast-moving teams.",
+				"body": "Collaborate in real time with live edits and comments."
+			},
+			"portfolio": {
+				"title": "Precision-driven portfolio growth.",
+				"body": "View tasks as lists, boards, calendars, or timelines."
+			},
+			"ai": {
+				"title": "AI-assisted orchestration.",
+				"body": "Let Softcodes suggest assignments, priorities, and deadlines."
+			}
+		}
+	},
 	"routers": {
 		"requesty": {
 			"description": "Your optimized LLM router",

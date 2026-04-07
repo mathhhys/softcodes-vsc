@@ -31,8 +31,11 @@ describe("TaskItemFooter", () => {
 	it("renders cost information", () => {
 		render(<TaskItemFooter item={mockItem} variant="full" />)
 
-		// The component shows $0.00 for small amounts, not the exact value
-		expect(screen.getByText("$0.00")).toBeInTheDocument()
+		// The component shows credits instead of dollars
+		// 0.002 USD / 0.014 rate = 0.143 credits, which rounds up to 1 credit
+		const costElement = screen.getByTestId("cost-footer-compact")
+		expect(costElement).toBeInTheDocument()
+		expect(costElement.textContent).toBe("0.14 credits")
 	})
 
 	it("shows action buttons", () => {

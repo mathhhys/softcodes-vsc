@@ -326,7 +326,7 @@ export class ClerkJWKSClient {
 			console.log(`[JWKS-DEBUG] Header algorithm: ${components.header.alg}, key ID: ${components.header.kid}`)
 
 			if (!components.header.kid) {
-				console.log(`❌ [JWKS-DEBUG] JWT header missing key ID (kid)`)
+				console.warn(`⚠️ [JWKS-DEBUG] JWT header missing key ID (kid) - this may be a non-Clerk token`)
 				throw new Error("JWT header missing kid (key ID)")
 			}
 			console.log(`[JWKS-DEBUG] Using key ID: ${components.header.kid}`)

@@ -29,6 +29,10 @@ const ApiConfigManager = ({
 }: ApiConfigManagerProps) => {
 	const { t } = useAppTranslation()
 
+	// DEBUG: Log configuration data being received
+	console.log("[DEBUG] ApiConfigManager - listApiConfigMeta:", JSON.stringify(listApiConfigMeta, null, 2))
+	console.log("[DEBUG] ApiConfigManager - currentApiConfigName:", currentApiConfigName)
+
 	const [isRenaming, setIsRenaming] = useState(false)
 	const [isCreating, setIsCreating] = useState(false)
 	const [inputValue, setInputValue] = useState("")
@@ -229,21 +233,32 @@ const ApiConfigManager = ({
 						<SearchableSelect
 							value={currentApiConfigName}
 							onValueChange={handleSelectConfig}
-							options={listApiConfigMeta.map((config) => {
-								const valid = isProfileValid(config)
-								return {
-									value: config.name,
-									label: config.name,
-									disabled: !valid,
-									icon: !valid ? (
-										<StandardTooltip content={t("settings:validation.profileInvalid")}>
-											<span>
-												<AlertTriangle size={16} className="mr-2 text-vscode-errorForeground" />
-											</span>
-										</StandardTooltip>
-									) : undefined,
-								} as SearchableSelectOption
-							})}
+							options={(() => {
+								return listApiConfigMeta.map((config) => {
+									const valid = isProfileValid(config)
+									console.log(
+										"[DEBUG] ApiConfigManager - Processing config:",
+										config,
+										"Valid:",
+										valid,
+									)
+									return {
+										value: config.name,
+										label: config.name,
+										disabled: !valid,
+										icon: !valid ? (
+											<StandardTooltip content={t("settings:validation.profileInvalid")}>
+												<span>
+													<AlertTriangle
+														size={16}
+														className="mr-2 text-vscode-errorForeground"
+													/>
+												</span>
+											</StandardTooltip>
+										) : undefined,
+									} as SearchableSelectOption
+								})
+							})()}
 							placeholder={t("settings:common.select")}
 							searchPlaceholder={t("settings:providers.searchPlaceholder")}
 							emptyMessage={t("settings:providers.noMatchFound")}

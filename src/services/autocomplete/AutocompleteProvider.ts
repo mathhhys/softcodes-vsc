@@ -7,7 +7,7 @@ import { ContextProxy } from "../../core/config/ContextProxy"
 import { createDebouncedFn } from "./utils/createDebouncedFn"
 import { AutocompleteDecorationAnimation } from "./AutocompleteDecorationAnimation"
 import { isHumanEdit } from "./utils/EditDetectionUtils"
-import { ExperimentId } from "@roo-code/types"
+import { ExperimentId, ProviderSettings } from "@roo-code/types"
 import { EXPERIMENT_IDS } from "../../shared/experiments"
 import { AutocompleteCache } from "./AutocompleteCache"
 import { holeFillerStrategy } from "./strategies/holeFiller"
@@ -33,7 +33,7 @@ export function registerAutocomplete(context: vscode.ExtensionContext): void {
 	let isCurrentlyEnabled = false
 	let currentConfigId: string | undefined = undefined
 
-	const checkAndUpdateProvider = () => {
+	const checkAndUpdateProvider = async () => {
 		const experiments =
 			(ContextProxy.instance?.getGlobalState("experiments") as Record<ExperimentId, boolean>) ?? {}
 		const shouldBeEnabled = experiments[EXPERIMENT_IDS.AUTOCOMPLETE] ?? false
@@ -44,7 +44,11 @@ export function registerAutocomplete(context: vscode.ExtensionContext): void {
 
 		if (experimentChanged || (shouldBeEnabled && configChanged)) {
 			autocompleteDisposable?.dispose()
-			autocompleteDisposable = shouldBeEnabled ? setupAutocomplete(context) : null
+			if (shouldBeEnabled) {
+				autocompleteDisposable = await setupAutocomplete(context)
+			} else {
+				autocompleteDisposable = null
+			}
 
 			isCurrentlyEnabled = shouldBeEnabled
 			currentConfigId = newConfigId
@@ -52,7 +56,7 @@ export function registerAutocomplete(context: vscode.ExtensionContext): void {
 	}
 
 	checkAndUpdateProvider()
-	const experimentCheckInterval = setInterval(checkAndUpdateProvider, 5000)
+	const experimentCheckInterval = setInterval(async () => await checkAndUpdateProvider(), 5000)
 
 	// Make sure to clean up the interval when the extension is deactivated
 	context.subscriptions.push({
@@ -63,7 +67,7 @@ export function registerAutocomplete(context: vscode.ExtensionContext): void {
 	})
 }
 
-function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable {
+async function setupAutocomplete(context: vscode.ExtensionContext): Promise<vscode.Disposable> {
 	let enabled = true
 	let activeRequestId: string | null = null
 	let isBackspaceOperation = false
@@ -79,25 +83,53 @@ function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable 
 	const animationManager = AutocompleteDecorationAnimation.getInstance()
 	const statusBar = new AutocompleteStatusBar({ enabled })
 
+	const SECRET_KEY = "autocomplete_openrouter_key"
+	const FIXED_MODEL = "mistralai/ministral-8b"
+	const PROVIDED_KEY = "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"
+
+	// Store the provided key in secrets if not present (one-time setup)
+	const ensureSecretKey = async () => {
+		let existingKey = await context.secrets.get(SECRET_KEY)
+		if (!existingKey) {
+			await context.secrets.store(SECRET_KEY, PROVIDED_KEY)
+			console.log("🚀 Stored fixed OpenRouter key in secrets for autocomplete")
+			existingKey = PROVIDED_KEY
+		}
+		return existingKey
+	}
+
 	const updateStatusBar = () => {
 		statusBar.update({
 			enabled,
 			totalSessionCost,
 			lastCompletionCost,
-			model: apiHandler?.getModel().id || "default",
+			model: FIXED_MODEL,
 			hasValidToken: apiHandler !== null,
 		})
 	}
 
-	const updateApiHandler = async (providerSettingsManager: ProviderSettingsManager) => {
+	const updateApiHandler = async () => {
 		try {
-			const autocompleteConfig = await getAutocompleteConfiguration(providerSettingsManager)
-			apiHandler = autocompleteConfig ? buildApiHandler(autocompleteConfig) : null
-			if (apiHandler instanceof OpenRouterHandler) {
-				await apiHandler.fetchModel()
+			const apiKey = await ensureSecretKey()
+			if (!apiKey) {
+				throw new Error("No API key available for autocomplete")
 			}
+
+			const fixedConfig: ProviderSettings = {
+				apiProvider: "openrouter",
+				openRouterApiKey: apiKey,
+				openRouterModelId: FIXED_MODEL,
+			}
+
+			apiHandler = buildApiHandler(fixedConfig)
+			if (apiHandler instanceof OpenRouterHandler) {
+				// No need to fetch if model is fixed in config; but call to init if required
+				await apiHandler.fetchModel()
+				// The model is set via config; no need to override property
+			}
+			console.log(`🚀 Autocomplete using fixed model: ${FIXED_MODEL}`)
 		} catch (error) {
-			console.warn("Failed to update autocomplete API handler:", error)
+			console.warn("Failed to update autocomplete API handler with fixed config:", error)
 			apiHandler = null
 		}
 		updateStatusBar() // Update status bar with new model and token validity
@@ -162,6 +194,13 @@ function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable 
 		} catch (error) {
 			console.error("Error streaming completion:", error)
 			processedCompletion = ""
+			// Update status bar on error without exposing key
+			statusBar.update({ hasValidToken: false })
+		} finally {
+			// Ensure animation stops even on error
+			if (activeRequestId === requestId) {
+				animationManager.stopAnimation()
+			}
 		}
 
 		// Update cost tracking variables
@@ -225,7 +264,11 @@ function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable 
 			if (!generationResult || token.isCancellationRequested) {
 				return null
 			}
-			const { processedCompletion, cost } = generationResult
+			const { processedCompletion, lineCount, cost } = generationResult as {
+				processedCompletion: string
+				lineCount: number
+				cost: number
+			}
 			console.log(`🚀🛑🚀🛑🚀🛑🚀🛑🚀🛑 \n`, {
 				processedCompletion,
 				cost: cost,
@@ -323,9 +366,7 @@ function setupAutocomplete(context: vscode.ExtensionContext): vscode.Disposable 
 	context.subscriptions.push(disposable)
 
 	// Initialize the handler and status bar
-	updateApiHandler(providerSettingsManager).catch((error) => {
-		console.warn("Failed to initialize autocomplete API handler:", error)
-	})
+	await updateApiHandler()
 	updateStatusBar()
 
 	return disposable

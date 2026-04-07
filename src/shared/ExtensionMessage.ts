@@ -119,6 +119,11 @@ export interface ExtensionMessage {
 		| "codeIndexSettingsSaved"
 		| "codeIndexSecretStatus"
 		| "authStateChanged"
+		| "supabaseAuthStateChanged" // NEW: For Supabase-specific auth state changes
+		| "connectionStatusChanged" // NEW: For connection status updates
+		| "forceLogout" // kilocode_change: Force clear auth state in webview
+		| "softcodesBalanceUpdate"
+		| "testAnalyticsResponse" // Analytics test response
 	text?: string
 	payload?: ProfileDataResponsePayload | BalanceDataResponsePayload // kilocode_change: Add payload for profile and balance data
 	action?:
@@ -176,12 +181,29 @@ export interface ExtensionMessage {
 	userInfo?: CloudUserInfo
 	organizationAllowList?: OrganizationAllowList
 	isAuthenticated?: boolean
+	isConnected?: boolean // NEW: JWT valid AND user exists in Supabase
+	signedOut?: boolean // kilocode_change: For auth state with signedOut flag
 	softcodesUserInfo?: {
 		email: string
 		firstName?: string
 		lastName?: string
 		organizationName?: string
 		organizationId?: string
+		clerkId?: string
+		planType?: string
+		credits?: number
+		stripeCustomerId?: string
+		createdAt?: string
+		updatedAt?: string
+		avatarUrl?: string
+	}
+	supabaseVerified?: boolean
+	authenticationState?: {
+		isAuthenticated: boolean
+		isConnected: boolean
+		clerkId?: string
+		supabaseVerified?: boolean
+		error?: string
 	}
 	tab?: string
 	// kilocode_change: Rules data
@@ -195,6 +217,15 @@ export interface ExtensionMessage {
 	visibility?: ShareVisibility
 	rulesFolderPath?: string
 	settings?: any
+	credits?: number
+	testAnalyticsResult?: {
+		success: boolean
+		clerkId: string
+		dateRange: { start: string; end: string }
+		userResult?: any
+		orgResult?: any
+		error?: string
+	}
 }
 
 export type ExtensionState = Pick<
@@ -326,6 +357,19 @@ export type ExtensionState = Pick<
 	marketplaceInstalledMetadata?: { project: Record<string, any>; global: Record<string, any> }
 	profileThresholds: Record<string, number>
 	hasOpenedModeSelector: boolean
+
+	// Blue Byte Booster authentication state
+	blueByteBoosterAuth?: {
+		isAuthenticated: boolean
+		user: {
+			clerk_id: string
+			email: string
+			username: string
+			plan_type: "starter" | "pro" | "teams"
+			credits: number
+			organization_id?: string
+		} | null
+	}
 }
 
 export interface ClineSayTool {

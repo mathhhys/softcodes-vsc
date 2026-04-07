@@ -4,6 +4,14 @@ import { reasoningEffortsSchema, modelInfoSchema } from "./model.js"
 import { codebaseIndexProviderSchema } from "./codebase-index.js"
 
 /**
+ * Billing model enumeration for providers
+ */
+export enum BillingModel {
+	CREDIT_BASED = "credit",
+	DOLLAR_BASED = "dollar",
+}
+
+/**
  * ProviderName
  */
 
@@ -327,4 +335,68 @@ export const MODEL_ID_KEYS: Partial<keyof ProviderSettings>[] = [
 export const getModelId = (settings: ProviderSettings): string | undefined => {
 	const modelIdKey = MODEL_ID_KEYS.find((key) => settings[key])
 	return modelIdKey ? (settings[modelIdKey] as string) : undefined
+}
+
+/**
+ * Billing model configuration for each provider
+ */
+export const providerBillingModel: Record<ProviderName, BillingModel> = {
+	kilocode: BillingModel.CREDIT_BASED,
+	openrouter: BillingModel.CREDIT_BASED,
+	anthropic: BillingModel.DOLLAR_BASED,
+	"claude-code": BillingModel.DOLLAR_BASED,
+	glama: BillingModel.DOLLAR_BASED,
+	bedrock: BillingModel.DOLLAR_BASED,
+	vertex: BillingModel.DOLLAR_BASED,
+	openai: BillingModel.DOLLAR_BASED,
+	ollama: BillingModel.DOLLAR_BASED,
+	"vscode-lm": BillingModel.DOLLAR_BASED,
+	lmstudio: BillingModel.DOLLAR_BASED,
+	gemini: BillingModel.DOLLAR_BASED,
+	"gemini-cli": BillingModel.DOLLAR_BASED,
+	"openai-native": BillingModel.DOLLAR_BASED,
+	mistral: BillingModel.DOLLAR_BASED,
+	deepseek: BillingModel.DOLLAR_BASED,
+	unbound: BillingModel.DOLLAR_BASED,
+	requesty: BillingModel.DOLLAR_BASED,
+	"human-relay": BillingModel.DOLLAR_BASED,
+	"fake-ai": BillingModel.DOLLAR_BASED,
+	xai: BillingModel.DOLLAR_BASED,
+	groq: BillingModel.DOLLAR_BASED,
+	chutes: BillingModel.DOLLAR_BASED,
+	litellm: BillingModel.DOLLAR_BASED,
+	fireworks: BillingModel.DOLLAR_BASED,
+	cerebras: BillingModel.DOLLAR_BASED,
+}
+
+/**
+ * Get billing model for a specific provider
+ */
+export function getProviderBillingModel(provider: ProviderName): BillingModel {
+	return providerBillingModel[provider] || BillingModel.DOLLAR_BASED
+}
+
+/**
+ * Check if provider uses credit-based billing
+ */
+export function isCreditBasedProvider(provider: ProviderName): boolean {
+	return getProviderBillingModel(provider) === BillingModel.CREDIT_BASED
+}
+
+/**
+ * Get all credit-based providers
+ */
+export function getCreditBasedProviders(): ProviderName[] {
+	return Object.entries(providerBillingModel)
+		.filter(([_, model]) => model === BillingModel.CREDIT_BASED)
+		.map(([provider, _]) => provider as ProviderName)
+}
+
+/**
+ * Get all dollar-based providers
+ */
+export function getDollarBasedProviders(): ProviderName[] {
+	return Object.entries(providerBillingModel)
+		.filter(([_, model]) => model === BillingModel.DOLLAR_BASED)
+		.map(([provider, _]) => provider as ProviderName)
 }

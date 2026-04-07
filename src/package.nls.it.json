@@ -32,7 +32,7 @@
 	"settings.vsCodeLmModelSelector.description": "Impostazioni per l'API del modello linguistico VSCode",
 	"settings.vsCodeLmModelSelector.vendor.description": "Il fornitore del modello linguistico (es. copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "La famiglia del modello linguistico (es. gpt-4)",
-	"settings.customStoragePath.description": "Percorso di archiviazione personalizzato. Lasciare vuoto per utilizzare la posizione predefinita. Supporta percorsi assoluti (es. 'D:\\KiloCodeStorage')",
+	"settings.customStoragePath.description": "Percorso di archiviazione personalizzato. Lasciare vuoto per utilizzare la posizione predefinita. Supporta percorsi assoluti (es. 'D:\\SoftcodesStorage')",
 	"settings.enableCodeActions.description": "Abilita correzioni rapide di Softcodes.",
 	"settings.autoImportSettingsPath.description": "Percorso di un file di configurazione di Softcodes da importare automaticamente all'avvio dell'estensione. Supporta percorsi assoluti e percorsi relativi alla directory home (ad es. '~/Documents/kilo-code-settings.json'). Lasciare vuoto per disabilitare l'importazione automatica.",
 	"ghost.input.title": "Scrittore Fantasma Softcodes",

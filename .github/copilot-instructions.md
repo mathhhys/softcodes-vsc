@@ -38,7 +38,7 @@ let j = 3
 
 ```css
 /* kilocode_change */
-.kilocode-specific-class {
+.softcodes-specific-class {
 	color: blue;
 }
 
@@ -53,7 +53,7 @@ let j = 3
 
 ### Kilocode specific file
 
-if the filename or directory name contains kilocode no marking with comments is required
+if the filename or directory name contains softcodes no marking with comments is required
 
 ### New Files
 

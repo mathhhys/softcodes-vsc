@@ -24,11 +24,6 @@ const BottomControls: React.FC<BottomControlsProps> = ({ showApiConfig = false }
 			<div className="flex flex-row justify-end w-auto">
 				<div className="flex items-center gap-1">
 					<KiloRulesToggleModal />
-					<BottomButton
-						iconClass="codicon-feedback"
-						title={t("common:feedback.title")}
-						onClick={showFeedbackOptions}
-					/>
 				</div>
 			</div>
 		</div>

@@ -185,6 +185,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection without alwaysAllow
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					type: "stdio",
@@ -233,6 +234,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					type: "stdio",
@@ -281,6 +283,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					type: "stdio",
@@ -326,6 +329,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					config: "test-server-config",
@@ -373,6 +377,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					config: "test-server-config",
@@ -419,6 +424,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					config: "test-server-config",
@@ -469,6 +475,7 @@ describe("McpHub", () => {
 
 			// Set up mock connection
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					type: "stdio",
@@ -500,6 +507,7 @@ describe("McpHub", () => {
 		it("should filter out disabled servers from getServers", () => {
 			const mockConnections: McpConnection[] = [
 				{
+					type: "connected",
 					server: {
 						name: "enabled-server",
 						config: "{}",
@@ -510,6 +518,7 @@ describe("McpHub", () => {
 					transport: {} as any,
 				},
 				{
+					type: "connected",
 					server: {
 						name: "disabled-server",
 						config: "{}",
@@ -530,6 +539,7 @@ describe("McpHub", () => {
 
 		it("should prevent calling tools on disabled servers", async () => {
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "disabled-server",
 					config: "{}",
@@ -551,6 +561,7 @@ describe("McpHub", () => {
 
 		it("should prevent reading resources from disabled servers", async () => {
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "disabled-server",
 					config: "{}",
@@ -575,13 +586,17 @@ describe("McpHub", () => {
 		it("should execute tool successfully", async () => {
 			// Mock the connection with a minimal client implementation
 			const mockConnection: McpConnection = {
+				type: "connected",
 				server: {
 					name: "test-server",
 					config: JSON.stringify({}),
 					status: "connected" as const,
 				},
 				client: {
-					request: vi.fn().mockResolvedValue({ result: "success" }),
+					request: vi.fn().mockResolvedValue({
+						content: [{ type: "text", text: "success" }],
+						isError: false,
+					}),
 				} as any,
 				transport: {
 					start: vi.fn(),
@@ -638,6 +653,7 @@ describe("McpHub", () => {
 
 			it("should use default timeout of 60 seconds if not specified", async () => {
 				const mockConnection: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						config: JSON.stringify({ type: "stdio", command: "test" }), // No timeout specified
@@ -661,6 +677,7 @@ describe("McpHub", () => {
 
 			it("should apply configured timeout to tool calls", async () => {
 				const mockConnection: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						config: JSON.stringify({ type: "stdio", command: "test", timeout: 120 }), // 2 minutes
@@ -701,6 +718,7 @@ describe("McpHub", () => {
 
 				// Set up mock connection
 				const mockConnection: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						type: "stdio",
@@ -746,6 +764,7 @@ describe("McpHub", () => {
 
 				// Set up mock connection before updating
 				const mockConnectionInitial: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						type: "stdio",
@@ -769,6 +788,7 @@ describe("McpHub", () => {
 
 				// Setup connection with invalid timeout
 				const mockConnectionInvalid: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						config: JSON.stringify({
@@ -814,6 +834,7 @@ describe("McpHub", () => {
 
 				// Set up mock connection
 				const mockConnection: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						type: "stdio",
@@ -853,6 +874,7 @@ describe("McpHub", () => {
 
 				// Set up mock connection
 				const mockConnection: McpConnection = {
+					type: "connected",
 					server: {
 						name: "test-server",
 						type: "stdio",

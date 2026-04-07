@@ -53,9 +53,9 @@
 	},
 	"autocomplete": {
 		"statusBar": {
-			"enabled": "$(sparkle) Kilo Autocomplete",
-			"warning": "$(warning) Kilo Autocomplete",
-			"disabled": "$(circle-slash) Kilo Autocomplete",
+			"enabled": "$(sparkle) Softcodes Autocomplete",
+			"warning": "$(warning) Softcodes Autocomplete",
+			"disabled": "$(circle-slash) Softcodes Autocomplete",
 			"tooltip": {
 				"disabled": "Softcodes Autocomplete (inaktiverad)",
 				"basic": "Softcodes Autocomplete",
@@ -69,7 +69,7 @@
 				"lessThanCent": "<0,01 kr"
 			}
 		},
-		"toggleMessage": "Kilo Autocomplete {{status}}"
+		"toggleMessage": "Softcodes Autocomplete {{status}}"
 	},
 	"ghost": {
 		"progress": {

@@ -1,6 +1,5 @@
 {
 	"$schema": "https://unpkg.com/@changesets/config@3.0.4/schema.json",
-	"changelog": ["@changesets/changelog-github", { "repo": "Kilo-Org/kilocode" }],
 	"commit": false,
 	"fixed": [["kilo-code"]],
 	"linked": [],

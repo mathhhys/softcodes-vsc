@@ -10,5 +10,8 @@
 	},
 	"devDependencies": {
 		"@roo-code/build": "workspace:^"
+	},
+	"dependencies": {
+		"decimal.js": "^10.6.0"
 	}
 }

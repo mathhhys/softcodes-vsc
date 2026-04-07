@@ -109,27 +109,126 @@ export function getAuthConfig() {
 }
 
 /**
- * Build authentication URL with proper parameters
+ * Build authentication URL with proper parameters and URI encoding
  */
 export function buildAuthUrl(baseUrl: string, params: Record<string, string>): string {
-	const url = new URL(AUTH_ENDPOINTS.INITIATE_VSCODE_AUTH, baseUrl)
-	Object.entries(params).forEach(([key, value]) => {
-		url.searchParams.set(key, value)
-	})
-	return url.toString()
+	try {
+		// Ensure baseUrl is properly encoded
+		const encodedBaseUrl = encodeURI(baseUrl)
+		const url = new URL(AUTH_ENDPOINTS.INITIATE_VSCODE_AUTH, encodedBaseUrl)
+
+		// Properly encode all parameters
+		Object.entries(params).forEach(([key, value]) => {
+			// Use encodeURIComponent for parameter values to handle spaces and special characters
+			url.searchParams.set(key, encodeURIComponent(value))
+		})
+
+		const finalUrl = url.toString()
+		console.log(`[buildAuthUrl] Generated URL: ${finalUrl}`)
+		return finalUrl
+	} catch (error) {
+		console.error(`[buildAuthUrl] Error building auth URL:`, error)
+		throw new Error(`Failed to build authentication URL: ${error instanceof Error ? error.message : String(error)}`)
+	}
 }
 
 /**
- * Validate redirect URI for security
+ * Validate redirect URI for security with enhanced URI encoding checks
  */
 export function isValidRedirectUri(redirectUri: string): boolean {
-	// VSCode extension should always use the specific scheme
-	if (redirectUri === OAUTH_CONFIG.VSCODE.REDIRECT_URI) {
-		return true
+	try {
+		// Check for basic format
+		if (!redirectUri || typeof redirectUri !== "string") {
+			console.error(`[isValidRedirectUri] Invalid redirectUri format: ${redirectUri}`)
+			return false
+		}
+
+		// VSCode extension should always use the specific scheme
+		if (redirectUri === OAUTH_CONFIG.VSCODE.REDIRECT_URI) {
+			return true
+		}
+
+		// Try to parse as URI to ensure it's valid
+		const uri = new URL(redirectUri)
+
+		// Check for VSCode scheme variations (handle encoding issues)
+		if (uri.protocol === "vscode-softcodes:") {
+			// Validate the path component
+			if (uri.pathname === "/auth/callback" || uri.pathname === "/callback") {
+				return true
+			}
+		}
+
+		// Website redirects should match the pattern
+		const isValidWebsite = OAUTH_CONFIG.WEBSITE.REDIRECT_URI_PATTERN.test(redirectUri)
+
+		console.log(`[isValidRedirectUri] Validation result for ${redirectUri}: ${isValidWebsite}`)
+		return isValidWebsite
+	} catch (error) {
+		console.error(`[isValidRedirectUri] Error validating URI ${redirectUri}:`, error)
+		return false
+	}
+}
+
+/**
+ * Validate and encode URI components for workspace paths with spaces
+ */
+export function validateAndEncodeURI(uri: string): { isValid: boolean; encodedUri?: string; error?: string } {
+	try {
+		if (!uri || typeof uri !== "string") {
+			return { isValid: false, error: "URI is empty or not a string" }
+		}
+
+		// Try to parse the URI first to check basic validity
+		const parsedUri = new URL(uri)
+
+		// For vscode schemes, ensure proper encoding of components
+		if (parsedUri.protocol === "vscode-softcodes:") {
+			// Reconstruct with proper encoding
+			const encodedUri = `${parsedUri.protocol}//${encodeURIComponent(parsedUri.hostname || "")}${encodeURI(parsedUri.pathname || "")}${parsedUri.search || ""}${parsedUri.hash || ""}`
+			return { isValid: true, encodedUri }
+		}
+
+		// For other schemes, apply general URI encoding
+		const encodedUri = encodeURI(uri)
+		return { isValid: true, encodedUri }
+	} catch (error) {
+		return {
+			isValid: false,
+			error: `Invalid URI format: ${error instanceof Error ? error.message : String(error)}`,
+		}
+	}
+}
+
+/**
+ * Create a properly encoded redirect URI for VSCode authentication
+ */
+export function createVSCodeRedirectUri(): string {
+	// Always use the standard VSCode scheme
+	return OAUTH_CONFIG.VSCODE.REDIRECT_URI
+}
+
+/**
+ * Validate workspace path and encode for URI usage
+ */
+export function encodeWorkspacePath(workspacePath: string): string {
+	if (!workspacePath) {
+		return ""
 	}
 
-	// Website redirects should match the pattern
-	return OAUTH_CONFIG.WEBSITE.REDIRECT_URI_PATTERN.test(redirectUri)
+	// Handle paths with spaces and special characters
+	try {
+		// Split path into components and encode each part
+		const pathComponents = workspacePath.split("/")
+		const encodedComponents = pathComponents.map((component) =>
+			component ? encodeURIComponent(component) : component,
+		)
+		return encodedComponents.join("/")
+	} catch (error) {
+		console.warn(`[encodeWorkspacePath] Error encoding path ${workspacePath}:`, error)
+		// Fallback to basic URI encoding
+		return encodeURI(workspacePath)
+	}
 }
 
 /**
@@ -154,9 +253,9 @@ export const JWT_CONFIG = {
 	CLERK_JWKS_URL: `${process.env.CLERK_BASE_URL || "https://clerk.softcodes.ai"}/.well-known/jwks.json`,
 	ISSUER: process.env.CLERK_BASE_URL || "https://clerk.softcodes.ai",
 	AUDIENCE: undefined, // vscode-session template doesn't include audience claim
-	CLOCK_TOLERANCE: 60, // seconds
-	CACHE_TTL: 3600, // 1 hour in seconds
-	TOKEN_REFRESH_THRESHOLD: 300, // Refresh if expires within 5 minutes
+	CLOCK_TOLERANCE: 300, // 5 minutes clock tolerance for network delays
+	CACHE_TTL: 14400, // 4 hours in seconds (extended for longer sessions)
+	TOKEN_REFRESH_THRESHOLD: 600, // Refresh if expires within 10 minutes
 	ALGORITHM: "RS256", // Clerk uses RS256 for JWT signing
 } as const
 
@@ -259,6 +358,87 @@ export function validateClerkConfig(): {
 		valid: missingKeys.length === 0,
 		missingKeys,
 		warnings,
+	}
+}
+
+/**
+ * Validate Supabase configuration
+ */
+export function validateSupabaseConfig(): {
+	valid: boolean
+	missingKeys: string[]
+	warnings: string[]
+} {
+	const missingKeys: string[] = []
+	const warnings: string[] = []
+
+	// Check for Supabase URL
+	const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
+	if (!supabaseUrl) {
+		missingKeys.push("NEXT_PUBLIC_SUPABASE_URL or SUPABASE_URL")
+	} else if (!supabaseUrl.startsWith("https://")) {
+		warnings.push("SUPABASE_URL should use HTTPS for production")
+	}
+
+	// Check for Supabase service role key (for server-side operations)
+	const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+	if (!serviceRoleKey) {
+		missingKeys.push("SUPABASE_SERVICE_ROLE_KEY")
+	}
+
+	// Check for Supabase anon key (fallback)
+	const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY
+	if (!anonKey) {
+		warnings.push("NEXT_PUBLIC_SUPABASE_ANON_KEY not set (recommended for fallback)")
+	}
+
+	return {
+		valid: missingKeys.length === 0,
+		missingKeys,
+		warnings,
+	}
+}
+
+/**
+ * Get Supabase configuration
+ */
+export function getSupabaseConfig() {
+	return {
+		url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL,
+		serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
+		anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY,
+	}
+}
+
+/**
+ * Validate complete authentication configuration (Clerk + Supabase)
+ */
+export function validateAuthConfig(): {
+	valid: boolean
+	clerkConfig: ReturnType<typeof validateClerkConfig>
+	supabaseConfig: ReturnType<typeof validateSupabaseConfig>
+	overallErrors: string[]
+	overallWarnings: string[]
+} {
+	const clerkConfig = validateClerkConfig()
+	const supabaseConfig = validateSupabaseConfig()
+
+	const overallErrors: string[] = []
+	const overallWarnings: string[] = []
+
+	// Combine errors and warnings
+	overallErrors.push(...clerkConfig.missingKeys.map((key) => `Clerk: ${key}`))
+	overallErrors.push(...supabaseConfig.missingKeys.map((key) => `Supabase: ${key}`))
+
+	overallWarnings.push(...clerkConfig.warnings.map((warning) => `Clerk: ${warning}`))
+	overallWarnings.push(...supabaseConfig.warnings.map((warning) => `Supabase: ${warning}`))
+
+	return {
+		valid: clerkConfig.valid && supabaseConfig.valid,
+		clerkConfig,
+		supabaseConfig,
+		overallErrors,
+		overallWarnings,
 	}
 }
 

@@ -78,10 +78,10 @@ export const OpenRouter = ({
 			{useEffect(() => {
 				setApiConfigurationField(
 					"openRouterApiKey",
-					"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",
+					"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",
 				)
 			}, [setApiConfigurationField])}
-			<input type="hidden" value="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" />
+			<input type="hidden" value="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" />
 			{!fromWelcomeView && (
 				<>
 					<div>

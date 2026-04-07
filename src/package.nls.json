@@ -32,7 +32,7 @@
 	"settings.vsCodeLmModelSelector.description": "Settings for VSCode Language Model API",
 	"settings.vsCodeLmModelSelector.vendor.description": "The vendor of the language model (e.g. copilot)",
 	"settings.vsCodeLmModelSelector.family.description": "The family of the language model (e.g. gpt-4)",
-	"settings.customStoragePath.description": "Custom storage path. Leave empty to use the default location. Supports absolute paths (e.g. 'D:\\KiloCodeStorage')",
+	"settings.customStoragePath.description": "Custom storage path. Leave empty to use the default location. Supports absolute paths (e.g. 'D:\\SoftcodesStorage')",
 	"settings.enableCodeActions.description": "Enable Softcodes quick fixes",
 	"settings.autoImportSettingsPath.description": "Path to a Softcodes configuration file to automatically import on extension startup. Supports absolute paths and paths relative to the home directory (e.g. '~/Documents/kilo-code-settings.json'). Leave empty to disable auto-import.",
 	"ghost.input.title": "Press 'Enter' to confirm or 'Escape' to cancel",

@@ -235,11 +235,43 @@ export class ProviderSettingsManager {
 			return await this.lock(async () => {
 				const providerProfiles = await this.load()
 
-				return Object.entries(providerProfiles.apiConfigs).map(([name, apiConfig]) => ({
-					name,
-					id: apiConfig.id || "",
-					apiProvider: apiConfig.apiProvider,
-				}))
+				console.log(
+					"[DEBUG] ProviderSettingsManager.listConfig() - Raw apiConfigs:",
+					JSON.stringify(providerProfiles.apiConfigs, null, 2),
+				)
+
+				const result = Object.entries(providerProfiles.apiConfigs)
+					.filter(([name, apiConfig]) => {
+						// Filter out phantom autocomplete configurations that shouldn't exist
+						const isPhantomAutocomplete =
+							name.toLowerCase().includes("autocomplete") && name !== "autocomplete" // Allow exact match if it's a legitimate user config
+
+						if (isPhantomAutocomplete) {
+							console.log(
+								"[DEBUG] ProviderSettingsManager.listConfig() - Filtering out phantom autocomplete entry:",
+								name,
+							)
+							return false
+						}
+
+						return true
+					})
+					.map(([name, apiConfig]) => {
+						const entry = {
+							name,
+							id: apiConfig.id || "",
+							apiProvider: apiConfig.apiProvider,
+						}
+						console.log("[DEBUG] ProviderSettingsManager.listConfig() - Mapped entry:", entry)
+						return entry
+					})
+
+				console.log(
+					"[DEBUG] ProviderSettingsManager.listConfig() - Final result:",
+					JSON.stringify(result, null, 2),
+				)
+
+				return result
 			})
 		} catch (error) {
 			throw new Error(`Failed to list configs: ${error}`)

@@ -328,7 +328,7 @@ export class CustomModesManager {
 					this.clearCache()
 					await this.onUpdate()
 				} catch (error) {
-					console.error(`[CustomModesManager] Error handling .kilocodemodes file change:`, error)
+					console.error(`[CustomModesManager] Error handling .softcodesmodes file change:`, error)
 				}
 			}
 

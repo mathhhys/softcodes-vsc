@@ -3,9 +3,9 @@ import { AutocompleteStatusBar } from "../AutocompleteStatusBar"
 vi.mock("../../../i18n", () => ({
 	t: vi.fn((key: string) => {
 		const translations: Record<string, string> = {
-			"kilocode:autocomplete.statusBar.enabled": "$(sparkle) Kilo Complete",
-			"kilocode:autocomplete.statusBar.disabled": "$(circle-slash) Kilo Complete",
-			"kilocode:autocomplete.statusBar.warning": "$(warning) Kilo Complete",
+			"kilocode:autocomplete.statusBar.enabled": "$(sparkle) Softcodes Complete",
+			"kilocode:autocomplete.statusBar.disabled": "$(circle-slash) Softcodes Complete",
+			"kilocode:autocomplete.statusBar.warning": "$(warning) Softcodes Complete",
 			"kilocode:autocomplete.statusBar.tooltip.basic": "Softcodes Autocomplete",
 			"kilocode:autocomplete.statusBar.tooltip.disabled": "Softcodes Autocomplete (disabled)",
 			"kilocode:autocomplete.statusBar.tooltip.tokenError": "A valid token must be set to use autocomplete",

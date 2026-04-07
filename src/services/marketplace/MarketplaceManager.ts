@@ -2,7 +2,7 @@ import * as vscode from "vscode"
 import * as fs from "fs/promises"
 import * as path from "path"
 import * as yaml from "yaml"
-import { RemoteConfigLoader } from "./RemoteConfigLoader"
+import { RemoteConfigLoader, getMcpLogger } from "./RemoteConfigLoader"
 import { SimpleInstaller } from "./SimpleInstaller"
 import type { MarketplaceItem, MarketplaceItemType } from "@roo-code/types"
 import { GlobalFileNames } from "../../shared/globalFileNames"
@@ -15,19 +15,116 @@ export class MarketplaceManager {
 	private installer: SimpleInstaller
 
 	constructor(private readonly context: vscode.ExtensionContext) {
-		this.configLoader = new RemoteConfigLoader()
+		this.configLoader = new RemoteConfigLoader(context)
 		this.installer = new SimpleInstaller(context)
 	}
 
 	async getMarketplaceItems(): Promise<{ items: MarketplaceItem[]; errors?: string[] }> {
 		try {
+			getMcpLogger().appendLine(`[Softcodes MCP] MarketplaceManager.getMarketplaceItems() called`)
 			const items = await this.configLoader.loadAllItems()
+
+			getMcpLogger().appendLine(
+				`[Softcodes MCP] MarketplaceManager loaded ${items.length} total items (modes + MCPs)`,
+			)
+
+			// Log breakdown of item types
+			const modeCount = items.filter((item) => item.type === "mode").length
+			const mcpCount = items.filter((item) => item.type === "mcp").length
+			getMcpLogger().appendLine(`[Softcodes MCP] Item breakdown: ${modeCount} modes, ${mcpCount} MCPs`)
+
+			// Provide helpful user guidance if no items found
+			if (items.length === 0) {
+				getMcpLogger().appendLine("[Softcodes MCP] No marketplace items available.")
+
+				// Check if we have authentication issues
+				try {
+					const token = await this.context.secrets.get("softcodes.clerkToken")
+					if (!token) {
+						getMcpLogger().appendLine("[Softcodes MCP] No authentication token detected.")
+						// Show user-friendly message with action
+						if (vscode.window && vscode.window.showInformationMessage) {
+							vscode.window
+								.showInformationMessage(
+									"Marketplace requires authentication. Please sign in to your Softcodes account to access marketplace items.",
+									"Sign In",
+								)
+								.then((selection) => {
+									if (selection === "Sign In") {
+										// Open authentication settings or sign-in flow
+										vscode.commands.executeCommand(
+											"workbench.action.openSettings",
+											"softcodes.auth",
+										)
+									}
+								})
+						}
+					} else {
+						// Token exists but no items - could be network or server issue
+						if (vscode.window && vscode.window.showInformationMessage) {
+							vscode.window
+								.showInformationMessage(
+									"Marketplace is currently unavailable. Please check your internet connection or try again later.",
+									"Retry",
+								)
+								.then((selection) => {
+									if (selection === "Retry") {
+										// Trigger a retry by clearing cache and reloading
+										this.configLoader.clearCache()
+										// The UI will need to trigger a refresh
+									}
+								})
+						}
+					}
+				} catch (authError) {
+					getMcpLogger().appendLine(`[Softcodes MCP] Error checking authentication: ${authError}`)
+				}
+			}
 
 			return { items }
 		} catch (error) {
 			const errorMessage = error instanceof Error ? error.message : String(error)
 			console.error("Failed to load marketplace items:", error)
+			getMcpLogger().appendLine(`[Softcodes MCP] MarketplaceManager failed to load items: ${errorMessage}`)
 
+			// Handle test environment where vscode.window might not be available
+			try {
+				if (vscode.window && vscode.window.showWarningMessage) {
+					// Provide more specific error messages based on the error type
+					if (
+						errorMessage.includes("authentication") ||
+						errorMessage.includes("401") ||
+						errorMessage.includes("403")
+					) {
+						vscode.window
+							.showWarningMessage(
+								"Marketplace authentication failed. Please check your Softcodes account settings.",
+								"Open Settings",
+							)
+							.then((selection) => {
+								if (selection === "Open Settings") {
+									vscode.commands.executeCommand("workbench.action.openSettings", "softcodes.auth")
+								}
+							})
+					} else if (
+						errorMessage.includes("network") ||
+						errorMessage.includes("ENOTFOUND") ||
+						errorMessage.includes("ECONNREFUSED")
+					) {
+						vscode.window.showWarningMessage(
+							"Marketplace unavailable – please check your internet connection.",
+						)
+					} else {
+						vscode.window.showWarningMessage(
+							"Marketplace temporarily unavailable – using local configurations.",
+						)
+					}
+				} else {
+					console.warn("Marketplace unavailable – using local or cached configurations.")
+				}
+			} catch (windowError) {
+				console.warn("Marketplace unavailable – using local or cached configurations.")
+			}
 			return {
 				items: [],
 				errors: [errorMessage],
@@ -216,7 +313,7 @@ export class MarketplaceManager {
 			}
 
 			// Check MCPs in .roo/mcp.json
-			const projectMcpPath = path.join(workspaceFolder.uri.fsPath, ".kilocode", "mcp.json")
+			const projectMcpPath = path.join(workspaceFolder.uri.fsPath, ".softcodes", "mcp.json")
 			try {
 				const content = await fs.readFile(projectMcpPath, "utf-8")
 				const data = JSON.parse(content)

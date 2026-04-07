@@ -6,6 +6,7 @@
  */
 
 import { parseJWTUnsafe } from "./jwtUtils"
+import { getSupabaseServiceClient } from "../services/supabaseConfig"
 
 /**
  * Supabase verification result
@@ -24,7 +25,16 @@ export interface SupabaseVerificationResult {
  */
 export async function verifyJWTUserInSupabase(token: string): Promise<SupabaseVerificationResult> {
 	console.log("[SUPABASE-VERIFY] Starting simple JWT user verification with Supabase")
-	console.log("[SUPABASE-VERIFY] Token length:", token.length)
+	console.log("[SUPABASE-VERIFY] Token length:", token?.length || 0)
+
+	// Handle null/undefined token
+	if (!token) {
+		console.log("[SUPABASE-VERIFY] No token provided")
+		return {
+			success: false,
+			error: "No token provided",
+		}
+	}
 
 	try {
 		// Step 1: Parse JWT to extract user ID (no signature verification needed)
@@ -39,8 +49,8 @@ export async function verifyJWTUserInSupabase(token: string): Promise<SupabaseVe
 			}
 		}
 
-		const userId = parseResult.parts?.payload.sub
-		if (!userId) {
+		const clerkId = parseResult.parts?.payload.sub
+		if (!clerkId) {
 			console.log("[SUPABASE-VERIFY] No user ID found in JWT payload")
 			return {
 				success: false,
@@ -48,95 +58,188 @@ export async function verifyJWTUserInSupabase(token: string): Promise<SupabaseVe
 			}
 		}
 
-		console.log("[SUPABASE-VERIFY] User ID extracted from JWT:", userId)
+		console.log("[SUPABASE-VERIFY] Clerk user ID (sub) extracted from JWT:", clerkId)
 
-		// Step 2: Check if user exists in Supabase
-		console.log("[SUPABASE-VERIFY] Step 2: Checking if user exists in Supabase database...")
+		// Step 2: Check if user/org exists in Supabase using automatic context lookup
+		console.log("[SUPABASE-VERIFY] Step 2: Checking user/org context in Supabase database...")
 
-		// Initialize Supabase client
-		const { createClient } = require("@supabase/supabase-js")
-		const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-		const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+		// Use centralized Supabase configuration
+		const supabase = await getSupabaseServiceClient()
 
-		if (!supabaseUrl || !supabaseKey) {
-			console.error("[SUPABASE-VERIFY] Missing Supabase configuration:", {
-				hasUrl: !!supabaseUrl,
-				hasKey: !!supabaseKey,
-			})
+		// Step 2: Extract context from JWT to pass to service_role RPC
+		let orgId: string | undefined
+		try {
+			orgId = parseResult.parts?.payload.org_id
+		} catch (e) {
+			console.warn("[SUPABASE-VERIFY] Failed to extract org_id from JWT")
+		}
+
+		const looksLikeUuid = (value: unknown): boolean =>
+			typeof value === "string" &&
+			/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value)
+
+		const formatUnknownError = (err: unknown): string => {
+			if (err instanceof Error) return err.message
+			if (typeof err === "object" && err && "message" in err) return String((err as any).message)
+			return String(err)
+		}
+
+		// Step 2a: Map Clerk identifier (JWT sub) -> internal users.id (uuid)
+		let internalUserId: string
+		try {
+			const { data: mappedUser, error: mappedUserError } = await supabase
+				.from("users")
+				.select("id")
+				.eq("clerk_id", clerkId)
+				.single()
+
+			if (mappedUserError) {
+				// PGRST116: no rows (user not found)
+				if (mappedUserError.code === "PGRST116") {
+					console.log("[SUPABASE-VERIFY] ❌ No Supabase user row found for clerk_id:", clerkId)
+					return {
+						success: true,
+						userIdExtracted: clerkId,
+						userExistsInSupabase: false,
+						error: "User not found in Supabase database",
+					}
+				}
+
+				console.error("[SUPABASE-VERIFY] Failed to map clerk_id to users.id:", mappedUserError)
+				return {
+					success: false,
+					userIdExtracted: clerkId,
+					error: `Database query failed: ${mappedUserError.message}`,
+				}
+			}
+
+			if (!mappedUser?.id) {
+				console.log("[SUPABASE-VERIFY] ❌ Supabase user mapping returned no id for clerk_id:", clerkId)
+				return {
+					success: true,
+					userIdExtracted: clerkId,
+					userExistsInSupabase: false,
+					error: "User not found in Supabase database",
+				}
+			}
+
+			internalUserId = String(mappedUser.id)
+		} catch (mappingError) {
+			console.error("[SUPABASE-VERIFY] Failed to map clerk_id to users.id (exception):", mappingError)
 			return {
 				success: false,
-				userIdExtracted: userId,
-				error: "Supabase configuration missing (URL or API key)",
+				userIdExtracted: clerkId,
+				error: `Database query failed: ${formatUnknownError(mappingError)}`,
 			}
 		}
 
-		console.log("[SUPABASE-VERIFY] Initializing Supabase client...", {
-			url: supabaseUrl,
-			hasKey: !!supabaseKey,
+		console.log("[SUPABASE-VERIFY] Mapped clerk_id to internal users.id:", {
+			clerkId,
+			internalUserId,
+			internalUserIdLooksLikeUuid: looksLikeUuid(internalUserId),
 		})
 
-		const supabase = createClient(supabaseUrl, supabaseKey)
+		console.log(`[SUPABASE-VERIFY] Calling get_credits_auto(user: ${internalUserId}, org: ${orgId || "none"})`)
+		console.log("[SUPABASE-VERIFY] get_credits_auto() RPC params (debug):", {
+			p_clerk_id: clerkId,
+			p_user_id: internalUserId,
+			p_user_id_type: typeof internalUserId,
+			p_user_id_looks_like_uuid: looksLikeUuid(internalUserId),
+			p_org_id: orgId,
+			p_org_id_type: typeof orgId,
+			p_org_id_looks_like_uuid: looksLikeUuid(orgId),
+			using_service_role_client: true,
+		})
 
-		// Query users table for the clerk_id
-		console.log("[SUPABASE-VERIFY] Querying users table for clerk_id:", userId)
 		const queryStartTime = Date.now()
 
-		const { data, error, count } = await supabase
-			.from("users")
-			.select("*", { count: "exact" })
-			.eq("clerk_id", userId)
-			.single()
+		let data: any
+		let error: any
+		try {
+			// Cast parameters explicitly to ensure PostgreSQL function signature match
+			// null must be passed as null, not undefined, for proper UUID type matching
+			const rpcResult = await supabase.rpc("get_credits_auto", {
+				p_user_id: internalUserId,
+				p_org_id: orgId || null,
+			})
+			data = rpcResult.data
+			error = rpcResult.error
+		} catch (rpcException) {
+			console.error("[SUPABASE-VERIFY] RPC call threw an exception:", rpcException)
+			return {
+				success: false,
+				userIdExtracted: clerkId,
+				error: `Database query failed: ${formatUnknownError(rpcException)}`,
+			}
+		}
 
 		const queryTime = Date.now() - queryStartTime
 
+		const errorDetailsForLogs = error ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : undefined
+
 		console.log("[SUPABASE-VERIFY] Supabase query completed:", {
-			userId,
+			clerkId,
+			internalUserId,
 			queryTime: `${queryTime}ms`,
 			hasData: !!data,
 			hasError: !!error,
 			errorCode: error?.code,
 			errorMessage: error?.message,
-			count,
+			errorDetails: errorDetailsForLogs,
 		})
 
 		if (error) {
-			if (error.code === "PGRST116") {
-				// No rows found - user doesn't exist
-				console.log("[SUPABASE-VERIFY] ❌ User NOT found in Supabase database")
-				return {
-					success: true, // Query succeeded, but user doesn't exist
-					userIdExtracted: userId,
-					userExistsInSupabase: false,
-					error: "User not found in Supabase database",
-				}
-			} else {
-				// Database error
-				console.error("[SUPABASE-VERIFY] Database query failed:", error)
-				return {
-					success: false,
-					userIdExtracted: userId,
-					error: `Database query failed: ${error.message}`,
-				}
+			const isUuidError = error.code === "22P02" || error.message?.includes("uuid")
+			const isOverloadAmbiguity = error.message?.includes("Could not choose the best candidate function")
+
+			console.log("[SUPABASE-VERIFY] Error classification (debug):", {
+				isUuidError,
+				isOverloadAmbiguity,
+			})
+		}
+
+		if (error) {
+			// Database error
+			console.error("[SUPABASE-VERIFY] Database query failed:", error)
+			return {
+				success: false,
+				userIdExtracted: clerkId,
+				error: `Database query failed: ${error.message}`,
 			}
 		}
 
-		if (data) {
-			console.log("[SUPABASE-VERIFY] ✅ SUCCESS: User ID from JWT corresponds to real user in Supabase")
-			console.log("[SUPABASE-VERIFY] User details from Supabase:", {
-				id: data.id,
-				clerk_id: data.clerk_id,
-				email: data.email,
-				first_name: data.first_name,
-				last_name: data.last_name,
-				created_at: data.created_at,
-				updated_at: data.updated_at,
+		if (data && data.success) {
+			console.log("[SUPABASE-VERIFY] ✅ SUCCESS: Context-aware user data retrieved")
+			console.log("[SUPABASE-VERIFY] Details:", {
+				user_id: data.user_id,
+				org_id: data.org_id,
+				is_organization: data.is_organization,
+				credits: data.current_credits,
+				plan_type: data.plan_type,
 			})
+
+			// Map the response to the expected userDetails format
+			// We rename current_credits to credits for compatibility with existing UI
+			const userDetails = {
+				...data,
+				credits: data.current_credits,
+				id: data.user_id, // Ensure ID is present for tracking
+			}
 
 			return {
 				success: true,
-				userIdExtracted: userId,
+				userIdExtracted: clerkId,
 				userExistsInSupabase: true,
-				userDetails: data,
+				userDetails: userDetails,
+			}
+		} else {
+			// Function returned success: false or user not found
+			console.log("[SUPABASE-VERIFY] ❌ User/Org NOT found or unauthorized:", data?.message)
+			return {
+				success: true,
+				userIdExtracted: clerkId,
+				userExistsInSupabase: false,
+				error: data?.message || "User not found in Supabase database",
 			}
 		}
 
@@ -144,7 +247,7 @@ export async function verifyJWTUserInSupabase(token: string): Promise<SupabaseVe
 		console.log("[SUPABASE-VERIFY] Unexpected result: no data and no error")
 		return {
 			success: false,
-			userIdExtracted: userId,
+			userIdExtracted: clerkId,
 			error: "Unexpected database result",
 		}
 	} catch (error) {
@@ -158,51 +261,57 @@ export async function verifyJWTUserInSupabase(token: string): Promise<SupabaseVe
 
 /**
  * Quick test function to verify a specific user ID in Supabase
+ * Usage: await testUserIdInSupabase("user_1234567890")
+ * This function tries multiple column names to find the user
  */
 export async function testUserIdInSupabase(clerkUserId: string): Promise<SupabaseVerificationResult> {
 	console.log("[SUPABASE-TEST] Testing user ID directly in Supabase:", clerkUserId)
 
 	try {
-		// Initialize Supabase client
-		const { createClient } = require("@supabase/supabase-js")
-		const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-		const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+		// Use centralized Supabase configuration
+		const supabase = await getSupabaseServiceClient()
 
-		if (!supabaseUrl || !supabaseKey) {
-			return {
-				success: false,
-				error: "Supabase configuration missing",
-			}
-		}
+		// Try multiple column names to find the user
+		const columnNames = ["clerk_id", "clerkId", "user_id", "id"]
 
-		const supabase = createClient(supabaseUrl, supabaseKey)
+		for (const columnName of columnNames) {
+			console.log(`[SUPABASE-TEST] Trying column '${columnName}' for user ID: ${clerkUserId}`)
 
-		const { data, error } = await supabase.from("users").select("*").eq("clerk_id", clerkUserId).single()
+			const { data, error } = await supabase.from("users").select("*").eq(columnName, clerkUserId).single()
 
-		if (error) {
-			if (error.code === "PGRST116") {
-				console.log("[SUPABASE-TEST] User not found in Supabase")
+			if (data && !error) {
+				console.log(`[SUPABASE-TEST] ✅ User found with column '${columnName}':`, data)
 				return {
 					success: true,
 					userIdExtracted: clerkUserId,
-					userExistsInSupabase: false,
+					userExistsInSupabase: true,
+					userDetails: data,
 				}
 			}
 
-			console.error("[SUPABASE-TEST] Database error:", error)
-			return {
-				success: false,
-				userIdExtracted: clerkUserId,
-				error: error.message,
+			if (error && error.code !== "PGRST116") {
+				console.log(`[SUPABASE-TEST] Error with column '${columnName}':`, error.message)
 			}
 		}
 
-		console.log("[SUPABASE-TEST] User found in Supabase:", data)
+		// If we get here, user wasn't found with any column name
+		console.log("[SUPABASE-TEST] User not found with any column name, checking table structure...")
+
+		// Get sample users to see what columns exist
+		const { data: sampleUsers, error: sampleError } = await supabase.from("users").select("*").limit(3)
+
+		if (sampleUsers && sampleUsers.length > 0) {
+			console.log("[SUPABASE-TEST] Sample user structure:", Object.keys(sampleUsers[0]))
+			console.log("[SUPABASE-TEST] Sample user data:", sampleUsers[0])
+		} else {
+			console.log("[SUPABASE-TEST] No users found in table or error:", sampleError?.message)
+		}
+
 		return {
 			success: true,
 			userIdExtracted: clerkUserId,
-			userExistsInSupabase: true,
-			userDetails: data,
+			userExistsInSupabase: false,
+			error: "User not found in Supabase with any column name",
 		}
 	} catch (error) {
 		console.error("[SUPABASE-TEST] Test failed:", error)

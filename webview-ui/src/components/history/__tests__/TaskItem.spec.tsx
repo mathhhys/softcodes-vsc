@@ -37,7 +37,11 @@ describe("TaskItem", () => {
 		)
 
 		expect(screen.getByText("Test task")).toBeInTheDocument()
-		expect(screen.getByText("$0.00")).toBeInTheDocument() // Component shows $0.00 for small amounts
+		// Component shows credits instead of dollars
+		// 0.002 USD / 0.014 rate = 0.143 credits, which rounds up to 1 credit
+		const costElement = screen.getByTestId("cost-footer-compact")
+		expect(costElement).toBeInTheDocument()
+		expect(costElement.textContent).toBe("1 credits")
 	})
 
 	it("handles selection in selection mode", () => {

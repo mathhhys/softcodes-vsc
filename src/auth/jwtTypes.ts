@@ -40,8 +40,11 @@ export interface ClerkJWTPayload extends StandardJWTClaims {
 	first_name?: string
 	last_name?: string
 	full_name?: string
+	name?: string
 	username?: string
 	image_url?: string
+	picture?: string
+	avatar_url?: string
 
 	// Phone information
 	phone_number?: string

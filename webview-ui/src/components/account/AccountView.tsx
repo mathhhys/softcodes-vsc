@@ -9,7 +9,7 @@ import { vscode } from "@src/utils/vscode"
 import { telemetryClient } from "@src/utils/TelemetryClient"
 
 type AccountViewProps = {
-	userInfo: CloudUserInfo | null
+	userInfo: any // Supports both CloudUserInfo and ExtendedUserInfo from backend
 	isAuthenticated: boolean
 	cloudApiUrl?: string
 	onDone: () => void
@@ -64,26 +64,47 @@ export const AccountView = ({ userInfo, isAuthenticated, cloudApiUrl, onDone }: 
 					{userInfo && (
 						<div className="flex flex-col items-center mb-6">
 							<div className="w-16 h-16 mb-3 rounded-full overflow-hidden">
-								{userInfo?.picture ? (
+								{userInfo?.avatarUrl || userInfo?.picture ? (
 									<img
-										src={userInfo.picture}
+										src={userInfo.avatarUrl || userInfo.picture}
 										alt={t("account:profilePicture")}
 										className="w-full h-full object-cover"
 									/>
 								) : (
 									<div className="w-full h-full flex items-center justify-center bg-vscode-button-background text-vscode-button-foreground text-xl">
-										{userInfo?.name?.charAt(0) || userInfo?.email?.charAt(0) || "?"}
+										{(userInfo?.firstName || userInfo?.name || userInfo?.email || "?")
+											.charAt(0)
+											.toUpperCase()}
 									</div>
 								)}
 							</div>
-							{userInfo.name && (
-								<h2 className="text-lg font-medium text-vscode-foreground mb-0">{userInfo.name}</h2>
-							)}
+							{/* Full name from Supabase if available, fallback to Clerk name */}
+							{userInfo.firstName || userInfo.name ? (
+								<h2 className="text-lg font-medium text-vscode-foreground mb-0">
+									{userInfo.firstName
+										? `${userInfo.firstName}${userInfo.lastName ? ` ${userInfo.lastName}` : ""}`.trim()
+										: userInfo.name}
+								</h2>
+							) : null}
 							{userInfo?.email && (
-								<p className="text-sm text-vscode-descriptionForeground">{userInfo?.email}</p>
+								<p className="text-sm text-vscode-descriptionForeground">{userInfo.email}</p>
 							)}
+							{/* Plan and credits from Supabase if connected */}
+							{userInfo?.planType && typeof userInfo.credits === "number" ? (
+								<div className="flex flex-col items-center gap-2 text-sm text-vscode-descriptionForeground mt-2">
+									<div className="flex items-center gap-2">
+										<span className="px-2 py-1 rounded bg-vscode-button-backgroundHover text-vscode-button-foreground text-xs">
+											{userInfo.planType.charAt(0).toUpperCase() + userInfo.planType.slice(1)}{" "}
+											Plan
+										</span>
+									</div>
+									<span className="text-vscode-textLink-foreground font-medium">
+										{userInfo.credits.toLocaleString()} credits
+									</span>
+								</div>
+							) : null}
 							{userInfo?.organizationName && (
-								<div className="flex items-center gap-2 text-sm text-vscode-descriptionForeground">
+								<div className="flex items-center gap-2 text-sm text-vscode-descriptionForeground mt-2">
 									{userInfo.organizationImageUrl && (
 										<img
 											src={userInfo.organizationImageUrl}

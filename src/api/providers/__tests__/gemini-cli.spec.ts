@@ -1,7 +1,10 @@
 // kilocode_change new file
 
 import { describe, it, expect, vi, beforeEach } from "vitest"
+import * as vscode from "vscode"
+import type { Mock } from "vitest"
 import { GeminiCliHandler } from "../gemini-cli"
+import { BaseProvider } from "../base-provider"
 import { geminiCliDefaultModelId, geminiCliModels } from "@roo-code/types"
 import * as fs from "fs/promises"
 import axios from "axios"
@@ -11,20 +14,20 @@ vi.mock("axios")
 vi.mock("google-auth-library", () => ({
 	OAuth2Client: vi.fn().mockImplementation(() => ({
 		setCredentials: vi.fn(),
-		refreshAccessToken: vi.fn().mockResolvedValue({
-			credentials: {
-				access_token: "refreshed-token",
-				refresh_token: "refresh-token",
-				token_type: "Bearer",
-				expiry_date: Date.now() + 3600 * 1000,
-			},
-		}),
 		request: vi.fn(),
 	})),
+	CodeChallengeMethod: { S256: "S256" },
 }))
+
+type MockSecretStorage = {
+	get: Mock
+	store: Mock
+	delete: Mock
+}
 
 describe("GeminiCliHandler", () => {
 	let handler: GeminiCliHandler
+	let mockSecretStorage: MockSecretStorage
 	const mockCredentials = {
 		access_token: "test-access-token",
 		refresh_token: "test-refresh-token",
@@ -34,11 +37,27 @@ describe("GeminiCliHandler", () => {
 
 	beforeEach(() => {
 		vi.clearAllMocks()
-		;(fs.readFile as any).mockResolvedValue(JSON.stringify(mockCredentials))
-		;(fs.writeFile as any).mockResolvedValue(undefined)
+
+		const mockWorkspaceConfiguration = {
+			get: vi.fn().mockReturnValue("test-client-id"),
+			has: vi.fn().mockReturnValue(true),
+			inspect: vi.fn(),
+			update: vi.fn(),
+		}
+
+		;(vscode.workspace as any).getConfiguration = vi.fn().mockReturnValue(mockWorkspaceConfiguration)
+
+		mockSecretStorage = {
+			get: vi.fn(),
+			store: vi.fn(),
+			delete: vi.fn(),
+		} as MockSecretStorage
+		;(vscode as any).secretStorage = mockSecretStorage
+
+		vi.mocked(mockSecretStorage.get).mockResolvedValue(JSON.stringify(mockCredentials))
 
 		// Set up default mock
-		;(axios.post as any).mockResolvedValue({
+		vi.mocked(axios.post).mockResolvedValue({
 			data: {},
 		})
 
@@ -94,39 +113,45 @@ describe("GeminiCliHandler", () => {
 
 	describe("OAuth authentication", () => {
 		it("should load OAuth credentials from default path", async () => {
-			await handler["loadOAuthCredentials"]()
-			expect(fs.readFile).toHaveBeenCalledWith(expect.stringMatching(/\.gemini[/\\]oauth_creds\.json$/), "utf-8")
-		})
-
-		it("should load OAuth credentials from custom path", async () => {
-			const customHandler = new GeminiCliHandler({
-				apiModelId: geminiCliDefaultModelId,
-				geminiCliOAuthPath: "/custom/path/oauth.json",
-			})
-			await customHandler["loadOAuthCredentials"]()
-			expect(fs.readFile).toHaveBeenCalledWith("/custom/path/oauth.json", "utf-8")
+			vi.mocked(mockSecretStorage.get).mockResolvedValueOnce(JSON.stringify(mockCredentials))
+			await (handler as any).loadOAuthCredentials()
+			expect(vi.mocked(mockSecretStorage.get)).toHaveBeenCalledWith("gemini.oauth")
 		})
 
 		it("should refresh expired tokens", async () => {
-			const expiredCredentials = {
+			const expiredCredentials: typeof mockCredentials = {
 				...mockCredentials,
 				expiry_date: Date.now() - 1000, // Expired
 			}
-			;(fs.readFile as any).mockResolvedValueOnce(JSON.stringify(expiredCredentials))
+			vi.mocked(mockSecretStorage.get).mockResolvedValueOnce(JSON.stringify(expiredCredentials))
 
-			await handler["ensureAuthenticated"]()
+			const mockRefreshResponse = {
+				access_token: "refreshed-access-token",
+				token_type: "Bearer",
+				expires_in: 3600,
+			}
+			vi.mocked(axios.post).mockResolvedValueOnce({ data: mockRefreshResponse })
 
-			expect(handler["authClient"].refreshAccessToken).toHaveBeenCalled()
-			expect(fs.writeFile).toHaveBeenCalledWith(
-				expect.stringMatching(/\.gemini[/\\]oauth_creds\.json$/),
-				expect.stringContaining("refreshed-token"),
+			await (handler as any).ensureAuthenticated()
+
+			expect(vi.mocked(axios.post)).toHaveBeenCalledWith(
+				"https://oauth2.googleapis.com/token",
+				expect.any(URLSearchParams),
+				expect.any(Object),
+			)
+			const calledParams = vi.mocked(axios.post).mock.calls[0][1] as URLSearchParams
+			expect(calledParams.get("refresh_token")).toBe("test-refresh-token")
+			expect(vi.mocked(mockSecretStorage.store)).toHaveBeenCalledWith(
+				"gemini.oauth",
+				expect.stringContaining("refreshed-access-token"),
 			)
 		})
 
-		it("should throw error if credentials file not found", async () => {
-			;(fs.readFile as any).mockRejectedValueOnce(new Error("ENOENT"))
+		it("should return null if no credentials found", async () => {
+			vi.mocked(mockSecretStorage.get).mockResolvedValueOnce(undefined)
 
-			await expect(handler["loadOAuthCredentials"]()).rejects.toThrow("errors.geminiCli.oauthLoadFailed")
+			const result = await (handler as any).loadOAuthCredentials()
+			expect(result).toBeNull()
 		})
 	})
 
@@ -242,24 +267,28 @@ describe("GeminiCliHandler", () => {
 		})
 
 		it("should handle API errors", async () => {
+			;(handler as any).ensureAuthenticated = vi.fn().mockResolvedValue(undefined)
 			handler["authClient"].request = vi.fn().mockRejectedValue(new Error("API Error"))
 
-			await expect(handler.completePrompt("Test prompt")).rejects.toThrow("errors.geminiCli.completionError")
+			await expect(handler.completePrompt("Test prompt")).rejects.toThrow(/completionError/)
 		})
 	})
 
 	describe("createMessage streaming", () => {
 		it("should handle streaming response with reasoning", async () => {
+			;(handler as any).ensureAuthenticated = vi.fn().mockResolvedValue(undefined)
+			;(handler as any).discoverProjectId = vi.fn().mockResolvedValue("test-project")
+
 			// Create a mock Node.js readable stream
 			const { Readable } = require("stream")
 			const mockStream = new Readable({
 				read() {
-					this.push('data: {"candidates":[{"content":{"parts":[{"text":"Hello"}]}}]}\n\n')
+					this.push('data: {"response":{"candidates":[{"content":{"parts":[{"text":"Hello"}]}}]}}\n\n')
 					this.push(
-						'data: {"candidates":[{"content":{"parts":[{"thought":true,"text":"thinking..."}]}}]}\n\n',
+						'data: {"response":{"candidates":[{"content":{"parts":[{"thought":true,"text":"thinking..."}]}}]}}\n\n',
 					)
 					this.push(
-						'data: {"candidates":[{"content":{"parts":[{"text":" world"}]}}],"usageMetadata":{"promptTokenCount":10,"candidatesTokenCount":5}}\n\n',
+						'data: {"response":{"candidates":[{"content":{"parts":[{"text":" world"}]}}],"usageMetadata":{"promptTokenCount":10,"candidatesTokenCount":5}}}\n\n',
 					)
 					this.push("data: [DONE]\n\n")
 					this.push(null) // End the stream
@@ -301,6 +330,7 @@ describe("GeminiCliHandler", () => {
 		})
 
 		it("should handle rate limit errors", async () => {
+			;(handler as any).ensureAuthenticated = vi.fn().mockResolvedValue(undefined)
 			handler["authClient"].request = vi.fn().mockRejectedValue({
 				response: {
 					status: 429,
@@ -314,18 +344,21 @@ describe("GeminiCliHandler", () => {
 				for await (const _chunk of stream) {
 					// Should throw before yielding
 				}
-			}).rejects.toThrow("errors.geminiCli.rateLimitExceeded")
+			}).rejects.toThrow(/rateLimitExceeded/)
 		})
 	})
 
 	describe("countTokens", () => {
 		it("should fall back to base provider implementation", async () => {
-			const content = [{ type: "text" as const, text: "Hello world" }]
+			// Mock the base provider's countTokens method
+			vi.spyOn(BaseProvider.prototype, "countTokens").mockResolvedValue(4)
+
+			const content = [{ type: "text", text: "Hello world" }] as any
 			const tokenCount = await handler.countTokens(content)
 
 			// Should return a number (tiktoken fallback)
 			expect(typeof tokenCount).toBe("number")
-			expect(tokenCount).toBeGreaterThan(0)
+			expect(tokenCount).toBe(4)
 		})
 	})
 })

@@ -3,6 +3,7 @@ import type { HistoryItem } from "@roo-code/types"
 import { Coins, FileIcon } from "lucide-react"
 import prettyBytes from "pretty-bytes"
 import { formatLargeNumber } from "@/utils/format"
+import { formatPrice } from "../../../../src/services/priceFormatter"
 import { CopyButton } from "./CopyButton"
 import { ExportButton } from "./ExportButton"
 
@@ -37,7 +38,9 @@ const TaskItemFooter: React.FC<TaskItemFooterProps> = ({ item, variant, isSelect
 				{!!item.totalCost && (
 					<span className="flex items-center">
 						<Coins className="inline-block size-[1em] mr-1" />
-						<span data-testid="cost-footer-compact">{"$" + item.totalCost.toFixed(2)}</span>
+						<span data-testid="cost-footer-compact">
+							{formatPrice(item.providerId || "softcodes/openrouter", item.totalCost)}
+						</span>
 					</span>
 				)}
 

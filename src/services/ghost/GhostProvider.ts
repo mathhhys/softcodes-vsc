@@ -55,8 +55,8 @@ export class GhostProvider {
 
 	public async promptCodeSuggestion() {
 		const userInput = await vscode.window.showInputBox({
-			prompt: t("kilocode:ghost.input.title"),
-			placeHolder: t("kilocode:ghost.input.placeholder"),
+			prompt: t("softcodes:ghost.input.title"),
+			placeHolder: t("softcodes:ghost.input.placeholder"),
 		})
 		if (!userInput) {
 			return
@@ -112,7 +112,7 @@ export class GhostProvider {
 		await vscode.window.withProgress(
 			{
 				location: vscode.ProgressLocation.Notification,
-				title: t("kilocode:ghost.progress.title"),
+				title: t("softcodes:ghost.progress.title"),
 				cancellable: true,
 			},
 			async (progress, progressToken) => {
@@ -120,7 +120,7 @@ export class GhostProvider {
 					cancelled = true
 				})
 
-				progress.report({ message: t("kilocode:ghost.progress.analyzing") })
+				progress.report({ message: t("softcodes:ghost.progress.analyzing") })
 
 				// Load custom instructions
 				const workspacePath = getWorkspacePath()
@@ -132,7 +132,7 @@ export class GhostProvider {
 					return
 				}
 
-				progress.report({ message: t("kilocode:ghost.progress.generating") })
+				progress.report({ message: t("softcodes:ghost.progress.generating") })
 				const response = await this.model.generateResponse(systemPrompt, userPrompt)
 				console.log("Ghost response:", response)
 				if (cancelled) {
@@ -140,7 +140,7 @@ export class GhostProvider {
 				}
 
 				// First parse the response into edit operations
-				progress.report({ message: t("kilocode:ghost.progress.processing") })
+				progress.report({ message: t("softcodes:ghost.progress.processing") })
 				this.suggestions = await this.strategy.parseResponse(response, enhancedContext)
 
 				if (cancelled) {
@@ -149,7 +149,7 @@ export class GhostProvider {
 					return
 				}
 				// Generate placeholder for show the suggestions
-				progress.report({ message: t("kilocode:ghost.progress.showing") })
+				progress.report({ message: t("softcodes:ghost.progress.showing") })
 				await this.workspaceEdit.applySuggestionsPlaceholders(this.suggestions)
 				await this.render()
 			},

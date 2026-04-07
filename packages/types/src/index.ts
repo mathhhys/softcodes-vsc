@@ -21,3 +21,5 @@ export * from "./tool.js"
 export * from "./type-fu.js"
 export * from "./vscode.js"
 export * from "./todo.js"
+
+export * from "./analytics.js"

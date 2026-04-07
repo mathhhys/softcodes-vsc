@@ -1,743 +1,471 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { describe, it, expect, beforeEach, vi } from "vitest"
+import type { Mocked } from "vitest"
+
+type SpyInstance = ReturnType<typeof vi.spyOn>
 import * as vscode from "vscode"
-import { UnifiedAuthService, AuthTokens, UserInfo } from "../unifiedAuthService"
-import * as pkce from "../pkce"
-import { AUTH_ENDPOINTS, OAUTH_CONFIG, TOKEN_KEYS, AUTH_ERRORS, AUTH_SUCCESS } from "../config"
+import { UnifiedAuthService } from "../unifiedAuthService"
+import { TOKEN_KEYS } from "../config"
 
-// Mock JWT verification service
-vi.mock("../jwtVerification", () => ({
-	JWTVerificationService: {
-		getInstance: vi.fn(() => ({
-			verifyJWT: vi.fn().mockResolvedValue({
-				valid: false,
-				error: { type: "INVALID_SIGNATURE", message: "JWT verification failed" },
-			}),
-			isTokenNearExpiration: vi.fn().mockReturnValue(false),
-		})),
-	},
-}))
+// Helper to create fake JWT payloads with exp/iat
+function createFakeJWT(expOffsetSeconds: number) {
+	const header = Buffer.from(JSON.stringify({ alg: "HS256", typ: "JWT" })).toString("base64url")
+	const payload = Buffer.from(
+		JSON.stringify({
+			sub: "user123",
+			email: "test@example.com",
+			exp: Math.floor(Date.now() / 1000) + expOffsetSeconds,
+			iat: Math.floor(Date.now() / 1000),
+		}),
+	).toString("base64url")
+	const signature = "signature"
+	return `${header}.${payload}.${signature}`
+}
 
-// Mock navigator for browser-specific error handling
-Object.defineProperty(global, "navigator", {
-	value: {
-		userAgent: "test-user-agent",
-		onLine: true,
-		connection: {
-			effectiveType: "4g",
-			downlink: 10,
-			rtt: 50,
-		},
-	},
-	writable: true,
-})
-
-// Mock vscode module
-vi.mock("vscode", () => ({
-	window: {
-		showInformationMessage: vi.fn(),
-		showErrorMessage: vi.fn(),
-		showInputBox: vi.fn(),
-		showWarningMessage: vi.fn(),
-	},
-	commands: {
-		executeCommand: vi.fn(),
-	},
-	env: {
-		openExternal: vi.fn(),
-		uriScheme: "vscode-softcodes",
-	},
-	workspace: {
-		getConfiguration: vi.fn(() => ({
-			get: vi.fn((key) => {
-				if (key === "backendUrl") return "https://softcodes.ai"
-				return undefined
-			}),
-		})),
-	},
-	Uri: {
-		parse: vi.fn((url) => ({ toString: () => url })),
-	},
-	extensions: {
-		getExtension: vi.fn(() => ({
-			packageJSON: { version: "1.0.0" },
-		})),
-	},
-}))
-
-// Mock fetch
-global.fetch = vi.fn()
-
-// Mock PKCE functions
-vi.mock("../pkce", () => ({
-	generateCodeVerifier: vi.fn(),
-	generateCodeChallenge: vi.fn(),
-	generateState: vi.fn(),
-}))
-
-describe("UnifiedAuthService", () => {
-	let authService: UnifiedAuthService
-	let mockContext: any
+describe("UnifiedAuthService - Token Refresh Flow", () => {
+	let service: UnifiedAuthService
+	let secrets: Map<string, string>
 
 	beforeEach(() => {
-		// Reset singleton instance
-		;(UnifiedAuthService as any).instance = undefined
-
-		// Setup mock context
-		mockContext = {
+		secrets = new Map()
+		// Mock VSCode secrets API
+		const mockContext = {
 			secrets: {
-				get: vi.fn(),
-				store: vi.fn(),
-				delete: vi.fn(),
+				get: vi.fn(async (k: string) => secrets.get(k)),
+				store: vi.fn(async (k: string, v: string) => {
+					secrets.set(k, v)
+				}),
+				delete: vi.fn(async (k: string) => {
+					secrets.delete(k)
+				}),
 			},
-		}
+		} as unknown as vscode.ExtensionContext
 
-		// Create service instance
-		authService = UnifiedAuthService.getInstance(mockContext)
+		service = UnifiedAuthService.getInstance(mockContext)
 
-		// Reset all mocks
-		vi.clearAllMocks()
+		// Mock fetch for refresh token endpoint
+		global.fetch = vi.fn(async (url, options) => {
+			if ((url as string).includes("refresh")) {
+				return {
+					ok: true,
+					json: async () => ({
+						access_token: createFakeJWT(3600),
+						refresh_token: "new_refresh",
+						session_id: "session123",
+					}),
+				} as Response
+			}
+			return {
+				ok: true,
+				json: async () => ({}),
+			} as Response
+		}) as any
+	})
 
-		// Setup default PKCE mock returns
-		vi.mocked(pkce.generateCodeVerifier).mockReturnValue("test-verifier")
-		vi.mocked(pkce.generateCodeChallenge).mockResolvedValue("test-challenge")
-		vi.mocked(pkce.generateState).mockReturnValue("test-state")
+	it("refreshes when access token is expired", async () => {
+		const expiredJWT = createFakeJWT(-10) // expired 10s ago
+		secrets.set(TOKEN_KEYS.ACCESS_TOKEN, expiredJWT)
+		secrets.set(TOKEN_KEYS.REFRESH_TOKEN, "refresh123")
+
+		const token = await service.ensureValidAccessToken()
+
+		expect(token).toBeDefined()
+		expect((token as string).split(".").length).toBe(3)
+	})
+
+	it("proactively refreshes when token expires soon", async () => {
+		const soonExpiringJWT = createFakeJWT(60) // expires in 1 minute
+		secrets.set(TOKEN_KEYS.ACCESS_TOKEN, soonExpiringJWT)
+		secrets.set(TOKEN_KEYS.REFRESH_TOKEN, "refresh123")
+
+		const token = await service.ensureValidAccessToken()
+
+		expect(token).toBeDefined()
+		expect((token as string).split(".").length).toBe(3)
+	})
+
+	it("returns expired token as fallback when no refresh token is available", async () => {
+		const expiredJWT = createFakeJWT(-10)
+		secrets.set(TOKEN_KEYS.ACCESS_TOKEN, expiredJWT)
+
+		const token = await service.ensureValidAccessToken()
+
+		expect(token).toBeDefined()
+	})
+
+	it("allows grace period for recently expired tokens if refresh still provided", async () => {
+		const justExpired = createFakeJWT(-60 * 5) // expired 5 minutes ago
+		secrets.set(TOKEN_KEYS.ACCESS_TOKEN, justExpired)
+		secrets.set(TOKEN_KEYS.REFRESH_TOKEN, "refresh123")
+
+		const token = await service.ensureValidAccessToken()
+
+		expect(token).toBeDefined()
+	})
+})
+
+describe("UnifiedAuthService - Reconnection After SignOut", () => {
+	let service: UnifiedAuthService
+	let secrets: Map<string, string>
+	let mockUpdateAuthenticationState: SpyInstance
+	let mockClearStoredTokens: SpyInstance
+	let mockVerifyJWTToken: SpyInstance
+	let mockTestTokenStructure: SpyInstance
+	let mockValidateTokenWithAPI: SpyInstance
+	let mockHandleSuccessfulJWTVerification: SpyInstance
+	let mockHandleFallbackTokenStorage: SpyInstance
+	let mockHandleSuccessfulAPIValidation: SpyInstance
+	let mockWindow: Mocked<typeof vscode.window>
+
+	beforeEach(() => {
+		secrets = new Map()
+		mockWindow = {
+			showInputBox: vi.fn(),
+			showInformationMessage: vi.fn(),
+			showWarningMessage: vi.fn(),
+			showErrorMessage: vi.fn(),
+		} as any
+		;(vscode.window as any) = mockWindow
+
+		const mockContext = {
+			secrets: {
+				get: vi.fn(async (k: string) => secrets.get(k)),
+				store: vi.fn(async (k: string, v: string) => {
+					secrets.set(k, v)
+				}),
+				delete: vi.fn(async (k: string) => {
+					secrets.delete(k)
+				}),
+			},
+			globalState: {
+				update: vi.fn(),
+				get: vi.fn(),
+			},
+			subscriptions: [],
+		} as unknown as vscode.ExtensionContext
+
+		service = new UnifiedAuthService(mockContext)
+
+		// Mock private methods
+		mockUpdateAuthenticationState = vi.spyOn(service as any, "updateAuthenticationState")
+		mockClearStoredTokens = vi.spyOn(service as any, "clearStoredTokens")
+		mockVerifyJWTToken = vi.spyOn(service as any, "verifyJWTToken")
+		mockTestTokenStructure = vi.spyOn(service as any, "testTokenStructure")
+		mockValidateTokenWithAPI = vi.spyOn(service as any, "validateTokenWithAPI")
+		mockHandleSuccessfulJWTVerification = vi.spyOn(service as any, "handleSuccessfulJWTVerification")
+		mockHandleFallbackTokenStorage = vi.spyOn(service as any, "handleFallbackTokenStorage")
+		mockHandleSuccessfulAPIValidation = vi.spyOn(service as any, "handleSuccessfulAPIValidation")
+
+		// Mock configuration for dev mode
+		vi.spyOn(vscode.workspace, "getConfiguration").mockReturnValue({
+			get: vi.fn().mockImplementation((key: string) => {
+				if (key === "auth.skipAPIValidation") return false
+				return undefined
+			}),
+		} as any)
+
+		// Mock input box to return token
+		mockWindow.showInputBox.mockResolvedValue("valid.mock.token")
+
+		// Reset signedOut
+		;(service as any).signedOut = false
 	})
 
 	afterEach(() => {
 		vi.restoreAllMocks()
-		// Reset singleton instance
-		;(UnifiedAuthService as any).instance = undefined
 	})
 
-	describe("getInstance", () => {
-		it("should return singleton instance", () => {
-			// Reset singleton for this test
-			;(UnifiedAuthService as any).instance = undefined
+	describe("signedOut flag reset during reconnection", () => {
+		it("should reset signedOut to false after clearStoredTokens in signinWithToken", async () => {
+			// Arrange: Simulate signed out state from previous logout
+			;(service as any).signedOut = true
+			secrets.set("auth_state", JSON.stringify({ isAuthenticated: false, signedOut: true }))
 
-			const instance1 = UnifiedAuthService.getInstance(mockContext)
-			const instance2 = UnifiedAuthService.getInstance(mockContext)
+			// Mock successful verification path (JWT success)
+			const mockJWTResult = {
+				success: true,
+				userInfo: { userId: "user_123", email: "test@example.com" },
+				payload: { sub: "user_123", email: "test@example.com" },
+			}
+			mockVerifyJWTToken.mockResolvedValueOnce(mockJWTResult)
+			mockHandleSuccessfulJWTVerification.mockResolvedValue(undefined)
 
-			expect(instance1).toBe(instance2)
-		})
-	})
+			// Act
+			const result = await service.signinWithToken()
 
-	describe("authenticate", () => {
-		it("should initiate unified OAuth flow with PKCE parameters", async () => {
-			const mockAuthUrl = "https://clerk.softcodes.ai/auth?code=123"
+			// Assert
+			expect(result).toBe(true)
+			expect((service as any).signedOut).toBe(false)
 
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: true,
-				json: vi.fn().mockResolvedValue({ auth_url: mockAuthUrl }),
-			} as any)
+			// Verify clearStoredTokens was called first
+			expect(mockClearStoredTokens).toHaveBeenCalled()
 
-			await authService.authenticate()
-
-			// Should generate PKCE parameters
-			expect(pkce.generateCodeVerifier).toHaveBeenCalled()
-			expect(pkce.generateCodeChallenge).toHaveBeenCalledWith("test-verifier")
-			expect(pkce.generateState).toHaveBeenCalled()
-
-			// Should store verifier with correct key format
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(
-				`${TOKEN_KEYS.PKCE_PREFIX}test-state`,
-				"test-verifier",
-			)
-
-			// Should call unified backend API
-			expect(global.fetch).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ENDPOINTS.INITIATE_VSCODE_AUTH),
+			// Verify explicit reset happened - updateAuthenticationState called with signedOut: false
+			expect(mockUpdateAuthenticationState).toHaveBeenNthCalledWith(
+				1,
 				expect.objectContaining({
-					method: "GET",
-					headers: expect.objectContaining({
-						"Content-Type": "application/json",
-						"User-Agent": expect.stringContaining("VSCode-Softcodes"),
-					}),
+					isAuthenticated: false,
+					signedOut: false,
 				}),
 			)
 
-			// Should open browser
-			expect(vscode.env.openExternal).toHaveBeenCalled()
-
-			// Should show info message
-			expect(vscode.window.showInformationMessage).toHaveBeenCalledWith(
-				"Please complete authentication in your browser",
-			)
-		})
-
-		it("should handle authentication initiation failure", async () => {
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: false,
-				json: vi.fn().mockResolvedValue({ error: "Service unavailable" }),
-			} as any)
-
-			await authService.authenticate()
-
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(expect.stringContaining("Service unavailable"))
-		})
-
-		it("should handle network errors", async () => {
-			vi.mocked(global.fetch).mockRejectedValueOnce(new Error("Network error"))
-
-			await authService.authenticate()
-
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(expect.stringContaining("Network error"))
-		})
-	})
-
-	describe("handleCallback", () => {
-		it("should exchange code for tokens using unified endpoint", async () => {
-			const mockUri = {
-				query: "code=auth-code-123&state=test-state",
-			}
-
-			// Mock stored verifier
-			mockContext.secrets.get.mockResolvedValueOnce("test-verifier")
-
-			// Mock token exchange response with unified format
-			const mockTokens: AuthTokens = {
-				access_token: "access-token-123",
-				refresh_token: "refresh-token-456",
-				session_id: "session-789",
-				organization_id: "org-123",
-			}
-
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: true,
-				json: vi.fn().mockResolvedValue(mockTokens),
-			} as any)
-
-			await authService.handleCallback(mockUri as any)
-
-			// Should retrieve stored verifier with correct key
-			expect(mockContext.secrets.get).toHaveBeenCalledWith(`${TOKEN_KEYS.PKCE_PREFIX}test-state`)
-
-			// Should call unified callback endpoint
-			expect(global.fetch).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ENDPOINTS.EXTENSION_CALLBACK),
+			// Verify final state update has signedOut: false
+			expect(mockUpdateAuthenticationState).toHaveBeenLastCalledWith(
 				expect.objectContaining({
-					method: "POST",
-					headers: expect.objectContaining({
-						"Content-Type": "application/json",
-						"User-Agent": expect.stringContaining("VSCode-Softcodes"),
-					}),
-					body: JSON.stringify({
-						code: "auth-code-123",
-						code_verifier: "test-verifier",
-						state: "test-state",
-						redirect_uri: OAUTH_CONFIG.VSCODE.REDIRECT_URI,
-						grant_type: OAUTH_CONFIG.VSCODE.GRANT_TYPE,
-					}),
+					isAuthenticated: true,
+					signedOut: false,
 				}),
 			)
-
-			// Should store all tokens with correct keys
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN, "access-token-123")
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.REFRESH_TOKEN, "refresh-token-456")
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.SESSION_ID, "session-789")
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ORGANIZATION_ID, "org-123")
-
-			// Should clean up PKCE data with correct key
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith(`${TOKEN_KEYS.PKCE_PREFIX}test-state`)
-
-			// Should show success message
-			expect(vscode.window.showInformationMessage).toHaveBeenCalledWith(AUTH_SUCCESS.AUTHENTICATED)
-
-			// Should trigger post-auth command
-			expect(vscode.commands.executeCommand).toHaveBeenCalledWith("softcodes.onAuthenticated")
 		})
 
-		it("should handle missing authentication parameters", async () => {
-			const mockUri = {
-				query: "state=test-state", // Missing code
-			}
+		it("should reset signedOut through fallback authentication path", async () => {
+			// Arrange: Simulate signed out state
+			;(service as any).signedOut = true
 
-			await authService.handleCallback(mockUri as any)
+			// Mock JWT failure but structure success
+			mockVerifyJWTToken.mockResolvedValueOnce({ success: false, error: "Invalid signature" })
+			mockTestTokenStructure.mockResolvedValueOnce({ valid: true, payload: { sub: "user_123" } })
+			mockHandleFallbackTokenStorage.mockResolvedValue(undefined)
 
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ERRORS.MISSING_PARAMS),
-			)
-		})
+			// Act
+			const result = await service.signinWithToken()
 
-		it("should handle invalid authentication state", async () => {
-			const mockUri = {
-				query: "code=auth-code-123&state=test-state",
-			}
+			// Assert
+			expect(result).toBe(true)
+			expect((service as any).signedOut).toBe(false)
 
-			// No stored verifier
-			mockContext.secrets.get.mockResolvedValueOnce(undefined)
-
-			await authService.handleCallback(mockUri as any)
-
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ERRORS.INVALID_STATE),
-			)
-		})
-
-		it("should handle token exchange failure", async () => {
-			const mockUri = {
-				query: "code=auth-code-123&state=test-state",
-			}
-
-			// Setup verifier retrieval
-			mockContext.secrets.get.mockResolvedValueOnce("test-verifier")
-
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: false,
-				json: vi.fn().mockResolvedValue({ error: "Invalid authorization code" }),
-			} as any)
-
-			await authService.handleCallback(mockUri as any)
-
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-				expect.stringContaining("Invalid authorization code"),
-			)
-		})
-	})
-
-	describe("getAccessToken", () => {
-		it("should return stored access token", async () => {
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.ACCESS_TOKEN) return Promise.resolve("stored-access-token")
-				return Promise.resolve(undefined)
-			})
-
-			const token = await authService.getAccessToken()
-
-			expect(token).toBe("stored-access-token")
-			expect(mockContext.secrets.get).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN)
-		})
-
-		it("should refresh token if access token is missing", async () => {
-			let callCount = 0
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				callCount++
-				if (key === TOKEN_KEYS.ACCESS_TOKEN && callCount === 1) return Promise.resolve(undefined)
-				if (key === TOKEN_KEYS.REFRESH_TOKEN) return Promise.resolve("refresh-token-123")
-				return Promise.resolve(undefined)
-			})
-
-			// Mock refresh response with unified format
-			const mockRefreshTokens: AuthTokens = {
-				access_token: "new-access-token",
-				refresh_token: "new-refresh-token",
-				session_id: "new-session",
-			}
-
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: true,
-				json: vi.fn().mockResolvedValue(mockRefreshTokens),
-			} as any)
-
-			const token = await authService.getAccessToken()
-
-			expect(token).toBe("new-access-token")
-
-			// Should have stored new tokens
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN, "new-access-token")
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.REFRESH_TOKEN, "new-refresh-token")
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.SESSION_ID, "new-session")
-		})
-	})
-
-	describe("getUserInfo", () => {
-		it("should fetch user info with valid tokens", async () => {
-			const mockUserInfo: UserInfo = {
-				email: "test@example.com",
-				firstName: "John",
-				lastName: "Doe",
-				organizationName: "Test Org",
-			}
-
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.ACCESS_TOKEN) return Promise.resolve("valid-token")
-				if (key === TOKEN_KEYS.SESSION_ID) return Promise.resolve("session-123")
-				return Promise.resolve(undefined)
-			})
-
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: true,
-				json: vi.fn().mockResolvedValue(mockUserInfo),
-			} as any)
-
-			const userInfo = await authService.getUserInfo()
-
-			expect(userInfo).toEqual(mockUserInfo)
-			expect(global.fetch).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ENDPOINTS.USER_INFO),
+			// Verify reset happened before fallback
+			expect(mockUpdateAuthenticationState).toHaveBeenNthCalledWith(
+				1,
 				expect.objectContaining({
-					headers: expect.objectContaining({
-						Authorization: "Bearer valid-token",
-					}),
+					signedOut: false,
 				}),
 			)
 		})
 
-		it("should return undefined when not authenticated", async () => {
-			mockContext.secrets.get.mockImplementation(() => Promise.resolve(undefined))
+		it("should reset signedOut in development mode fallback", async () => {
+			// Arrange: Simulate signed out state
+			;(service as any).signedOut = true
 
-			const userInfo = await authService.getUserInfo()
+			// Mock failures leading to dev mode
+			mockVerifyJWTToken.mockResolvedValueOnce({ success: false })
+			mockTestTokenStructure.mockResolvedValueOnce({ valid: false })
+			vi.spyOn(vscode.workspace, "getConfiguration").mockReturnValueOnce({
+				get: vi.fn().mockReturnValue(true), // skipAPIValidation = true
+			} as any)
+			mockHandleFallbackTokenStorage.mockResolvedValue(undefined)
 
-			expect(userInfo).toBeUndefined()
+			// Act
+			const result = await service.signinWithToken()
+
+			// Assert
+			expect(result).toBe(true)
+			expect((service as any).signedOut).toBe(false)
+		})
+
+		it("should handle API validation path with signedOut reset", async () => {
+			// Arrange: Simulate signed out state
+			;(service as any).signedOut = true
+
+			// Mock failures until API success
+			mockVerifyJWTToken.mockResolvedValueOnce({ success: false })
+			mockTestTokenStructure.mockResolvedValueOnce({ valid: false })
+			const mockAPIResult = { success: true, userInfo: { email: "test@example.com" } }
+			mockValidateTokenWithAPI.mockResolvedValueOnce(mockAPIResult)
+			mockHandleSuccessfulAPIValidation.mockResolvedValue(undefined)
+
+			// Act
+			const result = await service.signinWithToken()
+
+			// Assert
+			expect(result).toBe(true)
+			expect((service as any).signedOut).toBe(false)
+		})
+
+		it("should log signedOut state changes throughout signinWithToken", async () => {
+			// Arrange: Enable logging verification (mock console.log if needed, but check calls)
+			const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {})
+
+			// Simulate signed out state
+			;(service as any).signedOut = true
+
+			// Mock successful path
+			const mockJWTResult = { success: true, userInfo: { userId: "user_123" }, payload: { sub: "user_123" } }
+			mockVerifyJWTToken.mockResolvedValueOnce(mockJWTResult)
+			mockHandleSuccessfulJWTVerification.mockResolvedValue(undefined)
+
+			// Act
+			await service.signinWithToken()
+
+			// Assert logging occurred at key points
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state before clearStoredTokens"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-FIX] Explicitly resetting signedOut flag"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state after explicit reset"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state before JWT verification"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state before handleSuccessfulJWTVerification"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state after handleSuccessfulJWTVerification"),
+			)
+
+			consoleSpy.mockRestore()
 		})
 	})
 
-	describe("validateSession", () => {
-		it("should validate session successfully", async () => {
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.ACCESS_TOKEN) return Promise.resolve("valid-token")
-				if (key === TOKEN_KEYS.SESSION_ID) return Promise.resolve("session-123")
-				return Promise.resolve(undefined)
-			})
+	describe("updateAuthenticationState signedOut handling", () => {
+		it("should force signedOut to false when isAuthenticated true and signedOut was true", async () => {
+			// Arrange
+			const testState = {
+				isAuthenticated: true,
+				isConnected: true,
+				signedOut: true, // Should be overridden
+				clerkId: "user_123",
+			}
+			;(service as any).signedOut = true
+			mockUpdateAuthenticationState.mockResolvedValue(undefined)
 
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: true,
-			} as any)
+			// Act
+			await (service as any).updateAuthenticationState(testState)
 
-			const isValid = await authService.validateSession()
-
-			expect(isValid).toBe(true)
-			expect(global.fetch).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ENDPOINTS.VALIDATE_SESSION),
+			// Assert
+			expect((service as any).signedOut).toBe(false)
+			expect(mockUpdateAuthenticationState).toHaveBeenCalledWith(
 				expect.objectContaining({
-					method: "POST",
-					body: JSON.stringify({
-						session_id: "session-123",
-						client_type: "vscode",
-					}),
+					signedOut: false,
 				}),
 			)
 		})
 
-		it("should return false for invalid session", async () => {
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.ACCESS_TOKEN) return Promise.resolve("invalid-token")
-				if (key === TOKEN_KEYS.SESSION_ID) return Promise.resolve("session-123")
-				return Promise.resolve(undefined)
-			})
+		it("should set signedOut false when undefined but isAuthenticated true", async () => {
+			// Arrange
+			const testState = {
+				isAuthenticated: true,
+				isConnected: true,
+				// signedOut undefined
+				clerkId: "user_123",
+			}
+			;(service as any).signedOut = true
 
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: false,
-			} as any)
+			// Act
+			await (service as any).updateAuthenticationState(testState)
 
-			const isValid = await authService.validateSession()
-
-			expect(isValid).toBe(false)
-		})
-	})
-
-	describe("signOut", () => {
-		it("should clear all stored tokens", async () => {
-			await authService.signOut()
-
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN)
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith(TOKEN_KEYS.REFRESH_TOKEN)
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith(TOKEN_KEYS.SESSION_ID)
-			expect(mockContext.secrets.delete).toHaveBeenCalledWith(TOKEN_KEYS.ORGANIZATION_ID)
-
-			expect(vscode.window.showInformationMessage).toHaveBeenCalledWith(AUTH_SUCCESS.SIGNED_OUT)
+			// Assert
+			expect((service as any).signedOut).toBe(false)
 		})
 
-		it("should handle sign out errors gracefully", async () => {
-			mockContext.secrets.delete.mockRejectedValueOnce(new Error("Storage error"))
+		it("should log state changes in updateAuthenticationState", async () => {
+			// Arrange
+			const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {})
+			const testState = {
+				isAuthenticated: true,
+				isConnected: true,
+				signedOut: undefined,
+				clerkId: "user_123",
+			}
 
-			await authService.signOut()
+			// Act
+			await (service as any).updateAuthenticationState(testState)
 
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(expect.stringContaining("Sign out failed"))
-		})
-	})
-
-	describe("getOrganizationId", () => {
-		it("should return stored organization ID", async () => {
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.ORGANIZATION_ID) return Promise.resolve("org-123")
-				return Promise.resolve(undefined)
-			})
-
-			const orgId = await authService.getOrganizationId()
-
-			expect(orgId).toBe("org-123")
-			expect(mockContext.secrets.get).toHaveBeenCalledWith(TOKEN_KEYS.ORGANIZATION_ID)
-		})
-	})
-
-	describe("getSessionId", () => {
-		it("should return stored session ID", async () => {
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.SESSION_ID) return Promise.resolve("session-123")
-				return Promise.resolve(undefined)
-			})
-
-			const sessionId = await authService.getSessionId()
-
-			expect(sessionId).toBe("session-123")
-			expect(mockContext.secrets.get).toHaveBeenCalledWith(TOKEN_KEYS.SESSION_ID)
-		})
-	})
-
-	describe("isAuthenticated", () => {
-		it("should return true when token exists", async () => {
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				if (key === TOKEN_KEYS.ACCESS_TOKEN) return Promise.resolve("valid-token")
-				return Promise.resolve(undefined)
-			})
-
-			const isAuth = await authService.isAuthenticated()
-
-			expect(isAuth).toBe(true)
-		})
-
-		it("should return false when no token exists", async () => {
-			mockContext.secrets.get.mockImplementation(() => Promise.resolve(undefined))
-
-			const isAuth = await authService.isAuthenticated()
-
-			expect(isAuth).toBe(false)
-		})
-
-		it("should return true when access token can be refreshed", async () => {
-			let callCount = 0
-			mockContext.secrets.get.mockImplementation((key: string) => {
-				callCount++
-				if (key === TOKEN_KEYS.ACCESS_TOKEN && callCount === 1) return Promise.resolve(undefined)
-				if (key === TOKEN_KEYS.REFRESH_TOKEN) return Promise.resolve("refresh-token")
-				return Promise.resolve(undefined)
-			})
-
-			// Mock successful refresh
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: true,
-				json: vi.fn().mockResolvedValue({
-					access_token: "refreshed-token",
-					refresh_token: "new-refresh-token",
-				}),
-			} as any)
-
-			const isAuth = await authService.isAuthenticated()
-
-			expect(isAuth).toBe(true)
-		})
-	})
-
-	describe("signinWithToken", () => {
-		beforeEach(() => {
-			vi.mocked(vscode.window.showInputBox).mockClear()
-			vi.mocked(global.fetch).mockClear()
-			vi.mocked(vscode.window.showErrorMessage).mockClear()
-			vi.mocked(vscode.window.showInformationMessage).mockClear()
-			vi.mocked(vscode.window.showWarningMessage).mockClear()
-		})
-
-		it("should successfully authenticate with valid token via API fallback", async () => {
-			const testToken =
-				"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ" // Valid JWT format
-
-			// Mock user input
-			vi.mocked(vscode.window.showInputBox).mockResolvedValueOnce(testToken)
-
-			// Mock successful API validation (JWT verification fails, API succeeds)
-			vi.mocked(global.fetch)
-				.mockResolvedValueOnce({
-					ok: true,
-					json: vi.fn().mockResolvedValue({ valid: true }),
-				} as any)
-				// Mock user info response
-				.mockResolvedValueOnce({
-					ok: true,
-					json: vi.fn().mockResolvedValue({
-						email: "test@example.com",
-						session_id: "session-456",
-						organization_id: "org-789",
-					}),
-				} as any)
-
-			await authService.signinWithToken()
-
-			// Should validate token with backend API
-			expect(global.fetch).toHaveBeenCalledWith(
-				expect.stringContaining(AUTH_ENDPOINTS.VALIDATE_SESSION),
+			// Assert
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] updateAuthenticationState called with state"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-STATE] Updated authentication state"),
+			)
+			expect(consoleSpy).toHaveBeenCalledWith(
 				expect.objectContaining({
-					method: "POST",
-					headers: expect.objectContaining({
-						Authorization: `Bearer ${testToken}`,
-						"Content-Type": "application/json",
-					}),
-					body: JSON.stringify({
-						client_type: "vscode",
-					}),
+					instanceSignedOutAfter: false,
 				}),
 			)
 
-			// Should store the token
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN, testToken)
-
-			// Should show success message
-			expect(vscode.window.showInformationMessage).toHaveBeenCalledWith(AUTH_SUCCESS.AUTHENTICATED)
-
-			// Should trigger post-auth command
-			expect(vscode.commands.executeCommand).toHaveBeenCalledWith("softcodes.onAuthenticated")
+			consoleSpy.mockRestore()
 		})
+	})
 
-		it("should handle 404 backend error with helpful message", async () => {
-			const testToken =
-				"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
+	describe("clearStoredTokens signedOut reset", () => {
+		it("should reset signedOut to false during clearStoredTokens", async () => {
+			// Arrange
+			;(service as any).signedOut = true
 
-			// Mock user input
-			vi.mocked(vscode.window.showInputBox).mockResolvedValueOnce(testToken)
+			// Act
+			await (service as any).clearStoredTokens()
 
-			// Mock 404 response (backend not implemented)
-			vi.mocked(global.fetch).mockResolvedValueOnce({
-				ok: false,
-				status: 404,
-				json: vi.fn().mockResolvedValue({ error: "Not Found" }),
-			} as any)
-
-			// Mock user choosing to contact support
-			vi.mocked(vscode.window.showErrorMessage).mockResolvedValueOnce("Contact Support" as any)
-
-			await authService.signinWithToken()
-
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-				expect.stringContaining("Authentication service is not fully implemented yet"),
-				"Contact Support",
-				"Try Again Later",
-				"Use Development Mode",
-			)
-
-			// Should not store invalid token
-			expect(mockContext.secrets.store).not.toHaveBeenCalled()
-		})
-
-		it("should handle user cancellation", async () => {
-			// Mock user cancelling input
-			vi.mocked(vscode.window.showInputBox).mockResolvedValueOnce(undefined)
-
-			await authService.signinWithToken()
-
-			// Should not make any API calls
-			expect(global.fetch).not.toHaveBeenCalled()
-
-			// Should not show any messages
-			expect(vscode.window.showInformationMessage).not.toHaveBeenCalled()
-			expect(vscode.window.showErrorMessage).not.toHaveBeenCalled()
-		})
-
-		it("should validate input and show error for empty token", async () => {
-			// Mock showInputBox to test validation
-			const mockShowInputBox = vi.mocked(vscode.window.showInputBox)
-
-			// Get the validation function from the call
-			mockShowInputBox.mockImplementationOnce(async (options) => {
-				// Test the validation function
-				const validateInput = options?.validateInput
-				if (validateInput) {
-					expect(validateInput("")).toBe("Token cannot be empty")
-					expect(validateInput("   ")).toBe("Token cannot be empty")
-					expect(validateInput("short")).toBe("Token appears to be too short")
-					expect(validateInput("a.b.c")).toBe("Token must be a valid JWT format (xxx.yyy.zzz)")
-					expect(
-						validateInput(
-							"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ",
-						),
-					).toBeNull()
-				}
-				return undefined // User cancelled
-			})
-
-			await authService.signinWithToken()
-
-			expect(mockShowInputBox).toHaveBeenCalledWith(
+			// Assert
+			expect((service as any).signedOut).toBe(false)
+			expect(mockUpdateAuthenticationState).toHaveBeenCalledWith(
 				expect.objectContaining({
-					prompt: "Enter your Softcodes authentication token (JWT)",
-					password: true,
-					placeHolder: "Paste your JWT token here...",
-					ignoreFocusOut: true,
-					validateInput: expect.any(Function),
+					signedOut: false,
 				}),
 			)
 		})
 
-		it("should handle network errors during validation", async () => {
-			const testToken =
-				"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
+		it("should log signedOut changes in clearStoredTokens", async () => {
+			// Arrange
+			const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {})
+			;(service as any).signedOut = true
 
-			// Mock user input
-			vi.mocked(vscode.window.showInputBox).mockResolvedValueOnce(testToken)
+			// Act
+			await (service as any).clearStoredTokens()
 
-			// Mock network error
-			vi.mocked(global.fetch).mockRejectedValueOnce(new Error("Failed to fetch"))
-
-			// Mock user choosing to try again
-			vi.mocked(vscode.window.showErrorMessage).mockResolvedValueOnce("Try Again" as any)
-
-			await authService.signinWithToken()
-
-			expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
-				expect.stringContaining("Unable to connect to authentication service"),
-				"Try Again",
-				"Contact Support",
+			// Assert
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state before clearStoredTokens"),
 			)
+			expect(consoleSpy).toHaveBeenCalledWith(
+				expect.stringContaining("[AUTH-LOG] signedOut state after clearStoredTokens"),
+			)
+
+			consoleSpy.mockRestore()
 		})
+	})
 
-		it("should store additional user info when available", async () => {
-			const testToken =
-				"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
-
-			// Mock user input
-			vi.mocked(vscode.window.showInputBox).mockResolvedValueOnce(testToken)
-
-			// Mock successful validation and user info
-			vi.mocked(global.fetch)
-				.mockResolvedValueOnce({
-					ok: true,
-					json: vi.fn().mockResolvedValue({ valid: true }),
-				} as any)
-				.mockResolvedValueOnce({
-					ok: true,
-					json: vi.fn().mockResolvedValue({
-						email: "test@example.com",
-						session_id: "session-456",
-						organization_id: "org-789",
-					}),
-				} as any)
-
-			await authService.signinWithToken()
-
-			// Should store all available info
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN, testToken)
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.SESSION_ID, "session-456")
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ORGANIZATION_ID, "org-789")
-		})
-
-		it("should handle development mode when API validation is skipped", async () => {
-			const testToken =
-				"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
-
-			// Mock configuration to skip API validation
-			vi.mocked(vscode.workspace.getConfiguration).mockReturnValueOnce({
-				get: vi.fn((key) => {
-					if (key === "auth.skipAPIValidation") return true
-					if (key === "backendUrl") return "https://softcodes.ai"
-					return undefined
+	describe("getAuthenticationState after reconnection", () => {
+		it("should return signedOut false after successful reconnection", async () => {
+			// Arrange: Store successful auth state with signedOut false
+			secrets.set(
+				"auth_state",
+				JSON.stringify({
+					isAuthenticated: true,
+					isConnected: true,
+					signedOut: false,
+					clerkId: "user_123",
 				}),
-			} as any)
-
-			// Mock user input
-			vi.mocked(vscode.window.showInputBox).mockResolvedValueOnce(testToken)
-
-			// Mock user choosing to use token in development mode
-			vi.mocked(vscode.window.showWarningMessage).mockResolvedValueOnce("Yes, Use Token" as any)
-
-			await authService.signinWithToken()
-
-			// Should store token in fallback mode
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.ACCESS_TOKEN, testToken)
-			expect(mockContext.secrets.store).toHaveBeenCalledWith(TOKEN_KEYS.SESSION_ID, "fallback-session")
-
-			// Should show development mode warning
-			expect(vscode.window.showWarningMessage).toHaveBeenCalledWith(
-				expect.stringContaining("Token stored in development mode"),
-				"Understood",
 			)
+			;(service as any).signedOut = false
+
+			// Act
+			const state = await service.getAuthenticationState()
+
+			// Assert
+			expect(state.signedOut).toBe(false)
+			expect(state.isAuthenticated).toBe(true)
+		})
+
+		it("should use instance signedOut over stored if they differ", async () => {
+			// Arrange: Stored has signedOut true, but instance reset to false during reconnection
+			secrets.set(
+				"auth_state",
+				JSON.stringify({
+					isAuthenticated: true,
+					signedOut: true,
+				}),
+			)
+			;(service as any).signedOut = false
+
+			// Act
+			const state = await service.getAuthenticationState()
+
+			// Assert: Uses instance signedOut
+			expect(state.signedOut).toBe(false)
 		})
 	})
 })

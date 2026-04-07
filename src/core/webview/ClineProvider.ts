@@ -143,19 +143,15 @@ export class ClineProvider
 		// properties like mode and provider.
 		TelemetryService.instance.setProvider(this)
 
-		this.log(`[ClineProvider] Initializing WorkspaceTracker: ${typeof WorkspaceTracker}`)
 		this._workspaceTracker = new WorkspaceTracker(this)
 
-		this.log(`[ClineProvider] Initializing ProviderSettingsManager: ${typeof ProviderSettingsManager}`)
 		this.providerSettingsManager = new ProviderSettingsManager(this.context)
 
-		this.log(`[ClineProvider] Initializing CustomModesManager: ${typeof CustomModesManager}`)
 		this.customModesManager = new CustomModesManager(this.context, async () => {
 			await this.postStateToWebview()
 		})
 
 		// Initialize MCP Hub through the singleton manager
-		this.log(`[ClineProvider] Initializing McpServerManager: ${typeof McpServerManager}`)
 		McpServerManager.getInstance(this.context, this)
 			.then((hub) => {
 				this.mcpHub = hub
@@ -165,7 +161,6 @@ export class ClineProvider
 				this.log(`Failed to initialize MCP Hub: ${error}`)
 			})
 
-		this.log(`[ClineProvider] Initializing MarketplaceManager: ${typeof MarketplaceManager}`)
 		this.marketplaceManager = new MarketplaceManager(this.context)
 	}
 
@@ -709,7 +704,7 @@ export class ClineProvider
 						window.AUDIO_BASE_URI = "${audioUri}"
 						window.MATERIAL_ICONS_BASE_URI = "${materialIconsUri}"
 					</script>
-					<title>Softcodes</title>
+					<title>Kilo Code</title>
 				</head>
 				<body>
 					<div id="root"></div>
@@ -744,6 +739,13 @@ export class ClineProvider
 		])
 
 		const scriptUri = getUri(webview, this.contextProxy.extensionUri, ["webview-ui", "build", "assets", "index.js"])
+
+		// Log URI generation for debugging asset loading
+		console.log("[ClineProvider:getHtmlContent] Generated URIs:", {
+			stylesUri: stylesUri.toString(),
+			scriptUri: scriptUri.toString(),
+			cspSource: webview.cspSource,
+		})
 		const codiconsUri = getUri(webview, this.contextProxy.extensionUri, ["assets", "codicons", "codicon.css"])
 		const materialIconsUri = getUri(webview, this.contextProxy.extensionUri, [
 			"assets",
@@ -783,7 +785,7 @@ export class ClineProvider
 				window.AUDIO_BASE_URI = "${audioUri}"
 				window.MATERIAL_ICONS_BASE_URI = "${materialIconsUri}"
 			</script>
-            <title>Softcodes</title>
+            <title>Kilo Code</title>
           </head>
           <body>
             <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -1045,7 +1047,7 @@ export class ClineProvider
 			await fs.mkdir(mcpServersDir, { recursive: true })
 		} catch (error) {
 			// Fallback to a relative path if directory creation fails
-			return path.join(os.homedir(), ".kilocode", "mcp")
+			return path.join(os.homedir(), ".softcodes", "mcp")
 		}
 		return mcpServersDir
 	}
@@ -1145,7 +1147,7 @@ export class ClineProvider
 			kilocodeToken: token,
 		})
 
-		vscode.window.showInformationMessage("Softcodes successfully configured!")
+		vscode.window.showInformationMessage("Kilo Code successfully configured!")
 
 		if (this.getCurrentCline()) {
 			this.getCurrentCline()!.api = buildApiHandler({
@@ -1938,7 +1940,7 @@ export class ClineProvider
 	// MCP Marketplace
 	private async fetchMcpMarketplaceFromApi(silent: boolean = false): Promise<McpMarketplaceCatalog | undefined> {
 		try {
-			const response = await axios.get(`${getRooCodeApiUrl()}/v1/mcp/marketplace`, {
+			const response = await axios.get("https://api.cline.bot/v1/mcp/marketplace", {
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -2031,7 +2033,7 @@ export class ClineProvider
 
 			// Fetch server details from marketplace
 			const response = await axios.post<McpDownloadResponse>(
-				`${getRooCodeApiUrl()}/v1/mcp/download`,
+				"https://api.cline.bot/v1/mcp/download",
 				{ mcpId },
 				{
 					headers: { "Content-Type": "application/json" },

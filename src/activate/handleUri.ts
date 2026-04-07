@@ -52,6 +52,10 @@ export const handleUri = async (uri: vscode.Uri) => {
 				state,
 				organizationId === "null" ? null : organizationId,
 			)
+
+			// Show webview after successful auth
+			await vscode.commands.executeCommand("kilocode.plusButtonTapped")
+
 			break
 		}
 		default:

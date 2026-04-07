@@ -123,9 +123,14 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 
 		mockGetModels.mockResolvedValue(mockModels)
 
-		await webviewMessageHandler(mockClineProvider, {
-			type: "requestRouterModels",
-		})
+		await webviewMessageHandler(
+			mockClineProvider,
+			{
+				type: "requestRouterModels",
+			},
+			undefined,
+			undefined,
+		)
 
 		// Verify getModels was called for each provider
 		expect(mockGetModels).toHaveBeenCalledWith({ provider: "openrouter", apiKey: "openrouter-key" }) // kilocode_change: apiKey
@@ -176,13 +181,18 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 
 		mockGetModels.mockResolvedValue(mockModels)
 
-		await webviewMessageHandler(mockClineProvider, {
-			type: "requestRouterModels",
-			values: {
-				litellmApiKey: "message-litellm-key",
-				litellmBaseUrl: "http://message-url:4000",
+		await webviewMessageHandler(
+			mockClineProvider,
+			{
+				type: "requestRouterModels",
+				values: {
+					litellmApiKey: "message-litellm-key",
+					litellmBaseUrl: "http://message-url:4000",
+				},
 			},
-		})
+			undefined,
+			undefined,
+		)
 
 		// Verify LiteLLM was called with values from message
 		expect(mockGetModels).toHaveBeenCalledWith({
@@ -214,10 +224,15 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 
 		mockGetModels.mockResolvedValue(mockModels)
 
-		await webviewMessageHandler(mockClineProvider, {
-			type: "requestRouterModels",
-			// No values provided
-		})
+		await webviewMessageHandler(
+			mockClineProvider,
+			{
+				type: "requestRouterModels",
+				// No values provided
+			},
+			undefined,
+			undefined,
+		)
 
 		// Verify LiteLLM was NOT called
 		expect(mockGetModels).not.toHaveBeenCalledWith(
@@ -261,9 +276,14 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 			.mockResolvedValueOnce(mockModels) // kilocode-openrouter
 			.mockRejectedValueOnce(new Error("LiteLLM connection failed")) // litellm
 
-		await webviewMessageHandler(mockClineProvider, {
-			type: "requestRouterModels",
-		})
+		await webviewMessageHandler(
+			mockClineProvider,
+			{
+				type: "requestRouterModels",
+			},
+			undefined,
+			undefined,
+		)
 
 		// Verify successful providers are included
 		expect(mockClineProvider.postMessageToWebview).toHaveBeenCalledWith({
@@ -313,9 +333,14 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 			.mockResolvedValueOnce({}) // kilocode-openrouter - Success
 			.mockRejectedValueOnce(new Error("LiteLLM connection failed")) // litellm
 
-		await webviewMessageHandler(mockClineProvider, {
-			type: "requestRouterModels",
-		})
+		await webviewMessageHandler(
+			mockClineProvider,
+			{
+				type: "requestRouterModels",
+			},
+			undefined,
+			undefined,
+		)
 
 		// Verify error handling for different error types
 		expect(mockClineProvider.postMessageToWebview).toHaveBeenCalledWith({
@@ -358,13 +383,18 @@ describe("webviewMessageHandler - requestRouterModels", () => {
 		const mockModels: ModelRecord = {}
 		mockGetModels.mockResolvedValue(mockModels)
 
-		await webviewMessageHandler(mockClineProvider, {
-			type: "requestRouterModels",
-			values: {
-				litellmApiKey: "message-key",
-				litellmBaseUrl: "http://message-url",
+		await webviewMessageHandler(
+			mockClineProvider,
+			{
+				type: "requestRouterModels",
+				values: {
+					litellmApiKey: "message-key",
+					litellmBaseUrl: "http://message-url",
+				},
 			},
-		})
+			undefined,
+			undefined,
+		)
 
 		// Verify config values are used over message values
 		expect(mockGetModels).toHaveBeenCalledWith({
@@ -399,7 +429,7 @@ describe("webviewMessageHandler - deleteCustomMode", () => {
 		vi.mocked(fsUtils.fileExistsAtPath).mockResolvedValue(true)
 		vi.mocked(mockClineProvider.customModesManager.deleteCustomMode).mockResolvedValue(undefined)
 
-		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug })
+		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug }, undefined, undefined)
 
 		// The confirmation dialog is now handled in the webview, so we don't expect showInformationMessage to be called
 		expect(vscode.window.showInformationMessage).not.toHaveBeenCalled()
@@ -424,7 +454,7 @@ describe("webviewMessageHandler - deleteCustomMode", () => {
 		vi.mocked(fsUtils.fileExistsAtPath).mockResolvedValue(true)
 		vi.mocked(mockClineProvider.customModesManager.deleteCustomMode).mockResolvedValue(undefined)
 
-		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug })
+		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug }, undefined, undefined)
 
 		// The confirmation dialog is now handled in the webview, so we don't expect showInformationMessage to be called
 		expect(vscode.window.showInformationMessage).not.toHaveBeenCalled()
@@ -446,7 +476,7 @@ describe("webviewMessageHandler - deleteCustomMode", () => {
 		vi.mocked(fsUtils.fileExistsAtPath).mockResolvedValue(false)
 		vi.mocked(mockClineProvider.customModesManager.deleteCustomMode).mockResolvedValue(undefined)
 
-		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug })
+		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug }, undefined, undefined)
 
 		// The confirmation dialog is now handled in the webview, so we don't expect showInformationMessage to be called
 		expect(vscode.window.showInformationMessage).not.toHaveBeenCalled()
@@ -472,7 +502,7 @@ describe("webviewMessageHandler - deleteCustomMode", () => {
 		vi.mocked(mockClineProvider.customModesManager.deleteCustomMode).mockResolvedValue(undefined)
 		vi.mocked(fs.rm).mockRejectedValue(error)
 
-		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug })
+		await webviewMessageHandler(mockClineProvider, { type: "deleteCustomMode", slug }, undefined, undefined)
 
 		expect(mockClineProvider.customModesManager.deleteCustomMode).toHaveBeenCalledWith(slug)
 		expect(fs.rm).toHaveBeenCalledWith(rulesFolderPath, { recursive: true, force: true })

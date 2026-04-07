@@ -1,175 +1,187 @@
-/**
- * Supabase User Verification Tests
- *
- * Simple tests to verify JWT user IDs against Supabase database
- */
-
 import { describe, it, expect, vi, beforeEach } from "vitest"
 import { verifyJWTUserInSupabase, testUserIdInSupabase } from "../supabaseUserVerification"
+import { parseJWTUnsafe } from "../jwtUtils"
+import { getSupabaseServiceClient } from "../../services/supabaseConfig"
 
-// Mock Supabase
-const mockSupabaseClient = {
-	from: vi.fn(() => ({
-		select: vi.fn(() => ({
-			eq: vi.fn(() => ({
-				single: vi.fn(),
-			})),
-		})),
-	})),
+// Shared mock Supabase client for this test suite
+const mockSupabase = {
+	from: vi.fn().mockReturnThis(),
+	select: vi.fn().mockReturnThis(),
+	eq: vi.fn().mockReturnThis(),
+	single: vi.fn(),
+	rpc: vi.fn(),
+	limit: vi.fn().mockReturnThis(),
 }
 
-const mockCreateClient = vi.fn(() => mockSupabaseClient)
-
-vi.mock("@supabase/supabase-js", () => ({
-	createClient: mockCreateClient,
+vi.mock("../../services/supabaseConfig", () => ({
+	getSupabaseServiceClient: vi.fn(),
 }))
 
-// Mock environment variables
-const originalEnv = process.env
+vi.mock("../jwtUtils", () => ({
+	parseJWTUnsafe: vi.fn(),
+}))
 
 describe("Supabase User Verification", () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
-
-		// Set up environment variables
-		process.env = {
-			...originalEnv,
-			NEXT_PUBLIC_SUPABASE_URL: "https://test.supabase.co",
-			SUPABASE_SERVICE_ROLE_KEY: "test-service-role-key",
-		}
+		;(getSupabaseServiceClient as any).mockResolvedValue(mockSupabase)
 	})
 
-	afterEach(() => {
-		process.env = originalEnv
-	})
+	describe("verifyJWTUserInSupabase", () => {
+		it("should verify user exists in Supabase (maps clerk_id -> users.id then calls get_credits_auto)", async () => {
+			const clerkId = "user_31vdw7c9BAYCHGHIggfTbJuURIS"
+			const orgId = "11111111-1111-1111-1111-111111111111"
+			const internalUserId = "22222222-2222-2222-2222-222222222222"
 
-	it("should verify user exists in Supabase", async () => {
-		// Mock JWT token with user ID
-		const mockToken =
-			"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzMxdmR3N2M5QkFZQ0hHSElnZ2ZUYkp1VVJJUyIsImlzcyI6Imh0dHBzOi8vY2xlcmsuc29mdGNvZGVzLmFpIiwiZXhwIjoxNzU3NTA2MDc2fQ.signature"
+			;(parseJWTUnsafe as any).mockReturnValue({
+				success: true,
+				parts: { payload: { sub: clerkId, org_id: orgId, email: "test@example.com" } },
+			})
 
-		// Mock Supabase response - user found
-		const mockUserData = {
-			id: 123,
-			clerk_id: "user_31vdw7c9BAYCHGHIggfTbJuURIS",
-			email: "test@example.com",
-			first_name: "John",
-			last_name: "Doe",
-			created_at: "2024-01-01T00:00:00Z",
-			updated_at: "2024-01-01T00:00:00Z",
-		}
+			// 1) Mapping query: users.id by clerk_id
+			mockSupabase.single.mockResolvedValueOnce({
+				data: { id: internalUserId },
+				error: null,
+			})
 
-		mockSupabaseClient.from().select().eq().single.mockResolvedValue({
-			data: mockUserData,
-			error: null,
+			// 2) Context-aware credit lookup: uuid, uuid
+			mockSupabase.rpc.mockResolvedValueOnce({
+				data: {
+					success: true,
+					user_id: internalUserId,
+					org_id: orgId,
+					current_credits: 20100,
+					plan_type: "starter",
+					is_organization: false,
+				},
+				error: null,
+			})
+
+			const result = await verifyJWTUserInSupabase("mock.jwt.token")
+
+			expect(result.success).toBe(true)
+			expect(result.userIdExtracted).toBe(clerkId)
+			expect(result.userExistsInSupabase).toBe(true)
+			expect(result.userDetails).toMatchObject({
+				success: true,
+				user_id: internalUserId,
+				org_id: orgId,
+				current_credits: 20100,
+				credits: 20100,
+				id: internalUserId,
+				plan_type: "starter",
+			})
+
+			expect(parseJWTUnsafe).toHaveBeenCalledWith("mock.jwt.token")
+			expect(mockSupabase.from).toHaveBeenCalledWith("users")
+			expect(mockSupabase.select).toHaveBeenCalledWith("id")
+			expect(mockSupabase.eq).toHaveBeenCalledWith("clerk_id", clerkId)
+			expect(mockSupabase.rpc).toHaveBeenCalledWith("get_credits_auto", {
+				p_user_id: internalUserId,
+				p_org_id: orgId,
+			})
 		})
 
-		const result = await verifyJWTUserInSupabase(mockToken)
+		it("should handle user not found in Supabase (no mapping row)", async () => {
+			const clerkId = "user_notfound"
 
-		expect(result.success).toBe(true)
-		expect(result.userIdExtracted).toBe("user_31vdw7c9BAYCHGHIggfTbJuURIS")
-		expect(result.userExistsInSupabase).toBe(true)
-		expect(result.userDetails).toEqual(mockUserData)
+			;(parseJWTUnsafe as any).mockReturnValue({
+				success: true,
+				parts: { payload: { sub: clerkId } },
+			})
 
-		// Verify the correct query was made
-		expect(mockSupabaseClient.from).toHaveBeenCalledWith("users")
-		expect(mockSupabaseClient.from().select).toHaveBeenCalledWith("*", { count: "exact" })
-		expect(mockSupabaseClient.from().select().eq).toHaveBeenCalledWith(
-			"clerk_id",
-			"user_31vdw7c9BAYCHGHIggfTbJuURIS",
-		)
-	})
-
-	it("should handle user not found in Supabase", async () => {
-		const mockToken =
-			"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyX25vdGZvdW5kIiwiaXNzIjoiaHR0cHM6Ly9jbGVyay5zb2Z0Y29kZXMuYWkiLCJleHAiOjE3NTc1MDYwNzZ9.signature"
-
-		// Mock Supabase response - user not found
-		mockSupabaseClient
-			.from()
-			.select()
-			.eq()
-			.single.mockResolvedValue({
+			// Mapping query returns 0 rows
+			mockSupabase.single.mockResolvedValueOnce({
 				data: null,
 				error: { code: "PGRST116", message: "The result contains 0 rows" },
 			})
 
-		const result = await verifyJWTUserInSupabase(mockToken)
+			const result = await verifyJWTUserInSupabase("mock.jwt.token")
 
-		expect(result.success).toBe(true)
-		expect(result.userIdExtracted).toBe("user_notfound")
-		expect(result.userExistsInSupabase).toBe(false)
-		expect(result.error).toBe("User not found in Supabase database")
-	})
+			expect(result).toEqual({
+				success: true,
+				userIdExtracted: clerkId,
+				userExistsInSupabase: false,
+				error: "User not found in Supabase database",
+			})
+			expect(mockSupabase.rpc).not.toHaveBeenCalled()
+		})
 
-	it("should handle invalid JWT tokens", async () => {
-		const invalidToken = "invalid.jwt.token"
-
-		const result = await verifyJWTUserInSupabase(invalidToken)
-
-		expect(result.success).toBe(false)
-		expect(result.error).toContain("Failed to parse JWT")
-	})
-
-	it("should handle missing Supabase configuration", async () => {
-		// Remove environment variables
-		delete process.env.NEXT_PUBLIC_SUPABASE_URL
-		delete process.env.SUPABASE_SERVICE_ROLE_KEY
-		delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-		const mockToken =
-			"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEyMyIsImlzcyI6Imh0dHBzOi8vY2xlcmsuc29mdGNvZGVzLmFpIiwiZXhwIjoxNzU3NTA2MDc2fQ.signature"
-
-		const result = await verifyJWTUserInSupabase(mockToken)
-
-		expect(result.success).toBe(false)
-		expect(result.error).toContain("Supabase configuration missing")
-	})
-
-	it("should handle database errors", async () => {
-		const mockToken =
-			"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEyMyIsImlzcyI6Imh0dHBzOi8vY2xlcmsuc29mdGNvZGVzLmFpIiwiZXhwIjoxNzU3NTA2MDc2fQ.signature"
-
-		// Mock database error
-		mockSupabaseClient
-			.from()
-			.select()
-			.eq()
-			.single.mockResolvedValue({
-				data: null,
-				error: { code: "CONNECTION_ERROR", message: "Unable to connect to database" },
+		it("should handle invalid JWT tokens", async () => {
+			;(parseJWTUnsafe as any).mockReturnValue({
+				success: false,
+				error: "Invalid token format",
 			})
 
-		const result = await verifyJWTUserInSupabase(mockToken)
+			const result = await verifyJWTUserInSupabase("invalid.jwt.token")
 
-		expect(result.success).toBe(false)
-		expect(result.error).toContain("Database query failed")
+			expect(result.success).toBe(false)
+			expect(result.error).toContain("Failed to parse JWT")
+			expect(mockSupabase.from).not.toHaveBeenCalled()
+		})
+
+		it("should handle Supabase configuration/client initialization errors", async () => {
+			;(getSupabaseServiceClient as any).mockRejectedValueOnce(new Error("Supabase configuration missing"))
+			;(parseJWTUnsafe as any).mockReturnValue({
+				success: true,
+				parts: { payload: { sub: "user_123" } },
+			})
+
+			const result = await verifyJWTUserInSupabase("mock.jwt.token")
+
+			expect(result.success).toBe(false)
+			expect(result.error).toContain("Verification failed:")
+		})
+
+		it("should handle RPC errors", async () => {
+			const clerkId = "user_123"
+			const orgId = "11111111-1111-1111-1111-111111111111"
+			const internalUserId = "22222222-2222-2222-2222-222222222222"
+
+			;(parseJWTUnsafe as any).mockReturnValue({
+				success: true,
+				parts: { payload: { sub: clerkId, org_id: orgId } },
+			})
+
+			// Mapping succeeds
+			mockSupabase.single.mockResolvedValueOnce({
+				data: { id: internalUserId },
+				error: null,
+			})
+
+			// RPC returns error
+			mockSupabase.rpc.mockResolvedValueOnce({
+				data: null,
+				error: { code: "P0001", message: "Database connection failed" },
+			})
+
+			const result = await verifyJWTUserInSupabase("mock.jwt.token")
+
+			expect(result.success).toBe(false)
+			expect(result.userIdExtracted).toBe(clerkId)
+			expect(result.error).toBe("Database query failed: Database connection failed")
+		})
 	})
 })
 
 describe("Direct User ID Testing", () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
-
-		process.env = {
-			...originalEnv,
-			NEXT_PUBLIC_SUPABASE_URL: "https://test.supabase.co",
-			SUPABASE_SERVICE_ROLE_KEY: "test-service-role-key",
-		}
+		;(getSupabaseServiceClient as any).mockResolvedValue(mockSupabase)
 	})
 
 	it("should test user ID directly in Supabase", async () => {
 		const testUserId = "user_31vdw7c9BAYCHGHIggfTbJuURIS"
 
 		const mockUserData = {
-			id: 123,
+			id: "22222222-2222-2222-2222-222222222222",
 			clerk_id: testUserId,
 			email: "test@example.com",
 			first_name: "John",
 			last_name: "Doe",
 		}
 
-		mockSupabaseClient.from().select().eq().single.mockResolvedValue({
+		mockSupabase.single.mockResolvedValueOnce({
 			data: mockUserData,
 			error: null,
 		})
@@ -179,5 +191,16 @@ describe("Direct User ID Testing", () => {
 		expect(result.success).toBe(true)
 		expect(result.userExistsInSupabase).toBe(true)
 		expect(result.userDetails).toEqual(mockUserData)
+	})
+
+	it("should return not found when user ID does not match any column", async () => {
+		mockSupabase.single.mockResolvedValue({ data: null, error: { code: "PGRST116" } })
+		mockSupabase.eq.mockReturnValue(mockSupabase)
+
+		const result = await testUserIdInSupabase("nonexistent_user")
+
+		expect(result.success).toBe(true)
+		expect(result.userExistsInSupabase).toBe(false)
+		expect(result.error).toBe("User not found in Supabase with any column name")
 	})
 })

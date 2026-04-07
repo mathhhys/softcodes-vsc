@@ -1,59 +1,49 @@
-<p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code"><img src="https://img.shields.io/visual-studio-marketplace/v/kilocode.Kilo-Code.svg?label=VS%20Code%20Marketplace" alt="VS Code Marketplace"></a>
-  <!--<a href="https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code"><img src="https://img.shields.io/badge/Get%20$20%20of%20free%20tokens-green?logo=claude&logoColor=white" alt="Get $20 of tokens for free"></a>-->
-  <a href="https://x.com/kilo_code"><img src="https://img.shields.io/twitter/follow/kilo_code?style=flat&logo=x&color=555" alt="X (Twitter)"></a>
-  <a href="https://blog.kilocode.ai"><img src="https://img.shields.io/badge/Blog-555?style=flat&logo=substack&logoColor=white" alt="Substack Blog"></a>
-  <a href="https://kilocode.ai/discord"><img src="https://img.shields.io/discord/1349288496988160052?style=flat&logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://www.reddit.com/r/kilocode/"><img src="https://img.shields.io/reddit/subreddit-subscribers/kilocode?style=flat&logo=reddit&logoColor=white" alt="Reddit"></a>
-</p>
-
 # 🚀 Softcodes
 
-> Open-source VS Code AI agent. Merged features from [Roo Code](https://github.com/RooVetGit/Roo-Code) and [Cline](https://github.com/cline/cline).
+Softcodes is a powerful AI coding copilot extension for Visual Studio Code, offering seamless access to over 450 advanced AI models (including GPT-5, Claude, Gemini, and Llama) to supercharge your development workflow with intelligent code completion, contextual suggestions, and AI automation—without managing external API keys.​
 
-- ✨ Generate code from natural language
-- ✅ Checks its own work
-- 🧪 Run terminal commands
-- 🌐 Automate the browser
-- 🤖 Latest AI models
-- 🎁 API keys optional
-- 💡 **$20 free credits for Gemini 2.5 Pro, Claude 4 Sonnet & Opus, and GPT-4.1**<br/>Share feedback and earn more credits!
+# Features
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Kilo-Org/kilocode/refs/heads/main/kilo.gif" width="100%" />
-</p>
+- Access 450+ AI Models: Instantly access the latest coding models from providers such as OpenAI, Anthropic, Google, and Meta. The catalog is continuously updated and maintained by Softcodes.​
 
-- [VS Code Marketplace](https://kilocode.ai/vscode-marketplace?utm_source=Readme) (download)
-- [Official KiloCode.ai Home page](https://kilocode.ai) (learn more)
+- No Key Management Required: Use AI features out-of-the-box with Softcodes’ built-in provider—no need to manage or configure your own API keys.​
 
-## Key Features
+- Free Monthly Credits: Every user receives 500 free credits at signup, plus 500 new credits monthly. Unused credits roll over month-to-month for ongoing flexibility.​
 
-- **Code Generation:** Generate code using natural language.
-- **Task Automation:** Automate repetitive coding tasks.
-- **Automated Refactoring:** Refactor and improve existing code.
-- **MCP Server Marketplace**: Easily find, and use MCP servers to extend the agent capabilities.
-- **Multi Mode**: Plan with Architect, Code with Coder, and Debug with Debugger, and make your own custom modes.
+- Flexible Payment: Bring Your Own Key (BYOK) is supported for users with direct model provider access.​
 
-## How to get started with Softcodes
+- Multi-Mode AI Workflow: Switch effortlessly between specialized modes: Architect (plan/design), Code (write/refactor), Ask (explore/understand), Debug (fix/resolve), and Orchestrator (coordinate tasks).​
 
-1.  Install the Softcodes extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code).
-2.  Log in with your Google Account to get $20 in free Claude 4 Sonnet & Opus credits.
-3.  Start using the extension. Here's a video to help you get started (just click on the image below and you'll be redirected to YouTube):
+- Prompt Optimization: Instantly enhance your AI prompts using the built-in Enhance button for improved coding results.​
 
-[![Watch the video](https://img.youtube.com/vi/pqGfYXgrhig/maxresdefault.jpg)](https://youtu.be/pqGfYXgrhig)
+- No-Config Setup: Get started in seconds—install the extension and gain immediate access to all features.​
 
-## Difference between Roo Code and Cline
+Usage Analytics & Support: Track credits and model consumption. Responsive support for billing or token queries is available at mathys@softcodes.io.​
 
-We're doing our best to combine the best of both worlds. Softcodes combines all features of Cline, Roo, and adds a few of our own additions. It has the best features of both, and we're working on making it even better!
+# Getting Started
 
-No need to fiddle with API keys, Softcodes ships with the latest AI models plugged in, including Claude 4 Sonnet and Opus and Gemini 2.5 Pro.
+- Launch the Command Palette (Ctrl+Shift+P) and search for "Softcodes" to discover available commands and modes.
 
-Softcodes is a direct fork from Roo Code, but also includes the following features from Cline (and more):
+- Choose your mode: Architect, Code, Ask, Debug, or Orchestrator. Each offers targeted AI support for planning, writing, exploring, debugging, or managing multi-step development tasks.​
 
-- MCP Server Marketplace: Easily find, and use MCP servers to extend the agent capabilities.
-- System notifications: Get notified when the agent is done with a task.
-- Easy model connection: with bigger free tier.
+- Monitor your credit balance and model usage from the Softcodes panel.
 
-## Extension Development
+# Example Workflows
 
-For details on building and developing the extension, see [DEVELOPMENT.md](/DEVELOPMENT.md)
+- Autocomplete & Code Suggestions: Let Softcodes offer function and algorithm suggestions based on your actual codebase context, not just keywords.​
+
+- Prompt Enhancement: Enter a basic prompt and use the Enhance button to generate more effective, precise requests for the AI model.​
+
+- Contextual Exploration: Use Ask mode to query or summarize parts of your codebase in plain English, aiding onboarding, refactoring, and documentation.​
+
+- Debugging: Get instant fix suggestions and diagnosis for bugs or warnings in your workspace.​
+
+# Credits and Billing
+
+- Every account is credited 500 tokens upon signup, with 500 fresh tokens credited each month. Unused credits roll over and accumulate.​
+
+- Token consumption depends on the advanced capabilities of the selected model; see model-specific cost details in the app dashboard.​
+
+# Support and Feedback
+
+For usage help, feature requests, or bug reporting, visit softcodes.ai support or email mathys@softcodes.io.

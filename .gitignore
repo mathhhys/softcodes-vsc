@@ -22,10 +22,12 @@ bin/
 # Docs
 docs/_site/
 
-# Dotenv
+# Dotenv - Environment files with secrets
 .env
 .env.*
 !.env.*.sample
+!.env.example
+!.env.*.example
 
 # Logging
 logs
@@ -49,4 +51,6 @@ logs
 .roo/mcp.json
 
 # Nix / Direnv
-.direnv
+.direnv.git-safety/
+.softcodes/mcp.json
+.kilocode/mcp.json

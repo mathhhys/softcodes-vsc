@@ -15,6 +15,7 @@ try {
 import { CloudService } from "@roo-code/cloud"
 import { TelemetryService, PostHogTelemetryClient } from "@roo-code/telemetry"
 import { UnifiedAuthService } from "./auth/unifiedAuthService"
+import { OAUTH_CONFIG } from "./auth/config"
 
 import "./utils/path" // Necessary to have access to String.prototype.toPosix.
 import { createOutputChannelLogger, createDualLogger } from "./utils/outputChannelLogger"
@@ -44,6 +45,8 @@ import {
 } from "./activate"
 import { initializeI18n } from "./i18n"
 import { registerGhostProvider } from "./services/ghost" // kilocode_change
+import { CreditBadgeManager } from "./services/creditBadge"
+import { getEnhancedCreditSystem } from "./services/enhancedCreditSystem"
 
 /**
  * Built using https://github.com/microsoft/vscode-webview-ui-toolkit
@@ -58,6 +61,7 @@ let extensionContext: vscode.ExtensionContext
 let commandsRegistered = false // New flag to track command registration
 let commitMessageProvider: vscode.Disposable | undefined
 let authService: UnifiedAuthService | undefined
+let creditBadgeManager: CreditBadgeManager | undefined
 
 // This method is called when your extension is activated.
 // Your extension is activated the very first time the command is executed.
@@ -85,10 +89,15 @@ export async function activate(context: vscode.ExtensionContext) {
 	// Initialize telemetry service.
 	const telemetryService = TelemetryService.createInstance()
 
-	try {
-		telemetryService.register(new PostHogTelemetryClient())
-	} catch (error) {
-		console.warn("Failed to register PostHogTelemetryClient:", error)
+	// Only register PostHog telemetry client if API key is available
+	if (process.env.KILOCODE_POSTHOG_API_KEY) {
+		try {
+			telemetryService.register(new PostHogTelemetryClient())
+		} catch (error) {
+			console.warn("Failed to register PostHogTelemetryClient:", error)
+		}
+	} else {
+		console.log("PostHog API key not available - telemetry disabled")
 	}
 
 	// Create logger for cloud services
@@ -206,14 +215,64 @@ export async function activate(context: vscode.ExtensionContext) {
 	// Initialize unified authentication service
 	authService = UnifiedAuthService.getInstance(context)
 
-	// Register URI handler for OAuth callbacks
+	// Register URI handler for OAuth callbacks with consistent scheme
 	const uriHandler = vscode.window.registerUriHandler({
-		handleUri(uri: vscode.Uri) {
-			if (uri.path === "/auth/callback") {
-				authService!.handleCallback(uri)
-			} else {
-				// Handle other URIs with original handler
-				handleUri(uri)
+		handleUri: async (uri: vscode.Uri) => {
+			try {
+				// Use consistent vscode-softcodes scheme
+				if (uri.scheme === "vscode-softcodes" && (uri.path === "/callback" || uri.path === "/auth/callback")) {
+					const params = new URLSearchParams(uri.query)
+					const code = params.get("code")
+					const state = params.get("state")
+
+					if (!code || !state) {
+						vscode.window.showErrorMessage("Invalid authentication callback parameters.")
+						return
+					}
+
+					// Validate state parameter
+					const storedState = await context.secrets.get("auth_state")
+					if (state !== storedState) {
+						vscode.window.showErrorMessage("Invalid authentication state - security check failed.")
+						await context.secrets.delete("auth_state")
+						await context.secrets.delete("code_verifier")
+						return
+					}
+
+					// Exchange code for tokens
+					const verifier = await context.secrets.get("code_verifier")
+					if (!verifier) {
+						vscode.window.showErrorMessage("Authentication verification code not found.")
+						return
+					}
+
+					// Use consistent redirect URI
+					const redirectUri = OAUTH_CONFIG.VSCODE.REDIRECT_URI
+					await UnifiedAuthService.exchangeToken(code, verifier, state, redirectUri, context)
+
+					// Clean up temporary storage
+					await context.secrets.delete("auth_state")
+					await context.secrets.delete("code_verifier")
+
+					vscode.window.showInformationMessage("Authentication successful!")
+
+					// Broadcast updated state to webview after successful OAuth authentication
+					provider.postStateToWebview()
+					// Also refresh auth state for ProfileView
+					vscode.commands.executeCommand("softcodes.refreshAuthState")
+					console.log("🔄 [EXTENSION] OAuth authentication successful - broadcast updated state to webview")
+				} else if (uri.path === "/auth/callback") {
+					// Handle legacy callback format
+					await authService!.handleCallback(uri)
+				} else {
+					// Handle other URIs with original handler
+					handleUri(uri)
+				}
+			} catch (error) {
+				console.error("URI handler error:", error)
+				vscode.window.showErrorMessage(
+					`Authentication error: ${error instanceof Error ? error.message : String(error)}`,
+				)
 			}
 		},
 	})
@@ -221,10 +280,28 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	// Register authentication commands
 	context.subscriptions.push(
-		vscode.commands.registerCommand("softcodes.authenticate", () => {
-			authService!.authenticate()
+		vscode.commands.registerCommand("softcodes.authenticate", async () => {
+			try {
+				const success = await authService!.signinWithToken()
+				if (success) {
+					// Broadcast updated state to webview after successful authentication
+					provider.postStateToWebview()
+					// Also refresh auth state for ProfileView
+					vscode.commands.executeCommand("softcodes.refreshAuthState")
+					console.log("🔄 [EXTENSION] Authentication successful - broadcast updated state to webview")
+				}
+			} catch (error) {
+				console.error("❌ [EXTENSION] Authentication failed:", error)
+			}
 		}),
 	)
+
+	// Check token on startup
+	authService!.isAuthenticated().then((isAuth) => {
+		if (isAuth) {
+			console.log("[Auth] Valid token loaded on startup")
+		}
+	})
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand("softcodes.signOut", () => {
@@ -241,25 +318,130 @@ export async function activate(context: vscode.ExtensionContext) {
 		}),
 	)
 
+	// Register command to refresh auth state in webview
+	context.subscriptions.push(
+		vscode.commands.registerCommand("softcodes.refreshAuthState", async () => {
+			console.log("🔄 [REFRESH-AUTH] Manually refreshing authentication state in webview")
+
+			try {
+				const authService = UnifiedAuthService.getInstance(context)
+				const authState = await authService.getAuthenticationState()
+				const isAuthenticated = await authService.isAuthenticated()
+
+				console.log("🔄 [REFRESH-AUTH] Current auth state:", {
+					isAuthenticated,
+					isConnected: authState.isConnected,
+					supabaseVerified: authState.supabaseVerified,
+				})
+
+				if (isAuthenticated) {
+					// Always use getExtendedUserInfo() - it handles fallback to Clerk data when not connected to Supabase
+					const softcodesUserInfo = await authService.getExtendedUserInfo()
+
+					if (authState.isConnected && softcodesUserInfo) {
+						// Send connection-specific success message
+						provider.postMessageToWebview({
+							type: "connectionStatusChanged",
+							isConnected: true,
+							authenticationState: authState,
+						})
+					}
+
+					// Always broadcast auth state change
+					provider.postMessageToWebview({
+						type: "authStateChanged",
+						isAuthenticated: true,
+						isConnected: authState.isConnected,
+						softcodesUserInfo,
+						authenticationState: authState,
+						supabaseVerified: authState.supabaseVerified,
+					})
+				} else {
+					// Not authenticated - broadcast the state
+					provider.postMessageToWebview({
+						type: "authStateChanged",
+						isAuthenticated: false,
+						isConnected: false,
+						softcodesUserInfo: undefined,
+						authenticationState: authState,
+						supabaseVerified: false,
+					})
+				}
+
+				// Update provider state
+				await provider.postStateToWebview()
+			} catch (error) {
+				console.error("🔄 [REFRESH-AUTH] Error refreshing auth state:", error)
+			}
+		}),
+		vscode.commands.registerCommand("softcodes.updateCreditBalance", (credits: number) => {
+			provider.postMessageToWebview({ type: "softcodesBalanceUpdate", credits })
+		}),
+	)
+
 	// Register sign in with token command
 	context.subscriptions.push(
-		vscode.commands.registerCommand("softcodes.signinWithToken", () => {
-			authService!.signinWithToken()
+		vscode.commands.registerCommand("softcodes.signinWithToken", async () => {
+			try {
+				const success = await authService!.signinWithToken()
+				if (success) {
+					// Broadcast updated state to webview after successful authentication
+					provider.postStateToWebview()
+					// Also refresh auth state for ProfileView
+					vscode.commands.executeCommand("softcodes.refreshAuthState")
+					console.log("🔄 [EXTENSION] Manual token signin successful - broadcast updated state to webview")
+				}
+			} catch (error) {
+				console.error("❌ [EXTENSION] Manual token signin failed:", error)
+			}
 		}),
 	)
 
 	// Check authentication status on activation
-	authService.isAuthenticated().then((isAuth: boolean) => {
-		if (!isAuth) {
-			vscode.window
-				.showInformationMessage("Sign in to Softcodes to enable AI features", "Sign In")
-				.then((selection) => {
-					if (selection === "Sign In") {
-						vscode.commands.executeCommand("softcodes.authenticate")
-					}
-				})
-		}
-	})
+
+	// Command to show token information including expiry
+	context.subscriptions.push(
+		vscode.commands.registerCommand("softcodes.showTokenInfo", async () => {
+			const isAuthenticated = await authService!.isAuthenticated()
+			if (!isAuthenticated) {
+				vscode.window.showWarningMessage("No valid token found. Please authenticate first.")
+				return
+			}
+
+			const expiry = extensionContext.globalState.get("token_expiry") as number | undefined
+			if (!expiry) {
+				vscode.window.showInformationMessage("Token is valid, but expiry information is not available.")
+				return
+			}
+
+			const now = Date.now()
+			const remainingMs = expiry - now
+			const remainingMinutes = Math.floor(remainingMs / (1000 * 60))
+			const expiryDate = new Date(expiry).toLocaleString()
+
+			vscode.window.showInformationMessage(
+				`Token expires in ${remainingMinutes} minutes (on ${expiryDate}). Generate a new token from the dashboard if needed.`,
+			)
+		}),
+	)
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand("softcodes.reauthenticate", async () => {
+			try {
+				await authService!.signOut()
+				const success = await authService!.signinWithToken()
+				if (success) {
+					// Broadcast updated state to webview after successful reauthentication
+					provider.postStateToWebview()
+					// Also refresh auth state for ProfileView
+					vscode.commands.executeCommand("softcodes.refreshAuthState")
+					console.log("🔄 [EXTENSION] Reauthentication successful - broadcast updated state to webview")
+				}
+			} catch (error) {
+				console.error("❌ [EXTENSION] Reauthentication failed:", error)
+			}
+		}),
+	)
 
 	// Register code actions provider.
 	context.subscriptions.push(
@@ -276,6 +458,60 @@ export async function activate(context: vscode.ExtensionContext) {
 	if (!commitMessageProvider) {
 		commitMessageProvider = registerCommitMessageProvider(context, outputChannel)
 	}
+
+	// Initialize credit badge system
+	try {
+		creditBadgeManager = CreditBadgeManager.getInstance(context)
+		await creditBadgeManager.initialize()
+		outputChannel.appendLine("[CREDIT-BADGE] Credit badge system initialized")
+	} catch (error) {
+		outputChannel.appendLine(`[CREDIT-BADGE] Failed to initialize credit badge system: ${error}`)
+	}
+
+	// Initialize enhanced credit system
+	try {
+		getEnhancedCreditSystem(context)
+		outputChannel.appendLine("[ENHANCED-CREDIT] Enhanced credit system initialized")
+	} catch (error) {
+		outputChannel.appendLine(`[ENHANCED-CREDIT] Failed to initialize enhanced credit system: ${error}`)
+	}
+
+	// Status bar item for auth status
+	const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100)
+	statusBar.command = "softcodes.authenticate"
+	statusBar.text = "$(lock) Softcodes: Not Authenticated"
+	statusBar.tooltip = "Click to authenticate"
+	statusBar.show()
+
+	// Update status based on auth state
+	const updateStatusBar = async () => {
+		const isAuthenticated = await authService!.isAuthenticated()
+		statusBar.text = isAuthenticated ? "$(unlock) Softcodes: Authenticated" : "$(lock) Softcodes: Not Authenticated"
+
+		if (isAuthenticated) {
+			const expiry = extensionContext.globalState.get("token_expiry") as number | undefined
+			if (expiry) {
+				const now = Date.now()
+				const remainingMs = expiry - now
+				const remainingMinutes = Math.floor(remainingMs / (1000 * 60))
+				statusBar.tooltip = `Authenticated. Token expires in ${remainingMinutes} minutes. Click to re-authenticate or use "Softcodes: Show Token Info" for details.`
+			} else {
+				statusBar.tooltip = 'Authenticated. Click to re-authenticate or use "Softcodes: Show Token Info".'
+			}
+		} else {
+			statusBar.tooltip = "Not authenticated. Click to authenticate with token."
+		}
+	}
+
+	// Initial update
+	await updateStatusBar()
+
+	// Listen for auth state changes
+	authService!.setStateChangeCallback((state) => {
+		updateStatusBar()
+	})
+
+	context.subscriptions.push(statusBar)
 
 	// Allows other extensions to activate once Softcodes is ready.
 	vscode.commands.executeCommand(`${Package.name}.activationCompleted`)
@@ -313,6 +549,11 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	await checkAndRunAutoLaunchingTask(context) // kilocode_change
 
+	// Start expiry monitor for proactive token refresh
+	if (authService) {
+		authService.startExpiryMonitor(context)
+	}
+
 	return new API(outputChannel, provider, socketPath, enableLogging)
 }
 
@@ -326,6 +567,10 @@ export async function deactivate() {
 	if (commitMessageProvider) {
 		commitMessageProvider.dispose()
 		commitMessageProvider = undefined
+	}
+	if (creditBadgeManager) {
+		creditBadgeManager.dispose()
+		creditBadgeManager = undefined
 	}
 	if (outputChannel) outputChannel.appendLine("[Deactivate] commandsRegistered set to false.")
 	if (outputChannel) outputChannel.appendLine(`${Package.name} extension deactivated`)
